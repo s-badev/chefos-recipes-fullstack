@@ -1,61 +1,70 @@
+
 # Chefo’s Recipes
 
-A full-stack, multi-platform recipe catalog app (SoftUni capstone).
+**Chefo’s Recipes** is a full-stack, multi-platform recipe catalog application developed as a SoftUni capstone project for the **Full Stack Apps with AI** course.
 
-## Current status
-Planning only. This repo contains the initial project structure and documentation. No dependencies are installed yet and no app code exists.
+The project is designed as a practical recipe platform where users can browse recipes, view detailed cooking instructions, save favorites, and use both a responsive web application and a mobile client. Admin users will be able to manage recipe content through a dedicated web admin panel.
 
-## Tech stack (planned)
-- **Web:** Next.js + React + TypeScript + Tailwind CSS
-- **API:** Next.js API routes (REST)
-- **Database:** Neon PostgreSQL
-- **ORM:** Drizzle + migrations
-- **Mobile:** Expo React Native
-- **Auth:** JWT (access + refresh), role-based access (user/admin)
+---
 
-## Monorepo structure
-```
-apps/
-  web/       # Next.js web app (planned)
-  mobile/    # Expo mobile app (planned)
-packages/
-  db/        # Drizzle schema + migrations (planned)
-  shared/    # Shared types, validators, utilities (planned)
-docs/        # Architecture, schema, API plans
-```
+## Project Status
 
-## Planned features
-- Public recipe browsing
-- Account registration/login
-- User recipe favorites
-- Admin panel for recipe management
-- Responsive web UI
-- Mobile-friendly experience
+**Current phase:** Initial planning and project foundation.
 
-## Planned screens
-**Web (≥5):**
-1. Home / Discover
-2. Recipe details
-3. Login / Register
-4. Favorites
-5. Admin: recipe manager
+The repository currently contains the base monorepo structure, project documentation, AI agent instructions, and planning files. Application scaffolding, dependencies, database setup, authentication, and UI implementation will be added incrementally in separate commits.
 
-**Mobile (≥3):**
-1. Home / Discover
-2. Recipe details
-3. Login / Register
+This project is intentionally developed step by step to keep the architecture clean, the Git history clear, and the implementation realistic for a student capstone.
 
-## Next milestones (incremental)
-1. Initialize Next.js and Expo apps
-2. Implement DB schema + migrations
-3. Implement auth and REST endpoints
-4. Build web screens and admin panel
-5. Build mobile screens and sync with API
+---
 
-## Docs
-- `docs/architecture.md`
-- `docs/database-schema.md`
-- `docs/api-endpoints.md`
+## Project Goals
 
-## Notes
-This project is scoped to be realistic for a student capstone. Start small and grow incrementally.
+The goal of this project is to build a complete full-stack application with:
+
+- a **Next.js web application** for desktop and mobile browsers;
+- a **Next.js backend API** used as the server-side layer;
+- a **PostgreSQL database** hosted with Neon;
+- database access through **Drizzle ORM** and migrations;
+- an **Expo React Native mobile app**;
+- user authentication with **JWT tokens**;
+- role-based access control for regular users and admin users;
+- a small but functional admin panel;
+- clean documentation and a visible GitHub development history.
+
+---
+
+## Planned Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Web app | Next.js, React, TypeScript, Tailwind CSS |
+| Backend API | Next.js API routes / route handlers |
+| Database | Neon PostgreSQL |
+| ORM | Drizzle ORM + migrations |
+| Mobile app | React Native with Expo |
+| Authentication | JWT access/refresh tokens |
+| Authorization | User/admin roles |
+| Styling | Tailwind CSS, responsive design |
+| Development workflow | VS Code, Codex / GitHub Copilot, GitHub |
+
+---
+
+## Planned Monorepo Structure
+
+```text
+chefos-recipes-fullstack/
+  apps/
+    web/              # Next.js web app and backend API
+    mobile/           # Expo React Native mobile app
+
+  packages/
+    db/               # Drizzle schema, migrations, database client
+    shared/           # Shared types, validators, DTOs and utilities
+
+  docs/
+    architecture.md
+    database-schema.md
+    api-endpoints.md
+
+  AGENTS.md
+  README.md
