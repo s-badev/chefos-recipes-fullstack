@@ -1,0 +1,16 @@
+{
+  "name": "chefos-recipes-fullstack",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "apps/mobile",
+    "packages/db",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev:web": "npm --workspace @chefos/web run dev",
+    "dev:mobile": "npm --workspace @chefos/mobile run start",
+    "build:web": "npm --workspace @chefos/web run build"
+  }
+}
