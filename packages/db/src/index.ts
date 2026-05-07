@@ -1,1 +1,1 @@
-export { dbPackageReady } from "./schema";
+export * from "./schema.js";
