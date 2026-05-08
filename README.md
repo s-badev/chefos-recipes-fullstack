@@ -68,3 +68,19 @@ chefos-recipes-fullstack/
 
   AGENTS.md
   README.md
+```
+
+---
+
+## Environment Variables
+
+Required environment variable placeholders are documented in `.env.example`.
+
+Planned variables:
+
+- `DATABASE_URL` - future Neon PostgreSQL connection string for Drizzle/database tooling.
+- `JWT_SECRET` - future JWT access token signing secret.
+- `JWT_REFRESH_SECRET` - future JWT refresh token signing secret.
+- `NEXT_PUBLIC_APP_URL` - public base URL for the web app.
+
+Real secrets must not be committed. More details are in `docs/environment.md`.
