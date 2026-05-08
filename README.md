@@ -109,189 +109,198 @@ chefos-recipes-fullstack/
 
 ---
 
-🖥️ Web App Screens
+## 🖥️ Web App Screens
 
 The current web app foundation includes:
 
-Screen	Status
-🏠 Homepage	✅ Static UI implemented
-📖 Recipe Catalog	✅ Static UI implemented
-🍲 Recipe Details	✅ Static UI implemented
-⭐ Favorites	✅ Placeholder UI implemented
-🛠️ Admin Panel	✅ Placeholder UI implemented
+| Screen | Status |
+|---|---|
+| 🏠 Homepage | ✅ Static UI implemented |
+| 📖 Recipe Catalog | ✅ Static UI implemented |
+| 🍲 Recipe Details | ✅ Static UI implemented |
+| ⭐ Favorites | ✅ Placeholder UI implemented |
+| 🛠️ Admin Panel | ✅ Placeholder UI implemented |
 
-The visible web UI is primarily in Bulgarian, because the project is focused on Bulgarian-style recipes and should feel natural for its target users.
+The visible web UI is primarily in **Bulgarian**, because the project is focused on Bulgarian-style recipes and should feel natural for its target users.
 
 ---
 
-📱 Mobile App Screens
+## 📱 Mobile App Screens
 
 The Expo mobile app currently includes an initial local-state UI foundation:
 
-Screen	Status
-📋 Recipes	✅ Static UI implemented
-🍽️ Recipe Details	✅ Static UI implemented
-⭐ Favorites / Profile	✅ Placeholder UI implemented
+| Screen | Status |
+|---|---|
+| 📋 Recipes | ✅ Static UI implemented |
+| 🍽️ Recipe Details | ✅ Static UI implemented |
+| ⭐ Favorites / Profile | ✅ Placeholder UI implemented |
 
 The mobile app currently uses local static data and will later connect to the same backend API used by the web app.
 
 ---
 
-⚙️ API Routes
+## ⚙️ API Routes
 
 The project currently includes an initial API skeleton using static/sample data.
 
-Method	Route	Current Purpose
-GET	/api/health	Basic API health check
-GET	/api/recipes	Returns sample recipe list
-GET	/api/recipes/[slug]	Returns one sample recipe by slug
-GET	/api/categories	Returns sample categories
-GET	/api/favorites	Returns placeholder favorite recipes
-GET	/api/admin/summary	Returns placeholder admin dashboard stats
+| Method | Route | Current Purpose |
+|---|---|---|
+| GET | `/api/health` | Basic API health check |
+| GET | `/api/recipes` | Returns sample recipe list |
+| GET | `/api/recipes/[slug]` | Returns one sample recipe by slug |
+| GET | `/api/categories` | Returns sample categories |
+| GET | `/api/favorites` | Returns placeholder favorite recipes |
+| GET | `/api/admin/summary` | Returns placeholder admin dashboard stats |
 
-These routes will later be connected to Drizzle ORM, Neon PostgreSQL, authentication, and role-based access control.
+These routes will later be connected to **Drizzle ORM**, **Neon PostgreSQL**, authentication, and role-based access control.
 
 ---
 
-🗄️ Database Foundation
+## 🗄️ Database Foundation
 
 The database layer currently includes:
 
-✅ packages/db package
-✅ Drizzle schema draft
-✅ Drizzle migration setup
-✅ Initial generated SQL migration
-✅ Database client skeleton
-✅ Environment variable documentation
+- ✅ `packages/db` package
+- ✅ Drizzle schema draft
+- ✅ Drizzle migration setup
+- ✅ Initial generated SQL migration
+- ✅ Database client skeleton
+- ✅ Environment variable documentation
 
 Planned core tables include:
 
-users
-categories
-tags
-recipes
-recipe_steps
-recipe_tags
-favorites
+- `users`
+- `categories`
+- `tags`
+- `recipes`
+- `recipe_steps`
+- `recipe_tags`
+- `favorites`
 
 ---
 
-🔐 Environment Variables
+## 🔐 Environment Variables
 
-Required environment variable placeholders are documented in .env.example.
+Required environment variable placeholders are documented in `.env.example`.
 
 Planned variables:
 
-Variable	Purpose
-DATABASE_URL	Future Neon PostgreSQL connection string for Drizzle/database tooling
-JWT_SECRET	Future JWT access token signing secret
-JWT_REFRESH_SECRET	Future JWT refresh token signing secret
-NEXT_PUBLIC_APP_URL	Public base URL for the web app
+| Variable | Purpose |
+|---|---|
+| `DATABASE_URL` | Future Neon PostgreSQL connection string for Drizzle/database tooling |
+| `JWT_SECRET` | Future JWT access token signing secret |
+| `JWT_REFRESH_SECRET` | Future JWT refresh token signing secret |
+| `NEXT_PUBLIC_APP_URL` | Public base URL for the web app |
 
-Real secrets must never be committed.
+Real secrets must **never** be committed.
 
 More details are available in:
+
+```text
 docs/environment.md
+```
 
 ---
 
-🧪 Current Data Strategy
+## 🧪 Current Data Strategy
 
-At the current stage, the app uses static/sample recipe data.
+At the current stage, the app uses **static/sample recipe data**.
 
 This allows the project to develop and validate:
 
-UI structure
-page flow
-API response shape
-recipe catalog behavior
-mobile screen structure
-future database model alignment
+- UI structure
+- page flow
+- API response shape
+- recipe catalog behavior
+- mobile screen structure
+- future database model alignment
 
-Later, this static data layer will be replaced with real Drizzle + Neon database queries.
+Later, this static data layer will be replaced with real **Drizzle + Neon** database queries.
 
 ---
 
-🧭 Development Workflow
+## 🧭 Development Workflow
 
 The project is developed incrementally:
 
-Define a small task.
-Implement it with AI-assisted coding tools.
-Review the changed files.
-Run the relevant checks.
-Commit with a clear message.
-Push to GitHub.
-Continue with the next small step.
+1. Define a small task.
+2. Implement it with AI-assisted coding tools.
+3. Review the changed files.
+4. Run the relevant checks.
+5. Commit with a clear message.
+6. Push to GitHub.
+7. Continue with the next small step.
 
 This keeps the project easier to control and creates a visible development history for assessment.
 
 ---
 
-🏷️ Stable Save Points
+## 🏷️ Stable Save Points
 
 The project uses Git tags as rollback points.
 
 Current save points:
 
+```text
 stable-foundation-v1
 stable-ui-mobile-db-v1
+```
 
 These tags mark stable stages of the project and can be used as safe rollback references if later work breaks the application.
 
 ---
 
-📚 Documentation
-File	Purpose
-docs/architecture.md	High-level system architecture and data flow
-docs/database-schema.md	Planned database tables and relationships
-docs/api-endpoints.md	Current and planned REST API endpoints
-docs/environment.md	Environment variable usage and safety notes
-AGENTS.md	Instructions for AI coding agents and contributors
+## 📚 Documentation
+
+| File | Purpose |
+|---|---|
+| `docs/architecture.md` | High-level system architecture and data flow |
+| `docs/database-schema.md` | Planned database tables and relationships |
+| `docs/api-endpoints.md` | Current and planned REST API endpoints |
+| `docs/environment.md` | Environment variable usage and safety notes |
+| `AGENTS.md` | Instructions for AI coding agents and contributors |
 
 ---
 
-📦 Current Project Scope
+## 📦 Current Project Scope
 
 This project is intentionally scoped as a realistic student capstone.
 
 The current goal is not to overbuild, but to deliver a clean, understandable, multi-layer application with:
 
-working web UI
-working mobile UI foundation
-documented API structure
-planned database model
-generated migration
-clean Git history
-clear next development steps
+- working web UI
+- working mobile UI foundation
+- documented API structure
+- planned database model
+- generated migration
+- clean Git history
+- clear next development steps
 
 ---
 
-🚀 Planned Next Steps
-Connect API routes to a repository/service layer.
-Set up real Neon PostgreSQL connection.
-Replace static recipe data with Drizzle queries.
-Implement authentication.
-Add user favorites with real persistence.
-Add admin create/edit/delete recipe functionality.
-Connect the mobile app to the backend API.
-Deploy the web app.
-Finalize documentation and screenshots.
+## 🚀 Planned Next Steps
+
+1. Connect API routes to a repository/service layer.
+2. Set up real Neon PostgreSQL connection.
+3. Replace static recipe data with Drizzle queries.
+4. Implement authentication.
+5. Add user favorites with real persistence.
+6. Add admin create/edit/delete recipe functionality.
+7. Connect the mobile app to the backend API.
+8. Deploy the web app.
+9. Finalize documentation and screenshots.
 
 ---
 
-👤 Author
+## 👤 Author
 
-Stefan Badev
+**Stefan Badev**
 
 ---
 
-📄 License
+## 📄 License
 
 This project is created for educational purposes as part of a SoftUni capstone assignment.
-
-
-## Commit след като го замениш
 
 ```powershell
 git add README.md
