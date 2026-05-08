@@ -34,6 +34,9 @@ export default function RootLayout({
               <a className="hover:text-brand-700" href="/catalog">
                 Каталог
               </a>
+              <a className="hover:text-brand-700" href="/favorites">
+                Любими
+              </a>
               <a className="hover:text-brand-700" href="/#about">
                 За проекта
               </a>
