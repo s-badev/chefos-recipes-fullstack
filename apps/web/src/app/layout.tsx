@@ -1,9 +1,9 @@
-import "./globals.css";
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Chefo’s Recipes",
-  description: "Recipe discovery made simple."
+  description: "Топъл каталог с български рецепти за всеки ден."
 };
 
 export default function RootLayout({
@@ -12,24 +12,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-slate-50 text-slate-900 antialiased">
-        <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-8">
-          <header className="flex items-center justify-between">
+    <html lang="bg">
+      <body className="min-h-screen bg-[#fffaf3] text-stone-950 antialiased">
+        <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-5 py-6 sm:px-8">
+          <header className="flex items-center justify-between gap-6">
             <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-2xl bg-brand-500 text-white font-semibold">CR</div>
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-brand-600 text-sm font-bold text-white shadow-sm">
+                CR
+              </div>
               <div>
-                <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Chefo’s Recipes</p>
-                <h1 className="text-lg font-semibold">Recipe Catalog</h1>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-brand-700">
+                  Chefo’s Recipes
+                </p>
+                <h1 className="text-lg font-semibold text-stone-950">Каталог с рецепти</h1>
               </div>
             </div>
-            <button className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:border-slate-300">
-              Sign in
-            </button>
+            <nav className="hidden items-center gap-6 text-sm font-medium text-stone-600 md:flex">
+              <a className="hover:text-brand-700" href="#featured">
+                Избрани
+              </a>
+              <a className="hover:text-brand-700" href="#explore">
+                Разгледай
+              </a>
+              <a className="hover:text-brand-700" href="#about">
+                За проекта
+              </a>
+            </nav>
           </header>
-          <main className="flex-1 py-10">{children}</main>
-          <footer className="border-t border-slate-200 pt-6 text-xs text-slate-500">
-            Built for the SoftUni capstone · API + mobile coming next
+          <main className="flex-1 py-8 sm:py-10">{children}</main>
+          <footer className="border-t border-stone-200 py-6 text-sm text-stone-500">
+            Създадено за SoftUni capstone проект. Базата данни и API интеграцията са следващата стъпка.
           </footer>
         </div>
       </body>
