@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { recipes } from "../../catalog/recipes";
+import { getAllRecipes } from "../../../data/recipes";
 
 export function GET() {
+  const recipes = getAllRecipes();
+
   return NextResponse.json({
     data: recipes,
     meta: {

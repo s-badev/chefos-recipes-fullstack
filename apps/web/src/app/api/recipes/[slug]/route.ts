@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { findRecipeBySlug } from "../../../catalog/recipes";
+import { getRecipeBySlug } from "../../../../data/recipes";
 
 type RecipeBySlugRouteContext = {
   params: Promise<{
@@ -9,7 +9,7 @@ type RecipeBySlugRouteContext = {
 
 export async function GET(_request: Request, { params }: RecipeBySlugRouteContext) {
   const { slug } = await params;
-  const recipe = findRecipeBySlug(slug);
+  const recipe = getRecipeBySlug(slug);
 
   if (!recipe) {
     return NextResponse.json(

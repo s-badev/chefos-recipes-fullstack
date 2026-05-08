@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
-import { recipes } from "../../catalog/recipes";
+import { getCategories } from "../../../data/recipes";
 
 export function GET() {
-  const categories = Array.from(new Set(recipes.map((recipe) => recipe.category))).map(
-    (category) => ({
-      name: category,
-      recipeCount: recipes.filter((recipe) => recipe.category === category).length
-    })
-  );
+  const categories = getCategories();
 
   return NextResponse.json({
     data: categories,
