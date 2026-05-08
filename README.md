@@ -9,11 +9,23 @@ The project is designed as a practical recipe platform where users can browse re
 
 ## Project Status
 
-**Current phase:** Initial planning and project foundation.
+**Current phase:** Foundation and static UI scaffolding.
 
-The repository currently contains the base monorepo structure, project documentation, AI agent instructions, and planning files. Application scaffolding, dependencies, database setup, authentication, and UI implementation will be added incrementally in separate commits.
+Completed foundation work includes:
 
-This project is intentionally developed step by step to keep the architecture clean, the Git history clear, and the implementation realistic for a student capstone.
+- GitHub repository setup, commit history, and AI agent instructions;
+- project documentation files and environment variable documentation;
+- root npm workspace configuration;
+- Next.js web app scaffold with verified dependencies;
+- Expo mobile app scaffold with verified dependencies;
+- Bulgarian web UI foundation: homepage, recipe catalog, recipe details, favorites placeholder, and admin placeholder;
+- initial mobile recipe screens using local state and static sample data;
+- shared TypeScript types package;
+- database package skeleton with Drizzle schema draft, migration setup, and initial generated migration.
+
+Upcoming work includes the real Neon database connection, backend API route implementation, authentication and role-based access control, real favorite/admin actions, production deployment, and broader testing.
+
+The project is intentionally developed step by step to keep the architecture clean, the Git history clear, and the implementation realistic for a student capstone.
 
 ---
 
