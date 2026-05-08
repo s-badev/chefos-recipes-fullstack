@@ -1,120 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
-
-type Recipe = {
-  title: string;
-  slug: string;
-  description: string;
-  prepTimeMinutes: number;
-  cookTimeMinutes: number;
-  servings: number;
-  difficulty: string;
-  category: string;
-  tags: string[];
-};
-
-const recipes: Recipe[] = [
-  {
-    title: "Шопска салата",
-    slug: "shopska-salad",
-    description: "Свежа класика с домати, краставици, печени чушки, магданоз и настъргано сирене.",
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 0,
-    servings: 4,
-    difficulty: "Лесна",
-    category: "Салати",
-    tags: ["Свежо", "Вегетарианско", "Лято"]
-  },
-  {
-    title: "Баница със сирене",
-    slug: "banitsa-with-sirene",
-    description: "Фини кори с яйца, кисело мляко и бяло сирене, изпечени до златиста коричка.",
-    prepTimeMinutes: 25,
-    cookTimeMinutes: 40,
-    servings: 8,
-    difficulty: "Средна",
-    category: "Тестени",
-    tags: ["Закуска", "С печене", "Сирене"]
-  },
-  {
-    title: "Кавърма със свинско",
-    slug: "kavarma-pork-stew",
-    description: "Крехко свинско с чушки, гъби, домати, вино и чубрица за уютна вечеря.",
-    prepTimeMinutes: 25,
-    cookTimeMinutes: 75,
-    servings: 4,
-    difficulty: "Средна",
-    category: "Основни",
-    tags: ["Домашно", "Яхния", "Свинско"]
-  },
-  {
-    title: "Таратор",
-    slug: "tarator-cold-cucumber-soup",
-    description: "Охладена супа с кисело мляко, краставица, чесън, копър и орехи.",
-    prepTimeMinutes: 15,
-    cookTimeMinutes: 0,
-    servings: 4,
-    difficulty: "Лесна",
-    category: "Супи",
-    tags: ["Свежо", "Лято", "Вегетарианско"]
-  },
-  {
-    title: "Кюфтета на скара",
-    slug: "kyufte-grilled-meat-patties",
-    description: "Сочни месни кюфтета с лук, кимион, магданоз и чубрица.",
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 15,
-    servings: 4,
-    difficulty: "Лесна",
-    category: "Основни",
-    tags: ["Скара", "Бързо", "Домашно"]
-  },
-  {
-    title: "Пълнени чушки с ориз",
-    slug: "stuffed-peppers-with-rice",
-    description: "Сладки чушки с ориз, зеленчуци и подправки, запечени в доматен сос.",
-    prepTimeMinutes: 30,
-    cookTimeMinutes: 55,
-    servings: 6,
-    difficulty: "Средна",
-    category: "Основни",
-    tags: ["Вегетарианско", "С печене", "Семейно"]
-  },
-  {
-    title: "Миш-маш",
-    slug: "mish-mash-eggs-and-peppers",
-    description: "Бързо ястие с печени чушки, домати, яйца, сирене и магданоз.",
-    prepTimeMinutes: 10,
-    cookTimeMinutes: 20,
-    servings: 3,
-    difficulty: "Лесна",
-    category: "Бързи ястия",
-    tags: ["Яйца", "Сирене", "Бързо"]
-  },
-  {
-    title: "Боб чорба",
-    slug: "bob-chorba-bean-soup",
-    description: "Питателна супа с бял боб, лук, морков, чушка, джоджен и чубрица.",
-    prepTimeMinutes: 20,
-    cookTimeMinutes: 90,
-    servings: 6,
-    difficulty: "Средна",
-    category: "Супи",
-    tags: ["Постно", "Домашно", "Бюджетно"]
-  },
-  {
-    title: "Тиквеник",
-    slug: "tikvenik-pumpkin-pastry",
-    description: "Сладка навита баница с тиква, орехи, канела и пудра захар.",
-    prepTimeMinutes: 30,
-    cookTimeMinutes: 40,
-    servings: 8,
-    difficulty: "Средна",
-    category: "Десерти",
-    tags: ["Тиква", "С печене", "Празнично"]
-  }
-];
+import { recipes } from "./recipes";
 
 const allCategoriesLabel = "Всички";
 
@@ -200,8 +88,9 @@ export function RecipeCatalog() {
       {filteredRecipes.length > 0 ? (
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {filteredRecipes.map((recipe) => (
-            <article
-              className="flex min-h-[360px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm"
+            <Link
+              className="group flex min-h-[360px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+              href={`/catalog/${recipe.slug}`}
               key={recipe.slug}
             >
               <div className="flex items-start justify-between gap-3">
@@ -214,7 +103,9 @@ export function RecipeCatalog() {
               </div>
 
               <div className="mt-5 flex-1">
-                <h3 className="text-2xl font-bold leading-tight text-stone-950">{recipe.title}</h3>
+                <h3 className="text-2xl font-bold leading-tight text-stone-950 group-hover:text-brand-800">
+                  {recipe.title}
+                </h3>
                 <p className="mt-3 text-sm leading-6 text-stone-600">{recipe.description}</p>
               </div>
 
@@ -243,7 +134,7 @@ export function RecipeCatalog() {
                   </span>
                 ))}
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       ) : (
