@@ -87,24 +87,30 @@ The goal of this project is to build a complete full-stack application with:
 
 ## 🗂️ Monorepo Structure
 
-chefos-recipes-fullstack/
-  apps/
-    web/              # Next.js web app and backend API
-    mobile/           # Expo React Native mobile app
+The project uses a monorepo structure with separate folders for the web app, mobile app, shared types and database layer.
 
-  packages/
-    db/               # Drizzle schema, migrations, database client
-    shared/           # Shared types, validators, DTOs and utilities
+### Apps
 
-  docs/
-    architecture.md
-    database-schema.md
-    api-endpoints.md
-    environment.md
+- `apps/web` — Next.js web application and backend API route handlers
+- `apps/mobile` — Expo React Native mobile application
 
-  AGENTS.md
-  README.md
-  .env.example
+### Packages
+
+- `packages/db` — Drizzle schema, migrations and database client skeleton
+- `packages/shared` — shared TypeScript types, DTOs and future validators/utilities
+
+### Documentation
+
+- `docs/architecture.md` — high-level architecture and data flow
+- `docs/database-schema.md` — planned database tables and relationships
+- `docs/api-endpoints.md` — current and planned API endpoints
+- `docs/environment.md` — environment variable usage and safety notes
+
+### Root Files
+
+- `AGENTS.md` — AI agent and contributor guidelines
+- `README.md` — project overview and progress documentation
+- `.env.example` — safe placeholder environment variables
 
 ---
 
@@ -300,8 +306,3 @@ The current goal is not to overbuild, but to deliver a clean, understandable, mu
 ## 📄 License
 
 This project is created for educational purposes as part of a SoftUni capstone assignment.
-
-```powershell
-git add README.md
-git commit -m "Polish README project overview"
-git push
