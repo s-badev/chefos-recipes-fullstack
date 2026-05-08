@@ -16,7 +16,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#fffaf3] text-stone-950 antialiased">
         <div className="mx-auto flex min-h-screen max-w-7xl flex-col px-5 py-6 sm:px-8">
           <header className="flex items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
+            <a className="flex items-center gap-3" href="/">
               <div className="grid h-11 w-11 place-items-center rounded-2xl bg-brand-600 text-sm font-bold text-white shadow-sm">
                 CR
               </div>
@@ -26,15 +26,15 @@ export default function RootLayout({
                 </p>
                 <h1 className="text-lg font-semibold text-stone-950">Каталог с рецепти</h1>
               </div>
-            </div>
+            </a>
             <nav className="hidden items-center gap-6 text-sm font-medium text-stone-600 md:flex">
-              <a className="hover:text-brand-700" href="#featured">
-                Избрани
+              <a className="hover:text-brand-700" href="/">
+                Начало
               </a>
-              <a className="hover:text-brand-700" href="#explore">
-                Разгледай
+              <a className="hover:text-brand-700" href="/catalog">
+                Каталог
               </a>
-              <a className="hover:text-brand-700" href="#about">
+              <a className="hover:text-brand-700" href="/#about">
                 За проекта
               </a>
             </nav>

@@ -72,7 +72,7 @@ export default function HomePage() {
           <div className="flex flex-wrap gap-3">
             <a
               className="rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
-              href="#featured"
+              href="/catalog"
             >
               Виж избраните
             </a>
