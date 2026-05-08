@@ -87,7 +87,6 @@ The goal of this project is to build a complete full-stack application with:
 
 ## 🗂️ Monorepo Structure
 
-```text
 chefos-recipes-fullstack/
   apps/
     web/              # Next.js web app and backend API
