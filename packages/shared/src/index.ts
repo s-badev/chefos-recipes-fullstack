@@ -40,3 +40,5 @@ export interface Favorite {
   userId: string;
   recipeId: string;
 }
+
+export * from "./seed-recipes.js";
