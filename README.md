@@ -1,4 +1,23 @@
-# 🍽️ Chefo’s Recipes
+# 🍽️ Chefo’s Recipes — Full-stack Recipe Catalog Platform
+
+<p align="left">
+  <a href="https://github.com/s-badev/chefos-recipes-fullstack">
+    <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github" alt="GitHub Repository"/>
+  </a>
+  <img src="https://img.shields.io/badge/Live%20Demo-Planned-lightgrey?style=for-the-badge&logo=vercel" alt="Live Demo Planned"/>
+</p>
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Next.js-Web%20App-black?logo=nextdotjs" />
+  <img src="https://img.shields.io/badge/React-UI-61DAFB?logo=react" />
+  <img src="https://img.shields.io/badge/TypeScript-Typesafe-blue?logo=typescript" />
+  <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss" />
+  <img src="https://img.shields.io/badge/Expo-Mobile%20App-000020?logo=expo" />
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-336791?logo=postgresql" />
+  <img src="https://img.shields.io/badge/Drizzle-ORM-C5F74F" />
+  <img src="https://img.shields.io/badge/Neon-Postgres-00E599" />
+  <img src="https://img.shields.io/badge/Status-In%20Development-orange" />
+</p>
 
 **Chefo’s Recipes** is a full-stack, multi-platform recipe catalog application developed as a SoftUni capstone project for the **Full Stack Apps with AI** course.
 
@@ -6,16 +25,44 @@ The project is designed as a practical recipe platform where users can browse re
 
 ---
 
+## 🧭 Architecture Overview
+
+```mermaid
+flowchart TD
+    A[User] --> B[Next.js Web App]
+    A --> C[Expo Mobile App]
+
+    B --> D[Next.js API Routes]
+    C --> D
+
+    D --> E[Shared TypeScript Types]
+    D --> F[Drizzle ORM]
+    F --> G[Neon PostgreSQL]
+
+    H[Admin User] --> I[Admin Panel]
+    I --> D
+
+    B --> J[Recipe Catalog]
+    B --> K[Recipe Details]
+    B --> L[Favorites]
+```
+
+---
+
 ## 📌 Project Status
 
-**Current phase:** Static full-stack foundation with prepared database and API structure.
+**Current phase:** Full-stack foundation in active development.
 
-The application currently works with **static/sample data**. Real database-backed behavior will be added in later stages.
+The application currently works with **static/sample data** while the database and API layers are being prepared for real Neon PostgreSQL integration.
 
-### ✅ Completed Foundation Work
+The goal is to turn the project into a database-backed full-stack recipe platform with authentication, role-based access, favorites, and admin recipe management.
+
+---
+
+## ✅ Completed Foundation Work
 
 - ✅ GitHub repository setup with visible incremental commit history
-- ✅ AI agent/contributor instructions
+- ✅ AI agent / contributor instructions
 - ✅ Project documentation and environment variable documentation
 - ✅ Root npm workspace configuration
 - ✅ Next.js web app scaffold with verified dependencies
@@ -36,20 +83,36 @@ The application currently works with **static/sample data**. Real database-backe
 - ✅ Initial Next.js API route skeleton
 - ✅ Static recipe data layer used by recipe-related API routes
 - ✅ API endpoint documentation with example responses
-- ✅ Stable Git save points/tags for rollback safety
+- ✅ Stable Git save points / tags for rollback safety
 
-### 🚧 Upcoming Work
+---
 
-- 🔌 Real Neon PostgreSQL connection
-- 🗄️ Replace static recipe data with Drizzle queries
-- 🔐 Authentication with JWT access/refresh tokens
-- 🛡️ Role-based access control for user/admin flows
-- ⭐ Real favorites functionality
-- 🧑‍🍳 Real admin create/edit/delete recipe actions
-- 🚀 Production deployment
-- 🧪 Broader testing and final documentation polish
+## 🚧 Upcoming Work
 
-The project is intentionally developed step by step to keep the architecture clean, the Git history clear, and the implementation realistic for a student capstone.
+- 🔌 Connect the application to Neon PostgreSQL
+- 🗄️ Replace static recipe data with Drizzle ORM queries
+- 🔐 Add authentication with JWT access / refresh tokens
+- 🛡️ Add role-based access control for user/admin flows
+- ⭐ Implement real favorites functionality
+- 🧑‍🍳 Add admin create/edit/delete recipe actions
+- 🚀 Deploy the production web app
+- 🧪 Add broader testing and final documentation polish
+
+---
+
+## 🎯 Development Approach
+
+The project is intentionally developed step by step to keep the architecture clean, the Git history readable, and the implementation realistic for a student capstone project.
+
+The focus is on:
+
+- practical full-stack architecture
+- AI-assisted development workflow
+- clean project structure
+- reusable TypeScript types
+- web + mobile direction
+- database-backed application design
+- professional documentation
 
 ---
 
