@@ -363,9 +363,3 @@ The current goal is not to overbuild, but to deliver a clean, understandable, mu
 ## 👤 Author
 
 **Stefan Badev**
-
----
-
-## 📄 License
-
-This project is created for educational purposes
