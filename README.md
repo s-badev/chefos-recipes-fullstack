@@ -368,4 +368,4 @@ The current goal is not to overbuild, but to deliver a clean, understandable, mu
 
 ## 📄 License
 
-This project is created for educational purposes as part of a SoftUni capstone assignment.
+This project is created for educational purposes
