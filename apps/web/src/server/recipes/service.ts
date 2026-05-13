@@ -20,6 +20,8 @@ export type PaginatedResult<T> = {
 };
 
 const DEFAULT_PAGE = 1;
+const DEFAULT_PAGE_SIZE = 6;
+const MAX_PAGE_SIZE = 50;
 
 function normalizePositiveInteger(value: number | undefined, fallback: number) {
   if (!value || !Number.isFinite(value) || value < 1) {
@@ -30,9 +32,9 @@ function normalizePositiveInteger(value: number | undefined, fallback: number) {
 }
 
 export function listRecipes(params: PaginationParams = {}) {
-  const total = findRecipes({ offset: 0, limit: Number.MAX_SAFE_INTEGER }).total;
   const page = normalizePositiveInteger(params.page, DEFAULT_PAGE);
-  const pageSize = normalizePositiveInteger(params.pageSize, Math.max(total, 1));
+  const requestedPageSize = normalizePositiveInteger(params.pageSize, DEFAULT_PAGE_SIZE);
+  const pageSize = Math.min(requestedPageSize, MAX_PAGE_SIZE);
   const offset = (page - 1) * pageSize;
   const result = findRecipes({ offset, limit: pageSize });
 

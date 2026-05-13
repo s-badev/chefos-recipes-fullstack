@@ -19,7 +19,12 @@ export function GET(request: Request) {
   });
 
   return NextResponse.json({
+    items: recipePage.items,
     data: recipePage.items,
+    total: recipePage.total,
+    page: recipePage.page,
+    pageSize: recipePage.pageSize,
+    totalPages: recipePage.totalPages,
     meta: {
       count: recipePage.items.length,
       total: recipePage.total,

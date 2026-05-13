@@ -17,6 +17,7 @@ export type AdminRecipeSummary = {
 };
 
 export function findRecipes({ offset, limit }: RecipePageQuery): RecipePage {
+  // Later this maps directly to Drizzle `.limit(limit).offset(offset)` queries.
   return {
     items: recipes.slice(offset, offset + limit),
     total: recipes.length
