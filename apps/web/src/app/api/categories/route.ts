@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { getCategories } from "../../../data/recipes";
+import { listCategories } from "../../../server/recipes/service";
 
 export function GET() {
-  const categories = getCategories();
+  const categories = listCategories();
 
   return NextResponse.json({
     data: categories,

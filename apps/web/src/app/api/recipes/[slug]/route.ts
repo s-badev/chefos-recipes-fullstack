@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getRecipeBySlug } from "../../../../data/recipes";
+import { getRecipeBySlug } from "../../../../server/recipes/service";
 
 type RecipeBySlugRouteContext = {
   params: Promise<{

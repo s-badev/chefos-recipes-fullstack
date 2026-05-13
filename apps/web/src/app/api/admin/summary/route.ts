@@ -1,17 +1,11 @@
 import { NextResponse } from "next/server";
-import { getAllRecipes, getCategories, getTags } from "../../../../data/recipes";
+import { getAdminRecipeSummary } from "../../../../server/recipes/service";
 
 export function GET() {
-  const recipes = getAllRecipes();
-  const categories = getCategories();
-  const tags = getTags();
+  const summary = getAdminRecipeSummary();
 
   return NextResponse.json({
-    data: {
-      totalRecipes: recipes.length,
-      totalCategories: categories.length,
-      totalTags: tags.length
-    },
+    data: summary,
     message: "Placeholder админ статистика. Реалните данни ще идват от база данни."
   });
 }

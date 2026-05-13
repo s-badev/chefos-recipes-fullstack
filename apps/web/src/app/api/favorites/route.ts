@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import { getFeaturedRecipes } from "../../../data/recipes";
+import { listFavoriteRecipes } from "../../../server/recipes/service";
 
 export function GET() {
-  const favoriteRecipes = getFeaturedRecipes(3);
+  const favoriteRecipes = listFavoriteRecipes();
 
   return NextResponse.json({
     data: favoriteRecipes,
