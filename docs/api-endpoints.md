@@ -8,6 +8,11 @@ are not connected to Neon, Drizzle, authentication, JWTs, or real user sessions 
 The recipe-related routes read from the shared static web data layer. Database-backed responses will
 replace these helpers later.
 
+The Expo mobile app will consume the Next.js backend through REST API endpoints. Web mutations may
+use Server Actions where appropriate, but REST routes should remain available for mobile flows.
+Large list endpoints should support pagination before they are connected to real production-sized
+datasets.
+
 ## GET /api/health
 
 - Method: `GET`
@@ -57,6 +62,8 @@ Future note: This may later include database connectivity status once Neon is wi
 ```
 
 Future note: This list will later come from Drizzle queries against the Neon PostgreSQL database.
+It should support pagination parameters such as page/limit or cursor-based pagination before the
+10,000-record scalability target is validated.
 
 ## GET /api/recipes/[slug]
 
@@ -147,7 +154,7 @@ Future note: Category counts will later be calculated from database-backed recip
 ```
 
 Future note: This route will later require an authenticated user session and return that user's
-saved recipes from the database.
+saved recipes from the database. Favorites reads and mutations must enforce JWT authentication.
 
 ## GET /api/admin/summary
 
@@ -169,3 +176,11 @@ saved recipes from the database.
 
 Future note: This route will later require authentication and an `admin` role check, then read real
 summary data from Neon through Drizzle.
+
+## Planned Auth and Admin Endpoints
+
+- Register, login, and logout endpoints will issue or clear JWT-based sessions.
+- Passwords must be hashed before storage with bcrypt or argon2.
+- Favorites endpoints will require an authenticated `user` or `admin`.
+- Admin recipe/content endpoints will require an authenticated `admin` role.
+- Admin list endpoints should include pagination, filtering, or search parameters where datasets may grow.

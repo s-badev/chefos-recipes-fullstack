@@ -56,8 +56,21 @@
 
 ## Indexes (planned)
 - `recipes(title)` for search
+- `recipes(created_at)` for stable pagination and recent recipe lists
+- `recipes(author_id)` for admin/user recipe ownership queries
 - `recipe_tags(name)` unique
 - `favorites(user_id)` for quick lookup
+- `favorites(recipe_id)` for recipe popularity/count queries
+
+## Seed Data (Planned)
+- Add a committed seed script that inserts representative users, recipes, ingredients, steps, tags, tag mappings, and favorites.
+- Include enough human-readable sample data for demos and review.
+- Populate primary tables with at least 10,000 records for scalability and performance validation before final delivery.
+
+## Pagination and Scalability (Planned)
+- Recipe and admin list queries should support pagination before they are backed by large datasets.
+- Prefer indexed sort/filter fields for large lists.
+- Keep Drizzle migrations committed whenever schema or index changes are introduced.
 
 ## Notes
-Schema will be refined once UI requirements are finalized.
+Schema will be refined as the revised web, mobile, auth, admin, seed, and pagination requirements are implemented.

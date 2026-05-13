@@ -24,28 +24,23 @@
 The project is designed as a practical recipe platform where users can browse recipes, view detailed cooking instructions, save favorites, and use both a responsive web application and a mobile client. Admin users will be able to manage recipe content through a dedicated web admin panel.
 
 ---
-
 ## 🧭 Architecture Overview
 
-```mermaid
-flowchart TD
-    A[User] --> B[Next.js Web App]
-    A --> C[Expo Mobile App]
+The project follows a monorepo client-server architecture:
 
-    B --> D[Next.js API Routes]
-    C --> D
+- `apps/web` contains the Next.js web app and backend route handlers.
+- `apps/mobile` contains the Expo React Native mobile client.
+- `packages/shared` contains shared TypeScript types and future DTOs/validators.
+- `packages/db` contains the Drizzle schema, migrations and database client skeleton.
 
-    D --> E[Shared TypeScript Types]
-    D --> F[Drizzle ORM]
-    F --> G[Neon PostgreSQL]
+The current implementation uses static/sample data while the database and API layers are being prepared for real Neon PostgreSQL integration.
 
-    H[Admin User] --> I[Admin Panel]
-    I --> D
+Planned communication flow:
 
-    B --> J[Recipe Catalog]
-    B --> K[Recipe Details]
-    B --> L[Favorites]
-```
+- Web app flows will use Next.js Server Actions where appropriate.
+- Mobile app flows will consume the Next.js backend through REST API endpoints.
+- API routes and Server Actions will later use a service/repository layer.
+- The service/repository layer will later use Drizzle ORM and Neon PostgreSQL.
 
 ---
 
@@ -87,7 +82,22 @@ The goal is to turn the project into a database-backed full-stack recipe platfor
 
 ---
 
-## 🚧 Upcoming Work
+## 🚧 Revised Capstone Roadmap
+
+The revised SoftUni capstone requirements increase the project scope. The project roadmap now includes:
+
+- Web app: reach at least 10 screens/pages/popups, including public browsing, recipe details, favorites, authentication, profile/dashboard and admin flows.
+- Mobile app: reach at least 5 screens/pages and consume the Next.js backend through REST API endpoints.
+- Backend: use Next.js with PostgreSQL-backed route handlers for mobile and Server Actions for web mutations where appropriate.
+- Database: use Neon serverless PostgreSQL with Drizzle ORM, committed migrations, and at least 4 related tables.
+- Data: add a database seed script with sample data and support a 10,000-record scalability target for primary tables.
+- Performance: add pagination to recipe and other large list endpoints before real dataset growth.
+- Security: implement JWT register/login/logout, hashed passwords with bcrypt or argon2, and user/admin authorization.
+- Delivery: prepare deployment setup and sample credentials for review.
+
+---
+
+## 🛠️ Upcoming Work
 
 - 🔌 Connect the application to Neon PostgreSQL
 - 🗄️ Replace static recipe data with Drizzle ORM queries
@@ -95,6 +105,8 @@ The goal is to turn the project into a database-backed full-stack recipe platfor
 - 🛡️ Add role-based access control for user/admin flows
 - ⭐ Implement real favorites functionality
 - 🧑‍🍳 Add admin create/edit/delete recipe actions
+- 📄 Add pagination for large recipe lists
+- 🌱 Add database seed script and 10,000-record test dataset
 - 🚀 Deploy the production web app
 - 🧪 Add broader testing and final documentation polish
 
@@ -262,11 +274,7 @@ Planned variables:
 
 Real secrets must **never** be committed.
 
-More details are available in:
-
-```text
-docs/environment.md
-```
+More details are available in `docs/environment.md`.
 
 ---
 
@@ -363,3 +371,9 @@ The current goal is not to overbuild, but to deliver a clean, understandable, mu
 ## 👤 Author
 
 **Stefan Badev**
+
+---
+
+## 📄 License
+
+This project is created for educational purposes as part of a SoftUni capstone assignment.
