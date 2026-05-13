@@ -44,7 +44,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         </p>
         <h2 className="mt-3 text-3xl font-bold text-stone-950">Рецептата не е намерена</h2>
         <p className="mt-3 text-base leading-7 text-stone-600">
-          Тази рецепта липсва в примерните данни. Върни се към каталога и избери друга.
+          Тази рецепта не е налична в момента. Върни се към каталога и избери друга.
         </p>
         <Link
           className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"

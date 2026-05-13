@@ -35,7 +35,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </p>
         <h2 className="mt-3 text-3xl font-bold text-stone-950">Рецептата не е намерена</h2>
         <p className="mt-3 text-base leading-7 text-stone-600">
-          Няма примерна рецепта с този адрес. Върни се към админ панела и избери рецепта от списъка.
+          Няма рецепта с този адрес. Върни се към админ панела и избери рецепта от списъка.
         </p>
         <Link
           className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
@@ -56,8 +56,8 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">Редактирай рецепта</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Заредени са примерни статични данни за "{recipe.title}". Реалната редакция ще използва
-            Server Actions или API поток по-късно.
+            Прегледай основната информация за "{recipe.title}" и подготви бъдещи промени по
+            съдържанието.
           </p>
         </div>
         <Link className="text-sm font-bold text-brand-700 hover:text-brand-900" href="/admin">
@@ -154,8 +154,8 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
       </form>
 
       <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-sm leading-6 text-stone-600 shadow-sm">
-        Формата не променя данни. По-късно редакцията ще бъде защитена за админ роля и ще записва
-        промени в Neon чрез Drizzle.
+        Формата показва как ще изглежда редакцията. Скоро промените ще могат да се запазват от
+        админ зоната.
       </p>
     </section>
   );

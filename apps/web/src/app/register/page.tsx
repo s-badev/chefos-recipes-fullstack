@@ -71,7 +71,7 @@ export default function RegisterPage() {
         </button>
 
         <p className="rounded-2xl border border-dashed border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900">
-          Формата е неактивна. По-късно паролата ще се хешира и профилът ще се записва в базата.
+          Регистрацията ще бъде активна скоро, за да пазиш любимите си рецепти на едно място.
         </p>
       </form>
     </section>

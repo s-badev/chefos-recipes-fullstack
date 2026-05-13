@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Нова рецепта | Chefo's Recipes",
-  description: "Placeholder форма за добавяне на рецепта."
+  description: "Форма за добавяне на рецепта."
 };
 
 export default function NewRecipePage() {
@@ -16,8 +16,8 @@ export default function NewRecipePage() {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">Добави рецепта</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Това е неактивна форма за бъдещото създаване на рецепти. Реалното добавяне ще използва
-            Server Actions или API поток на следващ етап.
+            Попълни основната информация за нова рецепта. Запазването ще бъде активно, когато
+            админ зоната е готова за работа.
           </p>
         </div>
         <Link className="text-sm font-bold text-brand-700 hover:text-brand-900" href="/admin">
@@ -114,8 +114,8 @@ export default function NewRecipePage() {
       </form>
 
       <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-sm leading-6 text-stone-600 shadow-sm">
-        Формата не записва данни. По-късно създаването ще минава през защитена админ операция и
-        Drizzle заявка към Neon.
+        Формата показва как ще изглежда добавянето на рецепта. Скоро тук ще можеш да запазваш нови
+        предложения за каталога.
       </p>
     </section>
   );

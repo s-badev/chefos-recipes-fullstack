@@ -109,8 +109,8 @@ export default function HomePage() {
                 <p className="mt-1 text-sm text-stone-500">категории</p>
               </div>
               <div className="p-5">
-                <p className="text-2xl font-bold text-stone-950">0</p>
-                <p className="mt-1 text-sm text-stone-500">заявки към база</p>
+                <p className="text-2xl font-bold text-stone-950">3</p>
+                <p className="mt-1 text-sm text-stone-500">идеи за вечеря</p>
               </div>
             </div>
           </div>
@@ -120,12 +120,11 @@ export default function HomePage() {
       <section id="about" className="rounded-3xl bg-stone-950 px-6 py-8 text-white sm:px-8">
         <div className="grid gap-5 md:grid-cols-[0.75fr_1.25fr] md:items-center">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-300">
-            Първо прост каталог
+            Домашен избор
           </p>
           <p className="text-xl leading-8 text-stone-100">
-            Този първи екран е за откриване на рецепти: топла визия, полезни детайли и ясни пътища
-            за разглеждане. Профили, любими рецепти, админ инструменти, API маршрути и база данни
-            остават за следващите стъпки.
+            Откривай познати вкусове, сравнявай времето за приготвяне и избирай рецепти, които
+            можеш да следваш спокойно стъпка по стъпка.
           </p>
         </div>
       </section>
@@ -139,8 +138,8 @@ export default function HomePage() {
             <h2 className="mt-2 text-3xl font-bold text-stone-950">Започни с класиките</h2>
           </div>
           <p className="max-w-xl text-sm leading-6 text-stone-600">
-            Засега това са статични примери, подготвени така, че по-късно да захранят карти в
-            каталога и страници с детайли.
+            Подбрани домашни рецепти с ясни продукти, време за приготвяне и удобни детайли за
+            бърз избор.
           </p>
         </div>
 
@@ -210,9 +209,9 @@ export default function HomePage() {
       <section id="explore" className="space-y-6">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-            Какво могат потребителите
+            Какво можеш да правиш
           </p>
-          <h2 className="mt-2 text-3xl font-bold text-stone-950">Разглеждане сега, персонализация по-късно</h2>
+          <h2 className="mt-2 text-3xl font-bold text-stone-950">Разглеждай, избирай и готви по-лесно</h2>
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {userActions.map((item) => (

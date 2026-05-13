@@ -15,8 +15,7 @@ export default function LoginPage() {
         </p>
         <h2 className="text-4xl font-bold text-stone-950 sm:text-5xl">Вход в профила</h2>
         <p className="text-base leading-7 text-stone-600">
-          Този екран подготвя бъдещия вход с имейл и парола. Реалната автентикация с JWT ще бъде
-          свързана на следващ етап.
+          Скоро ще можеш да влизаш в профила си и да се връщаш към запазените рецепти.
         </p>
         <Link className="inline-flex text-sm font-bold text-brand-700 hover:text-brand-900" href="/register">
           Нямаш профил? Създай регистрация
@@ -58,7 +57,7 @@ export default function LoginPage() {
         </button>
 
         <p className="rounded-2xl border border-dashed border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900">
-          Формата е неактивна. По-късно ще изпраща заявка към защитен backend поток за вход.
+          Входът ще бъде активен скоро. Дотогава можеш свободно да разглеждаш каталога.
         </p>
       </form>
     </section>

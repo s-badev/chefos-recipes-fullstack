@@ -44,7 +44,7 @@ export default function RootLayout({
                 Админ
               </a>
               <a className="hover:text-brand-700" href="/about">
-                За проекта
+                За нас
               </a>
               <a className="hover:text-brand-700" href="/login">
                 Вход
@@ -53,7 +53,7 @@ export default function RootLayout({
           </header>
           <main className="flex-1 py-8 sm:py-10">{children}</main>
           <footer className="border-t border-stone-200 py-6 text-sm text-stone-500">
-            Създадено за SoftUni capstone проект. Базата данни и API интеграцията са следващата стъпка.
+            Chefo’s Recipes събира домашни идеи, български вкус и лесни стъпки за всяко готвене.
           </footer>
         </div>
       </body>

@@ -4,7 +4,7 @@ import { recipes } from "../catalog/recipes";
 
 export const metadata: Metadata = {
   title: "Админ панел | Chefo’s Recipes",
-  description: "UI основа за бъдещия админ панел на Chefo’s Recipes."
+  description: "Зона за управление на рецепти в Chefo’s Recipes."
 };
 
 const categories = Array.from(new Set(recipes.map((recipe) => recipe.category)));
@@ -35,15 +35,14 @@ export default function AdminPage() {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">Админ панел</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Това е начална UI основа за управление на рецепти. По-късно секцията ще бъде защитена
-            и достъпна само за потребители с админ роля.
+            Зона за подреждане на рецепти, преглед на категории и подготовка на ново съдържание.
           </p>
         </div>
 
         <div className="rounded-3xl border border-brand-200 bg-white p-5 shadow-sm">
-          <p className="text-sm font-bold text-brand-800">Само placeholder действия</p>
+          <p className="text-sm font-bold text-brand-800">Подготовка за управление</p>
           <p className="mt-2 text-sm leading-6 text-stone-600">
-            Реалните действия ще бъдат свързани с API и база данни на следващ етап.
+            Админ зоната ще помага за добавяне, редакция и подреждане на рецепти.
           </p>
         </div>
       </div>
@@ -75,7 +74,7 @@ export default function AdminPage() {
       <section className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm">
         <div className="border-b border-stone-200 p-5">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-            Примерни рецепти
+            Рецепти
           </p>
           <h3 className="mt-2 text-2xl font-bold text-stone-950">Списък за управление</h3>
         </div>
@@ -123,10 +122,10 @@ export default function AdminPage() {
       </section>
 
       <section className="rounded-3xl border border-dashed border-brand-200 bg-white p-6 shadow-sm">
-        <p className="text-sm font-bold text-stone-950">Бележка за бъдеща интеграция</p>
+        <p className="text-sm font-bold text-stone-950">Бележка</p>
         <p className="mt-2 text-sm leading-6 text-stone-600">
-          Бутоните все още не изпълняват реални действия. По-късно добавянето, редакцията и
-          изтриването ще минават през защитени API endpoints и операции към базата данни.
+          Добавянето, редакцията и изтриването ще бъдат достъпни, когато зоната за управление е
+          готова за работа.
         </p>
       </section>
     </section>

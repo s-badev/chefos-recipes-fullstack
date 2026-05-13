@@ -4,7 +4,7 @@ import { recipes } from "../catalog/recipes";
 
 export const metadata: Metadata = {
   title: "Любими рецепти | Chefo’s Recipes",
-  description: "UI основа за бъдещите любими рецепти в Chefo’s Recipes."
+  description: "Запазени идеи и любими рецепти в Chefo’s Recipes."
 };
 
 const sampleFavorites = recipes.slice(0, 3);
@@ -26,9 +26,9 @@ export default function FavoritesPage() {
         </div>
 
         <div className="rounded-3xl border border-brand-200 bg-white p-5 shadow-sm">
-          <p className="text-sm font-bold text-brand-800">Подготовка за следващ етап</p>
+          <p className="text-sm font-bold text-brand-800">Скоро в профила</p>
           <p className="mt-2 text-sm leading-6 text-stone-600">
-            Функцията ще бъде свързана с потребителски профил на следващ етап.
+            Любимите ще се пазят в твоето лично пространство.
           </p>
         </div>
       </div>
@@ -45,7 +45,7 @@ export default function FavoritesPage() {
       <section className="space-y-5">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-            Примерни любими
+            Любими идеи
           </p>
           <h3 className="mt-2 text-2xl font-bold text-stone-950">
             Така ще изглеждат запазените рецепти
@@ -107,12 +107,11 @@ export default function FavoritesPage() {
 
       <section className="rounded-3xl border border-dashed border-brand-200 bg-white p-8 text-center shadow-sm">
         <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-          Празно състояние
+          Още няма рецепти
         </p>
         <h3 className="mt-3 text-2xl font-bold text-stone-950">Все още няма запазени рецепти</h3>
         <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-stone-600">
-          След като любимите рецепти бъдат свързани с профил, тук ще се показва празно състояние,
-          докато потребителят не запази първата си рецепта.
+          Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.
         </p>
       </section>
     </section>
