@@ -27,7 +27,7 @@ export default function RootLayout({
                 <h1 className="text-lg font-semibold text-stone-950">Каталог с рецепти</h1>
               </div>
             </a>
-            <nav className="hidden items-center gap-6 text-sm font-medium text-stone-600 md:flex">
+            <nav className="hidden flex-wrap items-center justify-end gap-x-6 gap-y-2 text-sm font-medium text-stone-600 md:flex">
               <a className="hover:text-brand-700" href="/">
                 Начало
               </a>
@@ -37,11 +37,17 @@ export default function RootLayout({
               <a className="hover:text-brand-700" href="/favorites">
                 Любими
               </a>
+              <a className="hover:text-brand-700" href="/profile">
+                Профил
+              </a>
               <a className="hover:text-brand-700" href="/admin">
                 Админ
               </a>
-              <a className="hover:text-brand-700" href="/#about">
+              <a className="hover:text-brand-700" href="/about">
                 За проекта
+              </a>
+              <a className="hover:text-brand-700" href="/login">
+                Вход
               </a>
             </nav>
           </header>

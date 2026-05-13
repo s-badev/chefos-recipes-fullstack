@@ -49,12 +49,12 @@ export default function AdminPage() {
       </div>
 
       <div className="flex flex-wrap gap-3">
-        <button
+        <Link
           className="rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
-          type="button"
+          href="/admin/recipes/new"
         >
           Добави рецепта
-        </button>
+        </Link>
         <Link
           className="rounded-full border border-stone-300 bg-white px-5 py-3 text-sm font-bold text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
           href="/catalog"
@@ -104,12 +104,12 @@ export default function AdminPage() {
               </div>
 
               <div className="flex flex-wrap gap-2 lg:justify-end">
-                <button
+                <Link
                   className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-bold text-stone-700 transition hover:border-brand-300 hover:text-brand-800"
-                  type="button"
+                  href={`/admin/recipes/${recipe.slug}/edit`}
                 >
                   Редактирай
-                </button>
+                </Link>
                 <button
                   className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-bold text-red-700 transition hover:border-red-300 hover:bg-red-100"
                   type="button"
