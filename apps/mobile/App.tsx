@@ -1,11 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   Pressable,
   SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
+  TextInput,
   View
 } from "react-native";
 
@@ -22,7 +23,7 @@ type Recipe = {
   steps: string[];
 };
 
-type ViewMode = "recipes" | "details" | "favorites";
+type ViewMode = "recipes" | "details" | "categories" | "favorites" | "login" | "register" | "profile";
 
 const recipes: Recipe[] = [
   {
@@ -117,10 +118,24 @@ const recipes: Recipe[] = [
 export default function App() {
   const [viewMode, setViewMode] = useState<ViewMode>("recipes");
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe>(recipes[0]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const filteredRecipes = useMemo(() => {
+    if (!selectedCategory) {
+      return recipes;
+    }
+
+    return recipes.filter((recipe) => recipe.category === selectedCategory);
+  }, [selectedCategory]);
 
   function openRecipe(recipe: Recipe) {
     setSelectedRecipe(recipe);
     setViewMode("details");
+  }
+
+  function openCategory(category: string | null) {
+    setSelectedCategory(category);
+    setViewMode("recipes");
   }
 
   return (
@@ -128,18 +143,29 @@ export default function App() {
       <StatusBar style="dark" />
       <View style={styles.appShell}>
         <View style={styles.header}>
-          <Text style={styles.brand}>Chefo’s Recipes</Text>
-          <Text style={styles.headerTitle}>
-            {viewMode === "recipes" ? "Рецепти" : viewMode === "details" ? "Детайли" : "Любими"}
-          </Text>
+          <Text style={styles.brand}>Chefo's Recipes</Text>
+          <Text style={styles.headerTitle}>{getHeaderTitle(viewMode)}</Text>
         </View>
 
         {viewMode === "details" ? (
           <DetailsView recipe={selectedRecipe} onBack={() => setViewMode("recipes")} />
+        ) : viewMode === "categories" ? (
+          <CategoriesView recipes={recipes} selectedCategory={selectedCategory} onSelectCategory={openCategory} />
         ) : viewMode === "favorites" ? (
           <FavoritesView onBrowse={() => setViewMode("recipes")} />
+        ) : viewMode === "login" ? (
+          <LoginView onRegister={() => setViewMode("register")} />
+        ) : viewMode === "register" ? (
+          <RegisterView onLogin={() => setViewMode("login")} />
+        ) : viewMode === "profile" ? (
+          <ProfileView onLogin={() => setViewMode("login")} onRegister={() => setViewMode("register")} />
         ) : (
-          <RecipesView recipes={recipes} onSelectRecipe={openRecipe} />
+          <RecipesView
+            recipes={filteredRecipes}
+            selectedCategory={selectedCategory}
+            onClearCategory={() => setSelectedCategory(null)}
+            onSelectRecipe={openRecipe}
+          />
         )}
 
         <View style={styles.tabBar}>
@@ -149,9 +175,19 @@ export default function App() {
             onPress={() => setViewMode("recipes")}
           />
           <TabButton
+            isActive={viewMode === "categories"}
+            label="Категории"
+            onPress={() => setViewMode("categories")}
+          />
+          <TabButton
             isActive={viewMode === "favorites"}
             label="Любими"
             onPress={() => setViewMode("favorites")}
+          />
+          <TabButton
+            isActive={viewMode === "profile" || viewMode === "login" || viewMode === "register"}
+            label="Профил"
+            onPress={() => setViewMode("profile")}
           />
         </View>
       </View>
@@ -159,11 +195,29 @@ export default function App() {
   );
 }
 
+function getHeaderTitle(viewMode: ViewMode) {
+  const titles: Record<ViewMode, string> = {
+    recipes: "Рецепти",
+    details: "Детайли",
+    categories: "Категории",
+    favorites: "Любими",
+    login: "Вход",
+    register: "Регистрация",
+    profile: "Профил"
+  };
+
+  return titles[viewMode];
+}
+
 function RecipesView({
   recipes,
+  selectedCategory,
+  onClearCategory,
   onSelectRecipe
 }: {
   recipes: Recipe[];
+  selectedCategory: string | null;
+  onClearCategory: () => void;
   onSelectRecipe: (recipe: Recipe) => void;
 }) {
   return (
@@ -172,9 +226,18 @@ function RecipesView({
         <Text style={styles.kicker}>Български рецепти</Text>
         <Text style={styles.heroTitle}>Избери нещо вкусно за днес</Text>
         <Text style={styles.heroText}>
-          Първа мобилна основа за разглеждане на рецепти, детайли и бъдещи любими.
+          Мобилна основа за разглеждане на рецепти, категории, любими и бъдещ профил.
         </Text>
       </View>
+
+      {selectedCategory ? (
+        <View style={styles.filterPanel}>
+          <Text style={styles.filterText}>Филтър: {selectedCategory}</Text>
+          <Pressable onPress={onClearCategory}>
+            <Text style={styles.filterAction}>Покажи всички</Text>
+          </Pressable>
+        </View>
+      ) : null}
 
       <View style={styles.sectionHeader}>
         <Text style={styles.sectionTitle}>Рецепти</Text>
@@ -196,6 +259,61 @@ function RecipesView({
           </View>
         </Pressable>
       ))}
+    </ScrollView>
+  );
+}
+
+function CategoriesView({
+  recipes,
+  selectedCategory,
+  onSelectCategory
+}: {
+  recipes: Recipe[];
+  selectedCategory: string | null;
+  onSelectCategory: (category: string | null) => void;
+}) {
+  const categories = Array.from(new Set(recipes.map((recipe) => recipe.category))).map((category) => ({
+    name: category,
+    count: recipes.filter((recipe) => recipe.category === category).length
+  }));
+
+  return (
+    <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <View style={styles.heroPanel}>
+        <Text style={styles.kicker}>Категории</Text>
+        <Text style={styles.heroTitle}>Намери рецепта по настроение</Text>
+        <Text style={styles.heroText}>
+          Избери категория, за да филтрираш локалния списък с примерни рецепти.
+        </Text>
+      </View>
+
+      <Pressable onPress={() => onSelectCategory(null)} style={styles.card}>
+        <View style={styles.cardTopRow}>
+          <Text style={styles.cardTitleSmall}>Всички рецепти</Text>
+          <Text style={styles.pill}>{recipes.length}</Text>
+        </View>
+        <Text style={styles.cardText}>Премахва филтъра и показва целия примерен каталог.</Text>
+      </Pressable>
+
+      {categories.map((category) => {
+        const isSelected = selectedCategory === category.name;
+
+        return (
+          <Pressable
+            key={category.name}
+            onPress={() => onSelectCategory(category.name)}
+            style={[styles.card, isSelected && styles.cardSelected]}
+          >
+            <View style={styles.cardTopRow}>
+              <Text style={styles.cardTitleSmall}>{category.name}</Text>
+              <Text style={styles.pill}>{category.count} рецепти</Text>
+            </View>
+            <Text style={styles.cardText}>
+              Примерна категория за бъдещо API филтриране и странициране на списъците.
+            </Text>
+          </Pressable>
+        );
+      })}
     </ScrollView>
   );
 }
@@ -258,7 +376,7 @@ function FavoritesView({ onBrowse }: { onBrowse: () => void }) {
       <View style={styles.emptyPanel}>
         <Text style={styles.emptyTitle}>Функцията идва скоро</Text>
         <Text style={styles.emptyText}>
-          Любимите рецепти ще бъдат свързани с потребителски профили и синхронизация със сървъра на
+          Любимите рецепти ще бъдат свързани с потребителски профили и REST API синхронизация на
           следващ етап.
         </Text>
         <Pressable onPress={onBrowse} style={styles.primaryButton}>
@@ -266,6 +384,140 @@ function FavoritesView({ onBrowse }: { onBrowse: () => void }) {
         </Pressable>
       </View>
     </ScrollView>
+  );
+}
+
+function LoginView({ onRegister }: { onRegister: () => void }) {
+  return (
+    <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <View style={styles.heroPanel}>
+        <Text style={styles.kicker}>Потребителски достъп</Text>
+        <Text style={styles.heroTitle}>Вход в профила</Text>
+        <Text style={styles.heroText}>
+          Реалната автентикация ще бъде свързана по-късно чрез REST API и JWT токени.
+        </Text>
+      </View>
+
+      <View style={styles.panel}>
+        <Field label="Имейл" placeholder="ime@example.com" keyboardType="email-address" />
+        <Field label="Парола" placeholder="Въведи парола" secureTextEntry />
+        <Pressable style={styles.primaryButton}>
+          <Text style={styles.primaryButtonText}>Вход</Text>
+        </Pressable>
+        <Pressable onPress={onRegister} style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}>Създай регистрация</Text>
+        </Pressable>
+      </View>
+
+      <Notice text="Формата е неактивна и не изпраща реална заявка." />
+    </ScrollView>
+  );
+}
+
+function RegisterView({ onLogin }: { onLogin: () => void }) {
+  return (
+    <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <View style={styles.heroPanel}>
+        <Text style={styles.kicker}>Нов профил</Text>
+        <Text style={styles.heroTitle}>Създай регистрация</Text>
+        <Text style={styles.heroText}>
+          Създаването на акаунт ще бъде свързано с backend endpoint на следващ етап.
+        </Text>
+      </View>
+
+      <View style={styles.panel}>
+        <Field label="Име" placeholder="Твоето име" />
+        <Field label="Имейл" placeholder="ime@example.com" keyboardType="email-address" />
+        <Field label="Парола" placeholder="Създай парола" secureTextEntry />
+        <Pressable style={styles.primaryButton}>
+          <Text style={styles.primaryButtonText}>Регистрация</Text>
+        </Pressable>
+        <Pressable onPress={onLogin} style={styles.secondaryButton}>
+          <Text style={styles.secondaryButtonText}>Вече имаш профил</Text>
+        </Pressable>
+      </View>
+
+      <Notice text="По-късно паролата ще се обработва сигурно от backend-а и няма да се пази локално." />
+    </ScrollView>
+  );
+}
+
+function ProfileView({ onLogin, onRegister }: { onLogin: () => void; onRegister: () => void }) {
+  return (
+    <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <View style={styles.heroPanel}>
+        <Text style={styles.kicker}>Профил</Text>
+        <Text style={styles.heroTitle}>Моят dashboard</Text>
+        <Text style={styles.heroText}>
+          Това е примерен профил без реална сесия. Данните ще се зареждат след свързване с API.
+        </Text>
+      </View>
+
+      <View style={styles.statsRow}>
+        <StatBox label="Любими" value="0" />
+        <StatBox label="Статус" value="Примерен" />
+      </View>
+
+      <View style={styles.panel}>
+        <Text style={styles.sectionTitle}>Обобщение</Text>
+        <Text style={styles.cardText}>
+          Тук ще се показват запазени рецепти, данни за акаунта и настройки на потребителя.
+        </Text>
+        <View style={styles.buttonRow}>
+          <Pressable onPress={onLogin} style={styles.primaryButtonCompact}>
+            <Text style={styles.primaryButtonText}>Вход</Text>
+          </Pressable>
+          <Pressable onPress={onRegister} style={styles.secondaryButtonCompact}>
+            <Text style={styles.secondaryButtonText}>Регистрация</Text>
+          </Pressable>
+        </View>
+      </View>
+
+      <Notice text="Профилът ще използва реални потребителски данни, JWT сесия и REST API заявки по-късно." />
+    </ScrollView>
+  );
+}
+
+function Field({
+  label,
+  placeholder,
+  keyboardType,
+  secureTextEntry
+}: {
+  label: string;
+  placeholder: string;
+  keyboardType?: "default" | "email-address";
+  secureTextEntry?: boolean;
+}) {
+  return (
+    <View style={styles.field}>
+      <Text style={styles.fieldLabel}>{label}</Text>
+      <TextInput
+        autoCapitalize={keyboardType === "email-address" ? "none" : "sentences"}
+        keyboardType={keyboardType}
+        placeholder={placeholder}
+        placeholderTextColor={colors.softText}
+        secureTextEntry={secureTextEntry}
+        style={styles.input}
+      />
+    </View>
+  );
+}
+
+function Notice({ text }: { text: string }) {
+  return (
+    <View style={styles.notice}>
+      <Text style={styles.noticeText}>{text}</Text>
+    </View>
+  );
+}
+
+function StatBox({ label, value }: { label: string; value: string }) {
+  return (
+    <View style={styles.statBox}>
+      <Text style={styles.metaLabel}>{label}</Text>
+      <Text style={styles.statValue}>{value}</Text>
+    </View>
   );
 }
 
@@ -335,7 +587,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingBottom: 112
+    paddingBottom: 118
   },
   heroPanel: {
     backgroundColor: colors.card,
@@ -365,6 +617,27 @@ const styles = StyleSheet.create({
     lineHeight: 22,
     marginTop: 10
   },
+  filterPanel: {
+    alignItems: "center",
+    backgroundColor: colors.brandSoft,
+    borderColor: "#ffd9ad",
+    borderRadius: 20,
+    borderWidth: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 14,
+    padding: 14
+  },
+  filterText: {
+    color: colors.brandDark,
+    fontSize: 14,
+    fontWeight: "800"
+  },
+  filterAction: {
+    color: colors.brandDark,
+    fontSize: 13,
+    fontWeight: "800"
+  },
   sectionHeader: {
     alignItems: "center",
     flexDirection: "row",
@@ -390,9 +663,14 @@ const styles = StyleSheet.create({
     marginTop: 12,
     padding: 18
   },
+  cardSelected: {
+    borderColor: colors.brand,
+    borderWidth: 2
+  },
   cardTopRow: {
     alignItems: "center",
     flexDirection: "row",
+    gap: 12,
     justifyContent: "space-between"
   },
   pill: {
@@ -416,6 +694,12 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "800",
     marginTop: 14
+  },
+  cardTitleSmall: {
+    color: colors.text,
+    flex: 1,
+    fontSize: 21,
+    fontWeight: "800"
   },
   cardText: {
     color: colors.muted,
@@ -559,10 +843,19 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   primaryButton: {
+    alignItems: "center",
     backgroundColor: colors.brand,
     borderRadius: 999,
-    marginTop: 20,
+    marginTop: 18,
     paddingHorizontal: 18,
+    paddingVertical: 13
+  },
+  primaryButtonCompact: {
+    alignItems: "center",
+    backgroundColor: colors.brand,
+    borderRadius: 999,
+    flex: 1,
+    paddingHorizontal: 14,
     paddingVertical: 12
   },
   primaryButtonText: {
@@ -570,15 +863,98 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "800"
   },
+  secondaryButton: {
+    alignItems: "center",
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderRadius: 999,
+    borderWidth: 1,
+    marginTop: 10,
+    paddingHorizontal: 18,
+    paddingVertical: 13
+  },
+  secondaryButtonCompact: {
+    alignItems: "center",
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderRadius: 999,
+    borderWidth: 1,
+    flex: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 12
+  },
+  secondaryButtonText: {
+    color: colors.brandDark,
+    fontSize: 14,
+    fontWeight: "800"
+  },
+  buttonRow: {
+    flexDirection: "row",
+    gap: 10,
+    marginTop: 18
+  },
+  field: {
+    marginBottom: 14
+  },
+  fieldLabel: {
+    color: colors.text,
+    fontSize: 14,
+    fontWeight: "800",
+    marginBottom: 8
+  },
+  input: {
+    backgroundColor: colors.background,
+    borderColor: colors.border,
+    borderRadius: 18,
+    borderWidth: 1,
+    color: colors.text,
+    fontSize: 15,
+    paddingHorizontal: 14,
+    paddingVertical: 12
+  },
+  notice: {
+    backgroundColor: colors.brandSoft,
+    borderColor: "#ffd9ad",
+    borderRadius: 22,
+    borderStyle: "dashed",
+    borderWidth: 1,
+    marginTop: 16,
+    padding: 16
+  },
+  noticeText: {
+    color: colors.brandDark,
+    fontSize: 14,
+    fontWeight: "700",
+    lineHeight: 21
+  },
+  statsRow: {
+    flexDirection: "row",
+    gap: 12,
+    marginTop: 16
+  },
+  statBox: {
+    backgroundColor: colors.card,
+    borderColor: colors.border,
+    borderRadius: 22,
+    borderWidth: 1,
+    flex: 1,
+    padding: 16
+  },
+  statValue: {
+    color: colors.text,
+    fontSize: 23,
+    fontWeight: "800",
+    marginTop: 6
+  },
   tabBar: {
     backgroundColor: "rgba(255, 250, 243, 0.96)",
     borderTopColor: colors.border,
     borderTopWidth: 1,
     bottom: 0,
     flexDirection: "row",
-    gap: 10,
+    gap: 8,
     left: 0,
-    paddingHorizontal: 20,
+    paddingHorizontal: 12,
     paddingVertical: 14,
     position: "absolute",
     right: 0
@@ -590,7 +966,10 @@ const styles = StyleSheet.create({
     borderRadius: 999,
     borderWidth: 1,
     flex: 1,
-    paddingVertical: 12
+    minHeight: 44,
+    justifyContent: "center",
+    paddingHorizontal: 6,
+    paddingVertical: 10
   },
   tabButtonActive: {
     backgroundColor: colors.brand,
@@ -598,8 +977,9 @@ const styles = StyleSheet.create({
   },
   tabButtonText: {
     color: colors.muted,
-    fontSize: 14,
-    fontWeight: "800"
+    fontSize: 12,
+    fontWeight: "800",
+    textAlign: "center"
   },
   tabButtonTextActive: {
     color: "#ffffff"
