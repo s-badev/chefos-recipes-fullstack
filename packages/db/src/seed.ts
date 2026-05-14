@@ -1,3 +1,19 @@
+import { pathToFileURL } from "node:url";
+
+import { sql } from "drizzle-orm";
+import type { AnyPgTable } from "drizzle-orm/pg-core";
+
+import { createDbClient, getDatabaseUrl, type DbClient } from "./client.js";
+import {
+  categories as categoriesTable,
+  favorites as favoritesTable,
+  recipeSteps as recipeStepsTable,
+  recipeTags as recipeTagsTable,
+  recipes as recipesTable,
+  tags as tagsTable,
+  users as usersTable
+} from "./schema.js";
+
 export const LARGE_RECIPE_COUNT = 10000;
 export const DEFAULT_BATCH_SIZE = 500;
 
@@ -63,6 +79,33 @@ export type SeedData = {
 
 export type LargeSeedOptions = {
   recipeCount?: number;
+};
+
+export type SeedLogger = Pick<Console, "error" | "log">;
+
+export type SeedDatabaseOptions = {
+  batchSize?: number;
+  data?: SeedData;
+  dryRun?: boolean;
+  env?: NodeJS.ProcessEnv;
+  logger?: SeedLogger;
+  recipeCount?: number;
+};
+
+export type SeedTableResult = {
+  batches: number;
+  inserted: number;
+  skipped: number;
+  total: number;
+};
+
+export type SeedDatabaseResult = {
+  batchSize: number;
+  counts: Record<keyof SeedData, number>;
+  insertionOrder: ReturnType<typeof getSeedInsertionPlan>;
+  mode: "dry-run" | "insert";
+  recipeCount: number;
+  tables: Record<keyof SeedData, SeedTableResult>;
 };
 
 const DIFFICULTIES: SeedRecipe["difficulty"][] = ["easy", "medium", "hard"];
@@ -200,6 +243,10 @@ function findCategoryId(categories: SeedCategory[], slug: string) {
 }
 
 export function chunkSeedRows<T>(rows: T[], batchSize = DEFAULT_BATCH_SIZE) {
+  if (!Number.isInteger(batchSize) || batchSize < 1) {
+    throw new Error("Seed batch size must be a positive integer.");
+  }
+
   const chunks: T[][] = [];
 
   for (let index = 0; index < rows.length; index += batchSize) {
@@ -207,6 +254,87 @@ export function chunkSeedRows<T>(rows: T[], batchSize = DEFAULT_BATCH_SIZE) {
   }
 
   return chunks;
+}
+
+function getSeedCounts(data: SeedData): Record<keyof SeedData, number> {
+  return {
+    users: data.users.length,
+    categories: data.categories.length,
+    tags: data.tags.length,
+    recipes: data.recipes.length,
+    recipeSteps: data.recipeSteps.length,
+    recipeTags: data.recipeTags.length,
+    favorites: data.favorites.length
+  };
+}
+
+function getDryRunTableResult<T>(rows: T[], batchSize: number): SeedTableResult {
+  return {
+    batches: chunkSeedRows(rows, batchSize).length,
+    inserted: 0,
+    skipped: 0,
+    total: rows.length
+  };
+}
+
+function getDryRunTableResults(
+  data: SeedData,
+  batchSize: number
+): Record<keyof SeedData, SeedTableResult> {
+  return {
+    users: getDryRunTableResult(data.users, batchSize),
+    categories: getDryRunTableResult(data.categories, batchSize),
+    tags: getDryRunTableResult(data.tags, batchSize),
+    recipes: getDryRunTableResult(data.recipes, batchSize),
+    recipeSteps: getDryRunTableResult(data.recipeSteps, batchSize),
+    recipeTags: getDryRunTableResult(data.recipeTags, batchSize),
+    favorites: getDryRunTableResult(data.favorites, batchSize)
+  };
+}
+
+function isDryRunEnabled(value: string | undefined) {
+  return value?.toLowerCase() === "true" || value === "1";
+}
+
+function logDryRunTable(logger: SeedLogger, label: string, result: SeedTableResult) {
+  logger.log(
+    `[seed] ${label}: generated ${result.total}, planned batches ${result.batches}, inserted/skipped 0/0 (dry run)`
+  );
+}
+
+function logInsertedTable(logger: SeedLogger, label: string, result: SeedTableResult) {
+  logger.log(
+    `[seed] ${label}: inserted ${result.inserted}, skipped ${result.skipped}, batches ${result.batches}`
+  );
+}
+
+type InsertableRow<TTable extends AnyPgTable> = TTable["$inferInsert"];
+
+async function insertBatched<TTable extends AnyPgTable>(
+  db: DbClient,
+  table: TTable,
+  rows: InsertableRow<TTable>[],
+  batchSize: number
+): Promise<SeedTableResult> {
+  const batches = chunkSeedRows(rows, batchSize);
+  let inserted = 0;
+
+  for (const batch of batches) {
+    const insertedRows = await db
+      .insert(table)
+      .values(batch)
+      .onConflictDoNothing()
+      .returning({ inserted: sql<number>`1` });
+
+    inserted += insertedRows.length;
+  }
+
+  return {
+    batches: batches.length,
+    inserted,
+    skipped: rows.length - inserted,
+    total: rows.length
+  };
 }
 
 export function generateLargeSeedUsers(): SeedUser[] {
@@ -226,6 +354,10 @@ export function generateLargeSeedRecipes(
   categories = generateLargeSeedCategories(),
   users = generateLargeSeedUsers()
 ): SeedRecipe[] {
+  if (!Number.isInteger(recipeCount) || recipeCount < 0) {
+    throw new Error("Seed recipe count must be a non-negative integer.");
+  }
+
   return Array.from({ length: recipeCount }, (_, index) => {
     const sequence = index + 1;
     const style = pickByIndex(titleStyles, index);
@@ -487,23 +619,105 @@ export function getSeedInsertionPlan() {
   ];
 }
 
-export async function seedDatabase() {
+export async function seedDatabase(options: SeedDatabaseOptions = {}): Promise<SeedDatabaseResult> {
+  const env = options.env ?? process.env;
+  const logger = options.logger ?? console;
+  const batchSize = options.batchSize ?? DEFAULT_BATCH_SIZE;
+  const dryRun = options.dryRun ?? isDryRunEnabled(env.SEED_DRY_RUN);
+  const databaseUrl = dryRun ? undefined : getDatabaseUrl(env);
+  const data =
+    options.data ??
+    generateLargeSeedData({ recipeCount: options.recipeCount ?? LARGE_RECIPE_COUNT });
   const insertionOrder = getSeedInsertionPlan();
+  const counts = getSeedCounts(data);
+  const recipeCount = data.recipes.length;
 
-  // Safety: this foundation intentionally does not import the DB client or call db.insert().
-  // When Neon is wired, add an explicit executable path that hashes demo passwords first,
-  // opens a Drizzle client, and inserts data in the order returned above.
+  logger.log(
+    `[seed] started (${dryRun ? "dry run" : "insert"}, recipes ${recipeCount}, batch size ${batchSize})`
+  );
+
+  if (dryRun) {
+    const tables = getDryRunTableResults(data, batchSize);
+
+    logDryRunTable(logger, "users", tables.users);
+    logDryRunTable(logger, "categories", tables.categories);
+    logDryRunTable(logger, "tags", tables.tags);
+    logDryRunTable(logger, "recipes", tables.recipes);
+    logDryRunTable(logger, "recipe steps", tables.recipeSteps);
+    logDryRunTable(logger, "recipe tag relations", tables.recipeTags);
+    logDryRunTable(logger, "favorite relations", tables.favorites);
+    logger.log("[seed] completed (dry run, no database connection opened)");
+
+    return {
+      batchSize,
+      counts,
+      insertionOrder,
+      mode: "dry-run",
+      recipeCount,
+      tables
+    };
+  }
+
+  const db = createDbClient(databaseUrl);
+
+  // Password hashes remain placeholders until the authentication scope adds bcrypt or argon2.
+  // The insert path is explicit and idempotent: stable IDs/slugs/emails plus ON CONFLICT DO NOTHING.
+  const usersResult = await insertBatched(db, usersTable, data.users, batchSize);
+  logInsertedTable(logger, "users", usersResult);
+
+  const categoriesResult = await insertBatched(
+    db,
+    categoriesTable,
+    data.categories,
+    batchSize
+  );
+  logInsertedTable(logger, "categories", categoriesResult);
+
+  const tagsResult = await insertBatched(db, tagsTable, data.tags, batchSize);
+  logInsertedTable(logger, "tags", tagsResult);
+
+  const recipesResult = await insertBatched(db, recipesTable, data.recipes, batchSize);
+  logInsertedTable(logger, "recipes", recipesResult);
+
+  const recipeStepsResult = await insertBatched(
+    db,
+    recipeStepsTable,
+    data.recipeSteps,
+    batchSize
+  );
+  logInsertedTable(logger, "recipe steps", recipeStepsResult);
+
+  const recipeTagsResult = await insertBatched(
+    db,
+    recipeTagsTable,
+    data.recipeTags,
+    batchSize
+  );
+  logInsertedTable(logger, "recipe tag relations", recipeTagsResult);
+
+  const favoritesResult = await insertBatched(
+    db,
+    favoritesTable,
+    data.favorites,
+    batchSize
+  );
+  logInsertedTable(logger, "favorite relations", favoritesResult);
+  logger.log("[seed] completed");
+
   return {
-    mode: "dry-run",
+    batchSize,
+    counts,
     insertionOrder,
-    counts: {
-      users: seedUsers.length,
-      categories: seedCategories.length,
-      tags: seedTags.length,
-      recipes: seedRecipes.length,
-      recipeSteps: seedRecipeSteps.length,
-      recipeTags: seedRecipeTags.length,
-      favorites: seedFavorites.length
+    mode: "insert",
+    recipeCount,
+    tables: {
+      users: usersResult,
+      categories: categoriesResult,
+      tags: tagsResult,
+      recipes: recipesResult,
+      recipeSteps: recipeStepsResult,
+      recipeTags: recipeTagsResult,
+      favorites: favoritesResult
     }
   };
 }
@@ -514,11 +728,8 @@ export function planLargeDatasetSeed(
 ) {
   const generatedData = generateLargeSeedData({ recipeCount: targetRecipeCount });
 
-  // Future scalability seed:
-  // 1. Use generateLargeSeedData() to create deterministic in-memory rows.
-  // 2. Insert tables in getSeedInsertionPlan() order so foreign keys resolve.
-  // 3. Use chunkSeedRows(..., DEFAULT_BATCH_SIZE) for batched Drizzle inserts.
-  // 4. Keep this dry-run until Neon is explicitly configured for real writes.
+  // Planning helper only: seedDatabase() uses the same deterministic data and batch sizes
+  // for real Drizzle inserts when DATABASE_URL is explicitly provided.
   return {
     targetRecipeCount,
     batchSize,
@@ -544,4 +755,16 @@ export function planLargeDatasetSeed(
       favorites: chunkSeedRows(generatedData.favorites, batchSize).length
     }
   };
+}
+
+function isDirectSeedExecution() {
+  return Boolean(process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href);
+}
+
+if (isDirectSeedExecution()) {
+  seedDatabase().catch((error: unknown) => {
+    console.error("[seed] failed");
+    console.error(error);
+    process.exitCode = 1;
+  });
 }
