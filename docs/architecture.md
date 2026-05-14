@@ -20,6 +20,7 @@
 - **Server Actions:** planned for web mutations where they reduce client/API ceremony while preserving validation and authorization
 - **Service/repository layer:** planned boundary between API/actions and Drizzle queries so business rules are not duplicated
 - **DB:** Neon serverless PostgreSQL with Drizzle schema and committed migrations
+- **Seed foundation:** deterministic large dataset generator and opt-in batched Drizzle seed script for database scalability validation
 - **Shared package:** DTOs, validation schemas, enums
 
 ## Data flow (contract)
@@ -28,6 +29,34 @@
 - Output: JSON responses with standardized error shape
 
 Current static/sample data helpers will be replaced by Drizzle queries against Neon as the backend is implemented.
+
+## Scalability and seed strategy
+
+The database package prepares a 10,000-recipe seed dataset for the revised SoftUni capstone scalability requirement. The generator creates deterministic in-memory users, categories, tags, recipes, recipe steps, recipe-tag relations and favorites.
+
+The seed script is intentionally opt-in:
+
+- `SEED_DRY_RUN=true` summarizes generated data without opening a database connection.
+- Real inserts require `DATABASE_URL` from the local environment.
+- Real credentials must never be committed.
+- Inserts are batched with a default size of 500 rows.
+- Stable IDs, slugs and emails plus conflict-skipping behavior make repeated seed runs idempotent where possible.
+
+Recipe API and catalog pagination are part of the architecture for handling large lists. Query performance will be validated with the large seed dataset before final delivery.
+
+## Planned database indexes
+
+Indexes should follow the actual query patterns introduced by the API, catalog, favorites and admin flows. The current plan prioritizes:
+
+- `recipes.slug`
+- `recipes.category_id`
+- `recipes.created_at`
+- `recipe_tags.recipe_id`
+- `recipe_tags.tag_id`
+- `favorites.user_id`
+- `favorites.recipe_id`
+
+Index changes must be committed through Drizzle migrations when finalized.
 
 ## Auth approach (planned)
 - JWT access token for API requests

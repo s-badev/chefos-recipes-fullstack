@@ -52,6 +52,8 @@ The application currently works with **static/sample data** while the database a
 
 The goal is to turn the project into a database-backed full-stack recipe platform with authentication, role-based access, favorites, and admin recipe management.
 
+The database package now includes a deterministic seed foundation for scalability validation, including a 10,000-recipe dataset generator and opt-in batched Drizzle seed logic. The seed script is not run automatically and only connects when `DATABASE_URL` is provided from the local environment.
+
 ---
 
 ## ✅ Completed Foundation Work
@@ -75,6 +77,8 @@ The goal is to turn the project into a database-backed full-stack recipe platfor
 - ✅ Drizzle migration setup
 - ✅ Initial generated SQL migration
 - ✅ Database client skeleton prepared for future Neon connection
+- ✅ Deterministic database seed generator with a 10,000-record scalability target
+- ✅ Batched Drizzle seed insert foundation with dry-run support
 - ✅ Initial Next.js API route skeleton
 - ✅ Static recipe data layer used by recipe-related API routes
 - ✅ API endpoint documentation with example responses
@@ -105,8 +109,8 @@ The revised SoftUni capstone requirements increase the project scope. The projec
 - 🛡️ Add role-based access control for user/admin flows
 - ⭐ Implement real favorites functionality
 - 🧑‍🍳 Add admin create/edit/delete recipe actions
-- 📄 Add pagination for large recipe lists
-- 🌱 Add database seed script and 10,000-record test dataset
+- 📄 Continue validating pagination with large recipe lists
+- 🌱 Run the database seed locally after Neon/local PostgreSQL credentials are configured
 - 🚀 Deploy the production web app
 - 🧪 Add broader testing and final documentation polish
 
@@ -245,6 +249,8 @@ The database layer currently includes:
 - ✅ Drizzle migration setup
 - ✅ Initial generated SQL migration
 - ✅ Database client skeleton
+- ✅ Seed data generator for scalability validation
+- ✅ Batched, idempotent seed insert foundation
 - ✅ Environment variable documentation
 
 Planned core tables include:
@@ -256,6 +262,20 @@ Planned core tables include:
 - `recipe_steps`
 - `recipe_tags`
 - `favorites`
+
+### Seed And Scalability Strategy
+
+The seed foundation in `packages/db` prepares a deterministic large dataset for the revised SoftUni scalability requirement:
+
+- `LARGE_RECIPE_COUNT = 10000`
+- `DEFAULT_BATCH_SIZE = 500`
+- generated demo users, categories, tags, recipes, recipe steps, recipe-tag relations and favorites
+- stable IDs, slugs and emails so repeated seed runs can skip duplicates
+- `SEED_DRY_RUN=true` mode for generating and summarizing data without connecting to a database
+
+The real seed path must use `DATABASE_URL` only from the local environment. Real credentials must never be committed. Batched Drizzle inserts are planned for local/staging validation after the database connection is configured.
+
+Recipe list pagination is part of the scalability strategy so the catalog and API can handle the generated dataset without loading all records at once. Database indexes will be finalized carefully and committed through Drizzle migrations.
 
 ---
 
@@ -290,8 +310,9 @@ This allows the project to develop and validate:
 - recipe catalog behavior
 - mobile screen structure
 - future database model alignment
+- paginated catalog behavior before real dataset growth
 
-Later, this static data layer will be replaced with real **Drizzle + Neon** database queries.
+The database package also provides a deterministic 10,000-record seed dataset for scalability validation. Later, the static data layer will be replaced with real **Drizzle + Neon** database queries and the seed script can be run locally with environment-provided credentials.
 
 ---
 
