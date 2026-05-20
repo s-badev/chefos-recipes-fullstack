@@ -6,6 +6,9 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
     "seed": "tsx src/seed.ts"
   },
   "dependencies": {
