@@ -4,6 +4,7 @@ import { sql } from "drizzle-orm";
 import type { AnyPgTable } from "drizzle-orm/pg-core";
 
 import { createDbClient, getDatabaseUrl, type DbClient } from "./client.js";
+import { loadRootEnv } from "./load-env.js";
 import {
   categories as categoriesTable,
   favorites as favoritesTable,
@@ -620,6 +621,10 @@ export function getSeedInsertionPlan() {
 }
 
 export async function seedDatabase(options: SeedDatabaseOptions = {}): Promise<SeedDatabaseResult> {
+  if (!options.env) {
+    loadRootEnv();
+  }
+
   const env = options.env ?? process.env;
   const logger = options.logger ?? console;
   const batchSize = options.batchSize ?? DEFAULT_BATCH_SIZE;

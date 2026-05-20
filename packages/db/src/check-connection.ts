@@ -1,11 +1,6 @@
-import { existsSync } from "node:fs";
-import { dirname, resolve } from "node:path";
-import { loadEnvFile } from "node:process";
-import { fileURLToPath } from "node:url";
 import { neon } from "@neondatabase/serverless";
 
-const scriptDir = dirname(fileURLToPath(import.meta.url));
-const rootEnvPath = resolve(scriptDir, "../../../.env");
+import { loadRootEnv } from "./load-env.js";
 
 function getDatabaseUrl() {
   const databaseUrl = process.env.DATABASE_URL;
@@ -54,10 +49,7 @@ function getSafeErrorMessage(error: unknown) {
 
 async function checkConnection() {
   console.log("Loading environment...");
-
-  if (existsSync(rootEnvPath)) {
-    loadEnvFile(rootEnvPath);
-  }
+  loadRootEnv();
 
   console.log("Checking DATABASE_URL...");
   const databaseUrl = getDatabaseUrl();
