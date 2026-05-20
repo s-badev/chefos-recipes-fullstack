@@ -27,7 +27,20 @@ export function SiteFooter() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-3">
               <span className="grid h-11 w-11 place-items-center rounded-[1.1rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-xs font-black text-white shadow-sm shadow-brand-900/20">
-                CR
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  className="h-6 w-6"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                >
+                  <path d="M6 13.5C4.3 13 3 11.5 3 9.7C3 7.5 4.8 5.8 7 5.8C7.6 3.6 9.6 2 12 2C14.4 2 16.4 3.6 17 5.8C19.2 5.8 21 7.5 21 9.7C21 11.5 19.7 13 18 13.5" />
+                  <path d="M6 13h12v7H6z" />
+                  <path d="M9 16h6" />
+                </svg>
               </span>
               <p className="text-xl font-black text-stone-950">
                 Chefo&apos;s <span className="text-brand-600">Recipes</span>

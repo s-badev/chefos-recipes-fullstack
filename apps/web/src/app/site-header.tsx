@@ -37,7 +37,20 @@ export function SiteHeader() {
             onClick={() => setIsMenuOpen(false)}
           >
             <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[1.2rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-sm font-black text-white shadow-[0_12px_28px_rgba(185,70,23,0.28)]">
-              CR
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              >
+                <path d="M6 13.5C4.3 13 3 11.5 3 9.7C3 7.5 4.8 5.8 7 5.8C7.6 3.6 9.6 2 12 2C14.4 2 16.4 3.6 17 5.8C19.2 5.8 21 7.5 21 9.7C21 11.5 19.7 13 18 13.5" />
+                <path d="M6 13h12v7H6z" />
+                <path d="M9 16h6" />
+              </svg>
             </span>
 
             <span className="min-w-0">
