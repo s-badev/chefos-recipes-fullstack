@@ -12,7 +12,7 @@ const sampleFavorites = recipes.slice(0, 3);
 export default function FavoritesPage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.55fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -52,7 +52,7 @@ export default function FavoritesPage() {
           </h3>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
           {sampleFavorites.map((recipe) => (
             <Link
               className="group flex min-h-[300px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"

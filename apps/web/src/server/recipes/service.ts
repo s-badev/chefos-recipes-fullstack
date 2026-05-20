@@ -31,12 +31,12 @@ function normalizePositiveInteger(value: number | undefined, fallback: number) {
   return Math.floor(value);
 }
 
-export function listRecipes(params: PaginationParams = {}) {
+export async function listRecipes(params: PaginationParams = {}) {
   const page = normalizePositiveInteger(params.page, DEFAULT_PAGE);
   const requestedPageSize = normalizePositiveInteger(params.pageSize, DEFAULT_PAGE_SIZE);
   const pageSize = Math.min(requestedPageSize, MAX_PAGE_SIZE);
   const offset = (page - 1) * pageSize;
-  const result = findRecipes({ offset, limit: pageSize });
+  const result = await findRecipes({ offset, limit: pageSize });
 
   return {
     items: result.items,

@@ -54,17 +54,17 @@ const userActions = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-14">
-      <section className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+    <div className="space-y-16 xl:space-y-20">
+      <section className="grid gap-10 lg:grid-cols-[minmax(0,1.15fr)_minmax(420px,0.85fr)] lg:items-center xl:grid-cols-[minmax(0,1.25fr)_minmax(480px,0.75fr)]">
         <div className="space-y-6">
           <div className="inline-flex items-center rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-semibold text-brand-800 shadow-sm">
             Български рецепти за всеки ден
           </div>
-          <div className="max-w-3xl space-y-5">
+          <div className="max-w-4xl space-y-5">
             <h2 className="text-4xl font-bold leading-tight text-stone-950 sm:text-5xl lg:text-6xl">
               Намери вкусна и практична рецепта, преди тиганът да загрее.
             </h2>
-            <p className="text-lg leading-8 text-stone-600">
+            <p className="max-w-3xl text-lg leading-8 text-stone-600">
               Chefo’s Recipes е подреден каталог за домашна храна, в който лесно сравняваш време за
               приготвяне и намираш идеи за следващото готвене.
             </p>
@@ -86,7 +86,7 @@ export default function HomePage() {
         </div>
 
         <div className="overflow-hidden rounded-[2rem] border border-stone-200 bg-white shadow-sm">
-          <div className="grid min-h-[360px] grid-rows-[1.2fr_0.8fr]">
+          <div className="grid min-h-[390px] grid-rows-[1.25fr_0.75fr] lg:min-h-[500px]">
             <div
               aria-label="Маса с вдъхновение за български рецепти"
               className="relative bg-[radial-gradient(circle_at_25%_25%,#ffffff_0_8%,transparent_9%),radial-gradient(circle_at_76%_34%,#fee2b8_0_12%,transparent_13%),linear-gradient(135deg,#e9571c,#f6b44b_48%,#6f8f56)]"
@@ -117,8 +117,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="about" className="rounded-3xl bg-stone-950 px-6 py-8 text-white sm:px-8">
-        <div className="grid gap-5 md:grid-cols-[0.75fr_1.25fr] md:items-center">
+      <section id="about" className="rounded-3xl bg-stone-950 px-6 py-9 text-white sm:px-8 xl:px-10">
+        <div className="grid gap-5 md:grid-cols-[0.55fr_1.45fr] md:items-center">
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-300">
             Домашен избор
           </p>
@@ -143,7 +143,7 @@ export default function HomePage() {
           </p>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
           {featuredRecipes.map((recipe, index) => (
             <article
               className="overflow-hidden rounded-3xl border border-stone-200 bg-white shadow-sm"
@@ -152,7 +152,7 @@ export default function HomePage() {
               <div
                 aria-label={recipe.imageAlt}
                 className={[
-                  "h-44",
+                  "h-48 xl:h-56",
                   index === 0
                     ? "bg-[linear-gradient(135deg,#d9462f,#f7f0c2_48%,#5e8d55)]"
                     : "",
@@ -213,7 +213,7 @@ export default function HomePage() {
           </p>
           <h2 className="mt-2 text-3xl font-bold text-stone-950">Разглеждай, избирай и готви по-лесно</h2>
         </div>
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-3 xl:gap-6">
           {userActions.map((item) => (
             <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm" key={item.title}>
               <h3 className="text-lg font-bold text-stone-950">{item.title}</h3>

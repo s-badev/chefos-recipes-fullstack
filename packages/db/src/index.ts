@@ -1,3 +1,5 @@
-export * from "./schema.js";
-export * from "./client.js";
-export * from "./seed.js";
+export { asc, count, desc, eq, inArray } from "drizzle-orm";
+
+export * from "./schema";
+export * from "./client";
+export * from "./seed";

@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 
-import { loadRootEnv } from "./load-env.js";
+import { loadRootEnv } from "./load-env";
 
 function getDatabaseUrl() {
   const databaseUrl = process.env.DATABASE_URL;

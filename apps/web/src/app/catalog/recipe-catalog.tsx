@@ -47,7 +47,7 @@ export function RecipeCatalog() {
 
   return (
     <section className="space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.65fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -61,7 +61,7 @@ export function RecipeCatalog() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-stone-200 bg-white p-4 shadow-sm">
+        <div className="rounded-3xl border border-stone-200 bg-white p-5 shadow-sm">
           <label className="text-sm font-bold text-stone-800" htmlFor="recipe-search">
             Търсене
           </label>
@@ -103,7 +103,7 @@ export function RecipeCatalog() {
 
       {filteredRecipes.length > 0 ? (
         <div className="space-y-6">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
             {paginatedRecipes.map((recipe) => (
               <Link
                 className="group flex min-h-[360px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"

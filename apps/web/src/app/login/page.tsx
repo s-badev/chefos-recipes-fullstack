@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <section className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+    <section className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start xl:max-w-7xl">
       <div className="space-y-4">
         <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
           Потребителски достъп
@@ -22,7 +22,7 @@ export default function LoginPage() {
         </Link>
       </div>
 
-      <form className="space-y-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+      <form className="space-y-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
         <div>
           <label className="text-sm font-bold text-stone-800" htmlFor="email">
             Имейл

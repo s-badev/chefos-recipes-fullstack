@@ -15,7 +15,7 @@ const summary = [
 export default function ProfilePage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[1fr_0.75fr] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.55fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Потребителски профил
@@ -34,7 +34,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-3 xl:gap-6">
         {summary.map((item) => (
           <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm" key={item.label}>
             <p className="text-sm font-bold text-stone-500">{item.label}</p>
@@ -43,7 +43,7 @@ export default function ProfilePage() {
         ))}
       </div>
 
-      <section className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+      <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] xl:gap-6">
         <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
           <h3 className="text-2xl font-bold text-stone-950">Обобщение на любимите</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">

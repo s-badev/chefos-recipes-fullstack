@@ -3,8 +3,8 @@ import { pathToFileURL } from "node:url";
 import { sql } from "drizzle-orm";
 import type { AnyPgTable } from "drizzle-orm/pg-core";
 
-import { createDbClient, getDatabaseUrl, type DbClient } from "./client.js";
-import { loadRootEnv } from "./load-env.js";
+import { createDbClient, getDatabaseUrl, type DbClient } from "./client";
+import { loadRootEnv } from "./load-env";
 import {
   categories as categoriesTable,
   favorites as favoritesTable,
@@ -13,7 +13,7 @@ import {
   recipes as recipesTable,
   tags as tagsTable,
   users as usersTable
-} from "./schema.js";
+} from "./schema";
 
 export const LARGE_RECIPE_COUNT = 10000;
 export const DEFAULT_BATCH_SIZE = 500;

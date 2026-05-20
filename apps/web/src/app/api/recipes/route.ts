@@ -11,27 +11,37 @@ function parseOptionalNumber(value: string | null) {
   return Number.isFinite(parsed) ? parsed : undefined;
 }
 
-export function GET(request: Request) {
+export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const recipePage = listRecipes({
-    page: parseOptionalNumber(searchParams.get("page")),
-    pageSize: parseOptionalNumber(searchParams.get("pageSize"))
-  });
 
-  return NextResponse.json({
-    items: recipePage.items,
-    data: recipePage.items,
-    total: recipePage.total,
-    page: recipePage.page,
-    pageSize: recipePage.pageSize,
-    totalPages: recipePage.totalPages,
-    meta: {
-      count: recipePage.items.length,
+  try {
+    const recipePage = await listRecipes({
+      page: parseOptionalNumber(searchParams.get("page")),
+      pageSize: parseOptionalNumber(searchParams.get("pageSize"))
+    });
+
+    return NextResponse.json({
+      items: recipePage.items,
+      data: recipePage.items,
       total: recipePage.total,
       page: recipePage.page,
       pageSize: recipePage.pageSize,
       totalPages: recipePage.totalPages,
-      source: "static-sample-data"
-    }
-  });
+      meta: {
+        count: recipePage.items.length,
+        total: recipePage.total,
+        page: recipePage.page,
+        pageSize: recipePage.pageSize,
+        totalPages: recipePage.totalPages,
+        source: "database"
+      }
+    });
+  } catch {
+    return NextResponse.json(
+      {
+        error: "Рецептите не могат да бъдат заредени в момента"
+      },
+      { status: 500 }
+    );
+  }
 }

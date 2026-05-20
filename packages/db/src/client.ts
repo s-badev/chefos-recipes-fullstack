@@ -1,7 +1,7 @@
 import { drizzle } from "drizzle-orm/neon-http";
 
-import { loadRootEnv } from "./load-env.js";
-import * as schema from "./schema.js";
+import { loadRootEnv } from "./load-env";
+import * as schema from "./schema";
 
 const missingDatabaseUrlMessage =
   "DATABASE_URL is required to create the Chefo's Recipes database client.";

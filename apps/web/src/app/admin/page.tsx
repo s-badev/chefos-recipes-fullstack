@@ -28,7 +28,7 @@ const stats = [
 export default function AdminPage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-6 lg:grid-cols-[1fr_0.8fr] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.55fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -62,7 +62,7 @@ export default function AdminPage() {
         </Link>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-3 xl:gap-6">
         {stats.map((stat) => (
           <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm" key={stat.label}>
             <p className="text-sm font-bold text-stone-500">{stat.label}</p>

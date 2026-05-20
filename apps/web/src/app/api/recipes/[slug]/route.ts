@@ -9,18 +9,28 @@ type RecipeBySlugRouteContext = {
 
 export async function GET(_request: Request, { params }: RecipeBySlugRouteContext) {
   const { slug } = await params;
-  const recipe = getRecipeBySlug(slug);
 
-  if (!recipe) {
+  try {
+    const recipe = await getRecipeBySlug(slug);
+
+    if (!recipe) {
+      return NextResponse.json(
+        {
+          error: "Рецептата не е намерена"
+        },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      data: recipe
+    });
+  } catch {
     return NextResponse.json(
       {
-        error: "Рецептата не е намерена"
+        error: "Рецептата не може да бъде заредена в момента"
       },
-      { status: 404 }
+      { status: 500 }
     );
   }
-
-  return NextResponse.json({
-    data: recipe
-  });
 }
