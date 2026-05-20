@@ -4,8 +4,116 @@
 
 :root {
   color-scheme: light;
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Georgia", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
 }
 
 body {
+  font-family: var(--font-sans);
   font-feature-settings: "ss01";
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+}
+
+@layer components {
+  .recipe-card {
+    border: 1px solid rgb(231 229 228);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 243, 0.78)),
+      #ffffff;
+    box-shadow: 0 1px 2px rgba(68, 42, 20, 0.06), 0 12px 28px rgba(68, 42, 20, 0.05);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .recipe-card:hover {
+    border-color: rgb(255 194 130);
+    box-shadow: 0 18px 46px rgba(97, 56, 21, 0.13);
+    transform: translateY(-5px);
+  }
+
+  .food-visual {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 26% 24%, rgba(255, 255, 255, 0.95) 0 8%, transparent 9%),
+      radial-gradient(circle at 72% 28%, rgba(255, 255, 255, 0.55) 0 5%, transparent 6%),
+      linear-gradient(135deg, #e65f2c, #f6b44b 46%, #6f8f56);
+  }
+
+  .food-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 72% 68%, rgba(255, 255, 255, 0.82) 0 15%, transparent 16%),
+      radial-gradient(circle at 44% 52%, rgba(122, 55, 22, 0.24) 0 12%, transparent 13%),
+      repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.13) 0 2px, transparent 2px 10px);
+    mix-blend-mode: soft-light;
+    opacity: 0.88;
+    z-index: -1;
+  }
+
+  .food-visual::after {
+    content: "";
+    position: absolute;
+    inset: 20% 16%;
+    border-radius: 999px;
+    background:
+      radial-gradient(circle at 38% 34%, rgba(255, 255, 255, 0.85), transparent 0 15%),
+      radial-gradient(circle at 60% 58%, rgba(255, 248, 231, 0.95), rgba(255, 248, 231, 0.5) 42%, transparent 43%),
+      radial-gradient(circle at center, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    box-shadow: 0 18px 46px rgba(58, 35, 16, 0.22);
+  }
+
+  .food-visual--salad {
+    background:
+      radial-gradient(circle at 22% 22%, rgba(255, 255, 255, 0.9) 0 8%, transparent 9%),
+      linear-gradient(135deg, #ca3d2d, #f3d27a 42%, #5d8d58 76%, #2f5f45);
+  }
+
+  .food-visual--baked {
+    background:
+      radial-gradient(circle at 20% 24%, rgba(255, 255, 255, 0.85) 0 8%, transparent 9%),
+      linear-gradient(135deg, #d67a28, #ffd28c 45%, #935021);
+  }
+
+  .food-visual--stew {
+    background:
+      radial-gradient(circle at 76% 24%, rgba(255, 233, 194, 0.85) 0 9%, transparent 10%),
+      linear-gradient(135deg, #582317, #b94d25 46%, #7f6c32 78%, #3d4d2b);
+  }
+
+  .food-visual--soup {
+    background:
+      radial-gradient(circle at 22% 22%, rgba(255, 255, 255, 0.75) 0 9%, transparent 10%),
+      linear-gradient(135deg, #466e51, #d7c06d 42%, #f2e2a8 72%, #7f9a5d);
+  }
+
+  .food-visual--dessert {
+    background:
+      radial-gradient(circle at 24% 24%, rgba(255, 255, 255, 0.78) 0 8%, transparent 9%),
+      linear-gradient(135deg, #8f4a21, #e7a84e 48%, #f7dba2);
+  }
+
+  .info-card {
+    border: 1px solid rgb(255 217 173);
+    border-left: 4px solid rgb(243 107 15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 240, 0.92));
+    box-shadow: 0 10px 26px rgba(97, 56, 21, 0.06);
+  }
+
+  .info-note {
+    border: 1px solid rgb(231 229 228);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 250, 243, 0.92));
+    color: rgb(87 83 78);
+  }
 }

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <section className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start xl:max-w-7xl">
+    <section className="mx-auto grid w-full max-w-[1400px] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.72fr)] lg:items-start">
       <div className="space-y-4">
         <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
           Нов профил
@@ -23,7 +23,7 @@ export default function RegisterPage() {
         </Link>
       </div>
 
-      <form className="space-y-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+      <form className="w-full max-w-xl justify-self-end space-y-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
         <div>
           <label className="text-sm font-bold text-stone-800" htmlFor="name">
             Име
@@ -70,7 +70,7 @@ export default function RegisterPage() {
           Регистрация
         </button>
 
-        <p className="rounded-2xl border border-dashed border-brand-200 bg-brand-50 px-4 py-3 text-sm leading-6 text-brand-900">
+        <p className="info-note rounded-2xl px-4 py-3 text-sm leading-6">
           Регистрацията ще бъде активна скоро, за да пазиш любимите си рецепти на едно място.
         </p>
       </form>

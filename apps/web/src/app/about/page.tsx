@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <section className="space-y-8">
-      <div className="max-w-4xl">
+      <div className="max-w-5xl">
         <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
           За нас
         </p>
@@ -20,8 +20,8 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
-        <article className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+      <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
+        <article className="info-card rounded-3xl p-6">
           <h3 className="text-xl font-bold text-stone-950">Български вкус</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">
             Каталогът започва с познати домашни ястия като баница, таратор, кавърма и сезонни
@@ -29,7 +29,7 @@ export default function AboutPage() {
           </p>
         </article>
 
-        <article className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+        <article className="info-card rounded-3xl p-6">
           <h3 className="text-xl font-bold text-stone-950">Лесно следване</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">
             Всяка рецепта събира продукти, време за приготвяне и ясни стъпки, за да готвиш
@@ -37,7 +37,7 @@ export default function AboutPage() {
           </p>
         </article>
 
-        <article className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+        <article className="info-card rounded-3xl p-6">
           <h3 className="text-xl font-bold text-stone-950">Любими идеи</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">
             Скоро личното пространство ще събира запазени рецепти и идеи, към които лесно да се
@@ -46,7 +46,7 @@ export default function AboutPage() {
         </article>
       </div>
 
-      <section className="rounded-3xl bg-stone-950 p-6 text-white shadow-sm sm:p-8 xl:p-10">
+      <section className="rounded-3xl bg-[#1c1208] p-6 text-white shadow-sm sm:p-8 xl:p-10">
         <h3 className="text-2xl font-bold">Повече уют в кухнята</h3>
         <p className="mt-3 max-w-3xl text-sm leading-6 text-stone-100">
           Chefo's Recipes ще помага да избираш по-бързо, да пазиш любими рецепти и да следваш

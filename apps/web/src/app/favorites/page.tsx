@@ -9,10 +9,24 @@ export const metadata: Metadata = {
 
 const sampleFavorites = recipes.slice(0, 3);
 
+function getFoodVisualClass(category: string) {
+  const normalizedCategory = category.toLocaleLowerCase("bg-BG");
+
+  if (normalizedCategory.includes("сал")) {
+    return "food-visual--salad";
+  }
+
+  if (normalizedCategory.includes("тест") || normalizedCategory.includes("печ")) {
+    return "food-visual--baked";
+  }
+
+  return "food-visual--stew";
+}
+
 export default function FavoritesPage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.55fr)] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.5fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -25,7 +39,7 @@ export default function FavoritesPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-brand-200 bg-white p-5 shadow-sm">
+        <div className="info-card rounded-3xl p-5">
           <p className="text-sm font-bold text-brand-800">Скоро в профила</p>
           <p className="mt-2 text-sm leading-6 text-stone-600">
             Любимите ще се пазят в твоето лично пространство.
@@ -52,13 +66,21 @@ export default function FavoritesPage() {
           </h3>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
+        <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
           {sampleFavorites.map((recipe) => (
             <Link
-              className="group flex min-h-[300px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+              className="recipe-card group flex min-h-[380px] flex-col overflow-hidden rounded-3xl p-5"
               href={`/catalog/${recipe.slug}`}
               key={recipe.slug}
             >
+              <div
+                aria-label={`Илюстрация за ${recipe.title}`}
+                className={[
+                  "food-visual -mx-5 -mt-5 mb-5 h-40 transition duration-300 group-hover:scale-[1.02]",
+                  getFoodVisualClass(recipe.category)
+                ].join(" ")}
+                role="img"
+              />
               <div className="flex items-start justify-between gap-3">
                 <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-800">
                   {recipe.category}
@@ -69,31 +91,31 @@ export default function FavoritesPage() {
               </div>
 
               <div className="mt-5 flex-1">
-                <h4 className="text-2xl font-bold leading-tight text-stone-950 group-hover:text-brand-800">
-                  {recipe.title}
-                </h4>
-                <p className="mt-3 text-sm leading-6 text-stone-600">{recipe.description}</p>
+                  <h4 className="text-[1.6rem] font-bold leading-tight text-stone-950 group-hover:text-brand-800 xl:text-[1.7rem]">
+                    {recipe.title}
+                  </h4>
+                <p className="mt-3 text-base leading-7 text-stone-600">{recipe.description}</p>
               </div>
 
               <div className="mt-5 grid grid-cols-3 gap-2 border-y border-stone-100 py-4 text-sm">
                 <div>
-                  <p className="text-xs font-semibold text-stone-500">Подготовка</p>
-                  <p className="mt-1 font-bold text-stone-950">{recipe.prepTimeMinutes} мин</p>
+                  <p className="text-[0.8rem] font-semibold text-stone-500">Подготовка</p>
+                  <p className="mt-1 text-base font-bold text-stone-950">{recipe.prepTimeMinutes} мин</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-stone-500">Готвене</p>
-                  <p className="mt-1 font-bold text-stone-950">{recipe.cookTimeMinutes} мин</p>
+                  <p className="text-[0.8rem] font-semibold text-stone-500">Готвене</p>
+                  <p className="mt-1 text-base font-bold text-stone-950">{recipe.cookTimeMinutes} мин</p>
                 </div>
                 <div>
-                  <p className="text-xs font-semibold text-stone-500">Порции</p>
-                  <p className="mt-1 font-bold text-stone-950">{recipe.servings}</p>
+                  <p className="text-[0.8rem] font-semibold text-stone-500">Порции</p>
+                  <p className="mt-1 text-base font-bold text-stone-950">{recipe.servings}</p>
                 </div>
               </div>
 
               <div className="mt-4 flex flex-wrap gap-2">
                 {recipe.tags.slice(0, 2).map((tag) => (
                   <span
-                    className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600"
+                    className="rounded-full bg-stone-100 px-3 py-1 text-[0.8rem] font-medium text-stone-600"
                     key={tag}
                   >
                     {tag}
@@ -105,7 +127,7 @@ export default function FavoritesPage() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-dashed border-brand-200 bg-white p-8 text-center shadow-sm">
+      <section className="info-note rounded-3xl p-8 text-center shadow-sm">
         <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
           Още няма рецепти
         </p>

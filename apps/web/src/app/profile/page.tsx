@@ -15,7 +15,7 @@ const summary = [
 export default function ProfilePage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.55fr)] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(380px,0.5fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Потребителски профил
@@ -26,7 +26,7 @@ export default function ProfilePage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-brand-200 bg-white p-5 shadow-sm">
+        <div className="info-card rounded-3xl p-5">
           <p className="text-sm font-bold text-brand-800">Статус на акаунта</p>
           <p className="mt-2 text-sm leading-6 text-stone-600">
             Личното пространство ще бъде достъпно скоро.
@@ -34,17 +34,17 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3 xl:gap-6">
+      <div className="grid gap-4 md:grid-cols-3 xl:gap-8">
         {summary.map((item) => (
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm" key={item.label}>
+          <div className="recipe-card rounded-3xl p-6" key={item.label}>
             <p className="text-sm font-bold text-stone-500">{item.label}</p>
             <p className="mt-3 text-3xl font-bold text-stone-950">{item.value}</p>
           </div>
         ))}
       </div>
 
-      <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] xl:gap-6">
-        <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm">
+      <section className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr] xl:gap-8">
+        <div className="info-card rounded-3xl p-6">
           <h3 className="text-2xl font-bold text-stone-950">Обобщение на любимите</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">
             Тук ще виждаш броя на запазените рецепти, последно добавени любими и бързи връзки към
@@ -58,7 +58,7 @@ export default function ProfilePage() {
           </Link>
         </div>
 
-        <div className="rounded-3xl border border-dashed border-brand-200 bg-white p-6 shadow-sm">
+        <div className="info-note rounded-3xl p-6 shadow-sm">
           <h3 className="text-2xl font-bold text-stone-950">Лични настройки</h3>
           <p className="mt-3 text-sm leading-6 text-stone-600">
             Скоро профилът ще пази предпочитания, любими рецепти и удобни преки пътища за готвене.

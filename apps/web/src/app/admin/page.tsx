@@ -28,7 +28,7 @@ const stats = [
 export default function AdminPage() {
   return (
     <section className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.55fr)] lg:items-end">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(400px,0.5fr)] lg:items-end">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -39,7 +39,7 @@ export default function AdminPage() {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-brand-200 bg-white p-5 shadow-sm">
+        <div className="info-card rounded-3xl p-5">
           <p className="text-sm font-bold text-brand-800">Подготовка за управление</p>
           <p className="mt-2 text-sm leading-6 text-stone-600">
             Админ зоната ще помага за добавяне, редакция и подреждане на рецепти.
@@ -62,9 +62,9 @@ export default function AdminPage() {
         </Link>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3 xl:gap-6">
+      <div className="grid gap-4 md:grid-cols-3 xl:gap-8">
         {stats.map((stat) => (
-          <div className="rounded-3xl border border-stone-200 bg-white p-6 shadow-sm" key={stat.label}>
+          <div className="recipe-card rounded-3xl p-6" key={stat.label}>
             <p className="text-sm font-bold text-stone-500">{stat.label}</p>
             <p className="mt-3 text-4xl font-bold text-stone-950">{stat.value}</p>
           </div>
@@ -82,7 +82,7 @@ export default function AdminPage() {
         <div className="divide-y divide-stone-100">
           {recipes.slice(0, 6).map((recipe) => (
             <div
-              className="grid gap-4 p-5 lg:grid-cols-[1.25fr_0.75fr_0.75fr_auto] lg:items-center"
+              className="grid gap-5 p-6 transition hover:bg-brand-50/50 lg:grid-cols-[1.25fr_0.75fr_0.75fr_auto] lg:items-center xl:p-7"
               key={recipe.slug}
             >
               <div>
@@ -121,7 +121,7 @@ export default function AdminPage() {
         </div>
       </section>
 
-      <section className="rounded-3xl border border-dashed border-brand-200 bg-white p-6 shadow-sm">
+      <section className="info-note rounded-3xl p-6 shadow-sm">
         <p className="text-sm font-bold text-stone-950">Бележка</p>
         <p className="mt-2 text-sm leading-6 text-stone-600">
           Добавянето, редакцията и изтриването ще бъдат достъпни, когато зоната за управление е

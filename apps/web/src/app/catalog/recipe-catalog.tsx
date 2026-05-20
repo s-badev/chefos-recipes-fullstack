@@ -5,7 +5,29 @@ import { useEffect, useMemo, useState } from "react";
 import { recipes } from "./recipes";
 
 const allCategoriesLabel = "Всички";
-const catalogPageSize = 6;
+const catalogPageSize = 8;
+
+function getFoodVisualClass(category: string) {
+  const normalizedCategory = category.toLocaleLowerCase("bg-BG");
+
+  if (normalizedCategory.includes("сал")) {
+    return "food-visual--salad";
+  }
+
+  if (normalizedCategory.includes("тест") || normalizedCategory.includes("печ")) {
+    return "food-visual--baked";
+  }
+
+  if (normalizedCategory.includes("суп")) {
+    return "food-visual--soup";
+  }
+
+  if (normalizedCategory.includes("дес")) {
+    return "food-visual--dessert";
+  }
+
+  return "food-visual--stew";
+}
 
 export function RecipeCatalog() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -46,8 +68,8 @@ export function RecipeCatalog() {
   }, [totalPages]);
 
   return (
-    <section className="space-y-8">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(420px,0.65fr)] lg:items-end">
+    <section className="space-y-10">
+      <div className="-mx-6 grid gap-8 bg-white/35 px-6 py-8 sm:-mx-8 sm:px-8 lg:-mx-12 lg:grid-cols-[minmax(0,1fr)_minmax(430px,0.55fr)] lg:items-end lg:px-12 xl:-mx-16 xl:px-16 2xl:-mx-20 2xl:px-20">
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Chefo’s Recipes
@@ -55,7 +77,7 @@ export function RecipeCatalog() {
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">
             Каталог с рецепти
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-stone-600">
             Разгледай подбраните рецепти, филтрирай по категория и намери нещо подходящо за
             днешното готвене.
           </p>
@@ -103,13 +125,21 @@ export function RecipeCatalog() {
 
       {filteredRecipes.length > 0 ? (
         <div className="space-y-6">
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-6">
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3 xl:gap-6 2xl:grid-cols-4">
             {paginatedRecipes.map((recipe) => (
               <Link
-                className="group flex min-h-[360px] flex-col rounded-3xl border border-stone-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-brand-200 hover:shadow-md"
+                className="recipe-card group flex min-h-[420px] flex-col overflow-hidden rounded-3xl p-5"
                 href={`/catalog/${recipe.slug}`}
                 key={recipe.slug}
               >
+                <div
+                  aria-label={`Илюстрация за ${recipe.title}`}
+                  className={[
+                    "food-visual -mx-5 -mt-5 mb-5 h-40 transition duration-300 group-hover:scale-[1.02]",
+                    getFoodVisualClass(recipe.category)
+                  ].join(" ")}
+                  role="img"
+                />
                 <div className="flex items-start justify-between gap-3">
                   <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-800">
                     {recipe.category}
@@ -120,31 +150,31 @@ export function RecipeCatalog() {
                 </div>
 
                 <div className="mt-5 flex-1">
-                  <h3 className="text-2xl font-bold leading-tight text-stone-950 group-hover:text-brand-800">
+                  <h3 className="text-[1.6rem] font-bold leading-tight text-stone-950 group-hover:text-brand-800 xl:text-[1.7rem]">
                     {recipe.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-stone-600">{recipe.description}</p>
+                  <p className="mt-3 text-base leading-7 text-stone-600">{recipe.description}</p>
                 </div>
 
                 <div className="mt-5 grid grid-cols-3 gap-2 border-y border-stone-100 py-4 text-sm">
                   <div>
-                    <p className="text-xs font-semibold text-stone-500">Време за подготовка</p>
-                    <p className="mt-1 font-bold text-stone-950">{recipe.prepTimeMinutes} мин</p>
+                    <p className="text-[0.8rem] font-semibold text-stone-500">Време за подготовка</p>
+                    <p className="mt-1 text-base font-bold text-stone-950">{recipe.prepTimeMinutes} мин</p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-stone-500">Време за готвене</p>
-                    <p className="mt-1 font-bold text-stone-950">{recipe.cookTimeMinutes} мин</p>
+                    <p className="text-[0.8rem] font-semibold text-stone-500">Време за готвене</p>
+                    <p className="mt-1 text-base font-bold text-stone-950">{recipe.cookTimeMinutes} мин</p>
                   </div>
                   <div>
-                    <p className="text-xs font-semibold text-stone-500">Порции</p>
-                    <p className="mt-1 font-bold text-stone-950">{recipe.servings}</p>
+                    <p className="text-[0.8rem] font-semibold text-stone-500">Порции</p>
+                    <p className="mt-1 text-base font-bold text-stone-950">{recipe.servings}</p>
                   </div>
                 </div>
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {recipe.tags.map((tag) => (
                     <span
-                      className="rounded-full bg-stone-100 px-3 py-1 text-xs font-medium text-stone-600"
+                        className="rounded-full bg-stone-100 px-3 py-1 text-[0.8rem] font-medium text-stone-600"
                       key={tag}
                     >
                       {tag}
