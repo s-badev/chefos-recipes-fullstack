@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navigationItems = [
@@ -8,48 +10,85 @@ const navigationItems = [
   { href: "/favorites", label: "Любими" },
   { href: "/profile", label: "Профил" },
   { href: "/admin", label: "Админ" },
-  { href: "/about", label: "За нас" },
-  { href: "/login", label: "Вход" }
+  { href: "/about", label: "За нас" }
 ];
 
+const loginItem = { href: "/login", label: "Вход" };
+
+function isActivePath(pathname: string, href: string) {
+  if (href === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 export function SiteHeader() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-stone-200/80 bg-[#fffaf3]/95 backdrop-blur">
-      <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-14 2xl:px-16">
-        <div className="flex min-h-[78px] w-full items-center justify-between gap-6">
-          <a className="flex min-w-0 items-center gap-3" href="/">
-            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-brand-600 text-sm font-bold text-white shadow-sm shadow-brand-900/20">
+    <header className="sticky top-0 z-40 w-full border-b border-stone-200/80 bg-[#fffaf3]/92 shadow-sm shadow-stone-900/[0.03] backdrop-blur-xl">
+      <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+        <div className="flex min-h-[82px] w-full items-center justify-between gap-6">
+          <Link
+            className="flex min-w-0 items-center gap-3 rounded-3xl pr-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
+            href="/"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[1.2rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-sm font-black text-white shadow-[0_12px_28px_rgba(185,70,23,0.28)]">
               CR
-            </div>
+            </span>
 
-            <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand-700">
-                Chefo&apos;s Recipes
-              </p>
-              <h1 className="truncate text-xl font-bold leading-tight text-stone-950">
-                Каталог с рецепти
-              </h1>
-            </div>
-          </a>
+            <span className="min-w-0">
+              <span className="block text-[0.68rem] font-bold uppercase tracking-[0.22em] text-stone-500">
+                Домашна кухня
+              </span>
+              <span className="block truncate text-xl font-black leading-tight text-stone-950">
+                Chefo&apos;s <span className="text-brand-600">Recipes</span>
+              </span>
+            </span>
+          </Link>
 
-          <nav className="hidden items-center justify-end gap-3 text-[15px] font-semibold text-stone-700 lg:flex xl:gap-5 xl:text-base">
-            {navigationItems.map((item) => (
-              <a
-                className="rounded-full px-4 py-2 transition hover:bg-white hover:text-brand-700 hover:shadow-sm"
-                href={item.href}
-                key={item.href}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          <div className="hidden items-center justify-end gap-3 lg:flex">
+            <nav className="flex items-center justify-end gap-1 rounded-full border border-stone-200 bg-white/72 p-1 text-[15px] font-bold text-stone-700 shadow-sm">
+              {navigationItems.map((item) => {
+                const isActive = isActivePath(pathname, item.href);
+
+                return (
+                  <Link
+                    className={[
+                      "rounded-full px-4 py-2 transition",
+                      isActive
+                        ? "bg-brand-50 text-brand-800 shadow-sm"
+                        : "hover:bg-white hover:text-brand-700"
+                    ].join(" ")}
+                    href={item.href}
+                    key={item.href}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </nav>
+
+            <Link
+              className={[
+                "rounded-full px-5 py-3 text-[15px] font-black text-white shadow-sm shadow-brand-900/20 transition",
+                isActivePath(pathname, loginItem.href)
+                  ? "bg-brand-700"
+                  : "bg-brand-600 hover:bg-brand-700"
+              ].join(" ")}
+              href={loginItem.href}
+            >
+              {loginItem.label}
+            </Link>
+          </div>
 
           <button
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? "Затвори менюто" : "Отвори менюто"}
-            className="inline-grid h-11 w-11 place-items-center rounded-2xl border border-stone-200 bg-white text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-700 lg:hidden"
+            className="inline-grid h-12 w-12 place-items-center rounded-2xl border border-stone-200 bg-white text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-700 lg:hidden"
             onClick={() => setIsMenuOpen((current) => !current)}
             type="button"
           >
@@ -77,17 +116,29 @@ export function SiteHeader() {
         </div>
 
         {isMenuOpen ? (
-          <nav className="grid gap-2 border-t border-stone-200 py-4 text-base font-semibold text-stone-700 lg:hidden">
-            {navigationItems.map((item) => (
-              <a
-                className="rounded-2xl bg-white/80 px-4 py-3 transition hover:bg-white hover:text-brand-700"
-                href={item.href}
-                key={item.href}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="grid gap-2 border-t border-stone-200 py-4 text-base font-bold text-stone-700 lg:hidden">
+            {[...navigationItems, loginItem].map((item) => {
+              const isLogin = item.href === loginItem.href;
+              const isActive = isActivePath(pathname, item.href);
+
+              return (
+                <Link
+                  className={[
+                    "rounded-2xl px-4 py-3 transition",
+                    isLogin
+                      ? "bg-brand-600 text-white shadow-sm"
+                      : isActive
+                        ? "bg-brand-50 text-brand-800"
+                        : "bg-white/82 hover:bg-white hover:text-brand-700"
+                  ].join(" ")}
+                  href={item.href}
+                  key={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         ) : null}
       </div>

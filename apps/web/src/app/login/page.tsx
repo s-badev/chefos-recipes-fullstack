@@ -8,23 +8,25 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <section className="mx-auto grid w-full max-w-[1400px] gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.72fr)] lg:items-start">
-      <div className="space-y-4">
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
+    <section className="page-shell grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.62fr)] lg:items-start">
+      <div className="rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 xl:p-10">
+        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
           Потребителски достъп
         </p>
-        <h2 className="text-4xl font-bold text-stone-950 sm:text-5xl">Вход в профила</h2>
-        <p className="text-base leading-7 text-stone-600">
+        <h1 className="mt-2 text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
+          Вход в профила
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg leading-8 text-stone-600">
           Скоро ще можеш да влизаш в профила си и да се връщаш към запазените рецепти.
         </p>
-        <Link className="inline-flex text-sm font-bold text-brand-700 hover:text-brand-900" href="/register">
+        <Link className="mt-6 inline-flex text-sm font-black text-brand-700 hover:text-brand-900" href="/register">
           Нямаш профил? Създай регистрация
         </Link>
       </div>
 
-      <form className="w-full max-w-xl justify-self-end space-y-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm sm:p-8">
+      <form className="w-full space-y-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8">
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="email">
+          <label className="text-sm font-black text-stone-800" htmlFor="email">
             Имейл
           </label>
           <input
@@ -37,7 +39,7 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="password">
+          <label className="text-sm font-black text-stone-800" htmlFor="password">
             Парола
           </label>
           <input
@@ -50,7 +52,7 @@ export default function LoginPage() {
         </div>
 
         <button
-          className="w-full rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
+          className="w-full rounded-full bg-brand-600 px-5 py-3 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
           type="button"
         >
           Вход
