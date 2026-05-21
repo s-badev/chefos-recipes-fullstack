@@ -1,75 +1,125 @@
-# Architecture Overview
+# Architecture
+
+Chefo's Recipes is a TypeScript monorepo with a Next.js web app, an Expo mobile app foundation, and shared database infrastructure.
 
 ## Goals
-- Simple, scalable capstone architecture
-- Shared types between web and mobile
-- Clear separation of concerns (UI, backend flows, services, DB)
-- Support the revised SoftUni requirements for Next.js, Expo, Neon PostgreSQL, Drizzle, JWT auth, and role-based access
 
-## High-level design
+- Keep the capstone project practical, reviewable, and multi-platform.
+- Serve the web app through Next.js App Router pages, Route Handlers, and Server Actions.
+- Keep REST endpoints available for the Expo mobile app.
+- Use Neon PostgreSQL through Drizzle ORM for persistent recipe data.
+- Enforce user/admin authorization on the server.
+- Support large recipe datasets through seed generation and pagination.
+
+## Repository Layout
+
+```text
+chefos-recipes-fullstack/
+├── apps/
+│   ├── web/
+│   └── mobile/
+├── packages/
+│   ├── db/
+│   └── shared/
+├── docs/
+├── README.md
+└── package.json
 ```
-[Web App] --> [Server Actions where appropriate] --\
-                                                   > [Service/Repository Layer] --> [Drizzle ORM] --> [Neon PostgreSQL]
-[Mobile App] --> [Next.js REST API Routes] -------/
+
+| Area | Responsibility |
+|---|---|
+| `apps/web` | Next.js App Router UI, API routes, Server Actions, auth-aware navigation, admin pages |
+| `apps/mobile` | Expo React Native preview/foundation for recipe browsing and account flows |
+| `packages/db` | Drizzle schema, Neon client, migrations, seed and connection utilities |
+| `packages/shared` | Shared TypeScript package placeholder |
+| `docs` | Project documentation for review and submission |
+
+## High-Level Data Flow
+
+```text
+Web Pages
+  -> Server Components / Server Actions
+  -> Auth helpers
+  -> Recipe service
+  -> Repository
+  -> Drizzle ORM
+  -> Neon PostgreSQL
+
+Mobile / external clients
+  -> Next.js API routes
+  -> Auth helpers where required
+  -> Recipe service
+  -> Repository
+  -> Drizzle ORM
+  -> Neon PostgreSQL
 ```
 
-## Components
-- **Web app and backend (Next.js):** public browsing, auth, favorites, admin panel, route handlers, and Server Actions where appropriate
-- **Mobile UI (Expo):** simplified browsing, favorites, profile/auth flows, and REST API consumption
-- **REST API:** endpoints for the Expo mobile app and any external/client flows that need JSON over HTTP
-- **Server Actions:** planned for web mutations where they reduce client/API ceremony while preserving validation and authorization
-- **Service/repository layer:** planned boundary between API/actions and Drizzle queries so business rules are not duplicated
-- **DB:** Neon serverless PostgreSQL with Drizzle schema and committed migrations
-- **Seed foundation:** deterministic large dataset generator and opt-in batched Drizzle seed script for database scalability validation
-- **Shared package:** DTOs, validation schemas, enums
+## Web App
 
-## Data flow (contract)
-- Input: JSON requests from the mobile client, and web form/action input from the Next.js app
-- Processing: API routes or Server Actions validate input, enforce auth/roles, and call the service/repository layer
-- Output: JSON responses with standardized error shape
+The web app uses the Next.js App Router. Public pages are available to guests, while profile/favorites require a logged-in user and admin pages require the `admin` role.
 
-Current static/sample data helpers will be replaced by Drizzle queries against Neon as the backend is implemented.
+Implemented page groups:
 
-## Scalability and seed strategy
+- Public marketing/catalog pages
+- Recipe catalog and recipe details
+- Login/register screens
+- Authenticated profile/favorites screens
+- Admin dashboard
+- Admin add/edit/delete recipe flows
 
-The database package prepares a 10,000-recipe seed dataset for the revised SoftUni capstone scalability requirement. The generator creates deterministic in-memory users, categories, tags, recipes, recipe steps, recipe-tag relations and favorites.
+## Backend Surface
 
-The seed script is intentionally opt-in:
+The backend surface currently consists of:
 
-- `SEED_DRY_RUN=true` summarizes generated data without opening a database connection.
-- Real inserts require `DATABASE_URL` from the local environment.
-- Real credentials must never be committed.
-- Inserts are batched with a default size of 500 rows.
-- Stable IDs, slugs and emails plus conflict-skipping behavior make repeated seed runs idempotent where possible.
+- Next.js Route Handlers under `apps/web/src/app/api`
+- Server Actions for login/logout and admin mutations
+- Auth helpers in `apps/web/src/server/auth`
+- Recipe service/repository modules in `apps/web/src/server/recipes`
 
-Recipe API and catalog pagination are part of the architecture for handling large lists. Query performance will be validated with the large seed dataset before final delivery.
+Public recipe reads remain available through REST. Admin writes are protected server-side in both Server Actions and API mutation handlers.
 
-## Planned database indexes
+## Authentication And Roles
 
-Indexes should follow the actual query patterns introduced by the API, catalog, favorites and admin flows. The current plan prioritizes:
+The current implementation uses demo accounts with signed httpOnly cookie sessions. The safe current-user shape contains:
 
-- `recipes.slug`
-- `recipes.category_id`
-- `recipes.created_at`
-- `recipe_tags.recipe_id`
-- `recipe_tags.tag_id`
-- `favorites.user_id`
-- `favorites.recipe_id`
+- `name`
+- `email`
+- `role`
 
-Index changes must be committed through Drizzle migrations when finalized.
+Role behavior:
 
-## Auth approach (planned)
-- JWT access token for API requests
-- Refresh token stored securely (httpOnly cookie for web, secure storage for mobile)
-- Role claim (`user`/`admin`) used for authorization
-- Password hashes stored in the database using bcrypt or argon2
+- Guest: public navigation and login.
+- User: favorites/profile access, no admin navigation.
+- Admin: full user access plus admin dashboard and recipe mutation actions.
 
-## Edge cases to handle later
-- Expired/invalid JWTs
-- Large recipe lists (pagination)
-- Missing or deleted recipes
-- Unauthorized admin actions
+Admin access is not only hidden in the UI. Admin pages and admin mutation paths call server-side role checks.
 
-## Environments
-- Local dev, staging (optional), production
-- Environment variables for DB URL and JWT secrets
+## Database Integration
+
+`packages/db` defines the Drizzle schema and Neon client. The web app imports database-backed repository functions through `@chefos/db`.
+
+Main tables:
+
+- `users`
+- `recipes`
+- `categories`
+- `tags`
+- `recipe_steps`
+- `recipe_tags`
+- `favorites`
+
+## Scalability Strategy
+
+The database seed process can generate 10,000 recipes with related categories, tags, steps, and favorites. Inserts are batched and support dry-run planning.
+
+Recipe list APIs use pagination fields (`page`, `pageSize`, `total`, `totalPages`) so larger catalog datasets do not need to be loaded at once.
+
+## Deployment Direction
+
+Planned production deployment:
+
+- Web app: Vercel or Netlify
+- Database: Neon PostgreSQL
+- Mobile preview: Expo tooling
+
+Production URLs are currently marked as coming soon.

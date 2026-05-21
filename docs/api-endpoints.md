@@ -2,185 +2,104 @@
 
 Base path: `/api`
 
-The current API routes are initial Next.js route handlers. They return static/sample data only and
-are not connected to Neon, Drizzle, authentication, JWTs, or real user sessions yet.
+This document lists only API routes currently present under `apps/web/src/app/api`.
 
-The recipe-related routes read from the shared static web data layer. Database-backed responses will
-replace these helpers later.
+## Summary
 
-The Expo mobile app will consume the Next.js backend through REST API endpoints. Web mutations may
-use Server Actions where appropriate, but REST routes should remain available for mobile flows.
-Large list endpoints should support pagination before they are connected to real production-sized
-datasets.
+| Endpoint | Methods | Access | Purpose |
+|---|---|---|---|
+| `/api/health` | `GET` | Public | Health check |
+| `/api/recipes` | `GET` | Public | Paginated recipe list |
+| `/api/recipes` | `POST` | Admin | Create recipe |
+| `/api/recipes/[slug]` | `GET` | Public | Recipe details |
+| `/api/recipes/[slug]` | `PATCH`, `PUT` | Admin | Update recipe |
+| `/api/recipes/[slug]` | `DELETE` | Admin | Delete recipe |
+| `/api/categories` | `GET` | Public | Category list/counts |
+| `/api/favorites` | `GET` | User/Admin | Favorites data |
+| `/api/admin/summary` | `GET` | Admin | Admin statistics |
 
-## GET /api/health
+There are no `/api/auth/*` route files in the current implementation. Login/logout are handled by Server Actions and a signed httpOnly cookie session.
 
-- Method: `GET`
-- Path: `/api/health`
-- Purpose: Basic health check for the web app API.
-- Current behavior: Returns API status, app name, and a generated timestamp.
+## `GET /api/health`
 
-```json
-{
-  "status": "ok",
-  "appName": "Chefo's Recipes",
-  "timestamp": "2026-05-08T17:00:00.000Z"
-}
-```
+Returns basic API health information.
 
-Future note: This may later include database connectivity status once Neon is wired.
+## `GET /api/recipes`
 
-## GET /api/recipes
+Returns a paginated recipe list.
 
-- Method: `GET`
-- Path: `/api/recipes`
-- Purpose: Public recipe list endpoint.
-- Current behavior: Returns the full static sample recipe list.
+Supported query parameters:
 
-```json
-{
-  "data": [
-    {
-      "title": "Шопска салата",
-      "slug": "shopska-salad",
-      "description": "Свежа класика с домати, краставици, печени чушки, магданоз и настъргано сирене.",
-      "prepTimeMinutes": 20,
-      "cookTimeMinutes": 0,
-      "servings": 4,
-      "difficulty": "Лесна",
-      "category": "Салати",
-      "tags": ["Свежо", "Вегетарианско", "Лято"],
-      "ingredients": ["4 зрели домата", "1 краставица"],
-      "steps": ["Нарежи доматите, краставицата, печените чушки и лука."]
-    }
-  ],
-  "meta": {
-    "count": 9,
-    "source": "static-sample-data"
-  }
-}
-```
+| Parameter | Purpose |
+|---|---|
+| `page` | Optional page number |
+| `pageSize` | Optional page size |
 
-Future note: This list will later come from Drizzle queries against the Neon PostgreSQL database.
-It should support pagination parameters such as page/limit or cursor-based pagination before the
-10,000-record scalability target is validated.
+Response shape includes:
 
-## GET /api/recipes/[slug]
+- `items`
+- `data`
+- `total`
+- `page`
+- `pageSize`
+- `totalPages`
+- `meta`
 
-- Method: `GET`
-- Path: `/api/recipes/[slug]`
-- Purpose: Public recipe details endpoint by recipe slug.
-- Current behavior: Returns one static sample recipe when found; returns `404` when the slug does not exist.
+## `POST /api/recipes`
 
-```json
-{
-  "data": {
-    "title": "Баница със сирене",
-    "slug": "banitsa-with-sirene",
-    "description": "Фини кори с яйца, кисело мляко и бяло сирене, изпечени до златиста коричка.",
-    "prepTimeMinutes": 25,
-    "cookTimeMinutes": 40,
-    "servings": 8,
-    "difficulty": "Средна",
-    "category": "Тестени",
-    "tags": ["Закуска", "С печене", "Сирене"],
-    "ingredients": ["500 г кори за баница", "350 г бяло сирене"],
-    "steps": ["Разбий яйцата с киселото мляко, содата и олиото."]
-  }
-}
-```
+Creates a recipe. Requires an authenticated admin session.
 
-Example `404` response:
+Accepts form data or JSON values matching the admin recipe form:
 
-```json
-{
-  "error": "Рецептата не е намерена"
-}
-```
+- `title`
+- `category`
+- `description`
+- `prepTime`
+- `cookTime`
+- `servings`
 
-Future note: The slug lookup will later become a database query.
+Non-admin requests receive `403`. Guest requests receive `401`.
 
-## GET /api/categories
+## `GET /api/recipes/[slug]`
 
-- Method: `GET`
-- Path: `/api/categories`
-- Purpose: Public category list endpoint.
-- Current behavior: Returns categories derived from the same static recipe data, including recipe counts.
+Returns one recipe by slug. Returns `404` when the slug does not exist.
 
-```json
-{
-  "data": [
-    {
-      "name": "Салати",
-      "recipeCount": 1
-    },
-    {
-      "name": "Основни",
-      "recipeCount": 3
-    }
-  ],
-  "meta": {
-    "count": 6,
-    "source": "static-sample-data"
-  }
-}
-```
+## `PATCH /api/recipes/[slug]` and `PUT /api/recipes/[slug]`
 
-Future note: Category counts will later be calculated from database-backed recipes.
+Updates a recipe. Requires an authenticated admin session.
 
-## GET /api/favorites
+Accepts the same recipe form fields as creation.
 
-- Method: `GET`
-- Path: `/api/favorites`
-- Purpose: Placeholder favorites endpoint.
-- Current behavior: Returns three featured sample recipes as stand-ins for favorites.
+## `DELETE /api/recipes/[slug]`
 
-```json
-{
-  "data": [
-    {
-      "title": "Шопска салата",
-      "slug": "shopska-salad",
-      "category": "Салати",
-      "difficulty": "Лесна"
-    }
-  ],
-  "message": "Примерни любими рецепти. Реалните любими ще бъдат свързани с потребителски профил.",
-  "meta": {
-    "count": 3,
-    "source": "static-sample-data"
-  }
-}
-```
+Deletes a recipe by slug. Requires an authenticated admin session.
 
-Future note: This route will later require an authenticated user session and return that user's
-saved recipes from the database. Favorites reads and mutations must enforce JWT authentication.
+The repository removes related favorites, recipe-tag relations, and recipe steps before deleting the recipe record.
 
-## GET /api/admin/summary
+## `GET /api/categories`
 
-- Method: `GET`
-- Path: `/api/admin/summary`
-- Purpose: Placeholder admin dashboard summary endpoint.
-- Current behavior: Returns static summary counts based on the shared sample recipe data.
+Returns categories and recipe counts from the database-backed service.
 
-```json
-{
-  "data": {
-    "totalRecipes": 9,
-    "totalCategories": 6,
-    "totalTags": 17
-  },
-  "message": "Placeholder админ статистика. Реалните данни ще идват от база данни."
-}
-```
+## `GET /api/favorites`
 
-Future note: This route will later require authentication and an `admin` role check, then read real
-summary data from Neon through Drizzle.
+Returns sample favorite recipe data for the authenticated user flow. Requires a logged-in user or admin session.
 
-## Planned Auth and Admin Endpoints
+Guest requests receive `401`.
 
-- Register, login, and logout endpoints will issue or clear JWT-based sessions.
-- Passwords must be hashed before storage with bcrypt or argon2.
-- Favorites endpoints will require an authenticated `user` or `admin`.
-- Admin recipe/content endpoints will require an authenticated `admin` role.
-- Admin list endpoints should include pagination, filtering, or search parameters where datasets may grow.
+## `GET /api/admin/summary`
+
+Returns admin summary data:
+
+- total recipes
+- total categories
+- total tags
+- total users
+
+Requires an authenticated admin session. Non-admin requests receive `403`; guest requests receive `401`.
+
+## Auth Notes
+
+- Browser login uses a Server Action.
+- Logout uses a Server Action.
+- Session state is stored in a signed httpOnly cookie.
+- API mutation handlers independently check role access on the server.

@@ -1,400 +1,324 @@
-# 🍽️ Chefo’s Recipes — Full-stack Recipe Catalog Platform
+# Chefo's Recipes
 
-<p align="left">
-  <a href="https://github.com/s-badev/chefos-recipes-fullstack">
-    <img src="https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github" alt="GitHub Repository"/>
-  </a>
-  <img src="https://img.shields.io/badge/Live%20Demo-Planned-lightgrey?style=for-the-badge&logo=vercel" alt="Live Demo Planned"/>
-</p>
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=nextdotjs)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Expo](https://img.shields.io/badge/Expo-51-000020?logo=expo)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-4169E1?logo=postgresql)
+![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F)
+![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599)
+![Status](https://img.shields.io/badge/Status-In%20Development%20%2F%20Capstone%20Project-orange)
 
-<p align="left">
-  <img src="https://img.shields.io/badge/Next.js-Web%20App-black?logo=nextdotjs" />
-  <img src="https://img.shields.io/badge/React-UI-61DAFB?logo=react" />
-  <img src="https://img.shields.io/badge/TypeScript-Typesafe-blue?logo=typescript" />
-  <img src="https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss" />
-  <img src="https://img.shields.io/badge/Expo-Mobile%20App-000020?logo=expo" />
-  <img src="https://img.shields.io/badge/PostgreSQL-Database-336791?logo=postgresql" />
-  <img src="https://img.shields.io/badge/Drizzle-ORM-C5F74F" />
-  <img src="https://img.shields.io/badge/Neon-Postgres-00E599" />
-  <img src="https://img.shields.io/badge/Status-In%20Development-orange" />
-</p>
+Chefo's Recipes is a full-stack recipe catalog app for browsing, filtering, saving and managing home-style recipes. It combines a Next.js App Router web app, API routes, Server Actions, Neon PostgreSQL, Drizzle ORM, and an Expo React Native mobile app foundation.
 
-**Chefo’s Recipes** is a full-stack, multi-platform recipe catalog application developed as a SoftUni capstone project for the **Full Stack Apps with AI** course.
+The product UI is intentionally Bulgarian-first because the project targets a Bulgarian home-cooking experience and SoftUni capstone presentation context.
 
-The project is designed as a practical recipe platform where users can browse recipes, view detailed cooking instructions, save favorites, and use both a responsive web application and a mobile client. Admin users will be able to manage recipe content through a dedicated web admin panel.
+## Live Demo
 
----
-## 🧭 Architecture Overview
-
-The project follows a monorepo client-server architecture:
-
-- `apps/web` contains the Next.js web app and backend route handlers.
-- `apps/mobile` contains the Expo React Native mobile client.
-- `packages/shared` contains shared TypeScript types and future DTOs/validators.
-- `packages/db` contains the Drizzle schema, migrations and database client skeleton.
-
-The current implementation uses static/sample data while the database and API layers are being prepared for real Neon PostgreSQL integration.
-
-Planned communication flow:
-
-- Web app flows will use Next.js Server Actions where appropriate.
-- Mobile app flows will consume the Next.js backend through REST API endpoints.
-- API routes and Server Actions will later use a service/repository layer.
-- The service/repository layer will later use Drizzle ORM and Neon PostgreSQL.
-
----
-
-## 📌 Project Status
-
-**Current phase:** Full-stack foundation in active development.
-
-The application currently works with **static/sample data** while the database and API layers are being prepared for real Neon PostgreSQL integration.
-
-The goal is to turn the project into a database-backed full-stack recipe platform with authentication, role-based access, favorites, and admin recipe management.
-
-The database package now includes a deterministic seed foundation for scalability validation, including a 10,000-recipe dataset generator and opt-in batched Drizzle seed logic. The seed script is not run automatically and only connects when `DATABASE_URL` is provided from the local environment.
-
----
-
-## ✅ Completed Foundation Work
-
-- ✅ GitHub repository setup with visible incremental commit history
-- ✅ AI agent / contributor instructions
-- ✅ Project documentation and environment variable documentation
-- ✅ Root npm workspace configuration
-- ✅ Next.js web app scaffold with verified dependencies
-- ✅ Expo mobile app scaffold with verified dependencies
-- ✅ Bulgarian web UI foundation:
-  - Homepage
-  - Recipe catalog
-  - Recipe details pages
-  - Favorites placeholder
-  - Admin panel placeholder
-- ✅ Initial Expo mobile screens using local state and static sample data
-- ✅ Shared TypeScript types package
-- ✅ Database package skeleton
-- ✅ Drizzle schema draft
-- ✅ Drizzle migration setup
-- ✅ Initial generated SQL migration
-- ✅ Database client skeleton prepared for future Neon connection
-- ✅ Deterministic database seed generator with a 10,000-record scalability target
-- ✅ Batched Drizzle seed insert foundation with dry-run support
-- ✅ Initial Next.js API route skeleton
-- ✅ Static recipe data layer used by recipe-related API routes
-- ✅ API endpoint documentation with example responses
-- ✅ Stable Git save points / tags for rollback safety
-
----
-
-## 🚧 Revised Capstone Roadmap
-
-The revised SoftUni capstone requirements increase the project scope. The project roadmap now includes:
-
-- Web app: reach at least 10 screens/pages/popups, including public browsing, recipe details, favorites, authentication, profile/dashboard and admin flows.
-- Mobile app: reach at least 5 screens/pages and consume the Next.js backend through REST API endpoints.
-- Backend: use Next.js with PostgreSQL-backed route handlers for mobile and Server Actions for web mutations where appropriate.
-- Database: use Neon serverless PostgreSQL with Drizzle ORM, committed migrations, and at least 4 related tables.
-- Data: add a database seed script with sample data and support a 10,000-record scalability target for primary tables.
-- Performance: add pagination to recipe and other large list endpoints before real dataset growth.
-- Security: implement JWT register/login/logout, hashed passwords with bcrypt or argon2, and user/admin authorization.
-- Delivery: prepare deployment setup and sample credentials for review.
-
----
-
-## 🛠️ Upcoming Work
-
-- 🔌 Connect the application to Neon PostgreSQL
-- 🗄️ Replace static recipe data with Drizzle ORM queries
-- 🔐 Add authentication with JWT access / refresh tokens
-- 🛡️ Add role-based access control for user/admin flows
-- ⭐ Implement real favorites functionality
-- 🧑‍🍳 Add admin create/edit/delete recipe actions
-- 📄 Continue validating pagination with large recipe lists
-- 🌱 Run the database seed locally after Neon/local PostgreSQL credentials are configured
-- 🚀 Deploy the production web app
-- 🧪 Add broader testing and final documentation polish
-
----
-
-## 🎯 Development Approach
-
-The project is intentionally developed step by step to keep the architecture clean, the Git history readable, and the implementation realistic for a student capstone project.
-
-The focus is on:
-
-- practical full-stack architecture
-- AI-assisted development workflow
-- clean project structure
-- reusable TypeScript types
-- web + mobile direction
-- database-backed application design
-- professional documentation
-
----
-
-## 🎯 Project Goals
-
-The goal of this project is to build a complete full-stack application with:
-
-- 🌐 a **Next.js web application** for desktop and mobile browsers
-- ⚙️ a **Next.js backend API** used as the server-side layer
-- 🐘 a **PostgreSQL database** hosted with Neon
-- 🧱 database access through **Drizzle ORM** and migrations
-- 📱 an **Expo React Native mobile app**
-- 🔐 user authentication with **JWT tokens**
-- 🛡️ role-based access control for regular users and admin users
-- 🧑‍🍳 a small but functional admin panel
-- 📚 clean documentation and visible GitHub development history
-
----
-
-## 🧰 Planned Tech Stack
-
-| Layer | Technology |
+| Platform | URL |
 |---|---|
-| 🌐 Web app | Next.js, React, TypeScript, Tailwind CSS |
-| ⚙️ Backend API | Next.js API routes / route handlers |
-| 🗄️ Database | Neon PostgreSQL |
-| 🧱 ORM | Drizzle ORM + migrations |
-| 📱 Mobile app | React Native with Expo |
-| 🔐 Authentication | JWT access/refresh tokens |
-| 🛡️ Authorization | User/admin roles |
-| 🎨 Styling | Tailwind CSS, responsive design |
-| 🤖 Development workflow | VS Code, Codex / GitHub Copilot, GitHub |
+| Web App | Coming soon |
+| Expo Web / Mobile Preview | Coming soon |
 
----
+## Sample Credentials
 
-## 🗂️ Monorepo Structure
+| Role | Email | Password | Access |
+|---|---|---|---|
+| User | `user@chefos-recipes.bg` | `user12345` | Catalog, recipe details, favorites, profile |
+| Admin | `admin@chefos-recipes.bg` | `admin12345` | Full user access + admin panel, add/edit/delete recipes |
 
-The project uses a monorepo structure with separate folders for the web app, mobile app, shared types and database layer.
+Regular users do not see the Admin navigation item and cannot access admin routes.
 
-### Apps
+## Key Features
 
-- `apps/web` — Next.js web application and backend API route handlers
-- `apps/mobile` — Expo React Native mobile application
+### Public Browsing
 
-### Packages
+- Responsive homepage with premium food-site styling
+- Recipe catalog with pagination-ready data flow
+- Recipe details pages
+- About page
+- Bulgarian UI copy for a localized product feel
 
-- `packages/db` — Drizzle schema, migrations and database client skeleton
-- `packages/shared` — shared TypeScript types, DTOs and future validators/utilities
+### User Features
 
-### Documentation
+- Demo login and logout
+- Role-aware navigation
+- Favorites area for authenticated users
+- Profile area for authenticated users
+- Personalized header greeting for logged-in users
 
-- `docs/architecture.md` — high-level architecture and data flow
-- `docs/database-schema.md` — planned database tables and relationships
-- `docs/api-endpoints.md` — current and planned API endpoints
-- `docs/environment.md` — environment variable usage and safety notes
+### Admin Features
 
-### Root Files
+- Admin dashboard
+- Admin-only navigation item
+- Add recipe form
+- Edit recipe form
+- Delete recipe action
+- Server-side protection for admin pages
+- Server-side protection for admin mutations and admin API access
 
-- `AGENTS.md` — AI agent and contributor guidelines
-- `README.md` — project overview and progress documentation
-- `.env.example` — safe placeholder environment variables
+### Database Features
 
----
+- Neon PostgreSQL connection support
+- Drizzle ORM schema
+- Generated migration setup
+- Users and roles
+- Categories, tags, recipes, recipe steps, recipe-tag relations, and favorites
+- Deterministic seed logic
 
-## 🖥️ Web App Screens
+### Scalability Features
 
-The current web app foundation includes:
+- 10,000 generated recipes for scalability testing
+- Batched seed process
+- API pagination for recipe lists
+- Service/repository boundary for database reads and mutations
 
-| Screen | Status |
+### Mobile Foundation
+
+- Expo React Native app foundation
+- Local recipe browsing screens
+- Recipe details, categories, favorites, login/register/profile preview states
+- Intended companion app for the same recipe domain
+
+## Tech Stack
+
+| Area | Technology |
 |---|---|
-| 🏠 Homepage | ✅ Static UI implemented |
-| 📖 Recipe Catalog | ✅ Static UI implemented |
-| 🍲 Recipe Details | ✅ Static UI implemented |
-| ⭐ Favorites | ✅ Placeholder UI implemented |
-| 🛠️ Admin Panel | ✅ Placeholder UI implemented |
+| Web | Next.js, React, TypeScript |
+| Styling | Tailwind CSS / responsive custom UI |
+| Backend | Next.js Route Handlers / Server Actions |
+| Database | Neon PostgreSQL |
+| ORM | Drizzle ORM |
+| Mobile | Expo React Native |
+| Monorepo | npm workspaces |
+| Deployment | Vercel/Netlify planned |
 
-The visible web UI is primarily in **Bulgarian**, because the project is focused on Bulgarian-style recipes and should feel natural for its target users.
-
----
-
-## 📱 Mobile App Screens
-
-The Expo mobile app currently includes an initial local-state UI foundation:
-
-| Screen | Status |
-|---|---|
-| 📋 Recipes | ✅ Static UI implemented |
-| 🍽️ Recipe Details | ✅ Static UI implemented |
-| ⭐ Favorites / Profile | ✅ Placeholder UI implemented |
-
-The mobile app currently uses local static data and will later connect to the same backend API used by the web app.
-
----
-
-## ⚙️ API Routes
-
-The project currently includes an initial API skeleton using static/sample data.
-
-| Method | Route | Current Purpose |
-|---|---|---|
-| GET | `/api/health` | Basic API health check |
-| GET | `/api/recipes` | Returns sample recipe list |
-| GET | `/api/recipes/[slug]` | Returns one sample recipe by slug |
-| GET | `/api/categories` | Returns sample categories |
-| GET | `/api/favorites` | Returns placeholder favorite recipes |
-| GET | `/api/admin/summary` | Returns placeholder admin dashboard stats |
-
-These routes will later be connected to **Drizzle ORM**, **Neon PostgreSQL**, authentication, and role-based access control.
-
----
-
-## 🗄️ Database Foundation
-
-The database layer currently includes:
-
-- ✅ `packages/db` package
-- ✅ Drizzle schema draft
-- ✅ Drizzle migration setup
-- ✅ Initial generated SQL migration
-- ✅ Database client skeleton
-- ✅ Seed data generator for scalability validation
-- ✅ Batched, idempotent seed insert foundation
-- ✅ Environment variable documentation
-
-Planned core tables include:
-
-- `users`
-- `categories`
-- `tags`
-- `recipes`
-- `recipe_steps`
-- `recipe_tags`
-- `favorites`
-
-### Seed And Scalability Strategy
-
-The seed foundation in `packages/db` prepares a deterministic large dataset for the revised SoftUni scalability requirement:
-
-- `LARGE_RECIPE_COUNT = 10000`
-- `DEFAULT_BATCH_SIZE = 500`
-- generated demo users, categories, tags, recipes, recipe steps, recipe-tag relations and favorites
-- stable IDs, slugs and emails so repeated seed runs can skip duplicates
-- `SEED_DRY_RUN=true` mode for generating and summarizing data without connecting to a database
-
-The real seed path must use `DATABASE_URL` only from the local environment. Real credentials must never be committed. Batched Drizzle inserts are planned for local/staging validation after the database connection is configured.
-
-Recipe list pagination is part of the scalability strategy so the catalog and API can handle the generated dataset without loading all records at once. Database indexes will be finalized carefully and committed through Drizzle migrations.
-
----
-
-## 🔐 Environment Variables
-
-Required environment variable placeholders are documented in `.env.example`.
-
-Planned variables:
-
-| Variable | Purpose |
-|---|---|
-| `DATABASE_URL` | Future Neon PostgreSQL connection string for Drizzle/database tooling |
-| `JWT_SECRET` | Future JWT access token signing secret |
-| `JWT_REFRESH_SECRET` | Future JWT refresh token signing secret |
-| `NEXT_PUBLIC_APP_URL` | Public base URL for the web app |
-
-Real secrets must **never** be committed.
-
-More details are available in `docs/environment.md`.
-
----
-
-## 🧪 Current Data Strategy
-
-At the current stage, the app uses **static/sample recipe data**.
-
-This allows the project to develop and validate:
-
-- UI structure
-- page flow
-- API response shape
-- recipe catalog behavior
-- mobile screen structure
-- future database model alignment
-- paginated catalog behavior before real dataset growth
-
-The database package also provides a deterministic 10,000-record seed dataset for scalability validation. Later, the static data layer will be replaced with real **Drizzle + Neon** database queries and the seed script can be run locally with environment-provided credentials.
-
----
-
-## 🧭 Development Workflow
-
-The project is developed incrementally:
-
-1. Define a small task.
-2. Implement it with AI-assisted coding tools.
-3. Review the changed files.
-4. Run the relevant checks.
-5. Commit with a clear message.
-6. Push to GitHub.
-7. Continue with the next small step.
-
-This keeps the project easier to control and creates a visible development history for assessment.
-
----
-
-## 🏷️ Stable Save Points
-
-The project uses Git tags as rollback points.
-
-Current save points:
+## Architecture Overview
 
 ```text
-stable-foundation-v1
-stable-ui-mobile-db-v1
+chefos-recipes-fullstack/
+├── apps/
+│   ├── web/
+│   └── mobile/
+├── packages/
+│   ├── db/
+│   └── shared/
+├── docs/
+├── README.md
+└── package.json
 ```
 
-These tags mark stable stages of the project and can be used as safe rollback references if later work breaks the application.
-
----
-
-## 📚 Documentation
-
-| File | Purpose |
+| Path | Purpose |
 |---|---|
-| `docs/architecture.md` | High-level system architecture and data flow |
-| `docs/database-schema.md` | Planned database tables and relationships |
-| `docs/api-endpoints.md` | Current and planned REST API endpoints |
-| `docs/environment.md` | Environment variable usage and safety notes |
-| `AGENTS.md` | Instructions for AI coding agents and contributors |
+| `apps/web` | Next.js App Router web app, route handlers, Server Actions, authenticated pages, admin UI |
+| `apps/mobile` | Expo React Native mobile foundation using local state and recipe preview screens |
+| `packages/db` | Drizzle schema, Neon client, migrations, connection check, seed logic |
+| `packages/shared` | Shared TypeScript package placeholder for cross-platform types/utilities |
+| `docs` | Supporting architecture, API, database, auth, setup, and submission documentation |
 
----
+## Web App Pages
 
-## 📦 Current Project Scope
+| Route | Purpose |
+|---|---|
+| `/` | Homepage |
+| `/catalog` | Recipe catalog |
+| `/catalog/[slug]` | Recipe details |
+| `/favorites` | User favorites |
+| `/profile` | User profile |
+| `/admin` | Admin dashboard |
+| `/admin/recipes/new` | Add recipe |
+| `/admin/recipes/[slug]/edit` | Edit recipe |
+| `/login` | Login |
+| `/register` | Register |
+| `/about` | About page |
 
-This project is intentionally scoped as a realistic student capstone.
+## API Routes
 
-The current goal is not to overbuild, but to deliver a clean, understandable, multi-layer application with:
+Only routes that currently exist in `apps/web/src/app/api` are listed.
 
-- working web UI
-- working mobile UI foundation
-- documented API structure
-- planned database model
-- generated migration
-- clean Git history
-- clear next development steps
+| Endpoint | Methods | Purpose |
+|---|---|---|
+| `/api/health` | `GET` | Health check |
+| `/api/recipes` | `GET`, `POST` | Paginated recipe list; admin-protected recipe creation |
+| `/api/recipes/[slug]` | `GET`, `PATCH`, `PUT`, `DELETE` | Recipe details; admin-protected update/delete |
+| `/api/categories` | `GET` | Category data |
+| `/api/favorites` | `GET` | Favorites data, protected |
+| `/api/admin/summary` | `GET` | Admin statistics, admin-protected |
 
----
+Authentication currently uses Server Actions and an httpOnly signed cookie. There are no `/api/auth/*` route files in the current web app.
 
-## 🚀 Planned Next Steps
+## Authentication And Authorization
 
-1. Connect API routes to a repository/service layer.
-2. Set up real Neon PostgreSQL connection.
-3. Replace static recipe data with Drizzle queries.
-4. Implement authentication.
-5. Add user favorites with real persistence.
-6. Add admin create/edit/delete recipe functionality.
-7. Connect the mobile app to the backend API.
-8. Deploy the web app.
-9. Finalize documentation and screenshots.
+Chefo's Recipes includes demo authentication suitable for capstone testing:
 
----
+- Login is handled through a Next.js Server Action.
+- Logout clears the signed httpOnly session cookie.
+- `getCurrentUser()` returns only safe user data: name, email, and role.
+- Demo passwords are validated with salted `scrypt` hashes in the web auth helper.
+- Password hashes are not exposed to the client.
+- Header navigation is rendered from the verified server-side user state.
+- Regular users never receive the Admin navigation item.
+- Admin pages call `requireAdmin()` on the server.
+- Favorites and profile pages call `requireUser()` on the server.
+- Admin Server Actions and admin API mutations enforce role checks before mutation logic runs.
 
-## 👤 Author
+Role behavior:
 
-**Stefan Badev**
+| Visitor | Navigation / Access |
+|---|---|
+| Guest | Public navigation and login |
+| User | Catalog, recipe details, favorites, profile, logout |
+| Admin | Full user access plus admin dashboard and recipe management |
 
----
+## Database Model
 
-## 📄 License
+Main tables:
 
-This project is created for educational purposes as part of a SoftUni capstone assignment.
+- `users`: application users, role, password hash, timestamps
+- `recipes`: recipe content, timing, difficulty, category, author
+- `categories`: recipe categories
+- `tags`: reusable tag records
+- `recipe_steps`: ordered cooking instructions
+- `recipe_tags`: many-to-many recipe/tag relation
+- `favorites`: many-to-many user/recipe relation
+
+Relationships:
+
+- A recipe belongs to one category.
+- A recipe belongs to one author user.
+- A recipe has many ordered steps.
+- Recipes and tags are connected through `recipe_tags`.
+- Users and recipes are connected through `favorites`.
+
+See [docs/database-schema.md](docs/database-schema.md) for schema details.
+
+## Scalability
+
+The database package includes deterministic seed logic for scalability testing:
+
+- `LARGE_RECIPE_COUNT = 10000`
+- Default batch size: 500 rows
+- Generated users, categories, tags, recipes, recipe steps, recipe-tag relations, and favorites
+- `SEED_DRY_RUN=true` support for planning without opening a database connection
+- Paginated recipe API response shape for large catalog data
+
+## Local Setup
+
+```bash
+git clone https://github.com/s-badev/chefos-recipes-fullstack.git
+cd chefos-recipes-fullstack
+npm install
+```
+
+### Environment
+
+Create a local `.env` file from `.env.example` and set the database URL when using Neon-backed flows.
+
+```env
+DATABASE_URL="your-neon-database-url"
+AUTH_SESSION_SECRET="your-local-session-secret"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
+
+`AUTH_SESSION_SECRET` is used by the current web demo session cookie. `DATABASE_URL` is required for Drizzle/Neon database access.
+
+### Commands
+
+| Command | Purpose |
+|---|---|
+| `npm run dev --workspace apps/web` | Start the Next.js web app |
+| `npm run build --workspace apps/web` | Build the web app |
+| `npm run start --workspace apps/web` | Start the built web app |
+| `npm run seed --workspace @chefos/db` | Run the Drizzle seed script |
+| `npm run db:generate --workspace @chefos/db` | Generate Drizzle migrations |
+| `npm run db:migrate --workspace @chefos/db` | Run Drizzle migrations |
+| `npm run check:connection --workspace @chefos/db` | Check Neon connection config |
+| `npm run start --workspace apps/mobile` | Start Expo |
+| `npm run web --workspace apps/mobile` | Start Expo web preview |
+
+## Database Setup
+
+1. Create a Neon PostgreSQL project.
+2. Copy the Neon connection string into `DATABASE_URL`.
+3. Generate and run Drizzle migrations when schema changes are made.
+4. Run the seed script for demo/scalability data.
+
+```bash
+npm run db:generate --workspace @chefos/db
+npm run db:migrate --workspace @chefos/db
+npm run seed --workspace @chefos/db
+```
+
+The seed package includes demo users in the generated database dataset. The current web demo login also uses app-level demo accounts with salted password hashes for predictable evaluator access.
+
+## Mobile App
+
+The Expo app is currently a foundation / preview companion rather than a finished production mobile client. It includes:
+
+- Recipe list preview
+- Recipe details preview
+- Category filtering
+- Favorites preview
+- Login/register/profile preview screens
+- Bulgarian UI text matching the product direction
+
+Start it with:
+
+```bash
+npm run start --workspace apps/mobile
+```
+
+## Project Status
+
+- [x] Web app foundation
+- [x] Recipe catalog
+- [x] Recipe details
+- [x] Neon PostgreSQL integration
+- [x] Drizzle schema and migrations
+- [x] 10,000 record seed
+- [x] Pagination
+- [x] Demo authentication
+- [x] Role-based admin access
+- [x] Admin protected routes
+- [x] Admin add/edit/delete
+- [x] Expo mobile foundation
+- [ ] Production deployment
+- [ ] Final mobile polish
+- [ ] Final screenshots
+
+## Screenshots
+
+Add screenshots here before final submission.
+
+Suggested screenshot list:
+
+- Homepage
+- Catalog
+- Recipe details
+- Login
+- User navigation
+- Admin dashboard
+- Admin recipe edit
+- Mobile preview
+
+## Submission Information
+
+| Field | Value |
+|---|---|
+| Author | Stefan Badev |
+| Email | stefan.badev@yahoo.com |
+| GitHub Repo | https://github.com/s-badev/chefos-recipes-fullstack |
+| Web Project Live URL | Coming soon |
+| Expo Project Live URL | Coming soon |
+| Credentials for testing | User and Admin demo accounts listed above |
+
+## Known Limitations
+
+- Mobile app is currently a foundation / preview and not a fully polished production app.
+- Production deployment URL is still to be added.
+- Some features are capstone-scope implementations rather than commercial production systems.
+- Demo authentication is designed for testing; production auth would use a complete account lifecycle and secret management strategy.
+
+## Author
+
+Created by Stefan Badev as part of a SoftUni full-stack / AI-assisted development capstone project.

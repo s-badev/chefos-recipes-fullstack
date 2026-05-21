@@ -1,26 +1,27 @@
 # Environment Variables
 
-Chefo's Recipes will use local `.env` files for machine-specific configuration and secrets. Real
-values must stay out of Git. The committed `.env.example` file documents the required variable names
-with placeholder values only.
+Chefo's Recipes uses local `.env` files for machine-specific configuration and secrets. Real values must stay out of Git.
 
-## Planned Variables
+## Current Variables
 
 | Variable | Purpose |
 |---|---|
-| `DATABASE_URL` | PostgreSQL connection string for the future Neon database. |
-| `JWT_SECRET` | Secret used later to sign JWT access tokens. |
-| `JWT_REFRESH_SECRET` | Separate secret used later to sign JWT refresh tokens. |
+| `DATABASE_URL` | Neon PostgreSQL connection string used by Drizzle, migrations, connection checks, and seed inserts. |
+| `AUTH_SESSION_SECRET` | Secret used by the current web demo session cookie signing logic. |
 | `NEXT_PUBLIC_APP_URL` | Public base URL for the web application, such as `http://localhost:3000` locally. |
 
-## Later Usage
+Example:
 
-When database and authentication work begins, each developer should copy `.env.example` to a local
-`.env` file and replace the placeholders with real values for their own environment.
+```env
+DATABASE_URL="postgresql://user:password@host:5432/chefos_recipes?sslmode=require"
+AUTH_SESSION_SECRET="replace-with-a-long-local-secret"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+```
 
-The Drizzle config will read `DATABASE_URL` when migrations or database tooling need a connection.
-Authentication code will use `JWT_SECRET` and `JWT_REFRESH_SECRET` once JWT login and refresh flows
-are implemented. `NEXT_PUBLIC_APP_URL` can be used by web-facing features that need the app's base
-URL.
+## Notes
+
+- `DATABASE_URL` is required for database-backed web API calls and `packages/db` scripts.
+- `AUTH_SESSION_SECRET` should be set for local and production-like testing. The app has a development fallback, but committed or deployed environments should use their own secret.
+- `.env.example` may include planned JWT variables for future token-based flows; the current web app uses the signed cookie session helper.
 
 Do not commit `.env` files or real credentials.

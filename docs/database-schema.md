@@ -1,113 +1,101 @@
-# Database Schema And Seed Strategy
+# Database Schema
 
-This document describes the current Drizzle schema direction, the large seed dataset strategy, and planned indexing work. It is documentation only; schema and index changes must still be committed through Drizzle migrations when finalized.
+Chefo's Recipes uses Drizzle ORM with Neon PostgreSQL. Schema definitions live in `packages/db/src/schema.ts`, and migrations live in `packages/db/drizzle`.
 
 ## Enums
 
-- `user_role`: `user` | `admin`
-- `difficulty_level`: `easy` | `medium` | `hard`
+| Enum | Values |
+|---|---|
+| `user_role` | `user`, `admin` |
+| `difficulty_level` | `easy`, `medium`, `hard` |
 
 ## Tables
 
 ### `users`
 
-- `id` (uuid, pk)
-- `name` (text, not null)
-- `email` (text, unique, not null)
-- `password_hash` (text, not null)
-- `role` (`user_role`, default `user`)
-- `created_at` (timestamp, default now)
-- `updated_at` (timestamp, default now)
-
-Password hashes in seed data are placeholders for now. Real password hashing with bcrypt or argon2 will be implemented with authentication.
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | Primary key |
+| `name` | text | Required |
+| `email` | text | Required, unique |
+| `password_hash` | text | Required |
+| `role` | `user_role` | Defaults to `user` |
+| `created_at` | timestamp | Defaults to now |
+| `updated_at` | timestamp | Defaults to now |
 
 ### `categories`
 
-- `id` (uuid, pk)
-- `name` (text, not null)
-- `slug` (text, unique, not null)
-- `created_at` (timestamp, default now)
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | Primary key |
+| `name` | text | Required |
+| `slug` | text | Required, unique |
+| `created_at` | timestamp | Defaults to now |
 
 ### `tags`
 
-- `id` (uuid, pk)
-- `name` (text, not null)
-- `slug` (text, unique, not null)
-- `created_at` (timestamp, default now)
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | Primary key |
+| `name` | text | Required |
+| `slug` | text | Required, unique |
+| `created_at` | timestamp | Defaults to now |
 
 ### `recipes`
 
-- `id` (uuid, pk)
-- `title` (text, not null)
-- `slug` (text, unique, not null)
-- `description` (text)
-- `image_url` (text)
-- `image_alt` (text)
-- `prep_time_minutes` (int)
-- `cook_time_minutes` (int)
-- `servings` (int)
-- `difficulty` (`difficulty_level`, not null)
-- `category_id` (uuid, fk -> categories.id)
-- `author_id` (uuid, fk -> users.id)
-- `created_at` (timestamp, default now)
-- `updated_at` (timestamp, default now)
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | Primary key |
+| `title` | text | Required |
+| `slug` | text | Required, unique |
+| `description` | text | Optional |
+| `image_url` | text | Optional |
+| `image_alt` | text | Optional |
+| `prep_time_minutes` | integer | Optional |
+| `cook_time_minutes` | integer | Optional |
+| `servings` | integer | Optional |
+| `difficulty` | `difficulty_level` | Required |
+| `category_id` | uuid | FK to `categories.id` |
+| `author_id` | uuid | FK to `users.id` |
+| `created_at` | timestamp | Defaults to now |
+| `updated_at` | timestamp | Defaults to now |
 
 ### `recipe_steps`
 
-- `id` (uuid, pk)
-- `recipe_id` (uuid, fk -> recipes.id)
-- `step_number` (int, not null)
-- `instruction` (text, not null)
+| Column | Type | Notes |
+|---|---|---|
+| `id` | uuid | Primary key |
+| `recipe_id` | uuid | FK to `recipes.id` |
+| `step_number` | integer | Required |
+| `instruction` | text | Required |
 
 ### `recipe_tags`
 
-- `recipe_id` (uuid, fk -> recipes.id)
-- `tag_id` (uuid, fk -> tags.id)
-- **pk** (`recipe_id`, `tag_id`)
+| Column | Type | Notes |
+|---|---|---|
+| `recipe_id` | uuid | FK to `recipes.id` |
+| `tag_id` | uuid | FK to `tags.id` |
+
+Composite primary key: `recipe_id`, `tag_id`.
 
 ### `favorites`
 
-- `user_id` (uuid, fk -> users.id)
-- `recipe_id` (uuid, fk -> recipes.id)
-- **pk** (`user_id`, `recipe_id`)
+| Column | Type | Notes |
+|---|---|---|
+| `user_id` | uuid | FK to `users.id` |
+| `recipe_id` | uuid | FK to `recipes.id` |
 
-## Seed Data
+Composite primary key: `user_id`, `recipe_id`.
 
-The `packages/db` seed foundation supports the revised SoftUni capstone requirement for scalability testing with at least 10,000 records.
+## Relationships
 
-- `LARGE_RECIPE_COUNT = 10000`
-- `DEFAULT_BATCH_SIZE = 500`
-- deterministic generated Bulgarian recipe titles and descriptions
-- small demo user set
-- generated categories, tags, recipes, recipe steps, recipe-tag relations and favorites
-- stable UUIDs, slugs and emails to make repeated runs predictable
-- `onConflictDoNothing()` behavior for idempotent inserts when the seed is run against a configured database
-
-The seed script should only connect when `DATABASE_URL` is provided from the local environment. No real credentials should ever be committed. `SEED_DRY_RUN=true` generates and summarizes the dataset without opening a database connection or inserting rows.
-
-## Batching Strategy
-
-Large seed inserts are split into batches of 500 rows by default. The seed order follows table relationships:
-
-1. `users`
-2. `categories`
-3. `tags`
-4. `recipes`
-5. `recipe_steps`
-6. `recipe_tags`
-7. `favorites`
-
-This order allows foreign keys to resolve while keeping insert batches small enough for review and operational safety.
-
-## Pagination And Scalability
-
-Recipe list endpoints and catalog UI should keep using pagination for large datasets. The 10,000-record seed dataset is intended to validate that list views do not require loading every recipe at once.
-
-Large list queries should prefer stable indexed sort and filter fields, especially `created_at`, `slug`, `category_id`, and relation table keys.
+- One user can author many recipes.
+- One category can contain many recipes.
+- One recipe can have many ordered recipe steps.
+- Recipes and tags have a many-to-many relationship through `recipe_tags`.
+- Users and recipes have a many-to-many favorites relationship through `favorites`.
 
 ## Indexes
-
-Current and planned indexes should be reviewed against real query patterns before additional migrations are created.
 
 Current schema indexes include:
 
@@ -121,14 +109,29 @@ Current schema indexes include:
 - `recipe_tags.tag_id`
 - `favorites.recipe_id`
 
-Planned indexing strategy:
+Composite primary keys also support lookups by their leading columns.
 
-- `recipes.slug` for recipe detail lookup by slug
-- `recipes.category_id` for category-filtered catalog pages
-- `recipes.created_at` for stable pagination and recent recipe ordering
-- `recipe_tags.recipe_id` for recipe detail tag lookup, already covered by the composite primary key prefix
-- `recipe_tags.tag_id` for tag-filtered recipe lookup
-- `favorites.user_id` for a user's favorites list, already covered by the composite primary key prefix
-- `favorites.recipe_id` for favorite counts and recipe-level relation lookups
+## Seed Strategy
 
-When finalized, any new or changed indexes must be added through Drizzle schema updates and committed migrations.
+The seed logic in `packages/db/src/seed.ts` supports capstone scalability testing.
+
+Key constants:
+
+- `LARGE_RECIPE_COUNT = 10000`
+- Default batch size: 500 rows
+
+Generated seed data includes:
+
+- users
+- categories
+- tags
+- recipes
+- recipe steps
+- recipe-tag relations
+- favorites
+
+The seed process supports dry-run planning through `SEED_DRY_RUN=true` and only opens a database connection when real inserts are requested.
+
+## Auth Data Note
+
+The database schema includes `password_hash` for real account storage. The current web demo login uses app-level demo users with salted `scrypt` password hashes to provide stable evaluator credentials without exposing plaintext passwords to the client.
