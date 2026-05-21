@@ -9,9 +9,9 @@
 ![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599)
 ![Status](https://img.shields.io/badge/Status-In%20Development%20%2F%20Capstone%20Project-orange)
 
-Chefo's Recipes is a full-stack recipe catalog app for browsing, filtering, saving and managing home-style recipes. It combines a Next.js App Router web app, API routes, Server Actions, Neon PostgreSQL, Drizzle ORM, and an Expo React Native mobile app foundation.
+Chefo's Recipes is a full-stack, multi-platform recipe catalog application developed as a SoftUni capstone project. It combines a Next.js web app, API routes, Server Actions, Neon PostgreSQL, Drizzle ORM, role-based demo authentication, protected admin features, and an Expo mobile foundation.
 
-The product UI is intentionally Bulgarian-first because the project targets a Bulgarian home-cooking experience and SoftUni capstone presentation context.
+The product UI is intentionally Bulgarian-first. The app is built around Bulgarian/home-style cooking, so the visible interface uses Bulgarian labels and copy while the repository documentation is written in English for GitHub and portfolio review.
 
 ## Live Demo
 
@@ -22,187 +22,282 @@ The product UI is intentionally Bulgarian-first because the project targets a Bu
 
 ## Sample Credentials
 
-| Role | Email | Password | Access |
-|---|---|---|---|
-| User | `user@chefos-recipes.bg` | `user12345` | Catalog, recipe details, favorites, profile |
-| Admin | `admin@chefos-recipes.bg` | `admin12345` | Full user access + admin panel, add/edit/delete recipes |
+The following demo accounts are available for testing. No registration is required for reviewer testing.
 
-Regular users do not see the Admin navigation item and cannot access admin routes.
+| Role | Email | Password | What you'll see |
+|---|---|---|---|
+| User | `user@chefos-recipes.bg` | `user12345` | Catalog, recipe details, favorites, profile. No "Admin" link; admin routes are denied. |
+| Admin | `admin@chefos-recipes.bg` | `admin12345` | Full user access + "Admin" link; protected admin panel with add/edit/delete recipe actions. |
+
+Regular users do not see the Admin navigation item and cannot access admin routes manually.
+
+## Project Description
+
+Chefo's Recipes is a recipe catalog for Bulgarian and home-style cooking. Visitors can browse the public homepage, open the recipe catalog, and view recipe details. Authenticated users get user-only navigation, a personalized header greeting, favorites/profile areas, and logout. Admins get a protected dashboard and recipe management actions.
+
+The project is database-backed through Neon PostgreSQL and Drizzle ORM. The database package includes schema, migrations, a Neon client, and deterministic seed logic that can generate 10,000 recipes for scalability and pagination testing.
+
+The repository also includes an Expo React Native mobile foundation as part of the multi-platform capstone scope. The mobile app is a preview/foundation companion rather than a fully polished production mobile client.
 
 ## Key Features
 
-### Public Browsing
+### Public Features
 
-- Responsive homepage with premium food-site styling
-- Recipe catalog with pagination-ready data flow
-- Recipe details pages
-- About page
-- Bulgarian UI copy for a localized product feel
+- Homepage
+- Recipe catalog
+- Recipe detail pages
+- Category/tag-based browsing foundation
+- Responsive premium food-site UI
+- Bulgarian product interface
 
 ### User Features
 
-- Demo login and logout
-- Role-aware navigation
-- Favorites area for authenticated users
-- Profile area for authenticated users
-- Personalized header greeting for logged-in users
+- Login/logout
+- Personalized greeting in the header
+- Favorites area
+- Profile area
+- User-only navigation
+- Admin link hidden for non-admin users
 
 ### Admin Features
 
-- Admin dashboard
 - Admin-only navigation item
-- Add recipe form
-- Edit recipe form
-- Delete recipe action
-- Server-side protection for admin pages
-- Server-side protection for admin mutations and admin API access
+- Protected admin dashboard
+- Add recipe
+- Edit recipe
+- Delete recipe
+- Server-side admin guards for pages, actions, and API mutations
 
-### Database Features
+### Database & Backend Features
 
-- Neon PostgreSQL connection support
-- Drizzle ORM schema
-- Generated migration setup
-- Users and roles
-- Categories, tags, recipes, recipe steps, recipe-tag relations, and favorites
-- Deterministic seed logic
-
-### Scalability Features
-
-- 10,000 generated recipes for scalability testing
-- Batched seed process
-- API pagination for recipe lists
-- Service/repository boundary for database reads and mutations
+- Neon PostgreSQL
+- Drizzle ORM
+- Database schema and migrations
+- Database client package
+- Seed script
+- 10,000 recipe dataset generation
+- Paginated recipe API
+- Protected API/admin actions
 
 ### Mobile Foundation
 
-- Expo React Native app foundation
-- Local recipe browsing screens
-- Recipe details, categories, favorites, login/register/profile preview states
-- Intended companion app for the same recipe domain
+- Expo React Native project
+- Mobile companion structure
+- Local Expo development support
+- Recipe list/details/category/favorites/profile preview states
 
-## Tech Stack
+## User Roles
 
-| Area | Technology |
+| Role | Access |
 |---|---|
-| Web | Next.js, React, TypeScript |
-| Styling | Tailwind CSS / responsive custom UI |
-| Backend | Next.js Route Handlers / Server Actions |
-| Database | Neon PostgreSQL |
-| ORM | Drizzle ORM |
-| Mobile | Expo React Native |
-| Monorepo | npm workspaces |
-| Deployment | Vercel/Netlify planned |
+| Guest | Can browse public pages and log in/register. |
+| User | Can access catalog, recipe details, favorites and profile. Cannot see or access Admin. |
+| Admin | Has full user access plus protected admin panel and recipe management actions. |
 
-## Architecture Overview
+## Application Screens
+
+1. Home Page
+2. Catalog
+3. Recipe Details
+4. Favorites
+5. Profile
+6. Login
+7. Register
+8. Admin Dashboard
+9. Add Recipe
+10. Edit Recipe
+11. About Page
+12. Mobile App Preview / Expo Foundation
+
+## Quick Test Guide
+
+1. Open the web app.
+2. Browse the public homepage and catalog.
+3. Open a recipe details page.
+4. Log in as regular user:
+   - `user@chefos-recipes.bg`
+   - `user12345`
+5. Verify that:
+   - "Любими" and "Профил" are visible.
+   - "Админ" is not visible.
+   - `/admin` cannot be accessed manually.
+6. Log out.
+7. Log in as admin:
+   - `admin@chefos-recipes.bg`
+   - `admin12345`
+8. Verify that:
+   - "Админ" is visible.
+   - Admin dashboard opens.
+   - Add/edit/delete recipe actions are available.
+9. Check the paginated API:
+   - `/api/recipes?page=1&pageSize=12`
+10. Start the mobile app locally if needed:
+   - `npm.cmd run start --workspace apps/mobile`
+
+## Screenshots
+
+_Add screenshots before final submission._
+
+Suggested screenshots:
+
+- Homepage
+- Catalog
+- Recipe details
+- User login state
+- Admin dashboard
+- Admin edit recipe
+- Mobile preview
+
+## Architecture
 
 ```text
 chefos-recipes-fullstack/
-├── apps/
-│   ├── web/
-│   └── mobile/
-├── packages/
-│   ├── db/
-│   └── shared/
-├── docs/
-├── README.md
-└── package.json
+|-- apps/
+|   |-- web/
+|   |   |-- src/app/
+|   |   |-- src/server/
+|   |   `-- ...
+|   `-- mobile/
+|-- packages/
+|   |-- db/
+|   `-- shared/
+|-- docs/
+|-- README.md
+`-- package.json
 ```
 
 | Path | Purpose |
 |---|---|
-| `apps/web` | Next.js App Router web app, route handlers, Server Actions, authenticated pages, admin UI |
-| `apps/mobile` | Expo React Native mobile foundation using local state and recipe preview screens |
-| `packages/db` | Drizzle schema, Neon client, migrations, connection check, seed logic |
-| `packages/shared` | Shared TypeScript package placeholder for cross-platform types/utilities |
-| `docs` | Supporting architecture, API, database, auth, setup, and submission documentation |
+| `apps/web` | Next.js web app, App Router pages, API routes, Server Actions, auth-aware header, protected admin UI |
+| `apps/mobile` | Expo React Native app foundation for the mobile companion experience |
+| `packages/db` | Drizzle schema, migrations, Neon database client, seed script, connection utilities |
+| `packages/shared` | Shared TypeScript types/utilities package, available for cross-platform code |
+| `docs` | Architecture, API, auth, database, setup, and submission documentation |
 
-## Web App Pages
+## Technology Stack
 
-| Route | Purpose |
+| Area | Technology |
 |---|---|
-| `/` | Homepage |
-| `/catalog` | Recipe catalog |
-| `/catalog/[slug]` | Recipe details |
-| `/favorites` | User favorites |
-| `/profile` | User profile |
-| `/admin` | Admin dashboard |
-| `/admin/recipes/new` | Add recipe |
-| `/admin/recipes/[slug]/edit` | Edit recipe |
-| `/login` | Login |
-| `/register` | Register |
-| `/about` | About page |
+| Web App | Next.js, React, TypeScript |
+| Backend | Next.js Route Handlers / Server Actions |
+| Database | Neon PostgreSQL |
+| ORM | Drizzle ORM |
+| Authentication | Demo signed httpOnly cookie session with Server Actions |
+| Mobile | Expo React Native |
+| Styling | Custom responsive UI |
+| Monorepo | npm workspaces |
+| Deployment | Vercel/Netlify planned |
 
-## API Routes
+## API Overview
 
-Only routes that currently exist in `apps/web/src/app/api` are listed.
+Only existing endpoints from `apps/web/src/app/api` are documented here. Login/logout are implemented through Server Actions, not `/api/auth/*` route files.
 
-| Endpoint | Methods | Purpose |
+| Endpoint | Purpose | Protection |
 |---|---|---|
-| `/api/health` | `GET` | Health check |
-| `/api/recipes` | `GET`, `POST` | Paginated recipe list; admin-protected recipe creation |
-| `/api/recipes/[slug]` | `GET`, `PATCH`, `PUT`, `DELETE` | Recipe details; admin-protected update/delete |
-| `/api/categories` | `GET` | Category data |
-| `/api/favorites` | `GET` | Favorites data, protected |
-| `/api/admin/summary` | `GET` | Admin statistics, admin-protected |
-
-Authentication currently uses Server Actions and an httpOnly signed cookie. There are no `/api/auth/*` route files in the current web app.
+| `/api/health` | Health check | Public |
+| `/api/recipes` | Paginated recipe list; admin recipe creation via `POST` | `GET` public, `POST` admin |
+| `/api/recipes/[slug]` | Recipe details; admin update/delete mutations | `GET` public, `PATCH`/`PUT`/`DELETE` admin |
+| `/api/categories` | Categories and counts | Public |
+| `/api/favorites` | User favorites data | User/Admin |
+| `/api/admin/summary` | Admin dashboard summary | Admin |
 
 ## Authentication And Authorization
 
-Chefo's Recipes includes demo authentication suitable for capstone testing:
+The current app uses a demo login system designed for capstone evaluation:
 
-- Login is handled through a Next.js Server Action.
-- Logout clears the signed httpOnly session cookie.
-- `getCurrentUser()` returns only safe user data: name, email, and role.
-- Demo passwords are validated with salted `scrypt` hashes in the web auth helper.
-- Password hashes are not exposed to the client.
-- Header navigation is rendered from the verified server-side user state.
-- Regular users never receive the Admin navigation item.
-- Admin pages call `requireAdmin()` on the server.
-- Favorites and profile pages call `requireUser()` on the server.
-- Admin Server Actions and admin API mutations enforce role checks before mutation logic runs.
+- Login is handled by a Next.js Server Action.
+- Logout is handled by a Next.js Server Action.
+- Session state is stored in a signed httpOnly cookie.
+- `getCurrentUser()` returns safe user data: name, email, and role.
+- Demo passwords are validated with salted `scrypt` hashes.
+- Password hashes and secrets are not exposed to the client.
+- The header is rendered from the server-verified current user.
+- Guests see public navigation and login only.
+- Regular users see favorites/profile navigation, greeting, and logout.
+- Admins see full user navigation plus the Admin link.
+- Admin pages call server-side admin guards.
+- Admin recipe actions and API mutations check role server-side.
 
-Role behavior:
-
-| Visitor | Navigation / Access |
-|---|---|
-| Guest | Public navigation and login |
-| User | Catalog, recipe details, favorites, profile, logout |
-| Admin | Full user access plus admin dashboard and recipe management |
-
-## Database Model
+## Database Schema Design
 
 Main tables:
 
-- `users`: application users, role, password hash, timestamps
-- `recipes`: recipe content, timing, difficulty, category, author
-- `categories`: recipe categories
-- `tags`: reusable tag records
-- `recipe_steps`: ordered cooking instructions
-- `recipe_tags`: many-to-many recipe/tag relation
-- `favorites`: many-to-many user/recipe relation
+- `users`
+- `recipes`
+- `categories`
+- `tags`
+- `recipe_steps`
+- `recipe_tags`
+- `favorites`
 
-Relationships:
+```mermaid
+erDiagram
+  users ||--o{ recipes : authors
+  users ||--o{ favorites : saves
+  categories ||--o{ recipes : groups
+  recipes ||--o{ recipe_steps : has
+  recipes ||--o{ recipe_tags : tagged
+  tags ||--o{ recipe_tags : includes
+  recipes ||--o{ favorites : saved
 
-- A recipe belongs to one category.
-- A recipe belongs to one author user.
-- A recipe has many ordered steps.
-- Recipes and tags are connected through `recipe_tags`.
-- Users and recipes are connected through `favorites`.
+  users {
+    uuid id PK
+    text name
+    text email
+    text password_hash
+    user_role role
+  }
 
-See [docs/database-schema.md](docs/database-schema.md) for schema details.
+  recipes {
+    uuid id PK
+    text title
+    text slug
+    text description
+    difficulty_level difficulty
+    uuid category_id FK
+    uuid author_id FK
+  }
+
+  categories {
+    uuid id PK
+    text name
+    text slug
+  }
+
+  tags {
+    uuid id PK
+    text name
+    text slug
+  }
+
+  recipe_steps {
+    uuid id PK
+    uuid recipe_id FK
+    int step_number
+    text instruction
+  }
+
+  recipe_tags {
+    uuid recipe_id FK
+    uuid tag_id FK
+  }
+
+  favorites {
+    uuid user_id FK
+    uuid recipe_id FK
+  }
+```
 
 ## Scalability
 
-The database package includes deterministic seed logic for scalability testing:
+- The seed script can generate 10,000 recipes.
+- Related categories, tags, steps, recipe-tag relations, favorites, and users are generated deterministically.
+- Seed inserts are batched, with a default batch size of 500 rows.
+- `SEED_DRY_RUN=true` can plan the dataset without opening a database connection.
+- The recipe API supports pagination through `page` and `pageSize`.
+- The dataset is suitable for testing catalog performance and paging behavior.
 
-- `LARGE_RECIPE_COUNT = 10000`
-- Default batch size: 500 rows
-- Generated users, categories, tags, recipes, recipe steps, recipe-tag relations, and favorites
-- `SEED_DRY_RUN=true` support for planning without opening a database connection
-- Paginated recipe API response shape for large catalog data
-
-## Local Setup
+## Local Development Setup
 
 ```bash
 git clone https://github.com/s-badev/chefos-recipes-fullstack.git
@@ -210,9 +305,9 @@ cd chefos-recipes-fullstack
 npm install
 ```
 
-### Environment
+### Environment Variables
 
-Create a local `.env` file from `.env.example` and set the database URL when using Neon-backed flows.
+Create a local `.env` file.
 
 ```env
 DATABASE_URL="your-neon-database-url"
@@ -220,86 +315,69 @@ AUTH_SESSION_SECRET="your-local-session-secret"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-`AUTH_SESSION_SECRET` is used by the current web demo session cookie. `DATABASE_URL` is required for Drizzle/Neon database access.
+`DATABASE_URL` is required for Neon/Drizzle database access. `AUTH_SESSION_SECRET` signs the current demo session cookie.
 
-### Commands
+### Windows Commands
+
+```powershell
+npm.cmd run dev --workspace apps/web
+npm.cmd run build --workspace apps/web
+npm.cmd run seed --workspace @chefos/db
+npm.cmd run start --workspace apps/mobile
+```
+
+### macOS/Linux Commands
+
+```bash
+npm run dev --workspace apps/web
+npm run build --workspace apps/web
+npm run seed --workspace @chefos/db
+npm run start --workspace apps/mobile
+```
+
+Additional available scripts:
 
 | Command | Purpose |
 |---|---|
-| `npm run dev --workspace apps/web` | Start the Next.js web app |
-| `npm run build --workspace apps/web` | Build the web app |
-| `npm run start --workspace apps/web` | Start the built web app |
-| `npm run seed --workspace @chefos/db` | Run the Drizzle seed script |
+| `npm run start --workspace apps/web` | Start the built Next.js app |
 | `npm run db:generate --workspace @chefos/db` | Generate Drizzle migrations |
 | `npm run db:migrate --workspace @chefos/db` | Run Drizzle migrations |
-| `npm run check:connection --workspace @chefos/db` | Check Neon connection config |
-| `npm run start --workspace apps/mobile` | Start Expo |
+| `npm run check:connection --workspace @chefos/db` | Check database connection configuration |
 | `npm run web --workspace apps/mobile` | Start Expo web preview |
+| `npm run android --workspace apps/mobile` | Start Expo Android target |
+| `npm run ios --workspace apps/mobile` | Start Expo iOS target |
 
-## Database Setup
+## Deployment
 
-1. Create a Neon PostgreSQL project.
-2. Copy the Neon connection string into `DATABASE_URL`.
-3. Generate and run Drizzle migrations when schema changes are made.
-4. Run the seed script for demo/scalability data.
+| Target | Status |
+|---|---|
+| Web deployment | Coming soon |
+| Expo web/mobile preview | Coming soon |
+| Database | Neon PostgreSQL |
 
-```bash
-npm run db:generate --workspace @chefos/db
-npm run db:migrate --workspace @chefos/db
-npm run seed --workspace @chefos/db
-```
+Production deployment requires:
 
-The seed package includes demo users in the generated database dataset. The current web demo login also uses app-level demo accounts with salted password hashes for predictable evaluator access.
-
-## Mobile App
-
-The Expo app is currently a foundation / preview companion rather than a finished production mobile client. It includes:
-
-- Recipe list preview
-- Recipe details preview
-- Category filtering
-- Favorites preview
-- Login/register/profile preview screens
-- Bulgarian UI text matching the product direction
-
-Start it with:
-
-```bash
-npm run start --workspace apps/mobile
-```
+- `DATABASE_URL`
+- `AUTH_SESSION_SECRET`
+- `NEXT_PUBLIC_APP_URL`
 
 ## Project Status
 
 - [x] Web app foundation
 - [x] Recipe catalog
-- [x] Recipe details
+- [x] Recipe detail pages
 - [x] Neon PostgreSQL integration
 - [x] Drizzle schema and migrations
-- [x] 10,000 record seed
-- [x] Pagination
+- [x] 10,000 recipe seed
+- [x] Paginated API
 - [x] Demo authentication
-- [x] Role-based admin access
-- [x] Admin protected routes
-- [x] Admin add/edit/delete
+- [x] Role-based navigation
+- [x] Admin route protection
+- [x] Admin add/edit/delete actions
 - [x] Expo mobile foundation
 - [ ] Production deployment
 - [ ] Final mobile polish
 - [ ] Final screenshots
-
-## Screenshots
-
-Add screenshots here before final submission.
-
-Suggested screenshot list:
-
-- Homepage
-- Catalog
-- Recipe details
-- Login
-- User navigation
-- Admin dashboard
-- Admin recipe edit
-- Mobile preview
 
 ## Submission Information
 
@@ -310,14 +388,14 @@ Suggested screenshot list:
 | GitHub Repo | https://github.com/s-badev/chefos-recipes-fullstack |
 | Web Project Live URL | Coming soon |
 | Expo Project Live URL | Coming soon |
-| Credentials for testing | User and Admin demo accounts listed above |
+| Credentials for testing | User/Admin accounts listed above |
 
 ## Known Limitations
 
-- Mobile app is currently a foundation / preview and not a fully polished production app.
-- Production deployment URL is still to be added.
-- Some features are capstone-scope implementations rather than commercial production systems.
-- Demo authentication is designed for testing; production auth would use a complete account lifecycle and secret management strategy.
+- Live deployment URLs will be added before final submission.
+- Mobile app is currently a foundation/preview and not a fully polished production app.
+- Some features are implemented for capstone evaluation scope rather than full production SaaS readiness.
+- Demo authentication is designed for reviewer testing; production auth would need a complete account lifecycle and hardened secret management.
 
 ## Author
 
