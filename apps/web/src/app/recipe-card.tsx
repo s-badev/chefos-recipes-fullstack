@@ -103,12 +103,12 @@ export function RecipeCard({
           style={getImageStyle(imageSrc)}
         />
         <div className="absolute left-4 top-4 max-w-[calc(100%-2rem)]">
-          <span className="inline-flex rounded-full border border-white/65 bg-white/92 px-3 py-1 text-xs font-bold text-brand-800 shadow-sm backdrop-blur">
+          <span className="inline-flex rounded-full border border-white/65 bg-white/92 px-3 py-1 text-sm font-bold text-brand-800 shadow-sm backdrop-blur">
             {recipe.category}
           </span>
         </div>
         <div className="absolute right-4 top-4">
-          <span className="inline-flex rounded-full border border-white/35 bg-[#1c1208]/82 px-3 py-1 text-xs font-bold text-white shadow-sm backdrop-blur">
+          <span className="inline-flex rounded-full border border-white/35 bg-[#1c1208]/82 px-3 py-1 text-sm font-bold text-white shadow-sm backdrop-blur">
             {recipe.difficulty}
           </span>
         </div>
@@ -116,17 +116,17 @@ export function RecipeCard({
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <div className="flex-1">
-          <h3 className="text-[1.34rem] font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.42rem]">
+          <h3 className="text-[1.4rem] font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.5rem]">
             {recipe.title}
           </h3>
-          <p className="mt-3 text-[15px] leading-[1.62] text-stone-600 sm:text-base">
+          <p className="mt-3 text-base leading-7 text-stone-600">
             {recipe.description}
           </p>
         </div>
 
         <div className="mt-5 grid grid-cols-3 gap-2 rounded-2xl bg-[#fff7ec] p-3">
           <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.1em] text-stone-500">
+            <p className="text-[0.82rem] font-bold uppercase tracking-[0.1em] text-stone-500">
               Подг.
             </p>
             <p className="mt-1 text-base font-bold text-stone-950">
@@ -134,7 +134,7 @@ export function RecipeCard({
             </p>
           </div>
           <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.1em] text-stone-500">
+            <p className="text-[0.82rem] font-bold uppercase tracking-[0.1em] text-stone-500">
               Готв.
             </p>
             <p className="mt-1 text-base font-bold text-stone-950">
@@ -142,7 +142,7 @@ export function RecipeCard({
             </p>
           </div>
           <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.1em] text-stone-500">
+            <p className="text-[0.82rem] font-bold uppercase tracking-[0.1em] text-stone-500">
               Порции
             </p>
             <p className="mt-1 text-base font-bold text-stone-950">{recipe.servings}</p>
@@ -152,7 +152,7 @@ export function RecipeCard({
         <div className="mt-4 flex flex-wrap gap-2">
           {visibleTags.map((tag) => (
             <span
-              className="rounded-full bg-stone-100 px-3 py-1 text-[0.8rem] font-semibold text-stone-600"
+              className="rounded-full bg-stone-100 px-3 py-1 text-sm font-semibold text-stone-600"
               key={tag}
             >
               {tag}

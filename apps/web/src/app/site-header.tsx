@@ -29,14 +29,14 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-stone-200/80 bg-[#fffaf3]/92 shadow-sm shadow-stone-900/[0.03] backdrop-blur-xl">
-      <div className="mx-auto w-full max-w-[1720px] px-6 sm:px-8 lg:px-12 xl:px-16 2xl:px-20">
+      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex min-h-[82px] w-full items-center justify-between gap-6">
           <Link
-            className="flex min-w-0 items-center gap-3 rounded-3xl pr-2 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
+            className="flex min-w-0 items-center gap-3.5 rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
             href="/"
             onClick={() => setIsMenuOpen(false)}
           >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[1.2rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-sm font-black text-white shadow-[0_12px_28px_rgba(185,70,23,0.28)]">
+            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[1.2rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-white shadow-[0_14px_30px_rgba(185,70,23,0.3)]">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 24 24"
@@ -54,17 +54,17 @@ export function SiteHeader() {
             </span>
 
             <span className="min-w-0">
-              <span className="block text-[0.68rem] font-bold uppercase tracking-[0.22em] text-stone-500">
+              <span className="block text-xs font-black uppercase tracking-[0.2em] text-stone-500">
                 Домашна кухня
               </span>
-              <span className="block truncate text-xl font-black leading-tight text-stone-950">
+              <span className="block truncate text-[1.35rem] font-black leading-tight text-stone-950 sm:text-2xl">
                 Chefo&apos;s <span className="text-brand-600">Recipes</span>
               </span>
             </span>
           </Link>
 
           <div className="hidden items-center justify-end gap-3 lg:flex">
-            <nav className="flex items-center justify-end gap-1 rounded-full border border-stone-200 bg-white/72 p-1 text-[15px] font-bold text-stone-700 shadow-sm">
+            <nav className="flex items-center justify-end gap-1 rounded-full border border-stone-200 bg-white/72 p-1 text-base font-bold text-stone-700 shadow-sm">
               {navigationItems.map((item) => {
                 const isActive = isActivePath(pathname, item.href);
 
@@ -87,7 +87,7 @@ export function SiteHeader() {
 
             <Link
               className={[
-                "rounded-full px-5 py-3 text-[15px] font-black text-white shadow-sm shadow-brand-900/20 transition",
+                "rounded-full px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition",
                 isActivePath(pathname, loginItem.href)
                   ? "bg-brand-700"
                   : "bg-brand-600 hover:bg-brand-700"

@@ -42,8 +42,8 @@ export default function AdminPage() {
         </div>
 
         <div className="info-card rounded-[1.7rem] p-5">
-          <p className="text-sm font-black text-brand-800">Подготовка за управление</p>
-          <p className="mt-2 text-[15px] leading-7 text-stone-600">
+          <p className="text-base font-black text-brand-800">Подготовка за управление</p>
+          <p className="mt-2 text-base leading-7 text-stone-600">
             Админ зоната ще помага за добавяне, редакция и подреждане на рецепти.
           </p>
         </div>
@@ -51,13 +51,13 @@ export default function AdminPage() {
 
       <div className="flex flex-wrap gap-3">
         <Link
-          className="rounded-full bg-brand-600 px-6 py-3 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+          className="rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
           href="/admin/recipes/new"
         >
           Добави рецепта
         </Link>
         <Link
-          className="rounded-full border border-stone-300 bg-white px-6 py-3 text-sm font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
+          className="rounded-full border border-stone-300 bg-white px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
           href="/catalog"
         >
           Виж каталога
@@ -67,7 +67,7 @@ export default function AdminPage() {
       <div className="grid gap-5 md:grid-cols-3 xl:gap-8">
         {stats.map((stat) => (
           <div className="editorial-card rounded-[1.8rem] p-6" key={stat.label}>
-            <p className="text-sm font-black text-stone-500">{stat.label}</p>
+            <p className="text-base font-black text-stone-500">{stat.label}</p>
             <p className="mt-3 text-4xl font-bold text-stone-950">{stat.value}</p>
           </div>
         ))}
@@ -89,34 +89,34 @@ export default function AdminPage() {
             >
               <div>
                 <h3 className="text-xl font-bold text-stone-950">{recipe.title}</h3>
-                <p className="mt-2 line-clamp-2 text-[15px] leading-7 text-stone-600">
+                <p className="mt-2 line-clamp-2 text-base leading-7 text-stone-600">
                   {recipe.description}
                 </p>
               </div>
 
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-500">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-stone-500">
                   Категория
                 </p>
-                <p className="mt-1 text-sm font-black text-stone-950">{recipe.category}</p>
+                <p className="mt-1 text-base font-black text-stone-950">{recipe.category}</p>
               </div>
 
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.12em] text-stone-500">
+                <p className="text-sm font-bold uppercase tracking-[0.12em] text-stone-500">
                   Трудност
                 </p>
-                <p className="mt-1 text-sm font-black text-stone-950">{recipe.difficulty}</p>
+                <p className="mt-1 text-base font-black text-stone-950">{recipe.difficulty}</p>
               </div>
 
               <div className="flex flex-wrap gap-2 lg:justify-end">
                 <Link
-                  className="rounded-full border border-stone-200 bg-white px-4 py-2 text-sm font-black text-stone-700 transition hover:border-brand-300 hover:text-brand-800"
+                  className="rounded-full border border-stone-200 bg-white px-4 py-2 text-base font-black text-stone-700 transition hover:border-brand-300 hover:text-brand-800"
                   href={`/admin/recipes/${recipe.slug}/edit`}
                 >
                   Редактирай
                 </Link>
                 <button
-                  className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-sm font-black text-red-700 transition hover:border-red-300 hover:bg-red-100"
+                  className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-base font-black text-red-700 transition hover:border-red-300 hover:bg-red-100"
                   type="button"
                 >
                   Изтрий
@@ -128,8 +128,8 @@ export default function AdminPage() {
       </section>
 
       <section className="info-note rounded-[1.8rem] p-6 shadow-sm">
-        <p className="text-sm font-black text-stone-950">Бележка</p>
-        <p className="mt-2 text-[15px] leading-7 text-stone-600">
+        <p className="text-base font-black text-stone-950">Бележка</p>
+        <p className="mt-2 text-base leading-7 text-stone-600">
           Добавянето, редакцията и изтриването ще бъдат достъпни, когато зоната за управление е
           готова за работа.
         </p>

@@ -73,7 +73,7 @@ export default function HomePage() {
     <div className="page-shell space-y-16 xl:space-y-20">
       <section className="grid gap-10 py-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(480px,0.95fr)] lg:items-center xl:gap-14 xl:py-8">
         <div className="space-y-8">
-          <div className="inline-flex items-center rounded-full border border-brand-200 bg-white/86 px-4 py-2 text-sm font-bold text-brand-800 shadow-sm">
+          <div className="inline-flex items-center rounded-full border border-brand-200 bg-white/86 px-4 py-2 text-[15px] font-bold text-brand-800 shadow-sm">
             Български рецепти за всеки ден
           </div>
 
@@ -90,13 +90,13 @@ export default function HomePage() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              className="rounded-full bg-brand-600 px-6 py-3 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+              className="rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
               href="/catalog"
             >
               Виж избраните
             </Link>
             <Link
-              className="rounded-full border border-stone-300 bg-white/88 px-6 py-3 text-sm font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
+              className="rounded-full border border-stone-300 bg-white/88 px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
               href="#explore"
             >
               Какво можеш да правиш
@@ -110,7 +110,7 @@ export default function HomePage() {
                 key={`${stat.value}-${stat.label}`}
               >
                 <p className="text-3xl font-black leading-none text-stone-950">{stat.value}</p>
-                <p className="mt-2 text-sm font-bold leading-5 text-stone-600">{stat.label}</p>
+                <p className="mt-2 text-base font-bold leading-6 text-stone-600">{stat.label}</p>
               </div>
             ))}
           </div>
@@ -118,24 +118,24 @@ export default function HomePage() {
 
         <div className="relative">
           <div className="hero-food-visual min-h-[460px] overflow-hidden rounded-[2.4rem] border border-white/70 shadow-[0_28px_90px_rgba(87,50,20,0.2)] sm:min-h-[540px]">
-            <div className="absolute left-6 top-6 rounded-full border border-white/55 bg-white/86 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-brand-800 shadow-sm backdrop-blur">
+            <div className="absolute left-6 top-6 rounded-full border border-white/55 bg-white/86 px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-brand-800 shadow-sm backdrop-blur">
               Препоръчано днес
             </div>
             <div className="absolute bottom-6 left-6 right-6 rounded-[1.8rem] border border-white/55 bg-white/92 p-5 shadow-[0_18px_48px_rgba(42,25,10,0.18)] backdrop-blur">
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-brand-700">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
                 Идея за довечера
               </p>
               <p className="mt-2 text-3xl font-bold leading-tight text-stone-950">
                 Баница + свежа салата
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-full bg-brand-50 px-3 py-1 text-xs font-bold text-brand-800">
+                <span className="rounded-full bg-brand-50 px-3 py-1 text-sm font-bold text-brand-800">
                   65 мин.
                 </span>
-                <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-bold text-stone-700">
+                <span className="rounded-full bg-stone-100 px-3 py-1 text-sm font-bold text-stone-700">
                   8 порции
                 </span>
-                <span className="rounded-full bg-stone-100 px-3 py-1 text-xs font-bold text-stone-700">
+                <span className="rounded-full bg-stone-100 px-3 py-1 text-sm font-bold text-stone-700">
                   домашно
                 </span>
               </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link
-            className="inline-flex w-fit items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
+            className="inline-flex w-fit items-center justify-center rounded-full bg-white px-6 py-3 text-base font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
             href="/catalog"
           >
             Разгледай каталога
@@ -217,7 +217,7 @@ export default function HomePage() {
                 {item.accent}
               </span>
               <h3 className="text-xl font-bold text-stone-950">{item.title}</h3>
-              <p className="mt-3 text-[15px] leading-7 text-stone-600">{item.description}</p>
+              <p className="mt-3 text-base leading-7 text-stone-600">{item.description}</p>
             </div>
           ))}
         </div>

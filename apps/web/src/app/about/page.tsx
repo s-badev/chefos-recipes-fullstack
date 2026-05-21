@@ -53,7 +53,7 @@ export default function AboutPage() {
         {values.map((item) => (
           <article className="info-card rounded-[1.8rem] p-6" key={item.title}>
             <h2 className="text-2xl font-bold text-stone-950">{item.title}</h2>
-            <p className="mt-3 text-[15px] leading-7 text-stone-600">{item.description}</p>
+            <p className="mt-3 text-base leading-7 text-stone-600">{item.description}</p>
           </article>
         ))}
       </div>
@@ -67,7 +67,7 @@ export default function AboutPage() {
             следваш всяко ястие с ясни, спокойни инструкции.
           </p>
           <Link
-            className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-sm font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
+            className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-base font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
             href="/catalog"
           >
             Разгледай каталога

@@ -20,14 +20,14 @@ export default function RegisterPage() {
           Регистрацията ще позволи запазване на любими рецепти и личен профил. Реалното
           създаване на акаунт ще бъде свързано по-късно.
         </p>
-        <Link className="mt-6 inline-flex text-sm font-black text-brand-700 hover:text-brand-900" href="/login">
+        <Link className="mt-6 inline-flex text-base font-black text-brand-700 hover:text-brand-900" href="/login">
           Вече имаш профил? Влез
         </Link>
       </div>
 
       <form className="w-full space-y-5 rounded-[2rem] border border-stone-200 bg-white p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8">
         <div>
-          <label className="text-sm font-black text-stone-800" htmlFor="name">
+          <label className="text-base font-black text-stone-800" htmlFor="name">
             Име
           </label>
           <input
@@ -40,7 +40,7 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label className="text-sm font-black text-stone-800" htmlFor="email">
+          <label className="text-base font-black text-stone-800" htmlFor="email">
             Имейл
           </label>
           <input
@@ -53,7 +53,7 @@ export default function RegisterPage() {
         </div>
 
         <div>
-          <label className="text-sm font-black text-stone-800" htmlFor="password">
+          <label className="text-base font-black text-stone-800" htmlFor="password">
             Парола
           </label>
           <input
@@ -66,13 +66,13 @@ export default function RegisterPage() {
         </div>
 
         <button
-          className="w-full rounded-full bg-brand-600 px-5 py-3 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+          className="w-full rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
           type="button"
         >
           Регистрация
         </button>
 
-        <p className="info-note rounded-2xl px-4 py-3 text-sm leading-6">
+        <p className="info-note rounded-2xl px-4 py-3 text-base leading-7">
           Регистрацията ще бъде активна скоро, за да пазиш любимите си рецепти на едно място.
         </p>
       </form>

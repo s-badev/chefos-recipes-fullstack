@@ -27,15 +27,15 @@ export default function FavoritesPage() {
         </div>
 
         <div className="info-card rounded-[1.7rem] p-5">
-          <p className="text-sm font-black text-brand-800">Скоро в профила</p>
-          <p className="mt-2 text-[15px] leading-7 text-stone-600">
+          <p className="text-base font-black text-brand-800">Скоро в профила</p>
+          <p className="mt-2 text-base leading-7 text-stone-600">
             Любимите ще се пазят в твоето лично пространство.
           </p>
         </div>
       </div>
 
       <Link
-        className="inline-flex rounded-full bg-brand-600 px-6 py-3 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+        className="inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
         href="/catalog"
       >
         Разгледай каталога

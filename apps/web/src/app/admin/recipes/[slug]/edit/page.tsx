@@ -38,7 +38,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
           Няма рецепта с този адрес. Върни се към админ панела и избери рецепта от списъка.
         </p>
         <Link
-          className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
+          className="mt-6 inline-flex rounded-full bg-brand-600 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-brand-700"
           href="/admin"
         >
           Обратно към админ панела
@@ -60,14 +60,14 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             съдържанието.
           </p>
         </div>
-        <Link className="text-sm font-bold text-brand-700 hover:text-brand-900" href="/admin">
+        <Link className="text-base font-bold text-brand-700 hover:text-brand-900" href="/admin">
           Обратно към админ панела
         </Link>
       </div>
 
       <form className="grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm lg:grid-cols-2">
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="title">
+          <label className="text-base font-bold text-stone-800" htmlFor="title">
             Заглавие
           </label>
           <input
@@ -80,7 +80,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="category">
+          <label className="text-base font-bold text-stone-800" htmlFor="category">
             Категория
           </label>
           <input
@@ -93,7 +93,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
 
         <div className="lg:col-span-2">
-          <label className="text-sm font-bold text-stone-800" htmlFor="description">
+          <label className="text-base font-bold text-stone-800" htmlFor="description">
             Описание
           </label>
           <textarea
@@ -105,7 +105,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="prepTime">
+          <label className="text-base font-bold text-stone-800" htmlFor="prepTime">
             Време за подготовка
           </label>
           <input
@@ -118,7 +118,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="cookTime">
+          <label className="text-base font-bold text-stone-800" htmlFor="cookTime">
             Време за готвене
           </label>
           <input
@@ -131,7 +131,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
 
         <div>
-          <label className="text-sm font-bold text-stone-800" htmlFor="servings">
+          <label className="text-base font-bold text-stone-800" htmlFor="servings">
             Порции
           </label>
           <input
@@ -145,7 +145,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
 
         <div className="flex items-end">
           <button
-            className="w-full rounded-full bg-brand-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition hover:bg-brand-700"
+            className="w-full rounded-full bg-brand-600 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-brand-700"
             type="button"
           >
             Запази промените
@@ -153,7 +153,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </div>
       </form>
 
-      <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-sm leading-6 text-stone-600 shadow-sm">
+      <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-base leading-7 text-stone-600 shadow-sm">
         Формата показва как ще изглежда редакцията. Скоро промените ще могат да се запазват от
         админ зоната.
       </p>

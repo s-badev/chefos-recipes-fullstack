@@ -62,7 +62,7 @@ export function RecipeCatalog() {
         </div>
 
         <div className="rounded-[1.7rem] border border-stone-200 bg-[#fffaf3] p-5 shadow-sm">
-          <label className="text-sm font-black text-stone-800" htmlFor="recipe-search">
+          <label className="text-base font-black text-stone-800" htmlFor="recipe-search">
             Търсене
           </label>
           <input
@@ -84,7 +84,7 @@ export function RecipeCatalog() {
             </p>
             <h2 className="mt-1 text-2xl font-bold text-stone-950">Избери категория</h2>
           </div>
-          <p className="text-sm font-bold text-stone-500">
+          <p className="text-base font-bold text-stone-500">
             {filteredRecipes.length} намерени рецепти
           </p>
         </div>
@@ -96,7 +96,7 @@ export function RecipeCatalog() {
             return (
               <button
                 className={[
-                  "rounded-full border px-5 py-2.5 text-sm font-black transition",
+                  "rounded-full border px-5 py-2.5 text-base font-black transition",
                   isSelected
                     ? "border-brand-600 bg-brand-600 text-white shadow-sm shadow-brand-900/20"
                     : "border-stone-200 bg-white/86 text-stone-700 hover:border-brand-300 hover:text-brand-800"
@@ -122,18 +122,18 @@ export function RecipeCatalog() {
 
           <div className="flex flex-col gap-3 rounded-[1.7rem] border border-stone-200 bg-white/84 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-sm font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage <= 1}
               onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
               type="button"
             >
               Предишна
             </button>
-            <p className="text-center text-sm font-black text-stone-700">
+            <p className="text-center text-base font-black text-stone-700">
               Страница {currentPage} от {totalPages}
             </p>
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-sm font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
               type="button"
