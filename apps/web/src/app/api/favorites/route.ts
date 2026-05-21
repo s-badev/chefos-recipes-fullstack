@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
+import { getCurrentUser } from "../../../server/auth/session";
 import { listFavoriteRecipes } from "../../../server/recipes/service";
 
-export function GET() {
+export async function GET() {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Необходим е вход." }, { status: 401 });
+  }
+
   const favoriteRecipes = listFavoriteRecipes();
 
   return NextResponse.json({

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { recipes } from "../catalog/recipes";
+import { requireAdmin } from "../../server/auth/session";
+import { deleteRecipeAction } from "../../server/recipes/admin-actions";
 
 export const metadata: Metadata = {
   title: "Админ панел | Chefo's Recipes",
@@ -25,11 +27,13 @@ const stats = [
   }
 ];
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  await requireAdmin();
+
   return (
     <section className="page-shell space-y-10">
-      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.42fr)] lg:items-end">
-        <div>
+      <div className="rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8">
+        <div className="max-w-4xl">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
           </p>
@@ -41,12 +45,6 @@ export default function AdminPage() {
           </p>
         </div>
 
-        <div className="info-card rounded-[1.7rem] p-5">
-          <p className="text-base font-black text-brand-800">Подготовка за управление</p>
-          <p className="mt-2 text-base leading-7 text-stone-600">
-            Админ зоната ще помага за добавяне, редакция и подреждане на рецепти.
-          </p>
-        </div>
       </div>
 
       <div className="flex flex-wrap gap-3">
@@ -115,12 +113,15 @@ export default function AdminPage() {
                 >
                   Редактирай
                 </Link>
-                <button
-                  className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-base font-black text-red-700 transition hover:border-red-300 hover:bg-red-100"
-                  type="button"
-                >
-                  Изтрий
-                </button>
+                <form action={deleteRecipeAction}>
+                  <input name="slug" type="hidden" value={recipe.slug} />
+                  <button
+                    className="rounded-full border border-red-200 bg-red-50 px-4 py-2 text-base font-black text-red-700 transition hover:border-red-300 hover:bg-red-100"
+                    type="submit"
+                  >
+                    Изтрий
+                  </button>
+                </form>
               </div>
             </div>
           ))}

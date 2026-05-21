@@ -1,5 +1,6 @@
 import {
   categories as categoriesTable,
+  favorites as favoritesTable,
   getDb,
   recipeSteps as recipeStepsTable,
   recipeTags as recipeTagsTable,
@@ -43,6 +44,18 @@ type RecipeListRow = {
   difficulty: string;
   category: string;
 };
+
+export type RecipeMutationInput = {
+  title: string;
+  category: string;
+  description: string;
+  prepTimeMinutes: number;
+  cookTimeMinutes: number;
+  servings: number;
+  difficulty: "easy" | "medium" | "hard";
+};
+
+const FALLBACK_ADMIN_EMAIL = "admin@example.com";
 
 function formatDifficulty(difficulty: string) {
   switch (difficulty) {
@@ -238,4 +251,163 @@ export async function getAdminSummary(): Promise<AdminRecipeSummary> {
     totalTags: Number(tagRows[0]?.value ?? 0),
     totalUsers: Number(userRows[0]?.value ?? 0)
   };
+}
+
+function slugify(value: string) {
+  const slug = value
+    .trim()
+    .toLocaleLowerCase("bg-BG")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9а-я]+/gi, "-")
+    .replace(/^-+|-+$/g, "");
+
+  return slug || `recipe-${Date.now()}`;
+}
+
+function validateRecipeInput(input: RecipeMutationInput) {
+  if (!input.title || !input.category || !input.description) {
+    throw new Error("Recipe title, category, and description are required.");
+  }
+}
+
+async function findOrCreateCategoryId(categoryName: string) {
+  const db = getDb();
+  const categorySlug = slugify(categoryName);
+  const existingCategory = await db
+    .select({ id: categoriesTable.id })
+    .from(categoriesTable)
+    .where(eq(categoriesTable.slug, categorySlug))
+    .limit(1);
+
+  if (existingCategory[0]) {
+    return existingCategory[0].id;
+  }
+
+  const insertedCategory = await db
+    .insert(categoriesTable)
+    .values({
+      name: categoryName,
+      slug: categorySlug
+    })
+    .returning({ id: categoriesTable.id });
+
+  return insertedCategory[0].id;
+}
+
+async function findAuthorId(authorEmail: string) {
+  const db = getDb();
+  const authorRows = await db
+    .select({ id: usersTable.id })
+    .from(usersTable)
+    .where(eq(usersTable.email, authorEmail))
+    .limit(1);
+
+  if (authorRows[0]) {
+    return authorRows[0].id;
+  }
+
+  const fallbackRows = await db
+    .select({ id: usersTable.id })
+    .from(usersTable)
+    .where(eq(usersTable.email, FALLBACK_ADMIN_EMAIL))
+    .limit(1);
+
+  if (fallbackRows[0]) {
+    return fallbackRows[0].id;
+  }
+
+  throw new Error("Admin author is not available.");
+}
+
+async function createUniqueRecipeSlug(title: string, currentSlug?: string) {
+  const db = getDb();
+  const baseSlug = slugify(title);
+
+  for (let index = 0; index < 20; index += 1) {
+    const candidate = index === 0 ? baseSlug : `${baseSlug}-${index + 1}`;
+    const existingRows = await db
+      .select({ slug: recipesTable.slug })
+      .from(recipesTable)
+      .where(eq(recipesTable.slug, candidate))
+      .limit(1);
+
+    if (!existingRows[0] || existingRows[0].slug === currentSlug) {
+      return candidate;
+    }
+  }
+
+  return `${baseSlug}-${Date.now()}`;
+}
+
+export async function createRecipeRecord(input: RecipeMutationInput, authorEmail: string) {
+  validateRecipeInput(input);
+
+  const db = getDb();
+  const [categoryId, authorId, slug] = await Promise.all([
+    findOrCreateCategoryId(input.category),
+    findAuthorId(authorEmail),
+    createUniqueRecipeSlug(input.title)
+  ]);
+
+  const insertedRows = await db
+    .insert(recipesTable)
+    .values({
+      title: input.title,
+      slug,
+      description: input.description,
+      prepTimeMinutes: input.prepTimeMinutes,
+      cookTimeMinutes: input.cookTimeMinutes,
+      servings: input.servings,
+      difficulty: input.difficulty,
+      categoryId,
+      authorId
+    })
+    .returning({ slug: recipesTable.slug });
+
+  return insertedRows[0];
+}
+
+export async function updateRecipeRecordBySlug(slug: string, input: RecipeMutationInput) {
+  validateRecipeInput(input);
+
+  const db = getDb();
+  const categoryId = await findOrCreateCategoryId(input.category);
+  const nextSlug = await createUniqueRecipeSlug(input.title, slug);
+  const updatedRows = await db
+    .update(recipesTable)
+    .set({
+      title: input.title,
+      slug: nextSlug,
+      description: input.description,
+      prepTimeMinutes: input.prepTimeMinutes,
+      cookTimeMinutes: input.cookTimeMinutes,
+      servings: input.servings,
+      difficulty: input.difficulty,
+      categoryId,
+      updatedAt: new Date()
+    })
+    .where(eq(recipesTable.slug, slug))
+    .returning({ slug: recipesTable.slug });
+
+  return updatedRows[0];
+}
+
+export async function deleteRecipeRecordBySlug(slug: string) {
+  const db = getDb();
+  const recipeRows = await db
+    .select({ id: recipesTable.id })
+    .from(recipesTable)
+    .where(eq(recipesTable.slug, slug))
+    .limit(1);
+  const recipe = recipeRows[0];
+
+  if (!recipe) {
+    return;
+  }
+
+  await db.delete(favoritesTable).where(eq(favoritesTable.recipeId, recipe.id));
+  await db.delete(recipeTagsTable).where(eq(recipeTagsTable.recipeId, recipe.id));
+  await db.delete(recipeStepsTable).where(eq(recipeStepsTable.recipeId, recipe.id));
+  await db.delete(recipesTable).where(eq(recipesTable.id, recipe.id));
 }

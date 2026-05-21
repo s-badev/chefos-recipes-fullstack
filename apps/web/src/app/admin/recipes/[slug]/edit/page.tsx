@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { findRecipeBySlug, recipes } from "../../../../catalog/recipes";
+import { requireAdmin } from "../../../../../server/auth/session";
+import { updateRecipeAction } from "../../../../../server/recipes/admin-actions";
 
 type EditRecipePageProps = {
   params: Promise<{
@@ -24,6 +26,8 @@ export async function generateMetadata({ params }: EditRecipePageProps): Promise
 }
 
 export default async function EditRecipePage({ params }: EditRecipePageProps) {
+  await requireAdmin();
+
   const { slug } = await params;
   const recipe = findRecipeBySlug(slug);
 
@@ -65,7 +69,8 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         </Link>
       </div>
 
-      <form className="grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm lg:grid-cols-2">
+      <form action={updateRecipeAction} className="grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm lg:grid-cols-2">
+        <input name="slug" type="hidden" value={recipe.slug} />
         <div>
           <label className="text-base font-bold text-stone-800" htmlFor="title">
             Заглавие
@@ -75,6 +80,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             defaultValue={recipe.title}
             id="title"
             name="title"
+            required
             type="text"
           />
         </div>
@@ -88,6 +94,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             defaultValue={recipe.category}
             id="category"
             name="category"
+            required
             type="text"
           />
         </div>
@@ -101,6 +108,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             defaultValue={recipe.description}
             id="description"
             name="description"
+            required
           />
         </div>
 
@@ -146,7 +154,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
         <div className="flex items-end">
           <button
             className="w-full rounded-full bg-brand-600 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-brand-700"
-            type="button"
+            type="submit"
           >
             Запази промените
           </button>

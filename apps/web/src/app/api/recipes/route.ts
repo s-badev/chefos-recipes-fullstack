@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { listRecipes } from "../../../server/recipes/service";
+import { getCurrentUser } from "../../../server/auth/session";
+import { createRecipe, listRecipes } from "../../../server/recipes/service";
 
 function parseOptionalNumber(value: string | null) {
   if (!value) {
@@ -41,6 +42,49 @@ export async function GET(request: Request) {
       {
         error: "Рецептите не могат да бъдат заредени в момента"
       },
+      { status: 500 }
+    );
+  }
+}
+
+async function getRecipeMutationFormData(request: Request) {
+  const contentType = request.headers.get("content-type") ?? "";
+
+  if (!contentType.includes("application/json")) {
+    return request.formData();
+  }
+
+  const body = await request.json();
+  const formData = new FormData();
+
+  for (const [key, value] of Object.entries(body)) {
+    if (value !== undefined && value !== null) {
+      formData.set(key, String(value));
+    }
+  }
+
+  return formData;
+}
+
+export async function POST(request: Request) {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Необходим е вход." }, { status: 401 });
+  }
+
+  if (user.role !== "admin") {
+    return NextResponse.json({ error: "Нямаш достъп до тази страница." }, { status: 403 });
+  }
+
+  try {
+    const formData = await getRecipeMutationFormData(request);
+    const recipe = await createRecipe(formData, user.email);
+
+    return NextResponse.json({ data: recipe }, { status: 201 });
+  } catch {
+    return NextResponse.json(
+      { error: "Рецептата не може да бъде създадена в момента." },
       { status: 500 }
     );
   }

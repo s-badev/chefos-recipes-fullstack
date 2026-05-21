@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { RecipeCard } from "../recipe-card";
 import { recipes } from "../catalog/recipes";
+import { requireUser } from "../../server/auth/session";
 
 export const metadata: Metadata = {
   title: "Любими рецепти | Chefo's Recipes",
@@ -10,7 +11,9 @@ export const metadata: Metadata = {
 
 const sampleFavorites = recipes.slice(0, 3);
 
-export default function FavoritesPage() {
+export default async function FavoritesPage() {
+  await requireUser();
+
   return (
     <section className="page-shell space-y-10">
       <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.42fr)] lg:items-end">

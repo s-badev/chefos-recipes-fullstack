@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { requireUser } from "../../server/auth/session";
 
 export const metadata: Metadata = {
   title: "Профил | Chefo's Recipes",
@@ -12,7 +13,9 @@ const summary = [
   { label: "Статус", value: "Примерен" }
 ];
 
-export default function ProfilePage() {
+export default async function ProfilePage() {
+  await requireUser();
+
   return (
     <section className="page-shell space-y-10">
       <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.42fr)] lg:items-end">

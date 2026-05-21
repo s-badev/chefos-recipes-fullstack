@@ -1,12 +1,16 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { requireAdmin } from "../../../../server/auth/session";
+import { createRecipeAction } from "../../../../server/recipes/admin-actions";
 
 export const metadata: Metadata = {
   title: "Нова рецепта | Chefo's Recipes",
   description: "Форма за добавяне на рецепта."
 };
 
-export default function NewRecipePage() {
+export default async function NewRecipePage() {
+  await requireAdmin();
+
   return (
     <section className="space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -25,7 +29,7 @@ export default function NewRecipePage() {
         </Link>
       </div>
 
-      <form className="grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm lg:grid-cols-2">
+      <form action={createRecipeAction} className="grid gap-5 rounded-3xl border border-stone-200 bg-white p-6 shadow-sm lg:grid-cols-2">
         <div>
           <label className="text-base font-bold text-stone-800" htmlFor="title">
             Заглавие
@@ -35,6 +39,7 @@ export default function NewRecipePage() {
             id="title"
             name="title"
             placeholder="Например: Домашна мусака"
+            required
             type="text"
           />
         </div>
@@ -48,6 +53,7 @@ export default function NewRecipePage() {
             id="category"
             name="category"
             placeholder="Основни"
+            required
             type="text"
           />
         </div>
@@ -61,6 +67,7 @@ export default function NewRecipePage() {
             id="description"
             name="description"
             placeholder="Кратко описание на рецептата"
+            required
           />
         </div>
 
@@ -106,7 +113,7 @@ export default function NewRecipePage() {
         <div className="flex items-end">
           <button
             className="w-full rounded-full bg-brand-600 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-brand-700"
-            type="button"
+            type="submit"
           >
             Запази чернова
           </button>

@@ -1,9 +1,12 @@
 import {
+  createRecipeRecord,
+  deleteRecipeRecordBySlug,
   findCategories,
   findFavoriteRecipes,
   findRecipeBySlug,
   findRecipes,
-  getAdminSummary
+  getAdminSummary,
+  updateRecipeRecordBySlug
 } from "./repository";
 
 export type PaginationParams = {
@@ -61,4 +64,28 @@ export function listFavoriteRecipes() {
 
 export function getAdminRecipeSummary() {
   return getAdminSummary();
+}
+
+export function createRecipe(formData: FormData, authorEmail: string) {
+  return createRecipeRecord(parseRecipeFormData(formData), authorEmail);
+}
+
+export function updateRecipeBySlug(slug: string, formData: FormData) {
+  return updateRecipeRecordBySlug(slug, parseRecipeFormData(formData));
+}
+
+export function deleteRecipeBySlug(slug: string) {
+  return deleteRecipeRecordBySlug(slug);
+}
+
+function parseRecipeFormData(formData: FormData) {
+  return {
+    title: String(formData.get("title") ?? "").trim(),
+    category: String(formData.get("category") ?? "").trim(),
+    description: String(formData.get("description") ?? "").trim(),
+    prepTimeMinutes: normalizePositiveInteger(Number(formData.get("prepTime")), 0),
+    cookTimeMinutes: normalizePositiveInteger(Number(formData.get("cookTime")), 0),
+    servings: normalizePositiveInteger(Number(formData.get("servings")), 1),
+    difficulty: "medium" as const
+  };
 }
