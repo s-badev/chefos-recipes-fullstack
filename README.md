@@ -58,23 +58,23 @@ The following demo accounts are available for testing. No registration is requir
 
 ```mermaid
 flowchart TD
-    A[Visitor opens Chefo's Recipes] --> B[Browse public homepage]
-    B --> C[Open recipe catalog]
-    C --> D[Open recipe details]
-    D --> E{Login?}
+    A["Visitor opens Chefo's Recipes"] --> B["Browse public homepage"]
+    B --> C["Open recipe catalog"]
+    C --> D["Open recipe details"]
+    D --> E{"Login?"}
 
-    E -->|No| F[Continue as guest]
-    E -->|User login| G[User features]
-    E -->|Admin login| H[Admin panel]
+    E -->|No| F["Continue as guest"]
+    E -->|User login| G["User features"]
+    E -->|Admin login| H["Admin panel"]
 
-    G --> I[View favorites and profile]
-    G --> J[Admin link hidden]
-    G --> K[/admin access denied]
+    G --> I["View favorites and profile"]
+    G --> J["Admin link hidden"]
+    G --> K["/admin access denied"]
 
-    H --> L[Admin dashboard]
-    H --> M[Add recipe]
-    H --> N[Edit recipe]
-    H --> O[Delete recipe]
+    H --> L["Admin dashboard"]
+    H --> M["Add recipe"]
+    H --> N["Edit recipe"]
+    H --> O["Delete recipe"]
 ```
 
 ---
