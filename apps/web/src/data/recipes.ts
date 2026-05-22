@@ -168,7 +168,7 @@ export const recipes: Recipe[] = [
     servings: 6,
     difficulty: "Средна",
     category: "Основни",
-    tags: ["Вегетарианско", "С печене", "Семейно"],
+    tags: ["Вегетарианско", "С печене"],
     ingredients: [
       "6 чушки",
       "200 г ориз",

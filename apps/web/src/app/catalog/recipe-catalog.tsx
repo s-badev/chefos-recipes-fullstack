@@ -55,7 +55,7 @@ export function RecipeCatalog() {
           <h1 className="mt-2 text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
             Каталог с рецепти
           </h1>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-stone-600">
+          <p className="mt-4 max-w-3xl text-lg font-medium leading-8 text-[#4a2a17]">
             Разгледай подбраните рецепти, филтрирай по категория и намери нещо подходящо за
             днешното готвене.
           </p>

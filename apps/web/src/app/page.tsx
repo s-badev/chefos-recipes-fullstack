@@ -140,8 +140,8 @@ export default function HomePage() {
             <div className="absolute left-4 top-4 rounded-full bg-[#fff8ee]/95 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#3a2417] shadow-[0_8px_22px_rgba(28,18,8,0.18)] ring-1 ring-white/70 backdrop-blur-md sm:left-6 sm:top-6 sm:text-sm">
               Препоръчано днес
             </div>
-            <div className="absolute bottom-4 left-4 right-4 rounded-[1.8rem] border border-white/60 bg-[#fff7ec]/88 p-5 shadow-[0_18px_48px_rgba(42,25,10,0.2)] backdrop-blur-lg sm:bottom-6 sm:left-6 sm:right-6 sm:p-6">
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
+            <div className="absolute bottom-4 left-4 right-4 rounded-[1.8rem] border border-white/70 bg-[#fff8ee]/95 p-5 shadow-[0_18px_45px_rgba(60,35,20,0.16)] sm:bottom-6 sm:left-6 sm:right-6 sm:p-6">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-[#b45309]">
                 Идея за довечера
               </p>
               <p className="mt-2 text-3xl font-bold leading-tight text-[#3a2417] sm:text-4xl">
@@ -225,7 +225,7 @@ export default function HomePage() {
           <h2 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-5xl">
             Разглеждай, избирай и готви по-лесно
           </h2>
-          <p className="mt-4 text-base leading-8 text-stone-600">
+          <p className="mt-4 text-base font-medium leading-8 text-[#4a2a17]">
             Chefo&apos;s Recipes подрежда най-важното за всяка рецепта - категория, време,
             продукти, стъпки и любими идеи, за да стигаш по-бързо до добър избор.
           </p>
@@ -249,7 +249,7 @@ export default function HomePage() {
                 </span>
                 <h3 className="pt-1 text-xl font-bold leading-tight text-stone-950">{item.title}</h3>
               </div>
-              <p className="mt-2 text-base leading-7 text-stone-600">{item.description}</p>
+              <p className="mt-2 text-base font-medium leading-7 text-[#4a2a17]">{item.description}</p>
             </article>
           ))}
         </div>

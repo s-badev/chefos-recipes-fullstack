@@ -98,7 +98,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           <h1 className="text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
             {recipe.title}
           </h1>
-          <p className="max-w-3xl text-lg leading-8 text-stone-600">{recipe.description}</p>
+          <p className="max-w-3xl text-lg font-medium leading-8 text-[#4a2a17]">{recipe.description}</p>
           <div className="flex flex-wrap gap-2">
             {recipe.tags.map((tag) => (
               <span
@@ -134,51 +134,93 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
-        <div className="editorial-card rounded-[1.8rem] p-6">
-          <h2 className="text-3xl font-bold text-stone-950">Детайли</h2>
-          <div className="mt-5 grid grid-cols-2 gap-4">
-            {[
-              { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
-              { label: "Готвене", value: `${recipe.cookTimeMinutes} мин` },
-              { label: "Порции", value: recipe.servings },
-              { label: "Трудност", value: recipe.difficulty }
-            ].map((item) => (
-              <div className="rounded-2xl bg-[#fff7ec] p-4" key={item.label}>
-                <p className="text-sm font-black uppercase tracking-[0.12em] text-stone-500">
-                  {item.label}
-                </p>
-                <p className="mt-1 text-xl font-bold text-stone-950">{item.value}</p>
-              </div>
-            ))}
+      <section className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:items-start xl:gap-8">
+        <aside className="order-1 lg:col-start-2 lg:row-start-1">
+          <div className="editorial-card rounded-[1.8rem] p-6">
+            <h2 className="text-3xl font-bold text-stone-950">Детайли</h2>
+            <div className="mt-5 grid grid-cols-2 gap-4">
+              {[
+                { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
+                { label: "Готвене", value: `${recipe.cookTimeMinutes} мин` },
+                { label: "Порции", value: recipe.servings },
+                { label: "Трудност", value: recipe.difficulty }
+              ].map((item) => (
+                <div className="rounded-2xl bg-[#fff7ec] p-4" key={item.label}>
+                  <p className="text-sm font-black uppercase tracking-[0.12em] text-stone-500">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 text-xl font-bold text-stone-950">{item.value}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        </aside>
 
-        <div className="editorial-card rounded-[1.8rem] p-6">
+        <aside className="order-4 lg:col-start-2 lg:row-start-2">
+          <div className="editorial-card rounded-[1.8rem] p-6">
+            <h2 className="text-3xl font-bold text-stone-950">Бързи действия</h2>
+            <div className="mt-5 grid gap-3">
+              <Link
+                className="flex items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
+                href="/catalog"
+              >
+                <span>Виж каталога</span>
+                <span aria-hidden="true" className="text-brand-700">
+                  →
+                </span>
+              </Link>
+              <button
+                className="flex cursor-not-allowed items-center justify-between rounded-2xl border border-stone-200 bg-[#fff8ee]/75 px-4 py-3 text-left text-base font-bold text-stone-500"
+                disabled
+                type="button"
+              >
+                <span>Запази в любими</span>
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-brand-700">
+                  скоро
+                </span>
+              </button>
+              <button
+                className="flex cursor-not-allowed items-center justify-between rounded-2xl border border-stone-200 bg-[#fff8ee]/75 px-4 py-3 text-left text-base font-bold text-stone-500"
+                disabled
+                type="button"
+              >
+                <span>Принтирай рецепта</span>
+                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-brand-700">
+                  скоро
+                </span>
+              </button>
+            </div>
+          </div>
+        </aside>
+
+        <section className="editorial-card order-2 rounded-[1.8rem] p-6 lg:col-start-1 lg:row-start-1">
           <h2 className="text-3xl font-bold text-stone-950">Продукти</h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {recipe.ingredients.map((ingredient) => (
-              <li className="flex gap-3 text-base leading-7 text-stone-700" key={ingredient}>
-                <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-500" />
+              <li
+                className="flex items-center gap-3 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-[0.98rem] font-medium leading-6 text-[#4a2a17]"
+                key={ingredient}
+              >
+                <span className="h-2 w-2 shrink-0 rounded-full bg-brand-500" />
                 <span>{ingredient}</span>
               </li>
             ))}
           </ul>
-        </div>
-      </section>
+        </section>
 
-      <section className="editorial-card rounded-[1.8rem] p-6">
-        <h2 className="text-3xl font-bold text-stone-950">Начин на приготвяне</h2>
-        <ol className="mt-6 grid gap-4">
-          {recipe.steps.map((step, index) => (
-            <li className="flex gap-4 text-base leading-7 text-stone-700" key={step}>
-              <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-600 text-base font-black text-white">
-                {index + 1}
-              </span>
-              <span className="pt-1">{step}</span>
-            </li>
-          ))}
-        </ol>
+        <section className="editorial-card order-3 w-full rounded-[1.8rem] p-6 sm:p-8 lg:col-start-1 lg:row-start-2">
+          <h2 className="text-3xl font-bold text-stone-950">Начин на приготвяне</h2>
+          <ol className="mt-6 grid gap-5">
+            {recipe.steps.map((step, index) => (
+              <li className="flex gap-4 text-base font-medium leading-7 text-[#4a2a17]" key={step}>
+                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-600 text-base font-black text-white">
+                  {index + 1}
+                </span>
+                <span className="pt-1">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </section>
       </section>
     </article>
   );
