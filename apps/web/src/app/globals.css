@@ -9,6 +9,8 @@
 }
 
 body {
+  position: relative;
+  overflow-x: hidden;
   font-family: var(--font-sans);
   font-size: 16px;
   line-height: 1.65;
@@ -18,10 +20,44 @@ body {
     linear-gradient(180deg, #fffaf3 0%, #fff6ec 48%, #fffaf3 100%);
 }
 
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::before {
+  background-image: url("/images/backgrounds/blurred-food-bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.18;
+}
+
+body::after {
+  background:
+    linear-gradient(90deg, transparent 0, transparent max(0px, calc((100vw - 1600px) / 2)), rgba(255, 250, 243, 0.92) max(0px, calc((100vw - 1600px) / 2)), rgba(255, 246, 236, 0.92) calc(100vw - max(0px, calc((100vw - 1600px) / 2))), transparent calc(100vw - max(0px, calc((100vw - 1600px) / 2))), transparent 100%);
+}
+
+body > div {
+  position: relative;
+  z-index: 1;
+}
+
 h1,
 h2,
 h3 {
   font-family: var(--font-display);
+}
+
+@media (max-width: 1279px) {
+  body::before,
+  body::after {
+    display: none;
+  }
 }
 
 @layer components {
