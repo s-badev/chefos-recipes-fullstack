@@ -80,7 +80,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
   const greetingName = currentUser ? getGreetingName(currentUser) : undefined;
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-stone-200/80 bg-[#fffaf3]/92 shadow-sm shadow-stone-900/[0.03] backdrop-blur-xl">
+    <header className="sticky top-0 z-40 w-full border-b border-[#502d19]/[0.12] bg-[#fff8ee]/95 shadow-[0_8px_30px_rgba(60,35,20,0.08)] backdrop-blur-xl">
       <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="flex min-h-[82px] w-full items-center justify-between gap-6">
           <Link
@@ -116,7 +116,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
           </Link>
 
           <div className="hidden items-center justify-end gap-3 lg:flex">
-            <nav className="flex items-center justify-end gap-1 rounded-full border border-stone-200 bg-white/72 p-1 text-base font-bold text-stone-700 shadow-sm">
+            <nav className="flex items-center justify-end gap-1 rounded-full border border-[#502d19]/[0.12] bg-white/95 p-1 text-base font-bold text-[#3a2417] shadow-sm">
               {navigationItems.map((item) => {
                 const isActive = isActivePath(pathname, item.href);
 
@@ -125,8 +125,8 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
                     className={[
                       "rounded-full px-4 py-2 transition",
                       isActive
-                        ? "bg-brand-50 text-brand-800 shadow-sm"
-                        : "hover:bg-white hover:text-brand-700"
+                        ? "bg-brand-100 text-brand-900 shadow-sm"
+                        : "hover:bg-[#fff8ee] hover:text-brand-800"
                     ].join(" ")}
                     href={item.href}
                     key={item.href}
@@ -139,7 +139,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
             {currentUser ? (
               <div className="flex items-center gap-3">
-                <p className="rounded-full border border-stone-200 bg-white/68 px-4 py-2 text-base font-bold text-stone-700 shadow-sm">
+                <p className="rounded-full border border-[#502d19]/[0.12] bg-white/95 px-4 py-2 text-base font-bold text-[#3a2417] shadow-sm">
                   Здравей, {greetingName}
                 </p>
                 <form action={logoutAction}>
@@ -169,7 +169,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
           <button
             aria-expanded={isMenuOpen}
             aria-label={isMenuOpen ? "Затвори менюто" : "Отвори менюто"}
-            className="inline-grid h-12 w-12 place-items-center rounded-2xl border border-stone-200 bg-white text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-700 lg:hidden"
+            className="inline-grid h-12 w-12 place-items-center rounded-2xl border border-[#502d19]/[0.12] bg-white/95 text-[#3a2417] shadow-sm transition hover:border-brand-300 hover:text-brand-700 lg:hidden"
             onClick={() => setIsMenuOpen((current) => !current)}
             type="button"
           >
@@ -197,7 +197,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
         </div>
 
         {isMenuOpen ? (
-          <nav className="grid gap-2 border-t border-stone-200 py-4 text-base font-bold text-stone-700 lg:hidden">
+          <nav className="grid gap-2 border-t border-[#502d19]/[0.12] bg-[#fff8ee]/95 py-4 text-base font-bold text-[#3a2417] lg:hidden">
             {navigationItems.map((item) => {
               const isActive = isActivePath(pathname, item.href);
 
@@ -206,8 +206,8 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
                   className={[
                     "rounded-2xl px-4 py-3 transition",
                     isActive
-                      ? "bg-brand-50 text-brand-800"
-                      : "bg-white/82 hover:bg-white hover:text-brand-700"
+                      ? "bg-brand-100 text-brand-900"
+                      : "bg-white/95 hover:bg-white hover:text-brand-800"
                   ].join(" ")}
                   href={item.href}
                   key={item.href}
@@ -220,7 +220,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
             {currentUser ? (
               <>
-                <p className="rounded-2xl border border-stone-200 bg-white/82 px-4 py-3 font-black text-stone-700">
+                <p className="rounded-2xl border border-[#502d19]/[0.12] bg-white/95 px-4 py-3 font-black text-[#3a2417]">
                   Здравей, {greetingName}
                 </p>
                 <form action={logoutAction}>

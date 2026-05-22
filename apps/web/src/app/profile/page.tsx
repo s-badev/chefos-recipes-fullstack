@@ -18,25 +18,16 @@ export default async function ProfilePage() {
 
   return (
     <section className="page-shell space-y-10">
-      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.42fr)] lg:items-end">
-        <div>
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Потребителски профил
-          </p>
-          <h1 className="mt-2 text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
-            Моят профил
-          </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-stone-600">
-            Тук ще се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.
-          </p>
-        </div>
-
-        <div className="info-card rounded-[1.7rem] p-5">
-          <p className="text-base font-black text-brand-800">Статус на акаунта</p>
-          <p className="mt-2 text-base leading-7 text-stone-600">
-            Личното пространство ще бъде достъпно скоро.
-          </p>
-        </div>
+      <div className="rounded-[2rem] border border-stone-200 bg-white/70 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8">
+        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
+          Потребителски профил
+        </p>
+        <h1 className="mt-2 text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
+          Моят профил
+        </h1>
+        <p className="mt-4 max-w-2xl text-lg leading-8 text-stone-600">
+          Тук ще се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.
+        </p>
       </div>
 
       <div className="grid gap-5 md:grid-cols-3 xl:gap-8">

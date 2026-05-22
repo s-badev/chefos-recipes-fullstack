@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { findRecipeBySlug, recipes } from "../recipes";
 
@@ -84,7 +85,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         Обратно към каталога
       </Link>
 
-      <section className="grid gap-8 rounded-[2.2rem] border border-stone-200 bg-white/72 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.7fr)] lg:items-stretch xl:p-10">
+      <section className="grid gap-8 rounded-[2.2rem] border border-stone-200 bg-white/72 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(380px,0.42fr)] lg:items-center xl:p-10">
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-800">
@@ -111,11 +112,25 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         </div>
 
         <div className="overflow-hidden rounded-[1.9rem] border border-white/70 bg-white shadow-sm">
-          <div
-            aria-label={`Илюстрация за ${recipe.title}`}
-            className={["recipe-photo min-h-[280px] lg:min-h-full", getVisualClass(recipe.category)].join(" ")}
-            role="img"
-          />
+          {recipe.imageSrc ? (
+            <div className="relative h-[320px] overflow-hidden bg-stone-100 sm:h-[380px] lg:h-[420px]">
+              <Image
+                alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`}
+                className="object-cover"
+                fill
+                priority
+                sizes="(min-width: 1024px) 35vw, 100vw"
+                src={recipe.imageSrc}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/24" />
+            </div>
+          ) : (
+            <div
+              aria-label={`Снимка на ${recipe.title}`}
+              className={["recipe-photo h-[320px] sm:h-[380px] lg:h-[420px]", getVisualClass(recipe.category)].join(" ")}
+              role="img"
+            />
+          )}
         </div>
       </section>
 

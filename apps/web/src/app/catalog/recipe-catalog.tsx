@@ -46,8 +46,8 @@ export function RecipeCatalog() {
   }, [totalPages]);
 
   return (
-    <section className="page-shell space-y-10">
-      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/72 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.52fr)] lg:items-end xl:p-10">
+    <section className="page-shell space-y-12">
+      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.52fr)] lg:items-end xl:p-10">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
@@ -61,7 +61,7 @@ export function RecipeCatalog() {
           </p>
         </div>
 
-        <div className="rounded-[1.7rem] border border-stone-200 bg-[#fffaf3] p-5 shadow-sm">
+        <div className="rounded-[1.7rem] border border-brand-100 bg-[#fff8ee] p-5 shadow-sm">
           <label className="text-base font-black text-stone-800" htmlFor="recipe-search">
             Търсене
           </label>
@@ -76,7 +76,7 @@ export function RecipeCatalog() {
         </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 rounded-[1.8rem] border border-stone-200 bg-white/72 p-5 shadow-sm">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
@@ -84,7 +84,7 @@ export function RecipeCatalog() {
             </p>
             <h2 className="mt-1 text-2xl font-bold text-stone-950">Избери категория</h2>
           </div>
-          <p className="text-base font-bold text-stone-500">
+          <p className="inline-flex w-fit rounded-full border border-brand-100 bg-[#fff8ee] px-4 py-2 text-[0.98rem] font-bold text-[#3a2417] shadow-sm">
             {filteredRecipes.length} намерени рецепти
           </p>
         </div>
@@ -114,7 +114,7 @@ export function RecipeCatalog() {
 
       {filteredRecipes.length > 0 ? (
         <div className="space-y-7">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          <div className="grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {paginatedRecipes.map((recipe, index) => (
               <RecipeCard key={recipe.slug} recipe={recipe} visualIndex={index} />
             ))}

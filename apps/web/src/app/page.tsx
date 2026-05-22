@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { RecipeCard } from "./recipe-card";
 
@@ -5,6 +6,7 @@ const featuredRecipes = [
   {
     title: "Шопска салата",
     slug: "shopska-salad",
+    imageSrc: "/images/recipes/shopska-salata.png",
     description: "Домати, краставици, печени чушки, магданоз и настъргано бяло сирене.",
     imageAlt: "Свежа шопска салата с настъргано бяло сирене",
     prepTimeMinutes: 20,
@@ -17,6 +19,7 @@ const featuredRecipes = [
   {
     title: "Баница със сирене",
     slug: "banitsa-with-sirene",
+    imageSrc: "/images/recipes/banitsa-sas-sirene.png",
     description: "Фини кори, запечени с яйца, кисело мляко и ароматно бяло сирене.",
     imageAlt: "Златиста баница със сирене, нарязана на парчета",
     prepTimeMinutes: 25,
@@ -29,6 +32,7 @@ const featuredRecipes = [
   {
     title: "Кавърма със свинско",
     slug: "kavarma-pork-stew",
+    imageSrc: "/images/recipes/kavarma-sas-svinsko.png",
     description: "Крехко свинско с чушки, гъби, домати, вино и чубрица.",
     imageAlt: "Домашна свинска кавърма в глинена купа",
     prepTimeMinutes: 25,
@@ -40,24 +44,30 @@ const featuredRecipes = [
   }
 ];
 
-const userActions = [
+const featureItems = [
   {
     accent: "01",
-    title: "Избирай според настроението",
+    title: "Разглеждаш по категория",
     description:
-      "Преглеждай бързи ястия, основни, свежи салати, супи, тестени рецепти и десерти."
+      "Филтрирай рецепти според това дали търсиш салата, супа, основно, тестено ястие или десерт."
   },
   {
     accent: "02",
-    title: "Сравнявай за секунди",
+    title: "Сравняваш време и трудност",
     description:
-      "Виж време за приготвяне, порции, трудност и тагове, за да избереш по-лесно."
+      "Виж подготовка, готвене, порции и ниво още преди да отвориш детайлната страница."
   },
   {
     accent: "03",
-    title: "Готви стъпка по стъпка",
+    title: "Отваряш продукти и стъпки",
     description:
-      "Страниците на рецептите събират продуктите и ясните инструкции на едно място."
+      "Всяка рецепта събира нужните продукти и инструкциите в ясен, спокоен формат."
+  },
+  {
+    accent: "04",
+    title: "Запазваш любими идеи",
+    description:
+      "Връщай се към рецепти, които искаш да приготвиш по-късно, без да ги търсиш отначало."
   }
 ];
 
@@ -117,25 +127,34 @@ export default function HomePage() {
         </div>
 
         <div className="relative">
-          <div className="hero-food-visual min-h-[460px] overflow-hidden rounded-[2.4rem] border border-white/70 shadow-[0_28px_90px_rgba(87,50,20,0.2)] sm:min-h-[540px]">
-            <div className="absolute left-6 top-6 rounded-full border border-white/55 bg-white/86 px-4 py-2 text-sm font-black uppercase tracking-[0.18em] text-brand-800 shadow-sm backdrop-blur">
+          <div className="hero-food-visual min-h-[320px] overflow-hidden rounded-[2.4rem] border border-white/70 shadow-[0_28px_90px_rgba(87,50,20,0.2)] sm:min-h-[380px] lg:min-h-[480px]">
+            <Image
+              alt="Баница със сирене и свежа шопска салата"
+              className="object-cover"
+              fill
+              priority
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              src="/images/recipes/hero-banitsa-shopska-salad.png"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(28,18,8,0.14),rgba(28,18,8,0.03)_42%,rgba(28,18,8,0.3))]" />
+            <div className="absolute left-4 top-4 rounded-full bg-[#fff8ee]/95 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-[#3a2417] shadow-[0_8px_22px_rgba(28,18,8,0.18)] ring-1 ring-white/70 backdrop-blur-md sm:left-6 sm:top-6 sm:text-sm">
               Препоръчано днес
             </div>
-            <div className="absolute bottom-6 left-6 right-6 rounded-[1.8rem] border border-white/55 bg-white/92 p-5 shadow-[0_18px_48px_rgba(42,25,10,0.18)] backdrop-blur">
+            <div className="absolute bottom-4 left-4 right-4 rounded-[1.8rem] border border-white/60 bg-[#fff7ec]/88 p-5 shadow-[0_18px_48px_rgba(42,25,10,0.2)] backdrop-blur-lg sm:bottom-6 sm:left-6 sm:right-6 sm:p-6">
               <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
                 Идея за довечера
               </p>
-              <p className="mt-2 text-3xl font-bold leading-tight text-stone-950">
+              <p className="mt-2 text-3xl font-bold leading-tight text-[#3a2417] sm:text-4xl">
                 Баница + свежа салата
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
-                <span className="rounded-full bg-brand-50 px-3 py-1 text-sm font-bold text-brand-800">
+                <span className="rounded-full border border-brand-200 bg-white/95 px-3 py-1 text-sm font-bold text-brand-800">
                   65 мин.
                 </span>
-                <span className="rounded-full bg-stone-100 px-3 py-1 text-sm font-bold text-stone-700">
+                <span className="rounded-full border border-stone-200 bg-white/95 px-3 py-1 text-sm font-bold text-stone-700">
                   8 порции
                 </span>
-                <span className="rounded-full bg-stone-100 px-3 py-1 text-sm font-bold text-stone-700">
+                <span className="rounded-full border border-stone-200 bg-white/95 px-3 py-1 text-sm font-bold text-stone-700">
                   домашно
                 </span>
               </div>
@@ -173,25 +192,19 @@ export default function HomePage() {
       </section>
 
       <section id="featured" className="space-y-8">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-              Избрани рецепти
-            </p>
-            <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">
-              Започни с класиките
-            </h2>
-          </div>
-          <p className="max-w-2xl text-base leading-7 text-stone-600">
-            Подбрани домашни рецепти с ясни продукти, време за приготвяне и удобни детайли за
-            бърз избор.
+        <div>
+          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
+            Избрани рецепти
           </p>
+          <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">
+            Започни с класиките
+          </h2>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3 xl:gap-8">
+        <div className="grid items-stretch gap-7 lg:grid-cols-3 xl:gap-8">
           {featuredRecipes.map((recipe, index) => (
             <RecipeCard
-              className="min-h-[460px]"
+              className="min-h-[560px]"
               key={recipe.slug}
               recipe={recipe}
               tagLimit={2}
@@ -201,24 +214,43 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="explore" className="space-y-7">
-        <div>
+      <section
+        id="explore"
+        className="grid gap-7 rounded-[2rem] border border-stone-200 bg-white/76 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1fr)] lg:items-center xl:gap-10 xl:p-10"
+      >
+        <div className="max-w-2xl rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
-          <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">
+          <h2 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-5xl">
             Разглеждай, избирай и готви по-лесно
           </h2>
+          <p className="mt-4 text-base leading-8 text-stone-600">
+            Chefo&apos;s Recipes подрежда най-важното за всяка рецепта - категория, време,
+            продукти, стъпки и любими идеи, за да стигаш по-бързо до добър избор.
+          </p>
+          <Link
+            className="mt-6 inline-flex w-fit rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+            href="/catalog"
+          >
+            Разгледай каталога
+          </Link>
         </div>
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
-          {userActions.map((item) => (
-            <div className="info-card rounded-[1.8rem] p-6" key={item.title}>
-              <span className="mb-5 inline-grid h-11 w-11 place-items-center rounded-2xl bg-brand-100 text-sm font-black text-brand-800">
-                {item.accent}
-              </span>
-              <h3 className="text-xl font-bold text-stone-950">{item.title}</h3>
-              <p className="mt-3 text-base leading-7 text-stone-600">{item.description}</p>
-            </div>
+
+        <div className="grid gap-4 sm:grid-cols-2">
+          {featureItems.map((item) => (
+            <article
+              className="rounded-[1.5rem] border border-brand-100 bg-[#fff8ee]/88 p-5 shadow-sm transition hover:border-brand-200 hover:bg-[#fff8ee]"
+              key={item.title}
+            >
+              <div className="flex items-start gap-3">
+                <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-100 text-sm font-black text-brand-800">
+                  {item.accent}
+                </span>
+                <h3 className="pt-1 text-xl font-bold leading-tight text-stone-950">{item.title}</h3>
+              </div>
+              <p className="mt-2 text-base leading-7 text-stone-600">{item.description}</p>
+            </article>
           ))}
         </div>
       </section>
