@@ -33,6 +33,12 @@ The project is structured as a full-stack npm workspace and is suitable for Soft
 
 ## 🌐 Live Demo
 
+
+| Platform | URL |
+|---|---|
+| Web App | Coming soon |
+| Expo Web / Mobile Preview | Coming soon |
+
 Deployment: **Coming soon**
 
 The application is currently intended to be reviewed locally with a seeded Neon PostgreSQL database.
