@@ -1,12 +1,42 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { registerAction } from "../../server/auth/actions";
+import { getCurrentUser } from "../../server/auth/session";
 
 export const metadata: Metadata = {
   title: "Регистрация | Chefo's Recipes",
   description: "Екран за регистрация в Chefo's Recipes."
 };
 
-export default function RegisterPage() {
+type RegisterPageProps = {
+  searchParams?: Promise<{
+    error?: string;
+  }>;
+};
+
+function getRegisterErrorMessage(error: string | undefined) {
+  switch (error) {
+    case "exists":
+      return "Вече има профил с този имейл.";
+    case "server":
+      return "Регистрацията не беше успешна. Опитай отново след малко.";
+    case "invalid":
+      return "Попълни име, валиден имейл и парола с поне 8 символа.";
+    default:
+      return undefined;
+  }
+}
+
+export default async function RegisterPage({ searchParams }: RegisterPageProps) {
+  const currentUser = await getCurrentUser();
+  const params = await searchParams;
+  const errorMessage = getRegisterErrorMessage(params?.error);
+
+  if (currentUser) {
+    redirect(currentUser.role === "admin" ? "/admin" : "/profile");
+  }
+
   return (
     <section className="page-shell">
       <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
@@ -63,7 +93,10 @@ export default function RegisterPage() {
           </div>
         </aside>
 
-        <form className="flex min-h-[520px] w-full flex-col justify-center rounded-[2.4rem] border border-stone-200 bg-[#fff8ee]/95 p-6 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-8 lg:p-10">
+        <form
+          action={registerAction}
+          className="flex min-h-[520px] w-full flex-col justify-center rounded-[2.4rem] border border-stone-200 bg-[#fff8ee]/95 p-6 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-8 lg:p-10"
+        >
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
@@ -101,6 +134,12 @@ export default function RegisterPage() {
           </div>
 
           <div className="space-y-5">
+            {errorMessage ? (
+              <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">
+                {errorMessage}
+              </p>
+            ) : null}
+
             <div>
               <label className="text-base font-black text-stone-800" htmlFor="name">
                 Име
@@ -110,6 +149,7 @@ export default function RegisterPage() {
                 id="name"
                 name="name"
                 placeholder="Твоето име"
+                required
                 type="text"
               />
             </div>
@@ -123,6 +163,7 @@ export default function RegisterPage() {
                 id="email"
                 name="email"
                 placeholder="ime@example.com"
+                required
                 type="email"
               />
             </div>
@@ -136,13 +177,14 @@ export default function RegisterPage() {
                 id="password"
                 name="password"
                 placeholder="Създай парола"
+                required
                 type="password"
               />
             </div>
 
             <button
               className="w-full rounded-full bg-brand-600 px-5 py-3.5 text-base font-black text-white shadow-[0_12px_30px_rgba(127,51,19,0.24)] transition hover:bg-brand-700"
-              type="button"
+              type="submit"
             >
               Създай профил
             </button>
