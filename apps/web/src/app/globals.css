@@ -60,6 +60,145 @@ h3 {
   }
 }
 
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  /* Browser-generated headers/footers, such as localhost URLs, are controlled
+     by the browser print setting "Headers and footers". */
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: #111827 !important;
+    font-size: 11pt !important;
+    line-height: 1.45 !important;
+  }
+
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  img,
+  .recipe-print-image img {
+    display: block !important;
+    max-width: 100% !important;
+    height: auto !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .recipe-print-page {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    gap: 14pt !important;
+  }
+
+  .recipe-print-hero,
+  .recipe-print-content {
+    display: block !important;
+  }
+
+  .recipe-print-hero {
+    margin: 0 0 12pt !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: white !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .recipe-print-hero h1 {
+    font-size: 26pt !important;
+    line-height: 1.1 !important;
+    margin: 8pt 0 !important;
+    color: #111827 !important;
+  }
+
+  .recipe-print-hero p {
+    max-width: none !important;
+    font-size: 12pt !important;
+    line-height: 1.45 !important;
+    color: #1f2937 !important;
+  }
+
+  .recipe-print-image {
+    width: 100% !important;
+    max-width: 420pt !important;
+    margin: 12pt 0 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    overflow: visible !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .recipe-print-image > div {
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+
+  .recipe-print-image img {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-height: 260pt !important;
+    object-fit: contain !important;
+  }
+
+  .recipe-print-section {
+    margin: 0 0 12pt !important;
+    padding: 0 !important;
+    border: 0 !important;
+    background: white !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .recipe-print-section h2 {
+    margin: 0 0 8pt !important;
+    font-size: 18pt !important;
+    line-height: 1.2 !important;
+    color: #111827 !important;
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .recipe-print-section ul,
+  .recipe-print-section ol {
+    gap: 4pt !important;
+    margin-top: 0 !important;
+  }
+
+  .recipe-print-section li,
+  .recipe-print-section li > div {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  article,
+  section,
+  aside,
+  .editorial-card {
+    box-shadow: none !important;
+  }
+}
+
 @layer components {
   .page-shell {
     margin-inline: auto;

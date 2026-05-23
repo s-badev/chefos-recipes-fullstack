@@ -165,28 +165,28 @@ export function RecipeCard({
             {recipe.category}
           </span>
         </div>
-        <div className="absolute right-4 top-4 z-20 flex max-w-[calc(100%-2rem)] flex-col items-end gap-2">
+        <div className="absolute right-4 top-4 max-w-[7rem]">
           <span className="inline-flex max-w-[7rem] truncate rounded-full bg-[#2b160b]/90 px-3 py-1.5 text-xs font-bold text-white shadow-[0_8px_22px_rgba(28,18,8,0.22)] ring-1 ring-white/40 backdrop-blur-md sm:text-sm">
             {recipe.difficulty}
           </span>
-
-          {showFavoriteAction ? (
-            <form action={favoriteAction}>
-              <input name="recipeSlug" type="hidden" value={recipe.slug} />
-              <input name="redirectTo" type="hidden" value={redirectTo} />
-              <button
-                aria-label={favoriteAriaLabel}
-                className={[
-                  "inline-flex min-h-9 items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-4 py-2 text-sm font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
-                  isFavorited ? "border-[#d7a66a]" : "border-[#e3bf8d]"
-                ].join(" ")}
-                type="submit"
-              >
-                {favoriteLabel}
-              </button>
-            </form>
-          ) : null}
         </div>
+
+        {showFavoriteAction ? (
+          <form action={favoriteAction} className="absolute bottom-4 right-4 z-20 max-w-[calc(100%-2rem)]">
+            <input name="recipeSlug" type="hidden" value={recipe.slug} />
+            <input name="redirectTo" type="hidden" value={redirectTo} />
+            <button
+              aria-label={favoriteAriaLabel}
+              className={[
+                "inline-flex min-h-9 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-4 py-2 text-sm font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
+                isFavorited ? "border-[#d7a66a]" : "border-[#e3bf8d]"
+              ].join(" ")}
+              type="submit"
+            >
+              {favoriteLabel}
+            </button>
+          </form>
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">

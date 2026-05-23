@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { findRecipeBySlug } from "../recipes";
+import { PrintRecipeButton } from "../../print-recipe-button";
 import { addFavoriteAction, removeFavoriteAction } from "../../../server/favorites/actions";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 
@@ -80,12 +81,12 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
 
   return (
-    <article className="page-shell space-y-10">
-      <Link className="inline-flex text-base font-black text-brand-700 hover:text-brand-900" href="/catalog">
+    <article className="recipe-print-page page-shell space-y-10">
+      <Link className="no-print inline-flex text-base font-black text-brand-700 hover:text-brand-900" href="/catalog">
         Обратно към каталога
       </Link>
 
-      <section className="grid gap-8 rounded-[2.2rem] border border-stone-200 bg-white/72 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(380px,0.42fr)] lg:items-center xl:p-10">
+      <section className="recipe-print-hero grid gap-8 rounded-[2.2rem] border border-stone-200 bg-white/72 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(380px,0.42fr)] lg:items-center xl:p-10">
         <div className="space-y-6">
           <div className="flex flex-wrap gap-2">
             <span className="rounded-full bg-brand-50 px-3 py-1 text-sm font-black text-brand-800">
@@ -111,7 +112,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           </div>
         </div>
 
-        <div className="overflow-hidden rounded-[1.9rem] border border-white/70 bg-white shadow-sm">
+        <div className="recipe-print-image overflow-hidden rounded-[1.9rem] border border-white/70 bg-white shadow-sm">
           {recipe.imageSrc ? (
             <div className="relative h-[320px] overflow-hidden bg-stone-100 sm:h-[380px] lg:h-[420px]">
               <Image
@@ -122,7 +123,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 sizes="(min-width: 1024px) 35vw, 100vw"
                 src={recipe.imageSrc}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/24" />
+              <div className="no-print absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/24" />
             </div>
           ) : (
             <div
@@ -134,8 +135,8 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         </div>
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:items-start xl:gap-8">
-        <aside className="order-1 lg:col-start-2 lg:row-start-1">
+      <section className="recipe-print-content grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:items-start xl:gap-8">
+        <aside className="recipe-print-section order-1 lg:col-start-2 lg:row-start-1">
           <div className="editorial-card rounded-[1.8rem] p-6">
             <h2 className="text-3xl font-bold text-stone-950">Детайли</h2>
             <div className="mt-5 grid grid-cols-2 gap-4">
@@ -156,7 +157,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           </div>
         </aside>
 
-        <aside className="order-4 lg:col-start-2 lg:row-start-2">
+        <aside className="no-print order-4 lg:col-start-2 lg:row-start-2">
           <div className="editorial-card rounded-[1.8rem] p-6">
             <h2 className="text-3xl font-bold text-stone-950">Бързи действия</h2>
             <div className="mt-5 grid gap-3">
@@ -187,21 +188,12 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                   </span>
                 </button>
               </form>
-              <button
-                className="flex cursor-not-allowed items-center justify-between rounded-2xl border border-stone-200 bg-[#fff8ee]/75 px-4 py-3 text-left text-base font-bold text-stone-500"
-                disabled
-                type="button"
-              >
-                <span>Принтирай рецепта</span>
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-brand-700">
-                  скоро
-                </span>
-              </button>
+              <PrintRecipeButton className="flex w-full items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-left text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
             </div>
           </div>
         </aside>
 
-        <section className="editorial-card order-2 rounded-[1.8rem] p-6 lg:col-start-1 lg:row-start-1">
+        <section className="recipe-print-section editorial-card order-2 rounded-[1.8rem] p-6 lg:col-start-1 lg:row-start-1">
           <h2 className="text-3xl font-bold text-stone-950">Продукти</h2>
           <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {recipe.ingredients.map((ingredient) => (
@@ -216,7 +208,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           </ul>
         </section>
 
-        <section className="editorial-card order-3 w-full rounded-[1.8rem] p-6 sm:p-8 lg:col-start-1 lg:row-start-2">
+        <section className="recipe-print-section editorial-card order-3 w-full rounded-[1.8rem] p-6 sm:p-8 lg:col-start-1 lg:row-start-2">
           <h2 className="text-3xl font-bold text-stone-950">Начин на приготвяне</h2>
           <ol className="mt-6 grid gap-5">
             {recipe.steps.map((step, index) => (
