@@ -43,6 +43,8 @@ export type SeedRecipe = {
   title: string;
   slug: string;
   description: string;
+  imageUrl?: string;
+  imageAlt?: string;
   prepTimeMinutes: number;
   cookTimeMinutes: number;
   servings: number;
@@ -79,6 +81,7 @@ export type SeedData = {
 };
 
 export type LargeSeedOptions = {
+  includeFavorites?: boolean;
   recipeCount?: number;
 };
 
@@ -89,6 +92,7 @@ export type SeedDatabaseOptions = {
   data?: SeedData;
   dryRun?: boolean;
   env?: NodeJS.ProcessEnv;
+  includeFavorites?: boolean;
   logger?: SeedLogger;
   recipeCount?: number;
 };
@@ -218,7 +222,8 @@ function buildSeedCategories(): SeedCategory[] {
     { id: createSeedUuid("10000000", 7), name: "Скара", slug: "grill" },
     { id: createSeedUuid("10000000", 8), name: "Постни", slug: "vegetarian" },
     { id: createSeedUuid("10000000", 9), name: "Риба", slug: "fish" },
-    { id: createSeedUuid("10000000", 10), name: "Закуска", slug: "breakfast" }
+    { id: createSeedUuid("10000000", 10), name: "Закуска", slug: "breakfast" },
+    { id: createSeedUuid("10000000", 11), name: "Бързи ястия", slug: "quick-meals" }
   ];
 }
 
@@ -297,6 +302,10 @@ function isDryRunEnabled(value: string | undefined) {
   return value?.toLowerCase() === "true" || value === "1";
 }
 
+function isSeedOptionEnabled(value: string | undefined) {
+  return value?.toLowerCase() === "true" || value === "1";
+}
+
 function logDryRunTable(logger: SeedLogger, label: string, result: SeedTableResult) {
   logger.log(
     `[seed] ${label}: generated ${result.total}, planned batches ${result.batches}, inserted/skipped 0/0 (dry run)`
@@ -334,6 +343,78 @@ async function insertBatched<TTable extends AnyPgTable>(
     batches: batches.length,
     inserted,
     skipped: rows.length - inserted,
+    total: rows.length
+  };
+}
+
+async function upsertCategoriesBatched(
+  db: DbClient,
+  rows: SeedCategory[],
+  batchSize: number
+): Promise<SeedTableResult> {
+  const batches = chunkSeedRows(rows, batchSize);
+  let upserted = 0;
+
+  for (const batch of batches) {
+    const upsertedRows = await db
+      .insert(categoriesTable)
+      .values(batch)
+      .onConflictDoUpdate({
+        target: categoriesTable.slug,
+        set: {
+          name: sql`excluded.name`
+        }
+      })
+      .returning({ upserted: sql<number>`1` });
+
+    upserted += upsertedRows.length;
+  }
+
+  return {
+    batches: batches.length,
+    inserted: upserted,
+    skipped: 0,
+    total: rows.length
+  };
+}
+
+async function upsertRecipesBatched(
+  db: DbClient,
+  rows: SeedRecipe[],
+  batchSize: number
+): Promise<SeedTableResult> {
+  const batches = chunkSeedRows(rows, batchSize);
+  let upserted = 0;
+
+  for (const batch of batches) {
+    const upsertedRows = await db
+      .insert(recipesTable)
+      .values(batch)
+      .onConflictDoUpdate({
+        target: recipesTable.slug,
+        set: {
+          title: sql`excluded.title`,
+          description: sql`excluded.description`,
+          imageUrl: sql`excluded.image_url`,
+          imageAlt: sql`excluded.image_alt`,
+          prepTimeMinutes: sql`excluded.prep_time_minutes`,
+          cookTimeMinutes: sql`excluded.cook_time_minutes`,
+          servings: sql`excluded.servings`,
+          difficulty: sql`excluded.difficulty`,
+          categoryId: sql`excluded.category_id`,
+          authorId: sql`excluded.author_id`,
+          updatedAt: sql`now()`
+        }
+      })
+      .returning({ upserted: sql<number>`1` });
+
+    upserted += upsertedRows.length;
+  }
+
+  return {
+    batches: batches.length,
+    inserted: upserted,
+    skipped: 0,
     total: rows.length
   };
 }
@@ -452,19 +533,21 @@ export function generateLargeSeedFavorites(
 
 export function generateLargeSeedData(options: LargeSeedOptions = {}): SeedData {
   const recipeCount = options.recipeCount ?? LARGE_RECIPE_COUNT;
+  const includeFavorites = options.includeFavorites ?? false;
   const users = generateLargeSeedUsers();
   const categories = generateLargeSeedCategories();
   const tags = generateLargeSeedTags();
-  const recipes = generateLargeSeedRecipes(recipeCount, categories, users);
+  const generatedRecipes = generateLargeSeedRecipes(recipeCount, categories, users);
+  const recipes = [...seedRecipes, ...generatedRecipes];
 
   return {
     users,
     categories,
     tags,
     recipes,
-    recipeSteps: generateLargeSeedRecipeSteps(recipes),
-    recipeTags: generateLargeSeedRecipeTags(recipes, tags),
-    favorites: generateLargeSeedFavorites(recipes, users)
+    recipeSteps: [...seedRecipeSteps, ...generateLargeSeedRecipeSteps(generatedRecipes)],
+    recipeTags: [...seedRecipeTags, ...generateLargeSeedRecipeTags(generatedRecipes, tags)],
+    favorites: includeFavorites ? generateLargeSeedFavorites(recipes, users) : []
   };
 }
 
@@ -487,85 +570,175 @@ export const seedUsers: SeedUser[] = [
   }
 ];
 
-export const seedCategories: SeedCategory[] = buildSeedCategories().slice(0, 3);
+export const seedCategories: SeedCategory[] = buildSeedCategories();
 
-export const seedTags: SeedTag[] = buildSeedTags().slice(0, 3);
+export const seedTags: SeedTag[] = buildSeedTags();
 
 export const seedRecipes: SeedRecipe[] = [
   {
-    id: createSeedUuid("30000000", 1),
+    id: createSeedUuid("31000000", 1),
     title: "Шопска салата",
-    slug: "shopska-salad",
+    slug: "shopska-salata",
     description:
       "Свежа класика с домати, краставици, печени чушки, магданоз и настъргано сирене.",
+    imageUrl: "/images/recipes/shopska-salata.png",
+    imageAlt: "Шопска салата",
     prepTimeMinutes: 20,
     cookTimeMinutes: 0,
     servings: 4,
     difficulty: "easy",
-    categoryId: seedCategories[0].id,
+    categoryId: findCategoryId(seedCategories, "salads"),
     authorId: seedUsers[0].id
   },
   {
-    id: createSeedUuid("30000000", 2),
+    id: createSeedUuid("31000000", 2),
     title: "Баница със сирене",
-    slug: "banitsa-with-sirene",
+    slug: "banitsa-sas-sirene",
     description:
       "Фини кори с яйца, кисело мляко и бяло сирене, изпечени до златиста коричка.",
+    imageUrl: "/images/recipes/banitsa-sas-sirene.png",
+    imageAlt: "Баница със сирене",
     prepTimeMinutes: 25,
     cookTimeMinutes: 40,
     servings: 8,
     difficulty: "medium",
-    categoryId: seedCategories[2].id,
+    categoryId: findCategoryId(seedCategories, "pastry"),
     authorId: seedUsers[0].id
   },
   {
-    id: createSeedUuid("30000000", 3),
+    id: createSeedUuid("31000000", 3),
     title: "Кавърма със свинско",
-    slug: "kavarma-pork-stew",
+    slug: "kavarma-sas-svinsko",
     description:
       "Крехко свинско с чушки, гъби, домати, вино и чубрица за уютна вечеря.",
+    imageUrl: "/images/recipes/kavarma-sas-svinsko.png",
+    imageAlt: "Кавърма със свинско",
     prepTimeMinutes: 25,
     cookTimeMinutes: 75,
     servings: 4,
     difficulty: "medium",
-    categoryId: seedCategories[1].id,
+    categoryId: findCategoryId(seedCategories, "main-dishes"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 4),
+    title: "Таратор",
+    slug: "tarator",
+    description: "Охладена супа с кисело мляко, краставица, чесън, копър и орехи.",
+    imageUrl: "/images/recipes/tarator.png",
+    imageAlt: "Таратор",
+    prepTimeMinutes: 15,
+    cookTimeMinutes: 0,
+    servings: 4,
+    difficulty: "easy",
+    categoryId: findCategoryId(seedCategories, "soups"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 5),
+    title: "Кюфтета на скара",
+    slug: "kyufteta-na-skara",
+    description: "Сочни месни кюфтета с лук, кимион, магданоз и чубрица.",
+    imageUrl: "/images/recipes/kyufteta-na-skara.png",
+    imageAlt: "Кюфтета на скара",
+    prepTimeMinutes: 20,
+    cookTimeMinutes: 15,
+    servings: 4,
+    difficulty: "easy",
+    categoryId: findCategoryId(seedCategories, "main-dishes"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 6),
+    title: "Пълнени чушки с ориз",
+    slug: "palneni-chushki-s-oriz",
+    description: "Сладки чушки с ориз, зеленчуци и подправки, запечени в доматен сос.",
+    imageUrl: "/images/recipes/palneni-chushki-s-oriz.png",
+    imageAlt: "Пълнени чушки с ориз",
+    prepTimeMinutes: 30,
+    cookTimeMinutes: 55,
+    servings: 6,
+    difficulty: "medium",
+    categoryId: findCategoryId(seedCategories, "main-dishes"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 7),
+    title: "Миш-маш",
+    slug: "mish-mash",
+    description: "Бързо ястие с печени чушки, домати, яйца, сирене и магданоз.",
+    imageUrl: "/images/recipes/mish-mash.png",
+    imageAlt: "Миш-маш",
+    prepTimeMinutes: 10,
+    cookTimeMinutes: 20,
+    servings: 3,
+    difficulty: "easy",
+    categoryId: findCategoryId(seedCategories, "quick-meals"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 8),
+    title: "Боб чорба",
+    slug: "bob-chorba",
+    description: "Питателна супа с бял боб, лук, морков, чушка, джоджен и чубрица.",
+    imageUrl: "/images/recipes/bob-chorba.png",
+    imageAlt: "Боб чорба",
+    prepTimeMinutes: 20,
+    cookTimeMinutes: 90,
+    servings: 6,
+    difficulty: "medium",
+    categoryId: findCategoryId(seedCategories, "soups"),
+    authorId: seedUsers[0].id
+  },
+  {
+    id: createSeedUuid("31000000", 9),
+    title: "Тиквеник",
+    slug: "tikvenik",
+    description: "Сладка навита баница с тиква, орехи, канела и пудра захар.",
+    imageUrl: "/images/recipes/tikvenik.png",
+    imageAlt: "Тиквеник",
+    prepTimeMinutes: 30,
+    cookTimeMinutes: 40,
+    servings: 8,
+    difficulty: "medium",
+    categoryId: findCategoryId(seedCategories, "desserts"),
     authorId: seedUsers[0].id
   }
 ];
 
 export const seedRecipeSteps: SeedRecipeStep[] = [
   {
-    id: createSeedUuid("40000000", 1),
+    id: createSeedUuid("41000000", 1),
     recipeId: seedRecipes[0].id,
     stepNumber: 1,
     instruction: "Нарежи зеленчуците и ги смеси в купа."
   },
   {
-    id: createSeedUuid("40000000", 2),
+    id: createSeedUuid("41000000", 2),
     recipeId: seedRecipes[0].id,
     stepNumber: 2,
     instruction: "Овкуси и настържи сиренето отгоре."
   },
   {
-    id: createSeedUuid("40000000", 3),
+    id: createSeedUuid("41000000", 3),
     recipeId: seedRecipes[1].id,
     stepNumber: 1,
     instruction: "Приготви плънка от яйца, кисело мляко и сирене."
   },
   {
-    id: createSeedUuid("40000000", 4),
+    id: createSeedUuid("41000000", 4),
     recipeId: seedRecipes[1].id,
     stepNumber: 2,
     instruction: "Редувай кори и плънка, после изпечи до златисто."
   },
   {
-    id: createSeedUuid("40000000", 5),
+    id: createSeedUuid("41000000", 5),
     recipeId: seedRecipes[2].id,
     stepNumber: 1,
     instruction: "Запечати месото и добави зеленчуците."
   },
   {
-    id: createSeedUuid("40000000", 6),
+    id: createSeedUuid("41000000", 6),
     recipeId: seedRecipes[2].id,
     stepNumber: 2,
     instruction: "Добави домати, вино и подправки, после остави да къкри."
@@ -587,16 +760,7 @@ export const seedRecipeTags: SeedRecipeTag[] = [
   }
 ];
 
-export const seedFavorites: SeedFavorite[] = [
-  {
-    userId: seedUsers[1].id,
-    recipeId: seedRecipes[0].id
-  },
-  {
-    userId: seedUsers[1].id,
-    recipeId: seedRecipes[1].id
-  }
-];
+export const seedFavorites: SeedFavorite[] = [];
 
 export const seedData: SeedData = {
   users: seedUsers,
@@ -630,9 +794,14 @@ export async function seedDatabase(options: SeedDatabaseOptions = {}): Promise<S
   const batchSize = options.batchSize ?? DEFAULT_BATCH_SIZE;
   const dryRun = options.dryRun ?? isDryRunEnabled(env.SEED_DRY_RUN);
   const databaseUrl = dryRun ? undefined : getDatabaseUrl(env);
+  const includeFavorites =
+    options.includeFavorites ?? isSeedOptionEnabled(env.SEED_FAKE_FAVORITES);
   const data =
     options.data ??
-    generateLargeSeedData({ recipeCount: options.recipeCount ?? LARGE_RECIPE_COUNT });
+    generateLargeSeedData({
+      includeFavorites,
+      recipeCount: options.recipeCount ?? LARGE_RECIPE_COUNT
+    });
   const insertionOrder = getSeedInsertionPlan();
   const counts = getSeedCounts(data);
   const recipeCount = data.recipes.length;
@@ -670,9 +839,8 @@ export async function seedDatabase(options: SeedDatabaseOptions = {}): Promise<S
   const usersResult = await insertBatched(db, usersTable, data.users, batchSize);
   logInsertedTable(logger, "users", usersResult);
 
-  const categoriesResult = await insertBatched(
+  const categoriesResult = await upsertCategoriesBatched(
     db,
-    categoriesTable,
     data.categories,
     batchSize
   );
@@ -681,7 +849,7 @@ export async function seedDatabase(options: SeedDatabaseOptions = {}): Promise<S
   const tagsResult = await insertBatched(db, tagsTable, data.tags, batchSize);
   logInsertedTable(logger, "tags", tagsResult);
 
-  const recipesResult = await insertBatched(db, recipesTable, data.recipes, batchSize);
+  const recipesResult = await upsertRecipesBatched(db, data.recipes, batchSize);
   logInsertedTable(logger, "recipes", recipesResult);
 
   const recipeStepsResult = await insertBatched(

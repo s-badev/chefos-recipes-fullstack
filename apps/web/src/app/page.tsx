@@ -5,7 +5,7 @@ import { RecipeCard } from "./recipe-card";
 const featuredRecipes = [
   {
     title: "Шопска салата",
-    slug: "shopska-salad",
+    slug: "shopska-salata",
     imageSrc: "/images/recipes/shopska-salata.png",
     description: "Домати, краставици, печени чушки, магданоз и настъргано бяло сирене.",
     imageAlt: "Свежа шопска салата с настъргано бяло сирене",
@@ -18,7 +18,7 @@ const featuredRecipes = [
   },
   {
     title: "Баница със сирене",
-    slug: "banitsa-with-sirene",
+    slug: "banitsa-sas-sirene",
     imageSrc: "/images/recipes/banitsa-sas-sirene.png",
     description: "Фини кори, запечени с яйца, кисело мляко и ароматно бяло сирене.",
     imageAlt: "Златиста баница със сирене, нарязана на парчета",
@@ -31,7 +31,7 @@ const featuredRecipes = [
   },
   {
     title: "Кавърма със свинско",
-    slug: "kavarma-pork-stew",
+    slug: "kavarma-sas-svinsko",
     imageSrc: "/images/recipes/kavarma-sas-svinsko.png",
     description: "Крехко свинско с чушки, гъби, домати, вино и чубрица.",
     imageAlt: "Домашна свинска кавърма в глинена купа",

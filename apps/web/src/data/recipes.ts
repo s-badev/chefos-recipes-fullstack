@@ -17,7 +17,7 @@ export type Recipe = {
 export const recipes: Recipe[] = [
   {
     title: "Шопска салата",
-    slug: "shopska-salad",
+    slug: "shopska-salata",
     imageSrc: "/images/recipes/shopska-salata.png",
     description: "Свежа класика с домати, краставици, печени чушки, магданоз и настъргано сирене.",
     prepTimeMinutes: 20,
@@ -45,7 +45,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Баница със сирене",
-    slug: "banitsa-with-sirene",
+    slug: "banitsa-sas-sirene",
     imageSrc: "/images/recipes/banitsa-sas-sirene.png",
     description: "Фини кори с яйца, кисело мляко и бяло сирене, изпечени до златиста коричка.",
     prepTimeMinutes: 25,
@@ -73,7 +73,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Кавърма със свинско",
-    slug: "kavarma-pork-stew",
+    slug: "kavarma-sas-svinsko",
     imageSrc: "/images/recipes/kavarma-sas-svinsko.png",
     description: "Крехко свинско с чушки, гъби, домати, вино и чубрица за уютна вечеря.",
     prepTimeMinutes: 25,
@@ -103,7 +103,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Таратор",
-    slug: "tarator-cold-cucumber-soup",
+    slug: "tarator",
     imageSrc: "/images/recipes/tarator.png",
     description: "Охладена супа с кисело мляко, краставица, чесън, копър и орехи.",
     prepTimeMinutes: 15,
@@ -131,7 +131,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Кюфтета на скара",
-    slug: "kyufte-grilled-meat-patties",
+    slug: "kyufteta-na-skara",
     imageSrc: "/images/recipes/kyufteta-na-skara.png",
     description: "Сочни месни кюфтета с лук, кимион, магданоз и чубрица.",
     prepTimeMinutes: 20,
@@ -160,7 +160,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Пълнени чушки с ориз",
-    slug: "stuffed-peppers-with-rice",
+    slug: "palneni-chushki-s-oriz",
     imageSrc: "/images/recipes/palneni-chushki-s-oriz.png",
     description: "Сладки чушки с ориз, зеленчуци и подправки, запечени в доматен сос.",
     prepTimeMinutes: 30,
@@ -189,7 +189,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Миш-маш",
-    slug: "mish-mash-eggs-and-peppers",
+    slug: "mish-mash",
     imageSrc: "/images/recipes/mish-mash.png",
     description: "Бързо ястие с печени чушки, домати, яйца, сирене и магданоз.",
     prepTimeMinutes: 10,
@@ -217,7 +217,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Боб чорба",
-    slug: "bob-chorba-bean-soup",
+    slug: "bob-chorba",
     imageSrc: "/images/recipes/bob-chorba.png",
     description: "Питателна супа с бял боб, лук, морков, чушка, джоджен и чубрица.",
     prepTimeMinutes: 20,
@@ -246,7 +246,7 @@ export const recipes: Recipe[] = [
   },
   {
     title: "Тиквеник",
-    slug: "tikvenik-pumpkin-pastry",
+    slug: "tikvenik",
     imageSrc: "/images/recipes/tikvenik.png",
     description: "Сладка навита баница с тиква, орехи, канела и пудра захар.",
     prepTimeMinutes: 30,

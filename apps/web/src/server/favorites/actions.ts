@@ -42,8 +42,13 @@ export async function addFavoriteAction(formData: FormData) {
   }
 
   if (recipeSlug) {
-    await addFavoriteRecipeForUser(user, recipeSlug);
-    revalidateFavoriteViews(recipeSlug);
+    const result = await addFavoriteRecipeForUser(user, recipeSlug);
+
+    if (result.ok) {
+      revalidateFavoriteViews(recipeSlug);
+    } else {
+      console.warn(`[favorites] ${result.error} (slug: ${recipeSlug})`);
+    }
   }
 
   redirect(redirectTo);

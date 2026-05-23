@@ -104,14 +104,29 @@ async function findRecipeIdBySlug(slug: string) {
   return rows[0]?.id;
 }
 
-export async function addFavoriteRecipeForUser(user: CurrentUser, recipeSlug: string) {
+type FavoriteMutationResult =
+  | {
+      ok: true;
+    }
+  | {
+      ok: false;
+      error: string;
+    };
+
+export async function addFavoriteRecipeForUser(
+  user: CurrentUser,
+  recipeSlug: string
+): Promise<FavoriteMutationResult> {
   const [userId, recipeId] = await Promise.all([
     resolveFavoriteUserId(user),
     findRecipeIdBySlug(recipeSlug)
   ]);
 
   if (!recipeId) {
-    throw new Error("Recipe is not available in the database.");
+    return {
+      ok: false,
+      error: "Recipe is not available in the database."
+    };
   }
 
   await getDb()
@@ -121,6 +136,8 @@ export async function addFavoriteRecipeForUser(user: CurrentUser, recipeSlug: st
       recipeId
     })
     .onConflictDoNothing();
+
+  return { ok: true };
 }
 
 export async function removeFavoriteRecipeForUser(user: CurrentUser, recipeSlug: string) {
