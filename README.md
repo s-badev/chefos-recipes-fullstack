@@ -1,50 +1,128 @@
 # Chefo's Recipes
 
-Chefo's Recipes is a Bulgarian homemade recipe catalog built with Next.js, TypeScript, Neon PostgreSQL and Drizzle ORM. The web app includes user registration and login, user-specific favorites, role-based admin access, detailed recipe pages, printable recipes and seeded database content.
+[![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-UI-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599?logo=postgresql&logoColor=white)](https://neon.tech/)
+[![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F)](https://orm.drizzle.team/)
+[![Status](https://img.shields.io/badge/Status-Functional%20Web%20Version-brightgreen)](#project-status)
 
-The interface is Bulgarian-first because the project focuses on practical Bulgarian home cooking. Code and project documentation are kept in English for review and portfolio use.
+Chefo's Recipes is a Bulgarian homemade recipe catalog built with Next.js, TypeScript, Neon PostgreSQL and Drizzle ORM. It includes a polished Bulgarian-first recipe browsing experience, real registration and login, user-specific favorites, role-based admin access, detailed recipe pages and printable recipes.
 
-## Project Status
+The project is structured as a full-stack npm workspace and is suitable for SoftUni project review and GitHub portfolio presentation.
 
-Status: In Development / Functional Web Version
+---
 
-The web application is functional and includes the core recipe catalog, authentication, favorites, profile and admin areas. The repository is an npm workspace monorepo and also contains a mobile app package, but the implemented production-ready scope documented here is the Next.js web app.
+## Highlights
 
-## Tech Stack
+| Area | Current state |
+|---|---|
+| Catalog | 24 visible Bulgarian recipes |
+| Categories | 6 balanced categories with 4 recipes each |
+| Recipe details | Images, metadata, ingredients, preparation steps and quick actions |
+| Favorites | Real user-specific favorites stored in Neon PostgreSQL |
+| Authentication | Registration, login, hashed passwords and signed sessions |
+| Admin | Admin role and admin panel for authorized users |
+| Seed data | Core visible recipes plus 10,000 generated recipes for scalability testing |
+| Print | Browser print dialog for recipe detail pages |
 
-- Next.js App Router
-- React
-- TypeScript
-- Tailwind CSS and global CSS
-- Neon PostgreSQL
-- Drizzle ORM
-- Node.js
-- npm workspaces
+## Live Demo
 
-## Main Features
+Deployment: **Coming soon**
 
-- Bulgarian recipe catalog with 24 visible recipes
-- 6 balanced categories with 4 recipes each
-- Category filtering and catalog search
-- Recipe cards with images, category badges, difficulty badges, prep time, cook time, servings and tags
-- Recipe detail pages with image, details, ingredients and preparation steps
-- Working "Запази в любими" / remove favorite flow
-- Working "Принтирай рецепта" action using the browser print dialog
-- User registration and login
-- Users persisted in Neon PostgreSQL
-- Hashed passwords
-- Signed session/auth flow
-- Header personalization with logged-in user name
-- Profile page for logged-in users
-- User-specific favorites stored in Neon PostgreSQL
-- Admin role and admin-only panel
-- Seed script with core recipes and generated scalability data
-- 10,000 generated recipe records for scalability testing
-- Public recipe image assets
+The application is currently intended to be reviewed locally with a seeded Neon PostgreSQL database.
+
+## Review Access
+
+Demo accounts exist for review, and new users can also register through the app. Demo credentials can be provided separately for review so no reusable secrets are published in the repository.
+
+---
+
+## Application Flow
+
+```mermaid
+flowchart TD
+  A[Visitor opens web app] --> B[Home page]
+  B --> C[Catalog]
+  C --> D[Filter by category]
+  C --> E[Open recipe details]
+  E --> F[Print recipe]
+  C --> G{Authenticated?}
+  E --> G
+  G -- No --> H[Login or Register]
+  H --> I[Signed session]
+  G -- Yes --> J[Save or remove favorite]
+  I --> J
+  J --> K[Neon favorites table]
+  I --> L[Profile page]
+  I --> M{Admin role?}
+  M -- Yes --> N[Admin panel]
+  M -- No --> L
+```
+
+## Project Description
+
+Chefo's Recipes focuses on practical Bulgarian home cooking. The web app provides a curated visible catalog with balanced categories, rich recipe cards, detailed recipe pages and a real favorites workflow backed by Neon PostgreSQL.
+
+The app is Bulgarian-first for user-facing content while the codebase and documentation remain English-friendly for review and collaboration.
+
+## Key Features
+
+### Recipe Catalog
+
+- 24 visible recipes in the web catalog
+- 6 categories with exactly 4 visible recipes each
+- Category filtering
+- Recipe cards with real images, category badges and difficulty badges
+- Prep time, cook time, servings and tags on catalog cards
+- Save/remove favorite action directly from recipe cards
+
+### Recipe Details
+
+- Dedicated detail page for each visible recipe
+- Recipe image, title, description and cooking metadata
+- Products/ingredients list
+- Step-by-step preparation instructions
+- Working **"Запази в любими"** action
+- Working **"Принтирай рецепта"** action using the browser print dialog
+
+### Authentication
+
+- User registration persists users in Neon PostgreSQL
+- Passwords are hashed with `scrypt`
+- Login works for demo accounts and registered users
+- Signed session flow with HTTP-only session cookie
+- Header displays the logged-in user's name
+- Profile page displays personalized user information
+
+### Favorites
+
+- Favorites are stored in Neon PostgreSQL
+- Favorites are user-specific
+- Users can add and remove favorites from catalog, detail and favorites pages
+- Favorites use stable recipe slugs that match seeded database records
+
+### Admin
+
+- Admin role exists
+- Admin panel is available for admin users
+- Regular users should not see or access admin-only areas
+- Admin views include recipe overview and category/tag information
+
+### Seed and Scalability
+
+- Seed script lives in `packages/db`
+- Core visible recipes are upserted by slug
+- Categories and tags are seeded
+- 10,000 generated recipe records support scalability testing
+- Fake favorites are disabled by default unless explicitly enabled
+
+---
 
 ## Recipe Categories
 
-The visible catalog is balanced for a clean desktop grid. Each category contains exactly 4 recipes:
+The catalog is balanced for a clean four-card desktop grid.
 
 | Category | Visible recipes |
 |---|---:|
@@ -54,44 +132,198 @@ The visible catalog is balanced for a clean desktop grid. Each category contains
 | Супи | 4 |
 | Бързи ястия | 4 |
 | Десерти | 4 |
+| **Total** | **24** |
 
-## Authentication
+## User Roles
+
+| Role | Access |
+|---|---|
+| Visitor | Home, catalog, recipe detail pages, login and registration |
+| User | Visitor access plus profile and user-specific favorites |
+| Admin | User access plus admin panel and admin-only overview pages |
+
+## Application Screens
+
+- Home
+- Catalog
+- Recipe details
+- Favorites
+- Profile
+- Login
+- Register
+- Admin
+
+## Quick Test Guide
+
+1. Seed the database.
+
+   ```powershell
+   npm.cmd run seed --workspace packages/db
+   ```
+
+2. Start the web app.
+
+   ```powershell
+   npm.cmd run dev --workspace apps/web
+   ```
+
+3. Open the catalog and confirm each category contains 4 recipes.
+4. Register a new user or log in with review credentials.
+5. Save a recipe from the catalog.
+6. Open `/favorites` and confirm the recipe appears.
+7. Remove the recipe from favorites and confirm it disappears.
+8. Open a recipe detail page and click **"Принтирай рецепта"**.
+9. Log in as an admin user to review the admin panel.
+
+## Screenshots
+
+Screenshots can be added for review and portfolio presentation:
+
+| Screen | Suggested capture |
+|---|---|
+| Home | Landing page with Bulgarian visual identity |
+| Catalog | 24-recipe grid and category filters |
+| Recipe details | Image, ingredients, steps and quick actions |
+| Favorites | User-specific saved recipes |
+| Profile | Personalized logged-in user page |
+| Admin | Admin-only overview |
+
+---
+
+## Architecture
+
+```text
+chefos-recipes-fullstack/
+|-- apps/
+|   |-- web/
+|   |   |-- src/app/              # Next.js App Router pages and UI
+|   |   |-- src/data/             # Visible catalog recipe data
+|   |   |-- src/server/           # Auth, favorites and server-side logic
+|   |   `-- public/images/        # Recipe and background assets
+|   `-- mobile/                   # Expo mobile foundation
+|-- packages/
+|   |-- db/                       # Drizzle schema, migrations and seed script
+|   `-- shared/                   # Shared TypeScript utilities/types
+|-- docs/
+|-- README.md
+`-- package.json
+```
+
+The implemented review scope is the Next.js web app. The monorepo also includes an Expo mobile foundation, but mobile functionality is intentionally described conservatively.
+
+## Technology Stack
+
+| Layer | Technology |
+|---|---|
+| Web framework | Next.js App Router |
+| UI | React, TypeScript, Tailwind CSS and global CSS |
+| Database | Neon PostgreSQL |
+| ORM | Drizzle ORM |
+| Authentication | Server-side auth helpers, `scrypt` password hashes and signed sessions |
+| Package management | Node.js and npm workspaces |
+| Mobile foundation | Expo / React Native package in the monorepo |
+
+## API Overview
+
+The project keeps API and server-side boundaries available for web and mobile growth.
+
+| Area | Purpose |
+|---|---|
+| Recipe data | Catalog and recipe detail data |
+| Categories | Category listing and filtering support |
+| Favorites | User-specific save/remove behavior |
+| Auth/session | Registration, login and signed session handling |
+| Admin | Admin-only overview and management screens |
+
+The web app primarily uses Next.js server-side logic and Server Actions where appropriate.
+
+---
+
+## Authentication and Authorization
 
 Authentication is implemented in the web app.
 
-- Users are stored in the Neon `users` table.
-- Passwords are stored as `password_hash`, not plaintext.
-- Roles are stored with the user and support `user` and `admin`.
-- The app uses a signed session/auth flow.
-- The header reads the current session and displays the logged-in user's name.
-- Regular users can access user features such as favorites and profile.
+- Registered users are stored in the Neon `users` table.
+- Passwords are stored as hashes, not plaintext.
+- Password hashing uses `scrypt`.
+- Login supports demo accounts and registered database users.
+- Sessions are signed and stored in an HTTP-only cookie.
+- The `role` field supports `user` and `admin`.
+- Regular users can access profile and favorites.
 - Admin users can access the admin panel.
 
-Real secrets and credentials must not be committed. Demo credentials can be provided separately for review.
+Secrets must be provided through environment variables and must not be committed.
 
 ## Favorites
 
-Favorites are database-backed and user-specific.
+Favorites are real database-backed records.
 
-- Favorites are stored in the Neon `favorites` table.
-- Favorites link a user to a recipe.
-- Recipe lookup uses stable recipe slugs.
-- Users can save recipes from the catalog and recipe detail pages.
-- Users can remove saved recipes from the catalog, detail pages and favorites page.
-- The favorites page displays only the current user's saved recipes.
+- A favorite links a user to a recipe.
+- Recipe matching uses stable slugs.
+- The visible catalog slugs match the seeded Neon recipe slugs.
+- Each user sees only their own saved recipes.
+- Save/remove is supported from catalog cards, recipe detail pages and the favorites page.
 
-## Admin Panel
+## Database Schema Design
 
-The app includes an admin role and admin area.
+```mermaid
+erDiagram
+  USERS ||--o{ FAVORITES : saves
+  RECIPES ||--o{ FAVORITES : appears_in
+  CATEGORIES ||--o{ RECIPES : groups
+  RECIPES ||--o{ RECIPE_TAGS : has
+  TAGS ||--o{ RECIPE_TAGS : labels
 
-- Admin-only navigation and panel are available for admin users.
-- Regular users should not access the admin panel.
-- The admin area includes recipe management views and summary information.
-- Category/tag statistics and recipe overview data are available for admin review.
+  USERS {
+    uuid id
+    text name
+    text email
+    text password_hash
+    text role
+    timestamp created_at
+  }
 
-## Database and Seed
+  CATEGORIES {
+    uuid id
+    text name
+    text slug
+  }
 
-The database package lives in `packages/db` and contains the Drizzle schema, migrations, Neon client and seed script.
+  RECIPES {
+    uuid id
+    text title
+    text slug
+    text description
+    text image_url
+    text image_alt
+    integer prep_time_minutes
+    integer cook_time_minutes
+    integer servings
+    text difficulty
+    uuid category_id
+    uuid author_id
+  }
+
+  FAVORITES {
+    uuid id
+    uuid user_id
+    uuid recipe_id
+    timestamp created_at
+  }
+
+  TAGS {
+    uuid id
+    text name
+    text slug
+  }
+
+  RECIPE_TAGS {
+    uuid recipe_id
+    uuid tag_id
+  }
+```
+
+## Seed and Scalability
 
 Run the seed script:
 
@@ -101,14 +333,23 @@ npm.cmd run seed --workspace packages/db
 
 Seed behavior:
 
-- Upserts the core visible catalog recipes by stable slug.
-- Seeds categories and tags.
-- Keeps the visible recipe slugs compatible with favorites.
+- Upserts the core visible recipes by stable slug.
+- Inserts or upserts required categories and tags.
+- Keeps the visible catalog compatible with favorites.
 - Generates 10,000 additional recipe records for scalability testing.
-- Uses batched inserts for large seed data.
-- Fake favorites are disabled by default unless explicitly enabled.
+- Uses generated records without replacing the curated visible catalog.
+- Does not seed fake favorites by default unless explicitly enabled.
 
-## Local Development
+## Assets
+
+| Asset type | Location |
+|---|---|
+| Recipe images | `apps/web/public/images/recipes` |
+| Background image | `apps/web/public/images/backgrounds` |
+
+---
+
+## Local Development Setup
 
 Install dependencies:
 
@@ -138,64 +379,65 @@ npm.cmd run seed --workspace packages/db
 
 A local `.env` file is required for database-backed features.
 
-Use placeholders only in documentation:
+Use placeholders only:
 
 ```env
 DATABASE_URL=
-SESSION_SECRET=
 AUTH_SESSION_SECRET=
 NEXT_PUBLIC_APP_URL=
 ```
 
-`DATABASE_URL` should point to a Neon PostgreSQL database. Session secrets should be local or deployment-specific values and must not be committed.
+`DATABASE_URL` should point to a Neon PostgreSQL database. `AUTH_SESSION_SECRET` should be a local or deployment-specific secret value and must not be committed.
 
-## Project Structure
+## Deployment
 
-```text
-chefos-recipes-fullstack/
-|-- apps/
-|   |-- web/       # Next.js web app
-|   `-- mobile/    # Mobile app package in the wider monorepo
-|-- packages/
-|   |-- db/        # Drizzle schema, migrations, Neon client and seed script
-|   `-- shared/    # Shared TypeScript utilities/types
-|-- docs/
-|-- README.md
-`-- package.json
-```
+Deployment status: **Coming soon**
 
-## Assets
+Recommended production direction:
 
-- Recipe images: `apps/web/public/images/recipes`
-- Background image: `apps/web/public/images/backgrounds`
+| Part | Suggested platform |
+|---|---|
+| Web app | Vercel or another Next.js-compatible host |
+| Database | Neon PostgreSQL |
+| Environment | Production `.env` variables configured in the host dashboard |
 
-## Screens / Pages
+## Project Status
 
-- Home
-- Catalog
-- Recipe details
-- Favorites
-- Profile
-- Login
-- Register
-- Admin
+| Item | Status |
+|---|---|
+| Next.js web app | Done |
+| Bulgarian recipe catalog | Done |
+| 24 visible recipes | Done |
+| Balanced categories | Done |
+| Recipe detail pages | Done |
+| Print recipe action | Done |
+| Registration and login | Done |
+| Hashed passwords | Done |
+| Signed sessions | Done |
+| User-specific favorites | Done |
+| Admin role and admin panel | Done |
+| Neon seed script | Done |
+| 10,000 generated recipe records | Done |
+| Production deployment | Coming soon |
+| Expo mobile app | Foundation present |
 
-## Demo Accounts
+## Submission Information
 
-Demo credentials can be provided separately for review. Do not commit real credentials or reusable secrets to the repository.
+| Field | Value |
+|---|---|
+| Project | Chefo's Recipes |
+| Type | Full-stack recipe catalog |
+| Author | Stefan Badev |
+| Review scope | Functional Next.js web application |
+| Database | Neon PostgreSQL with Drizzle ORM |
 
-## Notes for Reviewers
+## Known Limitations
 
-- Run the seed script before testing database-backed recipes and favorites.
-- Use a regular user account to test favorites.
-- Use an admin user account to test the admin panel.
-- The browser print dialog may show browser-generated headers and footers, such as the localhost URL, unless "Headers and footers" is disabled in the browser print settings.
-- The web build currently passes with:
+- Deployment URL is not available yet.
+- Demo credentials are not published in this README and can be provided separately for review.
+- The Expo mobile app is a foundation in the wider monorepo, not the primary reviewed production scope.
+- Browser print previews may show browser-generated headers and footers, including localhost URLs, unless disabled in the browser print settings.
 
-```powershell
-npm.cmd run build --workspace apps/web
-```
+## Conclusion
 
-## Author
-
-Stefan Badev
+Chefo's Recipes is a functional full-stack Bulgarian recipe catalog with real authentication, database-backed favorites, role-based admin access and seeded data for both curated browsing and scalability testing. The project is designed to be practical, reviewable and ready for continued development.
