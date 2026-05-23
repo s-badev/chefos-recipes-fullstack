@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { addFavoriteAction, removeFavoriteAction } from "../server/favorites/actions";
 
 type RecipeCardRecipe = {
   title: string;
@@ -19,6 +20,9 @@ type RecipeCardRecipe = {
 type RecipeCardProps = {
   recipe: RecipeCardRecipe;
   className?: string;
+  favoriteRedirectTo?: string;
+  isFavorited?: boolean;
+  showFavoriteAction?: boolean;
   tagLimit?: number;
   visualIndex?: number;
 };
@@ -100,12 +104,21 @@ function getRecipeVisualClass(category: string, visualIndex = 0) {
 
 export function RecipeCard({
   className = "",
+  favoriteRedirectTo,
+  isFavorited = false,
   recipe,
+  showFavoriteAction = false,
   tagLimit = 3,
   visualIndex = 0
 }: RecipeCardProps) {
   const visibleTags = recipe.tags.slice(0, tagLimit);
   const imageAlt = recipe.imageAlt ?? `Снимка на ${recipe.title}`;
+  const favoriteAction = isFavorited ? removeFavoriteAction : addFavoriteAction;
+  const favoriteLabel = isFavorited ? "Премахни" : "Запази";
+  const favoriteAriaLabel = isFavorited
+    ? `Премахни ${recipe.title} от любими`
+    : `Запази ${recipe.title} в любими`;
+  const redirectTo = favoriteRedirectTo ?? `/catalog/${recipe.slug}`;
   const metadata = [
     { icon: ClockIcon, value: `${recipe.prepTimeMinutes} мин` },
     { icon: FlameIcon, value: `${recipe.cookTimeMinutes} мин` },
@@ -113,13 +126,17 @@ export function RecipeCard({
   ];
 
   return (
-    <Link
+    <article
       className={[
-        "recipe-card group flex h-full min-h-[560px] flex-col overflow-hidden rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
+        "recipe-card group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-3xl",
         className
       ].join(" ")}
-      href={`/catalog/${recipe.slug}`}
     >
+      <Link
+        aria-label={`Отвори рецепта: ${recipe.title}`}
+        className="absolute inset-0 z-10 rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
+        href={`/catalog/${recipe.slug}`}
+      />
       <div className="relative overflow-hidden">
         {recipe.imageSrc ? (
           <div className="relative h-56 overflow-hidden bg-stone-100 transition duration-500 group-hover:scale-[1.03] sm:h-60 xl:h-72">
@@ -153,6 +170,25 @@ export function RecipeCard({
             {recipe.difficulty}
           </span>
         </div>
+
+        {showFavoriteAction ? (
+          <form action={favoriteAction} className="absolute bottom-4 right-4 z-20">
+            <input name="recipeSlug" type="hidden" value={recipe.slug} />
+            <input name="redirectTo" type="hidden" value={redirectTo} />
+            <button
+              aria-label={favoriteAriaLabel}
+              className={[
+                "inline-flex h-10 items-center justify-center rounded-full border px-4 text-sm font-black shadow-[0_8px_22px_rgba(28,18,8,0.16)] transition",
+                isFavorited
+                  ? "border-brand-300 bg-[#fff8ee] text-brand-800 hover:border-brand-400 hover:bg-white"
+                  : "border-white/70 bg-brand-600 text-white hover:bg-brand-700"
+              ].join(" ")}
+              type="submit"
+            >
+              {favoriteLabel}
+            </button>
+          </form>
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -191,6 +227,6 @@ export function RecipeCard({
           </div>
         </div>
       </div>
-    </Link>
+    </article>
   );
 }

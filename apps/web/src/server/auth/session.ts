@@ -1,8 +1,7 @@
 import { createHmac, randomBytes, scryptSync, timingSafeEqual } from "crypto";
-import { mkdir, readFile, writeFile } from "fs/promises";
+import { eq, getDb, users as usersTable } from "@chefos/db";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import path from "path";
 
 export type UserRole = "user" | "admin";
 
@@ -17,16 +16,9 @@ type DemoUser = CurrentUser & {
   passwordSalt: string;
 };
 
-type RegisteredUser = DemoUser;
-
 const SESSION_COOKIE_NAME = "chefos_session";
 const SESSION_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
-const REGISTERED_USERS_FILE = path.join(
-  process.cwd(),
-  ".next",
-  "cache",
-  "chefos-registered-users.json"
-);
+const PASSWORD_HASH_PREFIX = "scrypt";
 
 const demoUsers: DemoUser[] = [
   {
@@ -85,7 +77,7 @@ function decodeSession(value: string | undefined) {
   return Buffer.from(payload, "base64url").toString("utf8");
 }
 
-function toCurrentUser(user: DemoUser): CurrentUser {
+function toCurrentUser(user: CurrentUser): CurrentUser {
   return {
     email: user.email,
     name: user.name,
@@ -101,7 +93,7 @@ function hashPassword(password: string, salt: string) {
   return scryptSync(password, salt, 64).toString("base64url");
 }
 
-function verifyPassword(password: string, salt: string, expectedHash: string) {
+function verifyScryptPassword(password: string, salt: string, expectedHash: string) {
   const passwordHash = hashPassword(password, salt);
   const passwordHashBuffer = Buffer.from(passwordHash);
   const expectedPasswordHashBuffer = Buffer.from(expectedHash);
@@ -112,24 +104,45 @@ function verifyPassword(password: string, salt: string, expectedHash: string) {
   );
 }
 
-async function readRegisteredUsers(): Promise<RegisteredUser[]> {
-  try {
-    const file = await readFile(REGISTERED_USERS_FILE, "utf8");
-    const users = JSON.parse(file);
+function createPasswordHash(password: string) {
+  const salt = randomBytes(16).toString("base64url");
 
-    return Array.isArray(users) ? users : [];
-  } catch (error) {
-    if (error instanceof Error && "code" in error && error.code === "ENOENT") {
-      return [];
-    }
-
-    throw error;
-  }
+  return `${PASSWORD_HASH_PREFIX}$${salt}$${hashPassword(password, salt)}`;
 }
 
-async function writeRegisteredUsers(users: RegisteredUser[]) {
-  await mkdir(path.dirname(REGISTERED_USERS_FILE), { recursive: true });
-  await writeFile(REGISTERED_USERS_FILE, JSON.stringify(users, null, 2), "utf8");
+function verifyStoredPassword(password: string, storedPasswordHash: string) {
+  const [prefix, salt, expectedHash] = storedPasswordHash.split("$");
+
+  if (prefix !== PASSWORD_HASH_PREFIX || !salt || !expectedHash) {
+    return false;
+  }
+
+  return verifyScryptPassword(password, salt, expectedHash);
+}
+
+function isUniqueEmailError(error: unknown) {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    error.code === "23505"
+  );
+}
+
+async function findDbUserByEmail(email: string) {
+  const db = getDb();
+  const rows = await db
+    .select({
+      email: usersTable.email,
+      name: usersTable.name,
+      passwordHash: usersTable.passwordHash,
+      role: usersTable.role
+    })
+    .from(usersTable)
+    .where(eq(usersTable.email, email))
+    .limit(1);
+
+  return rows[0];
 }
 
 export function verifyDemoUser(email: string, password: string) {
@@ -140,7 +153,7 @@ export function verifyDemoUser(email: string, password: string) {
     return undefined;
   }
 
-  if (!verifyPassword(password, user.passwordSalt, user.passwordHash)) {
+  if (!verifyScryptPassword(password, user.passwordSalt, user.passwordHash)) {
     return undefined;
   }
 
@@ -149,14 +162,18 @@ export function verifyDemoUser(email: string, password: string) {
 
 export async function verifyRegisteredUser(email: string, password: string) {
   const normalizedEmail = normalizeEmail(email);
-  const registeredUsers = await readRegisteredUsers();
-  const user = registeredUsers.find((registeredUser) => registeredUser.email === normalizedEmail);
 
-  if (!user || !verifyPassword(password, user.passwordSalt, user.passwordHash)) {
+  try {
+    const user = await findDbUserByEmail(normalizedEmail);
+
+    if (!user || !verifyStoredPassword(password, user.passwordHash)) {
+      return undefined;
+    }
+
+    return toCurrentUser(user);
+  } catch {
     return undefined;
   }
-
-  return toCurrentUser(user);
 }
 
 export async function createRegisteredUser(input: {
@@ -172,28 +189,46 @@ export async function createRegisteredUser(input: {
     return { error: "invalid" as const };
   }
 
-  const registeredUsers = await readRegisteredUsers();
   const existingDemoUser = demoUsers.some((demoUser) => demoUser.email === email);
-  const existingRegisteredUser = registeredUsers.some(
-    (registeredUser) => registeredUser.email === email
-  );
+  const existingRegisteredUser = await findDbUserByEmail(email);
 
   if (existingDemoUser || existingRegisteredUser) {
     return { error: "exists" as const };
   }
 
-  const passwordSalt = randomBytes(16).toString("base64url");
-  const user: RegisteredUser = {
-    email,
-    name,
-    passwordHash: hashPassword(password, passwordSalt),
-    passwordSalt,
-    role: "user"
-  };
+  const now = new Date();
 
-  await writeRegisteredUsers([...registeredUsers, user]);
+  try {
+    const insertedUsers = await getDb()
+      .insert(usersTable)
+      .values({
+        name,
+        email,
+        passwordHash: createPasswordHash(password),
+        role: "user",
+        createdAt: now,
+        updatedAt: now
+      })
+      .returning({
+        email: usersTable.email,
+        name: usersTable.name,
+        role: usersTable.role
+      });
 
-  return { user: toCurrentUser(user) };
+    const user = insertedUsers[0];
+
+    if (!user) {
+      return { error: "server" as const };
+    }
+
+    return { user: toCurrentUser(user) };
+  } catch (error) {
+    if (isUniqueEmailError(error)) {
+      return { error: "exists" as const };
+    }
+
+    throw error;
+  }
 }
 
 export async function getCurrentUser() {
@@ -205,10 +240,17 @@ export async function getCurrentUser() {
     return toCurrentUser(demoUser);
   }
 
-  const registeredUsers = await readRegisteredUsers();
-  const registeredUser = registeredUsers.find((user) => user.email === email);
+  if (!email) {
+    return undefined;
+  }
 
-  return registeredUser ? toCurrentUser(registeredUser) : undefined;
+  try {
+    const registeredUser = await findDbUserByEmail(email);
+
+    return registeredUser ? toCurrentUser(registeredUser) : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 export async function createSession(user: CurrentUser) {

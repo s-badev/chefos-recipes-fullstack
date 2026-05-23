@@ -1,13 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { findRecipeBySlug, recipes } from "../recipes";
+import { findRecipeBySlug } from "../recipes";
+import { addFavoriteAction, removeFavoriteAction } from "../../../server/favorites/actions";
+import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export const dynamic = "force-dynamic";
 
 function getVisualClass(category: string) {
   const normalizedCategory = category.toLocaleLowerCase("bg-BG");
@@ -29,12 +33,6 @@ function getVisualClass(category: string) {
   }
 
   return "recipe-photo--stew";
-}
-
-export function generateStaticParams() {
-  return recipes.map((recipe) => ({
-    slug: recipe.slug
-  }));
 }
 
 export async function generateMetadata({
@@ -78,6 +76,8 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
       </section>
     );
   }
+
+  const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
 
   return (
     <article className="page-shell space-y-10">
@@ -169,16 +169,24 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                   →
                 </span>
               </Link>
-              <button
-                className="flex cursor-not-allowed items-center justify-between rounded-2xl border border-stone-200 bg-[#fff8ee]/75 px-4 py-3 text-left text-base font-bold text-stone-500"
-                disabled
-                type="button"
-              >
-                <span>Запази в любими</span>
-                <span className="rounded-full bg-white px-2.5 py-1 text-xs font-black uppercase tracking-[0.12em] text-brand-700">
-                  скоро
-                </span>
-              </button>
+              <form action={isFavorited ? removeFavoriteAction : addFavoriteAction}>
+                <input name="recipeSlug" type="hidden" value={recipe.slug} />
+                <input name="redirectTo" type="hidden" value={`/catalog/${recipe.slug}`} />
+                <button
+                  className={[
+                    "flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-base font-black transition",
+                    isFavorited
+                      ? "border-brand-200 bg-white text-[#4a2a17] hover:border-brand-400 hover:bg-[#fff8ee] hover:text-brand-800"
+                      : "border-brand-200 bg-[#fff8ee] text-[#4a2a17] hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
+                  ].join(" ")}
+                  type="submit"
+                >
+                  <span>{isFavorited ? "Премахни от любими" : "Запази в любими"}</span>
+                  <span aria-hidden="true" className="text-brand-700">
+                    ♥
+                  </span>
+                </button>
+              </form>
               <button
                 className="flex cursor-not-allowed items-center justify-between rounded-2xl border border-stone-200 bg-[#fff8ee]/75 px-4 py-3 text-left text-base font-bold text-stone-500"
                 disabled

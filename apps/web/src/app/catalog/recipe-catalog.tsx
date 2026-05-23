@@ -7,10 +7,15 @@ import { recipes } from "./recipes";
 const allCategoriesLabel = "Всички";
 const catalogPageSize = 8;
 
-export function RecipeCatalog() {
+type RecipeCatalogProps = {
+  favoriteSlugs?: string[];
+};
+
+export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(allCategoriesLabel);
   const [currentPage, setCurrentPage] = useState(1);
+  const favoriteSlugSet = useMemo(() => new Set(favoriteSlugs), [favoriteSlugs]);
 
   const categories = useMemo(
     () => [allCategoriesLabel, ...Array.from(new Set(recipes.map((recipe) => recipe.category)))],
@@ -116,7 +121,14 @@ export function RecipeCatalog() {
         <div className="space-y-7">
           <div className="grid items-stretch gap-7 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {paginatedRecipes.map((recipe, index) => (
-              <RecipeCard key={recipe.slug} recipe={recipe} visualIndex={index} />
+              <RecipeCard
+                favoriteRedirectTo="/catalog"
+                isFavorited={favoriteSlugSet.has(recipe.slug)}
+                key={recipe.slug}
+                recipe={recipe}
+                showFavoriteAction
+                visualIndex={index}
+              />
             ))}
           </div>
 

@@ -14,7 +14,7 @@ import {
   inArray
 } from "@chefos/db";
 
-import { recipes as sampleRecipes, type Recipe, type RecipeCategory } from "../../data/recipes";
+import type { Recipe, RecipeCategory } from "../../data/recipes";
 
 export type RecipePageQuery = {
   offset: number;
@@ -230,10 +230,6 @@ export async function findCategories(): Promise<RecipeCategory[]> {
     name: row.name,
     recipeCount: Number(row.recipeCount)
   }));
-}
-
-export function findFavoriteRecipes(limit = 3) {
-  return sampleRecipes.slice(0, limit);
 }
 
 export async function getAdminSummary(): Promise<AdminRecipeSummary> {

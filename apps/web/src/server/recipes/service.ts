@@ -2,7 +2,6 @@ import {
   createRecipeRecord,
   deleteRecipeRecordBySlug,
   findCategories,
-  findFavoriteRecipes,
   findRecipeBySlug,
   findRecipes,
   getAdminSummary,
@@ -56,10 +55,6 @@ export function getRecipeBySlug(slug: string) {
 
 export function listCategories() {
   return findCategories();
-}
-
-export function listFavoriteRecipes() {
-  return findFavoriteRecipes(3);
 }
 
 export function getAdminRecipeSummary() {

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getCurrentUser } from "../../../server/auth/session";
-import { listFavoriteRecipes } from "../../../server/recipes/service";
+import { listFavoriteRecipesForUser } from "../../../server/favorites/repository";
 
 export async function GET() {
   const user = await getCurrentUser();
@@ -9,14 +9,13 @@ export async function GET() {
     return NextResponse.json({ error: "Необходим е вход." }, { status: 401 });
   }
 
-  const favoriteRecipes = listFavoriteRecipes();
+  const favoriteRecipes = await listFavoriteRecipesForUser(user);
 
   return NextResponse.json({
     data: favoriteRecipes,
-    message: "Примерни любими рецепти. Реалните любими ще бъдат свързани с потребителски профил.",
     meta: {
       count: favoriteRecipes.length,
-      source: "static-sample-data"
+      source: "database"
     }
   });
 }
