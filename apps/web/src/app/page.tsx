@@ -100,13 +100,13 @@ export default function HomePage() {
 
           <div className="flex flex-wrap gap-3">
             <Link
-              className="rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+              className="ui-button rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
               href="/catalog"
             >
               Виж избраните
             </Link>
             <Link
-              className="rounded-full border border-stone-300 bg-white/88 px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
+              className="ui-button rounded-full border border-stone-300 bg-white/88 px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
               href="#explore"
             >
               Какво можеш да правиш
@@ -183,7 +183,7 @@ export default function HomePage() {
             </p>
           </div>
           <Link
-            className="inline-flex w-fit items-center justify-center rounded-full bg-white px-6 py-3 text-base font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
+            className="ui-button inline-flex w-fit items-center justify-center rounded-full bg-white px-6 py-3 text-base font-black text-stone-950 shadow-sm transition hover:bg-brand-50 hover:text-brand-800"
             href="/catalog"
           >
             Разгледай каталога
@@ -230,7 +230,7 @@ export default function HomePage() {
             продукти, стъпки и любими идеи, за да стигаш по-бързо до добър избор.
           </p>
           <Link
-            className="mt-6 inline-flex w-fit rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+            className="ui-button mt-6 inline-flex w-fit rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
             href="/catalog"
           >
             Разгледай каталога

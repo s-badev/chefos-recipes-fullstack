@@ -81,7 +81,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
         </div>
       </div>
 
-      <div className="space-y-4 rounded-[1.8rem] border border-stone-200 bg-white/72 p-5 shadow-sm">
+      <div className="catalog-filter-panel space-y-4 rounded-[1.8rem] border border-stone-200 bg-white/72 p-5 shadow-sm">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
@@ -89,9 +89,9 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
             </p>
             <h2 className="mt-1 text-2xl font-bold text-stone-950">Избери категория</h2>
           </div>
-          <p className="inline-flex w-fit rounded-full border border-brand-100 bg-[#fff8ee] px-4 py-2 text-[0.98rem] font-bold text-[#3a2417] shadow-sm">
-            {filteredRecipes.length} намерени рецепти
-          </p>
+          <p className="inline-flex w-fit items-center rounded-full border border-brand-200 bg-[#fff8ee] px-5 py-2.5 text-[0.95rem] font-black text-[#3a2417] shadow-[0_10px_24px_rgba(89,52,22,0.10)]">
+          {filteredRecipes.length} рецепти
+        </p>
         </div>
 
         <div className="flex flex-wrap gap-2">
@@ -101,9 +101,9 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
             return (
               <button
                 className={[
-                  "rounded-full border px-5 py-2.5 text-base font-black transition",
+                  "catalog-filter-button rounded-full border px-5 py-2.5 text-base font-black transition",
                   isSelected
-                    ? "border-brand-600 bg-brand-600 text-white shadow-sm shadow-brand-900/20"
+                    ? "catalog-filter-button--active border-brand-600 bg-brand-600 text-white shadow-sm shadow-brand-900/20"
                     : "border-stone-200 bg-white/86 text-stone-700 hover:border-brand-300 hover:text-brand-800"
                 ].join(" ")}
                 key={category}
@@ -134,7 +134,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
 
           <div className="flex flex-col gap-3 rounded-[1.7rem] border border-stone-200 bg-white/84 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="pagination-button rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage <= 1}
               onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
               type="button"
@@ -145,7 +145,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
               Страница {currentPage} от {totalPages}
             </p>
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="pagination-button rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
               type="button"

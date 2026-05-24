@@ -28,7 +28,7 @@ export function BackToTopButton() {
     <button
       aria-label="Върни се най-горе"
       className={[
-        "no-print fixed bottom-5 right-4 z-50 inline-grid h-12 w-12 place-items-center rounded-full bg-brand-600 text-white shadow-[0_14px_34px_rgba(127,51,19,0.28)] transition duration-200 hover:bg-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200 sm:bottom-7 sm:right-6",
+        "back-to-top-control no-print fixed bottom-5 right-4 z-50 inline-grid h-12 w-12 place-items-center rounded-full bg-brand-600 text-white shadow-[0_14px_34px_rgba(127,51,19,0.28)] transition duration-200 hover:bg-brand-700 focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200 sm:bottom-7 sm:right-6",
         isVisible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0"

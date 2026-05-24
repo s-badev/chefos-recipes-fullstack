@@ -114,25 +114,6 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             </Link>
           </div>
 
-          <button
-            className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full border border-stone-200 bg-white px-5 py-3 text-base font-black text-stone-500 shadow-sm"
-            disabled
-            type="button"
-          >
-            <span className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 bg-white text-sm font-black text-brand-700">
-              G
-            </span>
-            Регистрация с Google - скоро
-          </button>
-
-          <div className="my-7 flex items-center gap-4">
-            <span className="h-px flex-1 bg-stone-200" />
-            <span className="text-sm font-black uppercase tracking-[0.16em] text-stone-500">
-              или с имейл
-            </span>
-            <span className="h-px flex-1 bg-stone-200" />
-          </div>
-
           <div className="space-y-5">
             {errorMessage ? (
               <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">

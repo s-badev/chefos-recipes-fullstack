@@ -69,7 +69,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           Тази рецепта не е налична в момента. Върни се към каталога и избери друга.
         </p>
         <Link
-          className="mt-6 inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+          className="ui-button mt-6 inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
           href="/catalog"
         >
           Обратно към каталога
@@ -82,7 +82,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
 
   return (
     <article className="recipe-print-page page-shell space-y-10">
-      <Link className="no-print inline-flex text-base font-black text-brand-700 hover:text-brand-900" href="/catalog">
+      <Link className="no-print inline-flex rounded-full px-1 text-base font-black text-brand-700 transition hover:text-brand-900 focus-visible:ring-4 focus-visible:ring-brand-100" href="/catalog">
         Обратно към каталога
       </Link>
 
@@ -146,7 +146,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 { label: "Порции", value: recipe.servings },
                 { label: "Трудност", value: recipe.difficulty }
               ].map((item) => (
-                <div className="rounded-2xl bg-[#fff7ec] p-4" key={item.label}>
+                <div className="detail-stat-tile rounded-2xl border border-transparent bg-[#fff7ec] p-4" key={item.label}>
                   <p className="text-sm font-black uppercase tracking-[0.12em] text-stone-500">
                     {item.label}
                   </p>
@@ -162,7 +162,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <h2 className="text-3xl font-bold text-stone-950">Бързи действия</h2>
             <div className="mt-5 grid gap-3">
               <Link
-                className="flex items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
+                className="quick-action flex items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
                 href="/catalog"
               >
                 <span>Виж каталога</span>
@@ -175,7 +175,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 <input name="redirectTo" type="hidden" value={`/catalog/${recipe.slug}`} />
                 <button
                   className={[
-                    "flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-base font-black transition",
+                    "quick-action flex w-full items-center justify-between rounded-2xl border px-4 py-3 text-left text-base font-black transition",
                     isFavorited
                       ? "border-brand-200 bg-white text-[#4a2a17] hover:border-brand-400 hover:bg-[#fff8ee] hover:text-brand-800"
                       : "border-brand-200 bg-[#fff8ee] text-[#4a2a17] hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
@@ -188,7 +188,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                   </span>
                 </button>
               </form>
-              <PrintRecipeButton className="flex w-full items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-left text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
+              <PrintRecipeButton className="quick-action flex w-full items-center justify-between rounded-2xl border border-brand-200 bg-[#fff8ee] px-4 py-3 text-left text-base font-black text-[#4a2a17] transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
             </div>
           </div>
         </aside>
@@ -198,7 +198,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
             {recipe.ingredients.map((ingredient) => (
               <li
-                className="flex items-center gap-3 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-[0.98rem] font-medium leading-6 text-[#4a2a17]"
+                className="ingredient-item flex items-center gap-3 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-[0.98rem] font-medium leading-6 text-[#4a2a17]"
                 key={ingredient}
               >
                 <span className="h-2 w-2 shrink-0 rounded-full bg-brand-500" />

@@ -41,7 +41,7 @@ export default async function AdminPage() {
             Админ панел
           </h1>
           <p className="mt-4 max-w-2xl text-lg font-medium leading-8 text-[#4a2a17] sm:text-xl sm:leading-9">
-            Зона за подреждане на рецепти, преглед на категории и подготовка на ново съдържание.
+            Админ панелът показва текущия каталог, категории и тагове за преглед и управление.
           </p>
         </div>
 
@@ -49,13 +49,13 @@ export default async function AdminPage() {
 
       <div className="flex flex-wrap gap-3">
         <Link
-          className="rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+          className="ui-button rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
           href="/admin/recipes/new"
         >
           Добави рецепта
         </Link>
         <Link
-          className="rounded-full border border-stone-300 bg-white px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
+          className="ui-button rounded-full border border-stone-300 bg-white px-6 py-3 text-base font-black text-stone-800 shadow-sm transition hover:border-brand-300 hover:text-brand-800"
           href="/catalog"
         >
           Виж каталога
@@ -82,7 +82,7 @@ export default async function AdminPage() {
         <div className="space-y-3 bg-[#fffaf3]/60 p-4 sm:p-5">
           {recipes.slice(0, 6).map((recipe) => (
             <div
-              className="grid gap-5 rounded-[1.45rem] border border-stone-200/80 bg-white/78 p-5 shadow-sm shadow-stone-900/[0.03] transition hover:border-brand-200 hover:bg-[#fff8ee] hover:shadow-[0_14px_34px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
+              className="admin-row grid gap-5 rounded-[1.45rem] border border-stone-200/80 bg-white/78 p-5 shadow-sm shadow-stone-900/[0.03] transition hover:border-brand-200 hover:bg-[#fff8ee] hover:shadow-[0_14px_34px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
               key={recipe.slug}
             >
               <div className="min-w-0">
@@ -112,7 +112,7 @@ export default async function AdminPage() {
 
               <div className="flex flex-wrap items-center gap-2.5 self-center lg:justify-end lg:justify-self-end">
                 <Link
-                  className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-stone-200 bg-white px-5 text-base font-semibold leading-none text-stone-700 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
+                  className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-stone-200 bg-white px-5 text-base font-semibold leading-none text-stone-700 shadow-sm transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
                   href={`/admin/recipes/${recipe.slug}/edit`}
                 >
                   Редактирай
@@ -120,7 +120,7 @@ export default async function AdminPage() {
                 <form action={deleteRecipeAction} className="flex items-center">
                   <input name="slug" type="hidden" value={recipe.slug} />
                   <button
-                    className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-red-200 bg-[#fff3ed] px-5 text-base font-semibold leading-none text-red-700 shadow-sm transition hover:border-red-300 hover:bg-[#ffe8df] hover:text-red-800"
+                    className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-full border border-red-200 bg-[#fff3ed] px-5 text-base font-semibold leading-none text-red-700 shadow-sm transition hover:border-red-300 hover:bg-[#ffe8df] hover:text-red-800"
                     type="submit"
                   >
                     Изтрий
@@ -133,10 +133,10 @@ export default async function AdminPage() {
       </section>
 
       <section className="info-note rounded-[1.8rem] p-6 shadow-sm">
-        <p className="text-lg font-bold text-stone-950">Бележка</p>
+        <p className="text-lg font-bold text-stone-950">Управление на каталога</p>
         <p className="mt-2 text-lg font-medium leading-8 text-[#4a2a17]">
-          Добавянето, редакцията и изтриването ще бъдат достъпни, когато зоната за управление е
-          готова за работа.
+          Използвай списъка за бърз преглед на рецептите, редакция на съдържание и поддръжка на
+          подреден каталог.
         </p>
       </section>
     </section>

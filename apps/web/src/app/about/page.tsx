@@ -117,11 +117,11 @@ export default function AboutPage() {
       </section>
 
       <section className="about-panel about-panel--feature grid gap-7 rounded-[2rem] border border-stone-200 bg-white/76 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1fr)] lg:items-center xl:gap-10 xl:p-10">
-        <div className="about-feature-copy rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
+        <div className="about-premium-tile about-info-card info-card about-feature-copy rounded-[1.7rem] p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
-          <h2 className="mt-2 text-4xl font-bold leading-tight text-stone-950">
+          <h2 className="about-card-title mt-2 text-4xl font-bold leading-tight text-stone-950">
             По-малко чудене преди готвене
           </h2>
           <p className="mt-4 text-base font-medium leading-8 text-[#4a3326]">
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {capabilityCards.map((item) => (
             <article
-              className="about-mini-card rounded-[1.5rem] border border-brand-100 bg-[#fff8ee]/88 p-5 shadow-sm transition hover:border-brand-200 hover:bg-[#fff8ee]"
+              className="about-step-card about-mini-card about-premium-tile about-info-card info-card rounded-[1.5rem] p-5"
               key={item.title}
             >
               <div className="flex items-start gap-3">

@@ -20,8 +20,7 @@ export default async function NewRecipePage() {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">Добави рецепта</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Попълни основната информация за нова рецепта. Запазването ще бъде активно, когато
-            админ зоната е готова за работа.
+            Попълни основната информация и запази рецептата в каталога.
           </p>
         </div>
         <Link className="text-base font-bold text-brand-700 hover:text-brand-900" href="/admin">
@@ -115,14 +114,13 @@ export default async function NewRecipePage() {
             className="w-full rounded-full bg-brand-600 px-5 py-3 text-base font-bold text-white shadow-sm transition hover:bg-brand-700"
             type="submit"
           >
-            Запази чернова
+            Запази рецепта
           </button>
         </div>
       </form>
 
       <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-base leading-7 text-stone-600 shadow-sm">
-        Формата показва как ще изглежда добавянето на рецепта. Скоро тук ще можеш да запазваш нови
-        предложения за каталога.
+        След запис рецептата се добавя към каталога и може да бъде управлявана от админ панела.
       </p>
     </section>
   );

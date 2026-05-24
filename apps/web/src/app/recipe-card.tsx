@@ -178,7 +178,7 @@ export function RecipeCard({
             <button
               aria-label={favoriteAriaLabel}
               className={[
-                "inline-flex min-h-9 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-4 py-2 text-sm font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
+                "quick-action inline-flex min-h-9 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-4 py-2 text-sm font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
                 isFavorited ? "border-[#d7a66a]" : "border-[#e3bf8d]"
               ].join(" ")}
               type="submit"
