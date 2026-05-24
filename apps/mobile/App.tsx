@@ -57,11 +57,14 @@ function MainTabs() {
           fontWeight: "800"
         },
         tabBarStyle: {
+          alignSelf: "center",
           backgroundColor: colors.background,
           borderTopColor: colors.border,
+          maxWidth: 840,
           minHeight: 72,
           paddingBottom: 10,
-          paddingTop: 8
+          paddingTop: 8,
+          width: "100%"
         }
       }}
     >

@@ -3,6 +3,7 @@ import {
   Pressable,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
   type StyleProp,
   type ViewStyle
@@ -19,6 +20,9 @@ type RecipeCardProps = {
 
 export function RecipeCard({ onPress, recipe, style }: RecipeCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const { width } = useWindowDimensions();
+  const isTablet = width >= 720;
+  const imageHeight = isTablet ? 220 : 180;
   const hasImage = Boolean(recipe.imageUrl && !imageFailed);
 
   return (
@@ -27,7 +31,7 @@ export function RecipeCard({ onPress, recipe, style }: RecipeCardProps) {
       onPress={onPress}
       style={({ pressed }) => [styles.card, pressed ? styles.pressed : null, style]}
     >
-      <View style={styles.imageWrap}>
+      <View style={[styles.imageWrap, { height: imageHeight }]}>
         {hasImage ? (
           <Image
             accessibilityLabel={recipe.imageAlt ?? recipe.title}
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
   },
   imageWrap: {
     backgroundColor: colors.brandSoft,
-    height: 148,
     overflow: "hidden"
   },
   image: {
@@ -110,7 +113,7 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   body: {
-    padding: 16
+    padding: 15
   },
   topRow: {
     alignItems: "center",
@@ -136,16 +139,16 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.text,
-    fontSize: 21,
+    fontSize: 20,
     fontWeight: "900",
-    lineHeight: 26,
+    lineHeight: 25,
     marginTop: 12
   },
   description: {
     color: colors.muted,
-    fontSize: 14,
+    fontSize: 13,
     fontWeight: "600",
-    lineHeight: 21,
+    lineHeight: 20,
     marginTop: 8
   },
   metaRow: {

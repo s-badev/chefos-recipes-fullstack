@@ -1,4 +1,3 @@
-import * as SecureStore from "expo-secure-store";
 import {
   createContext,
   useCallback,
@@ -13,6 +12,7 @@ import {
   loginUser,
   registerUser
 } from "../services/api";
+import { deleteToken, getToken, saveToken } from "../services/tokenStorage";
 import type { MobileUser } from "../types";
 
 type AuthContextValue = {
@@ -25,7 +25,6 @@ type AuthContextValue = {
   logout: () => Promise<void>;
 };
 
-const TOKEN_KEY = "chefos_mobile_token";
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -38,7 +37,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     async function restoreSession() {
       try {
-        const storedToken = await SecureStore.getItemAsync(TOKEN_KEY);
+        const storedToken = await getToken();
 
         if (!storedToken) {
           return;
@@ -51,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(restoredUser);
         }
       } catch {
-        await SecureStore.deleteItemAsync(TOKEN_KEY);
+        await deleteToken();
       } finally {
         if (isMounted) {
           setIsLoading(false);
@@ -67,7 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const persistSession = useCallback(async (nextToken: string, nextUser: MobileUser) => {
-    await SecureStore.setItemAsync(TOKEN_KEY, nextToken);
+    await saveToken(nextToken);
     setToken(nextToken);
     setUser(nextUser);
   }, []);
@@ -91,7 +90,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   );
 
   const logout = useCallback(async () => {
-    await SecureStore.deleteItemAsync(TOKEN_KEY);
+    await deleteToken();
     setToken(null);
     setUser(null);
   }, []);

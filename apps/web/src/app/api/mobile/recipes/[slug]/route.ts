@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { jsonError } from "../../../../../server/mobile/http";
+import { jsonError, jsonResponse, optionsResponse } from "../../../../../server/mobile/http";
 import { getMobileRecipeBySlug } from "../../../../../server/mobile/recipes";
 
 type MobileRecipeBySlugContext = {
@@ -8,18 +7,22 @@ type MobileRecipeBySlugContext = {
   }>;
 };
 
-export async function GET(_request: Request, { params }: MobileRecipeBySlugContext) {
+export async function GET(request: Request, { params }: MobileRecipeBySlugContext) {
   const { slug } = await params;
 
   try {
     const recipe = await getMobileRecipeBySlug(slug);
 
     if (!recipe) {
-      return jsonError("Recipe was not found.", 404);
+      return jsonError(request, "Recipe was not found.", 404);
     }
 
-    return NextResponse.json(recipe);
+    return jsonResponse(request, recipe);
   } catch {
-    return jsonError("Recipe could not be loaded.", 500);
+    return jsonError(request, "Recipe could not be loaded.", 500);
   }
+}
+
+export async function OPTIONS(request: Request) {
+  return optionsResponse(request);
 }

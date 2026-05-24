@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { requireMobileApiUser } from "../../../../../server/mobile/http";
+import { jsonResponse, optionsResponse, requireMobileApiUser } from "../../../../../server/mobile/http";
 
 export async function GET(request: Request) {
   const auth = requireMobileApiUser(request);
@@ -8,5 +7,9 @@ export async function GET(request: Request) {
     return auth.response;
   }
 
-  return NextResponse.json({ user: auth.user });
+  return jsonResponse(request, { user: auth.user });
+}
+
+export async function OPTIONS(request: Request) {
+  return optionsResponse(request);
 }

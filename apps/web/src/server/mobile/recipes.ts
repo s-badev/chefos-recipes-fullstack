@@ -1,24 +1,4 @@
-import {
-  and,
-  asc,
-  categories as categoriesTable,
-  count,
-  desc,
-  eq,
-  getDb,
-  ilike,
-  inArray,
-  or,
-  recipeSteps as recipeStepsTable,
-  recipeTags as recipeTagsTable,
-  recipes as recipesTable,
-  tags as tagsTable,
-  type SQL
-} from "@chefos/db";
-import {
-  findRecipeBySlug as findStaticRecipeBySlug,
-  type Recipe
-} from "../../data/recipes";
+import { findRecipeBySlug, getAllRecipes, type Recipe } from "../../data/recipes";
 
 export type MobileRecipeSummary = {
   id: string;
@@ -47,130 +27,26 @@ export type MobileRecipeListParams = {
   search?: string;
 };
 
-type MobileRecipeRow = {
-  id: string;
-  title: string;
+type MobileCategory = {
+  name: string;
   slug: string;
-  description: string | null;
-  imageUrl: string | null;
-  imageAlt: string | null;
-  prepTimeMinutes: number | null;
-  cookTimeMinutes: number | null;
-  servings: number | null;
-  difficulty: string;
-  category: string;
+  recipeCount: number;
 };
 
-function formatDifficulty(difficulty: string) {
-  switch (difficulty) {
-    case "easy":
-      return "Лесна";
-    case "medium":
-      return "Средна";
-    case "hard":
-      return "Трудна";
-    default:
-      return difficulty;
-  }
+const CATEGORY_ORDER = ["Салати", "Тестени", "Основни", "Супи", "Бързи ястия", "Десерти"];
+
+function normalizeText(value: string) {
+  return value.trim().toLocaleLowerCase("bg-BG");
 }
 
-function addGroupedValue(map: Map<string, string[]>, key: string, value: string) {
-  const values = map.get(key) ?? [];
-
-  values.push(value);
-  map.set(key, values);
-}
-
-async function getRecipeTags(recipeIds: string[]) {
-  const tagsByRecipeId = new Map<string, string[]>();
-
-  if (recipeIds.length === 0) {
-    return tagsByRecipeId;
-  }
-
-  const rows = await getDb()
-    .select({
-      recipeId: recipeTagsTable.recipeId,
-      tagName: tagsTable.name
-    })
-    .from(recipeTagsTable)
-    .innerJoin(tagsTable, eq(recipeTagsTable.tagId, tagsTable.id))
-    .where(inArray(recipeTagsTable.recipeId, recipeIds))
-    .orderBy(asc(recipeTagsTable.recipeId), asc(tagsTable.name));
-
-  for (const row of rows) {
-    addGroupedValue(tagsByRecipeId, row.recipeId, row.tagName);
-  }
-
-  return tagsByRecipeId;
-}
-
-async function getRecipeSteps(recipeIds: string[]) {
-  const stepsByRecipeId = new Map<string, string[]>();
-
-  if (recipeIds.length === 0) {
-    return stepsByRecipeId;
-  }
-
-  const rows = await getDb()
-    .select({
-      recipeId: recipeStepsTable.recipeId,
-      instruction: recipeStepsTable.instruction
-    })
-    .from(recipeStepsTable)
-    .where(inArray(recipeStepsTable.recipeId, recipeIds))
-    .orderBy(asc(recipeStepsTable.recipeId), asc(recipeStepsTable.stepNumber));
-
-  for (const row of rows) {
-    addGroupedValue(stepsByRecipeId, row.recipeId, row.instruction);
-  }
-
-  return stepsByRecipeId;
-}
-
-function getWhereClause(params: Pick<MobileRecipeListParams, "category" | "search">) {
-  const filters: SQL[] = [];
-
-  if (params.category) {
-    filters.push(eq(categoriesTable.name, params.category));
-  }
-
-  if (params.search) {
-    const searchPattern = `%${params.search}%`;
-    const searchFilter = or(
-      ilike(recipesTable.title, searchPattern),
-      ilike(recipesTable.description, searchPattern),
-      ilike(categoriesTable.name, searchPattern)
-    );
-
-    if (searchFilter) {
-      filters.push(searchFilter);
-    }
-  }
-
-  return filters.length > 0 ? and(...filters) : undefined;
-}
-
-function rowToMobileRecipeSummary(
-  row: MobileRecipeRow,
-  tags: string[]
-): MobileRecipeSummary {
-  const staticRecipe = findStaticRecipeBySlug(row.slug);
-
-  return {
-    id: row.id,
-    title: row.title,
-    slug: row.slug,
-    description: row.description ?? "",
-    imageUrl: row.imageUrl ?? staticRecipe?.imageSrc ?? null,
-    imageAlt: row.imageAlt ?? staticRecipe?.imageAlt ?? null,
-    category: row.category,
-    difficulty: formatDifficulty(row.difficulty),
-    prepTimeMinutes: row.prepTimeMinutes ?? 0,
-    cookTimeMinutes: row.cookTimeMinutes ?? 0,
-    servings: row.servings ?? 0,
-    tags
-  };
+function slugifyCategory(value: string) {
+  return value
+    .trim()
+    .toLocaleLowerCase("bg-BG")
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9а-я]+/gi, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function staticRecipeToMobileRecipe(recipe: Recipe): MobileRecipeDetail {
@@ -211,103 +87,52 @@ export function recipeToMobileSummary(recipe: Recipe): MobileRecipeSummary {
   };
 }
 
-export async function listMobileCategories() {
-  const rows = await getDb()
-    .select({
-      name: categoriesTable.name,
-      slug: categoriesTable.slug,
-      recipeCount: count(recipesTable.id)
-    })
-    .from(categoriesTable)
-    .leftJoin(recipesTable, eq(recipesTable.categoryId, categoriesTable.id))
-    .groupBy(categoriesTable.id, categoriesTable.name, categoriesTable.slug)
-    .orderBy(asc(categoriesTable.name));
+export async function listMobileCategories(): Promise<MobileCategory[]> {
+  const recipes = getAllRecipes();
+  const counts = recipes.reduce<Record<string, number>>((acc, recipe) => {
+    acc[recipe.category] = (acc[recipe.category] ?? 0) + 1;
+    return acc;
+  }, {});
 
-  return rows.map((row) => ({
-    name: row.name,
-    slug: row.slug,
-    recipeCount: Number(row.recipeCount)
+  return CATEGORY_ORDER.filter((category) => counts[category]).map((category) => ({
+    name: category,
+    slug: slugifyCategory(category),
+    recipeCount: counts[category] ?? 0
   }));
 }
 
 export async function listMobileRecipes(params: MobileRecipeListParams) {
-  const whereClause = getWhereClause(params);
+  const recipes = getAllRecipes();
+  const searchTerm = params.search ? normalizeText(params.search) : "";
+
+  const filtered = recipes.filter((recipe) => {
+    if (params.category && recipe.category !== params.category) {
+      return false;
+    }
+
+    if (!searchTerm) {
+      return true;
+    }
+
+    const searchableText = normalizeText(
+      [recipe.title, recipe.description, recipe.category, ...recipe.tags].join(" ")
+    );
+
+    return searchableText.includes(searchTerm);
+  });
+
+  const total = filtered.length;
   const offset = (params.page - 1) * params.pageSize;
-  const db = getDb();
-  const [rows, totalRows] = await Promise.all([
-    db
-      .select({
-        id: recipesTable.id,
-        title: recipesTable.title,
-        slug: recipesTable.slug,
-        description: recipesTable.description,
-        imageUrl: recipesTable.imageUrl,
-        imageAlt: recipesTable.imageAlt,
-        prepTimeMinutes: recipesTable.prepTimeMinutes,
-        cookTimeMinutes: recipesTable.cookTimeMinutes,
-        servings: recipesTable.servings,
-        difficulty: recipesTable.difficulty,
-        category: categoriesTable.name
-      })
-      .from(recipesTable)
-      .innerJoin(categoriesTable, eq(recipesTable.categoryId, categoriesTable.id))
-      .where(whereClause)
-      .orderBy(desc(recipesTable.createdAt), asc(recipesTable.title))
-      .limit(params.pageSize)
-      .offset(offset),
-    db
-      .select({ value: count() })
-      .from(recipesTable)
-      .innerJoin(categoriesTable, eq(recipesTable.categoryId, categoriesTable.id))
-      .where(whereClause)
-  ]);
-  const recipeIds = rows.map((recipe) => recipe.id);
-  const tagsByRecipeId = await getRecipeTags(recipeIds);
-  const total = Number(totalRows[0]?.value ?? 0);
+  const items = filtered.slice(offset, offset + params.pageSize).map(recipeToMobileSummary);
 
   return {
-    items: rows.map((row) => rowToMobileRecipeSummary(row, tagsByRecipeId.get(row.id) ?? [])),
+    items,
     total
   };
 }
 
 export async function getMobileRecipeBySlug(slug: string): Promise<MobileRecipeDetail | undefined> {
-  const rows = await getDb()
-    .select({
-      id: recipesTable.id,
-      title: recipesTable.title,
-      slug: recipesTable.slug,
-      description: recipesTable.description,
-      imageUrl: recipesTable.imageUrl,
-      imageAlt: recipesTable.imageAlt,
-      prepTimeMinutes: recipesTable.prepTimeMinutes,
-      cookTimeMinutes: recipesTable.cookTimeMinutes,
-      servings: recipesTable.servings,
-      difficulty: recipesTable.difficulty,
-      category: categoriesTable.name
-    })
-    .from(recipesTable)
-    .innerJoin(categoriesTable, eq(recipesTable.categoryId, categoriesTable.id))
-    .where(eq(recipesTable.slug, slug))
-    .limit(1);
-  const row = rows[0];
+  const staticRecipe = findRecipeBySlug(slug);
 
-  if (!row) {
-    const staticRecipe = findStaticRecipeBySlug(slug);
-
-    return staticRecipe ? staticRecipeToMobileRecipe(staticRecipe) : undefined;
-  }
-
-  const [tagsByRecipeId, stepsByRecipeId] = await Promise.all([
-    getRecipeTags([row.id]),
-    getRecipeSteps([row.id])
-  ]);
-  const staticRecipe = findStaticRecipeBySlug(row.slug);
-  const summary = rowToMobileRecipeSummary(row, tagsByRecipeId.get(row.id) ?? []);
-
-  return {
-    ...summary,
-    ingredients: staticRecipe?.ingredients ?? [],
-    steps: stepsByRecipeId.get(row.id) ?? staticRecipe?.steps ?? []
-  };
+  return staticRecipe ? staticRecipeToMobileRecipe(staticRecipe) : undefined;
 }

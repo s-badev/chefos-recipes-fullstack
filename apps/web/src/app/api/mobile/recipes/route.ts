@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { jsonError } from "../../../../server/mobile/http";
+import { jsonError, jsonResponse, optionsResponse } from "../../../../server/mobile/http";
 import { listMobileRecipes } from "../../../../server/mobile/recipes";
 
 const DEFAULT_PAGE = 1;
@@ -35,7 +34,7 @@ export async function GET(request: Request) {
     });
     const totalPages = Math.max(1, Math.ceil(recipePage.total / pageSize));
 
-    return NextResponse.json({
+    return jsonResponse(request, {
       items: recipePage.items,
       page,
       pageSize,
@@ -43,6 +42,10 @@ export async function GET(request: Request) {
       totalPages
     });
   } catch {
-    return jsonError("Recipes could not be loaded.", 500);
+    return jsonError(request, "Recipes could not be loaded.", 500);
   }
+}
+
+export async function OPTIONS(request: Request) {
+  return optionsResponse(request);
 }

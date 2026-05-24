@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import {
   ScrollView,
   StyleSheet,
+  useWindowDimensions,
   View,
   type ScrollViewProps,
   type ViewStyle
@@ -21,11 +22,22 @@ export function ScreenShell({
   refreshControl,
   scroll = true
 }: ScreenShellProps) {
+  const { width } = useWindowDimensions();
+  const isWide = width >= 720;
+  const horizontalPadding = isWide ? 24 : 18;
+
+  const containerStyle: ViewStyle = {
+    alignSelf: "center",
+    maxWidth: 840,
+    paddingHorizontal: horizontalPadding,
+    width: "100%"
+  };
+
   return (
     <SafeAreaView edges={["top"]} style={styles.safeArea}>
       {scroll ? (
         <ScrollView
-          contentContainerStyle={[styles.content, contentStyle]}
+          contentContainerStyle={[styles.content, containerStyle, contentStyle]}
           keyboardShouldPersistTaps="handled"
           refreshControl={refreshControl}
           showsVerticalScrollIndicator={false}
@@ -33,7 +45,7 @@ export function ScreenShell({
           {children}
         </ScrollView>
       ) : (
-        <View style={[styles.content, styles.flexContent, contentStyle]}>{children}</View>
+        <View style={[styles.content, containerStyle, styles.flexContent, contentStyle]}>{children}</View>
       )}
     </SafeAreaView>
   );
@@ -46,7 +58,6 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingBottom: 28,
-    paddingHorizontal: 18,
     paddingTop: 16
   },
   flexContent: {

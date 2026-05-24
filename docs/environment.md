@@ -24,6 +24,7 @@ NEXT_PUBLIC_APP_URL="http://localhost:3000"
 
 - `DATABASE_URL` is required for database-backed web API calls and `packages/db` scripts.
 - `AUTH_SESSION_SECRET` should be set for local and production-like testing. The app has a development fallback, but committed or deployed environments should use their own secret.
-- `MOBILE_JWT_SECRET` is required when using `/api/mobile/auth/*` and protected mobile endpoints.
+- `MOBILE_JWT_SECRET` is required when using `/api/mobile/auth/login`, `/api/mobile/auth/register`, and protected mobile endpoints.
+- For local Next.js development in this monorepo, set `MOBILE_JWT_SECRET` in `apps/web/.env.local` so the web workspace can read it.
 
 Do not commit `.env` files or real credentials.

@@ -24,8 +24,8 @@ const PAGE_SIZE = 8;
 export function CatalogScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const { width } = useWindowDimensions();
-  const isTablet = width >= 720;
-  const cardWidth = isTablet ? "48%" : "100%";
+  const isWide = width >= 900;
+  const cardWidth = isWide ? "48%" : "100%";
   const [categories, setCategories] = useState<RecipeCategory[]>([]);
   const [recipes, setRecipes] = useState<RecipeSummary[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -156,13 +156,13 @@ export function CatalogScreen() {
             <Text style={styles.sectionTitle}>Рецепти</Text>
             <Text style={styles.count}>{recipes.length} показани</Text>
           </View>
-          <View style={styles.grid}>
+          <View style={[styles.grid, isWide ? styles.gridWide : null]}>
             {recipes.map((recipe) => (
               <RecipeCard
                 key={recipe.slug}
                 onPress={() => navigation.navigate("RecipeDetails", { slug: recipe.slug })}
                 recipe={recipe}
-                style={[styles.recipeCard, { width: cardWidth }]}
+                style={[styles.recipeCard, { width: cardWidth }, isWide ? styles.recipeCardWide : null]}
               />
             ))}
           </View>
@@ -199,9 +199,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.text,
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: "900",
-    lineHeight: 36,
+    lineHeight: 34,
     marginTop: 8
   },
   text: {
@@ -247,7 +247,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: colors.text,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "900"
   },
   count: {
@@ -260,8 +260,14 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: 14
   },
+  gridWide: {
+    justifyContent: "space-between"
+  },
   recipeCard: {
     marginBottom: 2
+  },
+  recipeCardWide: {
+    maxWidth: 390
   },
   loadMore: {
     marginTop: 18

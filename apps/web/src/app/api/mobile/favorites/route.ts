@@ -1,10 +1,11 @@
-import { NextResponse } from "next/server";
 import {
   addFavoriteRecipeForUser,
   listFavoriteRecipesForUser
 } from "../../../../server/favorites/repository";
 import {
   jsonError,
+  jsonResponse,
+  optionsResponse,
   readJsonBody,
   requireMobileApiUser
 } from "../../../../server/mobile/http";
@@ -23,11 +24,11 @@ export async function GET(request: Request) {
   try {
     const favoriteRecipes = await listFavoriteRecipesForUser(auth.user);
 
-    return NextResponse.json({
+    return jsonResponse(request, {
       items: favoriteRecipes.map(recipeToMobileSummary)
     });
   } catch {
-    return jsonError("Favorites could not be loaded.", 500);
+    return jsonError(request, "Favorites could not be loaded.", 500);
   }
 }
 
@@ -42,28 +43,32 @@ export async function POST(request: Request) {
   const slug = typeof body?.slug === "string" ? body.slug.trim() : "";
 
   if (!slug) {
-    return jsonError("Recipe slug is required.", 400);
+    return jsonError(request, "Recipe slug is required.", 400);
   }
 
   try {
     const recipe = await getMobileRecipeBySlug(slug);
 
     if (!recipe) {
-      return jsonError("Recipe was not found.", 404);
+      return jsonError(request, "Recipe was not found.", 404);
     }
 
     const result = await addFavoriteRecipeForUser(auth.user, slug);
 
     if (!result.ok) {
-      return jsonError("Recipe was not found.", 404);
+      return jsonError(request, "Recipe was not found.", 404);
     }
 
-    return NextResponse.json({
+    return jsonResponse(request, {
       ok: true,
       favorite: true,
       slug
     });
   } catch {
-    return jsonError("Favorite could not be saved.", 500);
+    return jsonError(request, "Favorite could not be saved.", 500);
   }
+}
+
+export async function OPTIONS(request: Request) {
+  return optionsResponse(request);
 }

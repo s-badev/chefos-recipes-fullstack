@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 import { useNavigation, type NavigationProp } from "@react-navigation/native";
 import { EmptyState } from "../components/EmptyState";
 import { PrimaryButton } from "../components/PrimaryButton";
@@ -12,6 +12,8 @@ import type { RecipeSummary } from "../types";
 
 export function HomeScreen() {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const { width } = useWindowDimensions();
+  const isWide = width >= 900;
   const [featuredRecipes, setFeaturedRecipes] = useState<RecipeSummary[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -86,12 +88,13 @@ export function HomeScreen() {
           title="Няма връзка с каталога"
         />
       ) : (
-        <View style={styles.list}>
+        <View style={[styles.list, isWide ? styles.listWide : null]}>
           {featuredRecipes.map((recipe) => (
             <RecipeCard
               key={recipe.slug}
               onPress={() => navigation.navigate("RecipeDetails", { slug: recipe.slug })}
               recipe={recipe}
+              style={isWide ? styles.featureCard : undefined}
             />
           ))}
         </View>
@@ -118,9 +121,9 @@ const styles = StyleSheet.create({
   },
   title: {
     color: colors.text,
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: "900",
-    lineHeight: 38,
+    lineHeight: 36,
     marginTop: 10
   },
   text: {
@@ -139,11 +142,20 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     color: colors.text,
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "900"
   },
   list: {
     gap: 16
+  },
+  listWide: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between"
+  },
+  featureCard: {
+    maxWidth: 390,
+    width: "48%"
   },
   loading: {
     alignItems: "center",

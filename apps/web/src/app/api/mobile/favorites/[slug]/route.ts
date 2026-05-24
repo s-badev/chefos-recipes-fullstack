@@ -1,6 +1,5 @@
-import { NextResponse } from "next/server";
 import { removeFavoriteRecipeForUser } from "../../../../../server/favorites/repository";
-import { jsonError, requireMobileApiUser } from "../../../../../server/mobile/http";
+import { jsonError, jsonResponse, optionsResponse, requireMobileApiUser } from "../../../../../server/mobile/http";
 
 type MobileFavoriteBySlugContext = {
   params: Promise<{
@@ -8,8 +7,8 @@ type MobileFavoriteBySlugContext = {
   }>;
 };
 
-export async function DELETE(_request: Request, { params }: MobileFavoriteBySlugContext) {
-  const auth = requireMobileApiUser(_request);
+export async function DELETE(request: Request, { params }: MobileFavoriteBySlugContext) {
+  const auth = requireMobileApiUser(request);
 
   if (auth.response) {
     return auth.response;
@@ -18,18 +17,22 @@ export async function DELETE(_request: Request, { params }: MobileFavoriteBySlug
   const { slug } = await params;
 
   if (!slug) {
-    return jsonError("Recipe slug is required.", 400);
+    return jsonError(request, "Recipe slug is required.", 400);
   }
 
   try {
     await removeFavoriteRecipeForUser(auth.user, slug);
 
-    return NextResponse.json({
+    return jsonResponse(request, {
       ok: true,
       favorite: false,
       slug
     });
   } catch {
-    return jsonError("Favorite could not be removed.", 500);
+    return jsonError(request, "Favorite could not be removed.", 500);
   }
+}
+
+export async function OPTIONS(request: Request) {
+  return optionsResponse(request);
 }

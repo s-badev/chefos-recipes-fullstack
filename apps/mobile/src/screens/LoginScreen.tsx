@@ -2,6 +2,7 @@ import { useState } from "react";
 import {
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -42,9 +43,25 @@ export function LoginScreen() {
     }
   }
 
+  function handleBack() {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+      return;
+    }
+
+    navigation.navigate("MainTabs", { screen: "Home" });
+  }
+
   return (
     <ScreenShell>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : undefined}>
+        <Pressable
+          accessibilityRole="button"
+          onPress={handleBack}
+          style={({ pressed }) => [styles.backButton, pressed ? styles.backButtonPressed : null]}
+        >
+          <Text style={styles.backLabel}>← Назад</Text>
+        </Pressable>
         <View style={styles.panel}>
           <Text style={styles.kicker}>Потребителски достъп</Text>
           <Text style={styles.title}>Вход</Text>
@@ -87,6 +104,13 @@ export function LoginScreen() {
             variant="secondary"
           />
         </View>
+        <Pressable
+          accessibilityRole="button"
+          onPress={() => navigation.navigate("MainTabs", { screen: "Home" })}
+          style={({ pressed }) => [styles.bottomLink, pressed ? styles.bottomLinkPressed : null]}
+        >
+          <Text style={styles.bottomLinkText}>Към началото</Text>
+        </Pressable>
       </KeyboardAvoidingView>
     </ScreenShell>
   );
@@ -100,6 +124,24 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderWidth: 1,
     padding: 22
+  },
+  backButton: {
+    alignSelf: "flex-start",
+    backgroundColor: colors.surfaceWarm,
+    borderColor: colors.border,
+    borderRadius: 999,
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 8
+  },
+  backButtonPressed: {
+    opacity: 0.85
+  },
+  backLabel: {
+    color: colors.brandDark,
+    fontSize: 14,
+    fontWeight: "800"
   },
   kicker: {
     color: colors.brandDark,
@@ -159,5 +201,19 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     marginTop: 16,
     padding: 12
+  },
+  bottomLink: {
+    alignSelf: "flex-start",
+    marginTop: 14,
+    paddingHorizontal: 6,
+    paddingVertical: 6
+  },
+  bottomLinkPressed: {
+    opacity: 0.75
+  },
+  bottomLinkText: {
+    color: colors.brandDark,
+    fontSize: 14,
+    fontWeight: "800"
   }
 });

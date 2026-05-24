@@ -38,6 +38,29 @@ function buildUrl(path: string, params?: Record<string, string | number | undefi
   return url.toString();
 }
 
+function normalizeImageUrl(imageUrl: string | null) {
+  if (!imageUrl) {
+    return null;
+  }
+
+  if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
+    return imageUrl;
+  }
+
+  if (imageUrl.startsWith("/")) {
+    return `${API_BASE_URL}${imageUrl}`;
+  }
+
+  return `${API_BASE_URL}/${imageUrl}`;
+}
+
+function normalizeRecipeSummary(recipe: RecipeSummary): RecipeSummary {
+  return {
+    ...recipe,
+    imageUrl: normalizeImageUrl(recipe.imageUrl)
+  };
+}
+
 async function requestJson<T>(path: string, options: RequestOptions = {}): Promise<T> {
   const headers: Record<string, string> = {
     Accept: "application/json"
@@ -93,7 +116,7 @@ export async function getRecipes(params: {
   category?: string;
   search?: string;
 }) {
-  return requestJson<PaginatedRecipes>(
+  const data = await requestJson<PaginatedRecipes>(
     buildUrl("/api/mobile/recipes", {
       page: params.page,
       pageSize: params.pageSize,
@@ -101,10 +124,20 @@ export async function getRecipes(params: {
       search: params.search
     }).replace(API_BASE_URL, "")
   );
+
+  return {
+    ...data,
+    items: data.items.map(normalizeRecipeSummary)
+  };
 }
 
 export async function getRecipeBySlug(slug: string) {
-  return requestJson<RecipeDetails>(`/api/mobile/recipes/${encodeURIComponent(slug)}`);
+  const recipe = await requestJson<RecipeDetails>(`/api/mobile/recipes/${encodeURIComponent(slug)}`);
+
+  return {
+    ...recipe,
+    imageUrl: normalizeImageUrl(recipe.imageUrl)
+  };
 }
 
 export async function loginUser(input: { email: string; password: string }) {
@@ -130,7 +163,7 @@ export async function getCurrentUser(token: string) {
 export async function getFavorites(token: string) {
   const data = await requestJson<{ items: RecipeSummary[] }>("/api/mobile/favorites", { token });
 
-  return data.items;
+  return data.items.map(normalizeRecipeSummary);
 }
 
 export async function addFavorite(token: string, slug: string) {
