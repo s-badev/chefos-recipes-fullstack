@@ -71,7 +71,7 @@ const roadmap = [
 export default function AboutPage() {
   return (
     <section className="page-shell space-y-12">
-      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.36fr)] lg:items-center xl:p-10">
+      <div className="about-panel grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.36fr)] lg:items-center xl:p-10">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво е Chefo&apos;s Recipes
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="rounded-[1.7rem] border border-brand-200 bg-[#fff8ee] p-6 shadow-[0_16px_42px_rgba(97,56,21,0.08)]">
+        <div className="about-premium-tile about-accent-card rounded-[1.7rem] border border-brand-200 bg-[#fff8ee] p-6 shadow-[0_16px_42px_rgba(97,56,21,0.08)]">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Ритъм
           </p>
@@ -108,16 +108,16 @@ export default function AboutPage() {
 
         <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
           {audienceCards.map((item) => (
-            <article className="info-card rounded-[1.8rem] p-6 sm:p-7" key={item.title}>
-              <h3 className="text-2xl font-bold text-stone-950">{item.title}</h3>
+            <article className="about-premium-tile about-info-card info-card rounded-[1.8rem] p-6 sm:p-7" key={item.title}>
+              <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
               <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="grid gap-7 rounded-[2rem] border border-stone-200 bg-white/76 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1fr)] lg:items-center xl:gap-10 xl:p-10">
-        <div className="rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
+      <section className="about-panel about-panel--feature grid gap-7 rounded-[2rem] border border-stone-200 bg-white/76 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1fr)] lg:items-center xl:gap-10 xl:p-10">
+        <div className="about-feature-copy rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
@@ -133,14 +133,14 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {capabilityCards.map((item) => (
             <article
-              className="rounded-[1.5rem] border border-brand-100 bg-[#fff8ee]/88 p-5 shadow-sm transition hover:border-brand-200 hover:bg-[#fff8ee]"
+              className="about-mini-card rounded-[1.5rem] border border-brand-100 bg-[#fff8ee]/88 p-5 shadow-sm transition hover:border-brand-200 hover:bg-[#fff8ee]"
               key={item.title}
             >
               <div className="flex items-start gap-3">
-                <span className="inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-100 text-sm font-black text-brand-800">
+                <span className="about-mini-number inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-100 text-sm font-black text-brand-800">
                   {item.accent}
                 </span>
-                <h3 className="pt-1 text-xl font-bold leading-tight text-stone-950">{item.title}</h3>
+                <h3 className="about-card-title pt-1 text-xl font-bold leading-tight text-stone-950">{item.title}</h3>
               </div>
               <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
             </article>
@@ -164,15 +164,15 @@ export default function AboutPage() {
 
         <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
           {selectionPrinciples.map((item) => (
-            <article className="editorial-card rounded-[1.8rem] p-6" key={item.title}>
-              <h3 className="text-2xl font-bold text-stone-950">{item.title}</h3>
+            <article className="about-premium-tile about-selection-card editorial-card rounded-[1.8rem] p-6" key={item.title}>
+              <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
               <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="rounded-[2rem] border border-brand-100 bg-[#fff8ee]/82 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 xl:p-10">
+      <section className="about-panel about-panel--warm rounded-[2rem] border border-brand-100 bg-[#fff8ee]/82 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 xl:p-10">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
@@ -188,20 +188,20 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="rounded-[1.7rem] border border-brand-200 bg-white/82 p-5 shadow-sm">
+          <div className="about-roadmap-card rounded-[1.7rem] border border-brand-200 bg-white/82 p-5 shadow-sm">
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
               Какво предстои
             </p>
             <ul className="mt-4 grid gap-3">
               {roadmap.map((item) => (
-                <li className="flex gap-3 text-base font-medium leading-7 text-[#4a3326]" key={item}>
-                  <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-600" />
+                <li className="about-roadmap-item flex gap-3 rounded-2xl px-3 py-2 text-base font-medium leading-7 text-[#4a3326]" key={item}>
+                  <span className="about-roadmap-dot mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-600" />
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
             <Link
-              className="mt-6 inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+              className="about-cta mt-6 inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
               href="/catalog"
             >
               Разгледай каталога

@@ -116,17 +116,17 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
           </Link>
 
           <div className="hidden items-center justify-end gap-3 lg:flex">
-            <nav className="flex items-center justify-end gap-1 rounded-full border border-[#502d19]/[0.12] bg-white/95 p-1 text-base font-bold text-[#3a2417] shadow-sm">
+            <nav className="site-nav-shell flex items-center justify-end gap-1 rounded-full border border-[#502d19]/[0.12] bg-white/95 p-1 text-base font-bold text-[#3a2417] shadow-sm">
               {navigationItems.map((item) => {
                 const isActive = isActivePath(pathname, item.href);
 
                 return (
                   <Link
                     className={[
-                      "rounded-full px-4 py-2 transition",
+                      "site-nav-pill rounded-full px-4 py-2 transition",
                       isActive
-                        ? "bg-brand-100 text-brand-900 shadow-sm"
-                        : "hover:bg-[#fff8ee] hover:text-brand-800"
+                        ? "site-nav-pill--active bg-brand-100 text-brand-900 shadow-sm"
+                        : "site-nav-pill--idle hover:bg-[#fff8ee] hover:text-brand-800"
                     ].join(" ")}
                     href={item.href}
                     key={item.href}
@@ -139,12 +139,12 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
             {currentUser ? (
               <div className="flex items-center gap-3">
-                <p className="rounded-full border border-[#502d19]/[0.12] bg-white/95 px-4 py-2 text-base font-bold text-[#3a2417] shadow-sm">
+                <p className="site-nav-pill site-nav-greeting rounded-full border border-[#502d19]/[0.16] bg-[#fffaf3] px-4 py-2 text-base font-semibold text-[#2b1a0d] shadow-[0_6px_16px_rgba(60,35,20,0.065)]">
                   Здравей, {greetingName}
                 </p>
                 <form action={logoutAction}>
                   <button
-                    className="rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+                    className="site-nav-action rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-[0_10px_24px_rgba(127,51,19,0.22)] transition hover:bg-brand-700"
                     type="submit"
                   >
                     Изход
@@ -154,7 +154,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
             ) : (
               <Link
                 className={[
-                  "rounded-full px-5 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition",
+                  "site-nav-action rounded-full px-5 py-3 text-base font-black text-white shadow-[0_10px_24px_rgba(127,51,19,0.22)] transition",
                   isActivePath(pathname, loginItem.href)
                     ? "bg-brand-700"
                     : "bg-brand-600 hover:bg-brand-700"

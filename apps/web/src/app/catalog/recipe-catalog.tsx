@@ -52,7 +52,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
 
   return (
     <section className="page-shell space-y-12">
-      <div className="grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.52fr)] lg:items-end xl:p-10">
+      <div className="catalog-hero-panel grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(420px,0.52fr)] lg:items-end xl:p-10">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
@@ -66,12 +66,12 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
           </p>
         </div>
 
-        <div className="rounded-[1.7rem] border border-brand-100 bg-[#fff8ee] p-5 shadow-sm">
+        <div className="catalog-search-panel rounded-[1.7rem] border border-brand-100 bg-[#fff8ee] p-5 shadow-sm">
           <label className="text-base font-black text-stone-800" htmlFor="recipe-search">
             Търсене
           </label>
           <input
-            className="mt-3 w-full rounded-2xl border border-stone-200 bg-white px-5 py-4 text-lg text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+            className="catalog-search-input mt-3 w-full rounded-2xl border border-stone-200 bg-white px-5 py-4 text-lg text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
             id="recipe-search"
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Търси рецепта, категория или таг..."

@@ -72,9 +72,9 @@ const featureItems = [
 ];
 
 const homepageStats = [
-  { value: "10,000+", label: "рецепти" },
-  { value: "10", label: "категории" },
-  { value: "12", label: "тага" },
+  { value: "24", label: "рецепти" },
+  { value: "6", label: "категории" },
+  { value: "31", label: "тага" },
   { value: "бърз", label: "избор за вечеря" }
 ];
 
