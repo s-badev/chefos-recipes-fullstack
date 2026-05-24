@@ -508,4 +508,4 @@ Chefo’s Recipes is a functional full-stack Bulgarian recipe catalog with real 
 
 The project is designed to be practical, reviewable and portfolio-ready, while keeping the user-facing experience focused on familiar Bulgarian home cooking.
 
-Created by **Stefan Badev** as part of a SoftUni full-stack / AI-assisted development capstone project.
+Built by **Stefan Badev** as a full-stack portfolio project focused on modern web development, database-backed functionality and AI-assisted development workflow.
