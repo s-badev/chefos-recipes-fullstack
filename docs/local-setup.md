@@ -21,10 +21,11 @@ Create `.env` in the repository root.
 ```env
 DATABASE_URL="your-neon-database-url"
 AUTH_SESSION_SECRET="your-local-session-secret"
+MOBILE_JWT_SECRET="your-local-mobile-api-secret"
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
 ```
 
-`DATABASE_URL` is required by the Drizzle/Neon database client. `AUTH_SESSION_SECRET` signs the current demo session cookie. If it is missing locally, the app uses a development fallback.
+`DATABASE_URL` is required by the Drizzle/Neon database client. `AUTH_SESSION_SECRET` signs the current demo session cookie. If it is missing locally, the app uses a development fallback. `MOBILE_JWT_SECRET` signs the mobile REST API JWT tokens.
 
 ## Web Commands
 

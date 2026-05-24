@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#FFF4E6"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -24,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ed544866-c697-498a-b007-f29745310b4f"
+      }
+    },
+    "owner": "stefan-badev-ai-lab"
   }
 }
