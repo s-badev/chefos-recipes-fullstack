@@ -18,16 +18,19 @@ The project is structured as a full-stack npm workspace and is suitable for Soft
 
 ## ✨ Highlights
 
-| Area | Current state |
-|---|---|
-| Catalog | 24 visible Bulgarian recipes |
-| Categories | 6 balanced categories with 4 recipes each |
-| Recipe details | Images, metadata, ingredients, preparation steps and quick actions |
-| Favorites | Real user-specific favorites stored in Neon PostgreSQL |
-| Authentication | Registration, login, hashed passwords and signed sessions |
-| Admin | Admin role and admin panel for authorized users |
-| Seed data | Core visible recipes plus 10,000 generated recipes for scalability testing |
-| Print | Browser print dialog for recipe detail pages |
+- 🍲 **24-recipe Bulgarian catalog** — curated home-style meals with real images, timing, servings, tags and difficulty levels.
+- 🗂️ **Balanced categories** — 6 recipe categories with exactly 4 visible recipes each for a clean catalog grid.
+- 🔎 **Public browsing experience** — homepage, catalog filters, recipe cards and detailed recipe pages.
+- ❤️ **Real user favorites** — users can save and remove recipes, with favorites stored in Neon PostgreSQL.
+- 🔐 **Registration and login** — database-backed users, hashed passwords with `scrypt`, and signed sessions.
+- 👋 **Personalized user experience** — logged-in users see their name in the header and profile page.
+- 🛡️ **Role-based access** — regular users get user features, while admins get protected admin access.
+- 🧑‍🍳 **Admin panel** — admin-only recipe overview with category/tag information and management actions.
+- 🖨️ **Printable recipes** — recipe detail pages support browser print preview through “Принтирай рецепта”.
+- 🗄️ **Neon PostgreSQL + Drizzle ORM** — structured database layer with users, recipes, categories, tags and favorites.
+- 🌱 **Seed and scalability logic** — core visible recipes plus **10,000 generated recipe records** for testing.
+- 📱 **Expo React Native foundation** — mobile package included as part of the wider monorepo scope.
+- 🧱 **Monorepo architecture** — web, mobile, database and shared packages organized with npm workspaces.
 
 ---
 
