@@ -25,18 +25,18 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   return (
     <section className="page-shell">
-      <div className="mx-auto grid w-full max-w-7xl gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-[2.4rem] border border-brand-100 bg-[linear-gradient(135deg,#7f3313_0%,#bd4b1b_48%,#f3a044_100%)] p-6 text-white shadow-[0_24px_70px_rgba(89,52,22,0.18)] sm:p-8 lg:p-10">
+      <div className="grid w-full gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
+        <aside className="relative overflow-hidden rounded-[2rem] border border-brand-100 bg-[linear-gradient(135deg,#7f3313_0%,#bd4b1b_48%,#f3a044_100%)] p-5 text-white shadow-[0_24px_70px_rgba(89,52,22,0.18)] sm:p-6 lg:p-7">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,248,238,0.18)_0%,rgba(58,36,23,0.18)_100%)]" />
-          <div className="relative flex min-h-[460px] flex-col justify-between gap-10 lg:min-h-[560px]">
+          <div className="relative flex min-h-[360px] flex-col justify-between gap-6 lg:min-h-[400px]">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-orange-100">
                 Chefo&apos;s Recipes
               </p>
-              <h1 className="mt-4 max-w-xl text-4xl font-black leading-tight text-white sm:text-5xl">
+              <h1 className="mt-3 max-w-xl text-3xl font-black leading-tight text-white sm:text-[2.5rem]">
                 Всичко за домашното готвене на едно място
               </h1>
-              <p className="mt-5 max-w-2xl text-lg font-medium leading-8 text-orange-50">
+              <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-orange-50">
                 Влез в профила си, за да се върнеш към любимите рецепти и да избираш по-спокойно какво да сготвиш.
               </p>
             </div>
@@ -57,7 +57,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 }
               ].map((item, index) => (
                 <div
-                  className="rounded-[1.35rem] border border-white/24 bg-white/14 p-4 shadow-sm backdrop-blur-[2px]"
+                  className="rounded-[1.2rem] border border-white/24 bg-white/14 p-3.5 shadow-sm backdrop-blur-[2px]"
                   key={item.title}
                 >
                   <div className="flex gap-4">
@@ -73,7 +73,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               ))}
             </div>
 
-            <p className="rounded-[1.35rem] border border-white/24 bg-[#3a2417]/22 p-4 text-base font-bold leading-7 text-orange-50">
+            <p className="rounded-[1.2rem] border border-white/24 bg-[#3a2417]/22 p-3.5 text-sm font-bold leading-6 text-orange-50">
               Chefo&apos;s Recipes помага да избираш по-бързо и да готвиш с повече спокойствие.
             </p>
           </div>
@@ -81,14 +81,14 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <form
           action={loginAction}
-          className="flex min-h-[520px] w-full flex-col justify-center rounded-[2.4rem] border border-stone-200 bg-[#fff8ee]/95 p-6 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-8 lg:p-10"
+          className="flex min-h-[400px] w-full flex-col justify-center rounded-[2rem] border border-stone-200 bg-[#fff8ee]/95 p-5 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-6 lg:p-7"
         >
-          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
                 Потребителски достъп
               </p>
-              <h2 className="mt-2 text-4xl font-black leading-tight text-[#3a2417] sm:text-5xl">
+              <h2 className="mt-2 text-3xl font-black leading-tight text-[#3a2417] sm:text-[2.5rem]">
                 Вход
               </h2>
             </div>
@@ -100,7 +100,26 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </Link>
           </div>
 
-          <div className="space-y-5">
+          <button
+            className="flex w-full cursor-not-allowed items-center justify-center gap-3 rounded-full border border-stone-200 bg-white px-5 py-3 text-base font-black text-stone-500 shadow-sm"
+            disabled
+            type="button"
+          >
+            <span className="grid h-7 w-7 place-items-center rounded-full border border-stone-200 bg-white text-sm font-black text-brand-700">
+              G
+            </span>
+            Вход с Google — скоро
+          </button>
+
+          <div className="my-5 flex items-center gap-4">
+            <span className="h-px flex-1 bg-stone-200" />
+            <span className="text-sm font-black uppercase tracking-[0.16em] text-stone-500">
+              или с имейл
+            </span>
+            <span className="h-px flex-1 bg-stone-200" />
+          </div>
+
+          <div className="space-y-4">
             {params?.error === "invalid" ? (
               <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">
                 Невалиден имейл или парола.

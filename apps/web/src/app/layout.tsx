@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-[#fffaf3] text-stone-950 antialiased">
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="mx-auto w-full max-w-[1600px] flex-1 px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12 xl:px-16">
+          <main className="mx-auto w-full max-w-[var(--site-shell-width)] flex-1 px-[var(--site-shell-padding)] py-8 sm:py-10 lg:py-12">
             {children}
           </main>
           <SiteFooter />
