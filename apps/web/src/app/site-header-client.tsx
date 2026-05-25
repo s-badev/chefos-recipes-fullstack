@@ -81,7 +81,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-[#502d19]/[0.12] bg-[#fff8ee]/95 shadow-[0_8px_30px_rgba(60,35,20,0.08)] backdrop-blur-xl">
-      <div className="mx-auto w-full max-w-[1600px] px-6 sm:px-8 lg:px-12 xl:px-16">
+      <div className="mx-auto w-full max-w-[var(--site-shell-width)] px-[var(--site-shell-padding)]">
         <div className="flex min-h-[82px] w-full items-center justify-between gap-6">
           <Link
             className="flex min-w-0 items-center gap-3.5 rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"

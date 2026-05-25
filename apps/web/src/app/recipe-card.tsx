@@ -128,7 +128,7 @@ export function RecipeCard({
   return (
     <article
       className={[
-        "recipe-card group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-3xl",
+        "recipe-card group relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-3xl",
         className
       ].join(" ")}
     >
@@ -139,12 +139,12 @@ export function RecipeCard({
       />
       <div className="relative overflow-hidden">
         {recipe.imageSrc ? (
-          <div className="relative h-56 overflow-hidden bg-stone-100 transition duration-500 group-hover:scale-[1.03] sm:h-60 xl:h-72">
+          <div className="relative h-40 overflow-hidden bg-stone-100 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
             <Image
               alt={imageAlt}
               className="object-cover"
               fill
-              sizes="(min-width: 1536px) 24vw, (min-width: 1280px) 31vw, (min-width: 768px) 48vw, 100vw"
+              sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
               src={recipe.imageSrc}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/32" />
@@ -153,32 +153,32 @@ export function RecipeCard({
           <div
             aria-label={imageAlt}
             className={[
-              "recipe-photo h-56 transition duration-500 group-hover:scale-[1.03] sm:h-60 xl:h-72",
+              "recipe-photo h-40 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48",
               getRecipeVisualClass(recipe.category, visualIndex)
             ].join(" ")}
             role="img"
           />
         )}
 
-        <div className="absolute left-4 top-4 max-w-[calc(100%-8.5rem)]">
-          <span className="inline-flex max-w-full truncate rounded-full bg-[#fff8ee]/95 px-3 py-1.5 text-xs font-bold text-[#3a2417] shadow-[0_8px_22px_rgba(28,18,8,0.18)] ring-1 ring-white/70 backdrop-blur-md sm:text-sm">
+        <div className="absolute left-3 top-3 max-w-[calc(100%-7.5rem)]">
+          <span className="inline-flex max-w-full truncate rounded-full bg-[#fff8ee]/95 px-2.5 py-1 text-xs font-bold text-[#3a2417] shadow-[0_8px_22px_rgba(28,18,8,0.18)] ring-1 ring-white/70 backdrop-blur-md">
             {recipe.category}
           </span>
         </div>
-        <div className="absolute right-4 top-4 max-w-[7rem]">
-          <span className="inline-flex max-w-[7rem] truncate rounded-full bg-[#2b160b]/90 px-3 py-1.5 text-xs font-bold text-white shadow-[0_8px_22px_rgba(28,18,8,0.22)] ring-1 ring-white/40 backdrop-blur-md sm:text-sm">
+        <div className="absolute right-3 top-3 max-w-[6.5rem]">
+          <span className="inline-flex max-w-[6.5rem] truncate rounded-full bg-[#2b160b]/90 px-2.5 py-1 text-xs font-bold text-white shadow-[0_8px_22px_rgba(28,18,8,0.22)] ring-1 ring-white/40 backdrop-blur-md">
             {recipe.difficulty}
           </span>
         </div>
 
         {showFavoriteAction ? (
-          <form action={favoriteAction} className="absolute bottom-4 right-4 z-20 max-w-[calc(100%-2rem)]">
+          <form action={favoriteAction} className="absolute bottom-3 right-3 z-20 max-w-[calc(100%-1.5rem)]">
             <input name="recipeSlug" type="hidden" value={recipe.slug} />
             <input name="redirectTo" type="hidden" value={redirectTo} />
             <button
               aria-label={favoriteAriaLabel}
               className={[
-                "inline-flex min-h-9 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-4 py-2 text-sm font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
+                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-3 py-1.5 text-xs font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
                 isFavorited ? "border-[#d7a66a]" : "border-[#e3bf8d]"
               ].join(" ")}
               type="submit"
@@ -189,18 +189,18 @@ export function RecipeCard({
         ) : null}
       </div>
 
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <div className="min-h-[9.75rem]">
-          <h3 className="line-clamp-2 text-[1.45rem] font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.6rem]">
+      <div className="flex flex-1 flex-col p-4">
+        <div className="min-h-[7.5rem]">
+          <h3 className="line-clamp-2 text-xl font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
             {recipe.title}
           </h3>
-          <p className="mt-3 line-clamp-2 text-base font-medium leading-[1.6] text-[#4a3326]">
+          <p className="mt-2.5 line-clamp-2 text-sm font-medium leading-6 text-[#4a3326]">
             {recipe.description}
           </p>
         </div>
 
         <div className="mt-auto">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 rounded-2xl border border-brand-100 bg-[#fff8ee] px-4 py-3 text-[0.95rem] font-black text-stone-800 shadow-inner shadow-white/60">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-brand-100 bg-[#fff8ee] px-3 py-2.5 text-xs font-black text-stone-800 shadow-inner shadow-white/60">
             {metadata.map((item) => {
               const Icon = item.icon;
 
@@ -213,10 +213,10 @@ export function RecipeCard({
             })}
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {visibleTags.map((tag) => (
               <span
-                className="rounded-full border border-stone-200 bg-white/86 px-3 py-1 text-sm font-bold text-stone-600 shadow-sm"
+                className="rounded-full border border-stone-200 bg-white/86 px-2.5 py-1 text-xs font-bold text-stone-600 shadow-sm"
                 key={tag}
               >
                 {tag}

@@ -6,6 +6,8 @@
   color-scheme: light;
   --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: "Fraunces", "Georgia", "Iowan Old Style", "Palatino Linotype", Palatino, serif;
+  --site-shell-width: 1280px;
+  --site-shell-padding: 24px;
 }
 
 body {
@@ -39,7 +41,7 @@ body::before {
 
 body::after {
   background:
-    linear-gradient(90deg, transparent 0, transparent max(0px, calc((100vw - 1600px) / 2)), rgba(255, 250, 243, 0.92) max(0px, calc((100vw - 1600px) / 2)), rgba(255, 246, 236, 0.92) calc(100vw - max(0px, calc((100vw - 1600px) / 2))), transparent calc(100vw - max(0px, calc((100vw - 1600px) / 2))), transparent 100%);
+    linear-gradient(90deg, transparent 0, transparent max(0px, calc((100vw - var(--site-shell-width)) / 2)), rgba(255, 250, 243, 0.92) max(0px, calc((100vw - var(--site-shell-width)) / 2)), rgba(255, 246, 236, 0.92) calc(100vw - max(0px, calc((100vw - var(--site-shell-width)) / 2))), transparent calc(100vw - max(0px, calc((100vw - var(--site-shell-width)) / 2))), transparent 100%);
 }
 
 body > div {
@@ -203,7 +205,7 @@ h3 {
   .page-shell {
     margin-inline: auto;
     width: 100%;
-    max-width: 1720px;
+    max-width: var(--site-shell-width);
   }
 
   .editorial-card {

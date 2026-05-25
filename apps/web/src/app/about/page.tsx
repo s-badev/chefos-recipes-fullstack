@@ -70,45 +70,45 @@ const roadmap = [
 
 export default function AboutPage() {
   return (
-    <section className="page-shell space-y-12">
-      <div className="about-panel grid gap-8 rounded-[2rem] border border-stone-200 bg-white/78 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,1fr)_minmax(340px,0.36fr)] lg:items-center xl:p-10">
+    <section className="page-shell space-y-9">
+      <div className="about-panel grid gap-6 rounded-[2rem] border border-stone-200 bg-white/78 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.34fr)] lg:items-center xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво е Chefo&apos;s Recipes
           </p>
-          <h1 className="mt-2 text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
+          <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.875rem]">
             Подреден каталог за <span className="text-brand-600">домашна храна</span>
           </h1>
-          <p className="mt-5 max-w-4xl text-lg font-medium leading-8 text-[#4a3326]">
+          <p className="mt-4 max-w-4xl text-base font-medium leading-7 text-[#4a3326]">
             Chefo&apos;s Recipes е създаден за хора, които искат бързо да намерят рецепта,
             да сравнят време за приготвяне, продукти и трудност, и да се върнат към
             любимите си идеи по-късно.
           </p>
         </div>
 
-        <div className="about-premium-tile about-accent-card rounded-[1.7rem] border border-brand-200 bg-[#fff8ee] p-6 shadow-[0_16px_42px_rgba(97,56,21,0.08)]">
+        <div className="about-premium-tile about-accent-card rounded-[1.5rem] border border-brand-200 bg-[#fff8ee] p-5 shadow-[0_16px_42px_rgba(97,56,21,0.08)]">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Ритъм
           </p>
-          <p className="mt-3 text-3xl font-bold leading-tight text-[#3a2417]">
+          <p className="mt-3 text-2xl font-bold leading-tight text-[#3a2417]">
             Избираш спокойно. <span className="text-brand-700">Готвиш уверено.</span> Сядаш на масата.
           </p>
         </div>
       </div>
 
-      <section className="space-y-6">
+      <section className="space-y-5">
         <div className="max-w-4xl">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             За кого е създаден
           </p>
-          <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">
+          <h2 className="mt-2 text-3xl font-bold text-stone-950 sm:text-[2.125rem]">
             За реалното готвене у дома
           </h2>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
+        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
           {audienceCards.map((item) => (
-            <article className="about-premium-tile about-info-card info-card rounded-[1.8rem] p-6 sm:p-7" key={item.title}>
+            <article className="about-premium-tile about-info-card info-card rounded-[1.6rem] p-5 sm:p-6" key={item.title}>
               <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
               <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
             </article>
@@ -116,15 +116,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-panel about-panel--feature grid gap-7 rounded-[2rem] border border-stone-200 bg-white/76 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 lg:grid-cols-[minmax(0,0.78fr)_minmax(560px,1fr)] lg:items-center xl:gap-10 xl:p-10">
+      <section className="about-panel about-panel--feature grid gap-5 rounded-[2rem] border border-stone-200 bg-white/76 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(520px,1fr)] lg:items-center xl:gap-7 xl:p-7">
         <div className="about-feature-copy rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
-          <h2 className="mt-2 text-4xl font-bold leading-tight text-stone-950">
+          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
             По-малко чудене преди готвене
           </h2>
-          <p className="mt-4 text-base font-medium leading-8 text-[#4a3326]">
+          <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
             Основната цел е да стигнеш до добър избор бързо, без да губиш важните
             детайли за продуктите, времето и начина на приготвяне.
           </p>
@@ -148,23 +148,23 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="space-y-6">
+      <section className="space-y-5">
         <div className="max-w-4xl">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Как подбираме рецептите
           </p>
-          <h2 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-5xl">
+          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
             Практични, ясни и близки до дома
           </h2>
-          <p className="mt-4 text-[1.05rem] font-medium leading-[1.6] text-[#4a3326]">
+          <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
             Фокусът е върху рецепти с познати продукти, реалистично време и ясни стъпки -
             така че изборът да е бърз, а готвенето спокойно.
           </p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-8">
+        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
           {selectionPrinciples.map((item) => (
-            <article className="about-premium-tile about-selection-card editorial-card rounded-[1.8rem] p-6" key={item.title}>
+            <article className="about-premium-tile about-selection-card editorial-card rounded-[1.6rem] p-5" key={item.title}>
               <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
               <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
             </article>
@@ -172,16 +172,16 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-panel about-panel--warm rounded-[2rem] border border-brand-100 bg-[#fff8ee]/82 p-6 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-8 xl:p-10">
-        <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+      <section className="about-panel about-panel--warm rounded-[2rem] border border-brand-100 bg-[#fff8ee]/82 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 xl:p-7">
+        <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
               Защо българска домашна кухня
             </p>
-            <h2 className="mt-3 text-3xl font-bold leading-tight text-stone-950 sm:text-5xl">
+            <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
               Защото познатият вкус също заслужава добра подредба
             </h2>
-            <p className="mt-4 text-base font-medium leading-8 text-[#4a3326] sm:text-lg">
+            <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
               Българската домашна кухня е богата, сезонна и практична. Chefo&apos;s Recipes
               я представя в удобен дигитален формат, без да отнема от усещането за истинска
               храна на масата.
@@ -201,7 +201,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <Link
-              className="about-cta mt-6 inline-flex rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+              className="about-cta mt-5 inline-flex rounded-full bg-brand-600 px-5 py-2.5 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
               href="/catalog"
             >
               Разгледай каталога
