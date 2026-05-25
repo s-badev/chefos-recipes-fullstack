@@ -25,6 +25,7 @@ function getRedirectPath(formData: FormData, fallback: string) {
 
 function revalidateFavoriteViews(recipeSlug: string) {
   revalidatePath("/favorites");
+  revalidatePath("/profile");
   revalidatePath("/catalog");
 
   if (recipeSlug) {

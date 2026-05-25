@@ -91,20 +91,20 @@ export function SiteFooter() {
                 Chefo&apos;s <span className="text-brand-600">Recipes</span>
               </p>
             </div>
-            <p className="mt-5 max-w-2xl text-[17px] font-medium leading-8 text-[#4a2a17]">
+            <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-[#5a4030] sm:text-base">
               Подреден каталог за домашна храна - за хора, които готвят с удоволствие.
             </p>
           </div>
 
           {footerSections.map((section) => (
             <nav aria-label={section.title} key={section.title}>
-              <p className="text-[15px] font-black uppercase tracking-[0.18em] text-brand-800">
+              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-800">
                 {section.title}
               </p>
               <div className="mt-5 grid gap-3.5">
                 {section.links.map((item) => (
                   <Link
-                    className="text-base font-extrabold text-stone-800 transition hover:text-brand-700 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
+                    className="footer-link inline-flex rounded-lg text-sm font-bold text-stone-800 transition hover:text-brand-700 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4 sm:text-[0.95rem]"
                     href={item.href}
                     key={item.href}
                   >
@@ -117,7 +117,7 @@ export function SiteFooter() {
 
           <section aria-labelledby="footer-social-heading">
             <p
-              className="text-[15px] font-black uppercase tracking-[0.18em] text-brand-800"
+              className="text-sm font-black uppercase tracking-[0.18em] text-brand-800"
               id="footer-social-heading"
             >
               Последвай ни
@@ -126,7 +126,7 @@ export function SiteFooter() {
               {socialLinks.map((item) => (
                 <a
                   aria-label={item.label}
-                  className="grid h-10 w-10 place-items-center rounded-full border border-brand-100 bg-[#fff8ee] text-sm font-black text-brand-800 shadow-sm shadow-brand-900/10 transition hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-600 hover:text-white hover:shadow-[0_10px_24px_rgba(127,51,19,0.2)] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"
+                  className="footer-social-link grid h-10 w-10 place-items-center rounded-full border border-brand-100 bg-[#fff8ee] text-sm font-black text-brand-800 shadow-sm shadow-brand-900/10 transition hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-600 hover:text-white hover:shadow-[0_10px_24px_rgba(127,51,19,0.2)] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"
                   href={item.href}
                   key={item.label}
                 >
@@ -137,9 +137,9 @@ export function SiteFooter() {
           </section>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-stone-300/70 pt-6 text-sm font-bold tracking-[0.02em] text-stone-600 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-3 border-t border-stone-300/70 pt-6 text-sm font-semibold leading-6 tracking-[0.01em] text-[#5a4030] sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Chefo&apos;s Recipes</p>
-          <p>Направено с любов към домашната кухня.</p>
+          <p className="sm:text-right">Направено с любов към домашната кухня.</p>
         </div>
       </div>
     </footer>

@@ -1,4 +1,5 @@
-export { and, asc, count, desc, eq, inArray } from "drizzle-orm";
+export { and, asc, count, desc, eq, ilike, inArray, or } from "drizzle-orm";
+export type { SQL } from "drizzle-orm";
 
 export * from "./schema";
 export * from "./client";

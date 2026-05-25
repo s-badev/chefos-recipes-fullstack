@@ -4,8 +4,12 @@
     "strict": true,
     "noEmit": true,
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["react"],
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "react": ["node_modules/@types/react"],
+      "react/jsx-runtime": ["node_modules/@types/react/jsx-runtime"]
     }
   },
   "include": ["src", "App.tsx"]

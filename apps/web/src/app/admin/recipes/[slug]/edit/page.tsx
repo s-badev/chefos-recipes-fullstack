@@ -60,8 +60,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-stone-950 sm:text-5xl">Редактирай рецепта</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-stone-600">
-            Прегледай основната информация за "{recipe.title}" и подготви бъдещи промени по
-            съдържанието.
+            Прегледай основната информация за "{recipe.title}" и обнови съдържанието в каталога.
           </p>
         </div>
         <Link className="text-base font-bold text-brand-700 hover:text-brand-900" href="/admin">
@@ -162,8 +161,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
       </form>
 
       <p className="rounded-3xl border border-dashed border-brand-200 bg-white p-5 text-base leading-7 text-stone-600 shadow-sm">
-        Формата показва как ще изглежда редакцията. Скоро промените ще могат да се запазват от
-        админ зоната.
+        Записаните промени обновяват рецептата в каталога и детайлната страница.
       </p>
     </section>
   );
