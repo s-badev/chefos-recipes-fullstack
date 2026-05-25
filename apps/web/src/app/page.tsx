@@ -80,7 +80,7 @@ const homepageStats = [
 
 export default function HomePage() {
   return (
-    <div className="page-shell space-y-8 xl:space-y-10">
+    <div className="page-shell space-y-8 pb-4 xl:space-y-10">
       <section className="grid gap-6 py-0 lg:grid-cols-[minmax(0,1fr)_minmax(360px,460px)] lg:items-center xl:gap-8">
         <div className="space-y-5">
           <div className="inline-flex items-center rounded-full border border-brand-200 bg-white/86 px-4 py-2 text-sm font-bold text-brand-800 shadow-sm">
@@ -88,7 +88,7 @@ export default function HomePage() {
           </div>
 
           <div className="max-w-4xl space-y-3.5">
-            <h1 className="text-5xl font-bold leading-[0.98] text-stone-950">
+            <h1 className="text-5xl font-bold leading-[0.98] text-stone-950 lg:text-[2.875rem]">
               Намери <span className="text-brand-600">вкусна</span> и практична рецепта, преди{" "}
               <span className="text-brand-600">тиганът</span> да загрее.
             </h1>

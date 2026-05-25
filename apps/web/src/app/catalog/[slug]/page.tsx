@@ -81,7 +81,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
 
   return (
-    <article className="recipe-print-page page-shell space-y-10">
+    <article className="recipe-print-page page-shell space-y-10 pb-4">
       <Link className="no-print inline-flex rounded-full px-1 text-base font-black text-brand-700 transition hover:text-brand-900 focus-visible:ring-4 focus-visible:ring-brand-100" href="/catalog">
         Обратно към каталога
       </Link>
@@ -96,7 +96,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
               Трудност: {recipe.difficulty}
             </span>
           </div>
-          <h1 className="text-5xl font-bold leading-tight text-stone-950 sm:text-6xl">
+          <h1 className="text-5xl font-bold leading-tight text-stone-950 sm:text-[3.5rem]">
             {recipe.title}
           </h1>
           <p className="max-w-3xl text-lg font-medium leading-8 text-[#4a2a17]">{recipe.description}</p>

@@ -57,10 +57,11 @@ function assertPackageVersionPrefix(packageName, expectedPrefix) {
   }
 }
 
-assertExactPackageVersion("react", "18.2.0");
-assertExactPackageVersion("react-dom", "18.2.0");
-assertPackageVersionPrefix("react-native-web", "0.19.");
-assertPackageVersionPrefix("@expo/metro-runtime", "3.2.");
+assertExactPackageVersion("react", "19.1.0");
+assertExactPackageVersion("react-dom", "19.1.0");
+assertExactPackageVersion("react-native", "0.81.5");
+assertPackageVersionPrefix("react-native-web", "0.21.");
+assertPackageVersionPrefix("@expo/metro-runtime", "6.1.");
 
 const runtimeModuleFiles = {
   react: resolveFromMobileOrRoot("react"),
@@ -68,6 +69,7 @@ const runtimeModuleFiles = {
   "react/jsx-dev-runtime": resolveFromMobileOrRoot("react/jsx-dev-runtime"),
   "react-dom": resolveFromMobileOrRoot("react-dom"),
   "react-dom/client": resolveFromMobileOrRoot("react-dom/client"),
+  "react-native": resolveFromMobileOrRoot("react-native"),
   "react-native-web": resolveFromMobileOrRoot("react-native-web"),
   "@expo/metro-runtime": resolveFromMobileOrRoot("@expo/metro-runtime")
 };
@@ -79,6 +81,7 @@ config.resolver.extraNodeModules = {
   "react/jsx-dev-runtime": runtimeModuleFiles["react/jsx-dev-runtime"],
   "react-dom": resolvePackageRoot("react-dom"),
   "react-dom/client": runtimeModuleFiles["react-dom/client"],
+  "react-native": resolvePackageRoot("react-native"),
   "react-native-web": resolvePackageRoot("react-native-web"),
   "@expo/metro-runtime": resolvePackageRoot("@expo/metro-runtime")
 };

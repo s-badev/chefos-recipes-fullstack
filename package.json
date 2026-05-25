@@ -12,5 +12,17 @@
     "dev:web": "npm --workspace @chefos/web run dev",
     "dev:mobile": "npm --workspace @chefos/mobile run start --",
     "build:web": "npm --workspace @chefos/web run build"
+  },
+  "overrides": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "@types/react": "19.1.17"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.17",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5"
   }
 }

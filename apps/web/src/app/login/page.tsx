@@ -24,11 +24,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <section className="page-shell">
+    <section className="page-shell pb-6">
       <div className="grid w-full gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-[2rem] border border-brand-100 bg-[linear-gradient(135deg,#7f3313_0%,#bd4b1b_48%,#f3a044_100%)] p-5 text-white shadow-[0_24px_70px_rgba(89,52,22,0.18)] sm:p-6 lg:p-7">
+        <aside className="relative overflow-hidden rounded-[2rem] border border-brand-100 bg-[linear-gradient(135deg,#7f3313_0%,#bd4b1b_48%,#f3a044_100%)] p-5 text-white shadow-[0_24px_70px_rgba(89,52,22,0.18)] sm:p-6">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,248,238,0.18)_0%,rgba(58,36,23,0.18)_100%)]" />
-          <div className="relative flex min-h-[360px] flex-col justify-between gap-6 lg:min-h-[400px]">
+          <div className="relative flex min-h-[340px] flex-col justify-between gap-6 lg:min-h-[380px]">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-orange-100">
                 Chefo&apos;s Recipes
@@ -81,9 +81,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <form
           action={loginAction}
-          className="flex min-h-[400px] w-full flex-col justify-center rounded-[2rem] border border-stone-200 bg-[#fff8ee]/95 p-5 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-6 lg:p-7"
+          className="flex min-h-[380px] w-full flex-col justify-center rounded-[2rem] border border-stone-200 bg-[#fff8ee]/95 p-5 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-6"
         >
-          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
                 Потребителски достъп

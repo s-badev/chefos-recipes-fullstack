@@ -70,13 +70,13 @@ const roadmap = [
 
 export default function AboutPage() {
   return (
-    <section className="page-shell space-y-9">
+    <section className="page-shell space-y-9 pb-6">
       <div className="about-panel grid gap-6 rounded-[2rem] border border-stone-200 bg-white/78 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.34fr)] lg:items-center xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво е Chefo&apos;s Recipes
           </p>
-          <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.875rem]">
+          <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.7rem]">
             Подреден каталог за <span className="text-brand-600">домашна храна</span>
           </h1>
           <p className="mt-4 max-w-4xl text-base font-medium leading-7 text-[#4a3326]">
@@ -101,7 +101,7 @@ export default function AboutPage() {
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             За кого е създаден
           </p>
-          <h2 className="mt-2 text-3xl font-bold text-stone-950 sm:text-[2.125rem]">
+          <h2 className="mt-2 text-3xl font-bold text-stone-950 sm:text-[2rem]">
             За реалното готвене у дома
           </h2>
         </div>
@@ -121,7 +121,7 @@ export default function AboutPage() {
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
-          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
+          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
             По-малко чудене преди готвене
           </h2>
           <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
@@ -153,7 +153,7 @@ export default function AboutPage() {
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Как подбираме рецептите
           </p>
-          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
+          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
             Практични, ясни и близки до дома
           </h2>
           <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
@@ -178,7 +178,7 @@ export default function AboutPage() {
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
               Защо българска домашна кухня
             </p>
-            <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2.125rem]">
+            <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
               Защото познатият вкус също заслужава добра подредба
             </h2>
             <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
