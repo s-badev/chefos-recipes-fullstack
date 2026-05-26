@@ -7,9 +7,6 @@
   <a href="https://chefos-recipes-mobile.netlify.app">
     <img src="https://img.shields.io/badge/Mobile%20Demo-Open%20Expo%20Web-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Mobile Demo" />
   </a>
-  <a href="https://github.com/s-badev/chefos-recipes-fullstack">
-    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository" />
-  </a>
 </p>
 
 [![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js)](https://nextjs.org/)
