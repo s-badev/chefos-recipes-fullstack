@@ -80,7 +80,11 @@ export default async function AdminPage() {
         </div>
 
         <div className="space-y-3 bg-[#fffaf3]/60 p-4 sm:p-5">
-          {recipes.slice(0, 6).map((recipe) => (
+          <p className="px-1 text-sm font-bold text-stone-600">
+            Показани {recipes.length} от {recipes.length} рецепти
+          </p>
+
+          {recipes.map((recipe) => (
             <div
               className="admin-row grid gap-5 rounded-[1.45rem] border border-stone-200/80 bg-white/78 p-5 shadow-sm shadow-stone-900/[0.03] transition hover:border-brand-200 hover:bg-[#fff8ee] hover:shadow-[0_14px_34px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
               key={recipe.slug}
@@ -129,6 +133,15 @@ export default async function AdminPage() {
               </div>
             </div>
           ))}
+
+          <div className="flex justify-center border-t border-stone-200/80 px-1 pt-5">
+            <Link
+              className="ui-button rounded-full bg-brand-600 px-6 py-3 text-base font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+              href="/admin/recipes/new"
+            >
+              Добави рецепта
+            </Link>
+          </div>
         </div>
       </section>
 
