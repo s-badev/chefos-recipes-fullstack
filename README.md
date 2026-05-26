@@ -618,4 +618,4 @@ Chefo’s Recipes is a deployed full-stack Bulgarian recipe catalog with a worki
 
 The project demonstrates a complete full-stack workflow: database modeling, seeding, backend API design, web UI, mobile UI, authentication, role-based access, deployment and AI-assisted development.
 
-Built by **Stefan Badev** as a SoftUni Full Stack Apps with AI capstone project and portfolio-ready full-stack application.
+Built by **Stefan Badev** as a portfolio-ready full-stack application.
