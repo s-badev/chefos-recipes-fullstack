@@ -201,11 +201,14 @@ export function RecipeCard({
 
         <div className="mt-auto">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-brand-100 bg-[#fff8ee] px-3 py-2.5 text-xs font-black text-stone-800 shadow-inner shadow-white/60">
-            {metadata.map((item) => {
+            {metadata.map((item, index) => {
               const Icon = item.icon;
 
               return (
-                <span className="inline-flex min-w-fit items-center gap-1.5 whitespace-nowrap" key={item.value}>
+                <span
+                  className="inline-flex min-w-fit items-center gap-1.5 whitespace-nowrap"
+                  key={`${item.value}-${index}`}
+                >
                   <Icon className="h-4 w-4 shrink-0 text-brand-700" />
                   <span>{item.value}</span>
                 </span>
