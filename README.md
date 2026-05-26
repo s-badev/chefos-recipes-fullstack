@@ -6,58 +6,57 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-UI-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599?logo=postgresql&logoColor=white)](https://neon.tech/)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F)](https://orm.drizzle.team/)
-[![Status](https://img.shields.io/badge/Status-Functional%20Web%20Version-brightgreen)](#project-status)
+[![Expo](https://img.shields.io/badge/Expo-Mobile%20Web%20Export-000020?logo=expo)](https://expo.dev/)
+[![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?logo=netlify&logoColor=white)](https://www.netlify.com/)
+[![Status](https://img.shields.io/badge/Status-Deployed%20Full--Stack-brightgreen)](#project-status)
 
-**Chefo’s Recipes** is a Bulgarian homemade recipe catalog built with **Next.js**, **React**, **TypeScript**, **Neon PostgreSQL** and **Drizzle ORM**.
+**Chefo’s Recipes** is a full-stack Bulgarian recipe catalog built with **Next.js**, **React**, **TypeScript**, **Neon PostgreSQL**, **Drizzle ORM** and **Expo React Native**.
 
-The app delivers a polished Bulgarian-first recipe browsing experience with real registration and login, user-specific favorites, role-based admin access, detailed recipe pages, printable recipes and seeded database content.
+The project includes a deployed **Next.js web app + backend**, a deployed **Expo mobile web export**, real authentication, user-specific favorites, role-based admin access, seeded database content and REST API endpoints used by the mobile client.
 
-The project is structured as a full-stack npm workspace and is suitable for SoftUni project review and GitHub portfolio presentation.
-
----
-
-## ✨ Highlights
-
-- 🍲 **24-recipe Bulgarian catalog** — curated home-style meals with real images, timing, servings, tags and difficulty levels.
-- 🗂️ **Balanced categories** — 6 recipe categories with exactly 4 visible recipes each for a clean catalog grid.
-- 🔎 **Public browsing experience** — homepage, catalog filters, recipe cards and detailed recipe pages.
-- ❤️ **Real user favorites** — users can save and remove recipes, with favorites stored in Neon PostgreSQL.
-- 🔐 **Registration and login** — database-backed users, hashed passwords with `scrypt`, and signed sessions.
-- 👋 **Personalized user experience** — logged-in users see their name in the header and profile page.
-- 🛡️ **Role-based access** — regular users get user features, while admins get protected admin access.
-- 🧑‍🍳 **Admin panel** — admin-only recipe overview with category/tag information and management actions.
-- 🖨️ **Printable recipes** — recipe detail pages support browser print preview through “Принтирай рецепта”.
-- 🗄️ **Neon PostgreSQL + Drizzle ORM** — structured database layer with users, recipes, categories, tags and favorites.
-- 🌱 **Seed and scalability logic** — core visible recipes plus **10,000 generated recipe records** for testing.
-- 📱 **Expo React Native foundation** — mobile package included as part of the wider monorepo scope.
-- 🧱 **Monorepo architecture** — web, mobile, database and shared packages organized with npm workspaces.
+This repository was developed as a SoftUni **Full Stack Apps with AI** capstone project and is structured as a production-style npm workspace monorepo.
 
 ---
 
 ## 🌐 Live Demo
 
-
 | Platform | URL |
 |---|---|
-| Web App | Coming soon |
-| Expo Web / Mobile Preview | Coming soon |
-
-Deployment: **Coming soon**
-
-The application is currently intended to be reviewed locally with a seeded Neon PostgreSQL database.
+| Web App + Backend API | https://chefos-recipes.netlify.app |
+| Expo Mobile Web Export | https://chefos-recipes-mobile.netlify.app |
+| GitHub Repository | https://github.com/s-badev/chefos-recipes-fullstack |
 
 ---
 
 ## 🔑 Review Access
 
-Demo accounts are available for reviewer testing. New users can also register directly through the app.
+Demo accounts are available for reviewer testing.
 
 | Role | Email | Password | What you can test |
 |---|---|---|---|
 | User | `user@chefos-recipes.bg` | `user12345` | Catalog, recipe details, favorites and profile |
-| Admin | `admin@chefos-recipes.bg` | `admin12345` | Full user access + admin panel |
+| Admin | `admin@chefos-recipes.bg` | `admin12345` | Full user access + protected admin panel |
 
 Regular users do **not** see the Admin navigation item and should not be able to access admin-only areas manually.
+
+---
+
+## ✨ Highlights
+
+- 🍲 **Bulgarian recipe catalog** with home-style meals, real images, timing, servings, tags and difficulty levels.
+- 🗂️ **24 visible curated recipes** organized across 6 categories.
+- 🔎 **Public browsing experience** with home page, catalog, category filtering and recipe details.
+- ❤️ **Real user favorites** stored in Neon PostgreSQL.
+- 🔐 **Registration and login** with hashed passwords and signed sessions.
+- 👋 **Personalized user experience** with user name in header and profile page.
+- 🛡️ **Role-based access** with protected admin-only pages.
+- 🧑‍🍳 **Admin panel** with complete 24-recipe management list, edit/delete actions and add recipe entry points.
+- 🖨️ **Printable recipes** through browser print preview.
+- 🗄️ **Neon PostgreSQL + Drizzle ORM** database layer.
+- 🌱 **Seed and scalability logic** with curated recipes plus 10,000 generated records for pagination/scalability testing.
+- 📱 **Expo React Native mobile app** deployed as web export.
+- 🔌 **REST API endpoints** used by the mobile client.
+- 🌍 **Netlify deployment** for both web/backend and mobile web export.
 
 ---
 
@@ -65,7 +64,7 @@ Regular users do **not** see the Admin navigation item and should not be able to
 
 ```mermaid
 flowchart TD
-  A[Visitor opens web app] --> B[Home page]
+  A[Visitor opens app] --> B[Home page]
   B --> C[Catalog]
   C --> D[Filter by category]
   C --> E[Open recipe details]
@@ -89,9 +88,52 @@ flowchart TD
 
 **Chefo’s Recipes** focuses on practical Bulgarian home cooking.
 
-The web app provides a curated visible catalog with balanced categories, rich recipe cards, detailed recipe pages and a real favorites workflow backed by Neon PostgreSQL.
+The web app provides a curated catalog with rich recipe cards, detailed recipe pages, favorites, authentication and admin management. The mobile app consumes the deployed REST API and provides a mobile-first recipe browsing experience through Expo.
 
-The app is Bulgarian-first for user-facing content, while the codebase and documentation remain English-friendly for review and collaboration.
+The user-facing UI is Bulgarian-first, while the codebase and documentation remain English-friendly for technical review.
+
+---
+
+## 🖥️ Implemented Web Screens
+
+- Home
+- Catalog
+- Recipe details
+- Favorites
+- Profile
+- Login
+- Register
+- About
+- Admin dashboard
+- Admin recipe management
+- Add recipe page
+- Edit recipe page
+
+---
+
+## 📱 Implemented Mobile Screens
+
+The Expo mobile app is included under `apps/mobile` and is deployed as a web export.
+
+- Home
+- Catalog
+- Recipe details
+- Favorites
+- Login
+- Register
+- Profile
+
+Mobile deployment:
+
+```text
+https://chefos-recipes-mobile.netlify.app
+```
+
+The mobile app connects to the deployed Next.js REST API:
+
+```text
+https://chefos-recipes.netlify.app/api/mobile
+```
 
 ---
 
@@ -99,12 +141,12 @@ The app is Bulgarian-first for user-facing content, while the codebase and docum
 
 ### 🍲 Recipe Catalog
 
-- 24 visible recipes in the web catalog
-- 6 categories with exactly 4 visible recipes each
+- 24 visible curated recipes in the main catalog
+- 6 recipe categories
 - Category filtering
-- Recipe cards with real images, category badges and difficulty badges
-- Prep time, cook time, servings and tags on catalog cards
-- Save/remove favorite action directly from recipe cards
+- Recipe cards with images, category badges and difficulty badges
+- Prep time, cook time, servings and tags
+- Save/remove favorite action for authenticated users
 
 ### 🧑‍🍳 Recipe Details
 
@@ -113,7 +155,7 @@ The app is Bulgarian-first for user-facing content, while the codebase and docum
 - Products / ingredients list
 - Step-by-step preparation instructions
 - Working **“Запази в любими”** action
-- Working **“Принтирай рецепта”** action using the browser print dialog
+- Working **“Принтирай рецепта”** action using browser print
 
 ### 🔐 Authentication
 
@@ -129,14 +171,16 @@ The app is Bulgarian-first for user-facing content, while the codebase and docum
 - Favorites are stored in Neon PostgreSQL
 - Favorites are user-specific
 - Users can add and remove favorites from catalog, detail and favorites pages
-- Favorites use stable recipe slugs that match seeded database records
+- Favorite records are linked to users and recipe slugs/IDs
 
-### 🛡️ Admin
+### 🛡️ Admin Panel
 
 - Admin role exists
-- Admin panel is available for admin users
-- Regular users should not see or access admin-only areas
-- Admin views include recipe overview and category/tag information
+- Admin navigation is visible only for admin users
+- Admin dashboard shows catalog statistics
+- Admin panel displays all 24 visible recipes
+- Admin can access edit/delete actions
+- Admin panel includes add recipe entry points at the top and bottom of the management list
 
 ### 🌱 Seed and Scalability
 
@@ -144,13 +188,11 @@ The app is Bulgarian-first for user-facing content, while the codebase and docum
 - Core visible recipes are upserted by slug
 - Categories and tags are seeded
 - 10,000 generated recipe records support scalability testing
-- Fake favorites are disabled by default unless explicitly enabled
+- API supports pagination for large datasets
 
 ---
 
 ## 🗂️ Recipe Categories
-
-The catalog is balanced for a clean four-card desktop grid.
 
 | Category | Visible recipes |
 |---|---:|
@@ -168,61 +210,9 @@ The catalog is balanced for a clean four-card desktop grid.
 
 | Role | Access |
 |---|---|
-| Visitor | Home, catalog, recipe detail pages, login and registration |
+| Visitor | Home, catalog, recipe details, login and registration |
 | User | Visitor access plus profile and user-specific favorites |
-| Admin | User access plus admin panel and admin-only overview pages |
-
----
-
-## 🖥️ Application Screens
-
-- Home
-- Catalog
-- Recipe details
-- Favorites
-- Profile
-- Login
-- Register
-- Admin
-
----
-
-## 🧪 Quick Test Guide
-
-1. Seed the database.
-
-   ```powershell
-   npm.cmd run seed --workspace packages/db
-   ```
-
-2. Start the web app.
-
-   ```powershell
-   npm.cmd run dev --workspace apps/web
-   ```
-
-3. Open the catalog and confirm each category contains 4 recipes.
-4. Register a new user or log in with the review credentials.
-5. Save a recipe from the catalog.
-6. Open `/favorites` and confirm the recipe appears.
-7. Remove the recipe from favorites and confirm it disappears.
-8. Open a recipe detail page and click **“Принтирай рецепта”**.
-9. Log in as an admin user to review the admin panel.
-
----
-
-## 🖼️ Screenshots
-
-Screenshots can be added for review and portfolio presentation.
-
-| Screen | Suggested capture |
-|---|---|
-| Home | Landing page with Bulgarian visual identity |
-| Catalog | 24-recipe grid and category filters |
-| Recipe details | Image, ingredients, steps and quick actions |
-| Favorites | User-specific saved recipes |
-| Profile | Personalized logged-in user page |
-| Admin | Admin-only overview |
+| Admin | User access plus protected admin panel and recipe management |
 
 ---
 
@@ -232,20 +222,28 @@ Screenshots can be added for review and portfolio presentation.
 chefos-recipes-fullstack/
 |-- apps/
 |   |-- web/
-|   |   |-- src/app/              # Next.js App Router pages and UI
-|   |   |-- src/data/             # Visible catalog recipe data
+|   |   |-- src/app/              # Next.js App Router pages and API routes
+|   |   |-- src/data/             # Curated visible catalog data
 |   |   |-- src/server/           # Auth, favorites and server-side logic
+|   |   |-- src/lib/              # Shared app utilities such as CORS helpers
 |   |   `-- public/images/        # Recipe and background assets
-|   `-- mobile/                   # Expo mobile foundation
+|   |
+|   `-- mobile/
+|       |-- src/screens/          # Expo mobile screens
+|       |-- src/components/       # Mobile UI components
+|       |-- src/services/         # Mobile API client
+|       |-- src/context/          # Auth/session context
+|       `-- App.tsx               # Expo app root
+|
 |-- packages/
 |   |-- db/                       # Drizzle schema, migrations and seed script
 |   `-- shared/                   # Shared TypeScript utilities/types
+|
 |-- docs/
+|-- AGENTS.md
 |-- README.md
 `-- package.json
 ```
-
-The implemented review scope is the **Next.js web app**. The monorepo also includes an Expo mobile foundation, but mobile functionality is intentionally described conservatively.
 
 ---
 
@@ -255,33 +253,45 @@ The implemented review scope is the **Next.js web app**. The monorepo also inclu
 |---|---|
 | Web framework | Next.js App Router |
 | UI | React, TypeScript, Tailwind CSS and global CSS |
+| Backend | Next.js route handlers and server-side logic |
+| Mobile | Expo React Native, React Native Web |
 | Database | Neon PostgreSQL |
 | ORM | Drizzle ORM |
-| Authentication | Server-side auth helpers, `scrypt` password hashes and signed sessions |
+| Authentication | `scrypt` password hashing, signed sessions, HTTP-only cookies |
+| Deployment | Netlify |
 | Package management | Node.js and npm workspaces |
-| Mobile foundation | Expo / React Native package in the monorepo |
 
 ---
 
 ## 🔌 API Overview
 
-The project keeps API and server-side boundaries available for web and mobile growth.
+The mobile client uses REST API endpoints from the deployed Next.js app.
 
-| Area | Purpose |
+| Endpoint | Purpose |
 |---|---|
-| Recipe data | Catalog and recipe detail data |
-| Categories | Category listing and filtering support |
-| Favorites | User-specific save/remove behavior |
-| Auth/session | Registration, login and signed session handling |
-| Admin | Admin-only overview and management screens |
+| `/api/mobile/health` | Mobile API health check |
+| `/api/mobile/categories` | Category listing |
+| `/api/mobile/recipes` | Paginated recipe catalog |
+| `/api/mobile/recipes/[slug]` | Recipe details |
+| `/api/mobile/auth/login` | Mobile login |
+| `/api/mobile/auth/register` | Mobile registration |
+| `/api/mobile/auth/me` | Current authenticated user |
+| `/api/mobile/favorites` | User favorites |
+| `/api/mobile/favorites/[slug]` | Remove favorite by recipe slug |
 
-The web app primarily uses Next.js server-side logic and Server Actions where appropriate.
+The deployed mobile app calls:
+
+```text
+https://chefos-recipes.netlify.app/api/mobile
+```
+
+CORS support is enabled for the mobile web export deployment.
 
 ---
 
 ## 🔐 Authentication and Authorization
 
-Authentication is implemented in the web app.
+Authentication is implemented with database-backed users and signed sessions.
 
 - Registered users are stored in the Neon `users` table.
 - Passwords are stored as hashes, not plaintext.
@@ -292,7 +302,7 @@ Authentication is implemented in the web app.
 - Regular users can access profile and favorites.
 - Admin users can access the admin panel.
 
-Secrets must be provided through environment variables and must not be committed.
+Secrets are configured through environment variables and are not committed.
 
 ---
 
@@ -384,7 +394,7 @@ Seed behavior:
 - Keeps the visible catalog compatible with favorites.
 - Generates 10,000 additional recipe records for scalability testing.
 - Uses generated records without replacing the curated visible catalog.
-- Does not seed fake favorites by default unless explicitly enabled.
+- Supports pagination tests with large record counts.
 
 ---
 
@@ -393,7 +403,7 @@ Seed behavior:
 | Asset type | Location |
 |---|---|
 | Recipe images | `apps/web/public/images/recipes` |
-| Background image | `apps/web/public/images/backgrounds` |
+| Background images | `apps/web/public/images/backgrounds` |
 
 ---
 
@@ -423,35 +433,128 @@ Seed the database:
 npm.cmd run seed --workspace packages/db
 ```
 
+Start the Expo mobile app locally:
+
+```powershell
+cd apps/mobile
+npx expo start --clear --lan
+```
+
+Build the Expo mobile web export:
+
+```powershell
+npm.cmd run build --workspace @chefos/mobile
+```
+
 ---
 
 ## 🔧 Environment Variables
 
-A local `.env` file is required for database-backed features.
+### Web / Backend
 
-Use placeholders only:
+Required for the deployed Next.js app:
 
 ```env
 DATABASE_URL=
-AUTH_SESSION_SECRET=
-NEXT_PUBLIC_APP_URL=
+JWT_TOKEN=
+JWT_SECRET=
 ```
 
-`DATABASE_URL` should point to a Neon PostgreSQL database. `AUTH_SESSION_SECRET` should be a local or deployment-specific secret value and must not be committed.
+`DATABASE_URL` should point to the Neon PostgreSQL production database.
+
+`JWT_TOKEN` / `JWT_SECRET` should be long random secret values configured in the hosting provider.
+
+### Mobile Web Export
+
+Required for the Expo mobile web export:
+
+```env
+EXPO_PUBLIC_API_BASE_URL=https://chefos-recipes.netlify.app
+```
+
+The mobile app does not connect directly to the database. It communicates with the REST API exposed by the deployed Next.js app.
 
 ---
 
 ## 🌍 Deployment
 
-Deployment status: **Coming soon**
+### Web App + Backend
 
-Recommended production direction:
-
-| Part | Suggested platform |
+| Setting | Value |
 |---|---|
-| Web app | Vercel / Netlify / another Next.js-compatible host |
+| Platform | Netlify |
+| Project name | `chefos-recipes` |
+| Live URL | https://chefos-recipes.netlify.app |
+| Project to deploy | `apps/web` |
+| Build command | `npm --workspace @chefos/web run build` |
+| Publish directory | `apps/web/.next` |
 | Database | Neon PostgreSQL |
-| Environment | Production `.env` variables configured in the host dashboard |
+| Required env vars | `DATABASE_URL`, `JWT_TOKEN`, `JWT_SECRET` |
+
+### Expo Mobile Web Export
+
+| Setting | Value |
+|---|---|
+| Platform | Netlify |
+| Project name | `chefos-recipes-mobile` |
+| Live URL | https://chefos-recipes-mobile.netlify.app |
+| Project to deploy | `apps/mobile` |
+| Build command | `npm --workspace @chefos/mobile run build` |
+| Publish directory | `apps/mobile/dist` |
+| Required env var | `EXPO_PUBLIC_API_BASE_URL=https://chefos-recipes.netlify.app` |
+
+---
+
+## 🧪 Quick Test Guide
+
+1. Open the deployed web app:
+
+   ```text
+   https://chefos-recipes.netlify.app
+   ```
+
+2. Open the deployed mobile web export:
+
+   ```text
+   https://chefos-recipes-mobile.netlify.app
+   ```
+
+3. Confirm the live mobile API returns JSON:
+
+   ```text
+   https://chefos-recipes.netlify.app/api/mobile/recipes
+   ```
+
+4. Log in as a regular user:
+
+   ```text
+   user@chefos-recipes.bg
+   user12345
+   ```
+
+5. Save and remove a recipe from favorites.
+
+6. Log in as admin:
+
+   ```text
+   admin@chefos-recipes.bg
+   admin12345
+   ```
+
+7. Open `/admin` and confirm:
+   - total recipes: 24
+   - categories: 6
+   - tags: 31
+   - all 24 recipes are listed
+   - edit/delete actions are visible
+   - add recipe action is available
+
+8. Open the Expo mobile web export and confirm:
+   - home screen loads
+   - catalog loads
+   - category filtering works
+   - recipe details open
+   - login/profile/favorites screens are available
 
 ---
 
@@ -460,9 +563,10 @@ Recommended production direction:
 | Item | Status |
 |---|---|
 | Next.js web app | Done |
+| Backend API | Done |
 | Bulgarian recipe catalog | Done |
-| 24 visible recipes | Done |
-| Balanced categories | Done |
+| 24 visible curated recipes | Done |
+| Category filtering | Done |
 | Recipe detail pages | Done |
 | Print recipe action | Done |
 | Registration and login | Done |
@@ -470,10 +574,15 @@ Recommended production direction:
 | Signed sessions | Done |
 | User-specific favorites | Done |
 | Admin role and admin panel | Done |
-| Neon seed script | Done |
-| 10,000 generated recipe records | Done |
-| Production deployment | Coming soon |
-| Expo mobile app | Foundation present |
+| Full admin recipe management list | Done |
+| Neon PostgreSQL integration | Done |
+| Drizzle ORM schema/seed | Done |
+| 10,000 generated records for scalability | Done |
+| Expo mobile app | Done |
+| Expo mobile web export deployment | Done |
+| CORS support for mobile API calls | Done |
+| Netlify web/backend deployment | Done |
+| Netlify mobile deployment | Done |
 
 ---
 
@@ -482,30 +591,31 @@ Recommended production direction:
 | Field | Value |
 |---|---|
 | Project | Chefo’s Recipes |
-| Type | Full-stack recipe catalog |
+| Type | Full-stack recipe catalog with web and mobile client |
 | Author | Stefan Badev |
 | Email | stefan.badev@yahoo.com |
 | GitHub Repo | https://github.com/s-badev/chefos-recipes-fullstack |
-| Review scope | Functional Next.js web application |
+| Web Project Live URL | https://chefos-recipes.netlify.app |
+| Expo Project Live URL | https://chefos-recipes-mobile.netlify.app |
 | Database | Neon PostgreSQL with Drizzle ORM |
-| Web Project Live URL | Coming soon |
-| Expo Project Live URL | Coming soon |
+| Deployment | Netlify |
+| Stable tag | `stable-web-mobile-deployed` |
 
 ---
 
-## ⚠️ Known Limitations
+## ⚠️ Notes
 
-- Deployment URL is not available yet.
-- The Expo mobile app is a foundation in the wider monorepo, not the primary reviewed production scope.
-- Browser print previews may show browser-generated headers and footers, including localhost URLs, unless disabled in the browser print settings.
-- The project is built for capstone evaluation and portfolio presentation, not hardened production SaaS operation.
+- The Expo mobile app is deployed as a web export, as required for the project submission.
+- The mobile web export uses the deployed Next.js REST API.
+- Browser print previews may show browser-generated headers and footers unless disabled in browser print settings.
+- This project is built for capstone evaluation and portfolio presentation, not as a hardened commercial SaaS product.
 
 ---
 
 ## 🎯 Conclusion
 
-Chefo’s Recipes is a functional full-stack Bulgarian recipe catalog with real authentication, database-backed favorites, role-based admin access, printable recipe pages and seeded data for both curated browsing and scalability testing.
+Chefo’s Recipes is a deployed full-stack Bulgarian recipe catalog with a working Next.js web app, backend API, Neon PostgreSQL database, Drizzle ORM integration, authentication, favorites, admin access and Expo mobile web export.
 
-The project is designed to be practical, reviewable and portfolio-ready, while keeping the user-facing experience focused on familiar Bulgarian home cooking.
+The project demonstrates a complete full-stack workflow: database modeling, seeding, backend API design, web UI, mobile UI, authentication, role-based access, deployment and AI-assisted development.
 
-Built by **Stefan Badev** as a full-stack portfolio project focused on modern web development, database-backed functionality and AI-assisted development workflow.
+Built by **Stefan Badev** as a SoftUni Full Stack Apps with AI capstone project and portfolio-ready full-stack application.
