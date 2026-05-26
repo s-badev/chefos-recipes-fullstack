@@ -24,7 +24,7 @@ export function HomeScreen() {
     async function loadFeaturedRecipes() {
       try {
         setError(null);
-        const data = await getRecipes({ page: 1, pageSize: 3 });
+        const data = await getRecipes({ page: 1, pageSize: 4 });
 
         if (isMounted) {
           setFeaturedRecipes(data.items);
@@ -77,7 +77,7 @@ export function HomeScreen() {
           onAction={() => {
             setIsLoading(true);
             setError(null);
-            getRecipes({ page: 1, pageSize: 3 })
+            getRecipes({ page: 1, pageSize: 4 })
               .then((data) => setFeaturedRecipes(data.items))
               .catch((loadError) =>
                 setError(loadError instanceof Error ? loadError.message : "Рецептите не могат да се заредят.")
