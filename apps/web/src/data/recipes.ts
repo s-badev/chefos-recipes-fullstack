@@ -731,6 +731,6 @@ export function getTags() {
   return Array.from(new Set(recipes.flatMap((recipe) => recipe.tags)));
 }
 
-export function getFeaturedRecipes(limit = 4) {
+export function getFeaturedRecipes(limit = 3) {
   return recipes.slice(0, limit);
 }

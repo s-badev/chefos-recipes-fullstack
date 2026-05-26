@@ -41,19 +41,6 @@ const featuredRecipes = [
     difficulty: "Средна",
     category: "Основни",
     tags: ["Домашно", "Яхния"]
-  },
-  {
-    title: "Таратор",
-    slug: "tarator",
-    imageSrc: "/images/recipes/tarator.png",
-    description: "Охладена супа с кисело мляко, краставица, чесън, копър и орехи.",
-    imageAlt: "Купа с домашен таратор с краставица, копър и орехи",
-    prepTimeMinutes: 15,
-    cookTimeMinutes: 0,
-    servings: 4,
-    difficulty: "Лесна",
-    category: "Супи",
-    tags: ["Свежо", "Лято"]
   }
 ];
 
