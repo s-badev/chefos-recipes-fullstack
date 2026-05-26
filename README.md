@@ -1,5 +1,17 @@
 # 🍽️ Chefo’s Recipes
 
+<p>
+  <a href="https://chefos-recipes.netlify.app">
+    <img src="https://img.shields.io/badge/Live%20Demo-Open%20Web%20App-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo" />
+  </a>
+  <a href="https://chefos-recipes-mobile.netlify.app">
+    <img src="https://img.shields.io/badge/Mobile%20Demo-Open%20Expo%20Web-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Mobile Demo" />
+  </a>
+  <a href="https://github.com/s-badev/chefos-recipes-fullstack">
+    <img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub Repository" />
+  </a>
+</p>
+
 [![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
