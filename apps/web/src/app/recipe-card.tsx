@@ -190,33 +190,33 @@ export function RecipeCard({
       </div>
 
       <div className="flex flex-1 flex-col p-4">
-        <div className="min-h-[7.5rem]">
-          <h3 className="line-clamp-2 text-xl font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
+        <div className="grid min-h-[8rem] grid-rows-[3.25rem_3.75rem] gap-2.5">
+          <h3 className="line-clamp-2 self-start text-xl font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
             {recipe.title}
           </h3>
-          <p className="mt-2.5 line-clamp-2 text-sm font-medium leading-6 text-[#4a3326]">
+          <p className="line-clamp-2 self-start text-sm font-medium leading-6 text-[#4a3326]">
             {recipe.description}
           </p>
         </div>
 
-        <div className="mt-auto">
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-brand-100 bg-[#fff8ee] px-3 py-2.5 text-xs font-black text-stone-800 shadow-inner shadow-white/60">
+        <div className="mt-auto flex min-h-[6.75rem] flex-col justify-start pt-3">
+          <div className="grid min-h-[3.25rem] grid-cols-[minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(max-content,1.2fr)] items-center gap-1 rounded-2xl border border-brand-100 bg-[#fff8ee] px-2 py-2.5 text-[0.66rem] font-black leading-none text-stone-800 shadow-inner shadow-white/60 sm:px-2.5 sm:text-[0.7rem]">
             {metadata.map((item, index) => {
               const Icon = item.icon;
 
               return (
                 <span
-                  className="inline-flex min-w-fit items-center gap-1.5 whitespace-nowrap"
+                  className="inline-flex min-w-0 items-center justify-center gap-1 whitespace-nowrap"
                   key={`${item.value}-${index}`}
                 >
-                  <Icon className="h-4 w-4 shrink-0 text-brand-700" />
+                  <Icon className="h-3.5 w-3.5 shrink-0 text-brand-700" />
                   <span>{item.value}</span>
                 </span>
               );
             })}
           </div>
 
-          <div className="mt-3 flex flex-wrap gap-1.5">
+          <div className="mt-3 flex min-h-[2rem] flex-wrap content-start gap-1.5">
             {visibleTags.map((tag) => (
               <span
                 className="rounded-full border border-stone-200 bg-white/86 px-2.5 py-1 text-xs font-bold text-stone-600 shadow-sm"

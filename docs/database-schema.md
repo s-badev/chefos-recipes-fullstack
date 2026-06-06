@@ -132,6 +132,8 @@ Generated seed data includes:
 
 The seed process supports dry-run planning through `SEED_DRY_RUN=true` and only opens a database connection when real inserts are requested.
 
+Generated scalability records are intentionally hidden from the public catalog/category/detail views. They remain useful for database volume, pagination, and admin-management validation. The public catalog shows the curated 24 recipes plus manually added admin recipes.
+
 ## Auth Data Note
 
-The database schema includes `password_hash` for real account storage. The current web demo login uses app-level demo users with salted `scrypt` password hashes to provide stable evaluator credentials without exposing plaintext passwords to the client.
+The database schema includes `password_hash` for account storage. Demo users provide stable evaluator credentials, and registered users are stored in Neon PostgreSQL with hashed passwords. Mobile API auth uses JWTs signed with `MOBILE_JWT_SECRET`.

@@ -6,12 +6,13 @@ Use this checklist before final SoftUni capstone submission.
 
 - [x] Monorepo structure
 - [x] Next.js web app
-- [x] Expo mobile foundation
+- [x] Expo mobile app and web export
 - [x] Drizzle ORM package
 - [x] Neon PostgreSQL connection support
 - [x] Database schema and migration setup
 - [x] Seed script
 - [x] 10,000 recipe seed generation
+- [x] Generated scalability records hidden from public catalog
 
 ## Web Features
 
@@ -27,6 +28,7 @@ Use this checklist before final SoftUni capstone submission.
 - [x] Admin add recipe
 - [x] Admin edit recipe
 - [x] Admin delete recipe
+- [x] Manual admin recipes can appear in public catalog
 
 ## Access Control
 
@@ -57,7 +59,7 @@ Use this checklist before final SoftUni capstone submission.
 - [x] Local setup document
 - [x] Submission checklist
 - [ ] Final screenshots
-- [ ] Production live URLs
+- [x] Production live URLs
 
 ## Final Manual Checks
 
@@ -70,4 +72,8 @@ Use this checklist before final SoftUni capstone submission.
 - [ ] Admin sees greeting and Admin link.
 - [ ] Admin can open `/admin`.
 - [ ] Admin can add/edit/delete recipes.
+- [ ] Manual admin recipe appears in public catalog.
+- [ ] Generated scalability records stay hidden from public catalog.
+- [ ] Mobile web export opens.
+- [ ] Mobile login/profile/favorites work.
 - [ ] `npm.cmd run build --workspace apps/web` passes.

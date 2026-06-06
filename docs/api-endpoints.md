@@ -82,7 +82,7 @@ Returns categories and recipe counts from the database-backed service.
 
 ## `GET /api/favorites`
 
-Returns sample favorite recipe data for the authenticated user flow. Requires a logged-in user or admin session.
+Returns database-backed favorite recipe data for the authenticated user flow. Requires a logged-in user or admin session.
 
 Guest requests receive `401`.
 
@@ -102,4 +102,5 @@ Requires an authenticated admin session. Non-admin requests receive `403`; guest
 - Browser login uses a Server Action.
 - Logout uses a Server Action.
 - Session state is stored in a signed httpOnly cookie.
+- Mobile API login/register use JWTs signed with `MOBILE_JWT_SECRET`.
 - API mutation handlers independently check role access on the server.

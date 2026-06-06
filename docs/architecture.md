@@ -1,6 +1,6 @@
 # Architecture
 
-Chefo's Recipes is a TypeScript monorepo with a Next.js web app, an Expo mobile app foundation, and shared database infrastructure.
+Chefo's Recipes is a TypeScript monorepo with a deployed Next.js web app/backend, a deployed Expo mobile web export, and shared database infrastructure.
 
 ## Goals
 
@@ -29,7 +29,7 @@ chefos-recipes-fullstack/
 | Area | Responsibility |
 |---|---|
 | `apps/web` | Next.js App Router UI, API routes, Server Actions, auth-aware navigation, admin pages |
-| `apps/mobile` | Expo React Native preview/foundation for recipe browsing and account flows |
+| `apps/mobile` | Expo React Native mobile app deployed as a web export and connected to the deployed REST API |
 | `packages/db` | Drizzle schema, Neon client, migrations, seed and connection utilities |
 | `packages/shared` | Shared TypeScript package placeholder |
 | `docs` | Project documentation for review and submission |
@@ -114,12 +114,12 @@ The database seed process can generate 10,000 recipes with related categories, t
 
 Recipe list APIs use pagination fields (`page`, `pageSize`, `total`, `totalPages`) so larger catalog datasets do not need to be loaded at once.
 
-## Deployment Direction
+The public catalog intentionally stays lightweight: it shows the curated 24 polished recipes plus manually added admin recipes, while generated scalability records stay hidden from public catalog/category/detail views. Admin pages remain database-backed and can show DB totals/counts plus a limited management list.
 
-Planned production deployment:
+## Deployment
 
-- Web app: Vercel or Netlify
+- Web app/backend: Netlify, https://chefos-recipes.netlify.app
 - Database: Neon PostgreSQL
-- Mobile preview: Expo tooling
+- Mobile web export: Netlify, https://chefos-recipes-mobile.netlify.app
 
-Production URLs are currently marked as coming soon.
+The mobile app uses `EXPO_PUBLIC_API_BASE_URL` to call the deployed Next.js REST API.

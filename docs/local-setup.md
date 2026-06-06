@@ -19,15 +19,14 @@ npm install
 Create `.env` in the repository root.
 
 ```env
-DATABASE_URL="your-neon-database-url"
-AUTH_SESSION_SECRET="your-local-session-secret"
-MOBILE_JWT_SECRET="your-local-mobile-api-secret"
-NEXT_PUBLIC_APP_URL="http://localhost:3000"
+DATABASE_URL=
+JWT_SECRET=
+JWT_TOKEN=
+MOBILE_JWT_SECRET=
+EXPO_PUBLIC_API_BASE_URL=
 ```
 
-`DATABASE_URL` is required by the Drizzle/Neon database client. `AUTH_SESSION_SECRET` signs the current demo session cookie. If it is missing locally, the app uses a development fallback. `MOBILE_JWT_SECRET` signs the mobile REST API JWT tokens used by `/api/mobile/auth/login` and `/api/mobile/auth/register`.
-
-For local Next.js development in this monorepo, place `MOBILE_JWT_SECRET` in `apps/web/.env.local` (or set it in your deployment environment) so the web workspace can read it.
+`DATABASE_URL` is required by the Drizzle/Neon database client. `JWT_SECRET`, `JWT_TOKEN`, and `MOBILE_JWT_SECRET` should be local placeholder secrets. `MOBILE_JWT_SECRET` signs the mobile REST API JWT tokens used by `/api/mobile/auth/login` and `/api/mobile/auth/register`. `EXPO_PUBLIC_API_BASE_URL` points the Expo app to the web/backend API.
 
 ## Web Commands
 
@@ -70,6 +69,7 @@ npm run seed --workspace @chefos/db
 ```bash
 npm run start --workspace apps/mobile
 npm run web --workspace apps/mobile
+npm run build --workspace @chefos/mobile
 npm run android --workspace apps/mobile
 npm run ios --workspace apps/mobile
 ```

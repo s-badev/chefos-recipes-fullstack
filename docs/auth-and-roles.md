@@ -1,6 +1,6 @@
 # Authentication And Roles
 
-Chefo's Recipes currently uses demo authentication for predictable capstone evaluation.
+Chefo's Recipes supports predictable demo accounts for capstone evaluation and database-backed registered users.
 
 ## Demo Accounts
 
@@ -18,7 +18,9 @@ The web app uses:
 - A server-side `getCurrentUser()` helper.
 - Safe user data only: `name`, `email`, `role`.
 
-The current demo passwords are validated with salted `scrypt` hashes in the web auth helper. Password hashes are not sent to the browser.
+Demo passwords are validated with salted `scrypt` hashes in the web auth helper. Registered users are stored in Neon PostgreSQL with hashed passwords. Password hashes are not sent to the browser.
+
+The mobile REST API uses JWT access tokens signed with `MOBILE_JWT_SECRET`.
 
 ## Role Behavior
 
@@ -64,4 +66,4 @@ Regular users cannot access admin pages manually and cannot call admin mutations
 
 ## Production Notes
 
-For a production system, the demo auth layer would be replaced with a full account lifecycle, database-backed password hashes, password reset flows, and a hardened secret/session strategy.
+The capstone implementation includes login/register, role checks, protected pages, protected admin mutations, and JWT-based mobile API auth. A hardened commercial product would add a fuller account lifecycle, password reset flows, and additional security/audit controls.
