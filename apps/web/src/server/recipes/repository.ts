@@ -11,7 +11,8 @@ import {
   count,
   desc,
   eq,
-  inArray
+  inArray,
+  sql
 } from "@chefos/db";
 
 import type { Recipe, RecipeCategory } from "../../data/recipes";
@@ -24,6 +25,10 @@ export type RecipePageQuery = {
 export type RecipePage = {
   items: Recipe[];
   total: number;
+};
+
+export type RecipeListQuery = RecipePageQuery & {
+  publicOnly?: boolean;
 };
 
 export type AdminRecipeSummary = {
@@ -43,6 +48,8 @@ type RecipeListRow = {
   servings: number | null;
   difficulty: string;
   category: string;
+  imageUrl: string | null;
+  imageAlt: string | null;
 };
 
 export type RecipeMutationInput = {
@@ -56,6 +63,9 @@ export type RecipeMutationInput = {
 };
 
 const FALLBACK_ADMIN_EMAIL = "admin@example.com";
+const DEFAULT_RECIPE_IMAGE_SRC = "/images/recipes/musaka-s-kartofi.png";
+const GENERATED_RECIPE_ID_PREFIX = "30000000-%";
+const SEEDED_CURATED_RECIPE_ID_PREFIX = "31000000-%";
 
 function formatDifficulty(difficulty: string) {
   switch (difficulty) {
@@ -84,6 +94,8 @@ function mapRecipeRow(
     servings: row.servings ?? 0,
     difficulty: formatDifficulty(row.difficulty),
     category: row.category,
+    imageSrc: row.imageUrl ?? DEFAULT_RECIPE_IMAGE_SRC,
+    imageAlt: row.imageAlt ?? `Снимка на ${row.title}`,
     tags: tagsByRecipeId.get(row.id) ?? [],
     ingredients: [],
     steps: stepsByRecipeId.get(row.id) ?? []
@@ -146,8 +158,18 @@ async function getRecipeSteps(recipeIds: string[]) {
   return stepsByRecipeId;
 }
 
-export async function findRecipes({ offset, limit }: RecipePageQuery): Promise<RecipePage> {
+function getPublicRecipeWhereClause() {
+  return sql`${recipesTable.id}::text not like ${GENERATED_RECIPE_ID_PREFIX}
+    and ${recipesTable.id}::text not like ${SEEDED_CURATED_RECIPE_ID_PREFIX}`;
+}
+
+export async function findRecipes({
+  offset,
+  limit,
+  publicOnly = false
+}: RecipeListQuery): Promise<RecipePage> {
   const db = getDb();
+  const publicWhereClause = publicOnly ? getPublicRecipeWhereClause() : undefined;
   const [items, totalRows] = await Promise.all([
     db
       .select({
@@ -159,14 +181,17 @@ export async function findRecipes({ offset, limit }: RecipePageQuery): Promise<R
         cookTimeMinutes: recipesTable.cookTimeMinutes,
         servings: recipesTable.servings,
         difficulty: recipesTable.difficulty,
-        category: categoriesTable.name
+        category: categoriesTable.name,
+        imageUrl: recipesTable.imageUrl,
+        imageAlt: recipesTable.imageAlt
       })
       .from(recipesTable)
       .innerJoin(categoriesTable, eq(recipesTable.categoryId, categoriesTable.id))
+      .where(publicWhereClause)
       .orderBy(desc(recipesTable.createdAt), asc(recipesTable.title))
       .limit(limit)
       .offset(offset),
-    db.select({ value: count() }).from(recipesTable)
+    db.select({ value: count() }).from(recipesTable).where(publicWhereClause)
   ]);
 
   const recipeIds = items.map((recipe) => recipe.id);
@@ -182,7 +207,19 @@ export async function findRecipes({ offset, limit }: RecipePageQuery): Promise<R
 }
 
 export async function findRecipeBySlug(slug: string) {
+  return findRecipeBySlugWithOptions(slug);
+}
+
+export async function findPublicRecipeBySlug(slug: string) {
+  return findRecipeBySlugWithOptions(slug, { publicOnly: true });
+}
+
+async function findRecipeBySlugWithOptions(
+  slug: string,
+  options: { publicOnly?: boolean } = {}
+) {
   const db = getDb();
+  const publicWhereClause = options.publicOnly ? getPublicRecipeWhereClause() : undefined;
   const rows = await db
     .select({
       id: recipesTable.id,
@@ -193,11 +230,17 @@ export async function findRecipeBySlug(slug: string) {
       cookTimeMinutes: recipesTable.cookTimeMinutes,
       servings: recipesTable.servings,
       difficulty: recipesTable.difficulty,
-      category: categoriesTable.name
+      category: categoriesTable.name,
+      imageUrl: recipesTable.imageUrl,
+      imageAlt: recipesTable.imageAlt
     })
     .from(recipesTable)
     .innerJoin(categoriesTable, eq(recipesTable.categoryId, categoriesTable.id))
-    .where(eq(recipesTable.slug, slug))
+    .where(
+      publicWhereClause
+        ? sql`${recipesTable.slug} = ${slug} and ${publicWhereClause}`
+        : eq(recipesTable.slug, slug)
+    )
     .limit(1);
 
   const recipe = rows[0];

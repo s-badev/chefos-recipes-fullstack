@@ -83,7 +83,7 @@ export default async function AdminPage() {
 
         <div className="space-y-3 bg-[#fffaf3]/60 p-4 sm:p-5">
           <p className="px-1 text-sm font-bold text-stone-600">
-            Показани {recipePage.items.length} от {recipePage.total} рецепти
+            Показани {recipePage.items.length} от {recipePage.total} рецепти от базата данни
           </p>
 
           {recipePage.items.map((recipe) => (
@@ -152,6 +152,10 @@ export default async function AdminPage() {
         <p className="mt-2 text-lg font-medium leading-8 text-[#4a2a17]">
           Използвай списъка за бърз преглед на рецептите, редакция на съдържание и поддръжка на
           подреден каталог.
+        </p>
+        <p className="mt-3 text-base font-medium leading-7 text-[#4a2a17]">
+          Тук се виждат всички рецепти от базата, включително записите за тест на мащабируемост.
+          Публичният каталог показва подбраните рецепти плюс ръчно добавените админ рецепти.
         </p>
       </section>
     </section>

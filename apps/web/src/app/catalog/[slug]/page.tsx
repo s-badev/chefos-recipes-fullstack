@@ -5,6 +5,7 @@ import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
 import { addFavoriteAction, removeFavoriteAction } from "../../../server/favorites/actions";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
+import { getPublicCatalogRecipeBySlug } from "../../../server/recipes/service";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -13,6 +14,10 @@ type RecipeDetailsPageProps = {
 };
 
 export const dynamic = "force-dynamic";
+
+async function getRecipeForDetails(slug: string) {
+  return findRecipeBySlug(slug) ?? (await getPublicCatalogRecipeBySlug(slug));
+}
 
 function getVisualClass(category: string) {
   const normalizedCategory = category.toLocaleLowerCase("bg-BG");
@@ -40,7 +45,7 @@ export async function generateMetadata({
   params
 }: RecipeDetailsPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const recipe = findRecipeBySlug(slug);
+  const recipe = await getRecipeForDetails(slug);
 
   if (!recipe) {
     return {
@@ -56,7 +61,7 @@ export async function generateMetadata({
 
 export default async function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
   const { slug } = await params;
-  const recipe = findRecipeBySlug(slug);
+  const recipe = await getRecipeForDetails(slug);
 
   if (!recipe) {
     return (
@@ -195,31 +200,43 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
 
         <section className="recipe-print-section editorial-card order-2 rounded-[1.8rem] p-6 lg:col-start-1 lg:row-start-1">
           <h2 className="text-3xl font-bold text-stone-950">Продукти</h2>
-          <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {recipe.ingredients.map((ingredient) => (
-              <li
-                className="ingredient-item flex items-center gap-3 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-[0.98rem] font-medium leading-6 text-[#4a2a17]"
-                key={ingredient}
-              >
-                <span className="h-2 w-2 shrink-0 rounded-full bg-brand-500" />
-                <span>{ingredient}</span>
-              </li>
-            ))}
-          </ul>
+          {recipe.ingredients.length > 0 ? (
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {recipe.ingredients.map((ingredient) => (
+                <li
+                  className="ingredient-item flex items-center gap-3 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-[0.98rem] font-medium leading-6 text-[#4a2a17]"
+                  key={ingredient}
+                >
+                  <span className="h-2 w-2 shrink-0 rounded-full bg-brand-500" />
+                  <span>{ingredient}</span>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-5 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-base font-medium leading-7 text-[#4a2a17]">
+              Няма въведени продукти за тази рецепта.
+            </p>
+          )}
         </section>
 
         <section className="recipe-print-section editorial-card order-3 w-full rounded-[1.8rem] p-6 sm:p-8 lg:col-start-1 lg:row-start-2">
           <h2 className="text-3xl font-bold text-stone-950">Начин на приготвяне</h2>
-          <ol className="mt-6 grid gap-5">
-            {recipe.steps.map((step, index) => (
-              <li className="flex gap-4 text-base font-medium leading-7 text-[#4a2a17]" key={step}>
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-600 text-base font-black text-white">
-                  {index + 1}
-                </span>
-                <span className="pt-1">{step}</span>
-              </li>
-            ))}
-          </ol>
+          {recipe.steps.length > 0 ? (
+            <ol className="mt-6 grid gap-5">
+              {recipe.steps.map((step, index) => (
+                <li className="flex gap-4 text-base font-medium leading-7 text-[#4a2a17]" key={step}>
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-brand-600 text-base font-black text-white">
+                    {index + 1}
+                  </span>
+                  <span className="pt-1">{step}</span>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            <p className="mt-6 rounded-2xl border border-brand-200/60 bg-[#fff8ee] px-4 py-3 text-base font-medium leading-7 text-[#4a2a17]">
+              Начинът на приготвяне все още не е описан.
+            </p>
+          )}
         </section>
       </section>
     </article>

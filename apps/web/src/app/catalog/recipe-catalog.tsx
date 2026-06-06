@@ -2,16 +2,20 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { RecipeCard } from "../recipe-card";
-import { recipes } from "./recipes";
+import { recipes as curatedRecipes, type Recipe } from "./recipes";
 
 const allCategoriesLabel = "Всички";
 const catalogPageSize = 8;
 
 type RecipeCatalogProps = {
   favoriteSlugs?: string[];
+  recipes?: Recipe[];
 };
 
-export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
+export function RecipeCatalog({
+  favoriteSlugs = [],
+  recipes = curatedRecipes
+}: RecipeCatalogProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(allCategoriesLabel);
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,7 +23,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
 
   const categories = useMemo(
     () => [allCategoriesLabel, ...Array.from(new Set(recipes.map((recipe) => recipe.category)))],
-    []
+    [recipes]
   );
 
   const filteredRecipes = useMemo(() => {
@@ -34,7 +38,7 @@ export function RecipeCatalog({ favoriteSlugs = [] }: RecipeCatalogProps) {
 
       return matchesCategory && searchableText.includes(normalizedSearch);
     });
-  }, [searchTerm, selectedCategory]);
+  }, [recipes, searchTerm, selectedCategory]);
 
   const totalPages = Math.max(1, Math.ceil(filteredRecipes.length / catalogPageSize));
   const paginatedRecipes = filteredRecipes.slice(

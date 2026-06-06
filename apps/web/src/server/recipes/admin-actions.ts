@@ -22,9 +22,12 @@ export async function createRecipeAction(formData: FormData) {
 export async function updateRecipeAction(formData: FormData) {
   await requireAdmin();
   const slug = String(formData.get("slug") ?? "");
+  let nextSlug = slug;
 
   try {
-    await updateRecipeBySlug(slug, formData);
+    const recipe = await updateRecipeBySlug(slug, formData);
+
+    nextSlug = recipe.slug;
   } catch (error) {
     throw new Error("Промените по рецептата не могат да бъдат запазени в момента.");
   }
@@ -32,6 +35,7 @@ export async function updateRecipeAction(formData: FormData) {
   revalidatePath("/admin");
   revalidatePath("/catalog");
   revalidatePath(`/catalog/${slug}`);
+  revalidatePath(`/catalog/${nextSlug}`);
   redirect("/admin");
 }
 
