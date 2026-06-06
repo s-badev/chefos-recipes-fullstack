@@ -66,6 +66,7 @@ const FALLBACK_ADMIN_EMAIL = "admin@example.com";
 const DEFAULT_RECIPE_IMAGE_SRC = "/images/recipes/musaka-s-kartofi.png";
 const GENERATED_RECIPE_ID_PREFIX = "30000000-%";
 const SEEDED_CURATED_RECIPE_ID_PREFIX = "31000000-%";
+const GENERATED_RECIPE_DESCRIPTION_MARKER = "%детерминиран набор за тест на каталог%";
 
 function formatDifficulty(difficulty: string) {
   switch (difficulty) {
@@ -160,7 +161,9 @@ async function getRecipeSteps(recipeIds: string[]) {
 
 function getPublicRecipeWhereClause() {
   return sql`${recipesTable.id}::text not like ${GENERATED_RECIPE_ID_PREFIX}
-    and ${recipesTable.id}::text not like ${SEEDED_CURATED_RECIPE_ID_PREFIX}`;
+    and ${recipesTable.id}::text not like ${SEEDED_CURATED_RECIPE_ID_PREFIX}
+    and coalesce(${recipesTable.description}, '') not ilike ${GENERATED_RECIPE_DESCRIPTION_MARKER}
+    and lower(trim(coalesce(${recipesTable.description}, ''))) <> lower(trim(${recipesTable.title}))`;
 }
 
 export async function findRecipes({
