@@ -361,7 +361,13 @@ export async function createRecipeRecord(input: RecipeMutationInput, authorEmail
     })
     .returning({ slug: recipesTable.slug });
 
-  return insertedRows[0];
+  const recipe = insertedRows[0];
+
+  if (!recipe) {
+    throw new Error("Recipe was not created.");
+  }
+
+  return recipe;
 }
 
 export async function updateRecipeRecordBySlug(slug: string, input: RecipeMutationInput) {
@@ -386,7 +392,13 @@ export async function updateRecipeRecordBySlug(slug: string, input: RecipeMutati
     .where(eq(recipesTable.slug, slug))
     .returning({ slug: recipesTable.slug });
 
-  return updatedRows[0];
+  const recipe = updatedRows[0];
+
+  if (!recipe) {
+    throw new Error("Recipe was not found.");
+  }
+
+  return recipe;
 }
 
 export async function deleteRecipeRecordBySlug(slug: string) {
@@ -399,7 +411,7 @@ export async function deleteRecipeRecordBySlug(slug: string) {
   const recipe = recipeRows[0];
 
   if (!recipe) {
-    return;
+    throw new Error("Recipe was not found.");
   }
 
   await db.delete(favoritesTable).where(eq(favoritesTable.recipeId, recipe.id));

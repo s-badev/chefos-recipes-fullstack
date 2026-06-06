@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { findRecipeBySlug, recipes } from "../../../../catalog/recipes";
 import { requireAdmin } from "../../../../../server/auth/session";
 import { updateRecipeAction } from "../../../../../server/recipes/admin-actions";
+import { getRecipeBySlug } from "../../../../../server/recipes/service";
 
 type EditRecipePageProps = {
   params: Promise<{
@@ -10,15 +10,9 @@ type EditRecipePageProps = {
   }>;
 };
 
-export function generateStaticParams() {
-  return recipes.map((recipe) => ({
-    slug: recipe.slug
-  }));
-}
-
 export async function generateMetadata({ params }: EditRecipePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const recipe = findRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
 
   return {
     title: recipe ? `Редакция: ${recipe.title} | Chefo's Recipes` : "Рецептата не е намерена | Chefo's Recipes"
@@ -29,7 +23,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
   await requireAdmin();
 
   const { slug } = await params;
-  const recipe = findRecipeBySlug(slug);
+  const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {
     return (

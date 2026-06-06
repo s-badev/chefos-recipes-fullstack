@@ -1,34 +1,36 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { recipes } from "../catalog/recipes";
 import { requireAdmin } from "../../server/auth/session";
 import { deleteRecipeAction } from "../../server/recipes/admin-actions";
+import { getAdminRecipeSummary, listRecipes } from "../../server/recipes/service";
 
 export const metadata: Metadata = {
   title: "Админ панел | Chefo's Recipes",
   description: "Зона за управление на рецепти в Chefo's Recipes."
 };
 
-const categories = Array.from(new Set(recipes.map((recipe) => recipe.category)));
-const tags = Array.from(new Set(recipes.flatMap((recipe) => recipe.tags)));
-
-const stats = [
-  {
-    label: "Общо рецепти",
-    value: recipes.length
-  },
-  {
-    label: "Категории",
-    value: categories.length
-  },
-  {
-    label: "Тагове",
-    value: tags.length
-  }
-];
+const ADMIN_RECIPE_PAGE_SIZE = 50;
 
 export default async function AdminPage() {
   await requireAdmin();
+  const [recipePage, summary] = await Promise.all([
+    listRecipes({ page: 1, pageSize: ADMIN_RECIPE_PAGE_SIZE }),
+    getAdminRecipeSummary()
+  ]);
+  const stats = [
+    {
+      label: "Общо рецепти",
+      value: summary.totalRecipes
+    },
+    {
+      label: "Категории",
+      value: summary.totalCategories
+    },
+    {
+      label: "Тагове",
+      value: summary.totalTags
+    }
+  ];
 
   return (
     <section className="page-shell space-y-10">
@@ -81,10 +83,10 @@ export default async function AdminPage() {
 
         <div className="space-y-3 bg-[#fffaf3]/60 p-4 sm:p-5">
           <p className="px-1 text-sm font-bold text-stone-600">
-            Показани {recipes.length} от {recipes.length} рецепти
+            Показани {recipePage.items.length} от {recipePage.total} рецепти
           </p>
 
-          {recipes.map((recipe) => (
+          {recipePage.items.map((recipe) => (
             <div
               className="admin-row grid gap-5 rounded-[1.45rem] border border-stone-200/80 bg-white/78 p-5 shadow-sm shadow-stone-900/[0.03] transition hover:border-brand-200 hover:bg-[#fff8ee] hover:shadow-[0_14px_34px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
               key={recipe.slug}
