@@ -60,7 +60,7 @@ Regular users do **not** see the Admin navigation item and should not be able to
 * 👋 **Personalized user experience** with user name in the header and profile page.
 * 🛡️ **Role-based access** with protected admin-only pages.
 * 🧑‍🍳 **Database-backed admin panel** with DB totals, limited management list, and add/edit/delete recipe actions.
-* 🌍 **Manual admin-created recipes are saved in PostgreSQL and displayed in both the admin panel and the public catalog, while generated scalability records stay hidden from the public catalog.
+* 🌍 **Manual admin-created recipes** are saved in PostgreSQL and displayed in both the admin panel and the public catalog, while generated scalability records stay hidden from the public catalog.
 * 🖼️ **Fallback images** for admin-created recipes without custom uploads.
 * 🗄️ **Neon PostgreSQL + Drizzle ORM** database layer.
 * 🌱 **10,000+ generated records** for scalability and database/admin testing.
