@@ -60,7 +60,7 @@ Regular users do **not** see the Admin navigation item and should not be able to
 * 👋 **Personalized user experience** with user name in the header and profile page.
 * 🛡️ **Role-based access** with protected admin-only pages.
 * 🧑‍🍳 **Database-backed admin panel** with DB totals, limited management list, and add/edit/delete recipe actions.
-* 🌍 **Manual admin recipes can appear publicly** while generated scalability records stay hidden from the public catalog.
+* 🌍 **Manual admin-created recipes are saved in PostgreSQL and displayed in both the admin panel and the public catalog, while generated scalability records stay hidden from the public catalog.
 * 🖼️ **Fallback images** for admin-created recipes without custom uploads.
 * 🗄️ **Neon PostgreSQL + Drizzle ORM** database layer.
 * 🌱 **10,000+ generated records** for scalability and database/admin testing.
@@ -155,12 +155,12 @@ https://chefos-recipes.netlify.app/api/mobile
 
 ### 🍲 Public Recipe Catalog
 
-* 24 polished curated recipes in the main catalog.
+* 24 polished curated recipes form the base public catalog.
 * Bulgarian recipe categories.
 * Category filtering.
 * Recipe cards with images, category badges, difficulty badges, timing, servings, and tags.
 * Save/remove favorite action for authenticated users.
-* Manual admin-created recipes can appear publicly.
+* Manual admin-created recipes are added to the public catalog after being saved through the admin panel.
 * Generated scalability records are intentionally hidden from the public catalog.
 
 ### 🧑‍🍳 Recipe Details
@@ -200,7 +200,7 @@ https://chefos-recipes.netlify.app/api/mobile
 * Admin can add recipes.
 * Admin can edit database-backed recipes.
 * Admin can delete database-backed recipes.
-* Manually added admin recipes can appear in the public catalog.
+* Manually added admin recipes are displayed in the public catalog after being saved through the admin panel.
 * Admin-created recipes without uploaded images use fallback recipe imagery.
 
 ### 🌱 Seed and Scalability
@@ -218,13 +218,13 @@ https://chefos-recipes.netlify.app/api/mobile
 
 The project separates the **public user experience** from the **database scalability layer**.
 
-| Area                          | Behavior                                                      |
-| ----------------------------- | ------------------------------------------------------------- |
-| Public catalog                | Shows the curated 24-recipe collection                        |
-| Manual admin recipes          | Can appear publicly after being created in the admin panel    |
-| Generated scalability records | Stored in Neon PostgreSQL but hidden from the public catalog  |
-| Admin panel                   | Shows DB totals/counts and a limited database management list |
-| Mobile API                    | Uses the deployed Next.js REST API                            |
+| Area                          | Behavior                                                                             |
+| ----------------------------- | ------------------------------------------------------------------------------------ |
+| Public catalog                | Shows the curated 24-recipe base plus manually added admin recipes                   |
+| Manual admin recipes          | Saved in PostgreSQL and displayed publicly after being created in the admin panel    |
+| Generated scalability records | Stored in Neon PostgreSQL but hidden from the public catalog                         |
+| Admin panel                   | Shows DB totals/counts and a limited database management list                        |
+| Mobile API                    | Uses the deployed Next.js REST API                                                   |
 
 This keeps the public catalog lightweight and polished while still demonstrating database-backed admin management and large dataset handling.
 
@@ -244,7 +244,7 @@ The public curated catalog contains 24 polished recipes across the main Bulgaria
 | Десерти                   |                      4 |
 | **Total curated recipes** |                 **24** |
 
-Manual admin-created recipes may add additional public category entries depending on the created recipe data.
+Manual admin-created recipes are added to the public catalog and can increase the visible recipe count and category results beyond the curated 24-recipe base.
 
 ---
 
@@ -594,7 +594,7 @@ Never commit real `.env` files or secrets.
    * Add recipe works.
    * Edit recipe works.
    * Delete recipe works.
-   * Manual admin-created recipe can appear in the public catalog.
+   * Manual admin-created recipe is displayed in the public catalog after being saved through the admin panel.
    * Generated scalability records stay hidden from the public catalog.
 
 8. Open the Expo mobile web export and confirm:
@@ -622,7 +622,7 @@ Never commit real `.env` files or secrets.
 * Admin add recipe works.
 * Admin edit recipe works.
 * Admin delete recipe works.
-* Manual admin recipe appears in public catalog.
+* Manual admin-created recipe is displayed in the public catalog.
 * Generated scalability records stay hidden from public catalog.
 * Mobile web export opens.
 * Mobile catalog loads.
@@ -634,33 +634,33 @@ Never commit real `.env` files or secrets.
 
 ## ✅ Project Status
 
-| Item                                          | Status          |
-| --------------------------------------------- | --------------- |
-| Next.js web app                               | Done / Deployed |
-| Backend API                                   | Done / Deployed |
-| Bulgarian recipe catalog                      | Done            |
-| 24 curated public recipes                     | Done            |
-| Manual admin recipe public visibility         | Done            |
-| Category filtering                            | Done            |
-| Recipe detail pages                           | Done            |
-| Print recipe action                           | Done            |
-| Registration and login                        | Done            |
-| Hashed passwords                              | Done            |
-| Signed web sessions                           | Done            |
-| JWT mobile API auth                           | Done            |
-| User-specific favorites                       | Done            |
-| Admin role and admin panel                    | Done            |
-| Database-backed admin management              | Done            |
-| Admin add/edit/delete                         | Done            |
-| Generated scalability records hidden publicly | Done            |
-| Neon PostgreSQL integration                   | Done            |
-| Drizzle ORM schema/seed                       | Done            |
-| 10,000+ generated records for scalability     | Done            |
-| Expo mobile app                               | Done            |
-| Expo mobile web export deployment             | Done            |
-| CORS support for mobile API calls             | Done            |
-| Netlify web/backend deployment                | Done            |
-| Netlify mobile deployment                     | Done            |
+| Item                                             | Status          |
+| ------------------------------------------------ | --------------- |
+| Next.js web app                                  | Done / Deployed |
+| Backend API                                      | Done / Deployed |
+| Bulgarian recipe catalog                         | Done            |
+| 24 curated public recipes                        | Done            |
+| Manual admin-created recipes displayed publicly  | Done            |
+| Category filtering                               | Done            |
+| Recipe detail pages                              | Done            |
+| Print recipe action                              | Done            |
+| Registration and login                           | Done            |
+| Hashed passwords                                 | Done            |
+| Signed web sessions                              | Done            |
+| JWT mobile API auth                              | Done            |
+| User-specific favorites                          | Done            |
+| Admin role and admin panel                       | Done            |
+| Database-backed admin management                 | Done            |
+| Admin add/edit/delete                            | Done            |
+| Generated scalability records hidden publicly    | Done            |
+| Neon PostgreSQL integration                      | Done            |
+| Drizzle ORM schema/seed                          | Done            |
+| 10,000+ generated records for scalability        | Done            |
+| Expo mobile app                                  | Done            |
+| Expo mobile web export deployment                | Done            |
+| CORS support for mobile API calls                | Done            |
+| Netlify web/backend deployment                   | Done            |
+| Netlify mobile deployment                        | Done            |
 
 ---
 
@@ -689,8 +689,10 @@ Never commit real `.env` files or secrets.
 * Recipes without full ingredients/steps use graceful fallback text where needed.
 * Generated scalability records are not shown publicly by design.
 * Browser print previews may show browser-generated headers and footers unless disabled in browser print settings.
-* This project is built for capstone evaluation and portfolio presentation, not as a hardened commercial SaaS product.
-
+* This project is built as a capstone and portfolio-ready full-stack application with production-style architecture, while intentionally keeping some commercial-grade features, such as image upload infrastructure, outside the project scope.
+* Supporting screenshots are included for Netlify environment variables, Neon PostgreSQL tables, and the deployed Expo mobile web export. Sensitive values such as secrets, tokens and database URLs are hidden or masked.
+* Visible names and emails in database screenshots are fictional demo/test records used only for seeding and testing. They do not represent real users.
+  
 ---
 
 ## 🎯 Conclusion
