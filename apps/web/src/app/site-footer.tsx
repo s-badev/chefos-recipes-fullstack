@@ -65,83 +65,11 @@ function SocialIcon({ icon }: { icon: SocialIconName }) {
 }
 
 export function SiteFooter() {
-  return (
-    <footer className="w-full border-t border-stone-200 bg-[linear-gradient(180deg,#fff7ec_0%,#fff2e2_100%)] text-base leading-7 text-stone-700">
-      <div className="mx-auto w-full max-w-[1600px] px-6 py-14 sm:px-8 sm:py-16 lg:px-12 xl:px-16">
-        <div className="grid gap-12 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,0.7fr)_minmax(0,0.7fr)_minmax(0,0.85fr)] lg:items-start">
-          <div>
-            <div className="flex items-center gap-3">
-              <span className="grid h-10 w-10 place-items-center rounded-[1rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-white shadow-sm shadow-brand-900/20">
-                <svg
-                  aria-hidden="true"
-                  viewBox="0 0 24 24"
-                  className="h-5 w-5"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                >
-                  <path d="M6 13.5C4.3 13 3 11.5 3 9.7C3 7.5 4.8 5.8 7 5.8C7.6 3.6 9.6 2 12 2C14.4 2 16.4 3.6 17 5.8C19.2 5.8 21 7.5 21 9.7C21 11.5 19.7 13 18 13.5" />
-                  <path d="M6 13h12v7H6z" />
-                  <path d="M9 16h6" />
-                </svg>
-              </span>
-              <p className="text-xl font-black leading-tight text-stone-950">
-                Chefo&apos;s <span className="text-brand-600">Recipes</span>
-              </p>
-            </div>
-            <p className="mt-5 max-w-2xl text-sm font-medium leading-7 text-[#5a4030] sm:text-base">
-              Подреден каталог за домашна храна - за хора, които готвят с удоволствие.
-            </p>
-          </div>
-
-          {footerSections.map((section) => (
-            <nav aria-label={section.title} key={section.title}>
-              <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-800">
-                {section.title}
-              </p>
-              <div className="mt-5 grid gap-3.5">
-                {section.links.map((item) => (
-                  <Link
-                    className="footer-link inline-flex rounded-lg text-sm font-bold text-stone-800 transition hover:text-brand-700 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4 sm:text-[0.95rem]"
-                    href={item.href}
-                    key={item.href}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          ))}
-
-          <section aria-labelledby="footer-social-heading">
-            <p
-              className="text-sm font-black uppercase tracking-[0.18em] text-brand-800"
-              id="footer-social-heading"
-            >
-              Последвай ни
-            </p>
-            <div className="mt-5 flex flex-wrap gap-3">
-              {socialLinks.map((item) => (
-                <a
-                  aria-label={item.label}
-                  className="footer-social-link grid h-10 w-10 place-items-center rounded-full border border-brand-100 bg-[#fff8ee] text-sm font-black text-brand-800 shadow-sm shadow-brand-900/10 transition hover:-translate-y-0.5 hover:border-brand-600 hover:bg-brand-600 hover:text-white hover:shadow-[0_10px_24px_rgba(127,51,19,0.2)] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-200"
-                  href={item.href}
-                  key={item.label}
-                >
-                  <SocialIcon icon={item.icon} />
-                </a>
-              ))}
-            </div>
-          </section>
-        </div>
-
-        <div className="mt-12 flex flex-col gap-3 border-t border-stone-300/70 pt-6 text-sm font-semibold leading-6 tracking-[0.01em] text-[#5a4030] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Chefo&apos;s Recipes</p>
-          <p className="sm:text-right">Направено с любов към домашната кухня.</p>
-        </div>
-      </div>
-    </footer>
-  );
+  return <footer className="ftr">
+    <div className="wrap">
+      <div><p>© 2026 Chefo&apos;s Recipes</p><p>Направено с любов към домашната кухня.</p></div>
+      {footerSections.map(section => <nav aria-label={section.title} key={section.title}><span className="eyebrow">{section.title}</span><div className="footer-links">{section.links.map(item => <Link href={item.href} key={item.href}>{item.label}</Link>)}</div></nav>)}
+      <nav aria-label="Последвай ни" className="footer-socials">{socialLinks.map(item => <a href={item.href} aria-label={item.label} key={item.label}><SocialIcon icon={item.icon}/></a>)}</nav>
+    </div>
+  </footer>;
 }

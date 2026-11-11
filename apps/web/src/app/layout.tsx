@@ -1,24 +1,26 @@
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant, Onest } from "next/font/google";
 import "./globals.css";
 import { BackToTopButton } from "./back-to-top-button";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { MotionRoot } from "./motion-root";
 
-const inter = Inter({
+const sans = Onest({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500", "600"],
   display: "swap",
   preload: true,
-  variable: "--font-inter"
+  variable: "--font-sans"
 });
 
-const playfair = Playfair_Display({
+const serif = Cormorant({
   subsets: ["latin", "cyrillic"],
-  weight: ["500", "600"],
+  weight: ["300", "500"],
+  style: ["normal", "italic"],
   display: "swap",
   preload: true,
-  variable: "--font-playfair"
+  variable: "--font-serif"
 });
 
 export const metadata: Metadata = {
@@ -32,19 +34,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bg">
-      <body className={`${inter.variable} ${playfair.variable} min-h-screen bg-canvas text-ink antialiased`}>
+    <html lang="bg" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.motion=matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'` }} />
+      </head>
+      <body className="min-h-screen bg-bg text-ink antialiased">
         <a className="skip-link" href="#main-content">
           Към съдържанието
         </a>
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
-          <main id="main-content" tabIndex={-1} className="mx-auto w-full max-w-[var(--site-shell-width)] flex-1 px-[var(--site-shell-padding)] py-8 sm:py-10 lg:py-12">
+          <main id="main-content" tabIndex={-1} className="flex-1">
             {children}
           </main>
           <SiteFooter />
         </div>
         <BackToTopButton />
+        <MotionRoot />
       </body>
     </html>
   );

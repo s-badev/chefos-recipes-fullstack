@@ -5,6 +5,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        bg: "var(--bg)",
+        muted: "var(--muted)",
         canvas: "var(--canvas)",
         surface: "var(--surface)",
         "surface-muted": "var(--surface-muted)",
@@ -16,21 +18,21 @@ const config: Config = {
         accent: "var(--accent)",
         "accent-hover": "var(--accent-hover)",
         brand: {
-          50: "#fff8f0",
-          100: "#ffefd6",
-          200: "#ffd9ad",
-          300: "#ffc282",
-          400: "#ffa44d",
-          500: "#ff8a24",
-          600: "#f36b0f",
-          700: "#c9520d",
-          800: "#9f3f12",
-          900: "#7f3313"
+          50: "#F4F4F2",
+          100: "#E9E9E6",
+          200: "#D6D6D2",
+          300: "#B8B8B4",
+          400: "#777773",
+          500: "#4F4F4A",
+          600: "#111111",
+          700: "#333333",
+          800: "#222222",
+          900: "#111111"
         }
       },
       fontFamily: {
         ui: ["var(--font-sans)"],
-        editorial: ["var(--font-display)"]
+        editorial: ["var(--serif)"]
       },
       fontSize: {
         display: ["clamp(2.25rem, 5vw, 3.75rem)", { lineHeight: "1.08", letterSpacing: "-0.01em" }],
