@@ -1,0 +1,930 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Chefo's макет на движението</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,500;1,300;1,500&family=Noto+Serif+Display:ital,wght@0,400;0,500;1,400;1,500&family=Onest:wght@400;500;600&family=Manrope:wght@400;600;700&display=swap">
+<style>
+/* Идея: брой на списание. Един ритъм на движение: „прелиствам“ (излиза отляво надясно, като страница). Само transform, opacity и clip-path. */
+:root{
+  --bg:#F7F5F6;--ink:#1B0E13;--muted:#5E4F55;--accent:#A3123F;--accent-ink:#FFFFFF;--accent-text:#A3123F;
+  --deep:#240A12;--deep-ink:#F7F5F6;--deep-accent:#F0698F;
+  --line:color-mix(in srgb,var(--ink) 16%,transparent);
+  --ease-out:cubic-bezier(.16,1,.3,1);--ease-io:cubic-bezier(.65,0,.35,1);--ease-spring:cubic-bezier(.34,1.56,.64,1);
+  --k:1;
+  --h1:clamp(3.5rem,2.014rem + 6.095vw,9rem);
+  --gut:max(16px,env(safe-area-inset-left,0px));--gutr:max(16px,env(safe-area-inset-right,0px));
+  --serif:'Cormorant',Georgia,serif;--sans:'Onest',system-ui,sans-serif;--sw:300;--sws:500;--fs:1.12;--tr:-.02em;
+}
+:root[data-font="2"]{--serif:'Noto Serif Display',Georgia,serif;--sans:'Manrope',system-ui,sans-serif;--sw:400;--sws:500;--fs:1;--tr:-.03em}
+:root[data-pal="A"]{--bg:#0E0E0C;--ink:#F2F0EA;--muted:#A8A69E;--accent:#7A8B3A;--accent-ink:#0E0E0C;--accent-text:#7A8B3A;--deep:#F2F0EA;--deep-ink:#0E0E0C;--deep-accent:#566422;color-scheme:dark}
+:root[data-pal="B"]{--bg:#FFFFFF;--ink:#12233D;--muted:#4F5D75;--accent:#D62B2B;--accent-ink:#FFFFFF;--accent-text:#D62B2B;--deep:#12233D;--deep-ink:#FFFFFF;--deep-accent:#FF8F8F}
+:root[data-pal="C"]{--bg:#F4F6F1;--ink:#1F3A2E;--muted:#506659;--accent:#E8E26A;--accent-ink:#1F3A2E;--accent-text:#1F3A2E;--deep:#1F3A2E;--deep-ink:#F4F6F1;--deep-accent:#E8E26A}
+:root[data-pal="D"]{--bg:#E9E9E6;--ink:#111111;--muted:#4F4F4A;--accent:#111111;--accent-ink:#E9E9E6;--accent-text:#111111;--deep:#111111;--deep-ink:#E9E9E6;--deep-accent:#E9E9E6}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;transition:background-color calc(500ms*var(--k)),color calc(500ms*var(--k));-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ul,ol,dl,dd{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit}
+em{font-style:italic}
+.wrap{max-width:1360px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gutr)}
+.serif{font-family:var(--serif);font-weight:var(--sw);letter-spacing:var(--tr)}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--bg);padding:10px 16px;z-index:200}
+.skip:focus{left:8px}
+:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
+.hero :focus-visible,.recipe-hero :focus-visible{outline-color:#fff}
+
+/* ---------- header (смесва се с фона: винаги четим) ---------- */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:50;height:calc(64px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);color:#fff;border-bottom:1px solid transparent;transition:background-color calc(350ms*var(--k)),color calc(350ms*var(--k)),border-color calc(350ms*var(--k))}
+.hdr.solid{background:var(--bg);color:var(--ink);border-bottom-color:var(--line)}
+.hdr .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--serif);font-weight:500;font-size:1.7rem;letter-spacing:-.01em;min-height:44px;display:inline-flex;align-items:center}
+.nav{display:flex;gap:clamp(14px,3vw,36px);font-size:.95rem;font-weight:500}
+.nav a{white-space:nowrap;position:relative;min-height:44px;display:inline-flex;align-items:center;gap:6px}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform calc(450ms*var(--k)) var(--ease-out)}
+.nav a:hover::after,.nav a[aria-current=page]::after{transform:scaleX(1)}
+.favn{display:inline-block;min-width:1ch;font-variant-numeric:tabular-nums}
+.bump{animation:bump calc(420ms*var(--k)) var(--ease-spring)}
+@keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.5)}100%{transform:scale(1)}}
+
+/* ---------- завеса за преход ---------- */
+.curtain{position:fixed;inset:0;z-index:100;background:var(--deep);color:var(--deep-ink);display:flex;align-items:center;justify-content:center;clip-path:inset(0 100% 0 0);pointer-events:none}
+.curtain span{font-family:var(--serif);font-style:italic;font-weight:var(--sw);font-size:clamp(3rem,2rem + 6vw,8rem)}
+
+/* ---------- разделяне на думи (маска) ---------- */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .04em .14em;margin:0 -.04em -.14em}
+.wi{display:inline-block}
+[data-motion=on] .wi{transform:translateY(112%);transition:transform calc(900ms*var(--k)) var(--ease-out) calc(var(--i)*70ms*var(--k) + var(--dl,0ms)*var(--k))}
+[data-motion=on] .in .wi,[data-motion=on] .wi.in,[data-motion=on] .in.sp .wi{transform:none}
+/* ---------- появи при скрол ---------- */
+[data-motion=on] [data-r]{transition:opacity calc(800ms*var(--k)) var(--ease-out) calc(var(--dl,0ms)*var(--k)),transform calc(800ms*var(--k)) var(--ease-out) calc(var(--dl,0ms)*var(--k))}
+[data-motion=on] [data-r]:not(.in){opacity:0;transform:translateY(24px)}
+.mk{display:block;width:100%;height:100%}
+[data-motion=on] [data-mask] .mk{transition:clip-path calc(1100ms*var(--k)) var(--ease-out)}
+[data-motion=on] [data-mask]:not(.in) .mk{clip-path:inset(0 0 100% 0)}
+[data-motion=on] [data-mask] img{transition:transform calc(1500ms*var(--k)) var(--ease-out)}
+[data-motion=on] [data-mask]:not(.in) img{transform:scale(1.18)}
+img{display:block;max-width:100%}
+.ph{width:100%;height:100%;object-fit:cover}
+
+/* ---------- изгледи ---------- */
+.view[hidden]{display:none}
+
+/* ---------- Начало: hero ---------- */
+.hero{position:relative;height:clamp(560px,100svh,940px);overflow:hidden;background:#000;color:#fff}
+.hero-par{position:absolute;inset:-6% 0;will-change:transform}
+.hero-par img{width:100%;height:100%;object-fit:cover;animation:kb calc(22000ms*var(--k)) ease-in-out infinite alternate}
+.zoom{width:100%;height:100%}
+[data-motion=on] [data-zoom] .zoom{transition:transform calc(1800ms*var(--k)) var(--ease-out)}
+[data-motion=on] [data-zoom]:not(.in) .zoom{transform:scale(1.14)}
+@keyframes kb{from{transform:scale(1.02)}to{transform:scale(1.07)}}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.18) 55%,rgba(0,0,0,.55))}
+.hero-in .wrap{width:100%}
+.hero-in{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:clamp(28px,5vw,64px)}
+.hero h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(var(--h1)*var(--fs));line-height:.92;letter-spacing:var(--tr);text-wrap:balance}
+.hero h1 em{font-weight:var(--sw)}
+.hero-sub{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:clamp(18px,3vw,36px);font-size:.95rem;letter-spacing:.02em}
+.hero-sub .eyebrow{color:#fff}
+.arrow{display:inline-block;animation:bob calc(2400ms*var(--k)) ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ---------- корица: рецепта на седмицата ---------- */
+.cover{position:relative;padding-block:clamp(80px,11vw,170px)}
+.cover-grid{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.cover-photo{display:block;grid-column:5 / span 8;grid-row:1;aspect-ratio:5/4;overflow:hidden;position:relative}
+.cover-photo .ph{transition:transform calc(900ms*var(--k)) var(--ease-out)}
+.cover-photo:hover .ph{transform:scale(1.04)}
+.cover-text{grid-column:1 / span 7;grid-row:1;position:relative;display:flex;flex-direction:column;gap:20px;align-self:end;padding-bottom:clamp(8px,3vw,48px);pointer-events:none}
+.cover-text>*{pointer-events:auto}
+.cover-text .eyebrow{color:var(--ink);mix-blend-mode:normal}
+.cover-t{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.6rem,1rem + 5.4vw,6.4rem)*var(--fs));line-height:.95;letter-spacing:var(--tr);color:#fff;mix-blend-mode:difference}
+.cover-n{position:absolute;left:-.03em;top:-.34em;z-index:4;font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(8rem,26vw,22rem)*var(--fs));line-height:.8;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;pointer-events:none;white-space:nowrap;will-change:transform}
+.btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-weight:600;font-size:.95rem;cursor:pointer;position:relative;overflow:hidden;transition:color calc(300ms*var(--k)) var(--ease-out)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-101%);transition:transform calc(450ms*var(--k)) var(--ease-out);z-index:-1}
+.btn:hover{color:var(--bg)}
+.btn:hover::before{transform:none}
+.btn{isolation:isolate}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.solid::before{background:var(--ink)}
+.btn.solid:hover{color:var(--bg)}
+
+/* ---------- категории: лента ---------- */
+.rail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;padding-bottom:28px}
+.rail-head h2,.sec-h{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.2rem,1rem + 3.6vw,4.6rem)*var(--fs));line-height:1;letter-spacing:var(--tr);text-wrap:balance}
+.arrows{display:flex;gap:10px}
+.circ{width:48px;height:48px;border-radius:50%;border:1px solid var(--ink);background:transparent;display:grid;place-items:center;cursor:pointer;position:relative;overflow:hidden;isolation:isolate;transition:color calc(300ms*var(--k))}
+.circ::before{content:"";position:absolute;inset:0;background:var(--ink);transform:scale(0);border-radius:50%;transition:transform calc(380ms*var(--k)) var(--ease-out);z-index:-1}
+.circ:hover{color:var(--bg)}.circ:hover::before{transform:scale(1.05)}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 var(--gutr) 8px max(var(--gut),calc((100% - 1360px)/2 + var(--gut)));scroll-padding-left:max(var(--gut),calc((100% - 1360px)/2 + var(--gut)));scrollbar-width:thin;scrollbar-color:var(--muted) transparent}
+.rc{flex:none;width:clamp(230px,24vw,340px);aspect-ratio:3/4;position:relative;overflow:hidden;scroll-snap-align:start;color:#fff}
+.rc .ph{transition:transform calc(800ms*var(--k)) var(--ease-out)}
+.rc:hover .ph{transform:scale(1.06)}
+.rc::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.72),transparent 55%)}
+.rc-l{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;display:flex;flex-direction:column;gap:4px;transition:transform calc(450ms*var(--k)) var(--ease-out)}
+.rc:hover .rc-l{transform:translateY(-8px)}
+.rc-l b{font-family:var(--serif);font-weight:var(--sws);font-size:calc(2rem*var(--fs));line-height:1}
+.rc-l span{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- контрастна секция ---------- */
+.quote{position:relative;isolation:isolate;padding-block:clamp(96px,14vw,230px);color:var(--deep-ink);margin-top:clamp(72px,10vw,160px)}
+.quote::before{content:"";position:absolute;inset:0;background:var(--deep);z-index:-1}
+[data-motion=on] .quote::before{transition:clip-path calc(1000ms*var(--k)) var(--ease-io)}
+[data-motion=on] .quote:not(.in)::before{clip-path:inset(0 0 100% 0)}
+.quote-t{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2rem,1rem + 3.8vw,4.8rem)*var(--fs));line-height:1.08;letter-spacing:var(--tr);max-width:22ch;text-wrap:balance}
+.quote-t em{color:var(--deep-accent)}
+.quote .eyebrow{color:var(--deep-ink);opacity:.75;margin-bottom:28px;display:block}
+.note-ph{margin-top:32px;font-size:.8rem;opacity:.7}
+
+/* ---------- съдържание ---------- */
+.idx{padding-block:clamp(80px,11vw,170px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:48px;align-items:start}
+.idx-side{position:sticky;top:96px}
+.rn-box{position:relative;overflow:hidden;font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(6rem,15vw,15rem)*var(--fs));line-height:.9;letter-spacing:-.04em;color:var(--accent-text);height:.95em}
+.rn{display:block}
+.rn+.rn{position:absolute;left:0;top:0}
+.idx-list{border-top:1px solid var(--ink)}
+.row{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);min-height:44px}
+.row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform calc(550ms*var(--k)) var(--ease-out)}
+.row:hover::after,.row:focus-visible::after{transform:scaleX(1)}
+.row-n{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.row-t{font-family:var(--serif);font-weight:var(--sws);font-size:calc(clamp(1.6rem,1rem + 2vw,3rem)*var(--fs));line-height:1.05;letter-spacing:var(--tr);transition:transform calc(450ms*var(--k)) var(--ease-out),color calc(180ms*var(--k))}
+.row:hover .row-t,.row:focus-visible .row-t{transform:translateX(16px);color:var(--accent-text)}
+.row-m{font-size:.85rem;color:var(--muted);text-align:right;white-space:nowrap}
+.more{margin-top:36px}
+.preview{position:fixed;left:0;top:0;width:300px;height:225px;z-index:60;pointer-events:none;overflow:hidden;opacity:0;clip-path:inset(0 0 100% 0);transition:opacity calc(250ms*var(--k)),clip-path calc(500ms*var(--k)) var(--ease-out);will-change:transform}
+.preview.on{opacity:1;clip-path:inset(0)}
+.preview img{width:100%;height:100%;object-fit:cover}
+@media (hover:none){.preview{display:none}}
+
+/* ---------- подвал ---------- */
+.ftr{border-top:1px solid var(--line);padding-block:48px 140px}
+.ftr .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+.ftr a{min-height:44px;display:inline-flex;align-items:center}
+
+/* ---------- Каталог ---------- */
+.cat-head{padding-top:calc(64px + clamp(48px,8vw,120px));padding-bottom:clamp(28px,4vw,56px)}
+.cat-head h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(var(--h1)*var(--fs)*.9);line-height:.95;letter-spacing:var(--tr)}
+.bar{position:sticky;top:calc(64px + env(safe-area-inset-top,0px));z-index:20;background:var(--bg);border-block:1px solid var(--line);transition:background-color calc(500ms*var(--k))}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.tabs{display:flex;gap:clamp(18px,3vw,36px);overflow-x:auto;position:relative;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{background:none;border:0;min-height:52px;padding:0;color:var(--muted);cursor:pointer;white-space:nowrap;font-size:.95rem;font-weight:500;transition:color calc(180ms*var(--k))}
+.tab:hover,.tab[aria-pressed=true]{color:var(--ink)}
+.ind{position:absolute;left:0;bottom:0;height:2px;width:var(--w,40px);background:var(--accent-text);transform:translateX(var(--x,0));transition:transform calc(520ms*var(--k)) var(--ease-out),width calc(520ms*var(--k)) var(--ease-out)}
+.count{font-size:.85rem;color:var(--muted);white-space:nowrap;display:flex;gap:6px;align-items:center}
+.count .rn-box{font-family:var(--sans);font-weight:600;font-size:.85rem;color:var(--ink);height:1.4em;line-height:1.4;letter-spacing:0;min-width:1.4ch;display:inline-block}
+.mas{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px 24px;align-items:end;padding-block:48px 140px}
+.mc{display:block;position:relative;grid-column:span 4}
+.mc[data-s="0"]{grid-column:span 7}.mc[data-s="1"]{grid-column:span 5}
+.mc-img{display:block;position:relative;overflow:hidden}
+.mc[data-s="0"] .mc-img{aspect-ratio:4/3}.mc[data-s="1"] .mc-img{aspect-ratio:4/5}.mc[data-s="2"] .mc-img{aspect-ratio:1/1}.mc[data-s="3"] .mc-img{aspect-ratio:4/5}.mc[data-s="4"] .mc-img{aspect-ratio:5/4}
+.mc-img .ph{transition:transform calc(800ms*var(--k)) var(--ease-out)}
+.mc:hover .mc-img .ph{transform:scale(1.04)}
+.mc-b{display:flex;flex-direction:column;gap:6px;padding-top:14px}
+.mc-t{font-family:var(--serif);font-weight:var(--sws);font-size:calc(1.9rem*var(--fs));line-height:1.05;letter-spacing:var(--tr);position:relative;display:inline;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;transition:background-size calc(500ms*var(--k)) var(--ease-out)}
+.mc[data-s="0"] .mc-t{font-size:calc(2.8rem*var(--fs))}
+.mc:hover .mc-t{background-size:100% 1px}
+.mc-m{font-size:.85rem;color:var(--muted)}
+.heart{position:absolute;top:12px;right:12px;z-index:3;width:48px;height:48px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);display:grid;place-items:center;cursor:pointer;transition:background-color calc(180ms*var(--k)),color calc(180ms*var(--k))}
+.heart:hover{background:var(--ink);color:var(--bg)}
+.heart svg{width:22px;height:22px;fill:transparent;stroke:currentColor;stroke-width:2;stroke-linejoin:round;transition:fill calc(180ms*var(--k))}
+.heart[aria-pressed=true]{color:var(--accent-text)}
+.heart[aria-pressed=true]:hover{color:var(--bg)}
+.heart[aria-pressed=true] svg{fill:currentColor}
+.heart.pop svg{animation:pop calc(420ms*var(--k)) var(--ease-spring)}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.4)}100%{transform:scale(1)}}
+.ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent-text);opacity:0;pointer-events:none}
+.heart.pop .ring{animation:ring calc(560ms*var(--k)) var(--ease-out)}
+@keyframes ring{0%{opacity:.9;transform:scale(.5)}100%{opacity:0;transform:scale(1.9)}}
+.heart-lg{position:static;width:auto;height:52px;border-radius:0;border:1px solid var(--ink);padding:0 22px;display:inline-flex;gap:10px;font-weight:600;font-size:.95rem}
+.heart-lg .ring{border-radius:0}
+
+/* ---------- Рецепта ---------- */
+.recipe-hero{position:relative;height:clamp(460px,80svh,780px);overflow:hidden;color:#fff;background:#000}
+.recipe-hero .hero-par img{animation:none}
+.recipe-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.1) 60%,rgba(0,0,0,.55))}
+.recipe-hero .hero-in{padding-bottom:clamp(24px,4vw,56px)}
+.recipe-hero h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(var(--h1)*var(--fs)*.85);line-height:.95;letter-spacing:var(--tr);max-width:12ch;text-wrap:balance}
+.recipe-hero .eyebrow{color:#fff;margin-bottom:16px;display:block}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
+.meta>div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:28px 0 28px;border-left:1px solid var(--line);padding-left:clamp(14px,2vw,32px)}
+.meta>div:first-child{border-left:0;padding-left:0}
+.meta b{display:block;font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.4rem,1rem + 4.4vw,6rem)*var(--fs));line-height:1;letter-spacing:var(--tr);overflow-wrap:anywhere}
+.rbody{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(24px,5vw,80px);padding-block:clamp(56px,8vw,120px)}
+.ings{grid-column:1 / span 4;position:sticky;top:96px;align-self:start}
+.ings h2,.steps-h{font-family:var(--serif);font-weight:var(--sws);font-size:calc(2.2rem*var(--fs));line-height:1.1;letter-spacing:var(--tr);margin-bottom:20px}
+.ing{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer;min-height:52px}
+.ing input{position:absolute;opacity:0;width:1px;height:1px}
+.box{flex:none;width:22px;height:22px;border:1.5px solid var(--ink);margin-top:2px;position:relative;transition:background-color calc(180ms*var(--k))}
+.box::after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;border:solid var(--accent-ink);border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform calc(260ms*var(--k)) var(--ease-spring)}
+.ing:hover .box{background:color-mix(in srgb,var(--ink) 10%,transparent)}
+.ing input:checked+.box{background:var(--accent);border-color:var(--accent)}
+.ing input:checked+.box::after{transform:rotate(45deg) scale(1)}
+.ing input:focus-visible+.box{outline:3px solid var(--accent-text);outline-offset:3px}
+.ing-t{background:linear-gradient(currentColor,currentColor) no-repeat 0 58%/0 1.5px;transition:background-size calc(340ms*var(--k)) var(--ease-out),color calc(300ms*var(--k))}
+.ing input:checked~.ing-t{background-size:100% 1.5px;color:var(--muted)}
+.steps{grid-column:5 / span 8;position:relative;padding-left:0}
+.steps ol{position:relative}
+.st{display:grid;grid-template-columns:clamp(56px,9vw,128px) minmax(0,1fr);column-gap:clamp(16px,3vw,40px);padding:clamp(24px,3vw,44px) 0;border-bottom:1px solid var(--line)}
+.st-n{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(3rem,1.5rem + 5vw,7rem)*var(--fs));line-height:.85;letter-spacing:-.03em;color:var(--accent-text)}
+.st p{max-width:62ch;font-size:1.1rem;line-height:1.7;align-self:center}
+.prog{position:absolute;left:-28px;top:0;bottom:0;width:2px;background:var(--line)}
+.prog i{position:absolute;inset:0;background:var(--accent-text);transform-origin:top;transform:scaleY(var(--p,0))}
+.rnote{margin-top:24px;font-size:.85rem;color:var(--muted)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:clamp(24px,3vw,40px)}
+
+/* ---------- Спецификация ---------- */
+.spec{padding-top:calc(64px + clamp(48px,8vw,120px));padding-bottom:160px}
+.spec h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(3rem,1.5rem + 5vw,7rem)*var(--fs));line-height:.95;letter-spacing:var(--tr);margin-bottom:20px}
+.spec h2{font-family:var(--serif);font-weight:var(--sws);font-size:calc(2rem*var(--fs));margin:56px 0 16px}
+.spec p.lede{max-width:64ch;color:var(--muted)}
+.scr{overflow-x:auto}
+.spec table{border-collapse:collapse;width:100%;min-width:760px;font-size:.9rem}
+.spec th{text-align:left;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:10px 12px 10px 0;border-bottom:1px solid var(--ink)}
+.spec td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.spec td:first-child{font-weight:600;white-space:nowrap}
+.spec code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.8rem}
+.tok{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:16px}
+.tok div{border:1px solid var(--line);padding:16px}
+.tok b{display:block;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-weight:600}
+.dots{display:flex;flex-direction:column;gap:8px;max-width:70ch}
+.dots li{padding-left:18px;position:relative}
+.dots li::before{content:"";position:absolute;left:0;top:.7em;width:8px;height:1px;background:var(--ink)}
+
+/* ---------- контроли на макета ---------- */
+.ctl{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:90;width:max-content;max-width:calc(100% - 24px);background:var(--ink);color:var(--bg);box-shadow:0 8px 32px rgba(0,0,0,.28);font-size:.85rem}
+.ctl.open{width:min(380px,calc(100% - 24px))}
+.ctl-top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 6px 0 16px;min-height:48px}
+.ctl-top b{font-weight:600;letter-spacing:.04em}
+.ctl-tg{background:none;border:0;min-width:44px;min-height:44px;cursor:pointer;color:inherit;font-size:1.1rem;display:grid;place-items:center}
+.ctl-body{display:flex;flex-wrap:wrap;gap:12px 20px;padding:4px 16px 14px}
+.ctl:not(.open) .ctl-body{display:none}
+.grp{display:flex;flex-direction:column;gap:6px}
+.grp>span{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{min-width:44px;min-height:44px;padding:0 12px;border:1px solid color-mix(in srgb,var(--bg) 45%,transparent);background:transparent;color:var(--bg);cursor:pointer;font-weight:600;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background-color .18s,color .18s}
+.chip:hover{background:color-mix(in srgb,var(--bg) 22%,transparent)}
+.chip[aria-pressed=true]{background:var(--bg);color:var(--ink)}
+.sw{width:14px;height:14px;border-radius:50%;border:1px solid currentColor}
+
+
+/* ---------- За нас ---------- */
+.ab-head{padding-top:calc(64px + clamp(48px,8vw,120px));padding-bottom:clamp(32px,5vw,72px)}
+.ab-head h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(var(--h1)*var(--fs)*.9);line-height:.95;letter-spacing:var(--tr);text-wrap:balance}
+.ab-head .eyebrow{display:block;margin-bottom:18px}
+.ab-lede{max-width:56ch;font-size:1.2rem;line-height:1.65;margin-top:clamp(24px,3vw,40px)}
+.ab-photo{display:block;aspect-ratio:21/9;overflow:hidden;position:relative}
+.ritual{display:flex;flex-direction:column;gap:clamp(4px,1vw,14px)}
+.ritual p{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.4rem,1rem + 8vw,10rem)*var(--fs));line-height:.98;letter-spacing:var(--tr)}
+.ritual p:nth-child(2){padding-left:clamp(0px,8vw,160px)}.ritual p:nth-child(3){padding-left:clamp(0px,16vw,320px)}
+.ritual em{color:var(--deep-accent)}
+.quote .ritual-h{margin-bottom:clamp(28px,4vw,56px)}
+.arow{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr);gap:8px 16px;padding:28px 0;border-bottom:1px solid var(--line)}
+.arow::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform calc(550ms*var(--k)) var(--ease-out)}
+.arow:hover::after{transform:scaleX(1)}
+.arow h3{font-family:var(--serif);font-weight:var(--sws);font-size:calc(clamp(1.8rem,1rem + 2.4vw,3.4rem)*var(--fs));line-height:1.05;letter-spacing:var(--tr)}
+.arow p{grid-column:2;max-width:56ch;color:var(--muted)}
+.ab-do{padding-block:clamp(40px,6vw,96px) clamp(40px,6vw,96px)}
+.ab-do .ings{top:96px}
+.ab-cta{padding-block:clamp(72px,10vw,150px) 160px;display:flex;flex-direction:column;align-items:flex-start;gap:32px}
+
+/* ---------- Вход / Регистрация ---------- */
+.auth{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));min-height:100svh;padding-top:64px}
+.auth-photo{grid-column:1 / span 7;position:sticky;top:64px;align-self:start;height:calc(100svh - 64px);overflow:hidden;color:#fff;background:#000;min-height:560px}
+.auth-photo .mk{position:absolute;inset:0}
+.auth-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.12) 60%,rgba(0,0,0,.45))}
+.auth-cap{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:0 clamp(24px,4vw,64px) clamp(28px,4vw,56px) max(var(--gut),calc((100vw - 1360px)/2 + var(--gut)))}
+.auth-cap .eyebrow{color:#fff;display:block;margin-bottom:16px}
+.auth-cap h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(3rem,1rem + 4.6vw,6.4rem)*var(--fs));line-height:.94;letter-spacing:var(--tr)}
+.auth-side{grid-column:8 / span 5;display:flex;flex-direction:column;justify-content:center;padding:clamp(32px,5vw,80px) max(var(--gutr),calc((100vw - 1360px)/2 + var(--gutr))) clamp(32px,5vw,80px) clamp(24px,4vw,64px)}
+.auth-tabs{display:flex;gap:clamp(20px,3vw,36px);border-bottom:1px solid var(--line);margin-bottom:clamp(24px,3vw,40px)}
+.auth-tab{position:relative;background:none;border:0;min-height:52px;padding:0;cursor:pointer;color:var(--muted);font-weight:500;font-size:1rem;transition:color calc(180ms*var(--k))}
+.auth-tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent-text);transform:scaleX(0);transform-origin:left;transition:transform calc(520ms*var(--k)) var(--ease-out)}
+.auth-tab[aria-selected=true]{color:var(--ink)}
+.auth-tab[aria-selected=true]::after{transform:scaleX(1)}
+.fld{display:block;margin-bottom:22px}
+.fld[hidden]{display:none}
+.fld>span{display:block;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:2px}
+.fld input{width:100%;min-height:52px;padding:8px 0;border:0;border-bottom:1px solid var(--ink);background:transparent;color:var(--ink);font:inherit;font-size:1.1rem;border-radius:0}
+.fld input::placeholder{color:var(--muted);opacity:1}
+.btn.wide{width:100%;justify-content:center;margin-top:8px}
+.auth-alt{margin-top:20px;font-size:.95rem;color:var(--muted)}
+.link{background:none;border:0;padding:0;font-weight:600;color:var(--ink);cursor:pointer;min-height:44px;background:linear-gradient(currentColor,currentColor) no-repeat 0 78%/100% 1px;transition:background-size calc(400ms*var(--k)) var(--ease-out)}
+.link:hover{background-size:0 1px}
+.auth-note{min-height:1.6em;margin-top:6px;font-size:.85rem;color:var(--muted)}
+.auth-perks{margin-top:clamp(24px,4vw,56px);border-top:1px solid var(--line)}
+.auth-perks li{display:grid;grid-template-columns:44px minmax(0,1fr);gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.auth-perks b{font-family:var(--serif);font-weight:var(--sws);font-size:calc(1.35rem*var(--fs));grid-column:2;line-height:1.1}
+.auth-perks .row-n{grid-row:1 / span 2;padding-top:6px}
+.auth-perks span.t{grid-column:2;font-size:.9rem;color:var(--muted)}
+
+/* ---------- нисък/изключен режим на движение ---------- */
+[data-motion=off] *,[data-motion=off] *::before,[data-motion=off] *::after{animation:none!important;transition:none!important}
+[data-motion=off] .quote::before{clip-path:none}
+
+/* ---------- мобилно ---------- */
+@media (max-width:820px){
+  .cover-grid{display:block}
+  .cover-photo{aspect-ratio:4/5}
+  .cover-text{margin-top:24px;position:relative;padding-bottom:0}
+  .cover-n{top:-.18em;font-size:min(calc(11rem*var(--fs)),34vw)}
+  .idx{display:block}.idx-side{position:static;margin-bottom:24px}.rn-box{font-size:calc(7rem*var(--fs))}
+  .row{grid-template-columns:40px minmax(0,1fr);}.row-m{display:none}
+  .mas{display:flex;flex-direction:column;gap:44px;align-items:stretch}
+  .mc[data-s="0"] .mc-img{aspect-ratio:4/3}.mc[data-s="1"] .mc-img,.mc[data-s="2"] .mc-img,.mc[data-s="3"] .mc-img,.mc[data-s="4"] .mc-img{aspect-ratio:4/5}
+  .mc[data-s="0"] .mc-t{font-size:calc(2.2rem*var(--fs))}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta>div:nth-child(3){border-left:0;padding-left:0}.meta>div:nth-child(n+3){border-top:1px solid var(--line)}
+  .rbody{display:block}.ings{position:static;margin-bottom:56px}.prog{display:none}
+  .bar .wrap{gap:12px}.count{display:none}
+  .nav .hide-s{display:none}
+  .nav{gap:12px;font-size:.88rem}
+  .auth{display:block}
+  .auth-photo{position:relative;top:auto;min-height:300px;height:44svh}
+  .auth-side{padding:32px var(--gutr) 120px var(--gut)}
+  .auth-cap{padding:0 var(--gutr) 24px var(--gut)}
+  .ab-photo{aspect-ratio:4/3}
+  .ritual p:nth-child(2){padding-left:12px}.ritual p:nth-child(3){padding-left:24px}
+  .ab-do .ings{margin-bottom:24px}
+}
+</style>
+
+<a class="skip" href="#main">Към съдържанието</a>
+<div class="curtain" aria-hidden="true"><span id="cl"></span></div>
+<div class="preview" id="prev" aria-hidden="true"><img alt="" id="prev-img"></div>
+
+<header class="hdr">
+  <div class="wrap">
+    <a class="logo" href="#home" data-nav="home">Chefo's</a>
+    <nav class="nav" aria-label="Основна навигация">
+      <a href="#home" data-nav="home" class="hide-s">Начало</a>
+      <a href="#catalog" data-nav="catalog">Рецепти</a>
+      <a href="#about" data-nav="about">За нас</a>
+      <a href="#catalog" data-nav="fav">Любими <span class="favn" id="favn">1</span></a>
+      <a href="#auth" data-nav="auth">Вход</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ======================= НАЧАЛО ======================= -->
+<section class="view" id="v-home" data-view="home">
+  <section class="hero" aria-labelledby="h1-home" data-zoom>
+    <div class="hero-par" data-par="0.18"><div class="zoom"><img data-img="shopska-salata" alt="Шопска салата, поднесена в дълбока чиния" class="ph"></div></div>
+    <div class="hero-in"><div class="wrap">
+      <h1 id="h1-home" data-split data-sp="1">Българска <em>трапеза</em></h1>
+      <div class="hero-sub" data-r style="--dl:700ms"><span class="eyebrow">Nº 01–24 · домашни рецепти</span><span class="eyebrow">Листни <span class="arrow" aria-hidden="true">↓</span></span></div>
+    </div></div>
+  </section>
+
+  <section class="cover" aria-labelledby="cover-t">
+    <div class="wrap"><div class="cover-grid">
+      <span class="cover-n" aria-hidden="true" id="cn">Nº 01</span>
+      <a class="cover-photo" href="#recipe" data-slug="banitsa" data-mask aria-label="Баница със сирене"><span class="mk"><img data-img="banitsa" alt="" class="ph"></span></a>
+      <div class="cover-text">
+        <p class="eyebrow" data-r>Рецепта на седмицата</p>
+        <h2 class="cover-t" id="cover-t" data-split data-sp="1">Баница със <em>сирене</em></h2>
+        <div data-r style="--dl:300ms"><a class="btn" href="#recipe" data-slug="banitsa">Виж рецептата →</a></div>
+      </div>
+    </div></div>
+  </section>
+
+  <section aria-labelledby="rail-h">
+    <div class="wrap rail-head">
+      <h2 class="sec-h" id="rail-h" data-split data-sp="1">Пет <em>ястия</em>, пет настроения</h2>
+      <div class="arrows"><button class="circ" type="button" id="rl" aria-label="Назад по категориите">←</button><button class="circ" type="button" id="rr" aria-label="Напред по категориите">→</button></div>
+    </div>
+    <div class="rail" id="rail" tabindex="0" role="group" aria-label="Категории, превъртане настрани"></div>
+  </section>
+
+  <section class="quote" id="quote">
+    <div class="wrap">
+      <span class="eyebrow" data-r>За традицията</span>
+      <p class="quote-t" data-split data-sp="1" style="--dl:350ms">Тук не се готви по мярка от книга, а по <em>вкус</em>. Сиренето се настъргва в последния миг, а корите се опъват, докато станат като плат.</p>
+      <p class="note-ph" data-r>Примерен текст, за подмяна с вашата история.</p>
+    </div>
+  </section>
+
+  <section class="wrap idx" aria-labelledby="idx-h">
+    <div class="idx-side">
+      <p class="eyebrow" id="idx-h">Съдържание</p>
+      <div class="rn-box" id="idxn" aria-hidden="true"><span class="rn">01</span></div>
+    </div>
+    <div>
+      <ul class="idx-list" id="idx"></ul>
+      <div class="more" data-r><a class="btn solid" href="#catalog" data-nav="catalog">Всички рецепти →</a></div>
+    </div>
+  </section>
+</section>
+
+<!-- ======================= КАТАЛОГ ======================= -->
+<section class="view" id="v-catalog" data-view="catalog" hidden>
+  <div class="wrap cat-head">
+    <p class="eyebrow" data-r>Съдържание на броя</p>
+    <h1 data-split data-sp="1">Всички <em>рецепти</em></h1>
+  </div>
+  <div class="bar"><div class="wrap">
+    <div class="tabs" id="tabs" role="group" aria-label="Категории"><span class="ind" id="ind"></span></div>
+    <p class="count"><span class="rn-box" id="cnt"><span class="rn">12</span></span> рецепти</p>
+  </div></div>
+  <div class="wrap"><div class="mas" id="mas" aria-live="polite"></div></div>
+</section>
+
+<!-- ======================= РЕЦЕПТА ======================= -->
+<section class="view" id="v-recipe" data-view="recipe" hidden>
+  <div class="recipe-hero" data-zoom>
+    <div class="hero-par" data-par="0.14"><div class="zoom"><img id="rimg" class="ph" alt=""></div></div>
+    <div class="hero-in"><div class="wrap">
+      <span class="eyebrow" id="rcat">Салати · Nº 01</span>
+      <h1 id="rt" data-split data-sp="1">Шопска салата</h1>
+    </div></div>
+  </div>
+  <div class="wrap">
+    <dl class="meta" id="meta"></dl>
+    <div class="rbody">
+      <aside class="ings" aria-labelledby="ing-h">
+        <h2 id="ing-h" data-r>Продукти</h2>
+        <div id="ings"></div>
+      </aside>
+      <div class="steps">
+        <div class="prog" aria-hidden="true"><i id="prog"></i></div>
+        <h2 class="steps-h" data-r>Начин на приготвяне</h2>
+        <ol id="steps"></ol>
+        <div class="actions">
+          <button class="btn heart-lg heart" type="button" id="rheart" aria-pressed="false"><span class="ring"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span id="rhl">Запази в любими</span></button>
+          <a class="btn" href="#catalog" data-nav="catalog">← Назад към каталога</a>
+        </div>
+        <p class="rnote">Продуктите и стъпките са примерни и се пренасят от шопската салата за всички рецепти в макета.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ЗА НАС ======================= -->
+<section class="view" id="v-about" data-view="about" hidden>
+  <div class="wrap ab-head">
+    <p class="eyebrow" data-r>Какво е Chefo's Recipes</p>
+    <h1 data-split data-sp="1">Подреден каталог за <em>домашна</em> храна</h1>
+    <p class="ab-lede" data-r style="--dl:400ms">Chefo's Recipes е създаден за хора, които искат бързо да намерят рецепта, да сравнят време за приготвяне, продукти и трудност, и да се върнат към любимите си идеи по-късно.</p>
+  </div>
+  <div class="ab-photo" data-mask><span class="mk"><img data-img="musaka" alt="Мусака, току-що извадена от фурната" class="ph"></span></div>
+
+  <section class="quote" id="ritual" aria-labelledby="ritual-h">
+    <div class="wrap">
+      <span class="eyebrow ritual-h" id="ritual-h" data-r>Ритъм</span>
+      <div class="ritual">
+        <p data-split data-sp="1">Избираш <em>спокойно.</em></p>
+        <p data-split data-sp="1" style="--dl:260ms">Готвиш <em>уверено.</em></p>
+        <p data-split data-sp="1" style="--dl:520ms">Сядаш на <em>масата.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap idx" aria-labelledby="who-h">
+    <div class="idx-side">
+      <p class="eyebrow" data-r>За кого е създаден</p>
+      <h2 class="sec-h" id="who-h" data-split data-sp="1" style="margin-top:16px">За реалното готвене <em>у дома</em></h2>
+    </div>
+    <ul class="idx-list">
+      <li class="arow" data-r><span class="row-n">Nº 01</span><h3>За хора с малко време</h3><p>Когато вечерята трябва да се случи без дълго търсене, можеш бързо да сравниш време, порции и трудност.</p></li>
+      <li class="arow" data-r style="--dl:80ms"><span class="row-n">Nº 02</span><h3>За семейно готвене</h3><p>Рецептите са подредени така, че да помагат при избор за делнична вечеря, гости или споделена неделна трапеза.</p></li>
+      <li class="arow" data-r style="--dl:160ms"><span class="row-n">Nº 03</span><h3>За любими класики</h3><p>Баница, таратор, кавърма, шопска салата и други познати вкусове са представени ясно, без излишно усложняване.</p></li>
+    </ul>
+  </section>
+
+  <div class="wrap ab-do">
+    <div class="rbody" style="padding-block:0">
+      <aside class="ings" aria-labelledby="do-h">
+        <p class="eyebrow" data-r style="margin-bottom:12px">Какво можеш да правиш</p>
+        <h2 id="do-h" data-split data-sp="1" style="font-size:calc(clamp(2.2rem,1rem + 3vw,4rem)*var(--fs));line-height:1">По-малко <em>чудене</em> преди готвене</h2>
+      </aside>
+      <div class="steps">
+        <ol>
+          <li class="st" data-r><span class="st-n">01</span><p>Разглеждаш по категория: салата, супа, основно, тестено или десерт.</p></li>
+          <li class="st" data-r><span class="st-n">02</span><p>Сравняваш време и трудност, преди да си извадил първия продукт.</p></li>
+          <li class="st" data-r><span class="st-n">03</span><p>Запазваш любимите си рецепти в профила и се връщаш към тях по-късно.</p></li>
+          <li class="st" data-r><span class="st-n">04</span><p>Отпечатваш рецептата в чист вид, с продуктите и стъпките на една страница.</p></li>
+        </ol>
+        <p class="rnote">Точки 03 и 04 са примерни. Първите две са от сегашния текст на сайта.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap ab-cta">
+    <h2 class="sec-h" data-split data-sp="1">Избери си <em>рецепта</em> за довечера</h2>
+    <div data-r style="--dl:300ms"><a class="btn solid" href="#catalog" data-nav="catalog">Към рецептите →</a></div>
+  </div>
+</section>
+
+<!-- ======================= ВХОД / РЕГИСТРАЦИЯ ======================= -->
+<section class="view" id="v-auth" data-view="auth" hidden>
+  <div class="auth">
+    <div class="auth-photo" data-mask>
+      <span class="mk"><img data-img="shopska-salata" alt="" class="ph"></span>
+      <div class="auth-cap">
+        <p class="eyebrow">Потребителски достъп</p>
+        <h1 id="auth-h" data-split data-sp="1">Добре дошъл <em>отново</em></h1>
+      </div>
+    </div>
+    <div class="auth-side">
+      <div class="auth-tabs" role="tablist" aria-label="Вход или регистрация">
+        <button class="auth-tab" type="button" role="tab" id="tab-in" data-m="in" aria-selected="true" aria-controls="auth-form">Вход</button>
+        <button class="auth-tab" type="button" role="tab" id="tab-up" data-m="up" aria-selected="false" tabindex="-1" aria-controls="auth-form">Регистрация</button>
+      </div>
+      <form class="auth-form" id="auth-form" novalidate role="tabpanel" aria-labelledby="tab-in">
+        <label class="fld" id="f-name" hidden><span>Име</span><input type="text" name="name" autocomplete="name" placeholder="Как да те наричаме"></label>
+        <label class="fld"><span>Имейл</span><input type="email" name="email" autocomplete="email" placeholder="ime@example.com"></label>
+        <label class="fld"><span>Парола</span><input type="password" name="password" id="f-pass" autocomplete="current-password" placeholder="Въведи парола"></label>
+        <button class="btn solid wide" type="submit" id="auth-go">Влез</button>
+        <p class="auth-alt"><span id="alt-q">Нямаш профил?</span> <button class="link" type="button" id="alt-b">Регистрация</button></p>
+        <p class="auth-note" id="auth-note" role="status"></p>
+      </form>
+      <ul class="auth-perks" aria-label="Какво получаваш с профил">
+        <li data-r><span class="row-n">01</span><b>Подбрани рецепти</b><span class="t">Намери бързо идея според категория, време и настроение.</span></li>
+        <li data-r style="--dl:80ms"><span class="row-n">02</span><b>Ясни продукти и стъпки</b><span class="t">Всяка рецепта е подредена така, че да готвиш спокойно.</span></li>
+        <li data-r style="--dl:160ms"><span class="row-n">03</span><b>Любими идеи</b><span class="t">Запази рецепти, към които искаш да се върнеш по-късно.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= СПЕЦИФИКАЦИЯ ======================= -->
+<section class="view" id="v-spec" data-view="spec" hidden>
+  <div class="wrap spec">
+    <p class="eyebrow" data-r>За агентите и за теб</p>
+    <h1 data-split data-sp="1">Спецификация на <em>движението</em></h1>
+    <p class="lede" data-r>Един ритъм за целия сайт: „прелиствам“. Нещата излизат отляво надясно или отдолу нагоре, като страница. Анимират се само <code>transform</code>, <code>opacity</code> и <code>clip-path</code>. Всичко се изключва при <code>prefers-reduced-motion</code>, а съдържанието никога не остава скрито в покой.</p>
+
+    <h2>Токени</h2>
+    <div class="tok">
+      <div><b>Криви</b><code>out</code> cubic-bezier(.16, 1, .3, 1)<br><code>in-out</code> cubic-bezier(.65, 0, .35, 1)<br><code>spring</code> cubic-bezier(.34, 1.56, .64, 1)</div>
+      <div><b>Времена</b>микро 180 ms · интерфейс 450 ms<br>появи 800–1100 ms · страница 480 + 480 ms<br>покой 2,4 s и 22 s</div>
+      <div><b>Стъпка (stagger)</b>60–80 ms между думи и елементи, най-много 8 елемента в група</div>
+      <div><b>Закон</b>Големите неща се движат по-бавно от малките. Hover никога не е по-бавен от 450 ms.</div>
+    </div>
+
+    <h2>Какво как се движи</h2>
+    <div class="scr"><table>
+      <thead><tr><th>Елемент</th><th>Задейства се</th><th>Какво се случва</th><th>Време</th><th>Крива</th><th>При намалено движение</th></tr></thead>
+      <tbody>
+        <tr><td>Hero заглавие</td><td>зареждане</td><td>думите се вдигат от маска, снимката се приближава от 1.12 до 1</td><td>900 ms, стъпка 70 ms</td><td>out</td><td>видимо веднага</td></tr>
+        <tr><td>Hero в покой</td><td>постоянно</td><td>снимката „диша“ 1.02→1.07, стрелката се люлее 8 px</td><td>22 s / 2,4 s</td><td>ease</td><td>изключено</td></tr>
+        <tr><td>Паралакс</td><td>скрол</td><td>hero снимка и гигантско Nº се движат с 0.06–0.18× скоростта</td><td>без време</td><td>линейно</td><td>изключено</td></tr>
+        <tr><td>Появи</td><td>влизане 25%</td><td>opacity 0→1, преместване 24→0 px</td><td>800 ms</td><td>out</td><td>видимо веднага</td></tr>
+        <tr><td>Снимка при влизане</td><td>влизане</td><td>clip-path отдолу нагоре и мащаб 1.18→1</td><td>1100 / 1500 ms</td><td>out</td><td>видимо веднага</td></tr>
+        <tr><td>Контрастна секция</td><td>влизане</td><td>тъмната земя се разгръща, после текстът по думи</td><td>1000 ms + 70 ms</td><td>in-out</td><td>без движение</td></tr>
+        <tr><td>Категории (лента)</td><td>hover</td><td>снимка 1→1.06, етикетът се вдига 8 px; бутоните се пълнят</td><td>800 / 450 ms</td><td>out</td><td>само смяна на цвят</td></tr>
+        <tr><td>Съдържание (ред)</td><td>hover, фокус</td><td>заглавието +16 px, линията се чертае, снимка следва курсора, Nº се търкаля</td><td>450–550 ms</td><td>out</td><td>само линията, без снимка</td></tr>
+        <tr><td>Преход между страници</td><td>навигация</td><td>завеса минава отляво надясно и излиза, под нея се сменя страницата</td><td>480 + 480 ms</td><td>in-out</td><td>мигновена смяна</td></tr>
+        <tr><td>Филтър на каталога</td><td>клик на таб</td><td>подчертаването се плъзга; излизащите 160 ms; останалите се преместват (FLIP); влизащите с 50 ms стъпка</td><td>520 ms</td><td>out</td><td>мигновено</td></tr>
+        <tr><td>Любими</td><td>клик</td><td>сърцето „щраква“ 1→1.4→1, пръстен се разширява и гасне, броячът в менюто се търкаля</td><td>420 / 560 ms</td><td>spring</td><td>само смяна на запълването</td></tr>
+        <tr><td>Продукт (отметка)</td><td>клик</td><td>рамката се пълни, чертата върху текста се чертае</td><td>340 ms</td><td>out</td><td>мигновено</td></tr>
+        <tr><td>Стъпки</td><td>влизане</td><td>гигантският номер идва отляво, текстът отдолу; линията вляво се пълни със скрола</td><td>800 ms</td><td>out</td><td>видимо, без линия</td></tr>
+      </tbody>
+    </table></div>
+
+    <h2>Правила за изпълнение</h2>
+    <ul class="dots">
+      <li>Един часовник: <code>IntersectionObserver</code> за появите и един <code>requestAnimationFrame</code> цикъл само за паралакс и следването на курсора.</li>
+      <li>Само <code>transform</code>, <code>opacity</code>, <code>clip-path</code>. Никакви анимации на ширина, височина, top или left.</li>
+      <li>Скритото начално състояние се прилага само когато движението е включено и JavaScript е заредил. Без JavaScript всичко е видимо.</li>
+      <li>Hover ефектите не зависят от мишка: на тъчскрийн остават появите, фокус-състоянията и лентата с плъзгане.</li>
+      <li>Цветът върху снимка винаги е бял върху тъмен скрим. Заглавията върху корицата ползват <code>mix-blend-mode: difference</code>, затова са четими при всяка палитра.</li>
+      <li>Не анимираме нищо, което се използва стотици пъти: клавиатурният фокус, полето за търсене и табовете се променят мигновено на цвят.</li>
+    </ul>
+
+    <h2>Какво се променя спрямо сегашния сайт</h2>
+    <ul class="dots">
+      <li>Зад заглавията вече няма карти, плочки със статистика и оранжеви бутони. Структурата е списание: корица, лента, цитат, съдържание.</li>
+      <li>Каталогът е редакционна мрежа с различни размери (по една голяма снимка на всеки пет), без рамки и сенки, с текстови табове вместо pill бутони.</li>
+      <li>Детайлите на рецептата са снимка на цяла ширина, ред от едри числа, продукти с отметки и стъпки с гигантски номера.</li>
+      <li>„За нас“ няма карти и плочки: огромно заглавие, снимка на цяла ширина, тъмна секция с трите реда на ритъма, списък вместо три равни карти и големи номера за стъпките.</li>
+      <li>„Вход и регистрация“ няма две колони от карти с градиент: висока снимка отляво и една тясна форма с подчертани полета, табове с подчертаване и превключване между вход и регистрация на същото място.</li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="ftr"><div class="wrap"><span>© 2026 Chefo's Recipes</span><span>Снимките в макета са рисувани заместители. В сайта идват твоите реални снимки.</span></div></footer>
+
+<!-- ======================= контроли на макета ======================= -->
+<aside class="ctl" id="ctl" aria-label="Контроли на макета">
+  <div class="ctl-top"><b>Контроли на макета</b><button class="ctl-tg" id="ctl-tg" type="button" aria-expanded="false" aria-label="Покажи или скрий контролите">▴</button></div>
+  <div class="ctl-body">
+    <div class="grp"><span>Палитра</span><div class="chips" id="c-pal"></div></div>
+    <div class="grp"><span>Шрифтове</span><div class="chips" id="c-font"><button class="chip" type="button" data-v="1" aria-pressed="true">1 · Cormorant</button><button class="chip" type="button" data-v="2" aria-pressed="false">2 · Noto Serif</button></div></div>
+    <div class="grp"><span>Скорост</span><div class="chips" id="c-speed"><button class="chip" type="button" data-v="1" aria-pressed="true">1×</button><button class="chip" type="button" data-v="2" aria-pressed="false">½×</button><button class="chip" type="button" data-v="4" aria-pressed="false">¼×</button></div></div>
+    <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
+    <div class="grp"><span>Страница</span><div class="chips" id="c-view"><button class="chip" type="button" data-v="home" aria-pressed="true">Начало</button><button class="chip" type="button" data-v="catalog" aria-pressed="false">Каталог</button><button class="chip" type="button" data-v="recipe" aria-pressed="false">Рецепта</button><button class="chip" type="button" data-v="about" aria-pressed="false">За нас</button><button class="chip" type="button" data-v="auth" aria-pressed="false">Вход</button><button class="chip" type="button" data-v="spec" aria-pressed="false">Спецификация</button></div></div>
+  </div>
+</aside>
+
+<script>
+(function(){
+'use strict';
+var IMG={"baklava":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgODAwIDYwMCI+CjxkZWZzPgo8ZmlsdGVyIGlkPSJibCIgeD0iLTI1JSIgeT0iLTI1JSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTQiLz48L2ZpbHRlcj4KPGcgaWQ9ImRtIj48cmVjdCB4PSItNjIiIHk9Ii02MiIgd2lkdGg9IjEyNCIgaGVpZ2h0PSIxMjQiIHJ4PSI2IiBmaWxsPSIjQTg2RjFFIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSkiLz48cmVjdCB4PSItNTQiIHk9Ii01NCIgd2lkdGg9IjEwOCIgaGVpZ2h0PSIxMDgiIHJ4PSI0IiBmaWxsPSIjRDNBMDNGIiB0cmFuc2Zvcm09InJvdGF0ZSg0NSkiLz48cmVjdCB4PSItNDQiIHk9Ii00NCIgd2lkdGg9Ijg4IiBoZWlnaHQ9Ijg4IiByeD0iMyIgZmlsbD0iI0UzQjc1OSIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIi8+PHBhdGggZD0iTS00MCAwSDQwTTAgLTQwVjQwIiBzdHJva2U9IiNCNjdEMjYiIHN0cm9rZS13aWR0aD0iMyIgdHJhbnNmb3JtPSJyb3RhdGUoNDUpIiBvcGFjaXR5PSIuNyIvPjxjaXJjbGUgcj0iOSIgZmlsbD0iIzdGQTMzQSIvPjxjaXJjbGUgY3g9Ii0xNiIgY3k9IjEyIiByPSI0IiBmaWxsPSIjN0ZBMzNBIi8+PGNpcmNsZSBjeD0iMTQiIGN5PSItMTQiIHI9IjQiIGZpbGw9IiM5Q0JGNEUiLz48Y2lyY2xlIGN4PSIxOCIgY3k9IjE0IiByPSIzIiBmaWxsPSIjOUNCRjRFIi8+PC9nPgo8L2RlZnM+CjxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNjAwIiBmaWxsPSIjRDhDRkMwIi8+CjxwYXRoIGQ9Ik0wIDEyMEg4MDBNMCAyNDBIODAwTTAgMzYwSDgwME0wIDQ4MEg4MDAiIHN0cm9rZT0iI0NEQzNCMiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9Ijg0IiB5PSIxMTYiIHdpZHRoPSI2NjAiIGhlaWdodD0iNDAwIiByeD0iMjYiIGZpbGw9IiMzQTMxMjgiIG9wYWNpdHk9Ii4zNSIgZmlsdGVyPSJ1cmwoI2JsKSIvPgo8cmVjdCB4PSI3MCIgeT0iMTAwIiB3aWR0aD0iNjYwIiBoZWlnaHQ9IjQwMCIgcng9IjI2IiBmaWxsPSIjQzlDQ0NDIi8+CjxyZWN0IHg9Ijg2IiB5PSIxMTYiIHdpZHRoPSI2MjgiIGhlaWdodD0iMzY4IiByeD0iMTgiIGZpbGw9IiNEREUwRTAiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjEwIDIyMCkiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzg2IDIyMCkiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTYyIDIyMCkiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjk4IDMwOCkiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDc0IDMwOCkiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjEwIDM5NikiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzg2IDM5NikiLz4KPHVzZSB4bGluazpocmVmPSIjZG0iIGhyZWY9IiNkbSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTYyIDM5NikiLz4KPC9zdmc+Cg==","banitsa":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PGZpbHRlciBpZD0iYmwiIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE0Ii8+PC9maWx0ZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0NCQkZBRSIvPgo8cGF0aCBkPSJNMCAxMDBIODAwTTAgMjAwSDgwME0wIDMwMEg4MDBNMCA0MDBIODAwTTAgNTAwSDgwMCIgc3Ryb2tlPSIjQzBCM0ExIiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iNDE2IiBjeT0iMzIyIiByPSIyMzgiIGZpbGw9IiMzQTJGMjIiIG9wYWNpdHk9Ii40IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjM4IiBmaWxsPSIjNUE1RTYwIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjI0IiBmaWxsPSIjN0Q4MTgzIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjA4IiBmaWxsPSIjOEE1QTFFIi8+CjxwYXRoIGQ9Ik00MDAgMzAwYTIyIDIyIDAgMCAxIDQ0IDBhNDQgNDQgMCAwIDEgLTg4IDBhNjYgNjYgMCAwIDEgMTMyIDBhODggODggMCAwIDEgLTE3NiAwYTExMCAxMTAgMCAwIDEgMjIwIDBhMTMyIDEzMiAwIDAgMSAtMjY0IDBhMTU0IDE1NCAwIDAgMSAzMDggMGExNzYgMTc2IDAgMCAxIC0zNTIgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQjg3QTJBIiBzdHJva2Utd2lkdGg9IjQ0IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KPHBhdGggZD0iTTQwMCAzMDBhMjIgMjIgMCAwIDEgNDQgMGE0NCA0NCAwIDAgMSAtODggMGE2NiA2NiAwIDAgMSAxMzIgMGE4OCA4OCAwIDAgMSAtMTc2IDBhMTEwIDExMCAwIDAgMSAyMjAgMGExMzIgMTMyIDAgMCAxIC0yNjQgMGExNTQgMTU0IDAgMCAxIDMwOCAwYTE3NiAxNzYgMCAwIDEgLTM1MiAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNFMEFENTUiIHN0cm9rZS13aWR0aD0iMzQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgo8cGF0aCBkPSJNNDAwIDMwMGEyMiAyMiAwIDAgMSA0NCAwYTQ0IDQ0IDAgMCAxIC04OCAwYTY2IDY2IDAgMCAxIDEzMiAwYTg4IDg4IDAgMCAxIC0xNzYgMGExMTAgMTEwIDAgMCAxIDIyMCAwYTEzMiAxMzIgMCAwIDEgLTI2NCAwYTE1NCAxNTQgMCAwIDEgMzA4IDBhMTc2IDE3NiAwIDAgMSAtMzUyIDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0YyRDI4RSIgc3Ryb2tlLXdpZHRoPSIxMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIzIDE2IiBvcGFjaXR5PSIuNzUiLz4KPHBhdGggZD0iTTQwMCAzMDBhMjIgMjIgMCAwIDEgNDQgMGE0NCA0NCAwIDAgMSAtODggMGE2NiA2NiAwIDAgMSAxMzIgMGE4OCA4OCAwIDAgMSAtMTc2IDBhMTEwIDExMCAwIDAgMSAyMjAgMGExMzIgMTMyIDAgMCAxIC0yNjQgMGExNTQgMTU0IDAgMCAxIDMwOCAwYTE3NiAxNzYgMCAwIDEgLTM1MiAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNBODY2MUUiIHN0cm9rZS13aWR0aD0iNiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtZGFzaGFycmF5PSIyIDIyIiBvcGFjaXR5PSIuNyIvPgo8L3N2Zz4K","bob-yahniya":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJwbCIgY3g9IjUwJSIgY3k9IjQ1JSIgcj0iNjAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkZGRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFNERGRDQiLz48L3JhZGlhbEdyYWRpZW50PjxmaWx0ZXIgaWQ9ImJsIiB4PSItMjUlIiB5PSItMjUlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNCIvPjwvZmlsdGVyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNCOUFFOUMiLz4KPHBhdGggZD0iTTAgMTIwSDgwME0wIDI0MEg4MDBNMCAzNjBIODAwTTAgNDgwSDgwMCIgc3Ryb2tlPSIjQUVBMjhGIiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iMzc0IiBjeT0iMzIyIiByPSIyMTgiIGZpbGw9IiMyRTI2MUMiIG9wYWNpdHk9Ii40IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0MCAzMzApIHJvdGF0ZSgtMTIpIj48cmVjdCB4PSItODQiIHk9Ii0xMTgiIHdpZHRoPSIxNjgiIGhlaWdodD0iMjM2IiByeD0iMzQiIGZpbGw9IiMwMDAwMDAzMCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMTAgMTIpIi8+PHJlY3QgeD0iLTg0IiB5PSItMTE4IiB3aWR0aD0iMTY4IiBoZWlnaHQ9IjIzNiIgcng9IjM0IiBmaWxsPSIjQzlBMDZBIi8+PHJlY3QgeD0iLTcyIiB5PSItMTA2IiB3aWR0aD0iMTQ0IiBoZWlnaHQ9IjIxMiIgcng9IjI2IiBmaWxsPSIjRUJEM0EwIi8+PGcgZmlsbD0iI0Q5Qjk3RSI+PGNpcmNsZSBjeD0iLTMwIiBjeT0iLTUwIiByPSI2Ii8+PGNpcmNsZSBjeD0iMjAiIGN5PSItMjAiIHI9IjUiLz48Y2lyY2xlIGN4PSItMTAiIGN5PSIzMCIgcj0iNiIvPjxjaXJjbGUgY3g9IjM0IiBjeT0iNjAiIHI9IjUiLz48Y2lyY2xlIGN4PSItNDAiIGN5PSI3MCIgcj0iNSIvPjwvZz48L2c+CjxjaXJjbGUgY3g9IjM2MCIgY3k9IjMwMCIgcj0iMjE4IiBmaWxsPSJ1cmwoI3BsKSIvPgo8Y2lyY2xlIGN4PSIzNjAiIGN5PSIzMDAiIHI9IjE4NCIgZmlsbD0iI0VBREZEMCIvPgo8Y2lyY2xlIGN4PSIzNjAiIGN5PSIzMDAiIHI9IjE2OCIgZmlsbD0iIzlDM0UxRSIvPgo8ZWxsaXBzZSBjeD0iMzAwIiBjeT0iMjMwIiByeD0iOTAiIHJ5PSI0MCIgZmlsbD0iI2ZmZiIgb3BhY2l0eT0iLjA3IiB0cmFuc2Zvcm09InJvdGF0ZSgtMjUgMzAwIDIzMCkiLz4KPGcgZmlsbD0iI0YyRTdEMCIgc3Ryb2tlPSIjRDlDOUE4IiBzdHJva2Utd2lkdGg9IjIiPjxlbGxpcHNlIGN4PSIyOTAiIGN5PSIyNDAiIHJ4PSIyMiIgcnk9IjE0IiB0cmFuc2Zvcm09InJvdGF0ZSgyMCAyOTAgMjQwKSIvPjxlbGxpcHNlIGN4PSIzNTAiIGN5PSIyMjAiIHJ4PSIyMiIgcnk9IjE0IiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzUwIDIyMCkiLz48ZWxsaXBzZSBjeD0iNDEwIiBjeT0iMjUwIiByeD0iMjIiIHJ5PSIxNCIgdHJhbnNmb3JtPSJyb3RhdGUoNjAgNDEwIDI1MCkiLz48ZWxsaXBzZSBjeD0iMzIwIiBjeT0iMzAwIiByeD0iMjIiIHJ5PSIxNCIgdHJhbnNmb3JtPSJyb3RhdGUoLTEwIDMyMCAzMDApIi8+PGVsbGlwc2UgY3g9IjM4MCIgY3k9IjMxMCIgcng9IjIyIiByeT0iMTQiIHRyYW5zZm9ybT0icm90YXRlKDQwIDM4MCAzMTApIi8+PGVsbGlwc2UgY3g9IjQ0MCIgY3k9IjMyMCIgcng9IjIyIiByeT0iMTQiIHRyYW5zZm9ybT0icm90YXRlKC01MCA0NDAgMzIwKSIvPjxlbGxpcHNlIGN4PSIyOTAiIGN5PSIzNjAiIHJ4PSIyMiIgcnk9IjE0IiB0cmFuc2Zvcm09InJvdGF0ZSgzMCAyOTAgMzYwKSIvPjxlbGxpcHNlIGN4PSIzNTAiIGN5PSIzODAiIHJ4PSIyMiIgcnk9IjE0IiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMzUwIDM4MCkiLz48ZWxsaXBzZSBjeD0iNDE1IiBjeT0iMzg1IiByeD0iMjIiIHJ5PSIxNCIgdHJhbnNmb3JtPSJyb3RhdGUoMTAgNDE1IDM4NSkiLz48ZWxsaXBzZSBjeD0iMjYwIiBjeT0iMzAwIiByeD0iMjAiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoNzAgMjYwIDMwMCkiLz48ZWxsaXBzZSBjeD0iNDcwIiBjeT0iMjcwIiByeD0iMjAiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoMTUgNDcwIDI3MCkiLz48ZWxsaXBzZSBjeD0iMzgwIiBjeT0iMTgwIiByeD0iMjAiIHJ5PSIxMyIgdHJhbnNmb3JtPSJyb3RhdGUoLTQwIDM4MCAxODApIi8+PC9nPgo8ZyBmaWxsPSIjRDlBMzVBIj48Y2lyY2xlIGN4PSIzMzAiIGN5PSIyNjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzOTUiIGN5PSIyODAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSIzMzAiIHI9IjYiLz48Y2lyY2xlIGN4PSI0MzAiIGN5PSIzNjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzNzAiIGN5PSIzNTAiIHI9IjYiLz48L2c+CjxnIGZpbGw9IiMzRTdCMkYiPjxlbGxpcHNlIGN4PSIzNDAiIGN5PSIzMjAiIHJ4PSI4IiByeT0iMyIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgMzQwIDMyMCkiLz48ZWxsaXBzZSBjeD0iNDAwIiBjeT0iMjMwIiByeD0iOCIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKC0zMCA0MDAgMjMwKSIvPjxlbGxpcHNlIGN4PSIzMTAiIGN5PSIyNzAiIHJ4PSI4IiByeT0iMyIgdHJhbnNmb3JtPSJyb3RhdGUoNTAgMzEwIDI3MCkiLz48ZWxsaXBzZSBjeD0iNDQ1IiBjeT0iMjkwIiByeD0iOCIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKDEwIDQ0NSAyOTApIi8+PGVsbGlwc2UgY3g9IjM3MCIgY3k9IjQwMCIgcng9IjgiIHJ5PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMjAgMzcwIDQwMCkiLz48L2c+CjxnIGZpbGw9IiNDMDM5MkIiPjxjaXJjbGUgY3g9IjMyNSIgY3k9IjM5NSIgcj0iNCIvPjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjM0MCIgcj0iNCIvPjxjaXJjbGUgY3g9IjI3MCIgY3k9IjI3MCIgcj0iNCIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjIxNSIgcj0iNCIvPjwvZz4KPC9zdmc+Cg==","gyuvech":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PGZpbHRlciBpZD0iYmwiIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE0Ii8+PC9maWx0ZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzRENDY0MCIvPgo8cGF0aCBkPSJNMCAxMDBIODAwTTAgMjAwSDgwME0wIDMwMEg4MDBNMCA0MDBIODAwTTAgNTAwSDgwMCIgc3Ryb2tlPSIjNDQzRTM4IiBzdHJva2Utd2lkdGg9IjMiLz4KPGNpcmNsZSBjeD0iNDE2IiBjeT0iMzIyIiByPSIyMzgiIGZpbGw9IiMwMDAiIG9wYWNpdHk9Ii40NSIgZmlsdGVyPSJ1cmwoI2JsKSIvPgo8cmVjdCB4PSIxMzIiIHk9IjI3MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjU2IiByeD0iMjYiIGZpbGw9IiM2RTNBMjEiLz4KPHJlY3QgeD0iNjA4IiB5PSIyNzIiIHdpZHRoPSI2MCIgaGVpZ2h0PSI1NiIgcng9IjI2IiBmaWxsPSIjNkUzQTIxIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjM2IiBmaWxsPSIjNkUzQTIxIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjI2IiBmaWxsPSIjOEE0QTJCIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMTk2IiBmaWxsPSIjNUUyRjFBIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMTgyIiBmaWxsPSIjQTY0NjJBIi8+CjxnIGZpbGw9IiNFOEQwOEEiIHN0cm9rZT0iI0NEQjE2QSIgc3Ryb2tlLXdpZHRoPSIzIj48cmVjdCB4PSItMjIiIHk9Ii0yMiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwMCAyMzApIHJvdGF0ZSgxNSkiLz48cmVjdCB4PSItMjIiIHk9Ii0yMiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQyMCAyMTUpIHJvdGF0ZSgtMjApIi8+PHJlY3QgeD0iLTIyIiB5PSItMjIiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNTAgMzQwKSByb3RhdGUoMzUpIi8+PHJlY3QgeD0iLTIyIiB5PSItMjIiIHdpZHRoPSI0NCIgaGVpZ2h0PSI0NCIgcng9IjEwIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0ODAgMzMwKSByb3RhdGUoNSkiLz48cmVjdCB4PSItMjIiIHk9Ii0yMiIgd2lkdGg9IjQ0IiBoZWlnaHQ9IjQ0IiByeD0iMTAiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI2MCAzMzApIHJvdGF0ZSgtMzApIi8+PC9nPgo8ZyBmaWxsPSIjN0E0QTJFIiBzdHJva2U9IiM1QTM0MjAiIHN0cm9rZS13aWR0aD0iMyI+PHJlY3QgeD0iLTIwIiB5PSItMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSIzMiIgcng9IjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM2MCAyNzApIHJvdGF0ZSgyMCkiLz48cmVjdCB4PSItMjAiIHk9Ii0xNiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMyIiByeD0iOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDcwIDI3MCkgcm90YXRlKC0zNSkiLz48cmVjdCB4PSItMjAiIHk9Ii0xNiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMyIiByeD0iOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDEwIDM5MCkgcm90YXRlKDEwKSIvPjxyZWN0IHg9Ii0yMCIgeT0iLTE2IiB3aWR0aD0iNDAiIGhlaWdodD0iMzIiIHJ4PSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgNDAwKSByb3RhdGUoLTE1KSIvPjwvZz4KPGcgZmlsbD0iIzZFOUEzQSI+PHJlY3QgeD0iLTM0IiB5PSItOSIgd2lkdGg9IjY4IiBoZWlnaHQ9IjE4IiByeD0iOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMwIDE4MCkgcm90YXRlKDIwKSIvPjxyZWN0IHg9Ii0zNCIgeT0iLTkiIHdpZHRoPSI2OCIgaGVpZ2h0PSIxOCIgcng9IjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ3MCAxNzApIHJvdGF0ZSgtMjUpIi8+PHJlY3QgeD0iLTM0IiB5PSItOSIgd2lkdGg9IjY4IiBoZWlnaHQ9IjE4IiByeD0iOSIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjQwIDI5MCkgcm90YXRlKDgwKSIvPjxyZWN0IHg9Ii0zNCIgeT0iLTkiIHdpZHRoPSI2OCIgaGVpZ2h0PSIxOCIgcng9IjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU0MCAzMDApIHJvdGF0ZSgtNzApIi8+PC9nPgo8ZyBmaWxsPSIjQzIzQTJCIj48cmVjdCB4PSItMzIiIHk9Ii05IiB3aWR0aD0iNjQiIGhlaWdodD0iMTgiIHJ4PSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzOTAgMzMwKSByb3RhdGUoLTE1KSIvPjxyZWN0IHg9Ii0zMiIgeT0iLTkiIHdpZHRoPSI2NCIgaGVpZ2h0PSIxOCIgcng9IjkiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMCAzOTApIHJvdGF0ZSgzMCkiLz48cmVjdCB4PSItMzIiIHk9Ii05IiB3aWR0aD0iNjQiIGhlaWdodD0iMTgiIHJ4PSI5IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyOTAgMjAwKSByb3RhdGUoLTQwKSIvPjwvZz4KPGcgZmlsbD0iI0Q5NTAzRiIgc3Ryb2tlPSIjQTAyQTFFIiBzdHJva2Utd2lkdGg9IjMiPjxjaXJjbGUgY3g9IjQ0MCIgY3k9IjQwMCIgcj0iMjYiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSI0MzAiIHI9IjI0Ii8+PGNpcmNsZSBjeD0iNTIwIiBjeT0iMjMwIiByPSIyNCIvPjwvZz4KPGcgZmlsbD0iI0VCQzlBMCI+PGNpcmNsZSBjeD0iNDQwIiBjeT0iNDAwIiByPSI5Ii8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iNDMwIiByPSI4Ii8+PGNpcmNsZSBjeD0iNTIwIiBjeT0iMjMwIiByPSI4Ii8+PC9nPgo8ZyBmaWxsPSIjM0U3QjJGIj48ZWxsaXBzZSBjeD0iMzkwIiBjeT0iMzAwIiByeD0iOSIgcnk9IjMuNSIvPjxlbGxpcHNlIGN4PSI0MzAiIGN5PSIyNzAiIHJ4PSI5IiByeT0iMy41IiB0cmFuc2Zvcm09InJvdGF0ZSg0MCA0MzAgMjcwKSIvPjxlbGxpcHNlIGN4PSIzMjAiIGN5PSIyOTAiIHJ4PSI5IiByeT0iMy41IiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgMzIwIDI5MCkiLz48ZWxsaXBzZSBjeD0iNDgwIiBjeT0iMzYwIiByeD0iOSIgcnk9IjMuNSIgdHJhbnNmb3JtPSJyb3RhdGUoMjAgNDgwIDM2MCkiLz48ZWxsaXBzZSBjeD0iMzgwIiBjeT0iMjE1IiByeD0iOSIgcnk9IjMuNSIvPjwvZz4KPC9zdmc+Cg==","mekici":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+CjxyYWRpYWxHcmFkaWVudCBpZD0icGwiIGN4PSI1MCUiIGN5PSI0NSUiIHI9IjYwJSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjRkZGRkZGIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRTRERkQ0Ii8+PC9yYWRpYWxHcmFkaWVudD4KPGZpbHRlciBpZD0iYmwiIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE0Ii8+PC9maWx0ZXI+CjxnIGlkPSJtayI+PHBhdGggZD0iTS03MCAtMjBDLTYwIC02MiAyMCAtNjYgNjIgLTM0QzkwIC0xMCA3OCA0NiAzMCA1NkMtMjQgNjggLTc2IDM2IC03MCAtMjBaIiBmaWxsPSIjQjg3RjJFIi8+PHBhdGggZD0iTS02MiAtMThDLTUyIC01NCAxOCAtNTggNTYgLTMwQzgwIC04IDcwIDQwIDI4IDQ4Qy0yMCA1OCAtNjggMzAgLTYyIC0xOFoiIGZpbGw9IiNENkEwNEEiLz48ZWxsaXBzZSBjeD0iLTE0IiBjeT0iLTIwIiByeD0iMzAiIHJ5PSIxMiIgZmlsbD0iI0U5QzI3NSIgb3BhY2l0eT0iLjgiLz48ZyBmaWxsPSIjQTg3MDFGIiBvcGFjaXR5PSIuNyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIxMCIgcj0iNyIvPjxjaXJjbGUgY3g9Ii0zMCIgY3k9IjE4IiByPSI2Ii8+PGNpcmNsZSBjeD0iNDAiIGN5PSItMTYiIHI9IjUiLz48Y2lyY2xlIGN4PSIwIiBjeT0iMzQiIHI9IjUiLz48L2c+PGcgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjkiPjxjaXJjbGUgY3g9Ii00MCIgY3k9Ii02IiByPSIzIi8+PGNpcmNsZSBjeD0iLTYiIGN5PSItNCIgcj0iMyIvPjxjaXJjbGUgY3g9IjI2IiBjeT0iLTI4IiByPSIzIi8+PGNpcmNsZSBjeD0iNDQiIGN5PSIxMiIgcj0iMyIvPjxjaXJjbGUgY3g9Ii0xOCIgY3k9IjI2IiByPSIzIi8+PGNpcmNsZSBjeD0iMTAiIGN5PSIyMiIgcj0iMyIvPjwvZz48L2c+CjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNDNENBQzgiLz4KPHBhdGggZD0iTTAgMTAwSDgwME0wIDIwMEg4MDBNMCAzMDBIODAwTTAgNDAwSDgwME0wIDUwMEg4MDAiIHN0cm9rZT0iI0I5QzBCRSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjM5NiIgY3k9IjM0MiIgcj0iMjMyIiBmaWxsPSIjMzAzODM2IiBvcGFjaXR5PSIuMzUiIGZpbHRlcj0idXJsKCNibCkiLz4KPGNpcmNsZSBjeD0iMzgwIiBjeT0iMzIwIiByPSIyMzIiIGZpbGw9InVybCgjcGwpIi8+CjxjaXJjbGUgY3g9IjM4MCIgY3k9IjMyMCIgcj0iMTk4IiBmaWxsPSIjRjdGNEVEIiBzdHJva2U9IiNFMERBQ0UiIHN0cm9rZS13aWR0aD0iMyIvPgo8dXNlIHhsaW5rOmhyZWY9IiNtayIgaHJlZj0iI21rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMDAgMjUwKSByb3RhdGUoLTEwKSBzY2FsZSguODUpIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIvPgo8dXNlIHhsaW5rOmhyZWY9IiNtayIgaHJlZj0iI21rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NTAgMjYyKSByb3RhdGUoMjUpIHNjYWxlKC44NSkiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIi8+Cjx1c2UgeGxpbms6aHJlZj0iI21rIiBocmVmPSIjbWsiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI5MCAzODYpIHJvdGF0ZSgxNSkgc2NhbGUoLjgpIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIvPgo8dXNlIHhsaW5rOmhyZWY9IiNtayIgaHJlZj0iI21rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MzAgMzkyKSByb3RhdGUoLTIwKSBzY2FsZSguODUpIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIvPgo8dXNlIHhsaW5rOmhyZWY9IiNtayIgaHJlZj0iI21rIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNzIgMzIyKSByb3RhdGUoNSkgc2NhbGUoLjc1KSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiLz4KPGNpcmNsZSBjeD0iNjU2IiBjeT0iMTc2IiByPSI2NiIgZmlsbD0iIzNBMkMyQyIgb3BhY2l0eT0iLjI1IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxjaXJjbGUgY3g9IjY0MCIgY3k9IjE1NiIgcj0iNjQiIGZpbGw9InVybCgjcGwpIi8+CjxjaXJjbGUgY3g9IjY0MCIgY3k9IjE1NiIgcj0iNTIiIGZpbGw9IiM4QjFFMkQiLz4KPGVsbGlwc2UgY3g9IjYyNCIgY3k9IjE0MCIgcng9IjIyIiByeT0iMTAiIGZpbGw9IiNmZmYiIG9wYWNpdHk9Ii4yNSIgdHJhbnNmb3JtPSJyb3RhdGUoLTMwIDYyNCAxNDApIi8+Cjwvc3ZnPgo=","musaka":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PGZpbHRlciBpZD0iYmwiIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE0Ii8+PC9maWx0ZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iIzUwNTc1QSIvPgo8cGF0aCBkPSJNMCAxMjBIODAwTTAgMjQwSDgwME0wIDM2MEg4MDBNMCA0ODBIODAwIiBzdHJva2U9IiM0ODRFNTEiIHN0cm9rZS13aWR0aD0iMyIvPgo8cmVjdCB4PSIxMDQiIHk9IjEyNiIgd2lkdGg9IjYyMCIgaGVpZ2h0PSIzODAiIHJ4PSI0NiIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjQiIGZpbHRlcj0idXJsKCNibCkiLz4KPHJlY3QgeD0iOTAiIHk9IjExMCIgd2lkdGg9IjYyMCIgaGVpZ2h0PSIzODAiIHJ4PSI0NiIgZmlsbD0iI0Y0RjFFQSIvPgo8cmVjdCB4PSIxMTIiIHk9IjEzMiIgd2lkdGg9IjU3NiIgaGVpZ2h0PSIzMzYiIHJ4PSIzMCIgZmlsbD0iI0Q5QTA0MiIvPgo8ZyBmaWxsPSIjQjk3QTJCIiBvcGFjaXR5PSIuNzUiPjxlbGxpcHNlIGN4PSIxOTAiIGN5PSIyMDAiIHJ4PSI0MCIgcnk9IjIyIi8+PGVsbGlwc2UgY3g9IjM4MCIgY3k9IjE3MCIgcng9IjQ2IiByeT0iMjAiLz48ZWxsaXBzZSBjeD0iNTYwIiBjeT0iMjEwIiByeD0iMzgiIHJ5PSIyNCIvPjxlbGxpcHNlIGN4PSIyNjAiIGN5PSIzMzAiIHJ4PSI0NCIgcnk9IjIyIi8+PGVsbGlwc2UgY3g9IjQzMCIgY3k9IjMwMCIgcng9IjM2IiByeT0iMjAiLz48ZWxsaXBzZSBjeD0iNjAwIiBjeT0iMzAwIiByeD0iMzAiIHJ5PSIxOCIvPjxlbGxpcHNlIGN4PSIxODAiIGN5PSI0MjAiIHJ4PSIzNiIgcnk9IjE4Ii8+PGVsbGlwc2UgY3g9IjM4MCIgY3k9IjQyMCIgcng9IjQyIiByeT0iMjAiLz48L2c+CjxnIGZpbGw9IiNFQkM4NzgiIG9wYWNpdHk9Ii44Ij48ZWxsaXBzZSBjeD0iMjkwIiBjeT0iMTkwIiByeD0iMzQiIHJ5PSIxNCIvPjxlbGxpcHNlIGN4PSI0ODAiIGN5PSIyNDAiIHJ4PSI0MCIgcnk9IjE2Ii8+PGVsbGlwc2UgY3g9IjE3MCIgY3k9IjMwMCIgcng9IjMwIiByeT0iMTQiLz48ZWxsaXBzZSBjeD0iMzUwIiBjeT0iMzgwIiByeD0iMzQiIHJ5PSIxNCIvPjxlbGxpcHNlIGN4PSI1NDAiIGN5PSIxNTAiIHJ4PSIzMCIgcnk9IjEyIi8+PC9nPgo8cGF0aCBkPSJNMzA0IDEzMlY0NjhNNDk2IDEzMlYzNTZNMTEyIDI0NEg2ODhNMTEyIDM1Nkg0OTYiIHN0cm9rZT0iI0E4NjkxRiIgc3Ryb2tlLXdpZHRoPSI1Ii8+CjxyZWN0IHg9IjUwMCIgeT0iMzYwIiB3aWR0aD0iMTg0IiBoZWlnaHQ9IjEwNCIgcng9IjE0IiBmaWxsPSIjRUFERkM2Ii8+CjxyZWN0IHg9IjUxMCIgeT0iMzcyIiB3aWR0aD0iMTY0IiBoZWlnaHQ9IjIyIiByeD0iOCIgZmlsbD0iI0U5RDc5QSIvPgo8cmVjdCB4PSI1MTAiIHk9IjQwMCIgd2lkdGg9IjE2NCIgaGVpZ2h0PSIyMiIgcng9IjgiIGZpbGw9IiM4QTU1MzAiLz4KPHJlY3QgeD0iNTEwIiB5PSI0MjgiIHdpZHRoPSIxNjQiIGhlaWdodD0iMjIiIHJ4PSI4IiBmaWxsPSIjRTlENzlBIi8+CjxnIGZpbGw9IiNGNEYxRUEiPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjE2MCIgcj0iMyIvPjxjaXJjbGUgY3g9IjY2MCIgY3k9IjQ1MCIgcj0iMyIvPjwvZz4KPC9zdmc+Cg==","palachinki":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJwbCIgY3g9IjUwJSIgY3k9IjQ1JSIgcj0iNjAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkZGRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFNERGRDQiLz48L3JhZGlhbEdyYWRpZW50PjxmaWx0ZXIgaWQ9ImJsIiB4PSItMjUlIiB5PSItMjUlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNCIvPjwvZmlsdGVyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNFM0RERDIiLz4KPHBhdGggZD0iTTAgMTUwSDgwME0wIDMwMEg4MDBNMCA0NTBIODAwIiBzdHJva2U9IiNEOUQyQzUiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI0MTYiIGN5PSIzMjIiIHI9IjIzMiIgZmlsbD0iIzRBNDAzNCIgb3BhY2l0eT0iLjMiIGZpbHRlcj0idXJsKCNibCkiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iMzAwIiByPSIyMzIiIGZpbGw9InVybCgjcGwpIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjAwIiBmaWxsPSIjRjdGNEVEIiBzdHJva2U9IiNFMERBQ0UiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE2NCIgZmlsbD0iI0Q5QUU2MyIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE1NiIgZmlsbD0iI0U4QzU3RiIvPgo8ZyBmaWxsPSIjQzk4RjQ1IiBvcGFjaXR5PSIuNTUiPjxlbGxpcHNlIGN4PSIzMzAiIGN5PSIyMzAiIHJ4PSIyNiIgcnk9IjE0Ii8+PGVsbGlwc2UgY3g9IjQ1MCIgY3k9IjI0MCIgcng9IjIwIiByeT0iMTIiLz48ZWxsaXBzZSBjeD0iNTAwIiBjeT0iMzIwIiByeD0iMjQiIHJ5PSIxNCIvPjxlbGxpcHNlIGN4PSI0MjAiIGN5PSIzODAiIHJ4PSIyOCIgcnk9IjE0Ii8+PGVsbGlwc2UgY3g9IjMyMCIgY3k9IjM1MCIgcng9IjIyIiByeT0iMTIiLz48ZWxsaXBzZSBjeD0iMzgwIiBjeT0iMzAwIiByeD0iMTgiIHJ5PSIxMCIvPjxlbGxpcHNlIGN4PSIyOTAiIGN5PSIyOTAiIHJ4PSIxNiIgcnk9IjEwIi8+PGVsbGlwc2UgY3g9IjQ4MCIgY3k9IjIwMCIgcng9IjE0IiByeT0iOSIvPjwvZz4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjM0EyNDE4IiBzdHJva2Utd2lkdGg9IjkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCI+PHBhdGggZD0iTTI3MCAyNzBxNDAgLTU2IDgwIDB0ODAgMHQ4MCAwIi8+PHBhdGggZD0iTTI3NiAzMzBxNDAgLTU2IDgwIDB0ODAgMHQ3MCAwIi8+PHBhdGggZD0iTTMwMCAzOTBxMzYgLTQ0IDcyIDB0NzIgMCIvPjwvZz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzMwIDIzMCkgcm90YXRlKC0xNSkiPjxwYXRoIGQ9Ik0wIC0yNkMyMiAtMjYgMzAgLTQgMCAzMEMtMzAgLTQgLTIyIC0yNiAwIC0yNloiIGZpbGw9IiNDODI4M0EiLz48cGF0aCBkPSJNMCAtMTZDMTIgLTE2IDE2IC00IDAgMTZDLTE2IC00IC0xMiAtMTYgMCAtMTZaIiBmaWxsPSIjRTg1OTZBIi8+PHBhdGggZD0iTS0xMCAtMjZsMTAgLTlsMTAgOXoiIGZpbGw9IiM0RThBMkUiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ3MCAyNzApIHJvdGF0ZSgyNSkiPjxwYXRoIGQ9Ik0wIC0yNkMyMiAtMjYgMzAgLTQgMCAzMEMtMzAgLTQgLTIyIC0yNiAwIC0yNloiIGZpbGw9IiNDODI4M0EiLz48cGF0aCBkPSJNMCAtMTZDMTIgLTE2IDE2IC00IDAgMTZDLTE2IC00IC0xMiAtMTYgMCAtMTZaIiBmaWxsPSIjRTg1OTZBIi8+PHBhdGggZD0iTS0xMCAtMjZsMTAgLTlsMTAgOXoiIGZpbGw9IiM0RThBMkUiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM5MCAzNzApIHJvdGF0ZSg4KSI+PHBhdGggZD0iTTAgLTI2QzIyIC0yNiAzMCAtNCAwIDMwQy0zMCAtNCAtMjIgLTI2IDAgLTI2WiIgZmlsbD0iI0M4MjgzQSIvPjxwYXRoIGQ9Ik0wIC0xNkMxMiAtMTYgMTYgLTQgMCAxNkMtMTYgLTQgLTEyIC0xNiAwIC0xNloiIGZpbGw9IiNFODU5NkEiLz48cGF0aCBkPSJNLTEwIC0yNmwxMCAtOWwxMCA5eiIgZmlsbD0iIzRFOEEyRSIvPjwvZz4KPGcgZmlsbD0iI0ZGRkZGRiIgb3BhY2l0eT0iLjgiPjxjaXJjbGUgY3g9IjM2MCIgY3k9IjMyMCIgcj0iMyIvPjxjaXJjbGUgY3g9IjQzMCIgY3k9IjMzMCIgcj0iMyIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjI0MCIgcj0iMyIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjMyMCIgcj0iMyIvPjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjE5MCIgcj0iMyIvPjwvZz4KPC9zdmc+Cg==","pechena-chushka":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJwbCIgY3g9IjUwJSIgY3k9IjQ1JSIgcj0iNjAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkZGRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFNERGRDQiLz48L3JhZGlhbEdyYWRpZW50PjxmaWx0ZXIgaWQ9ImJsIiB4PSItMjUlIiB5PSItMjUlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNCIvPjwvZmlsdGVyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNFMEQ5Q0UiLz4KPHBhdGggZD0iTTAgMTAwSDgwME0wIDIwMEg4MDBNMCAzMDBIODAwTTAgNDAwSDgwME0wIDUwMEg4MDAiIHN0cm9rZT0iI0Q2Q0VDMSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjQxNCIgY3k9IjMyMiIgcj0iMjI4IiBmaWxsPSIjNEE0MDM0IiBvcGFjaXR5PSIuMyIgZmlsdGVyPSJ1cmwoI2JsKSIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjIyOCIgZmlsbD0idXJsKCNwbCkiLz4KPGNpcmNsZSBjeD0iNDAwIiBjeT0iMzAwIiByPSIxOTIiIGZpbGw9IiNGN0Y0RUQiIHN0cm9rZT0iI0UwREFDRSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxnIHRyYW5zZm9ybT0icm90YXRlKC0xOCA0MDAgMzAwKSI+CjxnIGZpbGw9IiNCRTM1MjQiIHN0cm9rZT0iIzhFMjQxNyIgc3Ryb2tlLXdpZHRoPSIzIj48cmVjdCB4PSIyNTAiIHk9IjE4NiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzOCIgcng9IjE5Ii8+PHJlY3QgeD0iMjI1IiB5PSIyMjgiIHdpZHRoPSIzNTAiIGhlaWdodD0iMzgiIHJ4PSIxOSIvPjxyZWN0IHg9IjIxNSIgeT0iMjcwIiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjM4IiByeD0iMTkiLz48cmVjdCB4PSIyMjUiIHk9IjMxMiIgd2lkdGg9IjM1MCIgaGVpZ2h0PSIzOCIgcng9IjE5Ii8+PHJlY3QgeD0iMjUwIiB5PSIzNTQiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzgiIHJ4PSIxOSIvPjwvZz4KPGcgZmlsbD0iI0UwNjA0QyIgb3BhY2l0eT0iLjU1Ij48cmVjdCB4PSIyNjYiIHk9IjE5NCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI5IiByeD0iNCIvPjxyZWN0IHg9IjI0MSIgeT0iMjM2IiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjkiIHJ4PSI0Ii8+PHJlY3QgeD0iMjMxIiB5PSIyNzgiIHdpZHRoPSIzMzAiIGhlaWdodD0iOSIgcng9IjQiLz48cmVjdCB4PSIyNDEiIHk9IjMyMCIgd2lkdGg9IjMxMCIgaGVpZ2h0PSI5IiByeD0iNCIvPjxyZWN0IHg9IjI2NiIgeT0iMzYyIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjkiIHJ4PSI0Ii8+PC9nPgo8ZyBmaWxsPSIjRkZGNkRDIiBzdHJva2U9IiNFQkREQjYiIHN0cm9rZS13aWR0aD0iMiI+PGVsbGlwc2UgY3g9IjMwMCIgY3k9IjIwNSIgcng9IjE0IiByeT0iNyIvPjxlbGxpcHNlIGN4PSI0MjAiIGN5PSIyNDciIHJ4PSIxNCIgcnk9IjciLz48ZWxsaXBzZSBjeD0iMzQwIiBjeT0iMjg5IiByeD0iMTQiIHJ5PSI3Ii8+PGVsbGlwc2UgY3g9IjQ4MCIgY3k9IjMzMSIgcng9IjE0IiByeT0iNyIvPjxlbGxpcHNlIGN4PSIzODAiIGN5PSIzNzMiIHJ4PSIxNCIgcnk9IjciLz48ZWxsaXBzZSBjeD0iMjYwIiBjeT0iMjg5IiByeD0iMTMiIHJ5PSI2Ii8+PGVsbGlwc2UgY3g9IjUyMCIgY3k9IjI4OSIgcng9IjEzIiByeT0iNiIvPjxlbGxpcHNlIGN4PSI0NTAiIGN5PSIyMDUiIHJ4PSIxMyIgcnk9IjYiLz48L2c+CjxnIGZpbGw9IiMzRTdCMkYiPjxlbGxpcHNlIGN4PSIzMjAiIGN5PSIyNDciIHJ4PSI5IiByeT0iMy41Ii8+PGVsbGlwc2UgY3g9IjQ0MCIgY3k9IjI4OSIgcng9IjkiIHJ5PSIzLjUiLz48ZWxsaXBzZSBjeD0iMzYwIiBjeT0iMzMxIiByeD0iOSIgcnk9IjMuNSIvPjxlbGxpcHNlIGN4PSI1MDAiIGN5PSIzNzMiIHJ4PSI5IiByeT0iMy41Ii8+PGVsbGlwc2UgY3g9IjQwMCIgY3k9IjIwNSIgcng9IjkiIHJ5PSIzLjUiLz48ZWxsaXBzZSBjeD0iMjkwIiBjeT0iMzMxIiByeD0iOSIgcnk9IjMuNSIvPjxlbGxpcHNlIGN4PSI1NDAiIGN5PSIyNDciIHJ4PSI5IiByeT0iMy41Ii8+PC9nPgo8ZyBmaWxsPSIjRkZGRkZGIiBvcGFjaXR5PSIuMjgiPjxyZWN0IHg9IjMwMCIgeT0iMTk4IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQiIHJ4PSIyIi8+PHJlY3QgeD0iMjgwIiB5PSIyODIiIHdpZHRoPSIxNTAiIGhlaWdodD0iNCIgcng9IjIiLz48cmVjdCB4PSIzMjAiIHk9IjM2NiIgd2lkdGg9IjExMCIgaGVpZ2h0PSI0IiByeD0iMiIvPjwvZz4KPC9nPgo8L3N2Zz4K","pulneni-chushki":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PGZpbHRlciBpZD0iYmwiIHg9Ii0yNSUiIHk9Ii0yNSUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPjxmZUdhdXNzaWFuQmx1ciBzdGREZXZpYXRpb249IjE0Ii8+PC9maWx0ZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0QzQ0FCQyIvPgo8cGF0aCBkPSJNMCAxMDBIODAwTTAgMjAwSDgwME0wIDMwMEg4MDBNMCA0MDBIODAwTTAgNTAwSDgwMCIgc3Ryb2tlPSIjQzhCRUFGIiBzdHJva2Utd2lkdGg9IjMiLz4KPHJlY3QgeD0iODQiIHk9IjEwOCIgd2lkdGg9IjY2MCIgaGVpZ2h0PSI0MjAiIHJ4PSI1NiIgZmlsbD0iIzAwMCIgb3BhY2l0eT0iLjM1IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxyZWN0IHg9IjcwIiB5PSI5MCIgd2lkdGg9IjY2MCIgaGVpZ2h0PSI0MjAiIHJ4PSI1NiIgZmlsbD0iIzM0MzgzQSIvPgo8cmVjdCB4PSI4OCIgeT0iMTA4IiB3aWR0aD0iNjI0IiBoZWlnaHQ9IjM4NCIgcng9IjQyIiBmaWxsPSIjNEE0RTUwIi8+CjxnIGZpbGw9IiM4RTI0MTciIG9wYWNpdHk9Ii41NSI+PGVsbGlwc2UgY3g9IjE1MCIgY3k9IjE3MCIgcng9IjQwIiByeT0iMTYiLz48ZWxsaXBzZSBjeD0iMzIwIiBjeT0iNDQwIiByeD0iNTAiIHJ5PSIxNCIvPjxlbGxpcHNlIGN4PSI2NjAiIGN5PSIxNzAiIHJ4PSIzNCIgcnk9IjE0Ii8+PGVsbGlwc2UgY3g9IjUwMCIgY3k9IjQ0MCIgcng9IjQ0IiByeT0iMTQiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDIyMCAzMDApIj48Y2lyY2xlIHI9IjkyIiBmaWxsPSIjQjUzMDFGIi8+PGNpcmNsZSByPSI3OCIgZmlsbD0iI0NGNDczMyIvPjxwYXRoIGQ9Ik0tNjAgLTQwUS03MCAwIC02MCA0ME02MCAtNDBRNzAgMCA2MCA0MCIgc3Ryb2tlPSIjRTU2RjVDIiBzdHJva2Utd2lkdGg9IjYiIGZpbGw9Im5vbmUiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSByPSI0NiIgZmlsbD0iI0U2QzQ4QSIgc3Ryb2tlPSIjOEUyNDE3IiBzdHJva2Utd2lkdGg9IjgiLz48ZyBmaWxsPSIjRjVFNkM0Ij48Y2lyY2xlIGN4PSItMTQiIGN5PSItMTIiIHI9IjUiLz48Y2lyY2xlIGN4PSI4IiBjeT0iLTE4IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTYiIGN5PSI2IiByPSI1Ii8+PGNpcmNsZSBjeD0iLTYiIGN5PSIxNCIgcj0iNSIvPjxjaXJjbGUgY3g9Ii0yMiIgY3k9IjgiIHI9IjUiLz48L2c+PGcgZmlsbD0iI0M5NjkzQSI+PGNpcmNsZSBjeD0iNCIgY3k9Ii00IiByPSI0Ii8+PGNpcmNsZSBjeD0iLTEyIiBjeT0iMiIgcj0iNCIvPjwvZz48cmVjdCB4PSItOSIgeT0iLTEwNiIgd2lkdGg9IjE4IiBoZWlnaHQ9IjI4IiByeD0iNyIgZmlsbD0iIzVCOEEzNCIvPjwvZz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDAwIDMwMCkiPjxjaXJjbGUgcj0iOTIiIGZpbGw9IiNCNTMwMUYiLz48Y2lyY2xlIHI9Ijc4IiBmaWxsPSIjQ0Y0NzMzIi8+PHBhdGggZD0iTS02MCAtNDBRLTcwIDAgLTYwIDQwTTYwIC00MFE3MCAwIDYwIDQwIiBzdHJva2U9IiNFNTZGNUMiIHN0cm9rZS13aWR0aD0iNiIgZmlsbD0ibm9uZSIgb3BhY2l0eT0iLjYiLz48Y2lyY2xlIHI9IjQ2IiBmaWxsPSIjRTZDNDhBIiBzdHJva2U9IiM4RTI0MTciIHN0cm9rZS13aWR0aD0iOCIvPjxnIGZpbGw9IiNGNUU2QzQiPjxjaXJjbGUgY3g9Ii0xMCIgY3k9Ii0xNCIgcj0iNSIvPjxjaXJjbGUgY3g9IjEyIiBjeT0iLTEyIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTQiIGN5PSIxMCIgcj0iNSIvPjxjaXJjbGUgY3g9Ii04IiBjeT0iMTIiIHI9IjUiLz48Y2lyY2xlIGN4PSItMjQiIGN5PSItMiIgcj0iNSIvPjwvZz48ZyBmaWxsPSIjQzk2OTNBIj48Y2lyY2xlIGN4PSIyIiBjeT0iMCIgcj0iNCIvPjxjaXJjbGUgY3g9Ii0xNiIgY3k9IjgiIHI9IjQiLz48L2c+PHJlY3QgeD0iLTkiIHk9Ii0xMDYiIHdpZHRoPSIxOCIgaGVpZ2h0PSIyOCIgcng9IjciIGZpbGw9IiM1QjhBMzQiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDU4MCAzMDApIj48Y2lyY2xlIHI9IjkyIiBmaWxsPSIjQjUzMDFGIi8+PGNpcmNsZSByPSI3OCIgZmlsbD0iI0NGNDczMyIvPjxwYXRoIGQ9Ik0tNjAgLTQwUS03MCAwIC02MCA0ME02MCAtNDBRNzAgMCA2MCA0MCIgc3Ryb2tlPSIjRTU2RjVDIiBzdHJva2Utd2lkdGg9IjYiIGZpbGw9Im5vbmUiIG9wYWNpdHk9Ii42Ii8+PGNpcmNsZSByPSI0NiIgZmlsbD0iI0U2QzQ4QSIgc3Ryb2tlPSIjOEUyNDE3IiBzdHJva2Utd2lkdGg9IjgiLz48ZyBmaWxsPSIjRjVFNkM0Ij48Y2lyY2xlIGN4PSItMTIiIGN5PSItMTAiIHI9IjUiLz48Y2lyY2xlIGN4PSIxMCIgY3k9Ii0xNiIgcj0iNSIvPjxjaXJjbGUgY3g9IjE4IiBjeT0iNCIgcj0iNSIvPjxjaXJjbGUgY3g9Ii00IiBjeT0iMTYiIHI9IjUiLz48Y2lyY2xlIGN4PSItMjAiIGN5PSIxMCIgcj0iNSIvPjwvZz48ZyBmaWxsPSIjQzk2OTNBIj48Y2lyY2xlIGN4PSI2IiBjeT0iLTIiIHI9IjQiLz48Y2lyY2xlIGN4PSItMTAiIGN5PSI0IiByPSI0Ii8+PC9nPjxyZWN0IHg9Ii05IiB5PSItMTA2IiB3aWR0aD0iMTgiIGhlaWdodD0iMjgiIHJ4PSI3IiBmaWxsPSIjNUI4QTM0Ii8+PC9nPgo8L3N2Zz4K","shopska-salata":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJwbCIgY3g9IjUwJSIgY3k9IjQ1JSIgcj0iNjAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkZGRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFNERGRDQiLz48L3JhZGlhbEdyYWRpZW50PjxmaWx0ZXIgaWQ9ImJsIiB4PSItMjUlIiB5PSItMjUlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNCIvPjwvZmlsdGVyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNEQUQzQzYiLz4KPHBhdGggZD0iTTAgMTUwSDgwME0wIDMwMEg4MDBNMCA0NTBIODAwIiBzdHJva2U9IiNDRkM3QjgiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI0MTYiIGN5PSIzMjIiIHI9IjIzMiIgZmlsbD0iIzRBNDMzOCIgb3BhY2l0eT0iLjM1IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjMyIiBmaWxsPSJ1cmwoI3BsKSIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE5NiIgZmlsbD0iI0Y3RjRFRCIgc3Ryb2tlPSIjRTBEQUNFIiBzdHJva2Utd2lkdGg9IjMiLz4KPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzAwIDIxMikgcm90YXRlKC0zMCkiPjxlbGxpcHNlIHJ4PSI2MCIgcnk9IjI4IiBmaWxsPSIjQzIzQTJCIi8+PGVsbGlwc2Ugcng9IjQ4IiByeT0iMTYiIGZpbGw9IiNERTU1NDYiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwNSAyMjgpIHJvdGF0ZSg0MCkiPjxlbGxpcHNlIHJ4PSI2MCIgcnk9IjI4IiBmaWxsPSIjQzIzQTJCIi8+PGVsbGlwc2Ugcng9IjQ4IiByeT0iMTYiIGZpbGw9IiNERTU1NDYiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwNSAzOTIpIHJvdGF0ZSgyNSkiPjxlbGxpcHNlIHJ4PSI2MCIgcnk9IjI4IiBmaWxsPSIjQzIzQTJCIi8+PGVsbGlwc2Ugcng9IjQ4IiByeT0iMTYiIGZpbGw9IiNERTU1NDYiLz48L2c+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ5NSAzOTUpIHJvdGF0ZSgtMzIpIj48ZWxsaXBzZSByeD0iNjAiIHJ5PSIyOCIgZmlsbD0iI0MyM0EyQiIvPjxlbGxpcHNlIHJ4PSI0OCIgcnk9IjE2IiBmaWxsPSIjREU1NTQ2Ii8+PC9nPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MDAgMTU4KSByb3RhdGUoODgpIj48ZWxsaXBzZSByeD0iNTYiIHJ5PSIyNiIgZmlsbD0iI0MyM0EyQiIvPjxlbGxpcHNlIHJ4PSI0NCIgcnk9IjE1IiBmaWxsPSIjREU1NTQ2Ii8+PC9nPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMzggMzAwKSByb3RhdGUoOTApIj48ZWxsaXBzZSByeD0iNTYiIHJ5PSIyNiIgZmlsbD0iI0MyM0EyQiIvPjxlbGxpcHNlIHJ4PSI0NCIgcnk9IjE1IiBmaWxsPSIjREU1NTQ2Ii8+PC9nPgo8ZyBmaWxsPSIjOERCNDY2IiBzdHJva2U9IiNDNEREQTQiIHN0cm9rZS13aWR0aD0iNyI+PGNpcmNsZSBjeD0iMzUwIiBjeT0iMzA1IiByPSIzMiIvPjxjaXJjbGUgY3g9IjQ1MiIgY3k9IjMyNSIgcj0iMzIiLz48Y2lyY2xlIGN4PSI0MTIiIGN5PSIyMzYiIHI9IjMwIi8+PGNpcmNsZSBjeD0iMjYyIiBjeT0iMzUyIiByPSIzMCIvPjxjaXJjbGUgY3g9IjUzNSIgY3k9IjMyMiIgcj0iMzAiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSIzODIiIHI9IjMwIi8+PC9nPgo8ZyBmaWxsPSIjRERFQkMxIj48Y2lyY2xlIGN4PSIzNTAiIGN5PSIzMDUiIHI9IjE0Ii8+PGNpcmNsZSBjeD0iNDUyIiBjeT0iMzI1IiByPSIxNCIvPjxjaXJjbGUgY3g9IjQxMiIgY3k9IjIzNiIgcj0iMTMiLz48Y2lyY2xlIGN4PSIyNjIiIGN5PSIzNTIiIHI9IjEzIi8+PGNpcmNsZSBjeD0iNTM1IiBjeT0iMzIyIiByPSIxMyIvPjxjaXJjbGUgY3g9IjQ0OCIgY3k9IjM4MiIgcj0iMTMiLz48L2c+CjxnIGZpbGw9IiM5RkM2NTMiPjxyZWN0IHg9Ii0zNCIgeT0iLTgiIHdpZHRoPSI2OCIgaGVpZ2h0PSIxNiIgcng9IjgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDM2MCA0MDIpIHJvdGF0ZSgxNSkiLz48cmVjdCB4PSItMzQiIHk9Ii04IiB3aWR0aD0iNjgiIGhlaWdodD0iMTYiIHJ4PSI4IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1NjIgMjUyKSByb3RhdGUoLTIwKSIvPjxyZWN0IHg9Ii0zNCIgeT0iLTgiIHdpZHRoPSI2OCIgaGVpZ2h0PSIxNiIgcng9IjgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDI1NSAyNTIpIHJvdGF0ZSgzMCkiLz48cmVjdCB4PSItMzQiIHk9Ii04IiB3aWR0aD0iNjgiIGhlaWdodD0iMTYiIHJ4PSI4IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NzAgMTkyKSByb3RhdGUoLTEwKSIvPjxyZWN0IHg9Ii0zNCIgeT0iLTgiIHdpZHRoPSI2OCIgaGVpZ2h0PSIxNiIgcng9IjgiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUyMiA0MjQpIHJvdGF0ZSgyNSkiLz48L2c+CjxnIGZpbGw9IiNGRkZCRUYiIHN0cm9rZT0iI0VBREZDMiIgc3Ryb2tlLXdpZHRoPSIyIj48Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE1Ii8+PGNpcmNsZSBjeD0iMzg0IiBjeT0iMjgyIiByPSIxMyIvPjxjaXJjbGUgY3g9IjQxOCIgY3k9IjI4NCIgcj0iMTQiLz48Y2lyY2xlIGN4PSIzOTIiIGN5PSIzMTgiIHI9IjE0Ii8+PGNpcmNsZSBjeD0iNDI2IiBjeT0iMzEyIiByPSIxMyIvPjxjaXJjbGUgY3g9IjM3MiIgY3k9IjMwNCIgcj0iMTIiLz48Y2lyY2xlIGN4PSI0NDYiIGN5PSIyOTYiIHI9IjEyIi8+PGNpcmNsZSBjeD0iNDA0IiBjeT0iMjYyIiByPSIxMiIvPjxjaXJjbGUgY3g9IjM2MCIgY3k9IjI4NiIgcj0iMTAiLz48Y2lyY2xlIGN4PSI0MzYiIGN5PSIzMzIiIHI9IjExIi8+PGNpcmNsZSBjeD0iMzg4IiBjeT0iMzQ0IiByPSIxMSIvPjxjaXJjbGUgY3g9IjQxNiIgY3k9IjM1MCIgcj0iMTAiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIzMjYiIHI9IjEwIi8+PC9nPgo8ZyBmaWxsPSIjM0U3QjJGIj48ZWxsaXBzZSBjeD0iMzkwIiBjeT0iMjkwIiByeD0iOCIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKDIwIDM5MCAyOTApIi8+PGVsbGlwc2UgY3g9IjQzMCIgY3k9IjMxOCIgcng9IjgiIHJ5PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMzAgNDMwIDMxOCkiLz48ZWxsaXBzZSBjeD0iMzcyIiBjeT0iMzMwIiByeD0iNyIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKDYwIDM3MiAzMzApIi8+PGVsbGlwc2UgY3g9IjQxMiIgY3k9IjI3MCIgcng9IjciIHJ5PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTAgNDEyIDI3MCkiLz48ZWxsaXBzZSBjeD0iNDUwIiBjeT0iMjgwIiByeD0iNyIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKDQ1IDQ1MCAyODApIi8+PGVsbGlwc2UgY3g9IjM5OCIgY3k9IjM0MCIgcng9IjciIHJ5PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSg1IDM5OCAzNDApIi8+PGVsbGlwc2UgY3g9IjM0MCIgY3k9IjI3MCIgcng9IjciIHJ5PSIzIiB0cmFuc2Zvcm09InJvdGF0ZSgtNTAgMzQwIDI3MCkiLz48ZWxsaXBzZSBjeD0iNDgwIiBjeT0iMzUwIiByeD0iNyIgcnk9IjMiIHRyYW5zZm9ybT0icm90YXRlKDI1IDQ4MCAzNTApIi8+PC9nPgo8L3N2Zz4K","tarator":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgNjAwIj4KPGRlZnM+PHJhZGlhbEdyYWRpZW50IGlkPSJwbCIgY3g9IjUwJSIgY3k9IjQ1JSIgcj0iNjAlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGRkZGRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNFNERGRDQiLz48L3JhZGlhbEdyYWRpZW50PjxmaWx0ZXIgaWQ9ImJsIiB4PSItMjUlIiB5PSItMjUlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIxNCIvPjwvZmlsdGVyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNDN0NGQ0UiLz4KPHBhdGggZD0iTTAgMTUwSDgwME0wIDMwMEg4MDBNMCA0NTBIODAwIiBzdHJva2U9IiNCQ0M1QzQiIHN0cm9rZS13aWR0aD0iMyIvPgo8Y2lyY2xlIGN4PSI0MTQiIGN5PSIzMjAiIHI9IjIyNiIgZmlsbD0iIzNBNDQ0MyIgb3BhY2l0eT0iLjM1IiBmaWx0ZXI9InVybCgjYmwpIi8+CjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMwMCIgcj0iMjI2IiBmaWxsPSJ1cmwoI3BsKSIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE5MCIgZmlsbD0iI0VGRUJERCIvPgo8Y2lyY2xlIGN4PSI0MDAiIGN5PSIzMDAiIHI9IjE3MiIgZmlsbD0iI0Y4RjZFQyIvPgo8ZyBmaWxsPSIjQTlDNzdDIiBzdHJva2U9IiNDRkUzQjAiIHN0cm9rZS13aWR0aD0iMyI+PHJlY3QgeD0iLTEyIiB5PSItMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwMCAyMzApIHJvdGF0ZSgxNSkiLz48cmVjdCB4PSItMTIiIHk9Ii0xMiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzYwIDI4MCkgcm90YXRlKDQwKSIvPjxyZWN0IHg9Ii0xMiIgeT0iLTEyIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0NDAgMjUwKSByb3RhdGUoLTEwKSIvPjxyZWN0IHg9Ii0xMiIgeT0iLTEyIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1MDAgMzIwKSByb3RhdGUoMjUpIi8+PHJlY3QgeD0iLTEyIiB5PSItMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMzMCAzNTApIHJvdGF0ZSgtMzApIi8+PHJlY3QgeD0iLTEyIiB5PSItMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQxMCAzNDApIHJvdGF0ZSgxMCkiLz48cmVjdCB4PSItMTIiIHk9Ii0xMiIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0IiByeD0iMyIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNDcwIDQwMCkgcm90YXRlKDU1KSIvPjxyZWN0IHg9Ii0xMiIgeT0iLTEyIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzOTAgMjAwKSByb3RhdGUoLTIwKSIvPjxyZWN0IHg9Ii0xMiIgeT0iLTEyIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHJ4PSIzIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyODAgMzEwKSByb3RhdGUoMzUpIi8+PHJlY3QgeD0iLTEyIiB5PSItMTIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgcng9IjMiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUxMCAyNTApIHJvdGF0ZSg1KSIvPjwvZz4KPGcgc3Ryb2tlPSIjM0U3QjJGIiBzdHJva2Utd2lkdGg9IjMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTM1MCAyMzBsMjIgLTEwTTM2MCAyMjJsOCAyME00MjAgMzAwbDIwIDhNNDMwIDI5MmwtNCAyMk0zMjAgMzAwbC0xOCAxMk0zMTIgMjkybDEwIDE4TTQ3MCAzNDBsMTggLThNNDgwIDMzMmwtMiAyME0zOTAgMzgwbDE2IDEyTTQwMCAzNzJsLTggMjIiLz48L2c+CjxnIGZpbGw9IiNFQkQyN0EiIHN0cm9rZT0iI0Y2RTZBNCIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIuODUiPjxjaXJjbGUgY3g9IjM0NSIgY3k9IjMzMCIgcj0iOSIvPjxjaXJjbGUgY3g9IjQ1NSIgY3k9IjI5MCIgcj0iOCIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjI1MCIgcj0iNyIvPjxjaXJjbGUgY3g9IjQ5MCIgY3k9IjM4MCIgcj0iNyIvPjwvZz4KPGcgZmlsbD0iI0E2N0M1MiI+PHBvbHlnb24gcG9pbnRzPSIzMDAsMjcwIDMxMiwyNjIgMzIwLDI3NiAzMDYsMjgyIi8+PHBvbHlnb24gcG9pbnRzPSI0NDAsMzQwIDQ1MiwzMzQgNDU4LDM0OCA0NDQsMzUyIi8+PHBvbHlnb24gcG9pbnRzPSIzODAsMzIwIDM5MiwzMTYgMzk0LDMyOCAzODIsMzMyIi8+PC9nPgo8L3N2Zz4K","tikvenik":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgODAwIDYwMCI+CjxkZWZzPgo8ZmlsdGVyIGlkPSJibCIgeD0iLTI1JSIgeT0iLTI1JSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+PGZlR2F1c3NpYW5CbHVyIHN0ZERldmlhdGlvbj0iMTQiLz48L2ZpbHRlcj4KPGcgaWQ9InBjIj48cmVjdCB3aWR0aD0iMTc2IiBoZWlnaHQ9IjE0MCIgcng9IjIyIiBmaWxsPSIjQjY3RDI2Ii8+PHJlY3QgeD0iNCIgeT0iNCIgd2lkdGg9IjE2OCIgaGVpZ2h0PSIxMzIiIHJ4PSIxOSIgZmlsbD0iI0Q4QTU0NSIvPjxwYXRoIGQ9Ik0yMCA0MFE2MCAyNCAxMDAgNDBUMTYwIDM2TTIwIDcwUTYwIDU0IDEwMCA3MFQxNjAgNjZNMjAgMTAwUTYwIDg0IDEwMCAxMDBUMTYwIDk2IiBzdHJva2U9IiNCNjdEMjYiIHN0cm9rZS13aWR0aD0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTI2IDU0UTYwIDQyIDk2IDU0VDE1MCA1Mk0yNiA4NFE2MCA3MiA5NiA4NFQxNTAgODJNMjYgMTE0UTYwIDEwMiA5NiAxMTRUMTUwIDExMiIgc3Ryb2tlPSIjRUZDQjdFIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxnIGZpbGw9IiNGRkZGRkYiIG9wYWNpdHk9Ii44NSI+PGNpcmNsZSBjeD0iMzAiIGN5PSIyMiIgcj0iMyIvPjxjaXJjbGUgY3g9Ijc0IiBjeT0iMzAiIHI9IjIuNSIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjIwIiByPSIzIi8+PGNpcmNsZSBjeD0iMTUyIiBjeT0iNDQiIHI9IjIuNSIvPjxjaXJjbGUgY3g9IjQ2IiBjeT0iNjQiIHI9IjIuNSIvPjxjaXJjbGUgY3g9Ijk2IiBjeT0iNzYiIHI9IjMiLz48Y2lyY2xlIGN4PSIxNDAiIGN5PSI4OCIgcj0iMi41Ii8+PGNpcmNsZSBjeD0iMjgiIGN5PSIxMDIiIHI9IjMiLz48Y2lyY2xlIGN4PSI4MCIgY3k9IjExOCIgcj0iMi41Ii8+PGNpcmNsZSBjeD0iMTI4IiBjeT0iMTE2IiByPSIzIi8+PC9nPjwvZz4KPC9kZWZzPgo8cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI0Q2RDlENiIvPgo8cGF0aCBkPSJNMCAxNTBIODAwTTAgMzAwSDgwME0wIDQ1MEg4MDAiIHN0cm9rZT0iI0NCQ0ZDQiIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxyZWN0IHg9Ijk0IiB5PSIxMjYiIHdpZHRoPSI2NDAiIGhlaWdodD0iMzgwIiByeD0iMzAiIGZpbGw9IiMyQzMwMzAiIG9wYWNpdHk9Ii4zNSIgZmlsdGVyPSJ1cmwoI2JsKSIvPgo8cmVjdCB4PSI4MCIgeT0iMTEwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM4MCIgcng9IjMwIiBmaWxsPSIjQkZDNEM0Ii8+CjxyZWN0IHg9Ijk2IiB5PSIxMjYiIHdpZHRoPSI2MDgiIGhlaWdodD0iMzQ4IiByeD0iMjIiIGZpbGw9IiNEM0Q3RDciLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iMTA4IiB5PSIxMzYiLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iMzEyIiB5PSIxMzYiLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iNTE2IiB5PSIxMzYiLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iMTA4IiB5PSIzMTIiLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iMzEyIiB5PSIzMTIiLz4KPHVzZSB4bGluazpocmVmPSIjcGMiIGhyZWY9IiNwYyIgeD0iNTE2IiB5PSIzMTIiLz4KPC9zdmc+Cg=="};
+var $=function(s,r){return (r||document).querySelector(s)},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+var root=document.documentElement;root.setAttribute('data-pal','D');
+var K=1,motion=!window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var ms=function(n){return n*K};
+var EASE='cubic-bezier(.16,1,.3,1)',EIO='cubic-bezier(.65,0,.35,1)';
+
+/* ---------- данни (примерни) ---------- */
+var R=[
+ {s:'shopska-salata',t:'Шопска салата',c:'Салати',p:20,k:0,v:4,l:'Лесна'},
+ {s:'banitsa',t:'Баница със сирене',c:'Тестени',p:25,k:40,v:8,l:'Средна'},
+ {s:'tarator',t:'Таратор',c:'Супи',p:15,k:0,v:4,l:'Лесна'},
+ {s:'musaka',t:'Мусака с картофи',c:'Основни',p:30,k:60,v:6,l:'Средна'},
+ {s:'pulneni-chushki',t:'Пълнени чушки с ориз',c:'Основни',p:30,k:55,v:6,l:'Средна'},
+ {s:'bob-yahniya',t:'Боб чорба',c:'Супи',p:20,k:90,v:6,l:'Средна'},
+ {s:'tikvenik',t:'Тиквеник',c:'Десерти',p:30,k:40,v:8,l:'Средна'},
+ {s:'pechena-chushka',t:'Печени чушки с чесън',c:'Салати',p:10,k:20,v:4,l:'Лесна'},
+ {s:'gyuvech',t:'Гювеч',c:'Основни',p:25,k:80,v:6,l:'Средна'},
+ {s:'palachinki',t:'Палачинки',c:'Десерти',p:10,k:20,v:4,l:'Лесна'},
+ {s:'mekici',t:'Мекици',c:'Тестени',p:15,k:20,v:6,l:'Лесна'},
+ {s:'baklava',t:'Баклава',c:'Десерти',p:40,k:45,v:12,l:'Трудна'}
+];
+var CATS=['Всички','Салати','Супи','Основни','Тестени','Десерти'];
+var ING=['4 зрели домата','1 краставица','2 печени червени чушки','1 малка глава червен лук','150 г бяло сирене','2 с.л. олио','1 с.л. оцет','Магданоз и сол на вкус'];
+var STEPS=['Нарежи доматите, краставицата, печените чушки и лука на едри парчета.','Смеси зеленчуците с магданоз, олио, оцет и малко сол.','Прехвърли салатата в чиния и настържи сиренето отгоре.','Поднеси веднага или леко охладена.'];
+var fav={'shopska-salata':true},cur='home',sel='shopska-salata',busy=false;
+var pad2=function(n){return (n<10?'0':'')+n};
+var byS=function(s){return R.filter(function(r){return r.s===s})[0]};
+var idxOf=function(s){return R.indexOf(byS(s))};
+var HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg>';
+
+/* ---------- помощници ---------- */
+function split(el){
+  var i=0,clone=el.cloneNode(false);
+  (function walk(node,parent){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType===3){
+        n.textContent.split(/(\s+)/).forEach(function(tok){
+          if(!tok)return;
+          if(/^\s+$/.test(tok)){parent.appendChild(document.createTextNode(' '));return}
+          var w=document.createElement('span');w.className='w';
+          var wi=document.createElement('span');wi.className='wi';wi.style.setProperty('--i',i++);wi.textContent=tok;
+          w.appendChild(wi);parent.appendChild(w);
+        });
+      }else if(n.nodeType===1){var c=n.cloneNode(false);parent.appendChild(c);walk(n,c)}
+    });
+  })(el,clone);
+  el.innerHTML=clone.innerHTML;el.classList.add('sp');
+}
+function roll(box,txt){
+  var cur=box.lastElementChild;if(!cur||cur.textContent===txt)return;
+  if(!motion){cur.textContent=txt;return}
+  var nx=document.createElement('span');nx.className='rn';nx.textContent=txt;box.appendChild(nx);
+  var d=ms(450);
+  cur.animate([{transform:'none',opacity:1},{transform:'translateY(-60%)',opacity:0}],{duration:d,easing:EASE,fill:'forwards'});
+  nx.animate([{transform:'translateY(60%)',opacity:0},{transform:'none',opacity:1}],{duration:d,easing:EASE,fill:'forwards'}).finished.then(function(){cur.remove();nx.style.position='static'}).catch(function(){});
+}
+function anim(el,frames,dur,easing){return el.animate(frames,{duration:dur,easing:easing,fill:'forwards'}).finished}
+function sleep(t){return new Promise(function(r){setTimeout(r,t)})}
+
+/* ---------- изображения ---------- */
+$$('[data-img]').forEach(function(i){i.src=IMG[i.getAttribute('data-img')]});
+
+/* ---------- построяване ---------- */
+function buildRail(){
+  var h='';
+  CATS.slice(1).forEach(function(c){
+    var items=R.filter(function(r){return r.c===c}),first=items[0];
+    h+='<a class="rc" href="#catalog" data-cat="'+c+'"><img class="ph" alt="" src="'+IMG[first.s]+'"><div class="rc-l"><b>'+c+'</b><span>'+pad2(items.length)+' рецепти →</span></div></a>';
+  });
+  $('#rail').innerHTML=h;
+}
+function buildIdx(){
+  $('#idx').innerHTML=R.slice(0,8).map(function(r,i){
+    return '<li><a class="row" href="#recipe" data-slug="'+r.s+'" data-n="'+pad2(i+1)+'"><span class="row-n">Nº '+pad2(i+1)+'</span><span class="row-t">'+r.t+'</span><span class="row-m">'+r.c+' · '+(r.p+r.k)+' мин</span></a></li>';
+  }).join('');
+}
+function card(r,i){
+  var on=!!fav[r.s];
+  return '<article class="mc" data-r style="--dl:'+((i%5)*60)+'ms" data-cat="'+r.c+'" data-s="'+(i%5)+'" data-slug="'+r.s+'">'+
+   '<a class="mc-img" href="#recipe" data-slug="'+r.s+'" aria-label="'+r.t+'"><img class="ph" alt="" src="'+IMG[r.s]+'"></a>'+
+   '<button class="heart" type="button" data-fav="'+r.s+'" aria-pressed="'+on+'" aria-label="'+(on?'Премахни от любими: ':'Запази в любими: ')+r.t+'"><span class="ring"></span>'+HEART+'</button>'+
+   '<a class="mc-b" href="#recipe" data-slug="'+r.s+'"><span class="eyebrow">'+r.c+' · Nº '+pad2(idxOf(r.s)+1)+'</span><span><span class="mc-t">'+r.t+'</span></span><span class="mc-m">'+(r.p+r.k)+' мин · '+r.v+' порции · '+r.l+'</span></a></article>';
+}
+function buildCat(){
+  $('#mas').innerHTML=R.map(card).join('');
+  $('#tabs').insertAdjacentHTML('afterbegin',CATS.map(function(c,i){return '<button class="tab" type="button" data-c="'+c+'" aria-pressed="'+(i===0)+'">'+c+'</button>'}).join(''));
+}
+function fillRecipe(s){
+  var r=byS(s);sel=s;
+  $('#rimg').src=IMG[s];$('#rimg').alt=r.t;
+  $('#rcat').textContent=r.c+' · Nº '+pad2(idxOf(s)+1);
+  var h=$('#rt');h.classList.remove('sp');h.textContent=r.t;split(h);
+  var total=r.p+r.k;
+  $('#meta').innerHTML=
+    '<div data-r><dt class="eyebrow">Подготовка</dt><dd><b>'+r.p+' мин</b></dd></div>'+
+    '<div data-r style="--dl:80ms"><dt class="eyebrow">Готвене</dt><dd><b>'+(r.k===0?'Без готвене':r.k+' мин')+'</b></dd></div>'+
+    '<div data-r style="--dl:160ms"><dt class="eyebrow">Порции</dt><dd><b>'+r.v+'</b></dd></div>'+
+    '<div data-r style="--dl:240ms"><dt class="eyebrow">Трудност</dt><dd><b>'+r.l+'</b></dd></div>';
+  $('#ings').innerHTML=ING.map(function(t,i){return '<label class="ing" data-r style="--dl:'+(i*50)+'ms"><input type="checkbox"><span class="box"></span><span class="ing-t">'+t+'</span></label>'}).join('');
+  $('#steps').innerHTML=STEPS.map(function(t,i){return '<li class="st" data-r><span class="st-n">'+pad2(i+1)+'</span><p>'+t+'</p></li>'}).join('');
+  setHeart($('#rheart'),s);
+}
+function setHeart(b,s){
+  var on=!!fav[s],r=byS(s);
+  b.setAttribute('aria-pressed',on);
+  if(b.id==='rheart'){$('#rhl').textContent=on?'Премахни от любими':'Запази в любими'}
+  else b.setAttribute('aria-label',(on?'Премахни от любими: ':'Запази в любими: ')+r.t);
+}
+buildRail();buildIdx();buildCat();fillRecipe(sel);
+$$('[data-split]').forEach(function(el){if(!el.classList.contains('sp'))split(el)});
+
+/* ---------- любими ---------- */
+function favCount(){return Object.keys(fav).filter(function(k){return fav[k]}).length}
+function toggleFav(s,btn){
+  fav[s]=!fav[s];
+  $$('[data-fav="'+s+'"]').forEach(function(b){setHeart(b,s)});setHeart($('#rheart'),s);
+  if(btn&&motion){btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop')}
+  var n=$('#favn');n.classList.remove('bump');if(motion){void n.offsetWidth;n.classList.add('bump')}
+  n.textContent=favCount();
+}
+document.addEventListener('click',function(e){
+  var f=e.target.closest('[data-fav],#rheart');
+  if(f){e.preventDefault();toggleFav(f.id==='rheart'?sel:f.getAttribute('data-fav'),f);return}
+});
+
+/* ---------- навигация и преход „прелиствам“ ---------- */
+var LABEL={home:'Начало',catalog:'Рецепти',recipe:'Рецепта',about:'За нас',auth:'Вход',spec:'Движение'};
+function setView(name){
+  $$('.view').forEach(function(v){v.hidden=v.getAttribute('data-view')!==name});
+  cur=name;window.scrollTo(0,0);
+  $$('.nav a').forEach(function(a){a.removeAttribute('aria-current');if(a.getAttribute('data-nav')===name)a.setAttribute('aria-current','page')});
+  $$('#c-view .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===name)});
+  replay();
+  if(name==='catalog')placeInd();
+}
+function go(name){
+  if(!LABEL[name])name='home';
+  if(busy||name===cur){if(name===cur)replay();return Promise.resolve()}
+  if(!motion){setView(name);return Promise.resolve()}
+  busy=true;
+  var c=$('.curtain');$('#cl').textContent=LABEL[name];
+  return anim(c,[{clipPath:'inset(0 100% 0 0)'},{clipPath:'inset(0 0 0 0)'}],ms(480),EIO).then(function(){
+    c.style.clipPath='inset(0 0 0 0)';setView(name);return sleep(ms(140));
+  }).then(function(){
+    return anim(c,[{clipPath:'inset(0 0 0 0)'},{clipPath:'inset(0 0 0 100%)'}],ms(480),EIO);
+  }).then(function(){c.getAnimations().forEach(function(a){a.cancel()});c.style.clipPath='inset(0 100% 0 0)';busy=false}).catch(function(){busy=false});
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]');if(!a)return;
+  var h=a.getAttribute('href').slice(1);if(!LABEL[h])return;
+  e.preventDefault();
+  var sl=a.getAttribute('data-slug');if(sl){fillRecipe(sl)}
+  var cat=a.getAttribute('data-cat');
+  if(a.getAttribute('data-nav')==='fav'){go('catalog');return}
+  go(h).then(function(){if(cat){var t=$('.tab[data-c="'+cat+'"]');if(t)t.click()}});
+  try{history.replaceState(null,'','#'+h)}catch(x){}
+});
+window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(LABEL[h])go(h)});
+
+/* ---------- появи при скрол ---------- */
+var io=null;
+function replay(){
+  if(io)io.disconnect();
+  var v=$('.view:not([hidden])');
+  $$('.in',v).forEach(function(e){e.classList.remove('in')});
+  void v.offsetWidth;
+  if(!motion){return}
+  io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.2,rootMargin:'0px 0px -6% 0px'});
+  $$('[data-r],[data-mask],[data-split],[data-zoom],.quote',v).forEach(function(e){io.observe(e)});
+  dirty=true;
+}
+
+/* ---------- паралакс, прогрес, курсор: един rAF ---------- */
+var dirty=true,mx=0,my=0,px=0,py=0,pvx=0,showing=false;
+window.addEventListener('scroll',function(){dirty=true},{passive:true});
+window.addEventListener('resize',function(){dirty=true;placeInd()});
+function frame(){
+  var vh=window.innerHeight;
+  if(dirty){
+    var v=$('.view:not([hidden])'),hz=$('[data-zoom]',v);
+    $('.hdr').classList.toggle('solid',!hz||window.scrollY>hz.offsetHeight-72);
+    if(motion){
+      $$('[data-par]',v).forEach(function(p){var f=parseFloat(p.getAttribute('data-par'));p.style.transform='translate3d(0,'+(window.scrollY*f).toFixed(1)+'px,0)'});
+      var cn=$('#cn');if(cur==='home'&&cn){var r=cn.parentNode.getBoundingClientRect();cn.style.transform='translate3d(0,'+((r.top-vh*.5)*-.06).toFixed(1)+'px,0)'}
+      if(cur==='recipe'){var st=$('.steps ol').getBoundingClientRect();var p=Math.max(0,Math.min(1,(vh*.6-st.top)/st.height));$('#prog').style.setProperty('--p',p.toFixed(3))}
+    }
+    dirty=false;
+  }
+  if(!motion){$$('[data-par]').forEach(function(p){p.style.transform=''});var cn2=$('#cn');if(cn2)cn2.style.transform='';}
+  if(showing&&motion){
+    var dx=mx-px,dy=my-py;px+=dx*.14;py+=dy*.14;pvx=dx*.14;
+    var rot=Math.max(-8,Math.min(8,pvx*.25));
+    $('#prev').style.transform='translate3d('+(px-150).toFixed(1)+'px,'+(py-112).toFixed(1)+'px,0) rotate('+rot.toFixed(2)+'deg)';
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+
+/* ---------- Съдържание: hover (снимка + Nº) ---------- */
+(function(){
+  var list=$('#idx'),pv=$('#prev'),pi=$('#prev-img'),box=$('#idxn');
+  function enter(row){
+    roll(box,row.getAttribute('data-n'));
+    if(window.matchMedia('(hover:hover)').matches&&motion){pi.src=IMG[row.getAttribute('data-slug')];if(!pv.classList.contains('on')){px=mx;py=my}pv.classList.add('on');showing=true}
+  }
+  list.addEventListener('pointerover',function(e){var r=e.target.closest('.row');if(r)enter(r)});
+  list.addEventListener('focusin',function(e){var r=e.target.closest('.row');if(r)roll(box,r.getAttribute('data-n'))});
+  list.addEventListener('pointerleave',function(){pv.classList.remove('on')});
+  window.addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
+})();
+
+/* ---------- лента на категориите ---------- */
+(function(){
+  var r=$('#rail');
+  function by(d){r.scrollBy({left:d*Math.max(240,r.clientWidth*.6),behavior:motion?'smooth':'auto'})}
+  $('#rl').addEventListener('click',function(){by(-1)});$('#rr').addEventListener('click',function(){by(1)});
+})();
+
+/* ---------- Каталог: табове и филтър с FLIP ---------- */
+var tabsEl=$('#tabs'),ind=$('#ind');
+function placeInd(){
+  var t=$('.tab[aria-pressed=true]',tabsEl);if(!t||t.offsetWidth===0)return;
+  ind.style.setProperty('--x',t.offsetLeft+'px');ind.style.setProperty('--w',t.offsetWidth+'px');
+}
+var filtering=false;
+function slots(){var i=0;$$('.mc').forEach(function(c){if(!c.hidden){c.setAttribute('data-s',i%5);i++}})}
+tabsEl.addEventListener('click',function(e){
+  var t=e.target.closest('.tab');if(!t||filtering)return;
+  var cat=t.getAttribute('data-c');
+  $$('.tab',tabsEl).forEach(function(x){x.setAttribute('aria-pressed',x===t)});placeInd();
+  var items=$$('.mc'),want=items.filter(function(c){return cat==='Всички'||c.getAttribute('data-cat')===cat});
+  var leaving=items.filter(function(c){return !c.hidden&&want.indexOf(c)<0});
+  roll($('#cnt'),String(want.length));
+  if(!motion){items.forEach(function(c){c.hidden=want.indexOf(c)<0});slots();return}
+  filtering=true;
+  var first=new Map();items.forEach(function(c){if(!c.hidden)first.set(c,c.getBoundingClientRect())});
+  Promise.all(leaving.map(function(c){return c.animate([{opacity:1},{opacity:0}],{duration:ms(160),fill:'forwards'}).finished.catch(function(){})})).then(function(){
+    items.forEach(function(c){c.getAnimations().forEach(function(a){a.cancel()});c.hidden=want.indexOf(c)<0});
+    slots();
+    var n=0;
+    want.forEach(function(c){
+      var f=first.get(c),l=c.getBoundingClientRect();
+      if(f&&Math.abs(f.width-l.width)<3&&Math.abs(f.height-l.height)<3){
+        var dx=f.left-l.left,dy=f.top-l.top;
+        if(Math.abs(dx)>1||Math.abs(dy)>1)c.animate([{transform:'translate('+dx+'px,'+dy+'px)'},{transform:'none'}],{duration:ms(520),easing:EASE});
+      }else{
+        c.animate([{opacity:0,transform:'translateY(20px)'},{opacity:1,transform:'none'}],{duration:ms(560),delay:ms(n*50),easing:EASE,fill:'backwards'});n++;
+      }
+    });
+    return sleep(ms(620));
+  }).then(function(){filtering=false});
+});
+
+/* ---------- контроли ---------- */
+var PALN=[['A','Нощна','#0E0E0C'],['B','Шопска','#FFFFFF'],['C','Билки','#F4F6F1'],['D','Музей','#E9E9E6'],['E','Цвекло','#F7F5F6']];
+$('#c-pal').innerHTML=PALN.map(function(p){return '<button class="chip" type="button" data-v="'+p[0]+'" aria-pressed="'+(p[0]==='D')+'"><i class="sw" style="background:'+p[2]+'"></i>'+p[0]+'</button>'}).join('');
+function group(id,fn){$(id).addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;$$('.chip',$(id)).forEach(function(c){c.setAttribute('aria-pressed',c===b)});fn(b.getAttribute('data-v'))})}
+group('#c-pal',function(v){root.setAttribute('data-pal',v)});
+group('#c-font',function(v){if(v==='1')root.removeAttribute('data-font');else root.setAttribute('data-font',v);dirty=true;setTimeout(placeInd,50)});
+group('#c-speed',function(v){K=parseFloat(v);root.style.setProperty('--k',K)});
+group('#c-view',function(v){go(v)});
+function setMotion(on){motion=on;root.setAttribute('data-motion',on?'on':'off');var b=$('#c-motion');b.setAttribute('aria-pressed',on);b.textContent=on?'Включено':'Изключено';replay();dirty=true}
+$('#c-motion').addEventListener('click',function(){setMotion(!motion)});
+$('#c-replay').addEventListener('click',function(){window.scrollTo(0,0);replay()});
+$('#ctl-tg').addEventListener('click',function(){var c=$('#ctl'),o=c.classList.toggle('open');$('#ctl-tg').setAttribute('aria-expanded',o);$('#ctl-tg').textContent=o?'▾':'▴'});
+
+
+/* ---------- Вход / Регистрация ---------- */
+(function(){
+  var form=$('#auth-form'),note=$('#auth-note');
+  function setMode(m){
+    $$('.auth-tab').forEach(function(t){var on=t.getAttribute('data-m')===m;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1});
+    form.setAttribute('aria-labelledby',m==='in'?'tab-in':'tab-up');
+    var nm=$('#f-name'),was=nm.hidden;nm.hidden=m!=='up';
+    if(motion&&was&&!nm.hidden)nm.animate([{opacity:0,transform:'translateY(12px)'},{opacity:1,transform:'none'}],{duration:ms(450),easing:EASE});
+    $('#auth-go').textContent=m==='in'?'Влез':'Създай профил';
+    $('#alt-q').textContent=m==='in'?'Нямаш профил?':'Вече имаш профил?';
+    $('#alt-b').textContent=m==='in'?'Регистрация':'Вход';
+    $('#alt-b').setAttribute('data-m',m==='in'?'up':'in');
+    $('#f-pass').setAttribute('autocomplete',m==='in'?'current-password':'new-password');
+    note.textContent='';
+    var h=$('#auth-h');h.classList.remove('sp','in');
+    h.innerHTML=m==='in'?'Добре дошъл <em>отново</em>':'Седни <em>на масата</em>';split(h);
+    if(motion){void h.offsetWidth;requestAnimationFrame(function(){h.classList.add('in')})}
+  }
+  $('.auth-tabs').addEventListener('click',function(e){var t=e.target.closest('.auth-tab');if(t)setMode(t.getAttribute('data-m'))});
+  $('.auth-tabs').addEventListener('keydown',function(e){
+    if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+    var m=$('.auth-tab[aria-selected=true]').getAttribute('data-m')==='in'?'up':'in';setMode(m);$('#tab-'+m).focus();
+  });
+  $('#alt-b').addEventListener('click',function(){var m=this.getAttribute('data-m')||'up';setMode(m);$('#tab-'+m).focus()});
+  form.addEventListener('submit',function(e){e.preventDefault();note.textContent='Това е макет: формата не изпраща данни.'});
+})();
+
+/* ---------- старт ---------- */
+var h0=location.hash.slice(1);if(!LABEL[h0])h0='home';
+setMotion(motion);
+setView(h0);
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){placeInd()})}
+})();
+</script>
+
+</body></html>
