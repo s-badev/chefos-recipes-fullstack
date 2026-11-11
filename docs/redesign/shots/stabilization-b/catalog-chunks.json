@@ -1,0 +1,18 @@
+{
+  "before": {
+    "tip": "3f20d0c",
+    "pageAsset": "static/chunks/app/catalog/(list)/page-4d67d23674cd0da5.js",
+    "pageAssetBytes": 37999,
+    "nextBuildRouteSizeKB": 10.1,
+    "nextBuildFirstLoadKB": 121
+  },
+  "after": {
+    "tip": "629c689",
+    "pageAsset": "static/chunks/app/catalog/(list)/page-cd63439f613eb550.js",
+    "pageAssetBytes": 14889,
+    "pageAssetGzipBytes": 5338,
+    "nextBuildRouteSizeKB": 5.33,
+    "nextBuildFirstLoadKB": 116
+  },
+  "method": "Next build:check route table and fs.stat of the page asset from .next-check/app-build-manifest.json; raw asset bytes do not include shared framework chunks."
+}
