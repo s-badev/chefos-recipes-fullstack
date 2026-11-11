@@ -2,18 +2,22 @@ import Image from "next/image";
 import Link from "next/link";
 import { recipes } from "../data/recipes";
 import { webImageSrc } from "../lib/images";
+import { neuterCount, summarizeCategories } from "../lib/categories";
 import { traditionQuote } from "../lib/landing-content";
 import { weeklyRecipe } from "../lib/weekly";
+import { CategoryRail } from "./category-rail";
 import { EditorialTitle, SplitWords } from "./split-heading";
 
 export const revalidate = 3600;
-const categories = ["Бързи ястия", "Десерти", "Основни", "Салати", "Супи", "Тестени"];
+const capitalize = (word: string) => word.charAt(0).toLocaleUpperCase("bg-BG") + word.slice(1);
 
 export default function HomePage() {
   const weekly = weeklyRecipe(recipes);
   const recipe = weekly.recipe;
   const index = recipes.slice(0, 8);
   const [quoteBefore, quoteAfter] = traditionQuote.split("вкус");
+  const categories = summarizeCategories(recipes);
+  const countWord = neuterCount(categories.length);
 
   return <>
     <section className="hero" aria-labelledby="landing-title" data-zoom>
@@ -22,7 +26,7 @@ export default function HomePage() {
       </div></div>
       <div className="hero-in"><div className="wrap">
         <h1 id="landing-title" data-split><SplitWords text="Българска" /> <em><SplitWords text="трапеза" start={1}/></em></h1>
-        <div className="hero-sub" data-r style={{ "--dl": "700ms" } as React.CSSProperties}>
+        <div className="hero-sub">
           <span className="eyebrow">Nº 01–24 · домашни рецепти</span>
           <a className="eyebrow" href="#weekly">Листни <span className="arrow" aria-hidden="true">↓</span></a>
         </div>
@@ -31,32 +35,24 @@ export default function HomePage() {
 
     <section className="cover" id="weekly" aria-labelledby="cover-title">
       <div className="wrap"><div className="cover-grid">
-        <span className="cover-n" aria-hidden="true">Nº {weekly.number}</span>
+        <div className="cover-side">
+          <span className="cover-n" aria-hidden="true">Nº {weekly.number}</span>
+          <div className="cover-text">
+            <p className="eyebrow" data-r>Рецепта на седмицата</p>
+            <h2 className="cover-t" id="cover-title" data-split><EditorialTitle text={recipe.title}/></h2>
+            <div data-r><Link className="btn" href={`/catalog/${recipe.slug}`}>Виж рецептата →</Link></div>
+          </div>
+        </div>
         <Link className="cover-photo" href={`/catalog/${recipe.slug}`} data-mask aria-label={recipe.title}>
           <span className="mk"><Image src={webImageSrc(recipe.imageSrc!)} alt={recipe.imageAlt ?? recipe.title} className="ph" fill sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1360px) 66vw, 870px" /></span>
         </Link>
-        <div className="cover-text">
-          <p className="eyebrow" data-r>Рецепта на седмицата</p>
-          <h2 className="cover-t" id="cover-title" data-split><EditorialTitle text={recipe.title}/></h2>
-          <div data-r><Link className="btn" href={`/catalog/${recipe.slug}`}>Виж рецептата →</Link></div>
-        </div>
       </div></div>
     </section>
 
     <section aria-labelledby="rail-title">
-      <div className="wrap rail-head">
-        <h2 className="sec-h" id="rail-title" data-split><SplitWords text="Шест"/> <em><SplitWords text="ястия," start={1}/></em> <SplitWords text="шест настроения" start={2}/></h2>
-        <div className="arrows"><button className="circ" type="button" data-rail-dir="-1" aria-controls="category-rail" aria-label="Назад по категориите">←</button><button className="circ" type="button" data-rail-dir="1" aria-controls="category-rail" aria-label="Напред по категориите">→</button></div>
-      </div>
-      <div className="rail" id="category-rail" tabIndex={0} role="group" aria-label="Категории, превъртане настрани">
-        {categories.map(category => {
-          const items = recipes.filter(item => item.category === category);
-          return <Link className="rc" href="/catalog" key={category}>
-            <Image src={webImageSrc(items[0].imageSrc!)} alt="" className="ph" fill sizes="(max-width: 958px) 230px, (max-width: 1416px) 24vw, 340px"/>
-            <span className="rc-l"><b>{category}</b><span>{String(items.length).padStart(2, "0")} рецепти →</span></span>
-          </Link>;
-        })}
-      </div>
+      <CategoryRail categories={categories} heading={
+        <h2 className="sec-h" id="rail-title" data-split><SplitWords text={capitalize(countWord)}/> <em><SplitWords text="ястия," start={1}/></em> <SplitWords text={`${countWord} настроения`} start={2}/></h2>
+      }/>
     </section>
 
     <section className="quote" aria-labelledby="tradition-title">
