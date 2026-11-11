@@ -1,0 +1,182 @@
+{
+  "report": [
+    {
+      "route": "/",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 1912
+      }
+    },
+    {
+      "route": "/catalog",
+      "width": 390,
+      "overflow": 0,
+      "h1": "36px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 1348
+      }
+    },
+    {
+      "route": "/catalog/shopska-salata",
+      "width": 390,
+      "overflow": 0,
+      "h1": "48px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 44
+      }
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "overflow": 0,
+      "h1": "36px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 40
+      }
+    },
+    {
+      "route": "/login",
+      "width": 390,
+      "overflow": 0,
+      "h1": "30px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 32
+      }
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "overflow": 0,
+      "h1": "88.5176px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 52
+      }
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 72
+      }
+    },
+    {
+      "route": "/catalog",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "46px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 304
+      }
+    },
+    {
+      "route": "/catalog/shopska-salata",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "56px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 36
+      }
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "43.2px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 36
+      }
+    },
+    {
+      "route": "/login",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "40px",
+      "bodyFont": "Onest, \"Onest Fallback\", system-ui, sans-serif",
+      "performance": {
+        "cls": 0,
+        "lcp": 36
+      }
+    }
+  ],
+  "checks": {
+    "skipFocus": true,
+    "skipDestination": true,
+    "menuOpen": true,
+    "menuFocusTrap": true,
+    "menuEscape": true,
+    "keyboardFocusVisible": true,
+    "focusFailures": [],
+    "railReachable": true,
+    "railKeyboardScroll": true,
+    "reduced": {
+      "mode": "off",
+      "animation": "none",
+      "hidden": false
+    },
+    "noJS": {
+      "heading": "Българска трапеза",
+      "categories": 6,
+      "rows": 8,
+      "hidden": false,
+      "animation": "none",
+      "nav": "flex",
+      "overflow": 0
+    },
+    "catalogCardsBefore": 8,
+    "search": {
+      "cards": 1,
+      "title": "Таратор"
+    },
+    "print": {
+      "background": "rgb(255, 255, 255)",
+      "color": "rgb(17, 24, 39)",
+      "header": "none",
+      "footer": "none",
+      "ingredients": true,
+      "sections": 3
+    },
+    "/register": {
+      "status": 200,
+      "location": null
+    },
+    "/profile": {
+      "status": 307,
+      "location": "/login"
+    },
+    "/admin": {
+      "status": 307,
+      "location": "/login"
+    },
+    "/favorites": {
+      "status": 307,
+      "location": "/login"
+    }
+  },
+  "errors": [
+    "404 http://127.0.0.1:3020/favicon.ico"
+  ]
+}

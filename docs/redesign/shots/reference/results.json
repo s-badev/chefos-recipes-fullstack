@@ -1,0 +1,89 @@
+{
+  "report": [
+    {
+      "route": "home",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "catalog",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "recipe",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "about",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "auth",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "spec",
+      "width": 1440,
+      "overflow": 0,
+      "h1": "134.391px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "home",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "catalog",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "recipe",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "about",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "auth",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    },
+    {
+      "route": "spec",
+      "width": 390,
+      "overflow": 0,
+      "h1": "62.72px",
+      "bodyFont": "Onest, system-ui, sans-serif"
+    }
+  ],
+  "errors": []
+}
