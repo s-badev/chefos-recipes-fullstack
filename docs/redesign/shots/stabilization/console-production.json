@@ -1,0 +1,166 @@
+[
+  {
+    "width": 390,
+    "path": "/",
+    "final": "/",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/catalog",
+    "final": "/catalog",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/catalog/shopska-salata",
+    "final": "/catalog/shopska-salata",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/about",
+    "final": "/about",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/login",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/register",
+    "final": "/register",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/favorites",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/profile",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/admin",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 390,
+    "path": "/catalog/tazi-recepta-ne-sashtestvuva",
+    "final": "/catalog/tazi-recepta-ne-sashtestvuva",
+    "status": 404,
+    "issues": [],
+    "expected": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/catalog/tazi-recepta-ne-sashtestvuva"
+    ]
+  },
+  {
+    "width": 1440,
+    "path": "/",
+    "final": "/",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/catalog",
+    "final": "/catalog",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/catalog/shopska-salata",
+    "final": "/catalog/shopska-salata",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/about",
+    "final": "/about",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/login",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/register",
+    "final": "/register",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/favorites",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/profile",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/admin",
+    "final": "/login",
+    "status": 200,
+    "issues": [],
+    "expected": []
+  },
+  {
+    "width": 1440,
+    "path": "/catalog/tazi-recepta-ne-sashtestvuva",
+    "final": "/catalog/tazi-recepta-ne-sashtestvuva",
+    "status": 404,
+    "issues": [],
+    "expected": [
+      "error: Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/catalog/tazi-recepta-ne-sashtestvuva"
+    ]
+  }
+]
