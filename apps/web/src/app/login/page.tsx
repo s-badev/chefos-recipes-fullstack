@@ -6,7 +6,7 @@ import { getCurrentUser } from "../../server/auth/session";
 
 export const metadata: Metadata = {
   title: "Вход | Chefo's Recipes",
-  description: "Екран за вход в Chefo's Recipes."
+  description: "Влез в профила си в Chefo's Recipes и се върни към любимите си рецепти."
 };
 
 type LoginPageProps = {

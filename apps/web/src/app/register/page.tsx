@@ -6,7 +6,7 @@ import { getCurrentUser } from "../../server/auth/session";
 
 export const metadata: Metadata = {
   title: "Регистрация | Chefo's Recipes",
-  description: "Екран за регистрация в Chefo's Recipes."
+  description: "Създай профил в Chefo's Recipes и пази любимите си рецепти на едно място."
 };
 
 type RegisterPageProps = {
@@ -67,7 +67,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 },
                 {
                   title: "По-лесен избор",
-                  text: "Връщай се към рецепти без да ги търсиш отначало."
+                  text: "Връщай се към рецептите, без да ги търсиш отначало."
                 }
               ].map((item, index) => (
                 <div
@@ -88,7 +88,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             </div>
 
             <p className="rounded-none border border-white/24 bg-ink p-3.5 text-sm font-bold leading-6 text-neutral-50">
-              Chefo&apos;s Recipes е създаден за спокойно домашно готвене - без излишно ровене.
+              Chefo&apos;s Recipes е създаден за спокойно домашно готвене – без излишно ровене.
             </p>
           </div>
         </aside>

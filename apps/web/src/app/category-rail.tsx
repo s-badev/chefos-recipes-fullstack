@@ -6,6 +6,7 @@ import { useRef, type ReactNode } from "react";
 import { useRailScroll } from "../hooks/use-rail-scroll";
 import { webImageSrc } from "../lib/images";
 import { categoryHref, type CategorySummary } from "../lib/categories";
+import { recipeCountLabel } from "../lib/format";
 
 const pad = (value: number) => String(value).padStart(2, "0");
 
@@ -41,7 +42,7 @@ export function CategoryRail({ categories, heading }: { categories: CategorySumm
       {categories.map(category => (
         <Link className="rc" href={categoryHref(category.name)} key={category.name}>
           {category.imageSrc ? <Image src={webImageSrc(category.imageSrc)} alt="" className="ph" fill sizes="(max-width: 958px) 230px, (max-width: 1416px) 24vw, 340px" /> : null}
-          <span className="rc-l"><b>{category.name}</b><span>{pad(category.recipeCount)} рецепти →</span></span>
+          <span className="rc-l"><b>{category.name}</b><span>{recipeCountLabel(category.recipeCount, true)} →</span></span>
         </Link>
       ))}
     </div>

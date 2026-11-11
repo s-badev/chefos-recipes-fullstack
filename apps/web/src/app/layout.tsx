@@ -32,7 +32,7 @@ const motionBootScript = `(function(){var d=document.documentElement;d.dataset.m
 
 export const metadata: Metadata = {
   title: "Chefo's Recipes",
-  description: "Топъл каталог с български рецепти за всеки ден."
+  description: "Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден."
 };
 
 export default function RootLayout({

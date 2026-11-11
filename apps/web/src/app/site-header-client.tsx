@@ -72,13 +72,17 @@ function getGreetingName(currentUser: CurrentUser) {
     return firstName;
   }
 
+  if (currentUser.role === "admin") {
+    return "администратор";
+  }
+
   const emailPrefix = currentUser.email.split("@")[0]?.trim();
 
   if (emailPrefix) {
     return emailPrefix;
   }
 
-  return currentUser.role === "admin" ? "Admin" : "приятел";
+  return "приятел";
 }
 
 export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClientProps) {

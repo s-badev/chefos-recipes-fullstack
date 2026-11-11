@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { RecipeCard } from "../recipe-card";
+import { foundRecipesLabel } from "../../lib/format";
 import { recipes as curatedRecipes, type Recipe } from "./recipes";
 
 const allCategoriesLabel = "Всички";
@@ -94,7 +95,7 @@ export function RecipeCatalog({
             <h2 className="mt-1 text-2xl font-bold text-neutral-950">Избери категория</h2>
           </div>
           <p className="inline-flex w-fit rounded-none border border-brand-100 bg-bg px-3.5 py-2 text-sm font-bold text-ink ">
-            {filteredRecipes.length} намерени рецепти
+            {foundRecipesLabel(filteredRecipes.length)}
           </p>
         </div>
 
