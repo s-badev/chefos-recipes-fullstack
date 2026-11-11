@@ -155,7 +155,7 @@ img{display:block;max-width:100%}
 .ftr a{min-height:44px;display:inline-flex;align-items:center}
 
 /* ---------- Каталог ---------- */
-@media(max-width:820px){.cover-grid{display:block}.cover-photo{aspect-ratio:4/5}.cover-text{margin-top:24px;position:relative;padding-bottom:0}.cover-n{top:-.18em;font-size:min(calc(11rem*var(--fs)),34vw)}.idx{display:block}.idx-side{position:static;margin-bottom:24px}.rn-box{font-size:calc(7rem*var(--fs))}.row{grid-template-columns:40px minmax(0,1fr)}.row-m{grid-column:2;text-align:left;white-space:normal}}
+@media(max-width:820px){.cover-grid{display:block}.cover-photo{aspect-ratio:4/5}.cover-text{margin-top:24px;position:relative;padding-bottom:0}.cover-n{top:-.18em;font-size:min(calc(11rem*var(--fs)),34vw)}.idx{display:block}.idx-side{position:static;margin-bottom:24px}.rn-box{font-size:calc(7rem*var(--fs))}.row{grid-template-columns:40px minmax(0,1fr)}.row-m{display:none}}
 [data-motion=off] *,[data-motion=off] *::before,[data-motion=off] *::after{animation:none!important;transition:none!important}
 html:not([data-motion]) *,html:not([data-motion]) *::before,html:not([data-motion]) *::after{animation:none!important;transition:none!important}
 html:not([data-motion]) .hdr{background:var(--bg);color:var(--ink);border-bottom-color:var(--line)}

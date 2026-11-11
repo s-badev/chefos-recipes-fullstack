@@ -51,13 +51,13 @@ export default async function AdminPage() {
 
       <div className="flex flex-wrap gap-3">
         <Link
-          className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition hover:bg-brand-700"
+          className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
           href="/admin/recipes/new"
         >
           Добави рецепта
         </Link>
         <Link
-          className="ui-button rounded-none border border-neutral-300 bg-white px-6 py-3 text-base font-black text-neutral-800  transition hover:border-brand-300 hover:text-brand-800"
+          className="ui-button rounded-none border border-neutral-300 bg-white px-6 py-3 text-base font-black text-neutral-800  transition-transform hover:border-brand-300 hover:text-brand-800"
           href="/catalog"
         >
           Виж каталога
@@ -67,7 +67,7 @@ export default async function AdminPage() {
       <div className="grid gap-5 md:grid-cols-3 xl:gap-8">
         {stats.map((stat) => (
           <div className="editorial-card rounded-none p-6" key={stat.label}>
-            <p className="text-base font-black text-neutral-500">{stat.label}</p>
+            <p className="text-base font-black text-muted">{stat.label}</p>
             <p className="mt-3 text-4xl font-bold text-neutral-950">{stat.value}</p>
           </div>
         ))}
@@ -88,7 +88,7 @@ export default async function AdminPage() {
 
           {recipePage.items.map((recipe) => (
             <div
-              className="admin-row grid gap-5 rounded-none border border-neutral-200/80 bg-white/78 p-5 transition hover:border-brand-200 hover:bg-bg sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
+              className="admin-row grid gap-5 rounded-none border border-neutral-200/80 bg-white/78 p-5 transition-transform hover:border-brand-200 hover:bg-bg sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
               key={recipe.slug}
             >
               <div className="min-w-0">
@@ -118,7 +118,7 @@ export default async function AdminPage() {
 
               <div className="flex flex-wrap items-center gap-2.5 self-center lg:justify-end lg:justify-self-end">
                 <Link
-                  className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-neutral-200 bg-white px-5 text-base font-semibold leading-none text-neutral-700  transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
+                  className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-neutral-200 bg-white px-5 text-base font-semibold leading-none text-neutral-700  transition-transform hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
                   href={`/admin/recipes/${recipe.slug}/edit`}
                 >
                   Редактирай
@@ -126,7 +126,7 @@ export default async function AdminPage() {
                 <form action={deleteRecipeAction} className="flex items-center">
                   <input name="slug" type="hidden" value={recipe.slug} />
                   <button
-                    className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-red-200 bg-bg px-5 text-base font-semibold leading-none text-red-700  transition hover:border-red-300 hover:bg-bg hover:text-red-800"
+                    className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-red-200 bg-bg px-5 text-base font-semibold leading-none text-red-700  transition-transform hover:border-red-300 hover:bg-bg hover:text-red-800"
                     type="submit"
                   >
                     Изтрий
@@ -138,7 +138,7 @@ export default async function AdminPage() {
 
           <div className="flex justify-center border-t border-neutral-200/80 px-1 pt-5">
             <Link
-              className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition hover:bg-brand-700"
+              className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
               href="/admin/recipes/new"
             >
               Добави рецепта

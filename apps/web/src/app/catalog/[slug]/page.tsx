@@ -75,7 +75,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           Тази рецепта не е налична в момента. Върни се към каталога и избери друга.
         </p>
         <Link
-          className="ui-button mt-6 inline-flex rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition hover:bg-brand-700"
+          className="ui-button mt-6 inline-flex rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
           href="/catalog"
         >
           Обратно към каталога
@@ -88,7 +88,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
 
   return (
     <article className="recipe-print-page page-shell space-y-10 pb-4">
-      <Link className="no-print inline-flex rounded-none px-1 text-base font-black text-brand-700 transition hover:text-brand-900 focus-visible:ring-4 focus-visible:ring-brand-100" href="/catalog">
+      <Link className="no-print inline-flex rounded-none px-1 text-base font-black text-brand-700 transition-transform hover:text-brand-900 focus-visible:ring-4 focus-visible:ring-brand-100" href="/catalog">
         Обратно към каталога
       </Link>
 
@@ -153,7 +153,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 { label: "Трудност", value: recipe.difficulty }
               ].map((item) => (
                 <div className="detail-stat-tile rounded-none border border-transparent bg-bg p-4" key={item.label}>
-                  <p className="text-sm font-black uppercase tracking-[0.12em] text-neutral-500">
+                  <p className="text-sm font-black uppercase tracking-[0.12em] text-muted">
                     {item.label}
                   </p>
                   <p className="mt-1 text-xl font-bold text-neutral-950">{item.value}</p>
@@ -168,7 +168,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <h2 className="text-3xl font-bold text-neutral-950">Бързи действия</h2>
             <div className="mt-5 grid gap-3">
               <Link
-                className="quick-action flex items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-base font-black text-ink transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
+                className="quick-action flex items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-base font-black text-ink transition-transform hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
                 href="/catalog"
               >
                 <span>Виж каталога</span>
@@ -194,7 +194,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                   </span>
                 </button>
               </form>
-              <PrintRecipeButton className="quick-action flex w-full items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-left text-base font-black text-ink transition hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
+              <PrintRecipeButton className="quick-action flex w-full items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-left text-base font-black text-ink transition-transform hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
             </div>
           </div>
         </aside>

@@ -36,7 +36,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
           Няма рецепта с този адрес. Върни се към админ панела и избери рецепта от списъка.
         </p>
         <Link
-          className="mt-6 inline-flex rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition hover:bg-brand-700"
+          className="mt-6 inline-flex rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition-transform hover:bg-brand-700"
           href="/admin"
         >
           Обратно към админ панела
@@ -69,7 +69,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Заглавие
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.title}
             id="title"
             name="title"
@@ -83,7 +83,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Категория
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.category}
             id="category"
             name="category"
@@ -97,7 +97,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Описание
           </label>
           <textarea
-            className="mt-2 min-h-32 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 min-h-32 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.description}
             id="description"
             name="description"
@@ -110,7 +110,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Време за подготовка
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.prepTimeMinutes}
             id="prepTime"
             name="prepTime"
@@ -123,7 +123,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Време за готвене
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.cookTimeMinutes}
             id="cookTime"
             name="cookTime"
@@ -136,7 +136,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
             Порции
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             defaultValue={recipe.servings}
             id="servings"
             name="servings"
@@ -146,7 +146,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
 
         <div className="flex items-end">
           <button
-            className="w-full rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition hover:bg-brand-700"
+            className="w-full rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition-transform hover:bg-brand-700"
             type="submit"
           >
             Запази промените

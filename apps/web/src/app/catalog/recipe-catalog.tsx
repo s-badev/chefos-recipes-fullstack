@@ -75,7 +75,7 @@ export function RecipeCatalog({
             Търсене
           </label>
           <input
-            className="catalog-search-input mt-2.5 w-full rounded-none border border-neutral-200 bg-white px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+            className="catalog-search-input mt-2.5 w-full rounded-none border border-neutral-200 bg-white px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
             id="recipe-search"
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Търси рецепта, категория или таг..."
@@ -138,7 +138,7 @@ export function RecipeCatalog({
 
           <div className="flex flex-col gap-3 rounded-none border border-neutral-200 bg-white/84 p-4  sm:flex-row sm:items-center sm:justify-between">
             <button
-              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition-transform enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage <= 1}
               onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
               type="button"
@@ -149,7 +149,7 @@ export function RecipeCatalog({
               Страница {currentPage} от {totalPages}
             </p>
             <button
-              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition-transform enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
               type="button"

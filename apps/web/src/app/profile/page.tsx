@@ -55,7 +55,7 @@ export default async function ProfilePage() {
             любими идеи.
           </p>
           <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition hover:bg-brand-700"
+            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
             href="/favorites"
           >
             Виж любимите

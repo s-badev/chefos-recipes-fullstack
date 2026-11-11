@@ -34,7 +34,7 @@ export default async function NewRecipePage() {
             Заглавие
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="title"
             name="title"
             placeholder="Например: Домашна мусака"
@@ -48,7 +48,7 @@ export default async function NewRecipePage() {
             Категория
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="category"
             name="category"
             placeholder="Основни"
@@ -62,7 +62,7 @@ export default async function NewRecipePage() {
             Описание
           </label>
           <textarea
-            className="mt-2 min-h-32 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 min-h-32 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="description"
             name="description"
             placeholder="Кратко описание на рецептата"
@@ -75,7 +75,7 @@ export default async function NewRecipePage() {
             Време за подготовка
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="prepTime"
             name="prepTime"
             placeholder="20"
@@ -88,7 +88,7 @@ export default async function NewRecipePage() {
             Време за готвене
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="cookTime"
             name="cookTime"
             placeholder="45"
@@ -101,7 +101,7 @@ export default async function NewRecipePage() {
             Порции
           </label>
           <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
             id="servings"
             name="servings"
             placeholder="4"
@@ -111,7 +111,7 @@ export default async function NewRecipePage() {
 
         <div className="flex items-end">
           <button
-            className="w-full rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition hover:bg-brand-700"
+            className="w-full rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition-transform hover:bg-brand-700"
             type="submit"
           >
             Запази рецепта

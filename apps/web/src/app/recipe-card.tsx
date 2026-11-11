@@ -140,7 +140,7 @@ export function RecipeCard({
       />
       <div className="relative overflow-hidden">
         {recipe.imageSrc ? (
-          <div className="relative h-40 overflow-hidden bg-neutral-100 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
+          <div className="relative h-40 overflow-hidden bg-neutral-100 transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
             <Image
               alt={imageAlt}
               className="object-cover"
@@ -154,7 +154,7 @@ export function RecipeCard({
           <div
             aria-label={imageAlt}
             className={[
-              "recipe-photo h-40 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48",
+              "recipe-photo h-40 transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48",
               getRecipeVisualClass(recipe.category, visualIndex)
             ].join(" ")}
             role="img"
@@ -179,7 +179,7 @@ export function RecipeCard({
             <button
               aria-label={favoriteAriaLabel}
               className={[
-                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg/95 px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
+                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg/95 px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition-transform hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
                 isFavorited ? "border-line" : "border-line"
               ].join(" ")}
               type="submit"
@@ -192,7 +192,7 @@ export function RecipeCard({
 
       <div className="flex flex-1 flex-col p-4">
         <div className="grid min-h-[8rem] grid-rows-[3.25rem_3.75rem] gap-2.5">
-          <h3 className="line-clamp-2 self-start text-xl font-bold leading-tight text-neutral-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
+          <h3 className="line-clamp-2 self-start text-xl font-bold leading-tight text-neutral-950 transition-transform group-hover:text-brand-800 xl:text-[1.25rem]">
             {recipe.title}
           </h3>
           <p className="line-clamp-2 self-start text-sm font-medium leading-6 text-ink">

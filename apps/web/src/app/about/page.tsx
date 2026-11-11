@@ -133,7 +133,7 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {capabilityCards.map((item) => (
             <article
-              className="about-mini-card rounded-none border border-brand-100 bg-bg/88 p-5  transition hover:border-brand-200 hover:bg-bg"
+              className="about-mini-card rounded-none border border-brand-100 bg-bg/88 p-5  transition-transform hover:border-brand-200 hover:bg-bg"
               key={item.title}
             >
               <div className="flex items-start gap-3">
@@ -201,7 +201,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <Link
-              className="about-cta mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition hover:bg-brand-700"
+              className="about-cta mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
               href="/catalog"
             >
               Разгледай каталога

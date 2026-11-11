@@ -93,7 +93,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               </h2>
             </div>
             <Link
-              className="inline-flex rounded-none border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition hover:border-brand-400 hover:text-brand-900"
+              className="inline-flex rounded-none border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition-transform hover:border-brand-400 hover:text-brand-900"
               href="/register"
             >
               Регистрация
@@ -112,7 +112,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 Имейл
               </label>
               <input
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="email"
                 name="email"
                 placeholder="ime@example.com"
@@ -126,7 +126,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 Парола
               </label>
               <input
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="password"
                 name="password"
                 placeholder="Въведи парола"
@@ -136,7 +136,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </div>
 
             <button
-              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition hover:bg-brand-700"
+              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition-transform hover:bg-brand-700"
               type="submit"
             >
               Влез
@@ -145,7 +145,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <p className="mt-6 text-center text-base font-semibold leading-6 text-ink">
               Нямаш профил?{" "}
               <Link
-                className="font-black text-muted transition hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
+                className="font-black text-muted transition-transform hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
                 href="/register"
               >
                 Регистрация

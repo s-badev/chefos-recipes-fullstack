@@ -26,7 +26,7 @@ export default async function FavoritesPage() {
       </div>
 
       <Link
-        className="inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition hover:bg-brand-700"
+        className="inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
         href="/catalog"
       >
         Разгледай каталога
@@ -70,7 +70,7 @@ export default async function FavoritesPage() {
             Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.
           </p>
           <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition hover:bg-brand-700"
+            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
             href="/catalog"
           >
             Разгледай каталога
