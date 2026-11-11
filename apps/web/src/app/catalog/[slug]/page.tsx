@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { webImageSrc } from "../../../lib/images";
+import { formatCookTime } from "../../../lib/format";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findRecipeBySlug } from "../recipes";
@@ -134,7 +135,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <div className="mt-5 grid grid-cols-2 gap-4">
               {[
                 { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
-                { label: "Готвене", value: `${recipe.cookTimeMinutes} мин` },
+                { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes) },
                 { label: "Порции", value: recipe.servings },
                 { label: "Трудност", value: recipe.difficulty }
               ].map((item) => (

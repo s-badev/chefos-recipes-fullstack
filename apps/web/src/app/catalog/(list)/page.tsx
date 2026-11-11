@@ -5,7 +5,7 @@ import { getCurrentUserFavoriteSlugs } from "../../../server/favorites/service";
 import { listPublicCatalogRecipes } from "../../../server/recipes/service";
 
 export const metadata: Metadata = {
-  title: "Каталог с рецепти | Chefo’s Recipes",
+  title: "Каталог с рецепти | Chefo's Recipes",
   description: "Разгледай български рецепти по категория, време и трудност."
 };
 

@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
 import Image from "next/image";
 import { webImageSrc } from "../lib/images";
+import { formatCookTime } from "../lib/format";
 import Link from "next/link";
 import { addFavoriteAction, removeFavoriteAction } from "../server/favorites/actions";
 
@@ -125,7 +126,7 @@ export function RecipeCard({
   const redirectTo = favoriteRedirectTo ?? `/catalog/${recipe.slug}`;
   const metadata = [
     { icon: ClockIcon, value: `${recipe.prepTimeMinutes} мин` },
-    { icon: FlameIcon, value: `${recipe.cookTimeMinutes} мин` },
+    { icon: FlameIcon, value: formatCookTime(recipe.cookTimeMinutes) },
     { icon: UsersIcon, value: `${recipe.servings} порции` }
   ];
 
@@ -205,7 +206,7 @@ export function RecipeCard({
         </div>
 
         <div className="mt-auto flex min-h-[6.75rem] flex-col justify-start pt-3">
-          <div className="grid min-h-[3.25rem] grid-cols-[minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(max-content,1.2fr)] items-center gap-1 rounded-none border border-brand-100 bg-bg px-2 py-2.5 text-[0.66rem] font-black leading-none text-neutral-800   sm:px-2.5 sm:text-[0.7rem]">
+          <div className="grid min-h-[3.25rem] grid-cols-[minmax(0,0.9fr)_minmax(max-content,1fr)_minmax(max-content,1.2fr)] items-center gap-1 rounded-none border border-brand-100 bg-bg px-2 py-2.5 text-[0.66rem] font-black leading-none text-neutral-800   sm:px-2.5 sm:text-[0.7rem]">
             {metadata.map((item, index) => {
               const Icon = item.icon;
 

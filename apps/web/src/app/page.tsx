@@ -27,7 +27,7 @@ export default function HomePage() {
       <div className="hero-in"><div className="wrap">
         <h1 id="landing-title" data-split><SplitWords text="Българска" /> <em><SplitWords text="трапеза" start={1}/></em></h1>
         <div className="hero-sub">
-          <span className="eyebrow">Nº 01–24 · домашни рецепти</span>
+          <span className="eyebrow">Nº 01–{String(recipes.length).padStart(2, "0")} · подбрани рецепти</span>
           <a className="eyebrow" href="#weekly">Листни <span className="arrow" aria-hidden="true">↓</span></a>
         </div>
       </div></div>
