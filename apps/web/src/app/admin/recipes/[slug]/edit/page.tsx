@@ -54,7 +54,7 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
           </p>
           <h2 className="mt-2 text-4xl font-bold text-neutral-950 sm:text-5xl">Редактирай рецепта</h2>
           <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
-            Прегледай основната информация за "{recipe.title}" и обнови съдържанието в каталога.
+            Прегледай основната информация за „{recipe.title}“ и обнови съдържанието в каталога.
           </p>
         </div>
         <Link className="text-base font-bold text-brand-700 hover:text-brand-900" href="/admin">

@@ -83,12 +83,13 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
   useEffect(() => {
     const modal = dialog.current;
+    const toggle = menuButton.current;
     if (!modal) return;
     if (isMenuOpen) {
       modal.showModal();
       const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
-      return () => { document.body.style.overflow = previousOverflow; modal.close(); menuButton.current?.focus(); };
+      return () => { document.body.style.overflow = previousOverflow; modal.close(); toggle?.focus(); };
     }
     modal.close();
   }, [isMenuOpen]);
