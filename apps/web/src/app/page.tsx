@@ -3,6 +3,7 @@ import Link from "next/link";
 import { recipes } from "../data/recipes";
 import { webImageSrc } from "../lib/images";
 import { neuterCount, summarizeCategories } from "../lib/categories";
+import { formatTotalTime, servingsLabel } from "../lib/format";
 import { traditionQuote } from "../lib/landing-content";
 import { weeklyRecipe } from "../lib/weekly";
 import { CategoryRail } from "./category-rail";
@@ -35,13 +36,12 @@ export default function HomePage() {
 
     <section className="cover" id="weekly" aria-labelledby="cover-title">
       <div className="wrap"><div className="cover-grid">
-        <div className="cover-side">
-          <span className="cover-n" aria-hidden="true">Nº {weekly.number}</span>
-          <div className="cover-text">
-            <p className="eyebrow" data-r>Рецепта на седмицата</p>
-            <h2 className="cover-t" id="cover-title" data-split><EditorialTitle text={recipe.title}/></h2>
-            <div data-r><Link className="btn" href={`/catalog/${recipe.slug}`}>Виж рецептата →</Link></div>
-          </div>
+        <div className="cover-text">
+          <p className="eyebrow" data-r>Рецепта на седмицата</p>
+          <h2 className="cover-t" id="cover-title" data-split><EditorialTitle text={recipe.title}/></h2>
+          <p className="cover-d" data-r>{recipe.description}</p>
+          <p className="cover-m" data-r>{recipe.category} · {formatTotalTime(recipe.prepTimeMinutes, recipe.cookTimeMinutes)} · {servingsLabel(recipe.servings)}</p>
+          <div data-r><Link className="btn" href={`/catalog/${recipe.slug}`}>Виж рецептата →</Link></div>
         </div>
         <Link className="cover-photo" href={`/catalog/${recipe.slug}`} data-mask aria-label={recipe.title}>
           <span className="mk"><Image src={webImageSrc(recipe.imageSrc!)} alt={recipe.imageAlt ?? recipe.title} className="ph" fill sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1360px) 66vw, 870px" /></span>
@@ -63,12 +63,16 @@ export default function HomePage() {
     </section>
 
     <section className="wrap idx" aria-labelledby="index-title">
-      <div className="idx-side"><h2 className="eyebrow" id="index-title">Съдържание</h2><div className="rn-box" id="index-counter" aria-hidden="true"><span className="rn">Nº 01</span></div></div>
-      <div><ul className="idx-list" id="recipe-index">
-        {index.map((item, i) => <li key={item.slug}><Link className="row" href={`/catalog/${item.slug}`} data-n={String(i + 1).padStart(2, "0")} data-preview={item.slug}>
-          <span className="row-n">Nº {String(i + 1).padStart(2, "0")}</span><span className="row-t">{item.title}</span><span className="row-m">{item.category} · {item.prepTimeMinutes + item.cookTimeMinutes} мин</span>
+      <div className="idx-side">
+        <p className="eyebrow">Съдържание</p>
+        <h2 className="sec-h idx-h" id="index-title" data-split><SplitWords text="Какво да сготвиш"/> <em><SplitWords text="днес" start={3}/></em></h2>
+        <div data-r><Link className="btn solid" href="/catalog">Всички рецепти →</Link></div>
+      </div>
+      <ul className="idx-list" id="recipe-index">
+        {index.map((item, i) => <li key={item.slug}><Link className="row" href={`/catalog/${item.slug}`} data-preview={item.slug}>
+          <span className="row-n">Nº {String(i + 1).padStart(2, "0")}</span><span className="row-t">{item.title}</span><span className="row-m">{item.category} · {formatTotalTime(item.prepTimeMinutes, item.cookTimeMinutes)}</span>
         </Link></li>)}
-      </ul><div className="more" data-r><Link className="btn solid" href="/catalog">Всички рецепти →</Link></div></div>
+      </ul>
     </section>
     <div className="preview" id="recipe-preview" aria-hidden="true">
       {index.map(item => <Image key={item.slug} data-preview-image={item.slug} hidden src={webImageSrc(item.imageSrc!)} alt="" width={300} height={225} sizes="300px"/>)}

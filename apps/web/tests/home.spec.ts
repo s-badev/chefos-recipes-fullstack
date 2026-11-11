@@ -58,6 +58,57 @@ test("category rail: count from data, arrows switch off at the ends, Home/End ke
   await expect(firstTile).toHaveAttribute("href", /\/catalog\?category=/);
 });
 
+test("cover: no big numeral; title, description, meta line and button beside the photo", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator(".cover-n")).toHaveCount(0);
+  const text = page.locator(".cover-text");
+  await expect(text.locator(".eyebrow")).toHaveText("Рецепта на седмицата");
+  await expect(text.locator(".cover-d")).not.toBeEmpty();
+  await expect(text.locator(".cover-m")).toHaveText(/^.+ · (\d+ мин|Без готвене) · \d+ порци[яи]$/);
+  await text.scrollIntoViewIfNeeded();
+  const [textBox, photoBox] = await Promise.all([text.boundingBox(), page.locator(".cover-photo").boundingBox()]);
+  expect(textBox!.x + textBox!.width).toBeLessThanOrEqual(photoBox!.x);
+  expect(Math.abs(textBox!.y + textBox!.height - (photoBox!.y + photoBox!.height))).toBeLessThanOrEqual(2);
+});
+
+for (const width of [390, 768]) {
+  test(`cover at ${width}px: full-width photo, text block directly under it`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/", { waitUntil: "networkidle" });
+    const photo = page.locator(".cover-photo");
+    await photo.scrollIntoViewIfNeeded();
+    const [photoBox, textBox] = await Promise.all([photo.boundingBox(), page.locator(".cover-text").boundingBox()]);
+    expect(photoBox!.width).toBeGreaterThan(width - 40);
+    expect(photoBox!.height).toBeGreaterThan(200);
+    const gap = textBox!.y - (photoBox!.y + photoBox!.height);
+    expect(gap).toBeGreaterThanOrEqual(0);
+    expect(gap).toBeLessThanOrEqual(40);
+  });
+}
+
+test("index: no counter, heading and button in the side column; hover shifts the title and the preview never covers the row", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  await expect(page.locator("#index-counter, .rn-box")).toHaveCount(0);
+  await expect(page.locator("#index-title")).toHaveText("Какво да сготвиш днес");
+  await expect(page.locator(".idx-side").getByRole("link", { name: "Всички рецепти →" })).toBeVisible();
+
+  const rows = page.locator("#recipe-index .row");
+  for (const index of [0, 3, 7]) {
+    const row = rows.nth(index);
+    await row.scrollIntoViewIfNeeded();
+    const box = (await row.locator(".row-t").boundingBox())!;
+    await page.mouse.move(box.x + 40, box.y + box.height / 2);
+    await page.waitForTimeout(900);
+    const shift = await row.locator(".row-t").evaluate((node) => new DOMMatrix(getComputedStyle(node).transform).m41);
+    expect(shift).toBeGreaterThan(10);
+    await expect(page.locator("#recipe-preview")).toHaveClass(/\bon\b/);
+    const preview = (await page.locator("#recipe-preview").boundingBox())!;
+    const title = (await row.locator(".row-t").boundingBox())!;
+    const overlaps = preview.x < title.x + title.width && preview.x + preview.width > title.x && preview.y < title.y + title.height && preview.y + preview.height > title.y;
+    expect(overlaps).toBe(false);
+  }
+});
+
 test("logo is one link to the home page with a readable name", async ({ page }) => {
   await page.goto("/about");
   const logo = page.locator("header a.logo");

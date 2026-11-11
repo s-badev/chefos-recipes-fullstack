@@ -100,15 +100,18 @@ img{display:block;max-width:100%}
 
 /* ---------- корица: рецепта на седмицата ---------- */
 .cover{position:relative;padding-block:clamp(80px,11vw,170px)}
-.cover-grid{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:center}
+.cover-grid{position:relative;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px;align-items:end}
 .cover-photo{display:block;grid-column:5 / span 8;grid-row:1;aspect-ratio:5/4;overflow:hidden;position:relative}
 .cover-photo .ph{transition:transform calc(900ms*var(--k)) var(--ease-out)}
 .cover-photo:hover .ph{transform:scale(1.04)}
-.cover-text{grid-column:1 / span 7;grid-row:1;position:relative;display:flex;flex-direction:column;gap:20px;align-self:end;padding-bottom:clamp(8px,3vw,48px);pointer-events:none}
+/* Корица (решение на собственика): без голямото „Nº“. Текстът е в колони 1–4, долният му ред е на ръба на снимката (5–12). */
+.cover-text{grid-column:1 / span 4;grid-row:1;position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:16px;min-width:0;pointer-events:none}
+.cover-d{max-width:36ch;color:var(--muted);font-size:1rem;line-height:1.55;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.cover-m{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
+.cover-text .btn{margin-top:8px}
 .cover-text>*{pointer-events:auto}
 .cover-text .eyebrow{color:var(--ink);mix-blend-mode:normal}
-.cover-t{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.6rem,1rem + 5.4vw,6.4rem)*var(--fs));line-height:.95;letter-spacing:var(--tr);color:#fff;mix-blend-mode:difference}
-.cover-n{position:absolute;left:-.03em;top:-.34em;z-index:4;font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(8rem,26vw,22rem)*var(--fs));line-height:.8;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;pointer-events:none;white-space:nowrap;will-change:transform}
+.cover-t{font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(2.4rem,1rem + 3.4vw,4.8rem)*var(--fs));line-height:.95;letter-spacing:var(--tr);color:var(--ink);text-wrap:balance}
 .btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 26px;border:1px solid var(--ink);background:transparent;color:var(--ink);font-weight:600;font-size:.95rem;cursor:pointer;position:relative;overflow:hidden;transition:color calc(300ms*var(--k)) var(--ease-out)}
 .btn::before{content:"";position:absolute;inset:0;background:var(--ink);transform:translateX(-101%);transition:transform calc(450ms*var(--k)) var(--ease-out);z-index:-1}
 .btn:hover{color:var(--bg)}
@@ -147,7 +150,9 @@ img{display:block;max-width:100%}
 
 /* ---------- съдържание ---------- */
 .idx{padding-block:clamp(80px,11vw,170px);display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);column-gap:48px;align-items:start}
-.idx-side{position:sticky;top:96px}
+/* Съдържание (решение на собственика): без големия брояч; eyebrow, заглавие и бутон в sticky колоната. */
+.idx-side{position:sticky;top:96px;display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.idx-side .eyebrow{margin-bottom:-8px}
 .rn-box{position:relative;overflow:hidden;font-family:var(--serif);font-weight:var(--sw);font-size:calc(clamp(6rem,15vw,15rem)*var(--fs));line-height:.9;letter-spacing:-.04em;color:var(--accent-text);height:.95em}
 .rn{display:block}
 .rn+.rn{position:absolute;left:0;top:0}
@@ -333,11 +338,10 @@ img{display:block;max-width:100%}
 
 /* ---------- мобилно ---------- */
 @media (max-width:820px){
-  .cover-grid{display:block}
-  .cover-photo{aspect-ratio:4/5}
-  .cover-text{margin-top:24px;position:relative;padding-bottom:0}
-  .cover-n{top:-.18em;font-size:min(calc(11rem*var(--fs)),34vw)}
-  .idx{display:block}.idx-side{position:static;margin-bottom:24px}.rn-box{font-size:calc(7rem*var(--fs))}
+  .cover-grid{display:flex;flex-direction:column;align-items:stretch}
+  .cover-photo{order:0;aspect-ratio:4/5}
+  .cover-text{order:1;margin-top:24px}
+  .idx{display:block}.idx-side{position:static;margin-bottom:32px}
   .row{grid-template-columns:40px minmax(0,1fr);}.row-m{display:none}
   .mas{display:flex;flex-direction:column;gap:44px;align-items:stretch}
   .mc[data-s="0"] .mc-img{aspect-ratio:4/3}.mc[data-s="1"] .mc-img,.mc[data-s="2"] .mc-img,.mc[data-s="3"] .mc-img,.mc[data-s="4"] .mc-img{aspect-ratio:4/5}
@@ -389,11 +393,12 @@ img{display:block;max-width:100%}
 
   <section class="cover" aria-labelledby="cover-t">
     <div class="wrap"><div class="cover-grid">
-      <span class="cover-n" aria-hidden="true" id="cn">Nº 01</span>
       <a class="cover-photo" href="#recipe" data-slug="banitsa" data-mask aria-label="Баница със сирене"><span class="mk"><img data-img="banitsa" alt="" class="ph"></span></a>
       <div class="cover-text">
         <p class="eyebrow" data-r>Рецепта на седмицата</p>
         <h2 class="cover-t" id="cover-t" data-split data-sp="1">Баница със <em>сирене</em></h2>
+        <p class="cover-d" data-r>Фини кори с яйца, кисело мляко и бяло сирене, изпечени до златиста коричка.</p>
+        <p class="cover-m" data-r>Тестени · 65 мин · 8 порции</p>
         <div data-r style="--dl:300ms"><a class="btn" href="#recipe" data-slug="banitsa">Виж рецептата →</a></div>
       </div>
     </div></div>
@@ -417,13 +422,11 @@ img{display:block;max-width:100%}
 
   <section class="wrap idx" aria-labelledby="idx-h">
     <div class="idx-side">
-      <p class="eyebrow" id="idx-h">Съдържание</p>
-      <div class="rn-box" id="idxn" aria-hidden="true"><span class="rn">01</span></div>
+      <p class="eyebrow">Съдържание</p>
+      <h2 class="sec-h" id="idx-h" data-split data-sp="1">Какво да сготвиш <em>днес</em></h2>
+      <div data-r><a class="btn solid" href="#catalog" data-nav="catalog">Всички рецепти →</a></div>
     </div>
-    <div>
-      <ul class="idx-list" id="idx"></ul>
-      <div class="more" data-r><a class="btn solid" href="#catalog" data-nav="catalog">Всички рецепти →</a></div>
-    </div>
+    <ul class="idx-list" id="idx"></ul>
   </section>
 </section>
 
@@ -817,31 +820,34 @@ function frame(){
     $('.hdr').classList.toggle('solid',!hz||window.scrollY>hz.offsetHeight-72);
     if(motion){
       $$('[data-par]',v).forEach(function(p){var f=parseFloat(p.getAttribute('data-par'));p.style.transform='translate3d(0,'+(window.scrollY*f).toFixed(1)+'px,0)'});
-      var cn=$('#cn');if(cur==='home'&&cn){var r=cn.parentNode.getBoundingClientRect();cn.style.transform='translate3d(0,'+((r.top-vh*.5)*-.06).toFixed(1)+'px,0)'}
       if(cur==='recipe'){var st=$('.steps ol').getBoundingClientRect();var p=Math.max(0,Math.min(1,(vh*.6-st.top)/st.height));$('#prog').style.setProperty('--p',p.toFixed(3))}
     }
     dirty=false;
   }
-  if(!motion){$$('[data-par]').forEach(function(p){p.style.transform=''});var cn2=$('#cn');if(cn2)cn2.style.transform='';}
-  if(showing&&motion){
-    var dx=mx-px,dy=my-py;px+=dx*.14;py+=dy*.14;pvx=dx*.14;
+  if(!motion){$$('[data-par]').forEach(function(p){p.style.transform=''})}
+  if(showing&&motion&&pvRow){
+    // Снимката следва курсора настрани, но стои над посочения ред (под него, ако горе няма място) и не го закрива.
+    var t=pvTarget(),dx=t.x-px;px+=dx*.14;py+=(t.y-py)*.14;pvx=dx*.14;
     var rot=Math.max(-8,Math.min(8,pvx*.25));
-    $('#prev').style.transform='translate3d('+(px-150).toFixed(1)+'px,'+(py-112).toFixed(1)+'px,0) rotate('+rot.toFixed(2)+'deg)';
+    $('#prev').style.transform='translate3d('+px.toFixed(1)+'px,'+py.toFixed(1)+'px,0) rotate('+rot.toFixed(2)+'deg)';
   }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 
-/* ---------- Съдържание: hover (снимка + Nº) ---------- */
+/* ---------- Съдържание: hover (снимка до курсора) ---------- */
+var pvRow=null;
+function pvTarget(){
+  var r=pvRow.getBoundingClientRect(),x=Math.max(8,Math.min(window.innerWidth-308,mx-150)),up=r.top-16-225;
+  return {x:x,y:up>=8?up:Math.min(window.innerHeight-233,r.bottom+16)};
+}
 (function(){
-  var list=$('#idx'),pv=$('#prev'),pi=$('#prev-img'),box=$('#idxn');
+  var list=$('#idx'),pv=$('#prev'),pi=$('#prev-img');
   function enter(row){
-    roll(box,row.getAttribute('data-n'));
-    if(window.matchMedia('(hover:hover)').matches&&motion){pi.src=IMG[row.getAttribute('data-slug')];if(!pv.classList.contains('on')){px=mx;py=my}pv.classList.add('on');showing=true}
+    if(window.matchMedia('(hover:hover)').matches&&motion){pi.src=IMG[row.getAttribute('data-slug')];pvRow=row;if(!pv.classList.contains('on')){var t=pvTarget();px=t.x;py=t.y}pv.classList.add('on');showing=true}
   }
   list.addEventListener('pointerover',function(e){var r=e.target.closest('.row');if(r)enter(r)});
-  list.addEventListener('focusin',function(e){var r=e.target.closest('.row');if(r)roll(box,r.getAttribute('data-n'))});
-  list.addEventListener('pointerleave',function(){pv.classList.remove('on')});
+  list.addEventListener('pointerleave',function(){pv.classList.remove('on');showing=false;pvRow=null});
   window.addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
 })();
 

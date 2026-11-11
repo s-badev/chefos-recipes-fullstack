@@ -12,6 +12,8 @@ declare global {
   }
 }
 
+const PREVIEW_W = 300, PREVIEW_H = 225, PREVIEW_GAP = 16, EDGE = 8;
+
 /** One observer and one frame loop own all editorial reveals and transient motion. */
 export function MotionRoot() {
   const pathname = usePathname();
@@ -24,13 +26,11 @@ export function MotionRoot() {
     const header = document.querySelector<HTMLElement>(".hdr");
     const hero = document.querySelector<HTMLElement>(".hero");
     const parallax = document.querySelector<HTMLElement>("[data-par]");
-    const cover = document.querySelector<HTMLElement>(".cover-n");
     const preview = document.querySelector<HTMLElement>("#recipe-preview");
-    const counter = document.querySelector<HTMLElement>("#index-counter");
     const motionAllowed = () => !media.matches && !window.__motionTimedOut;
-    let enabled = motionAllowed(), frame = 0, heroHeight = 0, coverTop = 0;
-    let mx = 0, my = 0, px = 0, py = 0, showing = false, lastScroll = -1;
-    const timers = new Set<ReturnType<typeof setTimeout>>();
+    let enabled = motionAllowed(), frame = 0, heroHeight = 0;
+    let mx = 0, px = 0, py = 0, showing = false, lastScroll = -1;
+    let activeRow: HTMLElement | null = null;
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -44,64 +44,57 @@ export function MotionRoot() {
 
     function measure() {
       heroHeight = hero?.offsetHeight ?? 0;
-      coverTop = cover ? cover.getBoundingClientRect().top + window.scrollY : 0;
       lastScroll = -1;
     }
     function solidHeader() { header?.classList.toggle("solid", !hero || window.scrollY > heroHeight - 72); }
+    /** The preview follows the pointer sideways but sits above the hovered row (below it when there is no room), never on it. */
+    function previewTarget() {
+      const rect = activeRow!.getBoundingClientRect();
+      const x = Math.max(EDGE, Math.min(innerWidth - PREVIEW_W - EDGE, mx - PREVIEW_W / 2));
+      const above = rect.top - PREVIEW_GAP - PREVIEW_H;
+      const y = above >= EDGE ? above : Math.min(innerHeight - PREVIEW_H - EDGE, rect.bottom + PREVIEW_GAP);
+      return { x, y };
+    }
     function tick() {
       const y = window.scrollY;
       if (y !== lastScroll) {
         solidHeader();
         if (parallax) parallax.style.transform = `translate3d(0,${(y * .18).toFixed(1)}px,0)`;
-        // The numeral sits in its own grid cell: keep the drift small enough to never reach the text below.
-        if (cover) cover.style.transform = `translate3d(0,${Math.max(-12, Math.min(12, (coverTop - y - innerHeight * .5) * -.06)).toFixed(1)}px,0)`;
         lastScroll = y;
       }
-      if (showing && preview) {
-        const dx = mx - px; px += dx * .14; py += (my - py) * .14;
-        const x = Math.max(8, Math.min(innerWidth - 308, px - 150));
-        const y = Math.max(8, Math.min(innerHeight - 233, py - 112));
-        preview.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,0) rotate(${Math.max(-8, Math.min(8, dx * .14 * .25)).toFixed(2)}deg)`;
+      if (showing && preview && activeRow) {
+        const target = previewTarget();
+        const dx = target.x - px; px += dx * .14; py += (target.y - py) * .14;
+        preview.style.transform = `translate3d(${px.toFixed(1)}px,${py.toFixed(1)}px,0) rotate(${Math.max(-8, Math.min(8, dx * .14 * .25)).toFixed(2)}deg)`;
       }
       frame = requestAnimationFrame(tick);
     }
+    function hidePreview() { showing = false; activeRow = null; preview?.classList.remove("on"); }
     function configure() {
       enabled = motionAllowed(); root.dataset.motion = enabled ? "on" : "off";
       cancelAnimationFrame(frame); observer.disconnect(); measure(); solidHeader();
       if (enabled) { targets.forEach(target => observer.observe(target)); frame = requestAnimationFrame(tick); }
-      else { targets.forEach(target => target.classList.add("in")); parallax?.style.removeProperty("transform"); cover?.style.removeProperty("transform"); preview?.classList.remove("on"); showing = false; }
+      else { targets.forEach(target => target.classList.add("in")); parallax?.style.removeProperty("transform"); hidePreview(); }
     }
-    function roll(number: string) {
-      if (!counter || counter.lastElementChild?.textContent === `Nº ${number}`) return;
-      const old = counter.lastElementChild!;
-      if (!enabled) { counter.textContent = `Nº ${number}`; return; }
-      const next = document.createElement("span"); next.className = "rn arriving"; next.textContent = `Nº ${number}`;
-      // Keep at most two transient counter nodes during rapid pointer movement.
-      [...counter.children].slice(0, -1).forEach(node => node.remove()); counter.append(next);
-      old.classList.add("leaving");
-      const timer = setTimeout(() => { next.classList.remove("arriving"); timers.delete(timer); }, 16); timers.add(timer);
-      const cleanup = setTimeout(() => { old.remove(); timers.delete(cleanup); }, 470); timers.add(cleanup);
+    function enter(event: PointerEvent) {
+      const row = (event.target as Element).closest<HTMLElement>(".row[data-preview]");
+      if (!row || !enabled || !hover.matches || !preview) return;
+      preview.querySelectorAll<HTMLElement>("[data-preview-image]").forEach(image => { image.hidden = image.dataset.previewImage !== row.dataset.preview; });
+      activeRow = row;
+      if (!showing) { const start = previewTarget(); px = start.x; py = start.y; }
+      showing = true; preview.classList.add("on");
     }
-    function enter(event: Event) {
-      const row = (event.target as Element).closest<HTMLElement>(".row[data-n]");
-      if (!row) return;
-      roll(row.dataset.n!);
-      if (event.type === "pointerover" && enabled && hover.matches && preview) {
-        preview.querySelectorAll<HTMLElement>("[data-preview-image]").forEach(image => { image.hidden = image.dataset.previewImage !== row.dataset.preview; });
-        if (!showing) { px = mx; py = my; } showing = true; preview.classList.add("on");
-      }
+    function pointer(event: PointerEvent) {
+      mx = event.clientX;
+      if (!(event.target as Element).closest("#recipe-index")) hidePreview();
     }
-    function leave(event: PointerEvent) {
-      if (!(event.target as Element).closest("#recipe-index")) { showing = false; preview?.classList.remove("on"); }
-    }
-    function pointer(event: PointerEvent) { mx = event.clientX; my = event.clientY; leave(event); }
     function scroll() { if (!enabled) solidHeader(); }
     configure();
-    const resize = new ResizeObserver(measure); if (hero) resize.observe(hero); if (cover?.parentElement) resize.observe(cover.parentElement);
+    const resize = new ResizeObserver(measure); if (hero) resize.observe(hero);
     media.addEventListener("change", configure); window.addEventListener("resize", measure);
     window.addEventListener("scroll", scroll, { passive: true }); window.addEventListener("pointermove", pointer, { passive: true });
-    document.addEventListener("pointerover", enter); document.addEventListener("focusin", enter);
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); resize.disconnect(); timers.forEach(clearTimeout); media.removeEventListener("change", configure); window.removeEventListener("resize", measure); window.removeEventListener("scroll", scroll); window.removeEventListener("pointermove", pointer); document.removeEventListener("pointerover", enter); document.removeEventListener("focusin", enter); };
+    document.addEventListener("pointerover", enter);
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); resize.disconnect(); media.removeEventListener("change", configure); window.removeEventListener("resize", measure); window.removeEventListener("scroll", scroll); window.removeEventListener("pointermove", pointer); document.removeEventListener("pointerover", enter); };
   }, [pathname]);
   return null;
 }
