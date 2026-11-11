@@ -159,10 +159,10 @@ img{display:block;max-width:100%}
 .row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform calc(550ms*var(--k)) var(--ease-out)}
 .row:hover::after,.row:focus-visible::after{transform:scaleX(1)}
 .row:hover .row-t,.row:focus-visible .row-t{transform:translateX(16px)}
-.row-n{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em}
+.row-n{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em;white-space:nowrap}
 .row-t{font-family:var(--serif);font-weight:var(--sws);font-size:calc(clamp(1.6rem,1rem + 2vw,3rem)*var(--fs));line-height:1.05;letter-spacing:var(--tr);transition:transform calc(450ms*var(--k)) var(--ease-out);color:var(--accent-text)}
 .row-m{font-size:.85rem;color:var(--muted);text-align:right;white-space:nowrap}
-.preview{position:fixed;left:0;top:0;width:300px;height:225px;z-index:60;pointer-events:none;overflow:hidden;opacity:0;clip-path:inset(0 0 100% 0);transition:opacity calc(250ms*var(--k)),clip-path calc(500ms*var(--k)) var(--ease-out);will-change:transform}
+.preview{position:fixed;left:0;top:0;width:300px;height:225px;z-index:60;pointer-events:none;overflow:hidden;opacity:0;clip-path:inset(100% 0 0 0);transition:opacity calc(250ms*var(--k)),clip-path calc(500ms*var(--k)) var(--ease-out);will-change:transform}
 .preview.on{opacity:1;clip-path:inset(0)}
 .preview img{width:100%;height:100%;object-fit:cover}
 @media (hover:none){.preview{display:none}}
