@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { RecipeCatalog } from "./recipe-catalog";
-import { recipes as curatedRecipes } from "./recipes";
-import { getCurrentUserFavoriteSlugs } from "../../server/favorites/service";
-import { listPublicCatalogRecipes } from "../../server/recipes/service";
+import { RecipeCatalog } from "../recipe-catalog";
+import { recipes as curatedRecipes } from "../recipes";
+import { getCurrentUserFavoriteSlugs } from "../../../server/favorites/service";
+import { listPublicCatalogRecipes } from "../../../server/recipes/service";
 
 export const metadata: Metadata = {
   title: "Каталог с рецепти | Chefo’s Recipes",

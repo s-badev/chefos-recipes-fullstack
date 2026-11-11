@@ -26,6 +26,8 @@ type RecipeCardProps = {
   showFavoriteAction?: boolean;
   tagLimit?: number;
   visualIndex?: number;
+  /** Above-the-fold cards: load the image eagerly with high priority (LCP candidate). */
+  priority?: boolean;
 };
 
 const fallbackVisualClasses = [
@@ -110,7 +112,8 @@ export function RecipeCard({
   recipe,
   showFavoriteAction = false,
   tagLimit = 3,
-  visualIndex = 0
+  visualIndex = 0,
+  priority = false
 }: RecipeCardProps) {
   const visibleTags = recipe.tags.slice(0, tagLimit);
   const imageAlt = recipe.imageAlt ?? `Снимка на ${recipe.title}`;
@@ -145,6 +148,7 @@ export function RecipeCard({
               alt={imageAlt}
               className="object-cover"
               fill
+              priority={priority}
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
               src={webImageSrc(recipe.imageSrc)}
             />

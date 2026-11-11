@@ -130,6 +130,7 @@ export function RecipeCatalog({
                 isFavorited={favoriteSlugSet.has(recipe.slug)}
                 key={recipe.slug}
                 recipe={recipe}
+                priority={currentPage === 1 && index < 4}
                 showFavoriteAction
                 visualIndex={index}
               />

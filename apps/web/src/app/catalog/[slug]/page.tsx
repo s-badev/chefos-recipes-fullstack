@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { webImageSrc } from "../../../lib/images";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
 import { addFavoriteAction, removeFavoriteAction } from "../../../server/favorites/actions";
@@ -65,23 +66,8 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   const recipe = await getRecipeForDetails(slug);
 
   if (!recipe) {
-    return (
-      <section className="mx-auto max-w-3xl rounded-none border border-dashed border-brand-200 bg-white/84 p-10 text-center ">
-        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-          Chefo&apos;s Recipes
-        </p>
-        <h1 className="mt-3 text-4xl font-bold text-neutral-950">Рецептата не е намерена</h1>
-        <p className="mt-3 text-base leading-7 text-neutral-600">
-          Тази рецепта не е налична в момента. Върни се към каталога и избери друга.
-        </p>
-        <Link
-          className="ui-button mt-6 inline-flex rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
-          href="/catalog"
-        >
-          Обратно към каталога
-        </Link>
-      </section>
-    );
+    // Unknown slugs and hidden generated records both resolve to the styled 404 (HTTP 404).
+    notFound();
   }
 
   const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
