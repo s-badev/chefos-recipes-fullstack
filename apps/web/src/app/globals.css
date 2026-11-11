@@ -341,4 +341,14 @@ html:not([data-motion]) .menu-toggle{display:none}
   .editorial-card {
     box-shadow: none !important;
   }
+
+  /* Printed content must not inherit the screen shell's full-viewport minimum height. */
+  html, body, body > div { min-height: 0 !important; height: auto !important; }
+  body > div { display: block !important; }
+  .page-shell-frame { padding: 0 !important; }
+  .recipe-print-image, .recipe-print-page button { display: none !important; }
+  .recipe-print-page .detail-stat-tile { padding: 4pt !important; background: white !important; }
+  .recipe-print-page .detail-stat-tile p { font-size: 10pt !important; }
+  .recipe-print-page .ingredient-item { padding: 3pt !important; border: 0 !important; background: white !important; }
+  .recipe-print-page li > span { color: #111 !important; background: white !important; }
 }
