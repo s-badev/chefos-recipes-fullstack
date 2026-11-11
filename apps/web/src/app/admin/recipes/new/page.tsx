@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function NewRecipePage() {
-  await requireAdmin();
+  await requireAdmin("/admin/recipes/new");
 
   return (
     <section className="space-y-8">

@@ -271,21 +271,21 @@ export async function clearSession() {
   cookieStore.delete(SESSION_COOKIE_NAME);
 }
 
-export async function requireUser() {
+export async function requireUser(next = "/profile") {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/login");
+    redirect(`/login?next=${encodeURIComponent(next)}`);
   }
 
   return user;
 }
 
-export async function requireAdmin() {
+export async function requireAdmin(next = "/admin") {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/login");
+    redirect(`/login?next=${encodeURIComponent(next)}`);
   }
 
   if (user.role !== "admin") {

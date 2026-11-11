@@ -3,6 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { registerAction } from "../../server/auth/actions";
 import { getCurrentUser } from "../../server/auth/session";
+import { safeNextPath } from "../../lib/navigation";
+import { SubmitButton, ValidatedInput } from "../form-controls";
 
 export const metadata: Metadata = {
   title: "Регистрация | Chefo's Recipes",
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 type RegisterPageProps = {
   searchParams?: Promise<{
     error?: string;
+    next?: string;
   }>;
 };
 
@@ -31,10 +34,12 @@ function getRegisterErrorMessage(error: string | undefined) {
 export default async function RegisterPage({ searchParams }: RegisterPageProps) {
   const currentUser = await getCurrentUser();
   const params = await searchParams;
+  const next = params?.next === undefined ? undefined : safeNextPath(params.next);
+  const authSuffix = next === undefined ? "" : `?next=${encodeURIComponent(next)}`;
   const errorMessage = getRegisterErrorMessage(params?.error);
 
   if (currentUser) {
-    redirect(currentUser.role === "admin" ? "/admin" : "/profile");
+    redirect(next ?? (currentUser.role === "admin" ? "/admin" : "/profile"));
   }
 
   return (
@@ -97,6 +102,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
           action={registerAction}
           className="flex min-h-[380px] w-full flex-col justify-center rounded-none border border-neutral-200 bg-bg p-5  sm:p-6"
         >
+          {next !== undefined ? <input type="hidden" name="next" value={next}/> : null}
           <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
@@ -108,7 +114,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             </div>
             <Link
               className="inline-flex rounded-none border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition-transform hover:border-brand-400 hover:text-brand-900"
-              href="/login"
+              href={`/login${authSuffix}`}
             >
               Вход
             </Link>
@@ -125,7 +131,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
               <label className="text-base font-black text-neutral-800" htmlFor="name">
                 Име
               </label>
-              <input
+              <ValidatedInput
                 className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="name"
                 name="name"
@@ -139,7 +145,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
               <label className="text-base font-black text-neutral-800" htmlFor="email">
                 Имейл
               </label>
-              <input
+              <ValidatedInput
                 className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="email"
                 name="email"
@@ -153,28 +159,28 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
               <label className="text-base font-black text-neutral-800" htmlFor="password">
                 Парола
               </label>
-              <input
+              <ValidatedInput
                 className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="password"
                 name="password"
+                minLength={8}
                 placeholder="Създай парола"
                 required
                 type="password"
               />
             </div>
 
-            <button
+            <SubmitButton
               className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition-transform hover:bg-brand-700"
-              type="submit"
             >
               Създай профил
-            </button>
+            </SubmitButton>
 
             <p className="mt-6 text-center text-base font-semibold leading-6 text-ink">
               Вече имаш профил?{" "}
               <Link
                 className="font-black text-muted transition-transform hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
-                href="/login"
+                href={`/login${authSuffix}`}
               >
                 Влез
               </Link>

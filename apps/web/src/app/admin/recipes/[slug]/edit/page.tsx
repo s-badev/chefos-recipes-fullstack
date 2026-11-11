@@ -20,9 +20,8 @@ export async function generateMetadata({ params }: EditRecipePageProps): Promise
 }
 
 export default async function EditRecipePage({ params }: EditRecipePageProps) {
-  await requireAdmin();
-
   const { slug } = await params;
+  await requireAdmin(`/admin/recipes/${slug}/edit`);
   const recipe = await getRecipeBySlug(slug);
 
   if (!recipe) {

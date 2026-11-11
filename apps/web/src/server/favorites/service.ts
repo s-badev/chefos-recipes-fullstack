@@ -16,7 +16,7 @@ export async function getCurrentUserFavoriteSlugs() {
 }
 
 export async function getCurrentUserFavoriteRecipes() {
-  const user = await requireUser();
+  const user = await requireUser("/favorites");
 
   return listFavoriteRecipesForUser(user);
 }
