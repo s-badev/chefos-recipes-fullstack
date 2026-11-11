@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { webImageSrc } from "../../../lib/images";
+import { recipeImageSrc } from "../../../lib/images";
 import { formatCookTime } from "../../../lib/format";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
-import { addFavoriteAction, removeFavoriteAction } from "../../../server/favorites/actions";
+import { FavoriteButton } from "../../favorite-button";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 import { getPublicCatalogRecipeBySlug } from "../../../server/recipes/service";
 
@@ -106,7 +106,6 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         </div>
 
         <div className="recipe-print-image overflow-hidden rounded-none border border-white/70 bg-white ">
-          {recipe.imageSrc ? (
             <div className="relative h-[320px] overflow-hidden bg-neutral-100 sm:h-[380px] lg:h-[420px]">
               <Image
                 alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`}
@@ -114,17 +113,10 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 fill
                 priority
                 sizes="(min-width: 1024px) 35vw, 100vw"
-                src={webImageSrc(recipe.imageSrc)}
+                src={recipeImageSrc(recipe.imageSrc)}
               />
               <div className="no-print absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/24" />
             </div>
-          ) : (
-            <div
-              aria-label={`Снимка на ${recipe.title}`}
-              className={["recipe-photo h-[320px] sm:h-[380px] lg:h-[420px]", getVisualClass(recipe.category)].join(" ")}
-              role="img"
-            />
-          )}
         </div>
       </section>
 
@@ -163,24 +155,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                   →
                 </span>
               </Link>
-              <form action={isFavorited ? removeFavoriteAction : addFavoriteAction}>
-                <input name="recipeSlug" type="hidden" value={recipe.slug} />
-                <input name="redirectTo" type="hidden" value={`/catalog/${recipe.slug}`} />
-                <button
-                  className={[
-                    "quick-action flex w-full items-center justify-between rounded-none border px-4 py-3 text-left text-base font-black transition",
-                    isFavorited
-                      ? "border-brand-200 bg-white text-ink hover:border-brand-400 hover:bg-bg hover:text-brand-800"
-                      : "border-brand-200 bg-bg text-ink hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
-                  ].join(" ")}
-                  type="submit"
-                >
-                  <span>{isFavorited ? "Премахни от любими" : "Запази в любими"}</span>
-                  <span aria-hidden="true" className="text-brand-700">
-                    ♥
-                  </span>
-                </button>
-              </form>
+              <FavoriteButton slug={recipe.slug} title={recipe.title} saved={isFavorited} redirectTo={`/catalog/${recipe.slug}`} detail/>
               <PrintRecipeButton className="quick-action flex w-full items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-left text-base font-black text-ink transition-transform hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
             </div>
           </div>

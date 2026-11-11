@@ -11,6 +11,7 @@ type NavigationItem = {
 };
 
 type SiteHeaderClientProps = {
+  favoriteCount: number;
   currentUser: CurrentUser | undefined;
   logoutAction: () => Promise<void>;
 };
@@ -85,7 +86,7 @@ function getGreetingName(currentUser: CurrentUser) {
   return "приятел";
 }
 
-export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClientProps) {
+export function SiteHeaderClient({ currentUser, logoutAction, favoriteCount }: SiteHeaderClientProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -108,7 +109,7 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
 
   function links() {
     return <>
-      {navigationItems.map(item => <Link href={item.href} key={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{item.label}</Link>)}
+      {navigationItems.map(item => <Link href={item.href} key={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{item.label}{item.href === "/favorites" ? <span data-testid="favorite-count"> {favoriteCount}</span> : null}</Link>)}
       {currentUser ? <>
         <span className="nav-greeting">Здравей, {greetingName}</span>
         <form action={logoutAction}><button className="nav-link" type="submit">Изход</button></form>

@@ -1,9 +1,9 @@
 import type { SVGProps } from "react";
 import Image from "next/image";
-import { webImageSrc } from "../lib/images";
+import { recipeImageSrc } from "../lib/images";
 import { formatCookTime } from "../lib/format";
 import Link from "next/link";
-import { addFavoriteAction, removeFavoriteAction } from "../server/favorites/actions";
+import { FavoriteButton } from "./favorite-button";
 
 type RecipeCardRecipe = {
   title: string;
@@ -118,11 +118,6 @@ export function RecipeCard({
 }: RecipeCardProps) {
   const visibleTags = recipe.tags.slice(0, tagLimit);
   const imageAlt = recipe.imageAlt ?? `Снимка на ${recipe.title}`;
-  const favoriteAction = isFavorited ? removeFavoriteAction : addFavoriteAction;
-  const favoriteLabel = isFavorited ? "Премахни" : "Запази";
-  const favoriteAriaLabel = isFavorited
-    ? `Премахни ${recipe.title} от любими`
-    : `Запази ${recipe.title} в любими`;
   const redirectTo = favoriteRedirectTo ?? `/catalog/${recipe.slug}`;
   const metadata = [
     { icon: ClockIcon, value: `${recipe.prepTimeMinutes} мин` },
@@ -143,7 +138,6 @@ export function RecipeCard({
         href={`/catalog/${recipe.slug}`}
       />
       <div className="relative overflow-hidden">
-        {recipe.imageSrc ? (
           <div className="relative h-40 overflow-hidden bg-neutral-100 transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
             <Image
               alt={imageAlt}
@@ -151,20 +145,10 @@ export function RecipeCard({
               fill
               priority={priority}
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
-              src={webImageSrc(recipe.imageSrc)}
+              src={recipeImageSrc(recipe.imageSrc)}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/32" />
           </div>
-        ) : (
-          <div
-            aria-label={imageAlt}
-            className={[
-              "recipe-photo h-40 transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48",
-              getRecipeVisualClass(recipe.category, visualIndex)
-            ].join(" ")}
-            role="img"
-          />
-        )}
 
         <div className="absolute left-3 top-3 max-w-[calc(100%-7.5rem)]">
           <span className="inline-flex max-w-full truncate rounded-none bg-bg px-2.5 py-1 text-xs font-bold text-ink  ring-1 ring-white/70 backdrop-blur-md">
@@ -178,20 +162,7 @@ export function RecipeCard({
         </div>
 
         {showFavoriteAction ? (
-          <form action={favoriteAction} className="absolute bottom-3 right-3 z-20 max-w-[calc(100%-1.5rem)]">
-            <input name="recipeSlug" type="hidden" value={recipe.slug} />
-            <input name="redirectTo" type="hidden" value={redirectTo} />
-            <button
-              aria-label={favoriteAriaLabel}
-              className={[
-                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition-transform hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
-                isFavorited ? "border-line" : "border-line"
-              ].join(" ")}
-              type="submit"
-            >
-              {favoriteLabel}
-            </button>
-          </form>
+          <FavoriteButton slug={recipe.slug} title={recipe.title} saved={isFavorited} redirectTo={redirectTo} className="absolute bottom-3 right-3 z-20 max-w-[calc(100%-1.5rem)]"/>
         ) : null}
       </div>
 

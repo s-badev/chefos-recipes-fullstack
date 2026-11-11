@@ -7,3 +7,7 @@ export function webImageSrc(src: string): string {
   const name = /^\/images\/recipes\/([^/]+)\.png$/.exec(src)?.[1];
   return name && images.has(name) ? `/images/recipes-web/${name}.webp` : src;
 }
+
+export function recipeImageSrc(src?: string): string {
+  return src ? webImageSrc(src) : "/images/recipe-fallback.svg";
+}
