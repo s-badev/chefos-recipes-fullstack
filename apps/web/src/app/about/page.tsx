@@ -71,7 +71,7 @@ const roadmap = [
 export default function AboutPage() {
   return (
     <section className="page-shell space-y-9 pb-6">
-      <div className="about-panel grid gap-6 rounded-none border border-neutral-200 bg-white/78 p-5  sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.34fr)] lg:items-center xl:p-7">
+      <div className="about-panel grid gap-6 rounded-none border border-neutral-200 bg-white/78 p-5  sm:p-6 xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво е Chefo&apos;s Recipes
@@ -86,7 +86,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        <div className="about-premium-tile about-accent-card rounded-none border border-brand-200 bg-bg p-5 ">
+        <div className="about-premium-tile about-accent-card max-w-2xl rounded-none border border-brand-200 bg-bg p-5 ">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Ритъм
           </p>
