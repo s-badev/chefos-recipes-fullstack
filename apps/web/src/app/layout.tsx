@@ -23,6 +23,13 @@ const serif = Cormorant({
   variable: "--font-serif"
 });
 
+/**
+ * Runs before first paint. Motion hides content until MotionRoot reveals it, so if MotionRoot
+ * has not confirmed its start (window.__motionReady) within 2.5 s — a blocked or failed JS
+ * chunk, a very slow device — drop data-motion and show everything without animation.
+ */
+const motionBootScript = `(function(){var d=document.documentElement;d.dataset.motion=matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';setTimeout(function(){if(!window.__motionReady){window.__motionTimedOut=true;delete d.dataset.motion;}},2500);})();`;
+
 export const metadata: Metadata = {
   title: "Chefo's Recipes",
   description: "Топъл каталог с български рецепти за всеки ден."
@@ -36,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="bg" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.motion=matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on'` }} />
+        <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
       </head>
       <body className="min-h-screen bg-bg text-ink antialiased">
         <a className="skip-link" href="#main-content">

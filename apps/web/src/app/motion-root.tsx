@@ -3,10 +3,20 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
+declare global {
+  interface Window {
+    /** Set by MotionRoot once it owns the reveals; read by the boot script in layout.tsx. */
+    __motionReady?: boolean;
+    /** Set by the boot script when MotionRoot missed its deadline; motion stays off for this load. */
+    __motionTimedOut?: boolean;
+  }
+}
+
 /** One observer and one frame loop own all editorial reveals and transient motion. */
 export function MotionRoot() {
   const pathname = usePathname();
   useEffect(() => {
+    window.__motionReady = true;
     const root = document.documentElement;
     const media = matchMedia("(prefers-reduced-motion: reduce)");
     const hover = matchMedia("(hover:hover)");
@@ -18,7 +28,8 @@ export function MotionRoot() {
     const preview = document.querySelector<HTMLElement>("#recipe-preview");
     const counter = document.querySelector<HTMLElement>("#index-counter");
     const rail = document.querySelector<HTMLElement>("#category-rail");
-    let enabled = !media.matches, frame = 0, heroHeight = 0, coverTop = 0;
+    const motionAllowed = () => !media.matches && !window.__motionTimedOut;
+    let enabled = motionAllowed(), frame = 0, heroHeight = 0, coverTop = 0;
     let mx = 0, my = 0, px = 0, py = 0, showing = false, lastScroll = -1;
     const timers = new Set<ReturnType<typeof setTimeout>>();
     const observer = new IntersectionObserver(entries => {
@@ -55,7 +66,7 @@ export function MotionRoot() {
       frame = requestAnimationFrame(tick);
     }
     function configure() {
-      enabled = !media.matches; root.dataset.motion = enabled ? "on" : "off";
+      enabled = motionAllowed(); root.dataset.motion = enabled ? "on" : "off";
       cancelAnimationFrame(frame); observer.disconnect(); measure(); solidHeader();
       if (enabled) { targets.forEach(target => observer.observe(target)); frame = requestAnimationFrame(tick); }
       else { targets.forEach(target => target.classList.add("in")); parallax?.style.removeProperty("transform"); cover?.style.removeProperty("transform"); preview?.classList.remove("on"); showing = false; }
