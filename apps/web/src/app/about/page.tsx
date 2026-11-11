@@ -117,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       <section className="about-panel about-panel--feature grid gap-5 rounded-none border border-neutral-200 bg-white/76 p-5  sm:p-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(520px,1fr)] lg:items-center xl:gap-7 xl:p-7">
-        <div className="about-feature-copy rounded-none border border-brand-100 bg-bg/78 p-5 sm:p-6">
+        <div className="about-feature-copy rounded-none border border-brand-100 bg-bg p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
           </p>
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <div className="grid gap-4 sm:grid-cols-2">
           {capabilityCards.map((item) => (
             <article
-              className="about-mini-card rounded-none border border-brand-100 bg-bg/88 p-5  transition-transform hover:border-brand-200 hover:bg-bg"
+              className="about-mini-card rounded-none border border-brand-100 bg-bg p-5  transition-transform hover:border-brand-200 hover:bg-bg"
               key={item.title}
             >
               <div className="flex items-start gap-3">
@@ -172,7 +172,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-panel about-panel--warm rounded-none border border-brand-100 bg-bg/82 p-5  sm:p-6 xl:p-7">
+      <section className="about-panel about-panel--warm rounded-none border border-brand-100 bg-bg p-5  sm:p-6 xl:p-7">
         <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">

@@ -23,7 +23,12 @@ export function MotionRoot() {
     const timers = new Set<ReturnType<typeof setTimeout>>();
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add("in"); observer.unobserve(entry.target); }
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in");
+          // The mobile caption sits below the observer's negative bottom margin.
+          if (entry.target === hero) hero.querySelectorAll("[data-r]").forEach(node => node.classList.add("in"));
+          observer.unobserve(entry.target);
+        }
       });
     }, { threshold: .2, rootMargin: "0px 0px -6% 0px" });
 

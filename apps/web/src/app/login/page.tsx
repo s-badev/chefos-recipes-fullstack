@@ -73,7 +73,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
               ))}
             </div>
 
-            <p className="rounded-none border border-white/24 bg-ink/22 p-3.5 text-sm font-bold leading-6 text-neutral-50">
+            <p className="rounded-none border border-white/24 bg-ink p-3.5 text-sm font-bold leading-6 text-neutral-50">
               Chefo&apos;s Recipes помага да избираш по-бързо и да готвиш с повече спокойствие.
             </p>
           </div>
@@ -81,7 +81,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <form
           action={loginAction}
-          className="flex min-h-[380px] w-full flex-col justify-center rounded-none border border-neutral-200 bg-bg/95 p-5  sm:p-6"
+          className="flex min-h-[380px] w-full flex-col justify-center rounded-none border border-neutral-200 bg-bg p-5  sm:p-6"
         >
           <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>

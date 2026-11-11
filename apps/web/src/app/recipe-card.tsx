@@ -162,12 +162,12 @@ export function RecipeCard({
         )}
 
         <div className="absolute left-3 top-3 max-w-[calc(100%-7.5rem)]">
-          <span className="inline-flex max-w-full truncate rounded-none bg-bg/95 px-2.5 py-1 text-xs font-bold text-ink  ring-1 ring-white/70 backdrop-blur-md">
+          <span className="inline-flex max-w-full truncate rounded-none bg-bg px-2.5 py-1 text-xs font-bold text-ink  ring-1 ring-white/70 backdrop-blur-md">
             {recipe.category}
           </span>
         </div>
         <div className="absolute right-3 top-3 max-w-[6.5rem]">
-          <span className="inline-flex max-w-[6.5rem] truncate rounded-none bg-ink/90 px-2.5 py-1 text-xs font-bold text-white  ring-1 ring-white/40 backdrop-blur-md">
+          <span className="inline-flex max-w-[6.5rem] truncate rounded-none bg-ink px-2.5 py-1 text-xs font-bold text-white  ring-1 ring-white/40 backdrop-blur-md">
             {recipe.difficulty}
           </span>
         </div>
@@ -179,7 +179,7 @@ export function RecipeCard({
             <button
               aria-label={favoriteAriaLabel}
               className={[
-                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg/95 px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition-transform hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
+                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition-transform hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
                 isFavorited ? "border-line" : "border-line"
               ].join(" ")}
               type="submit"

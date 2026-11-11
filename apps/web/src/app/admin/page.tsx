@@ -81,7 +81,7 @@ export default async function AdminPage() {
           <h2 className="mt-2 text-3xl font-bold text-neutral-950">Списък за управление</h2>
         </div>
 
-        <div className="space-y-3 bg-bg/60 p-4 sm:p-5">
+        <div className="space-y-3 bg-bg p-4 sm:p-5">
           <p className="px-1 text-sm font-bold text-neutral-600">
             Показани {recipePage.items.length} от {recipePage.total} рецепти от базата данни
           </p>
