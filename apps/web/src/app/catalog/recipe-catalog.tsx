@@ -1,59 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useCatalog } from "../../hooks/use-catalog";
+import type { CardRecipe } from "../../lib/catalog";
 import { RecipeCard } from "../recipe-card";
 import { foundRecipesLabel } from "../../lib/format";
-import { recipes as curatedRecipes, type Recipe } from "./recipes";
 
 const allCategoriesLabel = "Всички";
-const catalogPageSize = 8;
 
 type RecipeCatalogProps = {
   favoriteSlugs?: string[];
-  recipes?: Recipe[];
+  recipes: CardRecipe[];
 };
 
 export function RecipeCatalog({
   favoriteSlugs = [],
-  recipes = curatedRecipes
+  recipes
 }: RecipeCatalogProps) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState(allCategoriesLabel);
-  const [currentPage, setCurrentPage] = useState(1);
+  const { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory, currentPage, setCurrentPage, categories, filteredRecipes, totalPages, paginatedRecipes, clear, catalogHref } = useCatalog(recipes);
   const favoriteSlugSet = useMemo(() => new Set(favoriteSlugs), [favoriteSlugs]);
 
-  const categories = useMemo(
-    () => [allCategoriesLabel, ...Array.from(new Set(recipes.map((recipe) => recipe.category)))],
-    [recipes]
-  );
-
-  const filteredRecipes = useMemo(() => {
-    const normalizedSearch = searchTerm.trim().toLocaleLowerCase("bg-BG");
-
-    return recipes.filter((recipe) => {
-      const matchesCategory =
-        selectedCategory === allCategoriesLabel || recipe.category === selectedCategory;
-      const searchableText = [recipe.title, recipe.description, recipe.category, ...recipe.tags]
-        .join(" ")
-        .toLocaleLowerCase("bg-BG");
-
-      return matchesCategory && searchableText.includes(normalizedSearch);
-    });
-  }, [recipes, searchTerm, selectedCategory]);
-
-  const totalPages = Math.max(1, Math.ceil(filteredRecipes.length / catalogPageSize));
-  const paginatedRecipes = filteredRecipes.slice(
-    (currentPage - 1) * catalogPageSize,
-    currentPage * catalogPageSize
-  );
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, selectedCategory]);
-
-  useEffect(() => {
-    setCurrentPage((page) => Math.min(page, totalPages));
-  }, [totalPages]);
 
   return (
     <section className="page-shell space-y-9">
@@ -105,6 +71,7 @@ export function RecipeCatalog({
 
             return (
               <button
+                aria-pressed={isSelected}
                 className={[
                   "rounded-none border px-4 py-2 text-sm font-black transition",
                   isSelected
@@ -122,12 +89,13 @@ export function RecipeCatalog({
         </div>
       </div>
 
+      {searchTerm || selectedCategory !== allCategoriesLabel ? <button className="underline" type="button" onClick={clear}>Изчисти</button> : null}
       {filteredRecipes.length > 0 ? (
         <div className="space-y-5">
           <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
             {paginatedRecipes.map((recipe, index) => (
               <RecipeCard
-                favoriteRedirectTo="/catalog"
+                favoriteRedirectTo={catalogHref}
                 isFavorited={favoriteSlugSet.has(recipe.slug)}
                 key={recipe.slug}
                 recipe={recipe}
