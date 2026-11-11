@@ -32,6 +32,14 @@ const userNavigationItems: NavigationItem[] = [
 const adminNavigationItem = { href: "/admin", label: "Админ" };
 const loginItem = { href: "/login", label: "Вход" };
 
+/** Two-line wordmark: kicker on top, "Chefo's Recipes" below with the italic "Recipes". */
+function LogoMark() {
+  return <>
+    <span className="logo-kicker">Домашна кухня</span>
+    <span className="logo-name">Chefo&apos;s <em>Recipes</em></span>
+  </>;
+}
+
 function isActivePath(pathname: string, href: string) {
   if (href === "/") {
     return pathname === "/";
@@ -121,13 +129,13 @@ export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClient
   return <>
     <header className={pathname === "/" ? "hdr" : "hdr solid"}>
       <div className="wrap">
-        <Link className="logo" href="/" onClick={() => setIsMenuOpen(false)}>Chefo&apos;s</Link>
+        <Link className="logo" href="/" aria-label="Chefo's Recipes — начало" onClick={() => setIsMenuOpen(false)}><LogoMark /></Link>
         <nav className="nav desktop-nav" aria-label="Основна навигация">{links()}</nav>
         <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" aria-label="Отвори менюто" onClick={() => setIsMenuOpen(true)} type="button">Меню <span aria-hidden="true">☰</span></button>
       </div>
     </header>
     <dialog className="mobile-menu" id="mobile-menu" ref={dialog} aria-label="Основна навигация" onKeyDown={keepMenuFocus} onCancel={() => setIsMenuOpen(false)} onClose={() => setIsMenuOpen(false)}>
-      <div className="wrap mobile-menu-top"><span className="logo">Chefo&apos;s</span><button className="nav-link" autoFocus type="button" onClick={() => setIsMenuOpen(false)}>Затвори ×</button></div>
+      <div className="wrap mobile-menu-top"><span className="logo"><LogoMark /></span><button className="nav-link" autoFocus type="button" onClick={() => setIsMenuOpen(false)}>Затвори ×</button></div>
       <nav className="nav mobile-nav" aria-label="Мобилна навигация">{links()}</nav>
     </dialog>
   </>;

@@ -39,7 +39,16 @@ em{font-style:italic}
 .hdr{position:fixed;inset:0 0 auto 0;z-index:50;height:calc(64px + env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px);color:#fff;border-bottom:1px solid transparent;transition:background-color calc(350ms*var(--k)),color calc(350ms*var(--k)),border-color calc(350ms*var(--k))}
 .hdr.solid{background:var(--bg);color:var(--ink);border-bottom-color:var(--line)}
 .hdr .wrap{height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{font-family:var(--serif);font-weight:500;font-size:1.7rem;letter-spacing:-.01em;min-height:44px;display:inline-flex;align-items:center}
+/* Лого (решение на собственика): два реда. Ред 1 „Домашна кухня“ — Onest 600, 11px, главни, .18em;
+   ред 2 „Chefo's Recipes“ — Cormorant 500, „Recipes“ в курсив. Без икона. Hover/focus: черта под името. */
+.logo{display:inline-flex;flex-direction:column;justify-content:center;gap:5px;min-height:44px;color:inherit}
+.logo-kicker{font-family:var(--sans);font-weight:600;font-size:11px;line-height:1;letter-spacing:.18em;text-transform:uppercase;opacity:.75;white-space:nowrap}
+.hdr.solid .logo-kicker{opacity:1;color:var(--muted)}
+.logo-name{position:relative;font-family:var(--serif);font-weight:500;font-size:calc(1.5rem*var(--fs,1));line-height:1;letter-spacing:-.01em;white-space:nowrap}
+.logo-name em{font-style:italic;font-weight:500}
+.logo-name::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform calc(450ms*var(--k)) var(--ease-out)}
+a.logo:hover .logo-name::after,a.logo:focus-visible .logo-name::after{transform:scaleX(1)}
+@media(max-width:600px){.logo-name{font-size:calc(1.3rem*var(--fs,1))}}
 .nav{display:flex;gap:clamp(14px,3vw,36px);font-size:.95rem;font-weight:500}
 .nav a{white-space:nowrap;position:relative;min-height:44px;display:inline-flex;align-items:center;gap:6px}
 .nav a::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform calc(450ms*var(--k)) var(--ease-out)}
@@ -355,7 +364,7 @@ img{display:block;max-width:100%}
 
 <header class="hdr">
   <div class="wrap">
-    <a class="logo" href="#home" data-nav="home">Chefo's</a>
+    <a class="logo" href="#home" data-nav="home" aria-label="Chefo's Recipes — начало"><span class="logo-kicker">Домашна кухня</span><span class="logo-name">Chefo's <em>Recipes</em></span></a>
     <nav class="nav" aria-label="Основна навигация">
       <a href="#home" data-nav="home" class="hide-s">Начало</a>
       <a href="#catalog" data-nav="catalog">Рецепти</a>
