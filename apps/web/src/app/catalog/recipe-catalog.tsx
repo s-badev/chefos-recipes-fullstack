@@ -56,26 +56,26 @@ export function RecipeCatalog({
 
   return (
     <section className="page-shell space-y-9">
-      <div className="catalog-hero-panel grid gap-6 rounded-[2rem] border border-stone-200 bg-white/78 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.48fr)] lg:items-end xl:p-7">
+      <div className="catalog-hero-panel grid gap-6 rounded-none border border-neutral-200 bg-white/78 p-5  sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.48fr)] lg:items-end xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
           </p>
-          <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.875rem]">
+          <h1 className="mt-2 text-4xl font-bold leading-tight text-neutral-950 sm:text-[2.875rem]">
             Каталог с рецепти
           </h1>
-          <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[#4a2a17]">
+          <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-ink">
             Разгледай подбраните рецепти, филтрирай по категория и намери нещо подходящо за
             днешното готвене.
           </p>
         </div>
 
-        <div className="catalog-search-panel rounded-[1.5rem] border border-brand-100 bg-[#fff8ee] p-4 shadow-sm">
-          <label className="text-base font-black text-stone-800" htmlFor="recipe-search">
+        <div className="catalog-search-panel rounded-none border border-brand-100 bg-bg p-4 ">
+          <label className="text-base font-black text-neutral-800" htmlFor="recipe-search">
             Търсене
           </label>
           <input
-            className="catalog-search-input mt-2.5 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 text-base text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+            className="catalog-search-input mt-2.5 w-full rounded-none border border-neutral-200 bg-white px-4 py-3 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
             id="recipe-search"
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Търси рецепта, категория или таг..."
@@ -85,15 +85,15 @@ export function RecipeCatalog({
         </div>
       </div>
 
-      <div className="space-y-3 rounded-[1.6rem] border border-stone-200 bg-white/72 p-4 shadow-sm">
+      <div className="space-y-3 rounded-none border border-neutral-200 bg-white/72 p-4 ">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
               Филтри
             </p>
-            <h2 className="mt-1 text-2xl font-bold text-stone-950">Избери категория</h2>
+            <h2 className="mt-1 text-2xl font-bold text-neutral-950">Избери категория</h2>
           </div>
-          <p className="inline-flex w-fit rounded-full border border-brand-100 bg-[#fff8ee] px-3.5 py-2 text-sm font-bold text-[#3a2417] shadow-sm">
+          <p className="inline-flex w-fit rounded-none border border-brand-100 bg-bg px-3.5 py-2 text-sm font-bold text-ink ">
             {filteredRecipes.length} намерени рецепти
           </p>
         </div>
@@ -105,10 +105,10 @@ export function RecipeCatalog({
             return (
               <button
                 className={[
-                  "rounded-full border px-4 py-2 text-sm font-black transition",
+                  "rounded-none border px-4 py-2 text-sm font-black transition",
                   isSelected
-                    ? "border-brand-600 bg-brand-600 text-white shadow-sm shadow-brand-900/20"
-                    : "border-stone-200 bg-white/86 text-stone-700 hover:border-brand-300 hover:text-brand-800"
+                    ? "border-brand-600 bg-brand-600 text-white  "
+                    : "border-neutral-200 bg-white/86 text-neutral-700 hover:border-brand-300 hover:text-brand-800"
                 ].join(" ")}
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -136,20 +136,20 @@ export function RecipeCatalog({
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 rounded-[1.7rem] border border-stone-200 bg-white/84 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-none border border-neutral-200 bg-white/84 p-4  sm:flex-row sm:items-center sm:justify-between">
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage <= 1}
               onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
               type="button"
             >
               Предишна
             </button>
-            <p className="text-center text-base font-black text-stone-700">
+            <p className="text-center text-base font-black text-neutral-700">
               Страница {currentPage} от {totalPages}
             </p>
             <button
-              className="rounded-full border border-stone-200 px-5 py-2.5 text-base font-black text-stone-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage >= totalPages}
               onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))}
               type="button"
@@ -159,9 +159,9 @@ export function RecipeCatalog({
           </div>
         </div>
       ) : (
-        <div className="rounded-[2rem] border border-dashed border-brand-200 bg-white/86 p-10 text-center shadow-sm">
-          <h3 className="text-3xl font-bold text-stone-950">Няма намерени рецепти</h3>
-          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-stone-600">
+        <div className="rounded-none border border-dashed border-brand-200 bg-white/86 p-10 text-center ">
+          <h3 className="text-3xl font-bold text-neutral-950">Няма намерени рецепти</h3>
+          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-neutral-600">
             Опитай с друга дума за търсене или избери различна категория.
           </p>
         </div>

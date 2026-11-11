@@ -19,17 +19,17 @@ export default async function ProfilePage() {
 
   return (
     <section className="page-shell space-y-8">
-      <div className="rounded-[2rem] border border-stone-200 bg-white/70 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6">
+      <div className="rounded-none border border-neutral-200 bg-white/70 p-5  sm:p-6">
         <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
           Потребителски профил
         </p>
-        <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.875rem]">
+        <h1 className="mt-2 text-4xl font-bold leading-tight text-neutral-950 sm:text-[2.875rem]">
           Моят профил
         </h1>
-        <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-[#4a2a17]">
+        <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-ink">
           {profileName ? (
             <>
-              Здравей, <strong className="font-bold text-[#3a2417]">{profileName}</strong>. Тук ще
+              Здравей, <strong className="font-bold text-ink">{profileName}</strong>. Тук ще
               се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.
             </>
           ) : (
@@ -40,31 +40,31 @@ export default async function ProfilePage() {
 
       <div className="grid gap-4 md:grid-cols-3 xl:gap-5">
         {summary.map((item) => (
-          <div className="editorial-card rounded-[1.6rem] p-5" key={item.label}>
-            <p className="text-sm font-black text-[#6b4a32]">{item.label}</p>
-            <p className="mt-2 text-2xl font-bold text-stone-950">{item.value}</p>
+          <div className="editorial-card rounded-none p-5" key={item.label}>
+            <p className="text-sm font-black text-muted">{item.label}</p>
+            <p className="mt-2 text-2xl font-bold text-neutral-950">{item.value}</p>
           </div>
         ))}
       </div>
 
       <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] xl:gap-6">
-        <div className="info-card rounded-[1.6rem] p-5">
-          <h2 className="text-2xl font-bold text-stone-950">Обобщение на любимите</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a2a17]">
+        <div className="info-card rounded-none p-5">
+          <h2 className="text-2xl font-bold text-neutral-950">Обобщение на любимите</h2>
+          <p className="mt-3 text-base font-medium leading-7 text-ink">
             Тук ще виждаш запазените рецепти и бързи връзки към тях, когато започнеш да добавяш
             любими идеи.
           </p>
           <Link
-            className="mt-5 inline-flex rounded-full bg-brand-600 px-5 py-2.5 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
+            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition hover:bg-brand-700"
             href="/favorites"
           >
             Виж любимите
           </Link>
         </div>
 
-        <div className="info-note rounded-[1.6rem] p-5 shadow-sm">
-          <h2 className="text-2xl font-bold text-stone-950">Лични настройки</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a2a17]">
+        <div className="info-note rounded-none p-5 ">
+          <h2 className="text-2xl font-bold text-neutral-950">Лични настройки</h2>
+          <p className="mt-3 text-base font-medium leading-7 text-ink">
             Профилът ще събира предпочитания, любими рецепти и удобни преки пътища за по-бързо
             готвене.
           </p>

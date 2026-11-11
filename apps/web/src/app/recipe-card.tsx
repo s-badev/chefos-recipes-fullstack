@@ -1,5 +1,6 @@
 import type { SVGProps } from "react";
 import Image from "next/image";
+import { webImageSrc } from "../lib/images";
 import Link from "next/link";
 import { addFavoriteAction, removeFavoriteAction } from "../server/favorites/actions";
 
@@ -128,24 +129,24 @@ export function RecipeCard({
   return (
     <article
       className={[
-        "recipe-card group relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-3xl",
+        "recipe-card group relative flex h-full min-h-[440px] flex-col overflow-hidden rounded-none",
         className
       ].join(" ")}
     >
       <Link
         aria-label={`Отвори рецепта: ${recipe.title}`}
-        className="absolute inset-0 z-10 rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
+        className="absolute inset-0 z-10 rounded-none  focus-visible:ring-4 focus-visible:ring-brand-100"
         href={`/catalog/${recipe.slug}`}
       />
       <div className="relative overflow-hidden">
         {recipe.imageSrc ? (
-          <div className="relative h-40 overflow-hidden bg-stone-100 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
+          <div className="relative h-40 overflow-hidden bg-neutral-100 transition duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
             <Image
               alt={imageAlt}
               className="object-cover"
               fill
               sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
-              src={recipe.imageSrc}
+              src={webImageSrc(recipe.imageSrc)}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/32" />
           </div>
@@ -161,12 +162,12 @@ export function RecipeCard({
         )}
 
         <div className="absolute left-3 top-3 max-w-[calc(100%-7.5rem)]">
-          <span className="inline-flex max-w-full truncate rounded-full bg-[#fff8ee]/95 px-2.5 py-1 text-xs font-bold text-[#3a2417] shadow-[0_8px_22px_rgba(28,18,8,0.18)] ring-1 ring-white/70 backdrop-blur-md">
+          <span className="inline-flex max-w-full truncate rounded-none bg-bg/95 px-2.5 py-1 text-xs font-bold text-ink  ring-1 ring-white/70 backdrop-blur-md">
             {recipe.category}
           </span>
         </div>
         <div className="absolute right-3 top-3 max-w-[6.5rem]">
-          <span className="inline-flex max-w-[6.5rem] truncate rounded-full bg-[#2b160b]/90 px-2.5 py-1 text-xs font-bold text-white shadow-[0_8px_22px_rgba(28,18,8,0.22)] ring-1 ring-white/40 backdrop-blur-md">
+          <span className="inline-flex max-w-[6.5rem] truncate rounded-none bg-ink/90 px-2.5 py-1 text-xs font-bold text-white  ring-1 ring-white/40 backdrop-blur-md">
             {recipe.difficulty}
           </span>
         </div>
@@ -178,8 +179,8 @@ export function RecipeCard({
             <button
               aria-label={favoriteAriaLabel}
               className={[
-                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-full border bg-[#fff8ee]/95 px-3 py-1.5 text-xs font-semibold text-[#8a4a19] shadow-[0_10px_24px_rgba(45,25,10,0.18)] ring-1 ring-white/60 backdrop-blur-md transition hover:border-[#c8894a] hover:bg-[#fff1dc] hover:text-[#6f3514] focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100",
-                isFavorited ? "border-[#d7a66a]" : "border-[#e3bf8d]"
+                "inline-flex min-h-8 max-w-full items-center justify-center whitespace-nowrap rounded-none border bg-bg/95 px-3 py-1.5 text-xs font-semibold text-muted  ring-1 ring-white/60 backdrop-blur-md transition hover:border-line hover:bg-bg hover:text-muted  focus-visible:ring-4 focus-visible:ring-brand-100",
+                isFavorited ? "border-line" : "border-line"
               ].join(" ")}
               type="submit"
             >
@@ -191,16 +192,16 @@ export function RecipeCard({
 
       <div className="flex flex-1 flex-col p-4">
         <div className="grid min-h-[8rem] grid-rows-[3.25rem_3.75rem] gap-2.5">
-          <h3 className="line-clamp-2 self-start text-xl font-bold leading-tight text-stone-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
+          <h3 className="line-clamp-2 self-start text-xl font-bold leading-tight text-neutral-950 transition group-hover:text-brand-800 xl:text-[1.25rem]">
             {recipe.title}
           </h3>
-          <p className="line-clamp-2 self-start text-sm font-medium leading-6 text-[#4a3326]">
+          <p className="line-clamp-2 self-start text-sm font-medium leading-6 text-ink">
             {recipe.description}
           </p>
         </div>
 
         <div className="mt-auto flex min-h-[6.75rem] flex-col justify-start pt-3">
-          <div className="grid min-h-[3.25rem] grid-cols-[minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(max-content,1.2fr)] items-center gap-1 rounded-2xl border border-brand-100 bg-[#fff8ee] px-2 py-2.5 text-[0.66rem] font-black leading-none text-stone-800 shadow-inner shadow-white/60 sm:px-2.5 sm:text-[0.7rem]">
+          <div className="grid min-h-[3.25rem] grid-cols-[minmax(0,0.9fr)_minmax(0,0.9fr)_minmax(max-content,1.2fr)] items-center gap-1 rounded-none border border-brand-100 bg-bg px-2 py-2.5 text-[0.66rem] font-black leading-none text-neutral-800   sm:px-2.5 sm:text-[0.7rem]">
             {metadata.map((item, index) => {
               const Icon = item.icon;
 
@@ -219,7 +220,7 @@ export function RecipeCard({
           <div className="mt-3 flex min-h-[2rem] flex-wrap content-start gap-1.5">
             {visibleTags.map((tag) => (
               <span
-                className="rounded-full border border-stone-200 bg-white/86 px-2.5 py-1 text-xs font-bold text-stone-600 shadow-sm"
+                className="rounded-none border border-neutral-200 bg-white/86 px-2.5 py-1 text-xs font-bold text-neutral-600 "
                 key={tag}
               >
                 {tag}

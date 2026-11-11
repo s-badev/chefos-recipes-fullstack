@@ -26,17 +26,17 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   return (
     <section className="page-shell pb-6">
       <div className="grid w-full gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-[2rem] border border-brand-100 bg-[linear-gradient(135deg,#7f3313_0%,#bd4b1b_48%,#f3a044_100%)] p-5 text-white shadow-[0_24px_70px_rgba(89,52,22,0.18)] sm:p-6">
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,248,238,0.18)_0%,rgba(58,36,23,0.18)_100%)]" />
+        <aside className="relative overflow-hidden rounded-none border border-brand-100 bg-ink p-5 text-white  sm:p-6">
+          <div className="absolute inset-0 bg-ink" />
           <div className="relative flex min-h-[340px] flex-col justify-between gap-6 lg:min-h-[380px]">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-orange-100">
+              <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-100">
                 Chefo&apos;s Recipes
               </p>
               <h1 className="mt-3 max-w-xl text-3xl font-black leading-tight text-white sm:text-[2.5rem]">
                 Всичко за домашното готвене на едно място
               </h1>
-              <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-orange-50">
+              <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-neutral-50">
                 Влез в профила си, за да се върнеш към любимите рецепти и да избираш по-спокойно какво да сготвиш.
               </p>
             </div>
@@ -57,23 +57,23 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
                 }
               ].map((item, index) => (
                 <div
-                  className="rounded-[1.2rem] border border-white/24 bg-white/14 p-3.5 shadow-sm backdrop-blur-[2px]"
+                  className="rounded-none border border-white/24 bg-white/14 p-3.5  backdrop-blur-[2px]"
                   key={item.title}
                 >
                   <div className="flex gap-4">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#fff8ee] text-sm font-black text-brand-700">
+                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-none bg-bg text-sm font-black text-brand-700">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                     <div>
                       <h2 className="text-base font-black text-white">{item.title}</h2>
-                      <p className="mt-1 text-sm font-semibold leading-6 text-orange-50">{item.text}</p>
+                      <p className="mt-1 text-sm font-semibold leading-6 text-neutral-50">{item.text}</p>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="rounded-[1.2rem] border border-white/24 bg-[#3a2417]/22 p-3.5 text-sm font-bold leading-6 text-orange-50">
+            <p className="rounded-none border border-white/24 bg-ink/22 p-3.5 text-sm font-bold leading-6 text-neutral-50">
               Chefo&apos;s Recipes помага да избираш по-бързо и да готвиш с повече спокойствие.
             </p>
           </div>
@@ -81,19 +81,19 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
         <form
           action={loginAction}
-          className="flex min-h-[380px] w-full flex-col justify-center rounded-[2rem] border border-stone-200 bg-[#fff8ee]/95 p-5 shadow-[0_24px_70px_rgba(89,52,22,0.12)] sm:p-6"
+          className="flex min-h-[380px] w-full flex-col justify-center rounded-none border border-neutral-200 bg-bg/95 p-5  sm:p-6"
         >
           <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
                 Потребителски достъп
               </p>
-              <h2 className="mt-2 text-3xl font-black leading-tight text-[#3a2417] sm:text-[2.5rem]">
+              <h2 className="mt-2 text-3xl font-black leading-tight text-ink sm:text-[2.5rem]">
                 Вход
               </h2>
             </div>
             <Link
-              className="inline-flex rounded-full border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition hover:border-brand-400 hover:text-brand-900"
+              className="inline-flex rounded-none border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition hover:border-brand-400 hover:text-brand-900"
               href="/register"
             >
               Регистрация
@@ -102,17 +102,17 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
           <div className="space-y-4">
             {params?.error === "invalid" ? (
-              <p className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">
+              <p className="rounded-none border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">
                 Невалиден имейл или парола.
               </p>
             ) : null}
 
             <div>
-              <label className="text-base font-black text-stone-800" htmlFor="email">
+              <label className="text-base font-black text-neutral-800" htmlFor="email">
                 Имейл
               </label>
               <input
-                className="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3.5 text-base text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="email"
                 name="email"
                 placeholder="ime@example.com"
@@ -122,11 +122,11 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </div>
 
             <div>
-              <label className="text-base font-black text-stone-800" htmlFor="password">
+              <label className="text-base font-black text-neutral-800" htmlFor="password">
                 Парола
               </label>
               <input
-                className="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3.5 text-base text-stone-950 outline-none transition placeholder:text-stone-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition placeholder:text-neutral-400 focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
                 id="password"
                 name="password"
                 placeholder="Въведи парола"
@@ -136,16 +136,16 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             </div>
 
             <button
-              className="w-full rounded-full bg-brand-600 px-5 py-3.5 text-base font-black text-white shadow-[0_12px_30px_rgba(127,51,19,0.24)] transition hover:bg-brand-700"
+              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition hover:bg-brand-700"
               type="submit"
             >
               Влез
             </button>
 
-            <p className="mt-6 text-center text-base font-semibold leading-6 text-[#4a2a17]">
+            <p className="mt-6 text-center text-base font-semibold leading-6 text-ink">
               Нямаш профил?{" "}
               <Link
-                className="font-black text-[#c05621] transition hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
+                className="font-black text-muted transition hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
                 href="/register"
               >
                 Регистрация
