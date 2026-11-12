@@ -35,6 +35,8 @@ const SCENES = [
   { name: "Начало: цитат", url: "/", scroll: ".story", hide: ".story .wrap *,.hdr", boxes: [[".story q", "цитат"], [".story cite", "подпис"]] },
   { name: "Рецепта: hero (шопска)", url: "/catalog/shopska-salata", hide: ".r-hero .hero-in *,.hdr", boxes: [[".r-hero .eyebrow", "eyebrow"], [".r-hero h1", "h1"], [".r-hero .r-desc", "описание"]] },
   { name: "Рецепта: hero (боб чорба)", url: "/catalog/bob-chorba", hide: ".r-hero .hero-in *,.hdr", boxes: [[".r-hero .eyebrow", "eyebrow"], [".r-hero h1", "h1"], [".r-hero .r-desc", "описание"]] },
+  { name: "За нас: hero", url: "/about", hide: ".r-hero .hero-in *,.hdr", boxes: [[".r-hero .eyebrow", "eyebrow"], [".r-hero h1", "h1"], [".r-hero .r-desc", "описание"]] },
+  { name: "За нас: header над hero", url: "/about", hide: ".hdr", boxes: [[".hdr .logo-kicker", "лого: kicker"], [".hdr .logo-name", "лого: име"], [".hdr .desktop-nav a, .hdr .menu-toggle", "навигация"]] },
   { name: "Вход: снимка", url: "/login", hide: ".auth-cap *", boxes: [[".auth-cap .eyebrow", "eyebrow"], [".auth-cap h1", "h1"]] }
 ];
 
