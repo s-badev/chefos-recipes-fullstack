@@ -52,63 +52,40 @@ test("pure guards: photo decision, missing-content lines and the catalog return 
   expect(validCatalogHref("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8")).toBe("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8");
 });
 
-test("curated musaka keeps its photo; ticks strike through, survive a reload and clear", async ({ page }) => {
+test("curated musaka keeps its photo; products are a plain list, each with its own icon and a static count", async ({ page }) => {
   const problems = watchProblems(page);
   await page.goto("/catalog/musaka-s-kartofi");
   await expect(page.locator(".r-hero")).toHaveAttribute("data-photo", "yes");
   await expect(page.locator(".r-hero img")).toHaveCount(1);
 
-  await page.goto("/catalog/shopska-salata");
-  const items = page.locator(".ing");
-  const total = await items.count();
-  await expect(page.locator(".ings-count")).toHaveText(`0 от ${total}`);
-  await expect(page.getByRole("button", { name: "Изчисти отметките" })).toHaveCount(0);
-  await page.getByRole("checkbox", { name: "4 зрели домата" }).check();
-  await page.getByRole("checkbox", { name: "1 краставица" }).check();
-  await expect(page.locator(".ings-count")).toHaveText(`2 от ${total}`);
-  await expect.poll(() => items.first().locator(".ing-s").evaluate(node => getComputedStyle(node).clipPath)).toBe("inset(0px)");
-  expect(await items.first().locator(".ing-s").evaluate(node => getComputedStyle(node).textDecorationLine)).toBe("line-through");
-
-  await page.reload();
-  await expect(page.getByRole("checkbox", { name: "4 зрели домата" })).toBeChecked();
-  await expect(page.getByRole("checkbox", { name: "1 краставица" })).toBeChecked();
-  await expect(page.getByRole("checkbox", { name: "1 с.л. оцет" })).not.toBeChecked();
-  await expect(page.locator(".ings-count")).toHaveText(`2 от ${total}`);
-
-  await page.getByRole("button", { name: "Изчисти отметките" }).click();
-  await expect(page.locator(".ings-count")).toHaveText(`0 от ${total}`);
-  await expect(page.getByRole("button", { name: "Изчисти отметките" })).toHaveCount(0);
-  expect(await page.evaluate(() => localStorage.getItem("chefos:ingredients:shopska-salata"))).toBeNull();
-  await page.reload();
-  await expect(page.getByRole("checkbox", { name: "4 зрели домата" })).not.toBeChecked();
-  expect(problems.pageErrors).toEqual([]);
-});
-
-test("keyboard: the checkbox itself shows the focus ring and Space ticks it", async ({ page }) => {
   await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
-  const first = page.getByRole("checkbox", { name: "4 зрели домата" });
-  await first.focus();
-  await page.keyboard.press("Tab");
-  await page.keyboard.press("Shift+Tab");
-  await expect(first).toBeFocused();
-  const outline = await first.evaluate(node => { const style = getComputedStyle(node); return { style: style.outlineStyle, width: parseFloat(style.outlineWidth), opacity: style.opacity }; });
-  expect(outline.style).toBe("solid");
-  expect(outline.width).toBeGreaterThanOrEqual(2);
-  expect(outline.opacity).toBe("1");
-  await page.keyboard.press("Space");
-  await expect(first).toBeChecked();
-  await page.getByRole("button", { name: "Изчисти отметките" }).click();
+  const items = page.locator(".ing-list > li.ing");
+  await expect(items).toHaveCount(8);
+  await expect(page.locator(".ings-count")).toHaveText("8 продукта");
+  await expect(page.locator(".ings-count")).not.toHaveAttribute("aria-live", /.+/);
+  // Nothing to tick: no checkboxes, no struck-through copy, no clear button, nothing stored.
+  await expect(page.locator('.ings input, .ing-s, .ing-clear')).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "Изчисти отметките" })).toHaveCount(0);
+  expect(await page.evaluate(() => Object.keys(localStorage).filter(key => key.startsWith("chefos:ingredients")))).toEqual([]);
+  expect(await items.locator(".ing-ic").evaluateAll(nodes => nodes.map(node => node.getAttribute("data-icon")))).toEqual(["tomato", "cucumber", "peppers", "onion", "cheese", "oil", "vinegar", "spices"]);
+  for (const icon of await items.locator(".ing-ic").all()) {
+    await expect(icon).toHaveAttribute("aria-hidden", "true");
+    const box = (await icon.locator("svg").boundingBox())!;
+    expect(Math.round(box.width)).toBe(22);
+  }
+  // The visible text is the only name: the list reads as plain lines.
+  await expect(items.first()).toHaveText("4 зрели домата");
+  expect(problems.pageErrors).toEqual([]);
 });
 
-test("ticks still work (without memory) when localStorage is blocked", async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(window, "localStorage", { get() { throw new DOMException("blocked", "SecurityError"); } });
-  });
-  const problems = watchProblems(page);
-  await page.goto("/catalog/shopska-salata");
-  await page.getByRole("checkbox", { name: "1 краставица" }).check();
-  await expect(page.locator(".ings-count")).toHaveText(/^1 от /);
-  expect(problems.pageErrors).toEqual([]);
+test("ingredient rows keep one height and line up, also on a phone", async ({ page }) => {
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/catalog/bob-chorba", { waitUntil: "networkidle" });
+    const rows = await page.locator(".ing").evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(), icon = node.querySelector(".ing-ic")!.getBoundingClientRect(); return { h: Math.round(r.height), iconX: Math.round(icon.x) }; }));
+    expect(new Set(rows.map(row => row.iconX)).size, `icons in one column at ${width}`).toBe(1);
+    expect(Math.min(...rows.map(row => row.h)), `row height at ${width}`).toBeGreaterThanOrEqual(52);
+  }
 });
 
 test("header is transparent over the recipe hero and solid after it; solid on pages without a hero", async ({ page }) => {
@@ -230,7 +207,7 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
     await expect(page.locator(".r-hero .eyebrow")).toHaveText("Салати");
     await expect(page.locator(".meta dd").nth(1)).toHaveText("Без готвене");
     await expect(page.locator(".r-missing")).toHaveText(["Продуктите и стъпките за тази рецепта още не са добавени."]);
-    await expect(page.locator('input[type="checkbox"], .ings-count, .st-list')).toHaveCount(0);
+    await expect(page.locator('.ing-ic, .ings-count, .st-list')).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Принтирай рецептата", exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: "Към рецептите" })).toBeVisible();
@@ -264,9 +241,8 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
   }
 });
 
-test("print: title, products and steps; no hero photo, header, footer or buttons; empty squares", async ({ page }) => {
+test("print: title, products with their small icons and steps; no hero photo, header, footer or buttons", async ({ page }) => {
   await page.goto("/catalog/shopska-salata");
-  await page.getByRole("checkbox", { name: "1 краставица" }).check();
   await page.emulateMedia({ media: "print" });
   await expect(page.locator("header")).toBeHidden();
   await expect(page.locator("footer")).toBeHidden();
@@ -276,9 +252,12 @@ test("print: title, products and steps; no hero photo, header, footer or buttons
   await expect(page.getByRole("heading", { level: 1 })).toHaveCSS("color", "rgb(17, 17, 17)");
   await expect(page.getByRole("heading", { name: "Продукти", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Начин на приготвяне", exact: true })).toBeVisible();
-  const ticked = page.locator(".ing").filter({ hasText: "1 краставица" });
-  expect(await ticked.locator("input").evaluate(node => getComputedStyle(node, "::after").display)).toBe("none");
-  await expect(ticked.locator(".ing-b")).toHaveCSS("opacity", "1");
+  // The icons print small and black, without their chip; the text stays black.
+  const icon = page.locator(".ing-ic").first();
+  await expect(icon).toBeVisible();
+  await expect(icon).toHaveCSS("color", "rgb(17, 17, 17)");
+  await expect(icon).toHaveCSS("border-top-width", "0px");
+  await expect(page.locator(".ing-t").first()).toHaveCSS("color", "rgb(17, 17, 17)");
   // Nothing may print faded or shifted, even right after switching to print (reveals mid-flight).
   const faded = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>(".recipe-print-page [data-r], .recipe-print-page .wi")].filter(node => {
     const style = getComputedStyle(node);
@@ -292,7 +271,6 @@ test("print: title, products and steps; no hero photo, header, footer or buttons
     await page.screenshot({ path: path.join(shots, "print-shopska.png"), fullPage: true });
     await writeFile(path.join(shots, "print-shopska.pdf"), pdf);
   }
-  await page.evaluate(() => localStorage.removeItem("chefos:ingredients:shopska-salata"));
 });
 
 for (const slug of ["shopska-salata", "bob-chorba"]) {
@@ -316,15 +294,12 @@ test.describe("reduced motion", () => {
     }).length);
     expect(hidden).toBe(0);
     expect(await page.locator(".r-hero .hero-ph img").evaluate(node => getComputedStyle(node).animationName)).toBe("none");
-    await page.getByRole("checkbox", { name: "1 краставица" }).check();
-    await expect(page.locator(".ings-count")).toHaveText(/^1 от /);
-    await page.getByRole("button", { name: "Изчисти отметките" }).click();
   });
 });
 
 test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
-  test("recipe page: everything visible, solid header, ticks still toggle", async ({ page }) => {
+  test("recipe page: everything visible, solid header, the product icons are there", async ({ page }) => {
     await page.goto("/catalog/bob-chorba");
     const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, .rv, .wi, .r-desc, .ing, .st, .actions .btn")].filter(node => {
       const style = getComputedStyle(node);
@@ -332,9 +307,7 @@ test.describe("without JavaScript", () => {
     }).length);
     expect(hidden).toBe(0);
     expect(await page.locator("header.hdr").evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
-    const box = page.getByRole("checkbox", { name: "1 морков" });
-    await box.check();
-    await expect(box).toBeChecked();
+    await expect(page.locator(".ing-ic")).toHaveCount(8);
   });
 });
 

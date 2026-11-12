@@ -13,7 +13,7 @@ import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, nextCuratedRec
 import { recipeExtrasFor } from "../../../data/recipe-extras";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 import { getWebRecipeForDetails } from "../../../server/recipes/web-details";
-import { IngredientChecklist } from "./ingredient-checklist";
+import { IngredientList } from "./ingredient-list";
 import { RecipeFavorite } from "./recipe-favorite";
 import { BackToCatalog } from "./back-to-catalog";
 
@@ -106,7 +106,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <>
               <aside aria-labelledby={recipe.ingredients.length ? "ingredients-title" : undefined} className="ings">
                 {recipe.ingredients.length ? (
-                  <IngredientChecklist ingredients={recipe.ingredients} slug={recipe.slug} />
+                  <IngredientList ingredients={recipe.ingredients} />
                 ) : (
                   <p className="r-missing">{notes.ingredients}</p>
                 )}

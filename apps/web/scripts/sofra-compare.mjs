@@ -21,7 +21,7 @@ const hide = ".ctl,.back-to-top-control,.back-to-top{visibility:hidden!important
 const MEASURE = {
   home: [".hero h1", ".hero .eyebrow", ".hero-row p", ".hero-cta .btn", ".hero .stitch-band, .hero .band", "#sofra .sec-h", ".sofra", ".plate", ".cat-now .cat-name", ".mini", ".week-ph", ".week-tx h2", ".facts", ".week-tx .btn", ".sec-top .sec-h", ".cards .card", ".card .ct", ".card .ce", ".card .cm", ".heart", ".story q", ".ftr-grid"],
   catalog: [".cat-head .eyebrow", ".cat-head h1", ".search", ".fbar", ".tab", ".count", ".cards .card", ".card .ct", ".card .ci"],
-  recipe: [".r-hero", ".r-hero h1", ".r-hero .eyebrow", ".r-hero p", ".meta", ".meta dd", ".meta dt", ".tags", ".ings h2", ".ing", ".steps h2", ".st-n", ".st p", ".actions .btn", ".next b", ".next .ni"],
+  recipe: [".r-hero", ".r-hero h1", ".r-hero .eyebrow", ".r-hero p", ".meta", ".meta dd", ".meta dt", ".tags", ".ings h2", ".ings-count", ".ing", ".ing-ic", ".ing-t", ".steps h2", ".st-n", ".st p", ".actions .btn", ".next b", ".next .ni"],
   auth: [".auth-ph", ".auth-cap h1", ".atabs", ".atab", ".auth-box h2", ".auth-box .sub", ".fld", ".fld input", ".auth-box .btn", ".alt", ".perks li", ".perks b"]
 };
 
