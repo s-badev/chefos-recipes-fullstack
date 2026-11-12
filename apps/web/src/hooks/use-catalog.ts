@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { filterCatalog, type CardRecipe } from "../lib/catalog";
+import { rememberCatalogHref } from "../lib/catalog-return";
 
 function locationState() {
   const params = new URLSearchParams(window.location.search);
@@ -42,8 +43,11 @@ export function useCatalog(recipes: readonly CardRecipe[]) {
   const params = new URLSearchParams();
   if (query.trim()) params.set("q", query.trim());
   if (selectedCategory !== "Всички") params.set("category", selectedCategory);
+  const catalogHref = `/catalog${params.size ? `?${params}` : ""}`;
+  // The recipe page's "back to catalog" link returns to this exact view (search and category).
+  useEffect(() => { if (ready) rememberCatalogHref(catalogHref); }, [catalogHref, ready]);
   return { searchTerm, setSearchTerm, selectedCategory, setSelectedCategory: (value: string) => { setSelectedCategory(value); setCurrentPage(1); },
-    catalogHref: `/catalog${params.size ? `?${params}` : ""}`,
+    catalogHref,
     currentPage: page, setCurrentPage, categories, filteredRecipes, totalPages,
     paginatedRecipes: filteredRecipes.slice((page - 1) * 8, page * 8),
     clear: () => { setSearchTerm(""); setSelectedCategory("Всички"); setCurrentPage(1); } };

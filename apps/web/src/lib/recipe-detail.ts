@@ -1,0 +1,48 @@
+import { recipes as curatedRecipes } from "../data/recipes";
+
+/**
+ * Web-only copy of the image the recipe repository substitutes when a manual (admin) recipe has no
+ * stored image. The repository and the API keep returning it unchanged; only the web detail page
+ * reads it to decide that such a recipe has no photograph of its own.
+ * tests/recipe.spec.ts checks that this value still matches the repository.
+ */
+export const RECIPE_FALLBACK_IMAGE_SRC = "/images/recipes/musaka-s-kartofi.png";
+
+const curatedIndex = new Map(curatedRecipes.map((recipe, index) => [recipe.slug, index]));
+
+/** "Nº 07" for one of the curated recipes (its position in the curated list); undefined for manual recipes. */
+export function curatedNumberLabel(slug: string): string | undefined {
+  const index = curatedIndex.get(slug);
+  return index === undefined ? undefined : `Nº ${String(index + 1).padStart(2, "0")}`;
+}
+
+/**
+ * A curated recipe always shows its own photograph. A manual recipe shows a photograph only when it
+ * has a stored image that is not the repository's substitute.
+ */
+export function hasRecipePhoto(recipe: { slug: string; imageSrc?: string }): boolean {
+  if (!recipe.imageSrc) return false;
+  return curatedIndex.has(recipe.slug) || recipe.imageSrc !== RECIPE_FALLBACK_IMAGE_SRC;
+}
+
+/** Tags as one plain line: "Постно · Домашно · Бюджетно". */
+export function tagLine(tags: readonly string[]): string {
+  return tags.map(tag => tag.trim()).filter(Boolean).join(" · ");
+}
+
+/** "01", "02" … for the large step numbers. */
+export function stepNumber(index: number): string {
+  return String(index + 1).padStart(2, "0");
+}
+
+/**
+ * The muted line that replaces a missing section: one line per missing section, or a single
+ * combined line when both are missing. Empty lists, ticks, counters and the progress line are never shown.
+ */
+export function missingContentNotes(ingredients: number, steps: number): { all?: string; ingredients?: string; steps?: string } {
+  if (!ingredients && !steps) return { all: "Продуктите и стъпките за тази рецепта още не са добавени." };
+  return {
+    ingredients: ingredients ? undefined : "Продуктите за тази рецепта още не са добавени.",
+    steps: steps ? undefined : "Стъпките за тази рецепта още не са добавени."
+  };
+}
