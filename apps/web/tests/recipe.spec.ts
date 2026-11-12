@@ -130,7 +130,8 @@ test("header is transparent over the recipe hero and solid after it; solid on pa
   await page.mouse.wheel(0, -(heroHeight + 400));
   await expect(header).not.toHaveClass(/\bsolid\b/);
 
-  await page.goto("/about", { waitUntil: "networkidle" });
+  // A page without a hero (the catalog) has the solid header from the top.
+  await page.goto("/catalog", { waitUntil: "networkidle" });
   expect(await page.locator("header.hdr").evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
 });
 
@@ -451,5 +452,5 @@ test("recipe metadata: canonical, Open Graph and Twitter card from the recipe", 
 test("unknown recipe slug answers 404 with the styled page", async ({ page }) => {
   const response = await page.goto("/catalog/takava-retsepta-nyama");
   expect(response!.status()).toBe(404);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Тази страница не е намерена");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Тази страница не е на масата");
 });

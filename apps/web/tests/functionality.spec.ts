@@ -119,7 +119,7 @@ test("all bounded public catalog recipes have details and metadata, uppercase ge
   }
   const upper = await page.goto("/catalog/SHOPSKA-SALATA");
   expect(upper!.status()).toBe(404);
-  await expect(page.getByRole("heading", { name: /не е намерена/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /не е на масата/i })).toBeVisible();
 });
 
 test("real Neon registration, auth errors, return path, favorites without reload and guards", async ({ page, request }) => {
@@ -154,9 +154,9 @@ test("real Neon registration, auth errors, return path, favorites without reload
     expect(await page.evaluate(() => (window as Window & { testDocument?: string }).testDocument)).toBe("same-document");
     expect((await db.select().from(favorites).where(eq(favorites.userId, persisted[0].id))).length).toBe(1);
     await page.goto("/favorites");
-    await expect(page.locator(".recipe-card")).toHaveCount(1);
+    await expect(page.locator(".fav-body .card")).toHaveCount(1);
     await page.getByRole("button", { name: "Премахни Шопска салата от любими", exact: true }).click();
-    await expect(page.locator(".recipe-card")).toHaveCount(0);
+    await expect(page.locator(".fav-body .card")).toHaveCount(0);
     await expect(page.locator('header [data-testid="favorite-count"]')).toHaveText("0");
     await page.goto("/admin"); await expect(page).toHaveURL(/\/profile$/);
     await page.getByRole("button", { name: "Изход", exact: true }).first().click();

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const PAGES = ["/", "/catalog", "/catalog/shopska-salata", "/catalog/bob-chorba", "/login", "/register", "/about"];
+const PAGES = ["/", "/catalog", "/catalog/shopska-salata", "/catalog/bob-chorba", "/login", "/register", "/about", "/niama-takava-stranica"];
 const HIDDEN = "h1, h2, q, .rv, .wi, .mask .mk, .card, .st, .ing";
 
 for (const url of PAGES) {
