@@ -14,3 +14,7 @@ export const recipeTileSizes = {
 
 // Seven of twelve columns with six internal 24px gaps: 7/12 * content - 10px.
 export const weeklyImageSizes = `(max-width: 1000px) ${full}, calc((${content}) * 7 / 12 - 10px)`;
+
+// About, "Как подбираме": seven columns like the weekly photo, drawn 10% larger (the crop that keeps
+// the photograph's corner mark out of the frame).
+export const principlesImageSizes = `(max-width: 1000px) calc((${content}) * 1.1), calc(((${content}) * 7 / 12 - 10px) * 1.1)`;
