@@ -42,52 +42,74 @@ test("pure guards: internal next paths, registration and lean searchable cards",
   expect(filterCatalog(cards, "ShOpSkA", "Салати").map(recipe => recipe.slug)).toContain("shopska-salata");
 });
 
+test("text typed before hydration is kept and applied", async ({ page }) => {
+  // Hold the page's JavaScript back so the visitor types into the server-rendered field first.
+  let release: () => void = () => undefined;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/_next/static/chunks/**", async route => { await gate; await route.continue(); });
+  await page.goto("/catalog", { waitUntil: "domcontentloaded" });
+  await page.locator(".search input").fill("таратор");
+  release();
+  await page.unrouteAll({ behavior: "wait" });
+  await expect(page).toHaveURL(/q=/);
+  await expect(page.locator(".search input")).toHaveValue("таратор");
+  await expect(page.locator(".cards .card")).toHaveCount(1);
+  await expect(page.locator(".cards .card .ct")).toHaveText("Таратор");
+});
+
+test("search by an ingredient finds the recipe", async ({ page }) => {
+  // "целина" appears only in the ingredients of the chicken soup (not in a title, description or tag).
+  await page.goto("/catalog?q=%D1%86%D0%B5%D0%BB%D0%B8%D0%BD%D0%B0");
+  await expect(page.locator(".cards .card .ct")).toHaveText(["Пилешка супа"]);
+});
+
 test("debounced Cyrillic/slug search, combined category, clear and URL history", async ({ page }) => {
-  // Wait for hydration: the catalog reads ?q= / ?category= from the URL once it is interactive.
-  await page.goto("/catalog", { waitUntil: "networkidle" });
+  await page.goto("/catalog");
   const search = page.getByRole("searchbox");
   await search.fill("shopska");
   await expect(page).toHaveURL(/q=shopska/);
-  await expect(page.locator(".recipe-card")).toHaveCount(1);
-  await expect(page.locator(".recipe-card h3")).toHaveText("Шопска салата");
+  await expect(page.locator(".cards .card")).toHaveCount(1);
+  await expect(page.locator(".cards .card .ct")).toHaveText("Шопска салата");
   await page.getByRole("button", { name: "Салати", exact: true }).click();
   await expect(page).toHaveURL(/category=/);
   await expect(page.getByRole("button", { name: "Салати", exact: true })).toHaveAttribute("aria-pressed", "true");
   const url = page.url();
   await page.reload(); await expect(search).toHaveValue("shopska");
-  await expect(page.locator(".recipe-card")).toHaveCount(1);
+  await expect(page.locator(".cards .card")).toHaveCount(1);
   await search.fill("няма-такава-рецепта");
   await expect(page.getByRole("heading", { name: "Няма намерени рецепти" })).toBeVisible();
   await expect(page).not.toHaveURL(url);
   await page.goBack(); await expect(search).toHaveValue("shopska");
-  await expect(page.locator(".recipe-card")).toHaveCount(1);
+  await expect(page.locator(".cards .card")).toHaveCount(1);
   await page.goForward(); await expect(search).toHaveValue("няма-такава-рецепта");
   await page.getByRole("button", { name: "Изчисти", exact: true }).click();
   await expect(page).toHaveURL(/\/catalog$/);
-  await search.fill("Таратор"); await expect(page.locator(".recipe-card")).toHaveCount(1); await expect(page.locator(".recipe-card h3")).toHaveText("Таратор");
+  await search.fill("Таратор"); await expect(page.locator(".cards .card")).toHaveCount(1); await expect(page.locator(".cards .card .ct")).toHaveText("Таратор");
 });
 
 for (const category of [...new Set(curated.map(recipe => recipe.category))]) {
-  test(`home rail applies category: ${category}`, async ({ page }) => {
-    await page.goto("/");
-    await page.locator("#category-rail").getByRole("link", { name: new RegExp(category) }).click();
+  test(`home sofra applies category: ${category}`, async ({ page }) => {
+    await page.goto("/", { waitUntil: "networkidle" });
+    const sofra = page.locator("#sofra");
+    await sofra.getByRole("button", { name: category, exact: true }).click();
+    await expect(sofra.getByRole("button", { name: category, exact: true })).toHaveAttribute("aria-pressed", "true");
+    await sofra.getByRole("link", { name: `Всички: ${category.toLocaleLowerCase("bg-BG")}` }).click();
     await expect(page).toHaveURL(/\/catalog\?category=/);
     await expect(page.getByRole("button", { name: category, exact: true })).toHaveAttribute("aria-pressed", "true");
-    expect(await page.locator(".recipe-card").count()).toBeGreaterThanOrEqual(curated.filter(recipe => recipe.category === category).length);
-    for (const card of await page.locator(".recipe-card").all()) await expect(card).toContainText(category);
+    expect(await page.locator(".cards .card").count()).toBeGreaterThanOrEqual(curated.filter(recipe => recipe.category === category).length);
+    // Every card in the grid belongs to the category (the server renders the filtered view at once).
+    await expect.poll(async () => (await page.locator(".cards .card .ce").allTextContents()).every(text => text === category)).toBe(true);
   });
 }
 
 test("all bounded public catalog recipes have details and metadata, uppercase gets styled 404", async ({ page, request }) => {
-  await page.goto("/catalog");
-  const slugs = new Set<string>();
-  for (;;) {
-    for (const href of await page.locator('.recipe-card > a').evaluateAll(nodes => nodes.map(node => node.getAttribute("href")!))) slugs.add(href);
-    const next = page.getByRole("button", { name: "Следваща", exact: true });
-    if (await next.isDisabled()) break;
-    await next.click();
-  }
-  expect(slugs.size).toBeGreaterThanOrEqual(24);
+  await page.goto("/catalog", { waitUntil: "networkidle" });
+  // One page, no pagination: every curated recipe from the data is in the grid (manual ones may follow).
+  const slugs = new Set(await page.locator(".cards .card .cb").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")!)));
+  for (const recipe of curated) expect(slugs.has(`/catalog/${recipe.slug}`), recipe.slug).toBe(true);
+  await expect(page.getByRole("button", { name: "Следваща", exact: true })).toHaveCount(0);
+  await expect(page.getByText(/Страница \d+ от/)).toHaveCount(0);
+  await expect(page.locator(".count")).toHaveText(`${slugs.size} рецепти`);
   for (const href of slugs) {
     const response = await request.get(href);
     expect(response.status(), href).toBe(200);
@@ -151,7 +173,7 @@ test("real Neon registration, auth errors, return path, favorites without reload
       await route.continue();
     });
     const submitting = page.getByRole("button", { name: "Влез", exact: true }).click();
-    await expect(page.getByRole("button", { name: "Изчакай…", exact: true })).toBeDisabled();
+    await expect(page.getByRole("button", { name: "Влизане…", exact: true })).toBeDisabled();
     await submitting;
     await expect(page.getByText("Невалиден имейл или парола.", { exact: true })).toBeVisible();
     await page.unrouteAll({ behavior: "wait" });
@@ -195,8 +217,8 @@ test("real Neon admin creates, edits stable slug and deletes only its test recip
     expect(created[0].imageUrl).toBeNull();
     await page.goto(`/catalog/${slug}`);
     // Owner decision (stage V): a manual recipe on the repository's substitute image has a dark hero without a photo.
-    await expect(page.locator(".recipe-hero")).toHaveAttribute("data-photo", "none");
-    await expect(page.locator(".recipe-hero img")).toHaveCount(0);
+    await expect(page.locator(".r-hero")).toHaveAttribute("data-photo", "none");
+    await expect(page.locator(".r-hero img")).toHaveCount(0);
     await page.goto(href);
     await page.getByLabel("Заглавие", { exact: true }).fill(title + " edited");
     await page.getByLabel("Описание", { exact: true }).fill("Обновена временна рецепта за проверка.");

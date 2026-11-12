@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { PageShell } from "../../page-shell";
 
+/** The catalog brings its own Sofra wraps (heading, sticky filter bar, grid); the loading state uses PageShell. */
 export default function Layout({ children }: { children: ReactNode }) {
-  return <PageShell>{children}</PageShell>;
+  return children;
 }

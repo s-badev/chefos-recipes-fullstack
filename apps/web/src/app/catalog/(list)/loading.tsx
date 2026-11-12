@@ -1,5 +1,8 @@
+import { PageShell } from "../../page-shell";
+
 export default function CatalogLoading() {
   return (
+    <PageShell>
     <div className="catalog-skeleton" role="status" aria-live="polite">
       <span className="sr-only">Зареждане на рецептите…</span>
       <div className="sk sk-eyebrow" aria-hidden="true" />
@@ -15,5 +18,6 @@ export default function CatalogLoading() {
         ))}
       </div>
     </div>
+    </PageShell>
   );
 }
