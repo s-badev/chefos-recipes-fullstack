@@ -400,6 +400,11 @@ em{font-style:italic}
   .tabs{gap:0 18px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;min-width:0}.tab{flex:none}
   .logo b{font-size:1.45rem}
 }
+
+/* Кръг 3: натиснат бутон потъва леко; връзките в менюто и footer-а избледняват при натискане. */
+.btn{transition:color .3s var(--eo),border-color .3s,transform .14s var(--eo)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.nav a:active,.mnav a:active,.link:active,.ftr li a:active,.tab:active,.logo:active{opacity:.6;transition:opacity 0s}
 </style>
 
 <a class="skip" href="#main">Към съдържанието</a>
@@ -751,7 +756,7 @@ function setView(v){cur=v;$$('.view').forEach(function(x){x.hidden=x.getAttribut
 function go(v,slug,cat){if(slug)fillRecipe(slug);if(cat){fcat=cat;$$('.tab').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-c')===cat)});}
   if(v==='catalog')filter();
   if(!motion){setView(v);return}
-  var main=$('#main');main.animate([{opacity:1},{opacity:0}],{duration:200,fill:'forwards'}).finished.then(function(){setView(v);main.animate([{opacity:0},{opacity:1}],{duration:380,fill:'forwards',easing:'ease-out'})});}
+  setView(v);var main=$('#main');main.animate([{opacity:0,transform:'translateY(14px)'},{opacity:1,transform:'none'}],{duration:260,easing:'cubic-bezier(.16,1,.3,1)'});}
 document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute('href').slice(1);
   if(h==='sofra'){e.preventDefault();$('#sofra').scrollIntoView({behavior:motion?'smooth':'auto'});return}
   if(['home','catalog','recipe','auth'].indexOf(h)<0)return;e.preventDefault();closeMenu();

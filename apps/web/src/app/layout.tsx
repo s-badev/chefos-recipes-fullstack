@@ -5,6 +5,7 @@ import { BackToTopButton } from "./back-to-top-button";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 import { MotionRoot } from "./motion-root";
+import { PageTransition } from "./page-transition";
 
 const sans = Onest({
   subsets: ["latin", "cyrillic"],
@@ -61,6 +62,7 @@ export default function RootLayout({
         </div>
         <BackToTopButton />
         <MotionRoot />
+        <PageTransition />
       </body>
     </html>
   );
