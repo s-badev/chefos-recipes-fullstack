@@ -1,0 +1,151 @@
+{
+  "mock": {
+    ".pg-head .eyebrow": {
+      "x": 16,
+      "y": 128,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 16,
+      "y": 161,
+      "w": 358,
+      "h": 49,
+      "font": "Cormorant 500 54.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 57,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty": {
+      "x": 16,
+      "y": 323,
+      "w": 358,
+      "h": 658,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty h2": {
+      "x": 16,
+      "y": 379,
+      "w": 358,
+      "h": 75,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty .t": {
+      "x": 16,
+      "y": 470,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fe-table": {
+      "x": 25,
+      "y": 642,
+      "w": 340,
+      "h": 340,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fe-tx .btn": {
+      "x": 16,
+      "y": 550,
+      "w": 194,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "site": {
+    ".pg-head .eyebrow": {
+      "x": 16,
+      "y": 128,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 16,
+      "y": 161,
+      "w": 358,
+      "h": 49,
+      "font": "Cormorant 500 54.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 57,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty": {
+      "x": 16,
+      "y": 323,
+      "w": 358,
+      "h": 658,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty h2": {
+      "x": 16,
+      "y": 379,
+      "w": 358,
+      "h": 75,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fav-empty .t": {
+      "x": 16,
+      "y": 470,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fe-table": {
+      "x": 25,
+      "y": 642,
+      "w": 340,
+      "h": 340,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fe-tx .btn": {
+      "x": 16,
+      "y": 550,
+      "w": 194,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "differences": []
+}

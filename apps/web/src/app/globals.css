@@ -543,7 +543,6 @@ html:not([data-motion]) .menu-toggle{display:none}
 /* ---------- Любими ---------- */
 .fav-body{padding-bottom:clamp(88px,10vw,140px)}
 .fav-top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:clamp(32px,4vw,56px);padding-top:clamp(20px,3vw,40px);border-top:1px solid var(--line)}
-.fav-top h2{font-family:var(--serif);font-weight:500;font-size:clamp(2rem,1.2rem + 2.4vw,3.4rem);line-height:1;letter-spacing:-.015em;margin-top:10px}
 .fav-empty{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px clamp(24px,4vw,64px);align-items:center;padding-top:clamp(20px,3vw,40px);border-top:1px solid var(--line)}
 .fe-tx{grid-column:1 / span 6;display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 .fav-empty h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,1.4rem + 3vw,4.4rem);line-height:.98;letter-spacing:-.02em;text-wrap:balance}
@@ -558,10 +557,13 @@ html:not([data-motion]) .menu-toggle{display:none}
 
 /* ---------- Профил ---------- */
 .prof-body{padding-bottom:clamp(88px,10vw,140px)}
-.meta.m3{grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.meta.m2{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
 /* Label above the value (as in the mock), with dt before dd in the markup. */
-.meta.m3>div{flex-direction:column;justify-content:flex-start}
-.meta.m3 dd.word{font-size:min(clamp(1.9rem,1.1rem + 2.4vw,3.6rem),17cqi)}
+.meta.m2>div{flex-direction:column;justify-content:flex-start}
+/* Long values (an e-mail) wrap inside their cell instead of running past the line. */
+.meta.m2 dd.word{font-size:min(clamp(1.9rem,1.1rem + 2.4vw,3.6rem),17cqi);white-space:normal;overflow-wrap:anywhere}
+.meta.m2 dd.mail{font-size:clamp(1.5rem,1rem + 1.6vw,2.6rem);line-height:1.1}
+.fav-top .eyebrow{margin:0}
 .prof-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px clamp(32px,6vw,96px);padding-top:clamp(56px,8vw,112px)}
 .prof-cols>section{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 .prof-cols>section+section{border-left:1px solid var(--line);padding-left:clamp(24px,4vw,64px)}
@@ -594,8 +596,8 @@ html:not([data-motion]) .menu-toggle{display:none}
   .nf-tx,.nf-table{grid-column:1 / -1}.nf-table .sofra{width:min(100%,420px)}
 }
 @media (max-width:640px){
-  .meta.m3{grid-template-columns:1fr}
-  .meta.m3>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-block:22px}.meta.m3>div:first-child{border-top:0}
+  .meta.m2{grid-template-columns:1fr}
+  .meta.m2>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-block:22px}.meta.m2>div:first-child{border-top:0}
   .fav-top{flex-direction:column;align-items:flex-start}
   .cap-li{grid-template-columns:56px minmax(0,1fr)}
   .nf-cta .btn{flex:1 1 100%}

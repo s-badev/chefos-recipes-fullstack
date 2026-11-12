@@ -1,0 +1,187 @@
+{
+  "mock": {
+    ".pg-head .eyebrow": {
+      "x": 116,
+      "y": 187,
+      "w": 1208,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 116,
+      "y": 220,
+      "w": 1208,
+      "h": 101,
+      "font": "Cormorant 500 112px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 116,
+      "y": 349,
+      "w": 644,
+      "h": 29,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2": {
+      "x": 116,
+      "y": 426,
+      "w": 1208,
+      "h": 138,
+      "font": "Onest 400 17px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd": {
+      "x": 116,
+      "y": 483,
+      "w": 604,
+      "h": 50,
+      "font": "Cormorant 500 52.16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd.mail": {
+      "x": 750,
+      "y": 483,
+      "w": 574,
+      "h": 43,
+      "font": "Cormorant 500 39.04px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dt": {
+      "x": 116,
+      "y": 457,
+      "w": 604,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols h2": {
+      "x": 116,
+      "y": 718,
+      "w": 157,
+      "h": 47,
+      "font": "Cormorant 500 46.72px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 116,
+      "y": 780,
+      "w": 218,
+      "h": 27,
+      "font": "Onest 400 17px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 116,
+      "y": 823,
+      "w": 186,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "site": {
+    ".pg-head .eyebrow": {
+      "x": 116,
+      "y": 187,
+      "w": 1208,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 116,
+      "y": 220,
+      "w": 1208,
+      "h": 101,
+      "font": "Cormorant 500 112px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 116,
+      "y": 349,
+      "w": 644,
+      "h": 29,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2": {
+      "x": 116,
+      "y": 426,
+      "w": 1208,
+      "h": 138,
+      "font": "Onest 400 17px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd": {
+      "x": 116,
+      "y": 483,
+      "w": 604,
+      "h": 50,
+      "font": "Cormorant 500 52.16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd.mail": {
+      "x": 750,
+      "y": 483,
+      "w": 574,
+      "h": 43,
+      "font": "Cormorant 500 39.04px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dt": {
+      "x": 116,
+      "y": 457,
+      "w": 604,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols h2": {
+      "x": 116,
+      "y": 718,
+      "w": 157,
+      "h": 47,
+      "font": "Cormorant 500 46.72px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 116,
+      "y": 780,
+      "w": 218,
+      "h": 27,
+      "font": "Onest 400 17px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 116,
+      "y": 823,
+      "w": 186,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "differences": []
+}

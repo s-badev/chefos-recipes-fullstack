@@ -441,8 +441,12 @@ em{font-style:italic}
 .pg-head{padding-top:calc(72px + clamp(56px,8vw,120px));padding-bottom:clamp(28px,4vw,48px)}
 .pg-head .lead{margin-top:28px;max-width:54ch}
 .pg-head .lead b{color:var(--ink);font-weight:600}
-.meta.m3{grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
-.meta.m3 dd{font-size:clamp(1.9rem,1.1rem + 2.4vw,3.6rem)}
+/* Кръг 3: две клетки с реални данни — брой запазени и профилът (имейл). Дълъг имейл се пренася в клетката. */
+.meta.m2{grid-template-columns:repeat(2,minmax(0,1fr));border-top:1px solid var(--line)}
+.meta.m2>div{min-width:0}
+.meta.m2 dd{font-size:clamp(1.9rem,1.1rem + 2.4vw,3.6rem);white-space:normal;overflow-wrap:anywhere}
+.meta.m2 dd.mail{font-size:clamp(1.5rem,1rem + 1.6vw,2.6rem);line-height:1.1}
+.fav-top .eyebrow{margin:0}
 .prof-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px clamp(32px,6vw,96px);padding-block:clamp(56px,8vw,112px) 0}
 .prof-cols>div{display:flex;flex-direction:column;align-items:flex-start;gap:16px}
 .prof-cols>div+div{border-left:1px solid var(--line);padding-left:clamp(24px,4vw,64px)}
@@ -486,8 +490,8 @@ em{font-style:italic}
   .nf-tx,.nf .sofra{grid-column:1 / -1}.nf .sofra{width:min(100%,420px)}
 }
 @media (max-width:640px){
-  .meta.m3{grid-template-columns:1fr}
-  .meta.m3>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-block:22px}.meta.m3>div:first-child{border-top:0}
+  .meta.m2{grid-template-columns:1fr}
+  .meta.m2>div{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-block:22px}.meta.m2>div:first-child{border-top:0}
   .fav-top{flex-direction:column;align-items:flex-start}
   .cap-li{grid-template-columns:56px minmax(0,1fr)}
   .nf-cta .btn{flex:1 1 100%}
@@ -604,13 +608,14 @@ em{font-style:italic}
 <!-- ===================== ЛЮБИМИ ===================== -->
 <section class="view" data-view="favorites" id="view-fav-scope" hidden>
   <div class="wrap pg-head">
-    <p class="eyebrow rv">Chefo's Recipes</p>
+    <p class="eyebrow rv">Твоята колекция</p>
     <h1 class="split cat-h1" data-split>Любими <em>рецепти</em></h1>
     <p class="lead rv">Тук ще се пазят рецептите, които искаш да приготвиш по-късно.</p>
   </div>
   <div class="wrap fav-body">
     <div id="fav-full">
-      <div class="fav-top"><div><p class="eyebrow">Любими идеи</p><h2 class="serif">Твоите запазени <em>рецепти</em></h2></div><a class="link" href="#out" data-out>Всички рецепти <span aria-hidden="true">→</span></a></div>
+      <!-- Кръг 3: без втори голям заглавен ред — само броят отляво и връзката отдясно. -->
+      <div class="fav-top"><p class="eyebrow" id="fav-n">3 запазени рецепти</p><a class="link" href="#out" data-out>Всички рецепти <span aria-hidden="true">→</span></a></div>
       <div class="cards" id="fav-cards"></div>
     </div>
     <div class="fav-empty" id="fav-empty" hidden>
@@ -629,17 +634,17 @@ em{font-style:italic}
   <div class="wrap pg-head">
     <p class="eyebrow rv">Потребителски профил</p>
     <h1 class="split cat-h1" data-split>Моят <em>профил</em></h1>
-    <p class="lead rv">Здравей, <b>Стефан</b>. Тук ще се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.</p>
+    <!-- Кръг 3: само това, което е в профила (брой любими и имейл от сесията); без бъдеще време. -->
+    <p class="lead rv">Здравей, <b>Мария</b>. <span id="prof-lead">Ето какво е запазено в профила ти.</span></p>
   </div>
   <div class="wrap">
-    <dl class="meta m3 rv">
-      <div><dd class="word">В любими</dd><dt>Запазени рецепти</dt></div>
-      <div><dd class="word">Няма запис</dd><dt>Последна активност</dt></div>
-      <div><dd class="word">Активен профил</dd><dt>Статус</dt></div>
+    <dl class="meta m2 rv">
+      <div><dd class="word" id="prof-n">3 рецепти</dd><dt>Запазени рецепти</dt></div>
+      <div><dd class="word mail">maria.petrova.recepti@example.com</dd><dt>Профил</dt></div>
     </dl>
     <div class="prof-cols">
-      <div class="rv"><span class="st-i" data-star aria-hidden="true"></span><h2>Обобщение на любимите</h2><p>Тук ще виждаш запазените рецепти и бързи връзки към тях, когато започнеш да добавяш любими идеи.</p><a class="btn fill" href="#favorites">Виж любимите <span class="ar" aria-hidden="true">→</span></a></div>
-      <div class="rv" style="--d:100ms"><span class="st-i" data-star aria-hidden="true"></span><h2>Лични настройки</h2><p>Профилът ще събира предпочитания, любими рецепти и удобни преки пътища за по-бързо готвене.</p></div>
+      <div class="rv"><span class="st-i" data-star aria-hidden="true"></span><h2>Любими</h2><p id="prof-fav-t">Имаш 3 запазени рецепти.</p><a class="btn fill" id="prof-fav-a" href="#favorites">Виж любимите <span class="ar" aria-hidden="true">→</span></a></div>
+      <div class="rv" style="--d:100ms"><span class="st-i" data-star aria-hidden="true"></span><h2>Акаунт</h2><p>Профилът е отворен на това устройство. На чужд компютър излез, когато приключиш.</p><a class="btn out" href="#" data-who="guest">Изход</a></div>
     </div>
   </div>
   <div style="height:clamp(88px,10vw,140px)"></div>
@@ -681,6 +686,7 @@ em{font-style:italic}
       <button class="chip" type="button" data-v="favorites" aria-pressed="false">Любими</button>
       <button class="chip" type="button" data-v="favorites0" aria-pressed="false">Любими · празно</button>
       <button class="chip" type="button" data-v="profile" aria-pressed="false">Профил</button>
+      <button class="chip" type="button" data-v="profile0" aria-pressed="false">Профил · без любими</button>
       <button class="chip" type="button" data-v="notfound" aria-pressed="false">404</button></div></div>
     <div class="grp"><span>Профил</span><div class="chips" id="c-who"><button class="chip" type="button" data-v="guest" aria-pressed="true">Гост</button><button class="chip" type="button" data-v="user" aria-pressed="false">Потребител</button><button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button></div></div>
     <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
@@ -760,11 +766,18 @@ function card(r,cls,i){var on=!!fav[r.s];
    '<a class="cb" href="#recipe" data-slug="'+r.s+'"><span class="ce">'+r.c+'</span><span class="ct">'+r.t+'</span><span class="cm">'+total(r)+' мин · '+r.v+' порции · '+r.l+'</span></a></article>';}
 
 /* ---------- карти (любими) ---------- */
+function savedLabel(n){return n===1?'1 запазена рецепта':n+' запазени рецепти'}
+function renderProfile(){var n=favCount();
+  $('#prof-n').textContent=n===1?'1 рецепта':n+' рецепти';
+  $('#prof-lead').textContent=n?'Ето какво е запазено в профила ти.':'Още няма запазени рецепти.';
+  $('#prof-fav-t').textContent=n?'Имаш '+savedLabel(n)+'.':'Запази рецепти със сърцето на картата и те ще се появят тук.';
+  var a=$('#prof-fav-a');a.setAttribute('href',n?'#favorites':'#out');if(n)a.removeAttribute('data-out');else a.setAttribute('data-out','');a.firstChild.textContent=n?'Виж любимите ':'Към рецептите ';}
 function renderFav(){
   var list=R.filter(function(r){return fav[r.s]});
   $('#fav-full').hidden=!list.length;$('#fav-empty').hidden=!!list.length;
   $('#fav-cards').innerHTML=list.map(function(r,i){return card(r,'',i)}).join('');
   observe($('#view-fav-scope'));
+  $('#fav-n').textContent=savedLabel(list.length);
   $$('.favn').forEach(function(n){n.textContent=list.length});
 }
 /* ---------- 404: софра с липсваща чиния ---------- */
@@ -787,10 +800,11 @@ function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearT
 var cur='about';
 function setView(v,empty){
   cur=v;
+  if(v==='profile'){if(empty){Object.keys(fav).forEach(function(k){fav[k]=0})}else if(!favCount()){fav={'shopska-salata':1,'tikvenik':1,'mekitsi':1}}renderProfile()}
   if(v==='favorites'){if(empty){Object.keys(fav).forEach(function(k){fav[k]=0})}else if(!Object.keys(fav).some(function(k){return fav[k]})){fav={'shopska-salata':1,'tikvenik':1,'mekitsi':1}}renderFav()}
   $$('.view').forEach(function(x){x.hidden=x.getAttribute('data-view')!==v});window.scrollTo(0,0);
   markNav();
-  var key=v==='favorites'&&empty?'favorites0':v;
+  var key=(v==='favorites'||v==='profile')&&empty?v+'0':v;
   $$('#c-view .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===key)});
   replay();onScroll();}
 function go(v,empty){
@@ -814,7 +828,7 @@ function onScroll(){var v=$('.view:not([hidden])'),h=$('[data-hero]',v);var lim=
 window.addEventListener('scroll',onScroll,{passive:true});
 
 /* ---------- контроли ---------- */
-$('#c-view').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;var v=b.getAttribute('data-v');if(v==='favorites0')go('favorites',true);else go(v,false)});
+$('#c-view').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;var v=b.getAttribute('data-v');if(v==='favorites0')go('favorites',true);else if(v==='profile0')go('profile',true);else go(v,false)});
 $('#c-motion').addEventListener('click',function(){motion=!motion;root.setAttribute('data-motion',motion?'on':'off');this.setAttribute('aria-pressed',motion);this.textContent=motion?'Включено':'Изключено';replay()});
 $('#c-replay').addEventListener('click',function(){window.scrollTo(0,0);replay()});
 $('#ctl-tg').addEventListener('click',function(){var o=$('#ctl').classList.toggle('open');this.setAttribute('aria-expanded',o);this.textContent=o?'▾':'▴'});

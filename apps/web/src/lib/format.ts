@@ -21,6 +21,11 @@ export function recipeCountLabel(count: number, pad = false): string {
   return `${number} ${count === 1 ? "рецепта" : "рецепти"}`;
 }
 
+/** Favourites: "1 запазена рецепта" / "3 запазени рецепти". */
+export function savedRecipesLabel(count: number): string {
+  return count === 1 ? "1 запазена рецепта" : `${count} запазени рецепти`;
+}
+
 /** Search result count: "1 намерена рецепта" / "12 намерени рецепти". */
 export function foundRecipesLabel(count: number): string {
   return count === 1 ? "1 намерена рецепта" : `${count} намерени рецепти`;

@@ -127,8 +127,11 @@ test("Favorites with recipes: the catalog card, its heart saved and returning to
     "../../server/recipes/web-image": { withWebRecipeImage: async (recipe: unknown) => recipe }
   })(path.join(root, "src/app/favorites/page.tsx"));
   await page.setContent(renderToStaticMarkup(await Favorites()));
+  await expect(page.locator(".pg-head .eyebrow")).toHaveText("Твоята колекция");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Любими рецепти");
-  await expect(page.getByRole("heading", { level: 2 })).toHaveText("Твоите запазени рецепти");
+  // One row over the grid, no second large heading: the count (a small label) and the link.
+  await expect(page.getByRole("heading", { level: 2 })).toHaveText("2 запазени рецепти");
+  await expect(page.locator(".fav-top h2")).toHaveClass(/\beyebrow\b/);
   await expect(page.locator(".fav-top a")).toHaveAttribute("href", "/catalog");
   await expect(page.locator(".cards .card")).toHaveCount(2);
   await expect(page.locator(".card .ct")).toHaveText(["Шопска салата", "Тиквеник"]);
@@ -153,15 +156,54 @@ test("Favorites empty: the stitched table, the heading and one button to all rec
   await expect(page.locator(".cards")).toHaveCount(0);
 });
 
-test("Profile: greeting by name, three values with labels, the two columns and the link to favourites", async ({ page }) => {
-  const { default: Profile } = load({ "../../server/auth/session": { requireUser: async () => ({ name: " Мария ", email: "maria@example.com", role: "user" }) } })(path.join(root, "src/app/profile/page.tsx"));
-  await page.setContent(renderToStaticMarkup(await Profile()));
-  await expect(page.locator(".pg-head .lead")).toContainText("Здравей, Мария.");
-  await expect(page.locator(".meta.m3 dt")).toHaveText(["Запазени рецепти", "Последна активност", "Статус"]);
-  await expect(page.locator(".meta.m3 dd")).toHaveText(["В любими", "Няма запис", "Активен профил"]);
-  await expect(page.getByRole("heading", { level: 2 })).toHaveText(["Обобщение на любимите", "Лични настройки"]);
-  await expect(page.getByRole("link", { name: "Виж любимите", exact: true })).toHaveAttribute("href", "/favorites");
-});
+function profile(saved: number, email = "maria@example.com") {
+  return load({
+    "../../server/auth/session": { requireUser: async () => ({ name: " Мария ", email, role: "user" }) },
+    "../../server/favorites/service": { getCurrentUserFavoriteSlugs: async () => recipes.slice(0, saved).map(recipe => recipe.slug) },
+    "../../server/auth/actions": { logoutAction: async () => undefined }
+  })(path.join(root, "src/app/profile/page.tsx")).default;
+}
+
+for (const [saved, count, lead, text, link, href] of [
+  [3, "3 рецепти", "Здравей, Мария. Ето какво е запазено в профила ти.", "Имаш 3 запазени рецепти.", "Виж любимите", "/favorites"],
+  [1, "1 рецепта", "Здравей, Мария. Ето какво е запазено в профила ти.", "Имаш 1 запазена рецепта.", "Виж любимите", "/favorites"],
+  [0, "0 рецепти", "Здравей, Мария. Още няма запазени рецепти.", "Запази рецепти със сърцето на картата и те ще се появят тук.", "Към рецептите", "/catalog"]
+] as const) {
+  test(`Profile with ${saved} saved: real values only (count and e-mail), Любими and Акаунт with the sign-out`, async ({ page }) => {
+    const Profile = profile(saved);
+    await page.setContent(renderToStaticMarkup(await Profile()));
+    await expect(page.locator(".pg-head .lead")).toHaveText(lead);
+    await expect(page.locator(".meta.m2 dt")).toHaveText(["Запазени рецепти", "Профил"]);
+    await expect(page.locator(".meta.m2 dd")).toHaveText([count, "maria@example.com"]);
+    await expect(page.getByRole("heading", { level: 2 })).toHaveText(["Любими", "Акаунт"]);
+    await expect(page.locator(".prof-cols section").first().locator("p")).toHaveText(text);
+    await expect(page.getByRole("link", { name: link, exact: true })).toHaveAttribute("href", href);
+    await expect(page.locator(".prof-cols form button")).toHaveText("Изход");
+    // No invented content and no promises about features that do not exist.
+    expect(await page.locator("body").innerText()).not.toMatch(/Последна активност|Активен профил|Лични настройки|Тук ще се събират|Профилът ще/);
+  });
+}
+
+for (const width of [1440, 390]) {
+  test(`Profile at ${width}: nothing runs past the content lines, even a long e-mail`, async ({ page }) => {
+    const Profile = profile(12, "maria.petrova.recepti.za.vsichki.dni@example.com");
+    const markup = renderToStaticMarkup(await Profile());
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto(NOT_FOUND, { waitUntil: "networkidle" });
+    // The production page shell and CSS, with the rendered Profile as the page content.
+    await page.evaluate(html => { document.querySelector("main")!.innerHTML = html; }, markup);
+    await page.evaluate(() => document.fonts.ready);
+    const spill = await page.evaluate(() => {
+      const wrap = document.querySelector(".prof-body .meta")!.closest(".wrap")!;
+      const style = getComputedStyle(wrap);
+      const right = wrap.getBoundingClientRect().right - parseFloat(style.paddingRight);
+      return [...document.querySelectorAll(".prof-body *:not(.wrap)")].map(node => ({ node: node.className || node.tagName, over: Math.round(node.getBoundingClientRect().right - right), scroll: node.scrollWidth - node.clientWidth }))
+        .filter(item => item.over > 1 || (item.scroll > 1 && item.node !== "stitch-star"));
+    });
+    expect(spill).toEqual([]);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(0);
+  });
+}
 
 test("Error page: same Sofra layout, its own copy and the retry button", async ({ page }) => {
   const { default: RootError } = load({})(path.join(root, "src/app/error.tsx"));

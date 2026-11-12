@@ -7,6 +7,7 @@ import { RecipeTile } from "../recipe-tile";
 import { SofraBoard } from "../sofra-board";
 import { SplitWords } from "../split-heading";
 import { StitchStar } from "../stitch";
+import { savedRecipesLabel } from "../../lib/format";
 
 export const metadata: Metadata = {
   title: "Любими рецепти | Chefo's Recipes",
@@ -19,7 +20,7 @@ export default async function FavoritesPage() {
 
   return <>
     <div className="wrap pg-head">
-      <p className="eyebrow rv">Chefo&apos;s Recipes</p>
+      <p className="eyebrow rv">Твоята колекция</p>
       <h1 data-split><SplitWords text="Любими" /> <em><SplitWords start={1} text="рецепти" /></em></h1>
       <p className="lead rv">Тук ще се пазят рецептите, които искаш да приготвиш по-късно.</p>
     </div>
@@ -27,11 +28,9 @@ export default async function FavoritesPage() {
     <div className="wrap fav-body">
       {favoriteRecipes.length > 0 ? (
         <section aria-labelledby="favorites-list">
+          {/* One row over the grid: the count on the left, all recipes on the right (no second heading). */}
           <div className="fav-top">
-            <div>
-              <p className="eyebrow">Любими идеи</p>
-              <h2 id="favorites-list">Твоите запазени <em>рецепти</em></h2>
-            </div>
+            <h2 className="eyebrow" id="favorites-list">{savedRecipesLabel(favoriteRecipes.length)}</h2>
             <Link className="link" href="/catalog">Всички рецепти <span aria-hidden="true">→</span></Link>
           </div>
           <div className="cards">

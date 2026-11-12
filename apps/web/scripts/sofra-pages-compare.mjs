@@ -1,6 +1,6 @@
 // Mock / site comparison for About, Favorites, Profile and 404 (JPEG, quality 80) against a running
 // production server:   node scripts/sofra-pages-compare.mjs [baseUrl] [job,job...] [outDir]
-// Jobs: about, notfound, favorites-empty, favorites, profile. Saves the mock (docs/redesign/sofra-mock-pages.html)
+// Jobs: about, notfound, favorites-empty, favorites, profile, profile-empty. Saves the mock (docs/redesign/sofra-mock-pages.html)
 // and the site side by side at 1440 and 390, plus block measurements (box, font, colour) of both into
 // docs/redesign/shots/sofra/pages/measure-<job>-<width>.json.
 //
@@ -50,16 +50,20 @@ const favoritesPage = (list) => rendered("src/app/favorites/page.tsx", {
   "../../server/favorites/service": { getCurrentUserFavoriteRecipes: async () => list },
   "../../server/recipes/web-image": { withWebRecipeImage: async (recipe) => recipe }
 });
-const profilePage = rendered("src/app/profile/page.tsx", {
-  "../../server/auth/session": { requireUser: async () => ({ name: "Стефан", email: "user@example.com", role: "user" }) }
+/** The mock's profile: Мария, three favourites (or none), a long e-mail. */
+const profilePage = (saved) => rendered("src/app/profile/page.tsx", {
+  "../../server/auth/session": { requireUser: async () => ({ name: "Мария", email: "maria.petrova.recepti@example.com", role: "user" }) },
+  "../../server/favorites/service": { getCurrentUserFavoriteSlugs: async () => sampleFavorites.slice(0, saved).map(recipe => recipe.slug) },
+  "../../server/auth/actions": { logoutAction: async () => undefined }
 });
 
 const MEASURE = {
   about: [".r-hero", ".r-hero h1", ".r-hero .eyebrow", ".hero-in > p:not(.eyebrow)", ".rhythm li", ".cols3", ".col h3", ".col p", ".cap-side .sec-h", ".cap-li", ".cap-li .st-n", ".cap-li h3", ".princ-ph", ".princ-list li", ".princ-list h3", ".why-tx .sec-h", ".why-nx .perks li", ".why-nx .btn"],
   notfound: [".nf .eyebrow", ".nf h1", ".nf .t", ".nf-cta .btn", ".sofra", ".plate", ".plate.gap .pi"],
   "favorites-empty": [".pg-head .eyebrow", ".pg-head h1", ".pg-head .lead", ".fav-empty", ".fav-empty h2", ".fav-empty .t", ".fe-table", ".fe-tx .btn"],
-  favorites: [".pg-head h1", ".pg-head .lead", ".fav-top", ".fav-top h2", ".fav-top .link", ".cards .card", ".card .ci", ".card .ct", ".card .cm", ".heart"],
-  profile: [".pg-head .eyebrow", ".pg-head h1", ".pg-head .lead", ".meta.m3", ".meta.m3 dd", ".meta.m3 dt", ".prof-cols h2", ".prof-cols p", ".prof-cols .btn"]
+  favorites: [".pg-head .eyebrow", ".pg-head h1", ".pg-head .lead", ".fav-top", ".fav-top .eyebrow", ".fav-top .link", ".cards .card", ".card .ci", ".card .ct", ".card .cm", ".heart"],
+  profile: [".pg-head .eyebrow", ".pg-head h1", ".pg-head .lead", ".meta.m2", ".meta.m2 dd", ".meta.m2 dd.mail", ".meta.m2 dt", ".prof-cols h2", ".prof-cols p", ".prof-cols .btn"],
+  "profile-empty": [".pg-head .lead", ".meta.m2 dd", ".prof-cols p", ".prof-cols .btn"]
 };
 
 async function settle(page) {
@@ -98,7 +102,7 @@ function diff(mock, site) {
 const openMock = (view, empty = false) => async (page) => {
   await page.goto(`${mockUrl}#${view}`, { waitUntil: "load" });
   await page.waitForTimeout(900);
-  if (empty) { await page.locator("#ctl-tg").click(); await page.locator('#c-view .chip[data-v="favorites0"]').click(); await page.waitForTimeout(1200); }
+  if (empty) { await page.locator("#ctl-tg").click(); await page.locator(`#c-view .chip[data-v="${view}0"]`).click(); await page.waitForTimeout(1200); }
 };
 const openSite = (url) => async (page) => { await page.goto(base + url, { waitUntil: "networkidle" }); };
 /** The site's own shell (a page without a hero), with the rendered page component as <main>'s content. */
@@ -137,7 +141,8 @@ const jobs = {
   notfound: (w) => pair("notfound", w, openMock("notfound"), openSite("/niama-takava-stranica")),
   "favorites-empty": (w) => pair("favorites-empty", w, openMock("favorites", true), openRendered(favoritesPage([])), { note: RENDERED }),
   favorites: (w) => pair("favorites", w, openMock("favorites"), openRendered(favoritesPage(sampleFavorites)), { note: RENDERED }),
-  profile: (w) => pair("profile", w, openMock("profile"), openRendered(profilePage), { note: RENDERED })
+  profile: (w) => pair("profile", w, openMock("profile"), openRendered(profilePage(3)), { note: RENDERED }),
+  "profile-empty": (w) => pair("profile-empty", w, openMock("profile", true), openRendered(profilePage(0)), { note: RENDERED })
 };
 for (const name of only ?? Object.keys(jobs)) for (const width of [1440, 390]) await jobs[name](width);
 await browser.close();

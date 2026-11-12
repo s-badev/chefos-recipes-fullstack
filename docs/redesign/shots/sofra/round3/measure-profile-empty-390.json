@@ -1,0 +1,79 @@
+{
+  "mock": {
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 57,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd": {
+      "x": 16,
+      "y": 373,
+      "w": 358,
+      "h": 29,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 16,
+      "y": 668,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 16,
+      "y": 736,
+      "w": 187,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "site": {
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 57,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m2 dd": {
+      "x": 16,
+      "y": 373,
+      "w": 358,
+      "h": 29,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 16,
+      "y": 668,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 16,
+      "y": 736,
+      "w": 187,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "differences": []
+}
