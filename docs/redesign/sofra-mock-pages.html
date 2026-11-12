@@ -220,9 +220,19 @@ em{font-style:italic}
 .story cite{display:block;margin-top:28px;font-style:normal;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8}
 
 /* ---------- footer ---------- */
-.ftr{padding-block:0 120px}
+.ftr{padding-block:0 36px}
 .ftr .band{color:var(--accent);margin-bottom:56px}
-.ftr-grid{display:grid;grid-template-columns:minmax(0,5fr) repeat(2,minmax(0,2fr)) minmax(0,3fr);gap:32px}
+/* Кръг 3: марка отляво, две колони връзки до десния ръб (без празна колона), долен ред с ©. */
+.ftr-grid{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:32px clamp(48px,8vw,128px)}
+.ftr li button{display:inline-flex;min-height:36px;align-items:center;background:linear-gradient(currentColor,currentColor) no-repeat 0 85%/0 1px;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;transition:background-size .4s var(--eo)}
+.ftr li button:hover{background-size:100% 1px}
+.ftr-base{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;color:var(--muted);font-size:.8rem}
+.ftr .ftr-base p{margin:0;max-width:none;font-size:inherit}
+.ftr-note{font-size:.72rem;opacity:.8}
+@media (max-width:1000px){.ftr-grid>:first-child{grid-column:1/-1}}
+.nav-greeting{font-size:.8rem;max-width:15ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.85}
+.mnav-links{display:contents}
+.mnav .nav-greeting{font-size:1rem;max-width:none;padding-top:16px}
 .ftr h3{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
 .ftr li a{display:inline-flex;min-height:36px;align-items:center;background:linear-gradient(currentColor,currentColor) no-repeat 0 85%/0 1px;transition:background-size .4s var(--eo)}
 .ftr li a:hover{background-size:100% 1px}
@@ -464,10 +474,6 @@ em{font-style:italic}
 .plate{cursor:default}
 .toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);z-index:95;background:var(--ink);color:var(--bg);padding:12px 18px;font-size:.9rem;font-weight:500;opacity:0;pointer-events:none;transition:opacity .3s,transform .4s var(--eo);max-width:calc(100% - 32px);text-align:center}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-.soc{display:flex;gap:2px;margin:-8px 0 0 -10px}
-.soc a{width:44px;height:44px;display:grid;place-items:center;background:none!important}
-.soc svg{width:20px;height:20px;fill:currentColor}
-.ftr .soc a:hover{color:var(--accent)}
 @media (max-width:1000px){
   .rhythm ol{grid-template-columns:1fr}
   .rhythm li{border-left:0;padding-left:0;border-top:1px solid var(--line)}.rhythm li:first-child{border-top:0}
@@ -500,19 +506,14 @@ em{font-style:italic}
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a class="logo" href="#out" data-out aria-label="Домашна кухня Chefo's Recipes – начало"><small>Домашна кухня</small><b>Chefo's <em>Recipes</em></b></a>
-    <nav class="nav" aria-label="Основна навигация">
-      <a href="#out" data-out>Начало</a>
-      <a href="#out" data-out>Рецепти</a>
-      <a href="#about" data-nav="about">За нас</a>
-      <a href="#favorites" data-nav="favorites">Любими <span class="favn" id="favn">3</span></a>
-      <a href="#out" data-out>Вход</a>
-    </nav>
+    <!-- Кръг 3: менюто зависи от това кой гледа (контроли „Профил“ или ?who=guest|user|admin). Любими и Профил са за потребител. -->
+    <nav class="nav" id="nav-main" aria-label="Основна навигация"><a href="#out" data-out>Начало</a><a href="#out" data-out>Рецепти</a><a href="#about" data-nav="about">За нас</a><a href="#out" data-out>Вход</a></nav>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav">Меню</button>
   </div>
 </header>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Меню">
   <button class="x" type="button" id="menu-x">Затвори</button>
-  <a href="#out" data-out>Начало</a><a href="#out" data-out>Рецепти</a><a href="#about">За нас</a><a href="#favorites">Любими</a><a href="#out" data-out>Вход</a>
+  <div class="mnav-links" id="mnav-links"><a href="#out" data-out>Начало</a><a href="#out" data-out>Рецепти</a><a href="#about">За нас</a><a href="#out" data-out>Вход</a></div>
 </div>
 
 <main id="main">
@@ -666,15 +667,9 @@ em{font-style:italic}
   <div class="wrap ftr-grid">
     <div><a class="logo" href="#out" data-out aria-label="Домашна кухня Chefo's Recipes – начало"><small>Домашна кухня</small><b>Chefo's <em>Recipes</em></b></a><p>Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден.</p></div>
     <div><h3>Разглеждай</h3><ul><li><a href="#out" data-out>Рецепти</a></li><li><a href="#favorites">Любими</a></li><li><a href="#about">За нас</a></li></ul></div>
-    <div><h3>Профил</h3><ul><li><a href="#out" data-out>Вход</a></li><li><a href="#out" data-out>Регистрация</a></li><li><a href="#profile">Моят профил</a></li></ul></div>
-    <div><h3>Последвай ни</h3><div class="soc">
-      <a href="#out" data-out aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.8c0-.9.3-1.5 1.6-1.5h1.7V3.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.4H7.7V13h2.7v8z"/></svg></a>
-      <a href="#out" data-out aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.500v-9A4.500 4.500 0 0 1 7.500 3zm0 1.800A2.700 2.700 0 0 0 4.800 7.500v9a2.700 2.700 0 0 0 2.700 2.700h9a2.700 2.700 0 0 0 2.700-2.700v-9a2.700 2.700 0 0 0-2.700-2.700zM12 7.500a4.500 4.500 0 1 1 0 9 4.500 4.500 0 0 1 0-9zm0 1.800a2.700 2.700 0 1 0 0 5.400 2.700 2.700 0 0 0 0-5.400zM17 6.200a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
-      <a href="#out" data-out aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.500 9h3.200v10.500H4.500zM6.100 4a1.900 1.900 0 1 1 0 3.800 1.900 1.900 0 0 1 0-3.800zM9.800 9h3v1.500c.5-.9 1.600-1.700 3.200-1.700 3.200 0 3.900 2.100 3.900 4.800v5.900h-3.200v-5.200c0-1.200 0-2.800-1.700-2.800s-2 1.300-2 2.700v5.300H9.800z"/></svg></a>
-      <a href="#out" data-out aria-label="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.500 8.200a2.600 2.600 0 0 0-1.800-1.800C18.100 6 12 6 12 6s-6.100 0-7.700.4A2.600 2.600 0 0 0 2.500 8.200C2.100 9.800 2.100 12 2.100 12s0 2.200.4 3.800a2.600 2.600 0 0 0 1.800 1.800C5.900 18 12 18 12 18s6.100 0 7.700-.4a2.600 2.600 0 0 0 1.800-1.800c.4-1.600.4-3.800.4-3.800s0-2.200-.4-3.800zM10 14.800V9.200l4.800 2.800z"/></svg></a>
-      <a href="#out" data-out aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.600 3a4.700 4.700 0 0 0 3.700 4v3a7.600 7.600 0 0 1-3.600-1v6.100a5.600 5.600 0 1 1-5.600-5.600c.3 0 .6 0 .9.100v3.100a2.600 2.600 0 1 0 1.700 2.400V3z"/></svg></a>
-    </div></div>
+    <div><h3>Профил</h3><ul id="ftr-who"><li><a href="#out" data-out>Вход</a></li><li><a href="#out" data-out>Регистрация</a></li></ul></div>
   </div>
+  <div class="wrap"><div class="ftr-base"><p>© <span class="ftr-year">2026</span> Chefo's Recipes. Всички права запазени.</p><p class="ftr-note">Макет: снимките и рецептите са истинските от сайта. Цитатът е примерен.</p></div></div>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -687,6 +682,7 @@ em{font-style:italic}
       <button class="chip" type="button" data-v="favorites0" aria-pressed="false">Любими · празно</button>
       <button class="chip" type="button" data-v="profile" aria-pressed="false">Профил</button>
       <button class="chip" type="button" data-v="notfound" aria-pressed="false">404</button></div></div>
+    <div class="grp"><span>Профил</span><div class="chips" id="c-who"><button class="chip" type="button" data-v="guest" aria-pressed="true">Гост</button><button class="chip" type="button" data-v="user" aria-pressed="false">Потребител</button><button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button></div></div>
     <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
     <p style="font-size:.78rem;opacity:.75;margin:0">Начало, Рецепти, Рецепта и Вход са в sofra-mock.html. Тук са само новите страници.</p>
   </div>
@@ -769,7 +765,7 @@ function renderFav(){
   $('#fav-full').hidden=!list.length;$('#fav-empty').hidden=!!list.length;
   $('#fav-cards').innerHTML=list.map(function(r,i){return card(r,'',i)}).join('');
   observe($('#view-fav-scope'));
-  var n=$('#favn');n.textContent=list.length;
+  $$('.favn').forEach(function(n){n.textContent=list.length});
 }
 /* ---------- 404: софра с липсваща чиния ---------- */
 $('#nf-spin').innerHTML=CATS.map(function(c,i){
@@ -793,7 +789,7 @@ function setView(v,empty){
   cur=v;
   if(v==='favorites'){if(empty){Object.keys(fav).forEach(function(k){fav[k]=0})}else if(!Object.keys(fav).some(function(k){return fav[k]})){fav={'shopska-salata':1,'tikvenik':1,'mekitsi':1}}renderFav()}
   $$('.view').forEach(function(x){x.hidden=x.getAttribute('data-view')!==v});window.scrollTo(0,0);
-  $$('.nav a').forEach(function(a){a.removeAttribute('aria-current');if(a.getAttribute('data-nav')===v)a.setAttribute('aria-current','page')});
+  markNav();
   var key=v==='favorites'&&empty?'favorites0':v;
   $$('#c-view .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===key)});
   replay();onScroll();}
@@ -826,6 +822,27 @@ $('#ctl-tg').addEventListener('click',function(){var o=$('#ctl').classList.toggl
 /* ---------- старт ---------- */
 var t0=(location.hash||'').slice(1);
 paintBands();
+/* ---------- кой гледа: гост, потребител, админ (кръг 3) ---------- */
+var NAV={home:['Начало','#out',''],catalog:['Рецепти','#out',''],about:['За нас','#about','about'],fav:['Любими','#favorites','favorites'],profile:['Профил','#profile','profile'],admin:['Админ','#out',''],login:['Вход','#out',''],register:['Регистрация','#out',''],myProfile:['Моят профил','#profile',''],adminPanel:['Админ панел','#out','']};
+var who=new URLSearchParams(location.search).get('who')||'guest';if(['guest','user','admin'].indexOf(who)<0)who='guest';
+function favCount(){return Object.keys(fav).filter(function(k){return fav[k]}).length}
+function navLink(l){return '<a href="'+l[1]+'"'+(l[2]?' data-nav="'+l[2]+'"':'')+(l[1]==='#out'?' data-out':'')+'>'+l[0]+'</a>'}
+function markNav(){var v=cur;$$('.nav a').forEach(function(a){a.removeAttribute('aria-current');if(a.getAttribute('data-nav')===v)a.setAttribute('aria-current','page')})}
+function renderWho(){
+  var L=[NAV.home,NAV.catalog,NAV.about];
+  if(who!=='guest'){L.push([NAV.fav[0]+' <span class="favn">'+favCount()+'</span>',NAV.fav[1],NAV.fav[2]],NAV.profile);if(who==='admin')L.push(NAV.admin)}
+  var out='<a href="#" data-who="guest">Изход</a>';
+  var h=L.map(navLink).join('')+(who==='guest'?navLink(NAV.login):'<span class="nav-greeting">Здравей, '+(who==='admin'?'Admin':'Мария')+'</span>'+out);
+  $('#nav-main').innerHTML=h;$('#mnav-links').innerHTML=h;
+  var F=who==='guest'?[NAV.login,NAV.register]:who==='admin'?[NAV.myProfile,NAV.adminPanel]:[NAV.myProfile];
+  $('#ftr-who').innerHTML=F.map(function(l){return '<li>'+navLink(l)+'</li>'}).join('')+(who==='guest'?'':'<li>'+out+'</li>');
+  $$('#c-who .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===who)});
+  markNav();
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-who]');if(!b)return;e.preventDefault();closeMenu();who=b.getAttribute('data-who');renderWho()});
+$('#c-who').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;who=b.getAttribute('data-v');renderWho()});
+$$('.ftr-year').forEach(function(y){y.textContent=new Date().getFullYear()});
+renderWho();
 setView(['about','favorites','profile','notfound'].indexOf(t0)>=0?t0:'about',false);
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);
 })();

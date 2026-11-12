@@ -227,9 +227,19 @@ em{font-style:italic}
 .story cite{display:block;margin-top:28px;font-style:normal;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;opacity:.8}
 
 /* ---------- footer ---------- */
-.ftr{padding-block:0 120px}
+.ftr{padding-block:0 36px}
 .ftr .band{color:var(--accent);margin-bottom:56px}
-.ftr-grid{display:grid;grid-template-columns:minmax(0,5fr) repeat(2,minmax(0,2fr)) minmax(0,3fr);gap:32px}
+/* Кръг 3: марка отляво, две колони връзки до десния ръб (без празна колона), долен ред с ©. */
+.ftr-grid{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:32px clamp(48px,8vw,128px)}
+.ftr li button{display:inline-flex;min-height:36px;align-items:center;background:linear-gradient(currentColor,currentColor) no-repeat 0 85%/0 1px;border:0;padding:0;color:inherit;font:inherit;cursor:pointer;transition:background-size .4s var(--eo)}
+.ftr li button:hover{background-size:100% 1px}
+.ftr-base{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;color:var(--muted);font-size:.8rem}
+.ftr .ftr-base p{margin:0;max-width:none;font-size:inherit}
+.ftr-note{font-size:.72rem;opacity:.8}
+@media (max-width:1000px){.ftr-grid>:first-child{grid-column:1/-1}}
+.nav-greeting{font-size:.8rem;max-width:15ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;opacity:.85}
+.mnav-links{display:contents}
+.mnav .nav-greeting{font-size:1rem;max-width:none;padding-top:16px}
 .ftr h3{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:14px}
 .ftr li a{display:inline-flex;min-height:36px;align-items:center;background:linear-gradient(currentColor,currentColor) no-repeat 0 85%/0 1px;transition:background-size .4s var(--eo)}
 .ftr li a:hover{background-size:100% 1px}
@@ -400,19 +410,14 @@ em{font-style:italic}
 <header class="hdr" id="hdr">
   <div class="wrap">
     <a class="logo" href="#home" aria-label="Домашна кухня Chefo's Recipes – начало"><small>Домашна кухня</small><b>Chefo's <em>Recipes</em></b></a>
-    <nav class="nav" aria-label="Основна навигация">
-      <a href="#home" data-nav="home">Начало</a>
-      <a href="#catalog" data-nav="catalog">Рецепти</a>
-      <a href="#home">За нас</a>
-      <a href="#catalog">Любими <span class="favn" id="favn">2</span></a>
-      <a href="#auth" data-nav="auth">Вход</a>
-    </nav>
+    <!-- Кръг 3: менюто зависи от това кой гледа (контроли „Профил“ или ?who=guest|user|admin). -->
+    <nav class="nav" id="nav-main" aria-label="Основна навигация"><a href="#home" data-nav="home">Начало</a><a href="#catalog" data-nav="catalog">Рецепти</a><a href="sofra-mock-pages.html#about">За нас</a><a href="#auth" data-nav="auth">Вход</a></nav>
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="mnav">Меню</button>
   </div>
 </header>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Меню">
   <button class="x" type="button" id="menu-x">Затвори</button>
-  <a href="#home">Начало</a><a href="#catalog">Рецепти</a><a href="#home">За нас</a><a href="#catalog">Любими</a><a href="#auth">Вход</a>
+  <div class="mnav-links" id="mnav-links"><a href="#home">Начало</a><a href="#catalog">Рецепти</a><a href="sofra-mock-pages.html#about">За нас</a><a href="#auth">Вход</a></div>
 </div>
 
 <main id="main">
@@ -565,10 +570,10 @@ em{font-style:italic}
   <div class="band" data-band-svg="foot" aria-hidden="true"></div>
   <div class="wrap ftr-grid">
     <div><a class="logo" href="#home" aria-label="Домашна кухня Chefo's Recipes – начало"><small>Домашна кухня</small><b>Chefo's <em>Recipes</em></b></a><p>Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден.</p></div>
-    <div><h3>Разглеждай</h3><ul><li><a href="#catalog">Рецепти</a></li><li><a href="#catalog">Любими</a></li><li><a href="#home">За нас</a></li></ul></div>
-    <div><h3>Профил</h3><ul><li><a href="#auth">Вход</a></li><li><a href="#auth" data-mode="up">Регистрация</a></li></ul></div>
-    <div><h3>Макет</h3><p style="margin-top:0">Снимките и рецептите са истинските от сайта. Цитатът е примерен.</p></div>
+    <div><h3>Разглеждай</h3><ul><li><a href="#catalog">Рецепти</a></li><li><a href="sofra-mock-pages.html#favorites">Любими</a></li><li><a href="sofra-mock-pages.html#about">За нас</a></li></ul></div>
+    <div><h3>Профил</h3><ul id="ftr-who"><li><a href="#auth">Вход</a></li><li><a href="#auth" data-mode="up">Регистрация</a></li></ul></div>
   </div>
+  <div class="wrap"><div class="ftr-base"><p>© <span class="ftr-year">2026</span> Chefo's Recipes. Всички права запазени.</p><p class="ftr-note">Макет: снимките и рецептите са истинските от сайта. Цитатът е примерен.</p></div></div>
 </footer>
 
 <aside class="ctl" id="ctl" aria-label="Контроли на макета">
@@ -576,6 +581,7 @@ em{font-style:italic}
   <div class="ctl-body">
     <div class="grp"><span>Посока</span><div class="chips" id="c-theme"><button class="chip" type="button" data-v="sofra" aria-pressed="true"><i class="sw" style="background:#170F0F"></i>1 · Софра</button><button class="chip" type="button" data-v="shevitsa" aria-pressed="false"><i class="sw" style="background:#FAFAF8"></i>2 · Шевица</button><button class="chip" type="button" data-v="cherga" aria-pressed="false"><i class="sw" style="background:#4E0C14"></i>3 · Черга</button></div></div>
     <div class="grp"><span>Страница</span><div class="chips" id="c-view"><button class="chip" type="button" data-v="home" aria-pressed="true">Начало</button><button class="chip" type="button" data-v="catalog" aria-pressed="false">Рецепти</button><button class="chip" type="button" data-v="recipe" aria-pressed="false">Рецепта</button><button class="chip" type="button" data-v="auth" aria-pressed="false">Вход</button></div></div>
+    <div class="grp"><span>Профил</span><div class="chips" id="c-who"><button class="chip" type="button" data-v="guest" aria-pressed="true">Гост</button><button class="chip" type="button" data-v="user" aria-pressed="false">Потребител</button><button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button></div></div>
     <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
   </div>
 </aside>
@@ -718,7 +724,7 @@ function toggleFav(s,btn){fav[s]=!fav[s];
   $$('[data-fav="'+s+'"]').forEach(function(b){var r=byS(s);b.setAttribute('aria-pressed',!!fav[s]);b.setAttribute('aria-label',(fav[s]?'Премахни от любими: ':'Запази в любими: ')+r.t)});
   if(s===sel)setFavBtn();
   if(btn&&motion){btn.classList.remove('pop');void btn.offsetWidth;btn.classList.add('pop')}
-  var n=$('#favn');n.textContent=Object.keys(fav).filter(function(k){return fav[k]}).length;if(motion){n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump')}}
+  $$('.favn').forEach(function(n){n.textContent=favCount();if(motion){n.classList.remove('bump');void n.offsetWidth;n.classList.add('bump')}})}
 document.addEventListener('click',function(e){var f=e.target.closest('[data-fav]');if(f){e.preventDefault();toggleFav(f.getAttribute('data-fav'),f);return}
   if(e.target.closest('#r-fav')){toggleFav(sel,null);return}});
 
@@ -741,7 +747,7 @@ $('#a-form').addEventListener('submit',function(e){e.preventDefault();$('#a-note
 
 /* ---------- навигация ---------- */
 function setView(v){cur=v;$$('.view').forEach(function(x){x.hidden=x.getAttribute('data-view')!==v});window.scrollTo(0,0);
-  $$('.nav a').forEach(function(a){a.removeAttribute('aria-current');if(a.getAttribute('data-nav')===v||(v==='recipe'&&a.getAttribute('data-nav')==='catalog'))a.setAttribute('aria-current','page')});
+  markNav();
   $$('#c-view .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===v)});
   replay();onScroll();}
 function go(v,slug,cat){if(slug)fillRecipe(slug);if(cat){fcat=cat;$$('.tab').forEach(function(x){x.setAttribute('aria-pressed',x.getAttribute('data-c')===cat)});}
@@ -782,6 +788,27 @@ if(p&&p!=='sofra'){root.setAttribute('data-theme',p);$$('#c-theme .chip').forEac
 paintBands();fillRecipe('shopska-salata');
 $('#home-eyebrow').textContent='Домашна кухня · '+plural(R.length);$('#home-all').textContent='Всички '+plural(R.length);
 $('#cat-eyebrow').textContent=R.length+(R.length===1?' рецепта':' рецепти')+' · '+CATS.length+(CATS.length===1?' категория':' категории');
+/* ---------- кой гледа: гост, потребител, админ (кръг 3) ---------- */
+var NAV={home:['Начало','#home','home'],catalog:['Рецепти','#catalog','catalog'],about:['За нас','sofra-mock-pages.html#about',''],fav:['Любими','sofra-mock-pages.html#favorites',''],profile:['Профил','sofra-mock-pages.html#profile',''],admin:['Админ','#home',''],login:['Вход','#auth','auth'],register:['Регистрация','#auth" data-mode="up',''],myProfile:['Моят профил','sofra-mock-pages.html#profile',''],adminPanel:['Админ панел','#home','']};
+var who=new URLSearchParams(location.search).get('who')||'guest';if(['guest','user','admin'].indexOf(who)<0)who='guest';
+function favCount(){return Object.keys(fav).filter(function(k){return fav[k]}).length}
+function navLink(l){return '<a href="'+l[1]+'"'+(l[2]?' data-nav="'+l[2]+'"':'')+(l[1]==='#out'?' data-out':'')+'>'+l[0]+'</a>'}
+function markNav(){var v=cur;$$('.nav a').forEach(function(a){a.removeAttribute('aria-current');if(a.getAttribute('data-nav')===v||(v==='recipe'&&a.getAttribute('data-nav')==='catalog'))a.setAttribute('aria-current','page')})}
+function renderWho(){
+  var L=[NAV.home,NAV.catalog,NAV.about];
+  if(who!=='guest'){L.push([NAV.fav[0]+' <span class="favn">'+favCount()+'</span>',NAV.fav[1],NAV.fav[2]],NAV.profile);if(who==='admin')L.push(NAV.admin)}
+  var out='<a href="#" data-who="guest">Изход</a>';
+  var h=L.map(navLink).join('')+(who==='guest'?navLink(NAV.login):'<span class="nav-greeting">Здравей, '+(who==='admin'?'Admin':'Мария')+'</span>'+out);
+  $('#nav-main').innerHTML=h;$('#mnav-links').innerHTML=h;
+  var F=who==='guest'?[NAV.login,NAV.register]:who==='admin'?[NAV.myProfile,NAV.adminPanel]:[NAV.myProfile];
+  $('#ftr-who').innerHTML=F.map(function(l){return '<li>'+navLink(l)+'</li>'}).join('')+(who==='guest'?'':'<li>'+out+'</li>');
+  $$('#c-who .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===who)});
+  markNav();
+}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-who]');if(!b)return;e.preventDefault();closeMenu();who=b.getAttribute('data-who');renderWho()});
+$('#c-who').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;who=b.getAttribute('data-v');renderWho()});
+$$('.ftr-year').forEach(function(y){y.textContent=new Date().getFullYear()});
+renderWho();
 setView(['home','catalog','recipe','auth'].indexOf(t0)>=0?t0:'home');
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);
 })();

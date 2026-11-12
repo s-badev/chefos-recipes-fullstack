@@ -423,23 +423,6 @@ for (const width of [390, 1440]) {
   });
 }
 
-test("footer social icons have a 44×44 hit area without moving the icons", async ({ page }) => {
-  await page.goto("/about");
-  const links = page.locator(".footer-socials a");
-  const count = await links.count();
-  expect(count).toBeGreaterThan(0);
-  const icons: number[] = [];
-  for (let i = 0; i < count; i++) {
-    const box = (await links.nth(i).boundingBox())!;
-    expect(box.width).toBeGreaterThanOrEqual(44);
-    expect(box.height).toBeGreaterThanOrEqual(44);
-    const icon = (await links.nth(i).locator("svg").boundingBox())!;
-    icons.push(icon.x);
-  }
-  // Same 20px icons with the same 14px gap as before: 34px between icon starts.
-  for (let i = 1; i < icons.length; i++) expect(Math.round(icons[i] - icons[i - 1])).toBe(34);
-});
-
 test("recipe metadata: canonical, Open Graph and Twitter card from the recipe", async ({ page }) => {
   await page.goto("/catalog/bob-chorba");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/catalog\/bob-chorba$/);

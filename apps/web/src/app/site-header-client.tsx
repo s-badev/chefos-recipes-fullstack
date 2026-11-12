@@ -22,12 +22,13 @@ const guestNavigationItems: NavigationItem[] = [
   { href: "/about", label: "За нас" }
 ];
 
+/** Signed in: Начало · Рецепти · За нас · Любими (N) · Профил, then the greeting and Изход. */
 const userNavigationItems: NavigationItem[] = [
   { href: "/", label: "Начало" },
   { href: "/catalog", label: "Рецепти" },
+  { href: "/about", label: "За нас" },
   { href: "/favorites", label: "Любими" },
-  { href: "/profile", label: "Профил" },
-  { href: "/about", label: "За нас" }
+  { href: "/profile", label: "Профил" }
 ];
 
 const adminNavigationItem = { href: "/admin", label: "Админ" };
@@ -65,11 +66,7 @@ function getNavigationItems(currentUser: CurrentUser | undefined) {
   }
 
   if (currentUser.role === "admin") {
-    return [
-      ...userNavigationItems.slice(0, 4),
-      adminNavigationItem,
-      userNavigationItems[4]
-    ];
+    return [...userNavigationItems, adminNavigationItem];
   }
 
   return userNavigationItems;
