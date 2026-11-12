@@ -9,14 +9,14 @@ export function IngredientChecklist({ slug, ingredients }: { slug: string; ingre
 
   return (
     <>
-      <div className="ings-head">
-        <h2 id="ingredients-title" data-r>Продукти</h2>
-        <p className="ings-count" data-r aria-live="polite">{done} от {ingredients.length}</p>
+      <div className="ings-h">
+        <h2 id="ingredients-title">Продукти</h2>
+        <span aria-live="polite" className="ings-count">{done} от {ingredients.length}</span>
       </div>
       <ul className="ing-list">
         {ingredients.map((ingredient, index) => (
           // Only the first eight stagger in; a long list must not keep the cook waiting.
-          <li data-r key={`${index}-${ingredient}`} style={{ "--dl": `${index < 8 ? index * 50 : 0}ms` } as CSSProperties}>
+          <li className="rv" key={`${index}-${ingredient}`} style={{ "--d": `${index < 8 ? index * 50 : 0}ms` } as CSSProperties}>
             <label className="ing">
               <input checked={checked[index] ?? false} onChange={event => toggle(index, event.target.checked)} type="checkbox" />
               <span className="ing-t">
@@ -29,7 +29,7 @@ export function IngredientChecklist({ slug, ingredients }: { slug: string; ingre
         ))}
       </ul>
       {done > 0 ? (
-        <button className="ing-clear no-print" onClick={clear} type="button">Изчисти отметките</button>
+        <button className="clear ing-clear no-print" onClick={clear} type="button">Изчисти отметките</button>
       ) : null}
     </>
   );

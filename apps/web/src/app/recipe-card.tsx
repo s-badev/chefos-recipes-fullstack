@@ -4,6 +4,8 @@ import { recipeImageSrc } from "../lib/images";
 import { formatCookTime } from "../lib/format";
 import Link from "next/link";
 import { FavoriteButton } from "./favorite-button";
+import { StitchStar } from "./stitch";
+import { hasRecipePhoto } from "../lib/recipe-detail";
 
 type RecipeCardRecipe = {
   title: string;
@@ -139,14 +141,19 @@ export function RecipeCard({
       />
       <div className="relative overflow-hidden">
           <div className="relative h-40 overflow-hidden bg-surface transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
-            <Image
-              alt={imageAlt}
-              className="object-cover"
-              fill
-              priority={priority}
-              sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
-              src={recipeImageSrc(recipe.imageSrc)}
-            />
+            {hasRecipePhoto(recipe) ? (
+              <Image
+                alt={imageAlt}
+                className="object-cover"
+                fill
+                priority={priority}
+                sizes="(min-width: 1280px) 25vw, (min-width: 768px) 48vw, 100vw"
+                src={recipeImageSrc(recipe.imageSrc)}
+              />
+            ) : (
+              // A recipe without its own photograph: a dark tile with the stitched star, never a stand-in dish.
+              <span className="ci-empty"><StitchStar /></span>
+            )}
             <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/32" />
           </div>
 

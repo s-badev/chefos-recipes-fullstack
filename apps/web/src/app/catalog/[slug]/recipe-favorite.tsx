@@ -22,14 +22,14 @@ export function RecipeFavorite({ slug, saved, redirectTo }: { slug: string; save
       <button
         aria-busy={favorite.pending}
         aria-pressed={favorite.saved}
-        className="btn heart-lg"
+        className="btn fill heart-lg"
         disabled={favorite.pending}
         onClick={() => { if (!favorite.saved) setPops(count => count + 1); }}
         type="submit"
       >
         <span className={pops ? "heart-ico pop" : "heart-ico"} key={pops} aria-hidden="true">
           <span className="ring" />
-          <svg viewBox="0 0 24 24"><path d={HEART} /></svg>
+          <svg className="hs" viewBox="0 0 24 24"><path d={HEART} /></svg>
         </span>
         <span>{favorite.saved ? "Премахни от любими" : "Запази в любими"}</span>
       </button>

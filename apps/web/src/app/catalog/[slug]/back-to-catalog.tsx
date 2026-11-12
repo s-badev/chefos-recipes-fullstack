@@ -8,5 +8,5 @@ import { rememberedCatalogHref } from "../../../lib/catalog-return";
 export function BackToCatalog() {
   const [href, setHref] = useState("/catalog");
   useEffect(() => { setHref(rememberedCatalogHref()); }, []);
-  return <Link className="btn" href={href}><span aria-hidden="true">←</span> Назад към каталога</Link>;
+  return <Link className="btn out" href={href}><span aria-hidden="true">←</span> Към рецептите</Link>;
 }

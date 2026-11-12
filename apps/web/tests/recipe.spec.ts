@@ -55,8 +55,8 @@ test("pure guards: photo decision, missing-content lines and the catalog return 
 test("curated musaka keeps its photo; ticks strike through, survive a reload and clear", async ({ page }) => {
   const problems = watchProblems(page);
   await page.goto("/catalog/musaka-s-kartofi");
-  await expect(page.locator(".recipe-hero")).toHaveAttribute("data-photo", "yes");
-  await expect(page.locator(".recipe-hero img")).toHaveCount(1);
+  await expect(page.locator(".r-hero")).toHaveAttribute("data-photo", "yes");
+  await expect(page.locator(".r-hero img")).toHaveCount(1);
 
   await page.goto("/catalog/shopska-salata");
   const items = page.locator(".ing");
@@ -116,9 +116,9 @@ test("header is transparent over the recipe hero and solid after it; solid on pa
   const header = page.locator("header.hdr");
   await expect(header).not.toHaveClass(/\bsolid\b/);
   expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgba(0, 0, 0, 0)");
-  const heroHeight = await page.locator(".recipe-hero").evaluate(node => node.getBoundingClientRect().height);
+  const heroHeight = await page.locator(".r-hero").evaluate(node => node.getBoundingClientRect().height);
   // Solid before the hero text reaches the header: the logo never runs over the title.
-  const textTop = await page.locator(".recipe-hero .hero-in .wrap").evaluate(node => (node as HTMLElement).offsetTop);
+  const textTop = await page.locator(".r-hero .hero-in").evaluate(node => (node as HTMLElement).offsetTop);
   await page.evaluate(top => window.scrollTo(0, top - 60), textTop);
   await expect(header).toHaveClass(/\bsolid\b/);
   await page.evaluate(() => window.scrollTo(0, 0));
@@ -136,11 +136,11 @@ test("header is transparent over the recipe hero and solid after it; solid on pa
 
 test("back to catalog keeps ?q= and ?category= from the catalog view the visitor came from", async ({ page }) => {
   await page.goto("/catalog/bob-chorba");
-  await expect(page.getByRole("link", { name: "Назад към каталога" })).toHaveAttribute("href", "/catalog");
+  await expect(page.getByRole("link", { name: "Към рецептите" })).toHaveAttribute("href", "/catalog");
   await page.goto("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8", { waitUntil: "networkidle" });
   await page.locator('a[href="/catalog/bob-chorba"]').first().click();
   await page.waitForURL("**/catalog/bob-chorba");
-  const back = page.getByRole("link", { name: "Назад към каталога" });
+  const back = page.getByRole("link", { name: "Към рецептите" });
   await expect(back).toHaveAttribute("href", /^\/catalog\?/);
   await back.click();
   await page.waitForURL(url => url.pathname === "/catalog");
@@ -220,20 +220,20 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
 
     const problems = watchProblems(page);
     await page.goto(`/catalog/${slug}`, { waitUntil: "networkidle" });
-    const hero = page.locator(".recipe-hero");
+    const hero = page.locator(".r-hero");
     await expect(hero).toHaveAttribute("data-photo", "none");
     await expect(hero.locator("img")).toHaveCount(0);
     // Sofra: an admin recipe without a photo sits on the solid --surface ground.
     expect(await hero.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgb(34, 22, 20)");
     expect(await hero.locator("h1").evaluate(node => getComputedStyle(node).color)).toBe("rgb(255, 255, 255)");
-    await expect(page.locator(".rh-eyebrow")).toHaveText("Салати");
+    await expect(page.locator(".r-hero .eyebrow")).toHaveText("Салати");
     await expect(page.locator(".meta dd").nth(1)).toHaveText("Без готвене");
     await expect(page.locator(".r-missing")).toHaveText(["Продуктите и стъпките за тази рецепта още не са добавени."]);
-    await expect(page.locator('input[type="checkbox"], .ings-count, .prog, .st-list')).toHaveCount(0);
+    await expect(page.locator('input[type="checkbox"], .ings-count, .st-list')).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Принтирай рецептата", exact: true })).toBeVisible();
-    await expect(page.getByRole("link", { name: "Назад към каталога" })).toBeVisible();
-    await expect(page.locator(".next-row")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
+    await expect(page.getByRole("link", { name: "Към рецептите" })).toBeVisible();
+    await expect(page.locator(".next")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
     for (const width of [360, 390, 768, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `overflow at ${width}`).toBe(0);
@@ -269,7 +269,7 @@ test("print: title, products and steps; no hero photo, header, footer or buttons
   await page.emulateMedia({ media: "print" });
   await expect(page.locator("header")).toBeHidden();
   await expect(page.locator("footer")).toBeHidden();
-  await expect(page.locator(".recipe-hero .hero-par")).toBeHidden();
+  await expect(page.locator(".r-hero .hero-ph")).toBeHidden();
   await expect(page.locator(".actions")).toBeHidden();
   await expect(page.locator(".ings-count")).toBeHidden();
   await expect(page.getByRole("heading", { level: 1 })).toHaveCSS("color", "rgb(17, 17, 17)");
@@ -306,19 +306,15 @@ for (const slug of ["shopska-salata", "bob-chorba"]) {
 
 test.describe("reduced motion", () => {
   test.use({ reducedMotion: "reduce" });
-  test("recipe page: nothing hidden, no zoom, no parallax, no progress line", async ({ page }) => {
+  test("recipe page: nothing hidden, no intro zoom", async ({ page }) => {
     await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveAttribute("data-motion", "off");
-    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, [data-r], .wi, .rh-desc, .ing, .st")].filter(node => {
+    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, .rv, .wi, .r-desc, .ing, .st")].filter(node => {
       const style = getComputedStyle(node);
       return style.opacity === "0" || style.transform !== "none" || style.visibility === "hidden";
     }).length);
     expect(hidden).toBe(0);
-    expect(await page.locator(".recipe-hero .zoom").evaluate(node => getComputedStyle(node).transform)).toBe("none");
-    await page.mouse.wheel(0, 300);
-    await page.waitForTimeout(300);
-    expect(await page.locator(".hero-par").evaluate(node => getComputedStyle(node).transform)).toBe("none");
-    await expect(page.locator(".prog")).toBeHidden();
+    expect(await page.locator(".r-hero .hero-ph img").evaluate(node => getComputedStyle(node).animationName)).toBe("none");
     await page.getByRole("checkbox", { name: "1 краставица" }).check();
     await expect(page.locator(".ings-count")).toHaveText(/^1 от /);
     await page.getByRole("button", { name: "Изчисти отметките" }).click();
@@ -329,48 +325,40 @@ test.describe("without JavaScript", () => {
   test.use({ javaScriptEnabled: false });
   test("recipe page: everything visible, solid header, ticks still toggle", async ({ page }) => {
     await page.goto("/catalog/bob-chorba");
-    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, [data-r], .wi, .rh-desc, .ing, .st, .actions .btn")].filter(node => {
+    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, .rv, .wi, .r-desc, .ing, .st, .actions .btn")].filter(node => {
       const style = getComputedStyle(node);
       return style.opacity === "0" || style.transform !== "none" || style.visibility === "hidden";
     }).length);
     expect(hidden).toBe(0);
     expect(await page.locator("header.hdr").evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
-    await expect(page.locator(".prog")).toBeHidden();
     const box = page.getByRole("checkbox", { name: "1 морков" });
     await box.check();
     await expect(box).toBeChecked();
   });
 });
 
-test("next recipe: curated order, wraps to the first, hover draws the line, shifts the title and shows the photo beside it", async ({ page }) => {
+test("next recipe: curated order, wraps to the first; a large row with its photograph that shifts on hover", async ({ page }) => {
   expect(nextCuratedRecipe(curated[0].slug).recipe.slug).toBe(curated[1].slug);
   expect(nextCuratedRecipe(curated[curated.length - 1].slug)).toEqual({ recipe: curated[0], number: "Nº 01" });
   expect(nextCuratedRecipe("admin-recipe-x").recipe.slug).toBe(curated[0].slug);
 
   await page.goto(`/catalog/${curated[0].slug}`, { waitUntil: "networkidle" });
-  const section = page.locator(".next-recipe");
-  await expect(section.getByRole("heading", { name: "Следваща рецепта" })).toBeVisible();
-  const row = section.locator(".next-row");
+  const row = page.locator("a.next");
   await expect(row).toHaveAttribute("href", `/catalog/${curated[1].slug}`);
-  await expect(row.locator(".row-n")).toHaveText("Nº 02");
-  await expect(row.locator(".row-t")).toHaveText(curated[1].title);
-  await expect(row.locator(".row-m")).toHaveText(new RegExp(`^${curated[1].category} · `));
+  await expect(row.locator(".ne")).toHaveText("Следваща рецепта");
+  await expect(row.locator("b")).toHaveText(curated[1].title);
+  await expect(row.locator(".nm")).toHaveText(new RegExp(`^${curated[1].category} · `));
+  await expect(row.locator(".ni img")).toHaveCount(1);
   await row.scrollIntoViewIfNeeded();
-  const box = (await row.locator(".row-t").boundingBox())!;
+  const box = (await row.locator("b").boundingBox())!;
   await page.mouse.move(box.x + 40, box.y + box.height / 2);
-  await page.waitForTimeout(900);
-  expect(await row.locator(".row-t").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBeGreaterThan(10);
-  expect(await row.locator(".row-arrow").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBeGreaterThan(3);
-  expect(await row.evaluate(node => getComputedStyle(node, "::after").transform)).toBe("matrix(1, 0, 0, 1, 0, 0)");
-  await expect(page.locator("#recipe-preview")).toHaveClass(/\bon\b/);
-  const preview = (await page.locator("#recipe-preview").boundingBox())!;
-  const title = (await row.locator(".row-t").boundingBox())!;
-  expect(preview.x < title.x + title.width && preview.x + preview.width > title.x && preview.y < title.y + title.height && preview.y + preview.height > title.y).toBe(false);
+  await expect.poll(() => row.locator("b").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBeGreaterThan(10);
+  await expect(page.locator("#recipe-preview")).toHaveCount(0);
 
   await page.goto(`/catalog/${curated[curated.length - 1].slug}`);
-  await expect(page.locator(".next-row")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
+  await expect(page.locator("a.next")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
   await page.emulateMedia({ media: "print" });
-  await expect(page.locator(".next-recipe")).toBeHidden();
+  await expect(page.locator("a.next")).toBeHidden();
 });
 
 test("meta row: words are smaller than numbers and stay on one line from 390 to 1920; bob chorba notes the overnight soak", async ({ page }) => {
@@ -382,7 +370,7 @@ test("meta row: words are smaller than numbers and stay on one line from 390 to 
       const style = getComputedStyle(node);
       const range = document.createRange(); range.selectNodeContents(node);
       const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top))).size;
-      return { word: node.classList.contains("meta-word"), size: parseFloat(style.fontSize), lines, fits: node.scrollWidth <= node.clientWidth + 1, text: node.textContent };
+      return { word: node.classList.contains("word"), size: parseFloat(style.fontSize), lines, fits: node.scrollWidth <= node.clientWidth + 1, text: node.textContent };
     }));
     const words = cells.filter(cell => cell.word);
     expect(words.map(cell => cell.text), `words at ${width}`).toEqual(["Без готвене", "Лесна"]);

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
 import { SplitWords } from "../../split-heading";
+import { StitchBand, StitchStar } from "../../stitch";
 import { webImageSrc } from "../../../lib/images";
 import { formatCookTime, formatTotalTime } from "../../../lib/format";
 import { categoryHref } from "../../../lib/categories";
@@ -70,85 +71,60 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   const notes = missingContentNotes(recipe.ingredients.length, recipe.steps.length);
   const extras = recipeExtrasFor(recipe.slug);
   const next = nextCuratedRecipe(recipe.slug);
-  // Words ("Без готвене", "Лесна") are set smaller than numbers and stay on one line.
-  const meta = [
-    { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин`, word: false, note: extras.prepNote },
-    { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes), word: recipe.cookTimeMinutes === 0 },
-    { label: "Порции", value: String(recipe.servings), word: false },
-    { label: "Трудност", value: recipe.difficulty, word: true }
-  ];
+  const minutes = (value: number) => <>{value}<small> мин</small></>;
 
   return (
     <article className="recipe-print-page">
-      <section
-        aria-labelledby="recipe-title"
-        className="recipe-hero recipe-print-hero"
-        data-hero
-        data-photo={photo ? "yes" : "none"}
-        data-zoom={photo ? "" : undefined}
-      >
+      <section aria-labelledby="recipe-title" className="r-hero" data-hero data-photo={photo ? "yes" : "none"}>
         {photo ? (
-          <div className="hero-par" data-par="0.14">
-            <div className="zoom">
-              <Image
-                alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`}
-                className="ph"
-                fill
-                priority
-                sizes="100vw"
-                src={webImageSrc(recipe.imageSrc!)}
-              />
-            </div>
+          <div className="hero-ph">
+            <Image alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`} fill priority sizes="100vw" src={webImageSrc(recipe.imageSrc!)} />
           </div>
-        ) : null}
-        <div className="hero-in">
-          <div className="wrap">
-            <p className="eyebrow rh-eyebrow">
-              <Link href={categoryHref(recipe.category)}>{recipe.category}</Link>
-              {number ? <span> · {number}</span> : null}
-            </p>
-            <h1 id="recipe-title" data-split><SplitWords text={recipe.title} /></h1>
-            <p className="rh-desc">{recipe.description}</p>
-          </div>
+        ) : (
+          // A manual recipe without its own photograph: the solid ground with the stitched star.
+          <StitchStar className="r-star" />
+        )}
+        <div className="wrap hero-in">
+          <p className="eyebrow">
+            <Link href={categoryHref(recipe.category)}>{recipe.category}</Link>
+            {number ? <span> · {number}</span> : null}
+          </p>
+          <h1 data-split id="recipe-title"><SplitWords text={recipe.title} /></h1>
+          <p className="r-desc">{recipe.description}</p>
+          <StitchBand />
         </div>
       </section>
 
       <div className="wrap">
-        <dl className="meta recipe-print-meta">
-          {meta.map((item, index) => (
-            <div data-r key={item.label} style={{ "--dl": `${index * 80}ms` } as CSSProperties}>
-              <dt className="eyebrow">{item.label}</dt>
-              <dd className={item.word ? "meta-word" : undefined}>
-                {item.value}
-                {item.note ? <span className="meta-note">{item.note}</span> : null}
-              </dd>
-            </div>
-          ))}
+        <dl className="meta">
+          <div className="rv"><dt>Подготовка</dt><dd>{minutes(recipe.prepTimeMinutes)}{extras.prepNote ? <span className="meta-note">{extras.prepNote}</span> : null}</dd></div>
+          <div className="rv" style={{ "--d": "80ms" } as CSSProperties}><dt>Готвене</dt>{recipe.cookTimeMinutes ? <dd>{minutes(recipe.cookTimeMinutes)}</dd> : <dd className="word">{formatCookTime(0)}</dd>}</div>
+          <div className="rv" style={{ "--d": "160ms" } as CSSProperties}><dt>Порции</dt><dd>{recipe.servings}</dd></div>
+          <div className="rv" style={{ "--d": "240ms" } as CSSProperties}><dt>Трудност</dt><dd className="word">{recipe.difficulty}</dd></div>
         </dl>
-        {tags ? <p className="meta-tags" data-r>{tags}</p> : null}
+        {tags ? <p className="tags">{tags}</p> : null}
 
         <div className={notes.all ? "rbody rbody-empty" : "rbody"}>
           {notes.all ? (
             <p className="r-missing">{notes.all}</p>
           ) : (
             <>
-              <aside className="ings recipe-print-section" aria-labelledby={recipe.ingredients.length ? "ingredients-title" : undefined}>
+              <aside aria-labelledby={recipe.ingredients.length ? "ingredients-title" : undefined} className="ings">
                 {recipe.ingredients.length ? (
                   <IngredientChecklist ingredients={recipe.ingredients} slug={recipe.slug} />
                 ) : (
                   <p className="r-missing">{notes.ingredients}</p>
                 )}
               </aside>
-              <section className="steps recipe-print-section" aria-labelledby={recipe.steps.length ? "steps-title" : undefined}>
+              <section aria-labelledby={recipe.steps.length ? "steps-title" : undefined} className="steps">
                 {recipe.steps.length ? (
                   <>
-                    <div className="prog" aria-hidden="true"><i /></div>
-                    <h2 className="steps-h" id="steps-title" data-r>Начин на приготвяне</h2>
+                    <h2 id="steps-title">Начин на приготвяне</h2>
                     <ol className="st-list">
                       {recipe.steps.map((step, index) => (
-                        <li className="st" data-r key={`${index}-${step}`}>
-                          <span className="st-n" aria-hidden="true">{stepNumber(index)}</span>
-                          <p>{step}</p>
+                        <li className="st rv" key={`${index}-${step}`}>
+                          <span aria-hidden="true" className="st-n">{stepNumber(index)}</span>
+                          <p><span className="sr-only">Стъпка {index + 1}: </span>{step}</p>
                         </li>
                       ))}
                     </ol>
@@ -156,35 +132,35 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
                 ) : (
                   <p className="r-missing">{notes.steps}</p>
                 )}
+                {notes.all ? null : <RecipeActions isFavorited={isFavorited} slug={recipe.slug} />}
               </section>
             </>
           )}
-
-          <div className="actions no-print">
-            <RecipeFavorite redirectTo={`/catalog/${recipe.slug}`} saved={isFavorited} slug={recipe.slug} />
-            <PrintRecipeButton className="btn" icon={null} label="Принтирай рецептата" />
-            <BackToCatalog />
-          </div>
+          {notes.all ? <RecipeActions isFavorited={isFavorited} slug={recipe.slug} /> : null}
         </div>
 
-        {/* The next curated recipe, as one editorial row like the home page index (same preview helper). */}
-        <section className="next-recipe no-print" aria-labelledby="next-title">
-          <h2 className="eyebrow" id="next-title">Следваща рецепта</h2>
-          <ul className="idx-list" id="recipe-index">
-            <li>
-              <Link className="row next-row" data-preview={next.recipe.slug} href={`/catalog/${next.recipe.slug}`}>
-                <span className="row-n">{next.number}</span>
-                <span className="row-t">{next.recipe.title}</span>
-                <span className="row-m">{next.recipe.category} · {formatTotalTime(next.recipe.prepTimeMinutes, next.recipe.cookTimeMinutes)}</span>
-                <span className="row-arrow" aria-hidden="true">→</span>
-              </Link>
-            </li>
-          </ul>
-        </section>
-      </div>
-      <div className="preview no-print" id="recipe-preview" aria-hidden="true">
-        <Image alt="" data-preview-image={next.recipe.slug} height={225} hidden sizes="300px" src={webImageSrc(next.recipe.imageSrc!)} width={300} />
+        {/* The next curated recipe: a large row with its photograph on the right. */}
+        <Link className="next no-print" href={`/catalog/${next.recipe.slug}`}>
+          <span>
+            <span className="ne">Следваща рецепта</span>
+            <b>{next.recipe.title}</b>
+            <span className="nm">{next.recipe.category} · {formatTotalTime(next.recipe.prepTimeMinutes, next.recipe.cookTimeMinutes)}</span>
+          </span>
+          <span className="ni">
+            {hasRecipePhoto(next.recipe) ? <Image alt="" fill sizes="(max-width: 640px) 100vw, 320px" src={webImageSrc(next.recipe.imageSrc!)} /> : <span className="ci-empty"><StitchStar /></span>}
+          </span>
+        </Link>
       </div>
     </article>
+  );
+}
+
+function RecipeActions({ slug, isFavorited }: { slug: string; isFavorited: boolean }) {
+  return (
+    <div className="actions no-print">
+      <RecipeFavorite redirectTo={`/catalog/${slug}`} saved={isFavorited} slug={slug} />
+      <PrintRecipeButton className="btn out" icon={null} label="Принтирай рецептата" />
+      <BackToCatalog />
+    </div>
   );
 }
