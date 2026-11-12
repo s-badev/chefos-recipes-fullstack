@@ -471,7 +471,7 @@ em{font-style:italic}
         <p class="lead rv">Пет рецепти за тази седмица: от бърза вечеря до ястие, което се приготвя бавно и се яде дълго.</p>
       </div>
       <div class="cards" id="today"></div>
-      <div class="more rv"><a class="btn out" href="#catalog">Всички 24 рецепти <span class="ar" aria-hidden="true">→</span></a></div>
+      <div class="more rv"><a class="btn out" href="#catalog">Всички рецепти <span class="ar" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -488,7 +488,8 @@ em{font-style:italic}
 <!-- ===================== КАТАЛОГ ===================== -->
 <section class="view" data-view="catalog" hidden>
   <div class="wrap cat-head">
-    <p class="eyebrow rv">24 подбрани рецепти · 6 категории</p>
+    <!-- Решение на собственика: каталогът брои всички показани рецепти, без „подбрани“; броят е от данните. -->
+    <p class="eyebrow rv" id="cat-eyebrow">24 рецепти · 6 категории</p>
     <h1 class="split" data-split>Всички <em>рецепти</em></h1>
     <label class="search rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><span class="sr" style="position:absolute;left:-999px">Търсене</span><input type="search" id="q" placeholder="Търси рецепта, продукт или категория" autocomplete="off"></label>
   </div>
@@ -771,6 +772,7 @@ $('#ctl-tg').addEventListener('click',function(){var o=$('#ctl').classList.toggl
 var t0=(location.hash||'').slice(1);var p=new URLSearchParams(location.search).get('t');
 if(p&&p!=='sofra'){root.setAttribute('data-theme',p);$$('#c-theme .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===p)});$('#ctl-label').textContent=TN[p]}
 paintBands();fillRecipe('shopska-salata');
+$('#cat-eyebrow').textContent=R.length+(R.length===1?' рецепта':' рецепти')+' · '+CATS.length+(CATS.length===1?' категория':' категории');
 setView(['home','catalog','recipe','auth'].indexOf(t0)>=0?t0:'home');
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);
 })();
