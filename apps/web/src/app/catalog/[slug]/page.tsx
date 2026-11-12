@@ -7,9 +7,10 @@ import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
 import { SplitWords } from "../../split-heading";
 import { webImageSrc } from "../../../lib/images";
-import { formatCookTime } from "../../../lib/format";
+import { formatCookTime, formatTotalTime } from "../../../lib/format";
 import { categoryHref } from "../../../lib/categories";
-import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, stepNumber, tagLine } from "../../../lib/recipe-detail";
+import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, nextCuratedRecipe, stepNumber, tagLine } from "../../../lib/recipe-detail";
+import { recipeExtrasFor } from "../../../data/recipe-extras";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 import { getPublicCatalogRecipeBySlug } from "../../../server/recipes/service";
 import { IngredientChecklist } from "./ingredient-checklist";
@@ -67,11 +68,14 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   const number = curatedNumberLabel(recipe.slug);
   const tags = tagLine(recipe.tags);
   const notes = missingContentNotes(recipe.ingredients.length, recipe.steps.length);
+  const extras = recipeExtrasFor(recipe.slug);
+  const next = nextCuratedRecipe(recipe.slug);
+  // Words ("Без готвене", "Лесна") are set smaller than numbers and stay on one line.
   const meta = [
-    { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
-    { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes) },
-    { label: "Порции", value: String(recipe.servings) },
-    { label: "Трудност", value: recipe.difficulty }
+    { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин`, word: false, note: extras.prepNote },
+    { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes), word: recipe.cookTimeMinutes === 0 },
+    { label: "Порции", value: String(recipe.servings), word: false },
+    { label: "Трудност", value: recipe.difficulty, word: true }
   ];
 
   return (
@@ -114,7 +118,10 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
           {meta.map((item, index) => (
             <div data-r key={item.label} style={{ "--dl": `${index * 80}ms` } as CSSProperties}>
               <dt className="eyebrow">{item.label}</dt>
-              <dd>{item.value}</dd>
+              <dd className={item.word ? "meta-word" : undefined}>
+                {item.value}
+                {item.note ? <span className="meta-note">{item.note}</span> : null}
+              </dd>
             </div>
           ))}
         </dl>
@@ -159,6 +166,24 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <BackToCatalog />
           </div>
         </div>
+
+        {/* The next curated recipe, as one editorial row like the home page index (same preview helper). */}
+        <section className="next-recipe no-print" aria-labelledby="next-title">
+          <h2 className="eyebrow" id="next-title">Следваща рецепта</h2>
+          <ul className="idx-list" id="recipe-index">
+            <li>
+              <Link className="row next-row" data-preview={next.recipe.slug} href={`/catalog/${next.recipe.slug}`}>
+                <span className="row-n">{next.number}</span>
+                <span className="row-t">{next.recipe.title}</span>
+                <span className="row-m">{next.recipe.category} · {formatTotalTime(next.recipe.prepTimeMinutes, next.recipe.cookTimeMinutes)}</span>
+                <span className="row-arrow" aria-hidden="true">→</span>
+              </Link>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div className="preview no-print" id="recipe-preview" aria-hidden="true">
+        <Image alt="" data-preview-image={next.recipe.slug} height={225} hidden sizes="300px" src={webImageSrc(next.recipe.imageSrc!)} width={300} />
       </div>
     </article>
   );

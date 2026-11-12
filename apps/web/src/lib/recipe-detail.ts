@@ -25,6 +25,16 @@ export function hasRecipePhoto(recipe: { slug: string; imageSrc?: string }): boo
   return curatedIndex.has(recipe.slug) || recipe.imageSrc !== RECIPE_FALLBACK_IMAGE_SRC;
 }
 
+/**
+ * The "next recipe" in the curated order: the one after this recipe, the first after the last,
+ * and the first for a manual (admin) recipe.
+ */
+export function nextCuratedRecipe(slug: string) {
+  const index = curatedIndex.get(slug);
+  const next = curatedRecipes[index === undefined ? 0 : (index + 1) % curatedRecipes.length];
+  return { recipe: next, number: curatedNumberLabel(next.slug)! };
+}
+
 /** Tags as one plain line: "Постно · Домашно · Бюджетно". */
 export function tagLine(tags: readonly string[]): string {
   return tags.map(tag => tag.trim()).filter(Boolean).join(" · ");
