@@ -21,9 +21,8 @@ if (process.argv.includes("--atmosphere")) {
   process.exit(0);
 }
 const exceptions = JSON.parse(await readFile(new URL("./image-crop-exceptions.json", import.meta.url), "utf8"));
-// An explicit input keeps newly supplied, untracked originals out of a full regeneration.
 const only = process.argv.find(arg => arg.startsWith("--only="))?.slice(7);
-const files = (await readdir(source)).filter(name => name.endsWith(".png") && (only ? name === only : name !== "pile-teriyaki.png")).sort();
+const files = (await readdir(source)).filter(name => name.endsWith(".png") && (!only || name === only)).sort();
 if (only && !files.length) throw new Error("Requested source PNG does not exist");
 const decisions = [];
 let before = 0, after = 0;
@@ -34,12 +33,10 @@ for (const name of files) {
   const mark = await detectMark(input);
   const crop = mark.found && !exceptions[name] ? cropFor(mark) : null;
   decisions.push({ file: name, ...mark, crop, exception: exceptions[name] });
+  const existing = await readFile(output).catch(error => { if (error.code === "ENOENT") return null; throw error; });
   // Preserve existing masters byte-for-byte for absent marks and composition exceptions.
-  if (!crop && !only) { after += (await stat(output)).size; continue; }
-  const master = await readFile(output).then(buffer => sharp(buffer).metadata()).catch(error => {
-    if (error.code === "ENOENT") return { width: Math.min(mark.width, 2000), height: Math.round(mark.height * Math.min(mark.width, 2000) / mark.width) };
-    throw error;
-  });
+  if (!crop && existing) { after += existing.length; continue; }
+  const master = existing ? await sharp(existing).metadata() : { width: Math.min(mark.width, 2000), height: Math.round(mark.height * Math.min(mark.width, 2000) / mark.width) };
   let pipeline = sharp(input).rotate();
   if (crop) pipeline = pipeline.extract(crop);
   const encoded = await pipeline.resize(master.width, master.height, { fit: "fill", kernel: sharp.kernel.lanczos3 }).webp({ quality: 82 }).toBuffer();
@@ -47,6 +44,9 @@ for (const name of files) {
   after += (await stat(output)).size;
 }
 // A generated manifest also lets client-rendered web cards resolve files without node:fs.
-if (!only) await writeFile(path.join(root, "src/lib/web-images.json"), JSON.stringify(files.map(name => name.replace(/\.png$/, "")), null, 2) + "\n");
-await writeFile(path.resolve(root, "../../docs/redesign/shots/images/generation.json"), JSON.stringify(decisions, null, 2) + "\n");
+const masters = (await readdir(destination)).filter(name => /^[a-z0-9-]+\.webp$/.test(name)).map(name => name.replace(/\.webp$/, "")).sort();
+await writeFile(path.join(root, "src/lib/web-images.json"), JSON.stringify(masters, null, 2) + "\n");
+const evidence = path.resolve(root, "../../docs/redesign/shots/images-followup");
+await mkdir(evidence, { recursive: true });
+await writeFile(path.join(evidence, only ? `generation-${only.replace(/\.png$/, "")}.json` : "generation.json"), JSON.stringify(decisions, null, 2) + "\n");
 console.log(JSON.stringify({ files: files.length, beforeBytes: before, afterBytes: after, reductionPercent: +(100 * (1 - after / before)).toFixed(2) }, null, 2));

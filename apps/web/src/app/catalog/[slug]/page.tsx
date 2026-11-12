@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
 import { SplitWords } from "../../split-heading";
 import { StitchBand, StitchStar } from "../../stitch";
@@ -13,7 +12,7 @@ import { categoryHref } from "../../../lib/categories";
 import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, nextCuratedRecipe, stepNumber, tagLine } from "../../../lib/recipe-detail";
 import { recipeExtrasFor } from "../../../data/recipe-extras";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
-import { getPublicCatalogRecipeBySlug } from "../../../server/recipes/service";
+import { getWebRecipeForDetails } from "../../../server/recipes/web-details";
 import { IngredientChecklist } from "./ingredient-checklist";
 import { RecipeFavorite } from "./recipe-favorite";
 import { BackToCatalog } from "./back-to-catalog";
@@ -26,15 +25,11 @@ type RecipeDetailsPageProps = {
 
 export const dynamic = "force-dynamic";
 
-async function getRecipeForDetails(slug: string) {
-  return findRecipeBySlug(slug) ?? (await getPublicCatalogRecipeBySlug(slug));
-}
-
 export async function generateMetadata({
   params
 }: RecipeDetailsPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const recipe = await getRecipeForDetails(slug);
+  const recipe = await getWebRecipeForDetails(slug);
 
   if (!recipe) {
     return {
@@ -57,7 +52,7 @@ export async function generateMetadata({
 
 export default async function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
   const { slug } = await params;
-  const recipe = await getRecipeForDetails(slug);
+  const recipe = await getWebRecipeForDetails(slug);
 
   if (!recipe) {
     // Unknown slugs and hidden generated records both resolve to the styled 404 (HTTP 404).

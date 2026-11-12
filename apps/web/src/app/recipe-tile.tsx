@@ -26,7 +26,7 @@ export function RecipeTile({ recipe, variant = "", saved, redirectTo, index = 0,
     <article className={`card ${reveal ? "rv " : ""}${variant}`} style={reveal ? { "--d": `${(index % 4) * 80}ms` } as CSSProperties : undefined}>
       <Link aria-label={recipe.title} className="ci" href={href} tabIndex={-1}>
         {hasRecipePhoto(recipe) ? (
-          <Image alt="" fill fetchPriority={priority ? "high" : undefined} loading={priority ? "eager" : "lazy"} priority={priority} sizes={recipeTileSizes[variant]} src={webImageSrc(recipe.imageSrc!)} />
+          <Image alt={`Снимка на ${recipe.title}`} fill fetchPriority={priority ? "high" : undefined} loading={priority ? "eager" : "lazy"} priority={priority} sizes={recipeTileSizes[variant]} src={webImageSrc(recipe.imageSrc!)} />
         ) : (
           <span className="ci-empty"><StitchStar /></span>
         )}
