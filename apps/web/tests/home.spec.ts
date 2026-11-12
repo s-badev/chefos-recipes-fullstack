@@ -6,10 +6,16 @@ import { watchProblems } from "./helpers";
 
 const tables = sofraCategories(recipes);
 
-test("hero: curated count, two actions, stitched band; the title is visible at first paint", async ({ page }) => {
+test("hero: the catalog's own count, two actions, stitched band; the title is visible at first paint", async ({ page }) => {
+  // One source: the number on Home is the number the catalog shows (curated + manual admin recipes).
+  await page.goto("/catalog", { waitUntil: "domcontentloaded" });
+  const total = (await page.locator("main .eyebrow").first().textContent())!.split(" · ")[0];
+  expect(total).toMatch(/^\d+ рецепти?$/);
+  expect(Number.parseInt(total, 10)).toBeGreaterThanOrEqual(recipes.length);
   await page.goto("/", { waitUntil: "domcontentloaded" });
   const hero = page.locator(".hero");
-  await expect(hero.locator(".eyebrow")).toHaveText(`Домашна кухня · ${recipes.length} подбрани рецепти`);
+  await expect(hero.locator(".eyebrow")).toHaveText(`Домашна кухня · ${total}`);
+  await expect(page.getByRole("link", { name: `Всички ${total}`, exact: true })).toHaveAttribute("href", "/catalog");
   await expect(hero.getByRole("heading", { level: 1 })).toHaveText("Българска трапеза");
   await expect(hero.getByRole("link", { name: "Към рецептите" })).toHaveAttribute("href", "/catalog");
   await expect(hero.getByRole("link", { name: "Седни на софрата" })).toHaveAttribute("href", "#sofra");
@@ -76,7 +82,7 @@ test("recipe of the week and the five cards for today come from the data; the we
   expect(await cards.locator(".cb").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")))).toEqual(today.map(recipe => `/catalog/${recipe.slug}`));
   expect(today.some(recipe => recipe.slug === weekly.slug)).toBe(false);
   await expect(cards.first().getByRole("button", { name: `Запази в любими: ${today[0].title}` })).toHaveAttribute("aria-pressed", "false");
-  await expect(page.getByRole("link", { name: "Всички рецепти" })).toHaveAttribute("href", "/catalog");
+  await expect(page.locator(".more").getByRole("link", { name: /^Всички \d+ рецепти?$/ })).toHaveAttribute("href", "/catalog");
 });
 
 test("quote is revealed after client navigation from /login to the home page", async ({ page }) => {

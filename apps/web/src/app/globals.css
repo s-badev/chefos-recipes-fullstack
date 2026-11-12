@@ -176,6 +176,9 @@ img{display:block;max-width:100%}
 
 /* ---------- секции ---------- */
 .sec{position:relative;padding-block:clamp(88px,11vw,160px)}
+/* Home: one band between neighbouring sections, not two (the next one has no top padding), as in the mock. */
+.sec.home{padding-bottom:clamp(72px,11vw,160px)}
+.sec.home~.sec.home{padding-top:0}
 .sec-h{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,1.2rem + 4.4vw,5.6rem);line-height:.95;letter-spacing:-.02em}
 .sec-h em{font-weight:400;color:var(--accent)}
 .lead{font-size:1.12rem;color:var(--muted);max-width:44ch}

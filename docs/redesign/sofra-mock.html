@@ -120,6 +120,9 @@ em{font-style:italic}
 
 /* ---------- секции ---------- */
 .sec{position:relative;padding-block:clamp(88px,11vw,160px)}
+/* Начало (кръг 3): една лента между съседните секции, не две — следващата секция е без горен отстъп. */
+.sec.home{padding-bottom:clamp(72px,11vw,160px)}
+.sec.home~.sec.home{padding-top:0}
 .sec-h{font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,1.2rem + 4.4vw,5.6rem);line-height:.95;letter-spacing:-.02em}
 .sec-h em{font-weight:400;color:var(--accent)}
 :root[data-theme="cherga"] .sec-h em{color:var(--ink)}
@@ -418,7 +421,8 @@ em{font-style:italic}
   <section class="hero" data-hero aria-labelledby="h1">
     <div class="hero-ph"><img data-img="hero-banitsa-shopska-salad" alt="Баница със сирене и шопска салата на трапезата" fetchpriority="high"></div>
     <div class="wrap hero-in">
-      <p class="eyebrow rv">Домашна кухня · 24 подбрани рецепти</p>
+      <!-- Кръг 3: броят идва от същите данни като каталога (24 подбрани + ръчно добавените), затова без „подбрани“. -->
+      <p class="eyebrow rv" id="home-eyebrow">Домашна кухня · 24 рецепти</p>
       <h1 id="h1" class="split" data-split>Българска <em>трапеза</em></h1>
       <div class="hero-row">
         <p class="rv" style="--d:500ms">Рецепти, по които се готви у дома: познати продукти, точно време и стъпки, които се следват спокойно.</p>
@@ -428,7 +432,7 @@ em{font-style:italic}
     </div>
   </section>
 
-  <section class="sec" id="sofra" aria-labelledby="sofra-h">
+  <section class="sec home" id="sofra" aria-labelledby="sofra-h">
     <div class="wrap sofra-grid">
       <div class="sofra-side">
         <p class="eyebrow rv">Шест ястия, шест повода</p>
@@ -454,7 +458,7 @@ em{font-style:italic}
   </section>
 
   <div class="weave" aria-hidden="true"></div>
-  <section class="sec" data-band="g" aria-labelledby="week-h">
+  <section class="sec home" data-band="g" aria-labelledby="week-h">
     <div class="wrap week">
       <div class="week-ph mask"><a href="#recipe" data-slug="banitsa-sas-sirene" class="mk" aria-label="Баница със сирене"><img data-img="banitsa-sas-sirene" alt=""></a><div class="band thin" data-band-svg="thin" aria-hidden="true"></div></div>
       <div class="week-tx">
@@ -468,14 +472,14 @@ em{font-style:italic}
   </section>
   <div class="weave" aria-hidden="true"></div>
 
-  <section class="sec" aria-labelledby="today-h">
+  <section class="sec home" aria-labelledby="today-h">
     <div class="wrap">
       <div class="sec-top">
         <h2 class="sec-h split" id="today-h" data-split>Какво да сготвиш <em>днес</em></h2>
         <p class="lead rv">Пет рецепти за тази седмица: от бърза вечеря до ястие, което се приготвя бавно и се яде дълго.</p>
       </div>
       <div class="cards" id="today"></div>
-      <div class="more rv"><a class="btn out" href="#catalog">Всички рецепти <span class="ar" aria-hidden="true">→</span></a></div>
+      <div class="more rv"><a class="btn out" href="#catalog"><span id="home-all">Всички 24 рецепти</span> <span class="ar" aria-hidden="true">→</span></a></div>
     </div>
   </section>
 
@@ -776,6 +780,7 @@ $('#ctl-tg').addEventListener('click',function(){var o=$('#ctl').classList.toggl
 var t0=(location.hash||'').slice(1);var p=new URLSearchParams(location.search).get('t');
 if(p&&p!=='sofra'){root.setAttribute('data-theme',p);$$('#c-theme .chip').forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-v')===p)});$('#ctl-label').textContent=TN[p]}
 paintBands();fillRecipe('shopska-salata');
+$('#home-eyebrow').textContent='Домашна кухня · '+plural(R.length);$('#home-all').textContent='Всички '+plural(R.length);
 $('#cat-eyebrow').textContent=R.length+(R.length===1?' рецепта':' рецепти')+' · '+CATS.length+(CATS.length===1?' категория':' категории');
 setView(['home','catalog','recipe','auth'].indexOf(t0)>=0?t0:'home');
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);

@@ -1,5 +1,5 @@
 // Mock / site comparison for About, Favorites, Profile and 404 (JPEG, quality 80) against a running
-// production server:   node scripts/sofra-pages-compare.mjs [baseUrl] [job,job...]
+// production server:   node scripts/sofra-pages-compare.mjs [baseUrl] [job,job...] [outDir]
 // Jobs: about, notfound, favorites-empty, favorites, profile. Saves the mock (docs/redesign/sofra-mock-pages.html)
 // and the site side by side at 1440 and 390, plus block measurements (box, font, colour) of both into
 // docs/redesign/shots/sofra/pages/measure-<job>-<width>.json.
@@ -21,7 +21,7 @@ const { createLoader } = require("./load-typescript.cjs");
 const base = process.argv[2] ?? "http://localhost:3000";
 const only = process.argv[3]?.split(",");
 const mockUrl = pathToFileURL(path.resolve("../../docs/redesign/sofra-mock-pages.html")).href;
-const out = path.resolve("../../docs/redesign/shots/sofra/pages");
+const out = path.resolve(process.argv[4] ?? "../../docs/redesign/shots/sofra/pages");
 mkdirSync(out, { recursive: true });
 const heights = { 390: 844, 1440: 900 };
 const hide = ".ctl,.back-to-top{visibility:hidden!important}";

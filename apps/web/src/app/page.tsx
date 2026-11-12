@@ -12,6 +12,7 @@ import { hasRecipePhoto } from "../lib/recipe-detail";
 import { sofraCategories, todayRecipes } from "../lib/sofra";
 import { weeklyRecipe } from "../lib/weekly";
 import { getCurrentUserFavoriteSlugs } from "../server/favorites/service";
+import { getPublicRecipes } from "../server/recipes/catalog";
 import { RecipeTile, type TileVariant } from "./recipe-tile";
 import { SofraTable } from "./sofra-table";
 import { SplitWords } from "./split-heading";
@@ -21,11 +22,14 @@ import { StitchBand, StitchStar } from "./stitch";
 const TODAY_LAYOUT: TileVariant[] = ["big", "half", "half", "half", "half"];
 
 export default async function HomePage() {
-  const favoriteSlugs = new Set(await getCurrentUserFavoriteSlugs());
+  // Counts come from the same list as the catalog (curated + manual admin recipes), so both pages agree.
+  const [favorites, publicRecipes] = await Promise.all([getCurrentUserFavoriteSlugs(), getPublicRecipes()]);
+  const favoriteSlugs = new Set(favorites);
+  const total = recipeCountLabel(publicRecipes.length);
   const weekly = weeklyRecipe(recipes).recipe;
   const today = todayRecipes(recipes, weekly.slug).map(toCardRecipe);
   const image = (recipe: { slug: string; imageSrc?: string }) => (hasRecipePhoto(recipe) ? webImageSrc(recipe.imageSrc!) : undefined);
-  const plates = sofraCategories(recipes).map(category => ({
+  const plates = sofraCategories(publicRecipes).map(category => ({
     name: category.name,
     countLabel: recipeCountLabel(category.count),
     href: categoryHref(category.name),
@@ -40,7 +44,7 @@ export default async function HomePage() {
         <Image alt="Баница със сирене и шопска салата на трапезата" fill loading="eager" sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
       </div>
       <div className="wrap hero-in">
-        <p className="eyebrow rv">Домашна кухня · {recipes.length} подбрани рецепти</p>
+        <p className="eyebrow rv">Домашна кухня · {total}</p>
         <h1 data-split id="landing-title"><SplitWords text="Българска" /> <em><SplitWords start={1} text="трапеза" /></em></h1>
         <div className="hero-row">
           <p className="rv" style={{ "--d": "500ms" } as CSSProperties}>Рецепти, по които се готви у дома: познати продукти, точно време и стъпки, които се следват спокойно.</p>
@@ -53,7 +57,7 @@ export default async function HomePage() {
       </div>
     </section>
 
-    <section aria-labelledby="sofra-title" className="sec" id="sofra">
+    <section aria-labelledby="sofra-title" className="sec home" id="sofra">
       <SofraTable
         intro={<>
           <p className="eyebrow rv">Шест ястия, шест повода</p>
@@ -64,7 +68,7 @@ export default async function HomePage() {
       />
     </section>
 
-    <section aria-labelledby="week-title" className="sec">
+    <section aria-labelledby="week-title" className="sec home">
       <div className="wrap week">
         <div className="week-ph mask">
           <Link aria-label={weekly.title} className="mk" href={`/catalog/${weekly.slug}`}>
@@ -86,7 +90,7 @@ export default async function HomePage() {
       </div>
     </section>
 
-    <section aria-labelledby="today-title" className="sec">
+    <section aria-labelledby="today-title" className="sec home">
       <div className="wrap">
         <div className="sec-top">
           <h2 className="sec-h" data-split id="today-title"><SplitWords text="Какво да сготвиш" /> <em><SplitWords start={3} text="днес" /></em></h2>
@@ -97,7 +101,7 @@ export default async function HomePage() {
             <RecipeTile index={index} key={recipe.slug} recipe={recipe} redirectTo="/" saved={favoriteSlugs.has(recipe.slug)} variant={TODAY_LAYOUT[index]} />
           ))}
         </div>
-        <div className="more rv"><Link className="btn out" href="/catalog">Всички рецепти <span aria-hidden="true" className="ar">→</span></Link></div>
+        <div className="more rv"><Link className="btn out" href="/catalog">Всички {total} <span aria-hidden="true" className="ar">→</span></Link></div>
       </div>
     </section>
 

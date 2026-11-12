@@ -1,0 +1,394 @@
+{
+  "mock": {
+    ".hero h1": {
+      "x": 16,
+      "y": 405,
+      "w": 358,
+      "h": 101,
+      "font": "Cormorant 500 57.6px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero .eyebrow": {
+      "x": 16,
+      "y": 368,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-row p": {
+      "x": 16,
+      "y": 528,
+      "w": 358,
+      "h": 86,
+      "font": "Onest 400 17.92px",
+      "color": "rgba(255, 255, 255, 0.88)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-cta .btn": {
+      "x": 16,
+      "y": 638,
+      "w": 358,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(17, 17, 17)",
+      "bg": "rgb(255, 255, 255)"
+    },
+    ".hero .stitch-band, .hero .band": {
+      "x": 16,
+      "y": 782,
+      "w": 358,
+      "h": 30,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    "#sofra .sec-h": {
+      "x": 16,
+      "y": 965,
+      "w": 358,
+      "h": 40,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".sofra": {
+      "x": 16,
+      "y": 1177,
+      "w": 358,
+      "h": 358,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".plate": {
+      "x": 156,
+      "y": 1189,
+      "w": 79,
+      "h": 79,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cat-now .cat-name": {
+      "x": 16,
+      "y": 1723,
+      "w": 358,
+      "h": 38,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".mini": {
+      "x": 16,
+      "y": 1779,
+      "w": 358,
+      "h": 81,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-ph": {
+      "x": 16,
+      "y": 2156,
+      "w": 358,
+      "h": 269,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-tx h2": {
+      "x": 16,
+      "y": 2496,
+      "w": 358,
+      "h": 40,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".facts": {
+      "x": 16,
+      "y": 2652,
+      "w": 358,
+      "h": 78,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-tx .btn": {
+      "x": 16,
+      "y": 2750,
+      "w": 188,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    },
+    ".sec-top .sec-h": {
+      "x": 16,
+      "y": 2886,
+      "w": 358,
+      "h": 79,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cards .card": {
+      "x": 16,
+      "y": 3115,
+      "w": 358,
+      "h": 376,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .ct": {
+      "x": 16,
+      "y": 3424,
+      "w": 320,
+      "h": 39,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .ce": {
+      "x": 16,
+      "y": 3400,
+      "w": 358,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(229, 72, 77)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .cm": {
+      "x": 16,
+      "y": 3469,
+      "w": 358,
+      "h": 22,
+      "font": "Onest 400 13.6px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".heart": {
+      "x": 316,
+      "y": 3127,
+      "w": 46,
+      "h": 46,
+      "font": "Onest 400 16px",
+      "color": "rgb(17, 17, 17)",
+      "bg": "rgba(255, 255, 255, 0.92)"
+    },
+    ".story q": {
+      "x": 35,
+      "y": 5526,
+      "w": 320,
+      "h": 218,
+      "font": "Cormorant 500 33.6px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".ftr-grid": null
+  },
+  "site": {
+    ".hero h1": {
+      "x": 16,
+      "y": 404,
+      "w": 358,
+      "h": 101,
+      "font": "Cormorant 500 57.6px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero .eyebrow": {
+      "x": 16,
+      "y": 367,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-row p": {
+      "x": 16,
+      "y": 527,
+      "w": 358,
+      "h": 86,
+      "font": "Onest 400 17.92px",
+      "color": "rgba(255, 255, 255, 0.88)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-cta .btn": {
+      "x": 16,
+      "y": 637,
+      "w": 358,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(17, 17, 17)",
+      "bg": "rgb(255, 255, 255)"
+    },
+    ".hero .stitch-band, .hero .band": {
+      "x": 16,
+      "y": 781,
+      "w": 358,
+      "h": 31,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    "#sofra .sec-h": {
+      "x": 16,
+      "y": 965,
+      "w": 358,
+      "h": 40,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".sofra": {
+      "x": 16,
+      "y": 1177,
+      "w": 358,
+      "h": 358,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".plate": {
+      "x": 156,
+      "y": 1189,
+      "w": 79,
+      "h": 79,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cat-now .cat-name": {
+      "x": 16,
+      "y": 1723,
+      "w": 358,
+      "h": 38,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".mini": {
+      "x": 16,
+      "y": 1779,
+      "w": 358,
+      "h": 81,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-ph": {
+      "x": 16,
+      "y": 2156,
+      "w": 358,
+      "h": 269,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-tx h2": {
+      "x": 16,
+      "y": 2496,
+      "w": 358,
+      "h": 40,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".facts": {
+      "x": 16,
+      "y": 2627,
+      "w": 358,
+      "h": 75,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".week-tx .btn": {
+      "x": 16,
+      "y": 2722,
+      "w": 188,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    },
+    ".sec-top .sec-h": {
+      "x": 16,
+      "y": 2858,
+      "w": 358,
+      "h": 79,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cards .card": {
+      "x": 16,
+      "y": 3087,
+      "w": 358,
+      "h": 376,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .ct": {
+      "x": 16,
+      "y": 3396,
+      "w": 212,
+      "h": 39,
+      "font": "Cormorant 500 38.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .ce": {
+      "x": 16,
+      "y": 3372,
+      "w": 358,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(229, 72, 77)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".card .cm": {
+      "x": 16,
+      "y": 3441,
+      "w": 358,
+      "h": 22,
+      "font": "Onest 400 13.6px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".heart": {
+      "x": 316,
+      "y": 3099,
+      "w": 46,
+      "h": 46,
+      "font": "Onest 400 16px",
+      "color": "rgb(17, 17, 17)",
+      "bg": "rgba(255, 255, 255, 0.92)"
+    },
+    ".story q": {
+      "x": 35,
+      "y": 5498,
+      "w": 320,
+      "h": 218,
+      "font": "Cormorant 500 33.6px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".ftr-grid": null
+  },
+  "differences": [
+    {
+      "block": ".card .ct",
+      "field": "w",
+      "mock": 320,
+      "site": 212
+    }
+  ]
+}

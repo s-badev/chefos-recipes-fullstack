@@ -1,5 +1,5 @@
 // Mock / site comparison for the Sofra redesign (JPEG, quality 80) against a running production server:
-//   node scripts/sofra-compare.mjs [baseUrl] [page,page...]
+//   node scripts/sofra-compare.mjs [baseUrl] [page,page...] [outDir]
 // Pages: home, catalog, recipe, auth. For each page and width (1440, 390) it saves the mock and the site
 // side by side per state and writes measurements of the key blocks (box, font, colour) of both into
 // docs/redesign/shots/sofra/compare/measure-<page>-<width>.json, with a list of differences.
@@ -11,7 +11,7 @@ import { chromium } from "@playwright/test";
 const base = process.argv[2] ?? "http://localhost:3000";
 const only = process.argv[3]?.split(",");
 const mockUrl = pathToFileURL(path.resolve("../../docs/redesign/sofra-mock.html")).href;
-const out = path.resolve("../../docs/redesign/shots/sofra/compare");
+const out = path.resolve(process.argv[4] ?? "../../docs/redesign/shots/sofra/compare");
 mkdirSync(out, { recursive: true });
 const heights = { 390: 844, 1440: 900 };
 const browser = await chromium.launch();
