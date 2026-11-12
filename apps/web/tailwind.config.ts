@@ -17,17 +17,42 @@ const config: Config = {
         "line-strong": "var(--line-strong)",
         accent: "var(--accent)",
         "accent-hover": "var(--accent-hover)",
+        "accent-fill": "var(--accent-fill)",
+        // Sofra (dark): pages that are not redesigned yet keep their utility classes and read on the dark ground.
+        // 600 is the red fill (white text on it); 700-800 are text colours (red, then ink on hover).
         brand: {
-          50: "#F4F4F2",
-          100: "#E9E9E6",
-          200: "#D6D6D2",
-          300: "#B8B8B4",
-          400: "#777773",
-          500: "#4F4F4A",
-          600: "#111111",
-          700: "#333333",
-          800: "#222222",
-          900: "#111111"
+          50: "var(--surface)",
+          100: "rgba(229, 72, 77, 0.28)",
+          200: "var(--line-strong)",
+          300: "var(--line-strong)",
+          400: "var(--accent)",
+          500: "var(--accent)",
+          600: "var(--accent-fill)",
+          700: "var(--accent-soft)",
+          800: "var(--ink)",
+          900: "var(--ink)"
+        },
+        // Tailwind's red scale (admin delete buttons, error notes), turned for the dark ground.
+        red: {
+          50: "var(--surface)",
+          200: "rgba(229, 72, 77, 0.55)",
+          300: "var(--accent)",
+          700: "var(--accent-soft)",
+          800: "var(--ink)"
+        },
+        // Tailwind's grey scale, turned for the dark ground: light text, visible field borders.
+        neutral: {
+          50: "var(--ink)",
+          100: "var(--ink)",
+          200: "var(--line-strong)",
+          300: "var(--line-strong)",
+          400: "var(--muted)",
+          500: "var(--muted)",
+          600: "var(--muted)",
+          700: "var(--ink)",
+          800: "var(--ink)",
+          900: "var(--ink)",
+          950: "var(--ink)"
         }
       },
       fontFamily: {

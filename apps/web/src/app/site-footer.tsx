@@ -1,16 +1,19 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { StitchBand } from "./stitch";
 
 const footerSections = [
   {
+    id: "browse",
     title: "Разглеждай",
     links: [
-      { href: "/catalog", label: "Каталог" },
+      { href: "/catalog", label: "Рецепти" },
       { href: "/favorites", label: "Любими" },
       { href: "/about", label: "За нас" }
     ]
   },
   {
+    id: "profile",
     title: "Профил",
     links: [
       { href: "/login", label: "Вход" },
@@ -64,12 +67,29 @@ function SocialIcon({ icon }: { icon: SocialIconName }) {
   return socialIcons[icon];
 }
 
+/** The same line as the site's meta description (layout.tsx). */
+const FOOTER_TEXT = "Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден.";
+
 export function SiteFooter() {
   return <footer className="ftr">
-    <div className="wrap">
-      <div><p>© 2026 Chefo&apos;s Recipes</p><p>Направено с любов към домашната кухня.</p></div>
-      {footerSections.map(section => <nav aria-label={section.title} key={section.title}><span className="eyebrow">{section.title}</span><div className="footer-links">{section.links.map(item => <Link href={item.href} key={item.href}>{item.label}</Link>)}</div></nav>)}
-      <nav aria-label="Последвай ни" className="footer-socials">{socialLinks.map(item => <a href={item.href} aria-label={item.label} key={item.label}><SocialIcon icon={item.icon}/></a>)}</nav>
+    <StitchBand />
+    <div className="wrap ftr-grid">
+      <div>
+        <Link className="logo" href="/" aria-label="Домашна кухня Chefo's Recipes – начало">
+          {/* The space keeps the visible text readable as words for the accessible name. */}
+          <span className="logo-kicker">Домашна кухня</span>{" "}
+          <span className="logo-name">Chefo&apos;s <em>Recipes</em></span>
+        </Link>
+        <p>{FOOTER_TEXT}</p>
+      </div>
+      {footerSections.map(section => <nav aria-labelledby={`footer-${section.id}`} key={section.id}>
+        <h2 id={`footer-${section.id}`}>{section.title}</h2>
+        <ul>{section.links.map(item => <li key={item.href}><Link href={item.href}>{item.label}</Link></li>)}</ul>
+      </nav>)}
+      <nav aria-labelledby="footer-social">
+        <h2 id="footer-social">Последвай ни</h2>
+        <div className="footer-socials">{socialLinks.map(item => <a href={item.href} aria-label={item.label} key={item.label}><SocialIcon icon={item.icon}/></a>)}</div>
+      </nav>
     </div>
   </footer>;
 }

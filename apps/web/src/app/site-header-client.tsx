@@ -18,13 +18,13 @@ type SiteHeaderClientProps = {
 
 const guestNavigationItems: NavigationItem[] = [
   { href: "/", label: "Начало" },
-  { href: "/catalog", label: "Каталог" },
+  { href: "/catalog", label: "Рецепти" },
   { href: "/about", label: "За нас" }
 ];
 
 const userNavigationItems: NavigationItem[] = [
   { href: "/", label: "Начало" },
-  { href: "/catalog", label: "Каталог" },
+  { href: "/catalog", label: "Рецепти" },
   { href: "/favorites", label: "Любими" },
   { href: "/profile", label: "Профил" },
   { href: "/about", label: "За нас" }
@@ -147,11 +147,11 @@ export function SiteHeaderClient({ currentUser, logoutAction, favoriteCount }: S
       <div className="wrap">
         <Link className="logo" href="/" aria-label="Домашна кухня Chefo's Recipes – начало" onClick={() => setIsMenuOpen(false)}><LogoMark /></Link>
         <nav className="nav desktop-nav" aria-label="Основна навигация">{links()}</nav>
-        <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" onClick={() => setIsMenuOpen(true)} type="button">Меню <span aria-hidden="true">☰</span></button>
+        <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" onClick={() => setIsMenuOpen(true)} type="button">Меню</button>
       </div>
     </header>
     <dialog className="mobile-menu" id="mobile-menu" ref={dialog} aria-label="Основна навигация" onKeyDown={keepMenuFocus} onCancel={() => setIsMenuOpen(false)} onClose={() => setIsMenuOpen(false)}>
-      <div className="wrap mobile-menu-top"><span className="logo"><LogoMark /></span><button className="nav-link" autoFocus type="button" onClick={() => setIsMenuOpen(false)}>Затвори ×</button></div>
+      <div className="wrap mobile-menu-top"><span className="logo"><LogoMark /></span><button className="nav-link" autoFocus type="button" onClick={() => setIsMenuOpen(false)}>Затвори</button></div>
       <nav className="nav mobile-nav" aria-label="Мобилна навигация">{links()}</nav>
     </dialog>
   </>;

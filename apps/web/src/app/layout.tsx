@@ -16,7 +16,7 @@ const sans = Onest({
 
 const serif = Cormorant({
   subsets: ["latin", "cyrillic"],
-  weight: ["300", "500"],
+  weight: ["400", "500", "600"],
   style: ["normal", "italic"],
   display: "swap",
   preload: true,
@@ -45,7 +45,10 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
       </head>
-      <body className="min-h-screen bg-bg text-ink antialiased">
+      <body className="min-h-screen text-ink antialiased">
+        {/* Atmosphere: a tiny pre-blurred table photo behind every page, under a dark veil (globals.css). */}
+        <div className="atmo" aria-hidden="true" />
+        <div className="veil" aria-hidden="true" />
         <a className="skip-link" href="#main-content">
           Към съдържанието
         </a>
