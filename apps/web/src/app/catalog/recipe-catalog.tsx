@@ -68,6 +68,8 @@ export function RecipeCatalog({ favoriteSlugs = [], recipes, initialQuery = "", 
         </div>
       </div>
       <div className="wrap cat-grid">
+        {/* Outline: h1 (page) → h2 (results) → h3 (each card). */}
+        <h2 className="sr-only">Резултати</h2>
         <div className={swapping ? "cards cat swap" : "cards cat"}>
           {shown.map((recipe, index) => (
             <RecipeTile
