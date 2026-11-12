@@ -2,21 +2,21 @@
   "url": "http://localhost:3000/catalog/shopska-salata",
   "runs": [
     {
-      "lcpMs": 2280,
+      "lcpMs": 2268,
       "cls": 0,
       "lcpElement": "img.ph"
     },
     {
-      "lcpMs": 2304,
+      "lcpMs": 2212,
       "cls": 0,
       "lcpElement": "img.ph"
     },
     {
-      "lcpMs": 2316,
+      "lcpMs": 2232,
       "cls": 0,
       "lcpElement": "img.ph"
     }
   ],
-  "medianLcpMs": 2304,
+  "medianLcpMs": 2232,
   "medianCls": 0
 }
