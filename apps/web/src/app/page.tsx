@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { recipes } from "../data/recipes";
 import { webImageSrc } from "../lib/images";
+import { weeklyImageSizes } from "../lib/image-sizes";
 import { categoryHref } from "../lib/categories";
 import { toCardRecipe } from "../lib/catalog";
 import { formatCookTime, formatTotalTime, recipeCountLabel } from "../lib/format";
@@ -36,7 +37,7 @@ export default async function HomePage() {
   return <>
     <section className="hero" aria-labelledby="landing-title" data-hero>
       <div className="hero-ph">
-        <Image alt="Баница със сирене и шопска салата на трапезата" fill priority sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
+        <Image alt="Баница със сирене и шопска салата на трапезата" fill loading="eager" sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
       </div>
       <div className="wrap hero-in">
         <p className="eyebrow rv">Домашна кухня · {recipes.length} подбрани рецепти</p>
@@ -67,7 +68,7 @@ export default async function HomePage() {
       <div className="wrap week">
         <div className="week-ph mask">
           <Link aria-label={weekly.title} className="mk" href={`/catalog/${weekly.slug}`}>
-            {image(weekly) ? <Image alt="" fill sizes="(max-width: 1000px) 100vw, 760px" src={image(weekly)!} /> : <span className="ci-empty"><StitchStar /></span>}
+            {image(weekly) ? <Image alt="" fill loading="lazy" sizes={weeklyImageSizes} src={image(weekly)!} /> : <span className="ci-empty"><StitchStar /></span>}
           </Link>
           <StitchBand size={2} />
         </div>

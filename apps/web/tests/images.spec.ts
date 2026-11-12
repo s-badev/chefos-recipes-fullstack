@@ -11,7 +11,11 @@ const evidence = path.resolve(root, "../../docs/redesign/shots/images");
 
 test("image processing never modifies any original PNG, including the supplied untracked file", async () => {
   const hashes = JSON.parse((await readFile(path.join(evidence, "original-hashes-before.json"), "utf8")).replace(/^\uFEFF/, ""));
+  const present = new Set(await readdir(path.join(root, "public/images/recipes")));
   for (const row of hashes) {
+    // The supplied PNG is intentionally untracked: verify it locally, without requiring it
+    // in clean checkouts. Every tracked original remains mandatory.
+    if (row.file === "pile-teriyaki.png" && !present.has(row.file)) continue;
     const bytes = await readFile(path.join(root, "public/images/recipes", row.file));
     expect(createHash("sha256").update(bytes).digest("hex").toUpperCase(), row.file).toBe(row.Hash);
   }
@@ -55,7 +59,7 @@ test("composition exceptions retain their exact original master bytes and every 
   }
 });
 
-for (const route of ["/", "/catalog", "/catalog/shopska-salata", "/login", "/register", "/about"]) {
+for (const route of ["/", "/catalog", "/catalog/shopska-salata", "/catalog/пиле-тариаки", "/login", "/register", "/about"]) {
   test(`axe: zero violations on ${route}`, async ({ page }) => {
     await page.goto(route, { waitUntil: "networkidle" });
     await page.evaluate(async () => {
@@ -69,5 +73,22 @@ for (const route of ["/", "/catalog", "/catalog/shopska-salata", "/login", "/reg
       return result.violations.map(({ id, nodes }) => ({ id, targets: nodes.map(node => node.target) }));
     });
     expect(violations).toEqual([]);
+  });
+}
+
+for (const [width, expectedWidth, requestedWidth] of [[390, 358, 384], [1440, 592, 640]]) {
+  test(`catalog at ${width}: column-sized variant and only the LCP image is eager/high priority`, async ({ page }) => {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+    await page.goto("/catalog", { waitUntil: "networkidle" });
+    const images = page.locator(".cards .ci img");
+    await expect(images.first()).toHaveAttribute("loading", "eager");
+    await expect(images.first()).toHaveAttribute("fetchpriority", "high");
+    await expect(page.locator('.cards img[loading="eager"]')).toHaveCount(1);
+    await expect(page.locator('.cards img[fetchpriority="high"]')).toHaveCount(1);
+    const rest = await images.evaluateAll(nodes => nodes.slice(1).every(node => node.getAttribute("loading") === "lazy"));
+    expect(rest).toBe(true);
+    expect(Math.round((await images.first().boundingBox())!.width)).toBe(expectedWidth);
+    const src = await images.first().evaluate((image: HTMLImageElement) => image.currentSrc);
+    expect(new URL(src).searchParams.get("w")).toBe(String(requestedWidth));
   });
 }

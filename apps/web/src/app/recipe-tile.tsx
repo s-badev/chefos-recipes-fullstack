@@ -3,20 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CardRecipe } from "../lib/catalog";
 import { webImageSrc } from "../lib/images";
+import { recipeTileSizes } from "../lib/image-sizes";
 import { formatTotalTime, servingsLabel } from "../lib/format";
 import { hasRecipePhoto } from "../lib/recipe-detail";
 import { CardHeart } from "./card-heart";
 import { StitchStar } from "./stitch";
 
 export type TileVariant = "big" | "wide" | "half" | "";
-
-/** Image sizes per card width in the 12-column grid (full width under 640px, half under 1000px). */
-const SIZES: Record<TileVariant, string> = {
-  big: "(max-width: 1000px) 100vw, 660px",
-  wide: "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 660px",
-  half: "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
-  "": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 440px"
-};
 
 /**
  * A recipe card as in the approved mock: a photograph without a frame, the heart top right, the
@@ -33,7 +26,7 @@ export function RecipeTile({ recipe, variant = "", saved, redirectTo, index = 0,
     <article className={`card ${reveal ? "rv " : ""}${variant}`} style={reveal ? { "--d": `${(index % 4) * 80}ms` } as CSSProperties : undefined}>
       <Link aria-label={recipe.title} className="ci" href={href} tabIndex={-1}>
         {hasRecipePhoto(recipe) ? (
-          <Image alt="" fill priority={priority} sizes={SIZES[variant]} src={webImageSrc(recipe.imageSrc!)} />
+          <Image alt="" fill fetchPriority={priority ? "high" : undefined} loading={priority ? "eager" : "lazy"} priority={priority} sizes={recipeTileSizes[variant]} src={webImageSrc(recipe.imageSrc!)} />
         ) : (
           <span className="ci-empty"><StitchStar /></span>
         )}

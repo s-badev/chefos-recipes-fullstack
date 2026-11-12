@@ -78,7 +78,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
       <section aria-labelledby="recipe-title" className="r-hero" data-hero data-photo={photo ? "yes" : "none"}>
         {photo ? (
           <div className="hero-ph">
-            <Image alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`} fill priority sizes="100vw" src={webImageSrc(recipe.imageSrc!)} />
+            <Image alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`} fill fetchPriority="high" priority sizes="100vw" src={webImageSrc(recipe.imageSrc!)} />
           </div>
         ) : (
           // A manual recipe without its own photograph: the solid ground with the stitched star.

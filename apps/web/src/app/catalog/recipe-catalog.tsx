@@ -75,7 +75,7 @@ export function RecipeCatalog({ favoriteSlugs = [], recipes, initialQuery = "", 
             <RecipeTile
               index={index}
               key={recipe.slug}
-              priority={index < 3}
+              priority={index === 0}
               recipe={recipe}
               redirectTo={catalogHref}
               reveal={false}
