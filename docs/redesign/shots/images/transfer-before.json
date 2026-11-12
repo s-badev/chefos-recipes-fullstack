@@ -1,0 +1,602 @@
+[
+  {
+    "route": "/catalog",
+    "width": 1440,
+    "dpr": 1,
+    "firstBytes": 602608,
+    "fullScrollBytes": 689202,
+    "lcp": {
+      "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=750&q=75",
+      "tag": "IMG",
+      "className": "",
+      "size": 207200
+    },
+    "cards": [
+      {
+        "width": 592,
+        "top": 549.9,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=750&q=75"
+      },
+      {
+        "width": 284,
+        "top": 549.9,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 549.9,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 1068.7,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 1068.7,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpalneni-chushki-s-oriz.webp&w=384&q=75"
+      },
+      {
+        "width": 592,
+        "top": 1068.7,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=750&q=75"
+      }
+    ],
+    "images": [
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=384&q=75",
+        "bytes": 20924
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=384&q=75",
+        "bytes": 21361
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=750&q=75",
+        "bytes": 61607
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=384&q=75",
+        "bytes": 21987
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbob-chorba.webp&w=750&q=75",
+        "bytes": 53334
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=750&q=75",
+        "bytes": 56420
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpalneni-chushki-s-oriz.webp&w=384&q=75",
+        "bytes": 23360
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkrem-karamel.webp&w=384&q=75",
+        "bytes": 8834
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftikvenik.webp&w=384&q=75",
+        "bytes": 22552
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsladak-salam.webp&w=384&q=75",
+        "bytes": 13842
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbaklava-s-orehi.webp&w=384&q=75",
+        "bytes": 12898
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmusaka-s-kartofi.webp&w=750&q=75",
+        "bytes": 32050
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpileshka-supa.webp&w=750&q=75",
+        "bytes": 44614
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fparzheni-filiyki.webp&w=384&q=75",
+        "bytes": 14910
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsarmi-s-kiselo-zele.webp&w=384&q=75",
+        "bytes": 16608
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsnezhanka.webp&w=384&q=75",
+        "bytes": 17324
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fovcharska-salata.webp&w=384&q=75",
+        "bytes": 20771
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fzeleva-salata.webp&w=750&q=75",
+        "bytes": 47559
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=750&q=75",
+        "bytes": 50737
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=384&q=75",
+        "bytes": 19411
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftutmanik.webp&w=384&q=75",
+        "bytes": 20344
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshkembe-chorba.webp&w=384&q=75",
+        "bytes": 19387
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fomlet-sas-sirene.webp&w=384&q=75",
+        "bytes": 18228
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsirene-po-shopski.webp&w=750&q=75",
+        "bytes": 48979
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "dpr": 1,
+    "firstBytes": 466448,
+    "fullScrollBytes": 634145,
+    "lcp": {
+      "url": "",
+      "tag": "SPAN",
+      "className": "wi",
+      "size": 83840
+    },
+    "cards": [
+      {
+        "width": 592,
+        "top": 3244.4,
+        "sizes": "(max-width: 1000px) 100vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=750&q=75"
+      },
+      {
+        "width": 284,
+        "top": 3244.4,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 3244.4,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftutmanik.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 3748.2,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fomlet-sas-sirene.webp&w=384&q=75"
+      },
+      {
+        "width": 284,
+        "top": 3748.2,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsirene-po-shopski.webp&w=384&q=75"
+      }
+    ],
+    "images": [
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1920&q=75",
+        "bytes": 195583
+      },
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=256&q=75",
+        "bytes": 12065
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=256&q=75",
+        "bytes": 13535
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=256&q=75",
+        "bytes": 11987
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=256&q=75",
+        "bytes": 11866
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=256&q=75",
+        "bytes": 14876
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftikvenik.webp&w=256&q=75",
+        "bytes": 13018
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsnezhanka.webp&w=96&q=75",
+        "bytes": 2790
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=96&q=75",
+        "bytes": 3499
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fovcharska-salata.webp&w=96&q=75",
+        "bytes": 3274
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshkembe-chorba.webp&w=828&q=75",
+        "bytes": 53956
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=750&q=75",
+        "bytes": 50735
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=384&q=75",
+        "bytes": 19409
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftutmanik.webp&w=384&q=75",
+        "bytes": 20342
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fomlet-sas-sirene.webp&w=384&q=75",
+        "bytes": 18226
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsirene-po-shopski.webp&w=384&q=75",
+        "bytes": 20126
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=1920&q=75",
+        "bytes": 167697
+      }
+    ]
+  },
+  {
+    "route": "/catalog/shopska-salata",
+    "width": 1440,
+    "dpr": 1,
+    "firstBytes": 236730,
+    "fullScrollBytes": 236730,
+    "lcp": {
+      "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=75",
+      "tag": "IMG",
+      "className": "",
+      "size": 1114560
+    },
+    "cards": [],
+    "images": [
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=75",
+        "bytes": 189801
+      },
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=640&q=75",
+        "bytes": 45768
+      }
+    ]
+  },
+  {
+    "route": "/catalog",
+    "width": 390,
+    "dpr": 1,
+    "firstBytes": 378342,
+    "fullScrollBytes": 899219,
+    "lcp": {
+      "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=75",
+      "tag": "IMG",
+      "className": "",
+      "size": 80063
+    },
+    "cards": [
+      {
+        "width": 358,
+        "top": 438.9,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 811.4,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 1228.7,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 1646,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 2063.3,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpalneni-chushki-s-oriz.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 2480.6,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=640&q=75"
+      }
+    ],
+    "images": [
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=75",
+        "bytes": 48639
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=640&q=75",
+        "bytes": 45766
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=640&q=75",
+        "bytes": 43572
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=640&q=75",
+        "bytes": 46082
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbob-chorba.webp&w=640&q=75",
+        "bytes": 42960
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpalneni-chushki-s-oriz.webp&w=640&q=75",
+        "bytes": 44240
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=640&q=75",
+        "bytes": 46048
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkrem-karamel.webp&w=640&q=75",
+        "bytes": 15366
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftikvenik.webp&w=640&q=75",
+        "bytes": 44508
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsladak-salam.webp&w=640&q=75",
+        "bytes": 27287
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbaklava-s-orehi.webp&w=640&q=75",
+        "bytes": 23898
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmusaka-s-kartofi.webp&w=640&q=75",
+        "bytes": 26557
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fpileshka-supa.webp&w=640&q=75",
+        "bytes": 35745
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fparzheni-filiyki.webp&w=640&q=75",
+        "bytes": 28009
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsarmi-s-kiselo-zele.webp&w=640&q=75",
+        "bytes": 31295
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsnezhanka.webp&w=640&q=75",
+        "bytes": 35240
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fovcharska-salata.webp&w=640&q=75",
+        "bytes": 40792
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fzeleva-salata.webp&w=640&q=75",
+        "bytes": 38205
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=640&q=75",
+        "bytes": 40957
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=640&q=75",
+        "bytes": 39452
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftutmanik.webp&w=640&q=75",
+        "bytes": 39811
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshkembe-chorba.webp&w=640&q=75",
+        "bytes": 38088
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fomlet-sas-sirene.webp&w=640&q=75",
+        "bytes": 35901
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsirene-po-shopski.webp&w=640&q=75",
+        "bytes": 39640
+      }
+    ]
+  },
+  {
+    "route": "/",
+    "width": 390,
+    "dpr": 1,
+    "firstBytes": 256947,
+    "fullScrollBytes": 415863,
+    "lcp": {
+      "url": "",
+      "tag": "P",
+      "className": "rv",
+      "size": 28640
+    },
+    "cards": [
+      {
+        "width": 358,
+        "top": 3323,
+        "sizes": "(max-width: 1000px) 100vw, 660px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 3746.8,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=640&q=75"
+      },
+      {
+        "width": 358,
+        "top": 4164.1,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": ""
+      },
+      {
+        "width": 358,
+        "top": 4581.4,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": ""
+      },
+      {
+        "width": 358,
+        "top": 4998.7,
+        "sizes": "(max-width: 640px) 100vw, (max-width: 1000px) 50vw, 330px",
+        "currentSrc": ""
+      }
+    ],
+    "images": [
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=640&q=75",
+        "bytes": 50403
+      },
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=256&q=75",
+        "bytes": 11985
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=256&q=75",
+        "bytes": 11864
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=256&q=75",
+        "bytes": 13533
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftarator.webp&w=256&q=75",
+        "bytes": 12063
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmish-mash.webp&w=256&q=75",
+        "bytes": 14874
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftikvenik.webp&w=256&q=75",
+        "bytes": 13016
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=96&q=75",
+        "bytes": 3497
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsnezhanka.webp&w=96&q=75",
+        "bytes": 2788
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fovcharska-salata.webp&w=96&q=75",
+        "bytes": 3272
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshkembe-chorba.webp&w=640&q=75",
+        "bytes": 38086
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-s-praz.webp&w=640&q=75",
+        "bytes": 40955
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fmekitsi.webp&w=640&q=75",
+        "bytes": 39450
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Ftutmanik.webp&w=640&q=75",
+        "bytes": 39809
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fsirene-po-shopski.webp&w=640&q=75",
+        "bytes": 39638
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fomlet-sas-sirene.webp&w=640&q=75",
+        "bytes": 35899
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkavarma-sas-svinsko.webp&w=640&q=75",
+        "bytes": 43570
+      }
+    ]
+  },
+  {
+    "route": "/catalog/shopska-salata",
+    "width": 390,
+    "dpr": 1,
+    "firstBytes": 95564,
+    "fullScrollBytes": 95564,
+    "lcp": {
+      "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=75",
+      "tag": "IMG",
+      "className": "",
+      "size": 283072
+    },
+    "cards": [],
+    "images": [
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=75",
+        "bytes": 48637
+      },
+      {
+        "url": "http://localhost:3000/images/atmosphere.webp",
+        "bytes": 1161
+      },
+      {
+        "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fbanitsa-sas-sirene.webp&w=640&q=75",
+        "bytes": 45766
+      }
+    ]
+  }
+]
