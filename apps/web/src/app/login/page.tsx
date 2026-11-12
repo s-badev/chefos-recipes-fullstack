@@ -4,7 +4,9 @@ import { redirect } from "next/navigation";
 import { loginAction } from "../../server/auth/actions";
 import { getCurrentUser } from "../../server/auth/session";
 import { safeNextPath } from "../../lib/navigation";
-import { SubmitButton, ValidatedInput } from "../form-controls";
+import { AuthLayout } from "../auth-layout";
+import { AuthField, SubmitButton } from "../form-controls";
+import { SplitWords } from "../split-heading";
 
 export const metadata: Metadata = {
   title: "Вход | Chefo's Recipes",
@@ -29,136 +31,21 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
   }
 
   return (
-    <section className="page-shell pb-6">
-      <div className="grid w-full gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-none border border-brand-100 bg-surface p-5 text-white  sm:p-6">
-          <div className="absolute inset-0 bg-surface" />
-          <div className="relative flex min-h-[340px] flex-col justify-between gap-6 lg:min-h-[380px]">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-100">
-                Chefo&apos;s Recipes
-              </p>
-              <h1 className="mt-3 max-w-xl text-3xl font-black leading-tight text-white sm:text-[2.5rem]">
-                Всичко за домашното готвене на едно място
-              </h1>
-              <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-neutral-50">
-                Влез в профила си, за да се върнеш към любимите рецепти и да избираш по-спокойно какво да сготвиш.
-              </p>
-            </div>
-
-            <div className="grid gap-3">
-              {[
-                {
-                  title: "Подбрани рецепти",
-                  text: "Намери бързо идея според категория, време и настроение."
-                },
-                {
-                  title: "Ясни продукти и стъпки",
-                  text: "Всяка рецепта е подредена така, че да готвиш спокойно."
-                },
-                {
-                  title: "Любими идеи",
-                  text: "Запази рецепти, към които искаш да се върнеш по-късно."
-                }
-              ].map((item, index) => (
-                <div
-                  className="rounded-none border border-white/24 bg-surface p-3.5  backdrop-blur-[2px]"
-                  key={item.title}
-                >
-                  <div className="flex gap-4">
-                    <span className="grid h-9 w-9 shrink-0 place-items-center rounded-none bg-bg text-sm font-black text-brand-700">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h2 className="text-base font-black text-white">{item.title}</h2>
-                      <p className="mt-1 text-sm font-semibold leading-6 text-neutral-50">{item.text}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="rounded-none border border-white/24 bg-surface p-3.5 text-sm font-bold leading-6 text-neutral-50">
-              Chefo&apos;s Recipes помага да избираш по-бързо и да готвиш с повече спокойствие.
-            </p>
-          </div>
-        </aside>
-
-        <form
-          action={loginAction}
-          className="flex min-h-[380px] w-full flex-col justify-center rounded-none border border-neutral-200 bg-bg p-5  sm:p-6"
-        >
-          {next !== undefined ? <input type="hidden" name="next" value={next}/> : null}
-          <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-            <div>
-              <p className="text-sm font-black uppercase tracking-[0.2em] text-brand-700">
-                Потребителски достъп
-              </p>
-              <h2 className="mt-2 text-3xl font-black leading-tight text-ink sm:text-[2.5rem]">
-                Вход
-              </h2>
-            </div>
-            <Link
-              className="inline-flex rounded-none border border-brand-200 bg-surface px-4 py-2 text-sm font-black text-brand-700 transition-transform hover:border-brand-400 hover:text-brand-900"
-              href={`/register${authSuffix}`}
-            >
-              Регистрация
-            </Link>
-          </div>
-
-          <div className="space-y-4">
-            {params?.error === "invalid" ? (
-              <p className="rounded-none border border-red-200 bg-red-50 px-4 py-3 text-base font-bold text-red-700">
-                Невалиден имейл или парола.
-              </p>
-            ) : null}
-
-            <div>
-              <label className="text-base font-black text-neutral-800" htmlFor="email">
-                Имейл
-              </label>
-              <ValidatedInput
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-                id="email"
-                name="email"
-                placeholder="ime@example.com"
-                required
-                type="email"
-              />
-            </div>
-
-            <div>
-              <label className="text-base font-black text-neutral-800" htmlFor="password">
-                Парола
-              </label>
-              <ValidatedInput
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-                id="password"
-                name="password"
-                placeholder="Въведи парола"
-                required
-                type="password"
-              />
-            </div>
-
-            <SubmitButton
-              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition-transform hover:bg-accent-hover"
-            >
-              Влез
-            </SubmitButton>
-
-            <p className="mt-6 text-center text-base font-semibold leading-6 text-ink">
-              Нямаш профил?{" "}
-              <Link
-                className="font-black text-muted transition-transform hover:text-brand-900 hover:underline hover:decoration-brand-300 hover:decoration-2 hover:underline-offset-4"
-                href={`/register${authSuffix}`}
-              >
-                Регистрация
-              </Link>
-            </p>
-          </div>
-        </form>
-      </div>
-    </section>
+    <AuthLayout
+      heading={<>Влез в <em>профила</em> си</>}
+      mode="login"
+      next={next}
+      sub="Любимите ти рецепти те чакат там, където ги остави."
+      title={<><SplitWords text="Добре дошъл" /> <em><SplitWords start={2} text="отново" /></em></>}
+    >
+      <form action={loginAction}>
+        {next !== undefined ? <input name="next" type="hidden" value={next} /> : null}
+        <AuthField autoComplete="email" label="Имейл" name="email" placeholder="ime@example.com" required type="email" />
+        <AuthField autoComplete="current-password" label="Парола" name="password" placeholder="Въведи парола" required type="password" />
+        {params?.error === "invalid" ? <p className="form-err" role="alert">Невалиден имейл или парола.</p> : null}
+        <SubmitButton className="btn fill" pendingLabel="Влизане…">Влез <span aria-hidden="true" className="ar">→</span></SubmitButton>
+        <p className="alt">Нямаш профил? <Link className="link" href={`/register${authSuffix}`}>Регистрация</Link></p>
+      </form>
+    </AuthLayout>
   );
 }

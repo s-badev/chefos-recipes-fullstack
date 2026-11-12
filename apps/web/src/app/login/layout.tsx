@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { PageShell } from "../page-shell";
 
+/** The shared auth layout (photo + form) is full-bleed, so this route has no PageShell. */
 export default function Layout({ children }: { children: ReactNode }) {
-  return <PageShell>{children}</PageShell>;
+  return children;
 }
