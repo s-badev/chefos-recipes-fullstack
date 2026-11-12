@@ -168,11 +168,11 @@ img{display:block;max-width:100%}
 .wi{display:inline-block}
 [data-motion=on] [data-split] .wi{transform:translateY(110%);transition:transform 1s var(--eo);transition-delay:calc(var(--i)*80ms + var(--d,0ms))}
 [data-motion=on] [data-split].in .wi{transform:none}
-/* Page titles over photos stay visible at first paint (LCP): they only rise, never start hidden. */
-.hero .w,.r-hero .w,.auth-cap .w{overflow:visible}
-[data-motion=on] .hero [data-split] .wi,[data-motion=on] .r-hero [data-split] .wi,[data-motion=on] .auth-cap [data-split] .wi{transform:none;transition:none;animation:title-rise 1.1s var(--eo) calc(var(--i)*90ms) both}
+/* Page titles at the top of a page (over photos, the 404, Favorites/Profile) stay visible at first paint (LCP): they only rise, never start hidden. */
+.hero .w,.r-hero .w,.auth-cap .w,.nf-tx .w,.pg-head .w{overflow:visible}
+[data-motion=on] .hero [data-split] .wi,[data-motion=on] .nf-tx [data-split] .wi,[data-motion=on] .pg-head [data-split] .wi,[data-motion=on] .r-hero [data-split] .wi,[data-motion=on] .auth-cap [data-split] .wi{transform:none;transition:none;animation:title-rise 1.1s var(--eo) calc(var(--i)*90ms) both}
 @keyframes title-rise{from{transform:translateY(.28em)}to{transform:none}}
-[data-motion=on] .hero .rv,[data-motion=on] .r-hero .rv{opacity:1;transform:none;animation:title-rise 1.1s var(--eo) var(--d,0ms) both}
+[data-motion=on] .hero .rv,[data-motion=on] .r-hero .rv,[data-motion=on] .nf-tx .rv,[data-motion=on] .pg-head .rv{opacity:1;transform:none;animation:title-rise 1.1s var(--eo) var(--d,0ms) both}
 
 /* ---------- секции ---------- */
 .sec{position:relative;padding-block:clamp(88px,11vw,160px)}
