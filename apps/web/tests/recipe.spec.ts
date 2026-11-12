@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { eq, getDb, users, recipes, favorites, recipeSteps, recipeTags } from "@chefos/db";
 import nextEnv from "@next/env";
-import { RECIPE_FALLBACK_IMAGE_SRC, hasRecipePhoto, missingContentNotes } from "../src/lib/recipe-detail";
+import { RECIPE_FALLBACK_IMAGE_SRC, hasRecipePhoto, missingContentNotes, nextCuratedRecipe } from "../src/lib/recipe-detail";
 import { validCatalogHref } from "../src/lib/catalog-return";
 import { recipes as curated } from "../src/data/recipes";
 import { watchProblems } from "./helpers";
@@ -231,6 +231,7 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
     await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toBeVisible();
     await expect(page.getByRole("button", { name: "Принтирай рецептата", exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: "Назад към каталога" })).toBeVisible();
+    await expect(page.locator(".next-row")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
     for (const width of [360, 390, 768, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `overflow at ${width}`).toBe(0);
@@ -337,6 +338,115 @@ test.describe("without JavaScript", () => {
     await box.check();
     await expect(box).toBeChecked();
   });
+});
+
+test("next recipe: curated order, wraps to the first, hover draws the line, shifts the title and shows the photo beside it", async ({ page }) => {
+  expect(nextCuratedRecipe(curated[0].slug).recipe.slug).toBe(curated[1].slug);
+  expect(nextCuratedRecipe(curated[curated.length - 1].slug)).toEqual({ recipe: curated[0], number: "Nº 01" });
+  expect(nextCuratedRecipe("admin-recipe-x").recipe.slug).toBe(curated[0].slug);
+
+  await page.goto(`/catalog/${curated[0].slug}`, { waitUntil: "networkidle" });
+  const section = page.locator(".next-recipe");
+  await expect(section.getByRole("heading", { name: "Следваща рецепта" })).toBeVisible();
+  const row = section.locator(".next-row");
+  await expect(row).toHaveAttribute("href", `/catalog/${curated[1].slug}`);
+  await expect(row.locator(".row-n")).toHaveText("Nº 02");
+  await expect(row.locator(".row-t")).toHaveText(curated[1].title);
+  await expect(row.locator(".row-m")).toHaveText(new RegExp(`^${curated[1].category} · `));
+  await row.scrollIntoViewIfNeeded();
+  const box = (await row.locator(".row-t").boundingBox())!;
+  await page.mouse.move(box.x + 40, box.y + box.height / 2);
+  await page.waitForTimeout(900);
+  expect(await row.locator(".row-t").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBeGreaterThan(10);
+  expect(await row.locator(".row-arrow").evaluate(node => new DOMMatrix(getComputedStyle(node).transform).m41)).toBeGreaterThan(3);
+  expect(await row.evaluate(node => getComputedStyle(node, "::after").transform)).toBe("matrix(1, 0, 0, 1, 0, 0)");
+  await expect(page.locator("#recipe-preview")).toHaveClass(/\bon\b/);
+  const preview = (await page.locator("#recipe-preview").boundingBox())!;
+  const title = (await row.locator(".row-t").boundingBox())!;
+  expect(preview.x < title.x + title.width && preview.x + preview.width > title.x && preview.y < title.y + title.height && preview.y + preview.height > title.y).toBe(false);
+
+  await page.goto(`/catalog/${curated[curated.length - 1].slug}`);
+  await expect(page.locator(".next-row")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
+  await page.emulateMedia({ media: "print" });
+  await expect(page.locator(".next-recipe")).toBeHidden();
+});
+
+test("meta row: words are smaller than numbers and stay on one line from 390 to 1920; bob chorba notes the overnight soak", async ({ page }) => {
+  await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
+  for (const width of [390, 768, 1024, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.waitForTimeout(150);
+    const cells = await page.locator(".meta dd").evaluateAll(nodes => nodes.map(node => {
+      const style = getComputedStyle(node);
+      const range = document.createRange(); range.selectNodeContents(node);
+      const lines = new Set([...range.getClientRects()].map(rect => Math.round(rect.top))).size;
+      return { word: node.classList.contains("meta-word"), size: parseFloat(style.fontSize), lines, fits: node.scrollWidth <= node.clientWidth + 1, text: node.textContent };
+    }));
+    const words = cells.filter(cell => cell.word);
+    expect(words.map(cell => cell.text), `words at ${width}`).toEqual(["Без готвене", "Лесна"]);
+    for (const cell of words) {
+      expect(cell.lines, `${cell.text} on one line at ${width}`).toBe(1);
+      expect(cell.fits, `${cell.text} fits its cell at ${width}`).toBe(true);
+      expect(cell.size, `${cell.text} smaller than the numbers at ${width}`).toBeLessThan(Math.min(...cells.filter(c => !c.word).map(c => c.size)));
+    }
+  }
+  await expect(page.locator(".meta-note")).toHaveCount(0);
+  await page.goto("/catalog/bob-chorba");
+  await expect(page.locator(".meta dd").first()).toContainText("20 мин");
+  await expect(page.locator(".meta dd").first().locator(".meta-note")).toHaveText("+ накисване през нощта");
+});
+
+for (const width of [390, 1440]) {
+  test(`back to top at ${width}px: hidden while reading down and over the footer, shown when scrolling up; filled hover, focus ring`, async ({ page }) => {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+    for (const url of ["/", "/catalog/shopska-salata", "/catalog"]) {
+      await page.goto(url, { waitUntil: "networkidle" });
+      const button = page.getByRole("button", { name: "Върни се най-горе" });
+      await expect(button).toHaveAttribute("data-hidden", "");
+      // Read down to a point past the first screen that keeps the footer out of view.
+      const target = await page.evaluate(() => Math.min(1600, document.querySelector("footer")!.getBoundingClientRect().top + window.scrollY - innerHeight - 500));
+      // A page too short to read past the first screen without reaching the footer never shows the button.
+      if (target > 760) {
+        for (let y = 0; y < target; y += 300) { await page.mouse.wheel(0, Math.min(300, target - y)); await page.waitForTimeout(80); }
+        await page.waitForTimeout(300);
+        await expect(button, `${url}: hidden while reading down`).toHaveAttribute("data-hidden", "");
+        await page.mouse.wheel(0, -120);
+        await expect(button, `${url}: shown when scrolling up`).not.toHaveAttribute("data-hidden", "");
+        await expect(button).toHaveCSS("opacity", "1");
+        if (width === 1440) {
+          const rest = await button.evaluate(node => getComputedStyle(node, "::before").transform);
+          expect(rest).not.toBe("none");
+          await button.hover();
+          // The ink layer slides in from the left and covers the whole button.
+          await expect.poll(() => button.evaluate(node => getComputedStyle(node, "::before").transform)).toBe("none");
+          await page.mouse.move(10, 10);
+        }
+        await button.focus();
+        expect(await button.evaluate(node => getComputedStyle(node).outlineStyle)).toBe("solid");
+      }
+      await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+      await page.mouse.wheel(0, -40);
+      await page.waitForTimeout(400);
+      await expect(button, `${url}: hidden over the footer`).toHaveAttribute("data-hidden", "");
+    }
+  });
+}
+
+test("footer social icons have a 44×44 hit area without moving the icons", async ({ page }) => {
+  await page.goto("/about");
+  const links = page.locator(".footer-socials a");
+  const count = await links.count();
+  expect(count).toBeGreaterThan(0);
+  const icons: number[] = [];
+  for (let i = 0; i < count; i++) {
+    const box = (await links.nth(i).boundingBox())!;
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.height).toBeGreaterThanOrEqual(44);
+    const icon = (await links.nth(i).locator("svg").boundingBox())!;
+    icons.push(icon.x);
+  }
+  // Same 20px icons with the same 14px gap as before: 34px between icon starts.
+  for (let i = 1; i < icons.length; i++) expect(Math.round(icons[i] - icons[i - 1])).toBe(34);
 });
 
 test("recipe metadata: canonical, Open Graph and Twitter card from the recipe", async ({ page }) => {
