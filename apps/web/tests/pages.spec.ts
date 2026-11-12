@@ -214,3 +214,29 @@ test("Error page: same Sofra layout, its own copy and the retry button", async (
   await expect(page.getByRole("link", { name: "Към началото" })).toHaveAttribute("href", "/");
   await expect(page.locator(".nf-table .plate.gap")).toHaveCount(1);
 });
+
+for (const [width, minGap, maxLines] of [[1440, 32, 2], [390, 22, 3]] as const) {
+  test(`At ${width}: About title has air above its paragraph; the 404 title fits in ${maxLines} lines`, async ({ page }) => {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+    const textRects = (selector: string) => page.locator(selector).evaluate(node => {
+      const range = document.createRange(); range.selectNodeContents(node);
+      return [...range.getClientRects()].filter(r => r.width && r.height).map(r => ({ top: r.top, bottom: r.bottom }));
+    });
+    await page.goto("/about", { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    const title = await textRects(".pg-hero h1"), para = await textRects(".pg-hero .r-desc");
+    expect(Math.min(...para.map(r => r.top)) - Math.max(...title.map(r => r.bottom))).toBeGreaterThanOrEqual(minGap);
+    await page.goto(NOT_FOUND, { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    await page.waitForTimeout(1500);
+    const lines = await page.locator(".nf h1").evaluate(node => {
+      const rows = new Map<number, string[]>();
+      for (const word of node.querySelectorAll(".wi")) { const top = Math.round(word.getBoundingClientRect().top / 8); rows.set(top, [...(rows.get(top) ?? []), word.textContent!.trim()]); }
+      return [...rows.values()].map(row => row.join(" "));
+    });
+    expect(lines.length).toBeLessThanOrEqual(maxLines);
+    if (width === 1440) expect(lines).toEqual(["Тази страница", "не е на масата"]);
+    // No single word left hanging on the last line.
+    expect(lines.at(-1)!.split(" ").length).toBeGreaterThan(1);
+  });
+}

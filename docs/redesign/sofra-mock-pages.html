@@ -399,6 +399,8 @@ em{font-style:italic}
 /* ======================= НОВИ СТРАНИЦИ: За нас · Любими · Профил · 404 ======================= */
 .pg-hero{min-height:clamp(480px,76svh,780px)}
 .pg-hero h1{font-size:clamp(3rem,1.5rem + 5.2vw,7.4rem);max-width:15ch}
+/* Кръг 3: въздух между заглавието и абзаца (≥ 32px при 1440, ≥ 22px при 390, мерено по текста). */
+.pg-hero h1{margin-bottom:clamp(30px,1rem + 2.4vw,52px)}
 .pg-hero h1 em{font-weight:400}
 .pg-hero p{max-width:54ch}
 .sec-tight{padding-block:clamp(72px,9vw,128px)}
@@ -467,8 +469,9 @@ em{font-style:italic}
 .fe-table .sofra-ring{inset:6%}
 .fe-table .sofra-center{inset:28%}
 .nf{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:40px clamp(24px,4vw,64px);align-items:center;min-height:100svh;padding-top:calc(72px + 24px);padding-bottom:clamp(56px,8vw,112px)}
-.nf-tx{grid-column:1 / span 6;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
-.nf h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,1.6rem + 5.2vw,7.2rem);line-height:.92;letter-spacing:-.025em}
+/* Кръг 3: по-широка колона (7/12) и по-малък максимум — заглавието е на два реда при 1440: „Тази страница / не е на масата“. */
+.nf-tx{grid-column:1 / span 7;display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.nf h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.2rem,1.6rem + 4.2vw,6.2rem);line-height:.92;letter-spacing:-.025em}
 .nf h1 em{font-weight:400;color:var(--accent)}
 .nf p.t{color:var(--muted);max-width:44ch;font-size:1.1rem}
 .nf-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
