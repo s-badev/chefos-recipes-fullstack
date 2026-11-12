@@ -21,7 +21,7 @@ export default function HomePage() {
   const countWord = neuterCount(categories.length);
 
   return <>
-    <section className="hero" aria-labelledby="landing-title" data-zoom>
+    <section className="hero" aria-labelledby="landing-title" data-hero data-zoom>
       <div className="hero-par" data-par="0.18"><div className="zoom">
         <Image src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} alt="Баница със сирене и шопска салата на българската трапеза" className="ph" fill priority sizes="100vw" />
       </div></div>

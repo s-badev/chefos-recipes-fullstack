@@ -23,11 +23,16 @@ export function MotionRoot() {
     const hover = matchMedia("(hover:hover)");
     const targets = [...document.querySelectorAll<HTMLElement>("[data-r],[data-mask],[data-split],[data-zoom],.quote")];
     const header = document.querySelector<HTMLElement>(".hdr");
-    const hero = document.querySelector<HTMLElement>(".hero");
+    // Any page can declare a full-bleed hero with [data-hero]: the header stays transparent over it.
+    const hero = document.querySelector<HTMLElement>("[data-hero]");
     const parallax = document.querySelector<HTMLElement>("[data-par]");
+    const parallaxFactor = Number(parallax?.dataset.par) || .18;
+    // Recipe page: a thin line beside the steps fills with the scroll (transform only).
+    const progress = document.querySelector<HTMLElement>(".prog i");
+    const stepsList = document.querySelector<HTMLElement>(".st-list");
     const preview = document.querySelector<HTMLElement>("#recipe-preview");
     const motionAllowed = () => !media.matches && !window.__motionTimedOut;
-    let enabled = motionAllowed(), frame = 0, heroHeight = 0;
+    let enabled = motionAllowed(), frame = 0, heroHeight = 0, stepsTop = 0, stepsHeight = 0;
     let viewportWidth = 0, viewportHeight = 0;
     let mx = 0, px = 0, py = 0, showing = false, lastScroll = -1;
     let activeRow: HTMLElement | null = null;
@@ -45,6 +50,10 @@ export function MotionRoot() {
 
     function measure() {
       heroHeight = hero?.offsetHeight ?? 0;
+      if (stepsList) {
+        const rect = stepsList.getBoundingClientRect();
+        stepsTop = rect.top + window.scrollY; stepsHeight = rect.height;
+      }
       viewportWidth = document.documentElement.clientWidth;
       viewportHeight = document.documentElement.clientHeight;
       if (activeRow) cacheRow(activeRow);
@@ -62,7 +71,11 @@ export function MotionRoot() {
       const y = window.scrollY;
       if (y !== lastScroll) {
         solidHeader();
-        if (parallax) parallax.style.transform = `translate3d(0,${(y * .18).toFixed(1)}px,0)`;
+        if (parallax) parallax.style.transform = `translate3d(0,${(y * parallaxFactor).toFixed(1)}px,0)`;
+        if (progress && stepsHeight) {
+          const filled = Math.max(0, Math.min(1, (y + viewportHeight * .6 - stepsTop) / stepsHeight));
+          progress.style.transform = `scaleY(${filled.toFixed(3)})`;
+        }
         lastScroll = y;
       }
       if (showing && preview && activeRow) {
@@ -87,7 +100,7 @@ export function MotionRoot() {
       hidePreview();
       cancelAnimationFrame(frame); observer.disconnect(); measure(); solidHeader();
       if (enabled) { targets.forEach(target => observer.observe(target)); frame = requestAnimationFrame(tick); }
-      else { targets.forEach(target => target.classList.add("in")); parallax?.style.removeProperty("transform"); hidePreview(); }
+      else { targets.forEach(target => target.classList.add("in")); parallax?.style.removeProperty("transform"); progress?.style.removeProperty("transform"); hidePreview(); }
     }
     function enter(event: PointerEvent) {
       const row = (event.target as Element).closest<HTMLElement>(".row[data-preview]");
@@ -111,7 +124,7 @@ export function MotionRoot() {
     }
     function scroll() { if (!enabled) solidHeader(); }
     configure();
-    const resize = new ResizeObserver(measure); if (hero) resize.observe(hero);
+    const resize = new ResizeObserver(measure); if (hero) resize.observe(hero); if (stepsList) resize.observe(stepsList);
     media.addEventListener("change", configure); hover.addEventListener("change", configure); window.addEventListener("resize", measure);
     window.addEventListener("scroll", scroll, { passive: true }); window.addEventListener("pointermove", pointer, { passive: true });
     document.addEventListener("pointerover", enter);

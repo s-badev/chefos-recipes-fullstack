@@ -1,14 +1,20 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
-import { recipeImageSrc } from "../../../lib/images";
-import { formatCookTime } from "../../../lib/format";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { findRecipeBySlug } from "../recipes";
 import { PrintRecipeButton } from "../../print-recipe-button";
-import { FavoriteButton } from "../../favorite-button";
+import { SplitWords } from "../../split-heading";
+import { webImageSrc } from "../../../lib/images";
+import { formatCookTime } from "../../../lib/format";
+import { categoryHref } from "../../../lib/categories";
+import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, stepNumber, tagLine } from "../../../lib/recipe-detail";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 import { getPublicCatalogRecipeBySlug } from "../../../server/recipes/service";
+import { IngredientChecklist } from "./ingredient-checklist";
+import { RecipeFavorite } from "./recipe-favorite";
+import { BackToCatalog } from "./back-to-catalog";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -20,28 +26,6 @@ export const dynamic = "force-dynamic";
 
 async function getRecipeForDetails(slug: string) {
   return findRecipeBySlug(slug) ?? (await getPublicCatalogRecipeBySlug(slug));
-}
-
-function getVisualClass(category: string) {
-  const normalizedCategory = category.toLocaleLowerCase("bg-BG");
-
-  if (normalizedCategory.includes("сал")) {
-    return "recipe-photo--salad";
-  }
-
-  if (normalizedCategory.includes("тест") || normalizedCategory.includes("печ")) {
-    return "recipe-photo--baked";
-  }
-
-  if (normalizedCategory.includes("суп")) {
-    return "recipe-photo--soup";
-  }
-
-  if (normalizedCategory.includes("дес")) {
-    return "recipe-photo--dessert";
-  }
-
-  return "recipe-photo--stew";
 }
 
 export async function generateMetadata({
@@ -72,136 +56,103 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
   }
 
   const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
+  const photo = hasRecipePhoto(recipe);
+  const number = curatedNumberLabel(recipe.slug);
+  const tags = tagLine(recipe.tags);
+  const notes = missingContentNotes(recipe.ingredients.length, recipe.steps.length);
+  const meta = [
+    { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
+    { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes) },
+    { label: "Порции", value: String(recipe.servings) },
+    { label: "Трудност", value: recipe.difficulty }
+  ];
 
   return (
-    <article className="recipe-print-page page-shell space-y-10 pb-4">
-      <Link className="no-print inline-flex rounded-none px-1 text-base font-black text-brand-700 transition-transform hover:text-brand-900 focus-visible:ring-4 focus-visible:ring-brand-100" href="/catalog">
-        Обратно към каталога
-      </Link>
-
-      <section className="recipe-print-hero grid gap-8 rounded-none border border-neutral-200 bg-white/72 p-6  sm:p-8 lg:grid-cols-[minmax(0,0.58fr)_minmax(380px,0.42fr)] lg:items-center xl:p-10">
-        <div className="space-y-6">
-          <div className="flex flex-wrap gap-2">
-            <span className="rounded-none bg-brand-50 px-3 py-1 text-sm font-black text-brand-800">
-              Категория: {recipe.category}
-            </span>
-            <span className="rounded-none bg-neutral-100 px-3 py-1 text-sm font-black text-neutral-600">
-              Трудност: {recipe.difficulty}
-            </span>
-          </div>
-          <h1 className="text-5xl font-bold leading-tight text-neutral-950 sm:text-[3.5rem]">
-            {recipe.title}
-          </h1>
-          <p className="max-w-3xl text-lg font-medium leading-8 text-ink">{recipe.description}</p>
-          <div className="flex flex-wrap gap-2">
-            {recipe.tags.map((tag) => (
-              <span
-                className="rounded-none bg-white px-3 py-1 text-sm font-bold text-neutral-600 "
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        <div className="recipe-print-image overflow-hidden rounded-none border border-white/70 bg-white ">
-            <div className="relative h-[320px] overflow-hidden bg-neutral-100 sm:h-[380px] lg:h-[420px]">
+    <article className="recipe-print-page">
+      <section
+        aria-labelledby="recipe-title"
+        className="recipe-hero recipe-print-hero"
+        data-hero
+        data-photo={photo ? "yes" : "none"}
+        data-zoom={photo ? "" : undefined}
+      >
+        {photo ? (
+          <div className="hero-par" data-par="0.14">
+            <div className="zoom">
               <Image
                 alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`}
-                className="object-cover"
+                className="ph"
                 fill
                 priority
-                sizes="(min-width: 1024px) 35vw, 100vw"
-                src={recipeImageSrc(recipe.imageSrc)}
+                sizes="100vw"
+                src={webImageSrc(recipe.imageSrc!)}
               />
-              <div className="no-print absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/24" />
             </div>
+          </div>
+        ) : null}
+        <div className="hero-in">
+          <div className="wrap">
+            <p className="eyebrow rh-eyebrow">
+              <Link href={categoryHref(recipe.category)}>{recipe.category}</Link>
+              {number ? <span> · {number}</span> : null}
+            </p>
+            <h1 id="recipe-title" data-split><SplitWords text={recipe.title} /></h1>
+            <p className="rh-desc">{recipe.description}</p>
+          </div>
         </div>
       </section>
 
-      <section className="recipe-print-content grid gap-6 lg:grid-cols-[minmax(0,2fr)_minmax(320px,1fr)] lg:items-start xl:gap-8">
-        <aside className="recipe-print-section order-1 lg:col-start-2 lg:row-start-1">
-          <div className="editorial-card rounded-none p-6">
-            <h2 className="text-3xl font-bold text-neutral-950">Детайли</h2>
-            <div className="mt-5 grid grid-cols-2 gap-4">
-              {[
-                { label: "Подготовка", value: `${recipe.prepTimeMinutes} мин` },
-                { label: "Готвене", value: formatCookTime(recipe.cookTimeMinutes) },
-                { label: "Порции", value: recipe.servings },
-                { label: "Трудност", value: recipe.difficulty }
-              ].map((item) => (
-                <div className="detail-stat-tile rounded-none border border-transparent bg-bg p-4" key={item.label}>
-                  <p className="text-sm font-black uppercase tracking-[0.12em] text-muted">
-                    {item.label}
-                  </p>
-                  <p className="mt-1 text-xl font-bold text-neutral-950">{item.value}</p>
-                </div>
-              ))}
+      <div className="wrap">
+        <dl className="meta recipe-print-meta">
+          {meta.map((item, index) => (
+            <div data-r key={item.label} style={{ "--dl": `${index * 80}ms` } as CSSProperties}>
+              <dt className="eyebrow">{item.label}</dt>
+              <dd>{item.value}</dd>
             </div>
-          </div>
-        </aside>
+          ))}
+        </dl>
+        {tags ? <p className="meta-tags" data-r>{tags}</p> : null}
 
-        <aside className="no-print order-4 lg:col-start-2 lg:row-start-2">
-          <div className="editorial-card rounded-none p-6">
-            <h2 className="text-3xl font-bold text-neutral-950">Бързи действия</h2>
-            <div className="mt-5 grid gap-3">
-              <Link
-                className="quick-action flex items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-base font-black text-ink transition-transform hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800"
-                href="/catalog"
-              >
-                <span>Виж каталога</span>
-                <span aria-hidden="true" className="text-brand-700">
-                  →
-                </span>
-              </Link>
-              <FavoriteButton slug={recipe.slug} title={recipe.title} saved={isFavorited} redirectTo={`/catalog/${recipe.slug}`} detail/>
-              <PrintRecipeButton className="quick-action flex w-full items-center justify-between rounded-none border border-brand-200 bg-bg px-4 py-3 text-left text-base font-black text-ink transition-transform hover:border-brand-400 hover:bg-brand-50 hover:text-brand-800" />
-            </div>
-          </div>
-        </aside>
-
-        <section className="recipe-print-section editorial-card order-2 rounded-none p-6 lg:col-start-1 lg:row-start-1">
-          <h2 className="text-3xl font-bold text-neutral-950">Продукти</h2>
-          {recipe.ingredients.length > 0 ? (
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {recipe.ingredients.map((ingredient) => (
-                <li
-                  className="ingredient-item flex items-center gap-3 rounded-none border border-brand-200/60 bg-bg px-4 py-3 text-[0.98rem] font-medium leading-6 text-ink"
-                  key={ingredient}
-                >
-                  <span className="h-2 w-2 shrink-0 rounded-none bg-brand-500" />
-                  <span>{ingredient}</span>
-                </li>
-              ))}
-            </ul>
+        <div className={notes.all ? "rbody rbody-empty" : "rbody"}>
+          {notes.all ? (
+            <p className="r-missing">{notes.all}</p>
           ) : (
-            <p className="mt-5 rounded-none border border-brand-200/60 bg-bg px-4 py-3 text-base font-medium leading-7 text-ink">
-              Няма въведени продукти за тази рецепта.
-            </p>
+            <>
+              <aside className="ings recipe-print-section" aria-labelledby={recipe.ingredients.length ? "ingredients-title" : undefined}>
+                {recipe.ingredients.length ? (
+                  <IngredientChecklist ingredients={recipe.ingredients} slug={recipe.slug} />
+                ) : (
+                  <p className="r-missing">{notes.ingredients}</p>
+                )}
+              </aside>
+              <section className="steps recipe-print-section" aria-labelledby={recipe.steps.length ? "steps-title" : undefined}>
+                {recipe.steps.length ? (
+                  <>
+                    <div className="prog" aria-hidden="true"><i /></div>
+                    <h2 className="steps-h" id="steps-title" data-r>Начин на приготвяне</h2>
+                    <ol className="st-list">
+                      {recipe.steps.map((step, index) => (
+                        <li className="st" data-r key={`${index}-${step}`}>
+                          <span className="st-n" aria-hidden="true">{stepNumber(index)}</span>
+                          <p>{step}</p>
+                        </li>
+                      ))}
+                    </ol>
+                  </>
+                ) : (
+                  <p className="r-missing">{notes.steps}</p>
+                )}
+              </section>
+            </>
           )}
-        </section>
 
-        <section className="recipe-print-section editorial-card order-3 w-full rounded-none p-6 sm:p-8 lg:col-start-1 lg:row-start-2">
-          <h2 className="text-3xl font-bold text-neutral-950">Начин на приготвяне</h2>
-          {recipe.steps.length > 0 ? (
-            <ol className="mt-6 grid gap-5">
-              {recipe.steps.map((step, index) => (
-                <li className="flex gap-4 text-base font-medium leading-7 text-ink" key={step}>
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-none bg-brand-600 text-base font-black text-white">
-                    {index + 1}
-                  </span>
-                  <span className="pt-1">{step}</span>
-                </li>
-              ))}
-            </ol>
-          ) : (
-            <p className="mt-6 rounded-none border border-brand-200/60 bg-bg px-4 py-3 text-base font-medium leading-7 text-ink">
-              Начинът на приготвяне все още не е описан.
-            </p>
-          )}
-        </section>
-      </section>
+          <div className="actions no-print">
+            <RecipeFavorite redirectTo={`/catalog/${recipe.slug}`} saved={isFavorited} slug={recipe.slug} />
+            <PrintRecipeButton className="btn" icon={null} label="Принтирай рецептата" />
+            <BackToCatalog />
+          </div>
+        </div>
+      </div>
     </article>
   );
 }

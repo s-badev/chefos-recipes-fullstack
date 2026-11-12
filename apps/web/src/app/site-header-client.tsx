@@ -36,9 +36,19 @@ const loginItem = { href: "/login", label: "Вход" };
 /** Two-line wordmark: kicker on top, "Chefo's Recipes" below with the italic "Recipes". */
 function LogoMark() {
   return <>
-    <span className="logo-kicker">Домашна кухня</span>
+    {/* The space keeps the visible text "Домашна кухня Chefo's Recipes" readable as words (axe label-content-name-mismatch). */}
+    <span className="logo-kicker">Домашна кухня</span>{" "}
     <span className="logo-name">Chefo&apos;s <em>Recipes</em></span>
   </>;
+}
+
+/** The favourites count; it bumps once each time the number changes (never on first render). */
+function FavoriteCount({ count }: { count: number }) {
+  const initial = useRef(count);
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => { if (count !== initial.current) setAnimate(true); }, [count]);
+  // A new key remounts the number, which restarts the CSS bump on every later change.
+  return <span className={animate ? "fav-n bump" : "fav-n"} data-testid="favorite-count" key={count}>{count}</span>;
 }
 
 function isActivePath(pathname: string, href: string) {
@@ -109,7 +119,7 @@ export function SiteHeaderClient({ currentUser, logoutAction, favoriteCount }: S
 
   function links() {
     return <>
-      {navigationItems.map(item => <Link href={item.href} key={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{item.label}{item.href === "/favorites" ? <span data-testid="favorite-count"> {favoriteCount}</span> : null}</Link>)}
+      {navigationItems.map(item => <Link href={item.href} key={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{item.label}{item.href === "/favorites" ? <> <FavoriteCount count={favoriteCount}/></> : null}</Link>)}
       {currentUser ? <>
         <span className="nav-greeting">Здравей, {greetingName}</span>
         <form action={logoutAction}><button className="nav-link" type="submit">Изход</button></form>
@@ -132,11 +142,12 @@ export function SiteHeaderClient({ currentUser, logoutAction, favoriteCount }: S
   }
 
   return <>
-    <header className={pathname === "/" ? "hdr" : "hdr solid"}>
+    {/* Transparent over a page's [data-hero], solid everywhere else (globals.css); MotionRoot sets .solid on scroll. */}
+    <header className="hdr">
       <div className="wrap">
-        <Link className="logo" href="/" aria-label="Chefo's Recipes — начало" onClick={() => setIsMenuOpen(false)}><LogoMark /></Link>
+        <Link className="logo" href="/" aria-label="Домашна кухня Chefo's Recipes – начало" onClick={() => setIsMenuOpen(false)}><LogoMark /></Link>
         <nav className="nav desktop-nav" aria-label="Основна навигация">{links()}</nav>
-        <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" aria-label="Отвори менюто" onClick={() => setIsMenuOpen(true)} type="button">Меню <span aria-hidden="true">☰</span></button>
+        <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" onClick={() => setIsMenuOpen(true)} type="button">Меню <span aria-hidden="true">☰</span></button>
       </div>
     </header>
     <dialog className="mobile-menu" id="mobile-menu" ref={dialog} aria-label="Основна навигация" onKeyDown={keepMenuFocus} onCancel={() => setIsMenuOpen(false)} onClose={() => setIsMenuOpen(false)}>

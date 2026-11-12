@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { PageShell } from "../page-shell";
 
+/** The list wraps itself in PageShell ((list)/layout.tsx); the recipe page needs a full-width hero. */
 export default function Layout({ children }: { children: ReactNode }) {
-  return <PageShell>{children}</PageShell>;
+  return children;
 }
