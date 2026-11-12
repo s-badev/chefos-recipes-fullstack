@@ -258,6 +258,16 @@ img{display:block;max-width:100%}
 .recipe-hero .eyebrow a{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px}
 .recipe-hero .eyebrow a:hover{background-size:100% 1px}
 .meta-tags{padding-top:20px;color:var(--muted);font-size:.95rem}
+/* Етап В: думите (Без готвене, Лесна…) са по-малки от числата и на един ред при 390–1920 (размер по ширината на клетката). */
+.meta>div{container-type:inline-size}
+.meta dd.meta-word b{white-space:nowrap;font-size:min(calc(clamp(2rem,1rem + 2.6vw,3.6rem)*var(--fs)),17cqi)}
+.meta-note{display:block;margin-top:10px;font-family:var(--sans);font-size:.85rem;font-weight:500;line-height:1.3;letter-spacing:0;color:var(--muted)}
+/* Етап В: „Следваща рецепта“ — един ред в стила на „Съдържание“, със стрелка и снимка до курсора. */
+.next-recipe{padding-bottom:clamp(56px,8vw,120px)}
+.next-recipe>.eyebrow{display:block;margin-bottom:16px}
+.next-row{grid-template-columns:56px minmax(0,1fr) auto auto}
+.row-arrow{font-size:1.4rem;line-height:1;transition:transform calc(450ms*var(--k)) var(--ease-out)}
+.next-row:hover .row-arrow,.next-row:focus-visible .row-arrow{transform:translateX(6px)}
 .steps{grid-column:5 / span 8;position:relative;padding-left:0}
 .steps ol{position:relative}
 .st{display:grid;grid-template-columns:clamp(56px,9vw,128px) minmax(0,1fr);column-gap:clamp(16px,3vw,40px);padding:clamp(24px,3vw,44px) 0;border-bottom:1px solid var(--line)}
@@ -364,6 +374,7 @@ img{display:block;max-width:100%}
   .cover-text{order:1;margin-top:24px}
   .idx{display:block}.idx-side{position:static;margin-bottom:32px}
   .row{grid-template-columns:40px minmax(0,1fr);}.row-m{display:none}
+  .next-row{grid-template-columns:40px minmax(0,1fr) auto}.next-row .row-m{display:block;grid-column:2;grid-row:2;text-align:left;white-space:normal}.next-row .row-arrow{grid-column:3;grid-row:1}
   .mas{display:flex;flex-direction:column;gap:44px;align-items:stretch}
   .mc[data-s="0"] .mc-img{aspect-ratio:4/3}.mc[data-s="1"] .mc-img,.mc[data-s="2"] .mc-img,.mc[data-s="3"] .mc-img,.mc[data-s="4"] .mc-img{aspect-ratio:4/5}
   .mc[data-s="0"] .mc-t{font-size:calc(2.2rem*var(--fs))}
@@ -513,6 +524,10 @@ img{display:block;max-width:100%}
         <p class="rnote">Продуктите и стъпките са примерни и се пренасят от шопската салата за всички рецепти в макета.</p>
       </div>
     </div>
+    <section class="next-recipe" aria-labelledby="next-h">
+      <h2 class="eyebrow" id="next-h">Следваща рецепта</h2>
+      <ul class="idx-list" id="nextidx"></ul>
+    </section>
   </div>
 </section>
 
@@ -801,10 +816,12 @@ function fillRecipe(s){
   var h=$('#rt');h.classList.remove('sp');h.textContent=r.t;split(h);
   var total=r.p+r.k;
   $('#meta').innerHTML=
-    '<div data-r><dt class="eyebrow">Подготовка</dt><dd><b>'+r.p+' мин</b></dd></div>'+
-    '<div data-r style="--dl:80ms"><dt class="eyebrow">Готвене</dt><dd><b>'+(r.k===0?'Без готвене':r.k+' мин')+'</b></dd></div>'+
+    '<div data-r><dt class="eyebrow">Подготовка</dt><dd><b>'+r.p+' мин</b>'+(s==='bob-yahniya'?'<span class="meta-note">+ накисване през нощта</span>':'')+'</dd></div>'+
+    '<div data-r style="--dl:80ms"><dt class="eyebrow">Готвене</dt><dd'+(r.k===0?' class="meta-word"':'')+'><b>'+(r.k===0?'Без готвене':r.k+' мин')+'</b></dd></div>'+
     '<div data-r style="--dl:160ms"><dt class="eyebrow">Порции</dt><dd><b>'+r.v+'</b></dd></div>'+
-    '<div data-r style="--dl:240ms"><dt class="eyebrow">Трудност</dt><dd><b>'+r.l+'</b></dd></div>';
+    '<div data-r style="--dl:240ms"><dt class="eyebrow">Трудност</dt><dd class="meta-word"><b>'+r.l+'</b></dd></div>';
+  var ni=(idxOf(s)+1)%R.length,nx=R[ni];
+  $('#nextidx').innerHTML='<li><a class="row next-row" href="#recipe" data-slug="'+nx.s+'"><span class="row-n">Nº '+pad2(ni+1)+'</span><span class="row-t">'+nx.t+'</span><span class="row-m">'+nx.c+' · '+(nx.p+nx.k)+' мин</span><span class="row-arrow" aria-hidden="true">→</span></a></li>';
   $('#ings').innerHTML=ING.map(function(t,i){return '<label class="ing" data-r style="--dl:'+(i<8?i*50:0)+'ms"><input type="checkbox"><span class="ing-t"><span class="ing-b">'+t+'</span><span class="ing-s" aria-hidden="true">'+t+'</span></span></label>'}).join('');
   var saved='';try{saved=localStorage.getItem('chefos:ingredients:'+s)||''}catch(e){/* без localStorage отметките просто не се помнят */}
   saved.split('|').forEach(function(n){var box=$$('#ings input')[+n];if(n!==''&&box)box.checked=true});
@@ -945,8 +962,10 @@ function pvSafe(point,target){
     var point=showing?pvSafe({x:px,y:py},t):t;px=point.x;py=point.y;
     pv.style.transform='translate3d('+px.toFixed(1)+'px,'+py.toFixed(1)+'px,0)';pv.classList.add('on');showing=true;
   }
-  list.addEventListener('pointerover',function(e){var r=e.target.closest('.row');if(r)enter(r,e)});
-  list.addEventListener('pointerleave',function(){pv.classList.remove('on');showing=false;pvRow=null;pvDoc=null});
+  [list,$('#nextidx')].forEach(function(zone){
+    zone.addEventListener('pointerover',function(e){var r=e.target.closest('.row');if(r)enter(r,e)});
+    zone.addEventListener('pointerleave',function(){pv.classList.remove('on');showing=false;pvRow=null;pvDoc=null});
+  });
   window.addEventListener('resize',function(){if(pvRow)pvCache()});
   window.addEventListener('pointermove',function(e){mx=e.clientX;my=e.clientY});
 })();
