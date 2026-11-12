@@ -3,7 +3,8 @@
 import { useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { StitchRing, StitchStar } from "./stitch";
+import { SofraBoard } from "./sofra-board";
+import { StitchStar } from "./stitch";
 
 export type SofraPlate = {
   name: string;
@@ -39,12 +40,7 @@ export function SofraTable({ plates, intro }: { plates: SofraPlate[]; intro: Rea
     <div className="wrap sofra-grid">
       <div className="sofra-side">{intro}</div>
       <div className="sofra-wheel">
-        <div className="sofra" style={{ "--sel": selected, "--step": `${360 / count}deg` } as CSSProperties}>
-          <div className="sofra-table" />
-          <div className="sofra-ring"><StitchRing /></div>
-          <div className="sofra-center" aria-hidden="true">
-            <div><StitchStar /><b>{current.name}</b><span>{current.countLabel}</span></div>
-          </div>
+        <SofraBoard center={<><StitchStar /><b>{current.name}</b><span>{current.countLabel}</span></>} style={{ "--sel": selected, "--step": `${360 / count}deg` } as CSSProperties}>
           <div aria-label="Категории на софрата" className="spin" onKeyDown={onKeyDown} role="group">
             {plates.map((plate, index) => (
               <button
@@ -62,7 +58,7 @@ export function SofraTable({ plates, intro }: { plates: SofraPlate[]; intro: Rea
               </button>
             ))}
           </div>
-        </div>
+        </SofraBoard>
         <div className="spin-ctl">
           <button aria-label="Предишна категория" className="circ" onClick={() => pick(selected - 1)} type="button"><span aria-hidden="true">←</span></button>
           <span>Завърти</span>
