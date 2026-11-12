@@ -23,7 +23,7 @@ export function RecipeCatalog({
 
   return (
     <section className="page-shell space-y-9">
-      <div className="catalog-hero-panel grid gap-6 rounded-none border border-neutral-200 bg-white/78 p-5  sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.48fr)] lg:items-end xl:p-7">
+      <div className="catalog-hero-panel grid gap-6 rounded-none border border-neutral-200 bg-surface p-5  sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(380px,0.48fr)] lg:items-end xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
@@ -42,7 +42,7 @@ export function RecipeCatalog({
             Търсене
           </label>
           <input
-            className="catalog-search-input mt-2.5 w-full rounded-none border border-neutral-200 bg-white px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
+            className="catalog-search-input mt-2.5 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:ring-4 focus:ring-brand-100"
             id="recipe-search"
             onChange={(event) => setSearchTerm(event.target.value)}
             placeholder="Търси рецепта, категория или таг..."
@@ -52,7 +52,7 @@ export function RecipeCatalog({
         </div>
       </div>
 
-      <div className="space-y-3 rounded-none border border-neutral-200 bg-white/72 p-4 ">
+      <div className="space-y-3 rounded-none border border-neutral-200 bg-surface p-4 ">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
@@ -76,7 +76,7 @@ export function RecipeCatalog({
                   "rounded-none border px-4 py-2 text-sm font-black transition",
                   isSelected
                     ? "border-brand-600 bg-brand-600 text-white  "
-                    : "border-neutral-200 bg-white/86 text-neutral-700 hover:border-brand-300 hover:text-brand-800"
+                    : "border-neutral-200 bg-surface text-neutral-700 hover:border-brand-300 hover:text-brand-800"
                 ].join(" ")}
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -106,7 +106,7 @@ export function RecipeCatalog({
             ))}
           </div>
 
-          <div className="flex flex-col gap-3 rounded-none border border-neutral-200 bg-white/84 p-4  sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 rounded-none border border-neutral-200 bg-surface p-4  sm:flex-row sm:items-center sm:justify-between">
             <button
               className="rounded-none border border-neutral-200 px-5 py-2.5 text-base font-black text-neutral-700 transition-transform enabled:hover:border-brand-300 enabled:hover:text-brand-800 disabled:cursor-not-allowed disabled:opacity-50"
               disabled={currentPage <= 1}
@@ -129,7 +129,7 @@ export function RecipeCatalog({
           </div>
         </div>
       ) : (
-        <div className="rounded-none border border-dashed border-brand-200 bg-white/86 p-10 text-center ">
+        <div className="rounded-none border border-dashed border-brand-200 bg-surface p-10 text-center ">
           <h3 className="text-3xl font-bold text-neutral-950">Няма намерени рецепти</h3>
           <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-neutral-600">
             Опитай с друга дума за търсене или избери различна категория.

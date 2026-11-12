@@ -13,7 +13,7 @@ export default async function FavoritesPage() {
 
   return (
     <section className="page-shell space-y-8">
-      <div className="rounded-none border border-neutral-200 bg-white/70 p-5  sm:p-6">
+      <div className="rounded-none border border-neutral-200 bg-surface p-5  sm:p-6">
         <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
           Chefo&apos;s Recipes
         </p>
@@ -26,7 +26,7 @@ export default async function FavoritesPage() {
       </div>
 
       <Link
-        className="inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
+        className="inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
         href="/catalog"
       >
         Разгледай каталога
@@ -70,7 +70,7 @@ export default async function FavoritesPage() {
             Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.
           </p>
           <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
+            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
             href="/catalog"
           >
             Разгледай каталога

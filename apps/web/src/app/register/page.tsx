@@ -45,8 +45,8 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
   return (
     <section className="page-shell pb-6">
       <div className="grid w-full gap-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-stretch">
-        <aside className="relative overflow-hidden rounded-none border border-brand-100 bg-ink p-5 text-white  sm:p-6">
-          <div className="absolute inset-0 bg-ink" />
+        <aside className="relative overflow-hidden rounded-none border border-brand-100 bg-surface p-5 text-white  sm:p-6">
+          <div className="absolute inset-0 bg-surface" />
           <div className="relative flex min-h-[340px] flex-col justify-between gap-6 lg:min-h-[380px]">
             <div>
               <p className="text-sm font-black uppercase tracking-[0.22em] text-neutral-100">
@@ -76,7 +76,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 }
               ].map((item, index) => (
                 <div
-                  className="rounded-none border border-white/24 bg-white/14 p-3.5  backdrop-blur-[2px]"
+                  className="rounded-none border border-white/24 bg-surface p-3.5  backdrop-blur-[2px]"
                   key={item.title}
                 >
                   <div className="flex gap-4">
@@ -92,7 +92,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
               ))}
             </div>
 
-            <p className="rounded-none border border-white/24 bg-ink p-3.5 text-sm font-bold leading-6 text-neutral-50">
+            <p className="rounded-none border border-white/24 bg-surface p-3.5 text-sm font-bold leading-6 text-neutral-50">
               Chefo&apos;s Recipes е създаден за спокойно домашно готвене – без излишно ровене.
             </p>
           </div>
@@ -113,7 +113,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
               </h2>
             </div>
             <Link
-              className="inline-flex rounded-none border border-brand-200 bg-white px-4 py-2 text-sm font-black text-brand-700 transition-transform hover:border-brand-400 hover:text-brand-900"
+              className="inline-flex rounded-none border border-brand-200 bg-surface px-4 py-2 text-sm font-black text-brand-700 transition-transform hover:border-brand-400 hover:text-brand-900"
               href={`/login${authSuffix}`}
             >
               Вход
@@ -132,7 +132,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 Име
               </label>
               <ValidatedInput
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
                 id="name"
                 name="name"
                 placeholder="Твоето име"
@@ -146,7 +146,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 Имейл
               </label>
               <ValidatedInput
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
                 id="email"
                 name="email"
                 placeholder="ime@example.com"
@@ -160,7 +160,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
                 Парола
               </label>
               <ValidatedInput
-                className="mt-2 w-full rounded-none border border-neutral-200 bg-white px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-white focus:ring-4 focus:ring-brand-100"
+                className="mt-2 w-full rounded-none border border-neutral-200 bg-surface px-4 py-3.5 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
                 id="password"
                 name="password"
                 minLength={8}
@@ -171,7 +171,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
             </div>
 
             <SubmitButton
-              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition-transform hover:bg-brand-700"
+              className="w-full rounded-none bg-brand-600 px-5 py-3.5 text-base font-black text-white  transition-transform hover:bg-accent-hover"
             >
               Създай профил
             </SubmitButton>

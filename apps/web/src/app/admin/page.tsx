@@ -34,7 +34,7 @@ export default async function AdminPage() {
 
   return (
     <section className="page-shell space-y-10">
-      <div className="rounded-none border border-neutral-200 bg-white/70 p-6  sm:p-8">
+      <div className="rounded-none border border-neutral-200 bg-surface p-6  sm:p-8">
         <div className="max-w-4xl">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Chefo&apos;s Recipes
@@ -51,13 +51,13 @@ export default async function AdminPage() {
 
       <div className="flex flex-wrap gap-3">
         <Link
-          className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
+          className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-accent-hover"
           href="/admin/recipes/new"
         >
           Добави рецепта
         </Link>
         <Link
-          className="ui-button rounded-none border border-neutral-300 bg-white px-6 py-3 text-base font-black text-neutral-800  transition-transform hover:border-brand-300 hover:text-brand-800"
+          className="ui-button rounded-none border border-neutral-300 bg-surface px-6 py-3 text-base font-black text-neutral-800  transition-transform hover:border-brand-300 hover:text-brand-800"
           href="/catalog"
         >
           Виж каталога
@@ -73,7 +73,7 @@ export default async function AdminPage() {
         ))}
       </div>
 
-      <section className="overflow-hidden rounded-none border border-neutral-200 bg-white/84 ">
+      <section className="overflow-hidden rounded-none border border-neutral-200 bg-surface ">
         <div className="border-b border-neutral-200 p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Рецепти
@@ -88,7 +88,7 @@ export default async function AdminPage() {
 
           {recipePage.items.map((recipe) => (
             <div
-              className="admin-row grid gap-5 rounded-none border border-neutral-200/80 bg-white/78 p-5 transition-transform hover:border-brand-200 hover:bg-bg sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
+              className="admin-row grid gap-5 rounded-none border border-neutral-200/80 bg-surface p-5 transition-transform hover:border-brand-200 hover:bg-bg sm:p-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(8.5rem,auto)_minmax(8.5rem,auto)_auto] lg:items-center lg:gap-6 xl:p-7"
               key={recipe.slug}
             >
               <div className="min-w-0">
@@ -118,7 +118,7 @@ export default async function AdminPage() {
 
               <div className="flex flex-wrap items-center gap-2.5 self-center lg:justify-end lg:justify-self-end">
                 <Link
-                  className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-neutral-200 bg-white px-5 text-base font-semibold leading-none text-neutral-700  transition-transform hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
+                  className="admin-action inline-flex h-10 items-center justify-center whitespace-nowrap rounded-none border border-neutral-200 bg-surface px-5 text-base font-semibold leading-none text-neutral-700  transition-transform hover:border-brand-300 hover:bg-brand-50 hover:text-brand-800"
                   href={`/admin/recipes/${recipe.slug}/edit`}
                 >
                   Редактирай
@@ -138,7 +138,7 @@ export default async function AdminPage() {
 
           <div className="flex justify-center border-t border-neutral-200/80 px-1 pt-5">
             <Link
-              className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-brand-700"
+              className="ui-button rounded-none bg-brand-600 px-6 py-3 text-base font-black text-white   transition-transform hover:bg-accent-hover"
               href="/admin/recipes/new"
             >
               Добави рецепта

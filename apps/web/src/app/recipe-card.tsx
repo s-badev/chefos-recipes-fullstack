@@ -138,7 +138,7 @@ export function RecipeCard({
         href={`/catalog/${recipe.slug}`}
       />
       <div className="relative overflow-hidden">
-          <div className="relative h-40 overflow-hidden bg-neutral-100 transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
+          <div className="relative h-40 overflow-hidden bg-surface transition-transform duration-500 group-hover:scale-[1.03] sm:h-44 xl:h-48">
             <Image
               alt={imageAlt}
               className="object-cover"
@@ -156,7 +156,7 @@ export function RecipeCard({
           </span>
         </div>
         <div className="absolute right-3 top-3 max-w-[6.5rem]">
-          <span className="inline-flex max-w-[6.5rem] truncate rounded-none bg-ink px-2.5 py-1 text-xs font-bold text-white  ring-1 ring-white/40 backdrop-blur-md">
+          <span className="inline-flex max-w-[6.5rem] truncate rounded-none bg-surface px-2.5 py-1 text-xs font-bold text-white  ring-1 ring-white/40 backdrop-blur-md">
             {recipe.difficulty}
           </span>
         </div>
@@ -196,7 +196,7 @@ export function RecipeCard({
           <div className="mt-3 flex min-h-[2rem] flex-wrap content-start gap-1.5">
             {visibleTags.map((tag) => (
               <span
-                className="rounded-none border border-neutral-200 bg-white/86 px-2.5 py-1 text-xs font-bold text-neutral-600 "
+                className="rounded-none border border-neutral-200 bg-surface px-2.5 py-1 text-xs font-bold text-neutral-600 "
                 key={tag}
               >
                 {tag}

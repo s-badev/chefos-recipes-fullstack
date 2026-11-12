@@ -71,7 +71,7 @@ const roadmap = [
 export default function AboutPage() {
   return (
     <section className="page-shell space-y-9 pb-6">
-      <div className="about-panel grid gap-6 rounded-none border border-neutral-200 bg-white/78 p-5  sm:p-6 xl:p-7">
+      <div className="about-panel grid gap-6 rounded-none border border-neutral-200 bg-surface p-5  sm:p-6 xl:p-7">
         <div>
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво е Chefo&apos;s Recipes
@@ -116,7 +116,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="about-panel about-panel--feature grid gap-5 rounded-none border border-neutral-200 bg-white/76 p-5  sm:p-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(520px,1fr)] lg:items-center xl:gap-7 xl:p-7">
+      <section className="about-panel about-panel--feature grid gap-5 rounded-none border border-neutral-200 bg-surface p-5  sm:p-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(520px,1fr)] lg:items-center xl:gap-7 xl:p-7">
         <div className="about-feature-copy rounded-none border border-brand-100 bg-bg p-5 sm:p-6">
           <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
             Какво можеш да правиш
@@ -188,7 +188,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="about-roadmap-card rounded-none border border-brand-200 bg-white/82 p-5 ">
+          <div className="about-roadmap-card rounded-none border border-brand-200 bg-surface p-5 ">
             <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
               Какво предстои
             </p>
@@ -201,7 +201,7 @@ export default function AboutPage() {
               ))}
             </ul>
             <Link
-              className="about-cta mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
+              className="about-cta mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
               href="/catalog"
             >
               Разгледай каталога

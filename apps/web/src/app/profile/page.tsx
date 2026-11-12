@@ -19,7 +19,7 @@ export default async function ProfilePage() {
 
   return (
     <section className="page-shell space-y-8">
-      <div className="rounded-none border border-neutral-200 bg-white/70 p-5  sm:p-6">
+      <div className="rounded-none border border-neutral-200 bg-surface p-5  sm:p-6">
         <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
           Потребителски профил
         </p>
@@ -55,7 +55,7 @@ export default async function ProfilePage() {
             любими идеи.
           </p>
           <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-brand-700"
+            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
             href="/favorites"
           >
             Виж любимите
