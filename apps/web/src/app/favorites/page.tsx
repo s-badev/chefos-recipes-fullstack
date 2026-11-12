@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { RecipeCard } from "../recipe-card";
+import { toCardRecipe } from "../../lib/catalog";
 import { getCurrentUserFavoriteRecipes } from "../../server/favorites/service";
+import { withWebRecipeImage } from "../../server/recipes/web-image";
+import { RecipeTile } from "../recipe-tile";
+import { SofraBoard } from "../sofra-board";
+import { SplitWords } from "../split-heading";
+import { StitchStar } from "../stitch";
 
 export const metadata: Metadata = {
   title: "Любими рецепти | Chefo's Recipes",
@@ -9,74 +14,45 @@ export const metadata: Metadata = {
 };
 
 export default async function FavoritesPage() {
-  const favoriteRecipes = await getCurrentUserFavoriteRecipes();
+  // Same card as the catalog: a manual recipe gets its photograph the same way the catalog finds it.
+  const favoriteRecipes = (await Promise.all((await getCurrentUserFavoriteRecipes()).map(recipe => withWebRecipeImage(recipe)))).map(toCardRecipe);
 
-  return (
-    <section className="page-shell space-y-8">
-      <div className="rounded-none border border-neutral-200 bg-surface p-5  sm:p-6">
-        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-          Chefo&apos;s Recipes
-        </p>
-        <h1 className="mt-2 text-4xl font-bold leading-tight text-neutral-950 sm:text-[2.875rem]">
-          Любими рецепти
-        </h1>
-        <p className="mt-3 max-w-2xl text-base leading-7 text-neutral-600">
-          Тук ще се пазят рецептите, които искаш да приготвиш по-късно.
-        </p>
-      </div>
+  return <>
+    <div className="wrap pg-head">
+      <p className="eyebrow rv">Chefo&apos;s Recipes</p>
+      <h1 data-split><SplitWords text="Любими" /> <em><SplitWords start={1} text="рецепти" /></em></h1>
+      <p className="lead rv">Тук ще се пазят рецептите, които искаш да приготвиш по-късно.</p>
+    </div>
 
-      <Link
-        className="inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
-        href="/catalog"
-      >
-        Разгледай каталога
-      </Link>
-
+    <div className="wrap fav-body">
       {favoriteRecipes.length > 0 ? (
-        <section className="space-y-5">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-              Любими идеи
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-neutral-950 sm:text-[2.125rem]">
-              Твоите запазени рецепти
-            </h2>
+        <section aria-labelledby="favorites-list">
+          <div className="fav-top">
+            <div>
+              <p className="eyebrow">Любими идеи</p>
+              <h2 id="favorites-list">Твоите запазени <em>рецепти</em></h2>
+            </div>
+            <Link className="link" href="/catalog">Всички рецепти <span aria-hidden="true">→</span></Link>
           </div>
-
-          <div className="grid items-stretch gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="cards">
             {favoriteRecipes.map((recipe, index) => (
-              <RecipeCard
-                className="min-h-[440px]"
-                favoriteRedirectTo="/favorites"
-                isFavorited
-                key={recipe.slug}
-                recipe={recipe}
-                showFavoriteAction
-                tagLimit={2}
-                visualIndex={index}
-              />
+              <RecipeTile index={index} key={recipe.slug} recipe={recipe} redirectTo="/favorites" saved />
             ))}
           </div>
         </section>
       ) : (
-        <section className="info-note rounded-none p-6 text-center ">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Още няма рецепти
-          </p>
-          <h2 className="mt-2 text-2xl font-bold text-neutral-950">
-            Все още няма запазени рецепти
-          </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-neutral-600">
-            Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.
-          </p>
-          <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
-            href="/catalog"
-          >
-            Разгледай каталога
-          </Link>
+        <section aria-labelledby="favorites-empty" className="fav-empty">
+          <div className="fe-tx">
+            <p className="eyebrow rv">Още няма рецепти</p>
+            <h2 data-split id="favorites-empty"><SplitWords text="Все още няма" /> <em><SplitWords start={3} text="запазени рецепти" /></em></h2>
+            <p className="t rv">Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.</p>
+            <div className="rv"><Link className="btn fill" href="/catalog">Всички рецепти <span aria-hidden="true" className="ar">→</span></Link></div>
+          </div>
+          <div aria-hidden="true" className="fe-table-wrap">
+            <SofraBoard center={<StitchStar />} className="fe-table" />
+          </div>
         </section>
       )}
-    </section>
-  );
+    </div>
+  </>;
 }

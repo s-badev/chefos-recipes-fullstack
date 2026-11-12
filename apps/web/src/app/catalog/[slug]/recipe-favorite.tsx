@@ -6,7 +6,7 @@ import { useFavorite } from "../../../hooks/use-favorite";
 const HEART = "M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z";
 
 /**
- * The recipe page's large favourite toggle. Same form contract and server action as FavoriteButton
+ * The recipe page's large favourite toggle. Same form contract and server action as CardHeart
  * (recipeSlug, redirectTo, saved); a guest is sent to /login with a safe return path by the action.
  */
 export function RecipeFavorite({ slug, saved, redirectTo }: { slug: string; saved: boolean; redirectTo: string }) {
