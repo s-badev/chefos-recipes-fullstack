@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="bg"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Chefo's макет на движението</title>
 <meta name="description" content="Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден.">
 <meta name="claude:viewport-fit-sides" content="cover">
@@ -211,13 +211,15 @@ img{display:block;max-width:100%}
 .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent-text);opacity:0;pointer-events:none}
 .heart.pop .ring{animation:ring calc(560ms*var(--k)) var(--ease-out)}
 @keyframes ring{0%{opacity:.9;transform:scale(.5)}100%{opacity:0;transform:scale(1.9)}}
-.heart-lg{position:static;width:auto;height:52px;border-radius:0;border:1px solid var(--ink);padding:0 22px;display:inline-flex;gap:10px;font-weight:600;font-size:.95rem}
-.heart-lg .ring{border-radius:0}
+/* Етап В: position relative + overflow hidden + isolation, so the .btn hover fill stays inside the button. */
+.heart-lg{position:relative;inset:auto;overflow:hidden;isolation:isolate;width:auto;height:52px;border-radius:0;border:1px solid var(--ink);padding:0 22px;display:inline-flex;gap:12px;font-weight:600;font-size:.95rem}
+.heart-ico{position:relative;display:inline-grid;place-items:center;width:22px;height:22px}
+.heart-lg .ring{border-radius:50%}
 
 /* ---------- Рецепта ---------- */
 .recipe-hero{position:relative;height:clamp(460px,80svh,780px);overflow:hidden;color:#fff;background:#000}
 .recipe-hero .hero-par img{animation:none}
-.recipe-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78),rgba(0,0,0,.1) 60%,rgba(0,0,0,.55))}
+.recipe-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.84),rgba(0,0,0,.66) 42%,rgba(0,0,0,.3) 70%,rgba(0,0,0,.55) 84%,rgba(0,0,0,.74))}
 .recipe-hero .hero-in{padding-bottom:clamp(24px,4vw,56px)}
 .recipe-hero h1{font-family:var(--serif);font-weight:var(--sw);font-size:calc(var(--h1)*var(--fs)*.85);line-height:.95;letter-spacing:var(--tr);max-width:12ch;text-wrap:balance}
 .recipe-hero .eyebrow{color:#fff;margin-bottom:16px;display:block}
@@ -228,16 +230,32 @@ img{display:block;max-width:100%}
 .rbody{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:clamp(24px,5vw,80px);padding-block:clamp(56px,8vw,120px)}
 .ings{grid-column:1 / span 4;position:sticky;top:96px;align-self:start}
 .ings h2,.steps-h{font-family:var(--serif);font-weight:var(--sws);font-size:calc(2.2rem*var(--fs));line-height:1.1;letter-spacing:var(--tr);margin-bottom:20px}
-.ing{display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer;min-height:52px}
-.ing input{position:absolute;opacity:0;width:1px;height:1px}
-.box{flex:none;width:22px;height:22px;border:1.5px solid var(--ink);margin-top:2px;position:relative;transition:background-color calc(180ms*var(--k))}
+.ing{position:relative;display:flex;align-items:flex-start;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer;min-height:52px}
+.ing input{position:absolute;z-index:1;left:0;top:14px;width:22px;height:22px;margin:0;opacity:0;cursor:pointer}
+.box{flex:none;width:22px;height:22px;border:1.5px solid var(--ink);margin-top:2px;position:relative}
+.box::before{content:"";position:absolute;inset:0;background:var(--accent);transform:scale(0);transition:transform calc(180ms*var(--k)) var(--ease-out)}
 .box::after{content:"";position:absolute;left:6px;top:1px;width:6px;height:12px;border:solid var(--accent-ink);border-width:0 2px 2px 0;transform:rotate(45deg) scale(0);transition:transform calc(260ms*var(--k)) var(--ease-spring)}
 .ing:hover .box{background:color-mix(in srgb,var(--ink) 10%,transparent)}
-.ing input:checked+.box{background:var(--accent);border-color:var(--accent)}
+.ing input:checked+.box::before{transform:scale(1)}
 .ing input:checked+.box::after{transform:rotate(45deg) scale(1)}
 .ing input:focus-visible+.box{outline:3px solid var(--accent-text);outline-offset:3px}
-.ing-t{background:linear-gradient(currentColor,currentColor) no-repeat 0 58%/0 1.5px;transition:background-size calc(340ms*var(--k)) var(--ease-out),color calc(300ms*var(--k))}
-.ing input:checked~.ing-t{background-size:100% 1.5px;color:var(--muted)}
+.ing-t{position:relative;display:block;flex:1;min-width:0;line-height:1.5}
+.ing-b{display:block;transition:opacity calc(300ms*var(--k)) var(--ease-out)}
+.ing-s{position:absolute;inset:0;color:var(--muted);text-decoration:line-through;text-decoration-thickness:1.5px;clip-path:inset(0 100% 0 0);transition:clip-path calc(340ms*var(--k)) var(--ease-out);pointer-events:none;user-select:none}
+.ing input:checked~.ing-t .ing-b{opacity:0}
+.ing input:checked~.ing-t .ing-s{clip-path:inset(0 0 0 0)}
+/* Етап В: брояч „3 от 8“ до заглавието и „Изчисти отметките“, видим само при отметки. */
+.ings-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px}
+.ings-head h2{margin-bottom:0}
+.ings-count{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ing-clear{position:relative;min-height:44px;margin-top:12px;padding:0;border:0;background:none;color:var(--ink);font:inherit;font-size:.9rem;font-weight:600;cursor:pointer}
+.ing-clear::after{content:"";position:absolute;left:0;right:0;bottom:10px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform calc(450ms*var(--k)) var(--ease-out)}
+.ing-clear:hover::after,.ing-clear:focus-visible::after{transform:scaleX(1)}
+/* Етап В: бяло описание под заглавието (до 2 реда), тагове като обикновен текст, категорията е линк. */
+.rh-desc{max-width:52ch;margin-top:clamp(14px,2vw,24px);font-size:1.05rem;line-height:1.55;color:#fff;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.recipe-hero .eyebrow a{color:inherit;text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px}
+.recipe-hero .eyebrow a:hover{background-size:100% 1px}
+.meta-tags{padding-top:20px;color:var(--muted);font-size:.95rem}
 .steps{grid-column:5 / span 8;position:relative;padding-left:0}
 .steps ol{position:relative}
 .st{display:grid;grid-template-columns:clamp(56px,9vw,128px) minmax(0,1fr);column-gap:clamp(16px,3vw,40px);padding:clamp(24px,3vw,44px) 0;border-bottom:1px solid var(--line)}
@@ -350,6 +368,7 @@ img{display:block;max-width:100%}
   .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
   .meta>div:nth-child(3){border-left:0;padding-left:0}.meta>div:nth-child(n+3){border-top:1px solid var(--line)}
   .rbody{display:block}.ings{position:static;margin-bottom:56px}.prog{display:none}
+  .actions{flex-direction:column;align-items:stretch}.actions .btn{width:100%;justify-content:center}
   .bar .wrap{gap:12px}.count{display:none}
   .nav .hide-s{display:none}
   .nav{gap:12px;font-size:.88rem}
@@ -380,7 +399,7 @@ img{display:block;max-width:100%}
 
 <header class="hdr">
   <div class="wrap">
-    <a class="logo" href="#home" data-nav="home" aria-label="Chefo's Recipes — начало"><span class="logo-kicker">Домашна кухня</span><span class="logo-name">Chefo's <em>Recipes</em></span></a>
+    <a class="logo" href="#home" data-nav="home" aria-label="Домашна кухня Chefo's Recipes – начало"><span class="logo-kicker">Домашна кухня</span> <span class="logo-name">Chefo's <em>Recipes</em></span></a>
     <nav class="nav" aria-label="Основна навигация">
       <a href="#home" data-nav="home" class="hide-s">Начало</a>
       <a href="#catalog" data-nav="catalog">Рецепти</a>
@@ -388,11 +407,11 @@ img{display:block;max-width:100%}
       <a href="#catalog" data-nav="fav">Любими <span class="favn" id="favn">1</span></a>
       <a href="#auth" data-nav="auth">Вход</a>
     </nav>
-    <button class="menu-toggle" id="mock-menu-open" type="button" aria-expanded="false" aria-controls="mock-menu" aria-label="Отвори менюто">Меню <span aria-hidden="true">☰</span></button>
+    <button class="menu-toggle" id="mock-menu-open" type="button" aria-expanded="false" aria-controls="mock-menu">Меню <span aria-hidden="true">☰</span></button>
   </div>
 </header>
 <dialog class="mock-menu" id="mock-menu" aria-label="Основна навигация">
-  <div class="wrap mock-menu-top"><span class="logo"><span class="logo-kicker">Домашна кухня</span><span class="logo-name">Chefo's <em>Recipes</em></span></span><button class="mock-menu-close" type="button" autofocus>Затвори ×</button></div>
+  <div class="wrap mock-menu-top"><span class="logo"><span class="logo-kicker">Домашна кухня</span> <span class="logo-name">Chefo's <em>Recipes</em></span></span><button class="mock-menu-close" type="button" autofocus>Затвори ×</button></div>
   <nav class="nav mock-mobile-nav" aria-label="Мобилна навигация"></nav>
 </dialog>
 
@@ -467,21 +486,25 @@ img{display:block;max-width:100%}
     <div class="hero-in"><div class="wrap">
       <span class="eyebrow" id="rcat">Салати · Nº 01</span>
       <h1 id="rt" data-split data-sp="1">Шопска салата</h1>
+      <p class="rh-desc" id="rdesc"></p>
     </div></div>
   </div>
   <div class="wrap">
     <dl class="meta" id="meta"></dl>
+    <p class="meta-tags" id="rtags"></p>
     <div class="rbody">
       <aside class="ings" aria-labelledby="ing-h">
-        <h2 id="ing-h" data-r>Продукти</h2>
+        <div class="ings-head"><h2 id="ing-h" data-r>Продукти</h2><p class="ings-count" id="ingc" aria-live="polite">0 от 8</p></div>
         <div id="ings"></div>
+        <button class="ing-clear" id="ingclr" type="button" hidden>Изчисти отметките</button>
       </aside>
       <div class="steps">
         <div class="prog" aria-hidden="true"><i id="prog"></i></div>
         <h2 class="steps-h" data-r>Начин на приготвяне</h2>
         <ol id="steps"></ol>
         <div class="actions">
-          <button class="btn heart-lg heart" type="button" id="rheart" aria-pressed="false"><span class="ring"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span id="rhl">Запази в любими</span></button>
+          <button class="btn heart-lg heart" type="button" id="rheart" aria-pressed="false"><span class="heart-ico" aria-hidden="true"><span class="ring"></span><svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg></span><span id="rhl">Запази в любими</span></button>
+          <button class="btn" type="button" onclick="window.print()">Принтирай рецептата</button>
           <a class="btn" href="#catalog" data-nav="catalog">← Назад към каталога</a>
         </div>
         <p class="rnote">Продуктите и стъпките са примерни и се пренасят от шопската салата за всички рецепти в макета.</p>
@@ -702,6 +725,9 @@ var ING=['4 зрели домата','1 краставица','2 печени ч
 var STEPS=['Нарежи доматите, краставицата, печените чушки и лука на едри парчета.','Смеси зеленчуците с магданоз, олио, оцет и малко сол.','Прехвърли салатата в чиния и настържи сиренето отгоре.','Поднеси веднага или леко охладена.'];
 var fav={'shopska-salata':true},cur='home',sel='shopska-salata',busy=false;
 var pad2=function(n){return (n<10?'0':'')+n};
+/* Етап В: описания и тагове за примера (останалите рецепти в макета ползват общ ред). */
+var DESC={'shopska-salata':'Свежа класика с домати, краставици, печени чушки, магданоз и настъргано сирене.','bob-yahniya':'Питателна супа с бял боб, лук, морков, чушка, джоджен и чубрица.'};
+var TAGS={'shopska-salata':'Свежо · Вегетарианско · Лято','bob-yahniya':'Постно · Домашно · Бюджетно'};
 var byS=function(s){return R.filter(function(r){return r.s===s})[0]};
 var idxOf=function(s){return R.indexOf(byS(s))};
 var HEART='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg>';
@@ -766,7 +792,9 @@ function buildCat(){
 function fillRecipe(s){
   var r=byS(s);sel=s;
   $('#rimg').src=IMG[s];$('#rimg').alt=r.t;
-  $('#rcat').textContent=r.c+' · Nº '+pad2(idxOf(s)+1);
+  $('#rcat').innerHTML='<a href="#catalog" data-cat="'+r.c+'">'+r.c+'</a> · Nº '+pad2(idxOf(s)+1);
+  $('#rdesc').textContent=DESC[s]||'Домашна рецепта с познати продукти и ясни стъпки.';
+  $('#rtags').textContent=TAGS[s]||'';
   var h=$('#rt');h.classList.remove('sp');h.textContent=r.t;split(h);
   var total=r.p+r.k;
   $('#meta').innerHTML=
@@ -774,7 +802,10 @@ function fillRecipe(s){
     '<div data-r style="--dl:80ms"><dt class="eyebrow">Готвене</dt><dd><b>'+(r.k===0?'Без готвене':r.k+' мин')+'</b></dd></div>'+
     '<div data-r style="--dl:160ms"><dt class="eyebrow">Порции</dt><dd><b>'+r.v+'</b></dd></div>'+
     '<div data-r style="--dl:240ms"><dt class="eyebrow">Трудност</dt><dd><b>'+r.l+'</b></dd></div>';
-  $('#ings').innerHTML=ING.map(function(t,i){return '<label class="ing" data-r style="--dl:'+(i*50)+'ms"><input type="checkbox"><span class="box"></span><span class="ing-t">'+t+'</span></label>'}).join('');
+  $('#ings').innerHTML=ING.map(function(t,i){return '<label class="ing" data-r style="--dl:'+(i<8?i*50:0)+'ms"><input type="checkbox"><span class="box" aria-hidden="true"></span><span class="ing-t"><span class="ing-b">'+t+'</span><span class="ing-s" aria-hidden="true">'+t+'</span></span></label>'}).join('');
+  var saved='';try{saved=localStorage.getItem('chefos:ingredients:'+s)||''}catch(e){/* без localStorage отметките просто не се помнят */}
+  saved.split('|').forEach(function(n){var box=$$('#ings input')[+n];if(n!==''&&box)box.checked=true});
+  ingCount();
   $('#steps').innerHTML=STEPS.map(function(t,i){return '<li class="st" data-r><span class="st-n">'+pad2(i+1)+'</span><p>'+t+'</p></li>'}).join('');
   setHeart($('#rheart'),s);
 }
@@ -784,6 +815,14 @@ function setHeart(b,s){
   if(b.id==='rheart'){$('#rhl').textContent=on?'Премахни от любими':'Запази в любими'}
   else b.setAttribute('aria-label',(on?'Премахни от любими: ':'Запази в любими: ')+r.t);
 }
+function ingCount(){
+  var all=$$('#ings input'),on=all.filter(function(b){return b.checked});
+  $('#ingc').textContent=on.length+' от '+all.length;$('#ingclr').hidden=!on.length;
+  var v=all.map(function(b,i){return b.checked?String(i):''}).filter(Boolean).join('|');
+  try{v?localStorage.setItem('chefos:ingredients:'+sel,v):localStorage.removeItem('chefos:ingredients:'+sel)}catch(e){/* без localStorage отметките просто не се помнят */}
+}
+$('#ings').addEventListener('change',ingCount);
+$('#ingclr').addEventListener('click',function(){$$('#ings input').forEach(function(b){b.checked=false});ingCount()});
 buildRail();buildIdx();buildCat();fillRecipe(sel);
 $$('[data-split]').forEach(function(el){if(!el.classList.contains('sp'))split(el)});
 
