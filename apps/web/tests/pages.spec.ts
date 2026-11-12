@@ -240,3 +240,42 @@ for (const [width, minGap, maxLines] of [[1440, 32, 2], [390, 22, 3]] as const) 
     expect(lines.at(-1)!.split(" ").length).toBeGreaterThan(1);
   });
 }
+
+for (const route of ["/", "/catalog/shopska-salata"]) {
+  for (const width of [390, 1440]) {
+    test(`axe: zero violations on ${route} at ${width}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      await page.goto(route, { waitUntil: "networkidle" });
+      expect(await axeViolations(page)).toEqual([]);
+    });
+  }
+}
+
+/** Profile and Favorites need a session: the real components with sample data in the production shell. */
+for (const [name, render] of [
+  ["Profile", async () => renderToStaticMarkup(await profile(3, "maria.petrova.recepti@example.com")())],
+  ["Favorites with recipes", async () => {
+    const { default: Favorites } = load({
+      "../../server/favorites/service": { getCurrentUserFavoriteRecipes: async () => ["shopska-salata", "tikvenik", "mekitsi"].map(slug => recipes.find(recipe => recipe.slug === slug)!) },
+      "../../server/recipes/web-image": { withWebRecipeImage: async (recipe: unknown) => recipe }
+    })(path.join(root, "src/app/favorites/page.tsx"));
+    return renderToStaticMarkup(await Favorites());
+  }],
+  ["Favorites empty", async () => {
+    const { default: Favorites } = load({
+      "../../server/favorites/service": { getCurrentUserFavoriteRecipes: async () => [] },
+      "../../server/recipes/web-image": { withWebRecipeImage: async (recipe: unknown) => recipe }
+    })(path.join(root, "src/app/favorites/page.tsx"));
+    return renderToStaticMarkup(await Favorites());
+  }]
+] as const) {
+  for (const width of [390, 1440]) {
+    test(`axe: zero violations on the rendered ${name} at ${width}`, async ({ page }) => {
+      const markup = await render();
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      await page.goto(NOT_FOUND, { waitUntil: "networkidle" });
+      await page.evaluate(html => { document.querySelector("main")!.innerHTML = html; document.title = "Профил"; }, markup);
+      expect(await axeViolations(page)).toEqual([]);
+    });
+  }
+}

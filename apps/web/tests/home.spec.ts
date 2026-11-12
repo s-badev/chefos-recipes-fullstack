@@ -9,7 +9,10 @@ const tables = sofraCategories(recipes);
 test("hero: the catalog's own count, two actions, stitched band; the title is visible at first paint", async ({ page }) => {
   // One source: the number on Home is the number the catalog shows (curated + manual admin recipes).
   await page.goto("/catalog", { waitUntil: "domcontentloaded" });
-  const total = (await page.locator("main .eyebrow").first().textContent())!.split(" · ")[0];
+  // The real heading, not the loading placeholders that stream in first.
+  const eyebrow = page.locator("main .cat-head:has(h1) .eyebrow");
+  await expect(eyebrow).toHaveText(/^\d+ рецепти? · /);
+  const total = (await eyebrow.textContent())!.split(" · ")[0];
   expect(total).toMatch(/^\d+ рецепти?$/);
   expect(Number.parseInt(total, 10)).toBeGreaterThanOrEqual(recipes.length);
   await page.goto("/", { waitUntil: "domcontentloaded" });
