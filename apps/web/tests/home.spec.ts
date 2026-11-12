@@ -1,20 +1,95 @@
 import { expect, test } from "@playwright/test";
 import { recipes } from "../src/data/recipes";
+import { sofraCategories, todayRecipes } from "../src/lib/sofra";
+import { weeklyRecipe } from "../src/lib/weekly";
 import { watchProblems } from "./helpers";
 
-const categoryCount = new Set(recipes.map((recipe) => recipe.category)).size;
+const tables = sofraCategories(recipes);
+
+test("hero: curated count, two actions, stitched band; the title is visible at first paint", async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+  const hero = page.locator(".hero");
+  await expect(hero.locator(".eyebrow")).toHaveText(`Домашна кухня · ${recipes.length} подбрани рецепти`);
+  await expect(hero.getByRole("heading", { level: 1 })).toHaveText("Българска трапеза");
+  await expect(hero.getByRole("link", { name: "Към рецептите" })).toHaveAttribute("href", "/catalog");
+  await expect(hero.getByRole("link", { name: "Седни на софрата" })).toHaveAttribute("href", "#sofra");
+  await expect(hero.locator(".stitch-band")).toHaveCount(1);
+  // LCP: the title rises but never starts transparent.
+  expect(await hero.locator("h1 .wi").first().evaluate(node => getComputedStyle(node).opacity)).toBe("1");
+});
+
+test("sofra: plates from the data; click, arrows and keyboard turn the table and update the chosen category", async ({ page }) => {
+  const problems = watchProblems(page);
+  await page.goto("/", { waitUntil: "networkidle" });
+  const section = page.locator("#sofra");
+  await section.scrollIntoViewIfNeeded();
+  const plates = section.locator(".plate");
+  await expect(plates).toHaveCount(tables.length);
+  const list = section.locator(".cat-now");
+  await expect(list).toHaveAttribute("aria-live", "polite");
+
+  async function expectChosen(index: number) {
+    const table = tables[index];
+    await expect(plates.nth(index)).toHaveAttribute("aria-pressed", "true");
+    await expect(section.locator(".sofra-center b")).toHaveText(table.name);
+    await expect(list.locator(".cat-name")).toHaveText(table.name);
+    await expect(list.locator(".mini")).toHaveCount(Math.min(3, table.count));
+    await expect(list.locator(".mini").first()).toHaveAttribute("href", `/catalog/${table.recipes[0].slug}`);
+    await expect(list.getByRole("link", { name: `Всички: ${table.name.toLocaleLowerCase("bg-BG")}` })).toHaveAttribute("href", `/catalog?category=${encodeURIComponent(table.name)}`);
+    expect(await section.locator(".sofra").evaluate(node => getComputedStyle(node).getPropertyValue("--sel").trim())).toBe(String(index));
+  }
+
+  await expectChosen(0);
+  await plates.nth(2).click();
+  await expectChosen(2);
+  await section.getByRole("button", { name: "Следваща категория" }).click();
+  await expectChosen(3);
+  await section.getByRole("button", { name: "Предишна категория" }).click();
+  await expectChosen(2);
+  await plates.nth(2).focus();
+  await page.keyboard.press("ArrowRight");
+  await expectChosen(3);
+  await expect(plates.nth(3)).toBeFocused();
+  await page.keyboard.press("ArrowLeft");
+  await page.keyboard.press("ArrowLeft");
+  await expectChosen(1);
+  await expect(plates.nth(1)).toBeFocused();
+  // Only the chosen plate is in the tab order (roving focus).
+  expect(await plates.evaluateAll(nodes => nodes.filter(node => node.getAttribute("tabindex") === "0").length)).toBe(1);
+  expect(problems.pageErrors).toEqual([]);
+});
+
+test("recipe of the week and the five cards for today come from the data; the week's recipe is not repeated", async ({ page }) => {
+  await page.goto("/", { waitUntil: "networkidle" });
+  const weekly = weeklyRecipe(recipes).recipe;
+  const week = page.locator(".week");
+  await expect(week.getByRole("heading", { level: 2 })).toHaveText(weekly.title);
+  await expect(week.locator(".week-tx > p").last()).toHaveText(weekly.description);
+  await expect(week.locator(".facts dd").nth(1)).toHaveText(weekly.cookTimeMinutes ? `${weekly.cookTimeMinutes} мин` : "Без готвене");
+  await expect(week.getByRole("link", { name: "Виж рецептата" })).toHaveAttribute("href", `/catalog/${weekly.slug}`);
+  await expect(page.locator(".cover-n, .rn-box")).toHaveCount(0);
+
+  const today = todayRecipes(recipes, weekly.slug);
+  const cards = page.locator(".cards .card");
+  await expect(cards).toHaveCount(5);
+  await expect(cards.first()).toHaveClass(/\bbig\b/);
+  expect(await cards.locator(".cb").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")))).toEqual(today.map(recipe => `/catalog/${recipe.slug}`));
+  expect(today.some(recipe => recipe.slug === weekly.slug)).toBe(false);
+  await expect(cards.first().getByRole("button", { name: `Запази в любими: ${today[0].title}` })).toHaveAttribute("aria-pressed", "false");
+  await expect(page.getByRole("link", { name: "Всички рецепти" })).toHaveAttribute("href", "/catalog");
+});
 
 test("quote is revealed after client navigation from /login to the home page", async ({ page }) => {
   const problems = watchProblems(page);
   await page.goto("/login", { waitUntil: "networkidle" });
   await page.locator("header").getByRole("link", { name: "Домашна кухня Chefo's Recipes – начало" }).click();
   await page.waitForURL((url) => url.pathname === "/");
-  const quote = page.locator(".quote-t");
-  for (let i = 0; i < 40 && !(await quote.isVisible() && (await quote.boundingBox())!.y < 600); i++) await page.mouse.wheel(0, 300);
-  await page.waitForTimeout(1600);
+  const quote = page.locator(".story q");
+  for (let i = 0; i < 60 && !(await quote.isVisible() && (await quote.boundingBox())!.y < 600); i++) await page.mouse.wheel(0, 300);
+  await page.waitForTimeout(1800);
   const hiddenWords = await quote.evaluate((node) => [...node.querySelectorAll(".wi")].filter((w) => getComputedStyle(w).transform !== "none").length);
   expect(hiddenWords).toBe(0);
-  expect(await page.locator(".quote").evaluate((node) => getComputedStyle(node, "::before").clipPath)).not.toContain("100%");
+  await expect(page.locator(".story cite")).toHaveText("Домашната кухня");
   expect(problems.pageErrors).toEqual([]);
 });
 
@@ -25,7 +100,7 @@ test.describe("reduced motion", () => {
     await page.goto("/", { waitUntil: "networkidle" });
     await expect(page.locator("html")).toHaveAttribute("data-motion", "off");
     const hidden = await page.evaluate(() =>
-      [...document.querySelectorAll<HTMLElement>("h1, h2, .quote-t, [data-r], .wi, [data-mask] .mk")].filter((node) => {
+      [...document.querySelectorAll<HTMLElement>("h1, h2, q, .rv, .wi, .mask .mk")].filter((node) => {
         const style = getComputedStyle(node);
         return style.opacity === "0" || (node.classList.contains("wi") && style.transform !== "none") || (style.clipPath !== "none" && style.clipPath !== "");
       }).length
@@ -34,80 +109,11 @@ test.describe("reduced motion", () => {
   });
 });
 
-test("category rail: count from data, arrows switch off at the ends, Home/End keys", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  const rail = page.locator("#category-rail");
-  const back = page.getByRole("button", { name: "Назад по категориите" });
-  const next = page.getByRole("button", { name: "Напред по категориите" });
-  await expect(rail.locator("a")).toHaveCount(categoryCount);
-  await rail.scrollIntoViewIfNeeded();
-  await expect(back).toBeDisabled();
-  await expect(next).toBeEnabled();
-
-  await rail.focus();
-  await page.keyboard.press("End");
-  await expect(next).toBeDisabled();
-  await expect(back).toBeEnabled();
-  await expect(page.locator("#rail-status")).toContainText(`${String(categoryCount).padStart(2, "0")}`);
-
-  await page.keyboard.press("Home");
-  await expect(back).toBeDisabled();
-  expect(await rail.evaluate((node) => node.scrollLeft)).toBe(0);
-
-  const firstTile = rail.locator("a").first();
-  await expect(firstTile).toHaveAttribute("href", /\/catalog\?category=/);
-});
-
-test("cover: no big numeral; title, description, meta line and button beside the photo", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.locator(".cover-n")).toHaveCount(0);
-  const text = page.locator(".cover-text");
-  await expect(text.locator(".eyebrow")).toHaveText("Рецепта на седмицата");
-  await expect(text.locator(".cover-d")).not.toBeEmpty();
-  await expect(text.locator(".cover-m")).toHaveText(/^.+ · (\d+ мин|Без готвене) · \d+ порци[яи]$/);
-  await text.scrollIntoViewIfNeeded();
-  const [textBox, photoBox] = await Promise.all([text.boundingBox(), page.locator(".cover-photo").boundingBox()]);
-  expect(textBox!.x + textBox!.width).toBeLessThanOrEqual(photoBox!.x);
-  expect(Math.abs(textBox!.y + textBox!.height - (photoBox!.y + photoBox!.height))).toBeLessThanOrEqual(2);
-});
-
-for (const width of [390, 768]) {
-  test(`cover at ${width}px: full-width photo, text block directly under it`, async ({ page }) => {
+test("no horizontal scroll on the home page from 360 to 1920", async ({ page }) => {
+  for (const width of [360, 390, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/", { waitUntil: "networkidle" });
-    const photo = page.locator(".cover-photo");
-    await photo.scrollIntoViewIfNeeded();
-    const [photoBox, textBox] = await Promise.all([photo.boundingBox(), page.locator(".cover-text").boundingBox()]);
-    // Full width of the content column (the page gutters follow clamp(16px, 4vw, 56px)).
-    const content = await page.locator(".cover .wrap").first().evaluate(node => { const style = getComputedStyle(node); return node.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight); });
-    expect(photoBox!.width).toBeGreaterThanOrEqual(content - 2);
-    expect(photoBox!.height).toBeGreaterThan(200);
-    const gap = textBox!.y - (photoBox!.y + photoBox!.height);
-    expect(gap).toBeGreaterThanOrEqual(0);
-    expect(gap).toBeLessThanOrEqual(40);
-  });
-}
-
-test("index: no counter, heading and button in the side column; hover shifts the title and the preview never covers the row", async ({ page }) => {
-  await page.goto("/", { waitUntil: "networkidle" });
-  await expect(page.locator("#index-counter, .rn-box")).toHaveCount(0);
-  await expect(page.locator("#index-title")).toHaveText("Какво да сготвиш днес");
-  await expect(page.locator(".idx-side").getByRole("link", { name: "Всички рецепти →" })).toBeVisible();
-
-  const rows = page.locator("#recipe-index .row");
-  for (const index of [0, 3, 7]) {
-    const row = rows.nth(index);
-    await row.scrollIntoViewIfNeeded();
-    const box = (await row.locator(".row-t").boundingBox())!;
-    await page.mouse.move(box.x + 40, box.y + box.height / 2);
-    await page.waitForTimeout(900);
-    const shift = await row.locator(".row-t").evaluate((node) => new DOMMatrix(getComputedStyle(node).transform).m41);
-    expect(shift).toBeGreaterThan(10);
-    await expect(page.locator("#recipe-preview")).toHaveClass(/\bon\b/);
-    const preview = (await page.locator("#recipe-preview").boundingBox())!;
-    const title = (await row.locator(".row-t").boundingBox())!;
-    const overlaps = preview.x < title.x + title.width && preview.x + preview.width > title.x && preview.y < title.y + title.height && preview.y + preview.height > title.y;
-    expect(overlaps).toBe(false);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `overflow at ${width}`).toBe(0);
   }
 });
 

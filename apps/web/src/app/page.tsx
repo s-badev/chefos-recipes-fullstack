@@ -1,81 +1,122 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { recipes } from "../data/recipes";
 import { webImageSrc } from "../lib/images";
-import { neuterCount, summarizeCategories } from "../lib/categories";
-import { formatTotalTime, servingsLabel } from "../lib/format";
-import { traditionQuote } from "../lib/landing-content";
+import { categoryHref } from "../lib/categories";
+import { toCardRecipe } from "../lib/catalog";
+import { formatCookTime, formatTotalTime, recipeCountLabel } from "../lib/format";
+import { landingQuote } from "../lib/landing-content";
+import { hasRecipePhoto } from "../lib/recipe-detail";
+import { sofraCategories, todayRecipes } from "../lib/sofra";
 import { weeklyRecipe } from "../lib/weekly";
-import { CategoryRail } from "./category-rail";
-import { EditorialTitle, SplitWords } from "./split-heading";
+import { getCurrentUserFavoriteSlugs } from "../server/favorites/service";
+import { RecipeTile, type TileVariant } from "./recipe-tile";
+import { SofraTable } from "./sofra-table";
+import { SplitWords } from "./split-heading";
+import { StitchBand, StitchStar } from "./stitch";
 
-export const revalidate = 3600;
-const capitalize = (word: string) => word.charAt(0).toLocaleUpperCase("bg-BG") + word.slice(1);
+/** The five "today" cards: one large on the left, four smaller on the right (as in the mock). */
+const TODAY_LAYOUT: TileVariant[] = ["big", "half", "half", "half", "half"];
 
-export default function HomePage() {
-  const weekly = weeklyRecipe(recipes);
-  const recipe = weekly.recipe;
-  const index = recipes.slice(0, 8);
-  const [quoteBefore, quoteAfter] = traditionQuote.split("вкус");
-  const categories = summarizeCategories(recipes);
-  const countWord = neuterCount(categories.length);
+export default async function HomePage() {
+  const favoriteSlugs = new Set(await getCurrentUserFavoriteSlugs());
+  const weekly = weeklyRecipe(recipes).recipe;
+  const today = todayRecipes(recipes, weekly.slug).map(toCardRecipe);
+  const image = (recipe: { slug: string; imageSrc?: string }) => (hasRecipePhoto(recipe) ? webImageSrc(recipe.imageSrc!) : undefined);
+  const plates = sofraCategories(recipes).map(category => ({
+    name: category.name,
+    countLabel: recipeCountLabel(category.count),
+    href: categoryHref(category.name),
+    image: image(category.cover),
+    recipes: category.recipes.slice(0, 3).map(recipe => ({ slug: recipe.slug, title: recipe.title, image: image(recipe), time: formatTotalTime(recipe.prepTimeMinutes, recipe.cookTimeMinutes) }))
+  }));
+  const bakes = weekly.tags.includes("С печене");
 
   return <>
-    <section className="hero" aria-labelledby="landing-title" data-hero data-zoom>
-      <div className="hero-par" data-par="0.18"><div className="zoom">
-        <Image src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} alt="Баница със сирене и шопска салата на българската трапеза" className="ph" fill priority sizes="100vw" />
-      </div></div>
-      <div className="hero-in"><div className="wrap">
-        <h1 id="landing-title" data-split><SplitWords text="Българска" /> <em><SplitWords text="трапеза" start={1}/></em></h1>
-        <div className="hero-sub">
-          <span className="eyebrow">Nº 01–{String(recipes.length).padStart(2, "0")} · подбрани рецепти</span>
-          <a className="eyebrow" href="#weekly">Прелисти <span className="arrow" aria-hidden="true">↓</span></a>
+    <section className="hero" aria-labelledby="landing-title" data-hero>
+      <div className="hero-ph">
+        <Image alt="Баница със сирене и шопска салата на трапезата" fill priority sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
+      </div>
+      <div className="wrap hero-in">
+        <p className="eyebrow rv">Домашна кухня · {recipes.length} подбрани рецепти</p>
+        <h1 data-split id="landing-title"><SplitWords text="Българска" /> <em><SplitWords start={1} text="трапеза" /></em></h1>
+        <div className="hero-row">
+          <p className="rv" style={{ "--d": "500ms" } as CSSProperties}>Рецепти, по които се готви у дома: познати продукти, точно време и стъпки, които се следват спокойно.</p>
+          <div className="hero-cta rv" style={{ "--d": "650ms" } as CSSProperties}>
+            <Link className="btn fill" href="/catalog">Към рецептите <span aria-hidden="true" className="ar">→</span></Link>
+            <a className="btn out" href="#sofra">Седни на софрата <span aria-hidden="true" className="ar">↓</span></a>
+          </div>
         </div>
-      </div></div>
+        <StitchBand />
+      </div>
     </section>
 
-    <section className="cover" id="weekly" aria-labelledby="cover-title">
-      <div className="wrap"><div className="cover-grid">
-        <div className="cover-text">
-          <p className="eyebrow" data-r>Рецепта на седмицата</p>
-          <h2 className="cover-t" id="cover-title" data-split><EditorialTitle text={recipe.title}/></h2>
-          <p className="cover-d" data-r>{recipe.description}</p>
-          <p className="cover-m" data-r>{recipe.category} · {formatTotalTime(recipe.prepTimeMinutes, recipe.cookTimeMinutes)} · {servingsLabel(recipe.servings)}</p>
-          <div data-r><Link className="btn" href={`/catalog/${recipe.slug}`}>Виж рецептата →</Link></div>
+    <section aria-labelledby="sofra-title" className="sec" id="sofra">
+      <SofraTable
+        intro={<>
+          <p className="eyebrow rv">Шест ястия, шест повода</p>
+          <h2 className="sec-h" data-split id="sofra-title"><SplitWords text="Седни на" /> <em><SplitWords start={2} text="софрата" /></em></h2>
+          <p className="lead rv">Завърти софрата и избери с какво да започнеш: салата за лятна вечер, чорба за студен ден или нещо сладко за неделя.</p>
+        </>}
+        plates={plates}
+      />
+    </section>
+
+    <section aria-labelledby="week-title" className="sec">
+      <div className="wrap week">
+        <div className="week-ph mask">
+          <Link aria-label={weekly.title} className="mk" href={`/catalog/${weekly.slug}`}>
+            {image(weekly) ? <Image alt="" fill sizes="(max-width: 1000px) 100vw, 760px" src={image(weekly)!} /> : <span className="ci-empty"><StitchStar /></span>}
+          </Link>
+          <StitchBand size={2} />
         </div>
-        <Link className="cover-photo" href={`/catalog/${recipe.slug}`} data-mask aria-label={recipe.title}>
-          <span className="mk"><Image src={webImageSrc(recipe.imageSrc!)} alt={recipe.imageAlt ?? recipe.title} className="ph" fill sizes="(max-width: 820px) calc(100vw - 32px), (max-width: 1360px) 66vw, 870px" /></span>
-        </Link>
-      </div></div>
+        <div className="week-tx">
+          <p className="eyebrow rv">Рецепта на седмицата</p>
+          <h2 data-split id="week-title"><WeeklyTitle title={weekly.title} /></h2>
+          <p className="rv">{weekly.description}</p>
+          <dl className="facts rv">
+            <div><dt>Подготовка</dt><dd>{weekly.prepTimeMinutes} мин</dd></div>
+            <div><dt>{bakes ? "Печене" : "Готвене"}</dt><dd className={weekly.cookTimeMinutes ? undefined : "word"}>{formatCookTime(weekly.cookTimeMinutes)}</dd></div>
+            <div><dt>Порции</dt><dd>{weekly.servings}</dd></div>
+          </dl>
+          <div className="rv"><Link className="btn fill" href={`/catalog/${weekly.slug}`}>Виж рецептата <span aria-hidden="true" className="ar">→</span></Link></div>
+        </div>
+      </div>
     </section>
 
-    <section aria-labelledby="rail-title">
-      <CategoryRail categories={categories} heading={
-        <h2 className="sec-h" id="rail-title" data-split><SplitWords text={capitalize(countWord)}/> <em><SplitWords text="ястия," start={1}/></em> <SplitWords text={`${countWord} настроения`} start={2}/></h2>
-      }/>
-    </section>
-
-    <section className="quote" aria-labelledby="tradition-title">
+    <section aria-labelledby="today-title" className="sec">
       <div className="wrap">
-        <h2 className="eyebrow" id="tradition-title" data-r>За традицията</h2>
-        <p className="quote-t" data-split><SplitWords text={quoteBefore.trim()}/> <em><SplitWords text="вкус" start={7}/></em><SplitWords text={quoteAfter} start={7}/></p>
+        <div className="sec-top">
+          <h2 className="sec-h" data-split id="today-title"><SplitWords text="Какво да сготвиш" /> <em><SplitWords start={3} text="днес" /></em></h2>
+          <p className="lead rv">Пет рецепти за тази седмица: от бърза вечеря до ястие, което се приготвя бавно и се яде дълго.</p>
+        </div>
+        <div className="cards">
+          {today.map((recipe, index) => (
+            <RecipeTile index={index} key={recipe.slug} recipe={recipe} redirectTo="/" saved={favoriteSlugs.has(recipe.slug)} variant={TODAY_LAYOUT[index]} />
+          ))}
+        </div>
+        <div className="more rv"><Link className="btn out" href="/catalog">Всички рецепти <span aria-hidden="true" className="ar">→</span></Link></div>
       </div>
     </section>
 
-    <section className="wrap idx" aria-labelledby="index-title">
-      <div className="idx-side">
-        <p className="eyebrow">Съдържание</p>
-        <h2 className="sec-h idx-h" id="index-title" data-split><SplitWords text="Какво да сготвиш"/> <em><SplitWords text="днес" start={3}/></em></h2>
-        <div data-r><Link className="btn solid" href="/catalog">Всички рецепти →</Link></div>
+    <section aria-labelledby="story-title" className="story">
+      <h2 className="sr-only" id="story-title">За традицията</h2>
+      <div className="story-bg"><Image alt="" fill sizes="100vw" src={webImageSrc("/images/recipes/kavarma-sas-svinsko.png")} /></div>
+      <div className="wrap">
+        <div className="rv"><StitchStar /></div>
+        <blockquote>
+          <q data-split><SplitWords text={landingQuote.before} /> <em><SplitWords start={landingQuote.before.split(" ").length} text={landingQuote.italic} /></em> <SplitWords start={7} text={landingQuote.after} /></q>
+          <cite className="rv">{landingQuote.signature}</cite>
+        </blockquote>
       </div>
-      <ul className="idx-list" id="recipe-index">
-        {index.map((item, i) => <li key={item.slug}><Link className="row" href={`/catalog/${item.slug}`} data-preview={item.slug}>
-          <span className="row-n">Nº {String(i + 1).padStart(2, "0")}</span><span className="row-t">{item.title}</span><span className="row-m">{item.category} · {formatTotalTime(item.prepTimeMinutes, item.cookTimeMinutes)}</span>
-        </Link></li>)}
-      </ul>
     </section>
-    <div className="preview" id="recipe-preview" aria-hidden="true">
-      {index.map(item => <Image key={item.slug} data-preview-image={item.slug} hidden src={webImageSrc(item.imageSrc!)} alt="" width={300} height={225} sizes="300px"/>)}
-    </div>
   </>;
+}
+
+/** "Баница със <em>сирене</em>": the last word of the weekly title in italics. */
+function WeeklyTitle({ title }: { title: string }) {
+  const words = title.split(" ");
+  const last = words.pop()!;
+  return <>{words.length ? <><SplitWords text={words.join(" ")} />{" "}</> : null}<em><SplitWords start={words.length} text={last} /></em></>;
 }

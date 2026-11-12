@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const quote = /не се готви по мярка/;
+const quote = /не се готви по книга/;
 
 test("content becomes visible when the app JS chunks fail to load", async ({ page }) => {
   // Block every client chunk except webpack's runtime: MotionRoot never starts.
@@ -9,11 +9,11 @@ test("content becomes visible when the app JS chunks fail to load", async ({ pag
   await page.waitForTimeout(3200);
 
   await expect(page.locator("html")).not.toHaveAttribute("data-motion", /.*/);
-  const quoteText = page.locator(".quote-t");
+  const quoteText = page.locator(".story q");
   await quoteText.scrollIntoViewIfNeeded();
   await expect(quoteText).toHaveText(quote);
   const hidden = await page.evaluate(() =>
-    [...document.querySelectorAll<HTMLElement>("h1, h2, .quote-t, [data-r], .wi")].filter((node) => {
+    [...document.querySelectorAll<HTMLElement>("h1, h2, .story q, .rv, .wi")].filter((node) => {
       const style = getComputedStyle(node);
       return style.opacity === "0" || style.visibility === "hidden" || (style.transform !== "none" && node.classList.contains("wi"));
     }).length
@@ -28,9 +28,9 @@ test.describe("without JavaScript", () => {
     await page.goto("/");
     await expect(page.locator("html")).not.toHaveAttribute("data-motion", /.*/);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Българска/);
-    await expect(page.locator(".quote-t")).toHaveText(quote);
+    await expect(page.locator(".story q")).toHaveText(quote);
     const hidden = await page.evaluate(() =>
-      [...document.querySelectorAll<HTMLElement>("h1, h2, .quote-t, [data-r], .wi")].filter((node) => getComputedStyle(node).opacity === "0").length
+      [...document.querySelectorAll<HTMLElement>("h1, h2, .story q, .rv, .wi")].filter((node) => getComputedStyle(node).opacity === "0").length
     );
     expect(hidden).toBe(0);
   });
