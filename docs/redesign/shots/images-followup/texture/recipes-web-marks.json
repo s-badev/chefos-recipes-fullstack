@@ -1,0 +1,275 @@
+[
+  {
+    "file": "baklava-s-orehi.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.245,
+    "weakestQuadrant": 0.187
+  },
+  {
+    "file": "banitsa-s-praz.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1869,
+      "top": 1362,
+      "width": 75,
+      "height": 75
+    },
+    "confidence": 0.578,
+    "weakestQuadrant": 0.492
+  },
+  {
+    "file": "banitsa-sas-sirene.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.155,
+    "weakestQuadrant": 0.044
+  },
+  {
+    "file": "bob-chorba.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.282,
+    "weakestQuadrant": 0.161
+  },
+  {
+    "file": "hero-banitsa-shopska-salad.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1874,
+      "top": 1367,
+      "width": 65,
+      "height": 65
+    },
+    "confidence": 0.586,
+    "weakestQuadrant": 0.444
+  },
+  {
+    "file": "kavarma-sas-svinsko.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.194,
+    "weakestQuadrant": 0.104
+  },
+  {
+    "file": "krem-karamel.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.203,
+    "weakestQuadrant": 0.058
+  },
+  {
+    "file": "kyufteta-na-skara.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.186,
+    "weakestQuadrant": 0.05
+  },
+  {
+    "file": "mekitsi.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.145,
+    "weakestQuadrant": 0.008
+  },
+  {
+    "file": "mish-mash.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.319,
+    "weakestQuadrant": 0.139
+  },
+  {
+    "file": "musaka-s-kartofi.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.299,
+    "weakestQuadrant": 0.096
+  },
+  {
+    "file": "omlet-sas-sirene.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.156,
+    "weakestQuadrant": 0.041
+  },
+  {
+    "file": "ovcharska-salata.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.266,
+    "weakestQuadrant": 0.237
+  },
+  {
+    "file": "palneni-chushki-s-oriz.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1874,
+      "top": 1367,
+      "width": 65,
+      "height": 65
+    },
+    "confidence": 0.642,
+    "weakestQuadrant": 0.549
+  },
+  {
+    "file": "parzheni-filiyki.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.128,
+    "weakestQuadrant": 0.077
+  },
+  {
+    "file": "pile-teriyaki.webp",
+    "width": 1448,
+    "height": 1086,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.179,
+    "weakestQuadrant": 0.048
+  },
+  {
+    "file": "pileshka-supa.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.174,
+    "weakestQuadrant": 0.05
+  },
+  {
+    "file": "sarmi-s-kiselo-zele.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1861,
+      "top": 1354,
+      "width": 90,
+      "height": 90
+    },
+    "confidence": 0.791,
+    "weakestQuadrant": 0.724
+  },
+  {
+    "file": "shkembe-chorba.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.164,
+    "weakestQuadrant": 0.123
+  },
+  {
+    "file": "shopska-salata.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1874,
+      "top": 1367,
+      "width": 65,
+      "height": 65
+    },
+    "confidence": 0.581,
+    "weakestQuadrant": 0.449
+  },
+  {
+    "file": "sirene-po-shopski.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.165,
+    "weakestQuadrant": 0.034
+  },
+  {
+    "file": "sladak-salam.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.368,
+    "weakestQuadrant": 0.369
+  },
+  {
+    "file": "snezhanka.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.287,
+    "weakestQuadrant": 0.189
+  },
+  {
+    "file": "tarator.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.167,
+    "weakestQuadrant": 0.014
+  },
+  {
+    "file": "tikvenik.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.286,
+    "weakestQuadrant": 0.026
+  },
+  {
+    "file": "tutmanik.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": true,
+    "bbox": {
+      "left": 1861,
+      "top": 1347,
+      "width": 90,
+      "height": 90
+    },
+    "confidence": 0.371,
+    "weakestQuadrant": 0.262
+  },
+  {
+    "file": "zeleva-salata.webp",
+    "width": 2000,
+    "height": 1493,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.161,
+    "weakestQuadrant": 0.116
+  }
+]

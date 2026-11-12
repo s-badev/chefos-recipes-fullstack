@@ -10,6 +10,13 @@ const source = path.join(root, "public/images/recipes");
 const destination = path.join(root, "public/images/recipes-web");
 await mkdir(destination, { recursive: true });
 
+// Apply only checksum-verified candidates that passed the recorded visual review.
+if (process.argv.includes("--repair-marks")) {
+  const { runTextureRepairs } = await import("./repair-image-marks.mjs");
+  await runTextureRepairs(true);
+  process.exit(0);
+}
+
 // `--atmosphere` only writes the tiny pre-blurred table photo behind every page (public/images/atmosphere.webp);
 // CSS stretches and blurs it further, so it costs well under 2 KB and never competes with the LCP image.
 if (process.argv.includes("--atmosphere")) {

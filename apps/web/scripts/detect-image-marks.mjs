@@ -20,7 +20,7 @@ export async function detectMark(input) {
   const blurred = await sharp(raw, { raw: { width: w, height: h, channels: 1 } }).blur(12).greyscale().raw().toBuffer();
   const signal = Float64Array.from(raw, (value, i) => value - blurred[i]);
   let best = { confidence: 0 };
-  // A four-ray mark occupies 2–6% of the image width. Search the entire available corner.
+  // A four-ray mark occupies 2–6% of the image width; the position tolerance is calibrated below.
   for (const exponent of [.5, .65, .8, 1]) for (let radius = 20; radius <= 44; radius += 2) {
     const size = radius * 2 + 9, center = (size - 1) / 2;
     const mask = Buffer.alloc(size * size);
@@ -70,14 +70,15 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   for (const file of (await readdir(source)).filter(file => /\.(png|webp)$/.test(file) && !file.includes("-card")).sort()) {
     rows.push({ file, ...await detectMark(path.join(source, file)) });
   }
-  const output = path.resolve(root, "../../docs/redesign/shots/images");
+  const outputArg = process.argv.find(arg => arg.startsWith("--output="))?.slice(9);
+  const output = path.resolve(root, outputArg || "../../docs/redesign/shots/images");
   await mkdir(output, { recursive: true });
   await writeFile(path.join(output, `${directory}-marks.json`), JSON.stringify(rows, null, 2) + "\n");
   console.table(rows.map(({ file, found, bbox, confidence }) => ({ file, found, bbox: bbox ? `${bbox.left},${bbox.top},${bbox.width},${bbox.height}` : "—", confidence })));
   if (process.argv.includes("--verify")) {
     const exceptions = JSON.parse(await readFile(new URL("./image-crop-exceptions.json", import.meta.url), "utf8"));
     const unexpected = rows.filter(row => row.found && !exceptions[row.file.replace(/\.webp$/, ".png")]);
-    console.log(JSON.stringify({ unexpectedMarks: unexpected.map(row => row.file), compositionExceptions: rows.filter(row => row.found && exceptions[row.file.replace(/\.webp$/, ".png")]).map(row => row.file) }));
+    console.log(JSON.stringify({ remainingMarks: rows.filter(row => row.found).map(row => row.file), unexpectedMarks: unexpected.map(row => row.file), compositionExceptions: rows.filter(row => row.found && exceptions[row.file.replace(/\.webp$/, ".png")]).map(row => row.file) }));
     if (unexpected.length) process.exitCode = 1;
   }
 }

@@ -44,10 +44,12 @@ test("the six before/after evidence images are JPEG files", async () => {
   for (const name of names) expect((await sharp(path.join(evidence, name)).metadata()).format).toBe("jpeg");
 });
 
-test("composition exceptions retain their exact original master bytes and every master keeps its dimensions", async () => {
+test("unrepaired composition exceptions retain original master bytes and every master keeps its dimensions", async () => {
   const sharp = require("sharp");
   const exceptions = JSON.parse(await readFile(path.join(root, "scripts/image-crop-exceptions.json"), "utf8"));
   const rows = JSON.parse(await readFile(path.join(evidence, "generation.json"), "utf8"));
+  const repairs = JSON.parse(await readFile(path.resolve(evidence, "../images-followup/texture/repairs.json"), "utf8"));
+  const repaired = new Set(repairs.filter((row: { applied: boolean }) => row.applied).map((row: { name: string }) => row.name + ".png"));
   expect(rows.filter((row: { crop: unknown }) => row.crop)).toHaveLength(19);
   for (const row of rows) {
     const file = row.file.replace(/\.png$/, ".webp");
@@ -55,7 +57,7 @@ test("composition exceptions retain their exact original master bytes and every 
     const current = await readFile(path.join(root, "public/images/recipes-web", file));
     const before = await sharp(original).metadata(), after = await sharp(current).metadata();
     expect([after.width, after.height], file).toEqual([before.width, before.height]);
-    if (exceptions[row.file]) expect(current.equals(original), file).toBe(true);
+    if (exceptions[row.file] && !repaired.has(row.file)) expect(current.equals(original), file).toBe(true);
   }
 });
 

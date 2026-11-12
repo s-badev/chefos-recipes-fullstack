@@ -1,0 +1,9 @@
+{
+  "banitsa-s-praz": { "apply": false, "note": "Visible discontinuity in the blue/red woven pattern; retained original master." },
+  "hero-banitsa-shopska-salad": { "apply": false, "note": "Visible break in the embroidered red/black bands; retained original master." },
+  "palneni-chushki-s-oriz": { "apply": false, "note": "Local grain sharpness and direction remain visibly different; retained original master." },
+  "sarmi-s-kiselo-zele": { "apply": false, "note": "A visible patch in the wood focus/texture remains; retained original master." },
+  "shopska-salata": { "apply": false, "note": "Visible interruption of the red flower and black line; retained original master." },
+  "tikvenik": { "apply": true, "note": "Adjacent wood grain blends without a visible seam in the full frame and enlarged review." },
+  "tutmanik": { "apply": false, "note": "Woven motif continuity remains visibly broken; retained original master." }
+}
