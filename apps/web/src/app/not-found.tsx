@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageShell } from "./page-shell";
-import { StatusView } from "./status-view";
+import { SplitWords } from "./split-heading";
+import { StatusSofra } from "./status-sofra";
 
 export const metadata: Metadata = {
   title: "Страницата не е намерена | Chefo's Recipes",
@@ -10,13 +10,14 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <PageShell>
-      <StatusView
-        eyebrow="Грешка 404"
-        title="Тази страница не е намерена"
-        text="Адресът може да е сгрешен или рецептата вече не е публична. Разгледай каталога или се върни в началото."
-        primary={<Link className="btn solid" href="/catalog">Към каталога</Link>}
-      />
-    </PageShell>
+    <StatusSofra
+      actions={<>
+        <Link className="btn fill" href="/">Към началото <span aria-hidden="true" className="ar">→</span></Link>
+        <Link className="btn out" href="/catalog">Всички рецепти</Link>
+      </>}
+      eyebrow="Грешка 404"
+      text="Адресът може да е грешен или рецептата вече да не е в каталога."
+      title={<><SplitWords text="Тази страница не е" /> <em><SplitWords start={4} text="на масата" /></em></>}
+    />
   );
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect } from "react";
-import { PageShell } from "../page-shell";
-import { StatusView } from "../status-view";
+import Link from "next/link";
+import { SplitWords } from "../split-heading";
+import { StatusSofra } from "../status-sofra";
 
 export default function CatalogError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => {
@@ -10,13 +11,14 @@ export default function CatalogError({ error, reset }: { error: Error & { digest
   }, [error]);
 
   return (
-    <PageShell>
-      <StatusView
-        eyebrow="Каталог"
-        title="Каталогът не успя да се зареди"
-        text="Възникна временен проблем при зареждането на рецептите. Опитай пак или се върни в началото."
-        primary={<button className="btn solid" type="button" onClick={reset}>Опитай пак</button>}
-      />
-    </PageShell>
+    <StatusSofra
+      actions={<>
+        <button className="btn fill" type="button" onClick={reset}>Опитай пак <span aria-hidden="true" className="ar">→</span></button>
+        <Link className="btn out" href="/">Към началото</Link>
+      </>}
+      eyebrow="Каталог"
+      text="Възникна временен проблем при зареждането на рецептите. Опитай пак или се върни в началото."
+      title={<><SplitWords text="Каталогът не успя" /> <em><SplitWords start={3} text="да се зареди" /></em></>}
+    />
   );
 }
