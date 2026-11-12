@@ -67,3 +67,23 @@ test("catalog filter: tabs with counts, sticky bar under the header, combined wi
   await expect(page).toHaveURL(/\/catalog$/);
   await expect(page.getByRole("button", { name: "Всички", exact: true })).toHaveAttribute("aria-pressed", "true");
 });
+
+test("outline buttons keep a readable label on hover (the fill does not follow the text colour)", async ({ page }) => {
+  for (const [url, name] of [["/", "Всички рецепти"], ["/catalog/shopska-salata", "Принтирай рецептата"]] as const) {
+    await page.goto(url, { waitUntil: "networkidle" });
+    const button = page.getByRole(url === "/" ? "link" : "button", { name, exact: true }).first();
+    await button.scrollIntoViewIfNeeded();
+    await button.hover();
+    await page.waitForTimeout(700);
+    const colours = await button.evaluate(node => ({ text: getComputedStyle(node).color, fill: getComputedStyle(node, "::before").backgroundColor }));
+    expect(colours.text, `${name}: text and fill differ`).not.toBe(colours.fill);
+  }
+});
+
+test("phone: the catalog tabs stay on one row that scrolls sideways", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/catalog", { waitUntil: "networkidle" });
+  const tops = await page.locator(".tab").evaluateAll(nodes => [...new Set(nodes.map(node => Math.round(node.getBoundingClientRect().top)))]);
+  expect(tops).toHaveLength(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
+});
