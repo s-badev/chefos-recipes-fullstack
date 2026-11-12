@@ -32,7 +32,7 @@ export function MotionRoot() {
     const stepsList = document.querySelector<HTMLElement>(".st-list");
     const preview = document.querySelector<HTMLElement>("#recipe-preview");
     const motionAllowed = () => !media.matches && !window.__motionTimedOut;
-    let enabled = motionAllowed(), frame = 0, heroHeight = 0, stepsTop = 0, stepsHeight = 0;
+    let enabled = motionAllowed(), frame = 0, solidAt = 0, stepsTop = 0, stepsHeight = 0;
     let viewportWidth = 0, viewportHeight = 0;
     let mx = 0, px = 0, py = 0, showing = false, lastScroll = -1;
     let activeRow: HTMLElement | null = null;
@@ -49,7 +49,10 @@ export function MotionRoot() {
     }, { threshold: .2, rootMargin: "0px 0px -6% 0px" });
 
     function measure() {
-      heroHeight = hero?.offsetHeight ?? 0;
+      // Solid once the hero's text block reaches the header (64px + 8px), so the logo never runs over
+      // the title; offsetTop ignores the title's rise transform.
+      const heroText = hero?.querySelector<HTMLElement>(".hero-in .wrap");
+      solidAt = hero ? Math.min(hero.offsetHeight, heroText ? heroText.offsetTop : hero.offsetHeight) - 72 : 0;
       if (stepsList) {
         const rect = stepsList.getBoundingClientRect();
         stepsTop = rect.top + window.scrollY; stepsHeight = rect.height;
@@ -59,7 +62,7 @@ export function MotionRoot() {
       if (activeRow) cacheRow(activeRow);
       lastScroll = -1;
     }
-    function solidHeader() { header?.classList.toggle("solid", !hero || window.scrollY > heroHeight - 72); }
+    function solidHeader() { header?.classList.toggle("solid", !hero || window.scrollY > solidAt); }
     function cacheRow(row: HTMLElement) {
       const rect = row.getBoundingClientRect();
       rowDocumentBounds = { top: rect.top + window.scrollY, bottom: rect.bottom + window.scrollY };

@@ -84,6 +84,22 @@ test("curated musaka keeps its photo; ticks strike through, survive a reload and
   expect(problems.pageErrors).toEqual([]);
 });
 
+test("keyboard: the checkbox itself shows the focus ring and Space ticks it", async ({ page }) => {
+  await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
+  const first = page.getByRole("checkbox", { name: "4 зрели домата" });
+  await first.focus();
+  await page.keyboard.press("Tab");
+  await page.keyboard.press("Shift+Tab");
+  await expect(first).toBeFocused();
+  const outline = await first.evaluate(node => { const style = getComputedStyle(node); return { style: style.outlineStyle, width: parseFloat(style.outlineWidth), opacity: style.opacity }; });
+  expect(outline.style).toBe("solid");
+  expect(outline.width).toBeGreaterThanOrEqual(2);
+  expect(outline.opacity).toBe("1");
+  await page.keyboard.press("Space");
+  await expect(first).toBeChecked();
+  await page.getByRole("button", { name: "Изчисти отметките" }).click();
+});
+
 test("ticks still work (without memory) when localStorage is blocked", async ({ page }) => {
   await page.addInitScript(() => {
     Object.defineProperty(window, "localStorage", { get() { throw new DOMException("blocked", "SecurityError"); } });
@@ -101,6 +117,12 @@ test("header is transparent over the recipe hero and solid after it; solid on pa
   await expect(header).not.toHaveClass(/\bsolid\b/);
   expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgba(0, 0, 0, 0)");
   const heroHeight = await page.locator(".recipe-hero").evaluate(node => node.getBoundingClientRect().height);
+  // Solid before the hero text reaches the header: the logo never runs over the title.
+  const textTop = await page.locator(".recipe-hero .hero-in .wrap").evaluate(node => (node as HTMLElement).offsetTop);
+  await page.evaluate(top => window.scrollTo(0, top - 60), textTop);
+  await expect(header).toHaveClass(/\bsolid\b/);
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await expect(header).not.toHaveClass(/\bsolid\b/);
   await page.mouse.wheel(0, heroHeight + 40);
   await expect(header).toHaveClass(/\bsolid\b/);
   expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
@@ -251,7 +273,7 @@ test("print: title, products and steps; no hero photo, header, footer or buttons
   await expect(page.getByRole("heading", { name: "Продукти", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Начин на приготвяне", exact: true })).toBeVisible();
   const ticked = page.locator(".ing").filter({ hasText: "1 краставица" });
-  expect(await ticked.locator(".box").evaluate(node => getComputedStyle(node, "::after").display)).toBe("none");
+  expect(await ticked.locator("input").evaluate(node => getComputedStyle(node, "::after").display)).toBe("none");
   await expect(ticked.locator(".ing-b")).toHaveCSS("opacity", "1");
   // Nothing may print faded or shifted, even right after switching to print (reveals mid-flight).
   const faded = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>(".recipe-print-page [data-r], .recipe-print-page .wi")].filter(node => {
@@ -315,6 +337,15 @@ test.describe("without JavaScript", () => {
     await box.check();
     await expect(box).toBeChecked();
   });
+});
+
+test("recipe metadata: canonical, Open Graph and Twitter card from the recipe", async ({ page }) => {
+  await page.goto("/catalog/bob-chorba");
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/catalog\/bob-chorba$/);
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "Боб чорба");
+  await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", /бял боб/);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/images\/recipes-web\/.+\.webp$/);
+  await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
 });
 
 test("unknown recipe slug answers 404 with the styled page", async ({ page }) => {

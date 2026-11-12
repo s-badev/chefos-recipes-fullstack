@@ -40,9 +40,16 @@ export async function generateMetadata({
     };
   }
 
+  const path = `/catalog/${recipe.slug}`;
+  const images = hasRecipePhoto(recipe) ? [{ url: webImageSrc(recipe.imageSrc!), alt: recipe.imageAlt ?? recipe.title }] : undefined;
   return {
+    // Absolute URLs for canonical/Open Graph: Netlify's URL at build time, else the public site.
+    metadataBase: new URL(process.env.URL ?? "https://chefos-recipes.netlify.app"),
     title: `${recipe.title} | Chefo's Recipes`,
-    description: recipe.description
+    description: recipe.description,
+    alternates: { canonical: path },
+    openGraph: { type: "article", locale: "bg_BG", siteName: "Chefo's Recipes", url: path, title: recipe.title, description: recipe.description, images },
+    twitter: { card: images ? "summary_large_image" : "summary", title: recipe.title, description: recipe.description, images: images?.map(image => image.url) }
   };
 }
 
