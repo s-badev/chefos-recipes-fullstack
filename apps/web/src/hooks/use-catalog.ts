@@ -43,7 +43,13 @@ export function useCatalog(recipes: readonly CardRecipe[], searchInput: RefObjec
 
   useEffect(() => {
     if (!ready) return;
-    if (fromHistory.current) { fromHistory.current = false; return; }
+    if (fromHistory.current) {
+      fromHistory.current = false;
+      const location = locationState();
+      // A keystroke can arrive before the mount/history effect was consumed. Only skip
+      // when state still matches that URL; never discard a newer user edit.
+      if (searchTerm === location.q && selectedCategory === location.category) return;
+    }
     const timer = setTimeout(() => {
       setQuery(searchTerm);
       const url = new URL(window.location.href);
