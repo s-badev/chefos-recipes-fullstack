@@ -1,6 +1,9 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireUser } from "../../server/auth/session";
+import { SplitWords } from "../split-heading";
+import { StitchStar } from "../stitch";
 
 export const metadata: Metadata = {
   title: "Профил | Chefo's Recipes",
@@ -18,19 +21,15 @@ export default async function ProfilePage() {
   const profileName = user.name.trim();
 
   return (
-    <section className="page-shell space-y-8">
-      <div className="rounded-none border border-neutral-200 bg-surface p-5  sm:p-6">
-        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-          Потребителски профил
-        </p>
-        <h1 className="mt-2 text-4xl font-bold leading-tight text-neutral-950 sm:text-[2.875rem]">
-          Моят профил
-        </h1>
-        <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-ink">
+    <div className="prof-body">
+      <div className="wrap pg-head">
+        <p className="eyebrow rv">Потребителски профил</p>
+        <h1 data-split><SplitWords text="Моят" /> <em><SplitWords start={1} text="профил" /></em></h1>
+        <p className="lead rv">
           {profileName ? (
             <>
-              Здравей, <strong className="font-bold text-ink">{profileName}</strong>. Тук ще
-              се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.
+              Здравей, <strong>{profileName}</strong>. Тук ще се събират твоите запазени рецепти, любими идеи и
+              кратко обобщение на профила.
             </>
           ) : (
             "Тук ще се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила."
@@ -38,38 +37,26 @@ export default async function ProfilePage() {
         </p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3 xl:gap-5">
-        {summary.map((item) => (
-          <div className="editorial-card rounded-none p-5" key={item.label}>
-            <p className="text-sm font-black text-muted">{item.label}</p>
-            <p className="mt-2 text-2xl font-bold text-neutral-950">{item.value}</p>
-          </div>
-        ))}
+      <div className="wrap">
+        <dl className="meta m3 rv">
+          {summary.map(item => (
+            <div key={item.label}><dt>{item.label}</dt><dd className="word">{item.value}</dd></div>
+          ))}
+        </dl>
+        <div className="prof-cols">
+          <section aria-labelledby="profile-favorites" className="rv">
+            <span aria-hidden="true" className="st-i"><StitchStar /></span>
+            <h2 id="profile-favorites">Обобщение на любимите</h2>
+            <p>Тук ще виждаш запазените рецепти и бързи връзки към тях, когато започнеш да добавяш любими идеи.</p>
+            <Link className="btn fill" href="/favorites">Виж любимите <span aria-hidden="true" className="ar">→</span></Link>
+          </section>
+          <section aria-labelledby="profile-settings" className="rv" style={{ "--d": "100ms" } as CSSProperties}>
+            <span aria-hidden="true" className="st-i"><StitchStar /></span>
+            <h2 id="profile-settings">Лични настройки</h2>
+            <p>Профилът ще събира предпочитания, любими рецепти и удобни преки пътища за по-бързо готвене.</p>
+          </section>
+        </div>
       </div>
-
-      <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] xl:gap-6">
-        <div className="info-card rounded-none p-5">
-          <h2 className="text-2xl font-bold text-neutral-950">Обобщение на любимите</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-ink">
-            Тук ще виждаш запазените рецепти и бързи връзки към тях, когато започнеш да добавяш
-            любими идеи.
-          </p>
-          <Link
-            className="mt-5 inline-flex rounded-none bg-brand-600 px-5 py-2.5 text-sm font-black text-white   transition-transform hover:bg-accent-hover"
-            href="/favorites"
-          >
-            Виж любимите
-          </Link>
-        </div>
-
-        <div className="info-note rounded-none p-5 ">
-          <h2 className="text-2xl font-bold text-neutral-950">Лични настройки</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-ink">
-            Профилът ще събира предпочитания, любими рецепти и удобни преки пътища за по-бързо
-            готвене.
-          </p>
-        </div>
-      </section>
-    </section>
+    </div>
   );
 }
