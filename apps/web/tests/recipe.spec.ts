@@ -125,7 +125,8 @@ test("header is transparent over the recipe hero and solid after it; solid on pa
   await expect(header).not.toHaveClass(/\bsolid\b/);
   await page.mouse.wheel(0, heroHeight + 40);
   await expect(header).toHaveClass(/\bsolid\b/);
-  expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
+  // The header fades to its solid ground (background-color transition), so wait for the end state.
+  await expect.poll(() => header.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgba(23, 15, 15, 0.82)");
   await page.mouse.wheel(0, -(heroHeight + 400));
   await expect(header).not.toHaveClass(/\bsolid\b/);
 
@@ -222,7 +223,8 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
     const hero = page.locator(".recipe-hero");
     await expect(hero).toHaveAttribute("data-photo", "none");
     await expect(hero.locator("img")).toHaveCount(0);
-    expect(await hero.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgb(17, 17, 17)");
+    // Sofra: an admin recipe without a photo sits on the solid --surface ground.
+    expect(await hero.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgb(34, 22, 20)");
     expect(await hero.locator("h1").evaluate(node => getComputedStyle(node).color)).toBe("rgb(255, 255, 255)");
     await expect(page.locator(".rh-eyebrow")).toHaveText("Салати");
     await expect(page.locator(".meta dd").nth(1)).toHaveText("Без готвене");

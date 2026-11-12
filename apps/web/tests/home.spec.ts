@@ -78,7 +78,9 @@ for (const width of [390, 768]) {
     const photo = page.locator(".cover-photo");
     await photo.scrollIntoViewIfNeeded();
     const [photoBox, textBox] = await Promise.all([photo.boundingBox(), page.locator(".cover-text").boundingBox()]);
-    expect(photoBox!.width).toBeGreaterThan(width - 40);
+    // Full width of the content column (the page gutters follow clamp(16px, 4vw, 56px)).
+    const content = await page.locator(".cover .wrap").first().evaluate(node => { const style = getComputedStyle(node); return node.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight); });
+    expect(photoBox!.width).toBeGreaterThanOrEqual(content - 2);
     expect(photoBox!.height).toBeGreaterThan(200);
     const gap = textBox!.y - (photoBox!.y + photoBox!.height);
     expect(gap).toBeGreaterThanOrEqual(0);

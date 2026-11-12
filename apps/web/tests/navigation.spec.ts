@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 import { watchProblems } from "./helpers";
 
-const menu = ["Начало", "Каталог", "За нас", "Вход"] as const;
+const menu = ["Начало", "Рецепти", "За нас", "Вход"] as const;
 const headings: Record<(typeof menu)[number], RegExp> = {
   "Начало": /Българска/,
-  "Каталог": /Каталог/,
+  "Рецепти": /рецепти/i,
   "За нас": /каталог за домашна храна/i,
   "Вход": /.+/
 };

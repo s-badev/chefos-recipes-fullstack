@@ -43,7 +43,8 @@ test("pure guards: internal next paths, registration and lean searchable cards",
 });
 
 test("debounced Cyrillic/slug search, combined category, clear and URL history", async ({ page }) => {
-  await page.goto("/catalog");
+  // Wait for hydration: the catalog reads ?q= / ?category= from the URL once it is interactive.
+  await page.goto("/catalog", { waitUntil: "networkidle" });
   const search = page.getByRole("searchbox");
   await search.fill("shopska");
   await expect(page).toHaveURL(/q=shopska/);
