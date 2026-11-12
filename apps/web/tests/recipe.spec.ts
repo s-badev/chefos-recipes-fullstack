@@ -1,0 +1,324 @@
+import { expect, test, type Page } from "@playwright/test";
+import { randomBytes, randomUUID } from "node:crypto";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { eq, getDb, users, recipes, favorites, recipeSteps, recipeTags } from "@chefos/db";
+import nextEnv from "@next/env";
+import { RECIPE_FALLBACK_IMAGE_SRC, hasRecipePhoto, missingContentNotes } from "../src/lib/recipe-detail";
+import { validCatalogHref } from "../src/lib/catalog-return";
+import { recipes as curated } from "../src/data/recipes";
+import { watchProblems } from "./helpers";
+
+nextEnv.loadEnvConfig(fileURLToPath(new URL("../", import.meta.url)));
+
+// Authentication data exists only in memory; never put credentials in traces or artifacts.
+test.use({ trace: "off" });
+// STAGE_V_SHOTS=1 also saves the screens that need a signed-in user, an admin recipe or print media.
+const shots = process.env.STAGE_V_SHOTS === "1" ? fileURLToPath(new URL("../../../docs/redesign/shots/stage-v/", import.meta.url)) : undefined;
+async function shoot(page: Page, name: string, target?: ReturnType<Page["locator"]>) {
+  if (!shots) return;
+  await mkdir(shots, { recursive: true });
+  await page.addStyleTag({ content: ".back-to-top-control{visibility:hidden!important}" });
+  if (target) await target.screenshot({ path: path.join(shots, `${name}.png`) });
+  else await page.screenshot({ path: path.join(shots, `${name}.png`), fullPage: true });
+}
+
+async function demoAdmin() {
+  const readme = await readFile(new URL("../../../README.md", import.meta.url), "utf8");
+  const line = readme.split("\n").find(row => /^\|\s*Admin\s*\|/.test(row));
+  const fields = line ? [...line.matchAll(/`([^`]+)`/g)].map(match => match[1]) : [];
+  if (fields.length < 2) throw new Error("Documented demo admin account is unavailable");
+  return { email: fields[0], password: fields[1] };
+}
+
+async function scrollThrough(page: Page) {
+  const height = await page.evaluate(() => document.documentElement.scrollHeight);
+  for (let y = 0; y < height; y += 400) { await page.mouse.wheel(0, 400); await page.waitForTimeout(60); }
+  await page.waitForTimeout(1200);
+}
+
+test("pure guards: photo decision, missing-content lines and the catalog return path", async () => {
+  const repository = await readFile(new URL("../src/server/recipes/repository.ts", import.meta.url), "utf8");
+  expect(repository).toContain(`const DEFAULT_RECIPE_IMAGE_SRC = "${RECIPE_FALLBACK_IMAGE_SRC}";`);
+  const musaka = curated.find(recipe => recipe.imageSrc === RECIPE_FALLBACK_IMAGE_SRC)!;
+  expect(hasRecipePhoto(musaka)).toBe(true);
+  expect(hasRecipePhoto({ slug: "admin-recipe-x", imageSrc: RECIPE_FALLBACK_IMAGE_SRC })).toBe(false);
+  expect(hasRecipePhoto({ slug: "admin-recipe-x", imageSrc: "/images/recipes/own.png" })).toBe(true);
+  expect(missingContentNotes(0, 0)).toEqual({ all: "Продуктите и стъпките за тази рецепта още не са добавени." });
+  expect(missingContentNotes(0, 3).ingredients).toBe("Продуктите за тази рецепта още не са добавени.");
+  expect(missingContentNotes(5, 0).steps).toBe("Стъпките за тази рецепта още не са добавени.");
+  for (const value of ["//evil.example", "https://evil.example", "/catalog/shopska-salata", "/admin", null]) expect(validCatalogHref(value)).toBe("/catalog");
+  expect(validCatalogHref("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8")).toBe("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8");
+});
+
+test("curated musaka keeps its photo; ticks strike through, survive a reload and clear", async ({ page }) => {
+  const problems = watchProblems(page);
+  await page.goto("/catalog/musaka-s-kartofi");
+  await expect(page.locator(".recipe-hero")).toHaveAttribute("data-photo", "yes");
+  await expect(page.locator(".recipe-hero img")).toHaveCount(1);
+
+  await page.goto("/catalog/shopska-salata");
+  const items = page.locator(".ing");
+  const total = await items.count();
+  await expect(page.locator(".ings-count")).toHaveText(`0 от ${total}`);
+  await expect(page.getByRole("button", { name: "Изчисти отметките" })).toHaveCount(0);
+  await page.getByRole("checkbox", { name: "4 зрели домата" }).check();
+  await page.getByRole("checkbox", { name: "1 краставица" }).check();
+  await expect(page.locator(".ings-count")).toHaveText(`2 от ${total}`);
+  await expect.poll(() => items.first().locator(".ing-s").evaluate(node => getComputedStyle(node).clipPath)).toBe("inset(0px)");
+  expect(await items.first().locator(".ing-s").evaluate(node => getComputedStyle(node).textDecorationLine)).toBe("line-through");
+
+  await page.reload();
+  await expect(page.getByRole("checkbox", { name: "4 зрели домата" })).toBeChecked();
+  await expect(page.getByRole("checkbox", { name: "1 краставица" })).toBeChecked();
+  await expect(page.getByRole("checkbox", { name: "1 с.л. оцет" })).not.toBeChecked();
+  await expect(page.locator(".ings-count")).toHaveText(`2 от ${total}`);
+
+  await page.getByRole("button", { name: "Изчисти отметките" }).click();
+  await expect(page.locator(".ings-count")).toHaveText(`0 от ${total}`);
+  await expect(page.getByRole("button", { name: "Изчисти отметките" })).toHaveCount(0);
+  expect(await page.evaluate(() => localStorage.getItem("chefos:ingredients:shopska-salata"))).toBeNull();
+  await page.reload();
+  await expect(page.getByRole("checkbox", { name: "4 зрели домата" })).not.toBeChecked();
+  expect(problems.pageErrors).toEqual([]);
+});
+
+test("ticks still work (without memory) when localStorage is blocked", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, "localStorage", { get() { throw new DOMException("blocked", "SecurityError"); } });
+  });
+  const problems = watchProblems(page);
+  await page.goto("/catalog/shopska-salata");
+  await page.getByRole("checkbox", { name: "1 краставица" }).check();
+  await expect(page.locator(".ings-count")).toHaveText(/^1 от /);
+  expect(problems.pageErrors).toEqual([]);
+});
+
+test("header is transparent over the recipe hero and solid after it; solid on pages without a hero", async ({ page }) => {
+  await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
+  const header = page.locator("header.hdr");
+  await expect(header).not.toHaveClass(/\bsolid\b/);
+  expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgba(0, 0, 0, 0)");
+  const heroHeight = await page.locator(".recipe-hero").evaluate(node => node.getBoundingClientRect().height);
+  await page.mouse.wheel(0, heroHeight + 40);
+  await expect(header).toHaveClass(/\bsolid\b/);
+  expect(await header.evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
+  await page.mouse.wheel(0, -(heroHeight + 400));
+  await expect(header).not.toHaveClass(/\bsolid\b/);
+
+  await page.goto("/about", { waitUntil: "networkidle" });
+  expect(await page.locator("header.hdr").evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
+});
+
+test("back to catalog keeps ?q= and ?category= from the catalog view the visitor came from", async ({ page }) => {
+  await page.goto("/catalog/bob-chorba");
+  await expect(page.getByRole("link", { name: "Назад към каталога" })).toHaveAttribute("href", "/catalog");
+  await page.goto("/catalog?q=%D0%B1%D0%BE%D0%B1&category=%D0%A1%D1%83%D0%BF%D0%B8", { waitUntil: "networkidle" });
+  await page.locator('a[href="/catalog/bob-chorba"]').first().click();
+  await page.waitForURL("**/catalog/bob-chorba");
+  const back = page.getByRole("link", { name: "Назад към каталога" });
+  await expect(back).toHaveAttribute("href", /^\/catalog\?/);
+  await back.click();
+  await page.waitForURL(url => url.pathname === "/catalog");
+  const url = new URL(page.url());
+  expect(url.searchParams.get("q")).toBe("боб");
+  expect(url.searchParams.get("category")).toBe("Супи");
+});
+
+test("favourite: a guest goes to login and back to the same recipe; heart pops, count bumps, state survives reload", async ({ page }) => {
+  test.setTimeout(180_000);
+  const email = `stage-v-${randomUUID()}@chefos-tests.invalid`;
+  const password = randomBytes(18).toString("hex");
+  const db = getDb();
+  try {
+    await page.goto("/catalog/bob-chorba");
+    const save = page.getByRole("button", { name: "Запази в любими", exact: true });
+    await expect(save).toHaveAttribute("aria-pressed", "false");
+    await save.click();
+    await page.waitForURL(/\/login\?next=/);
+    expect(new URL(page.url()).searchParams.get("next")).toBe("/catalog/bob-chorba");
+    await page.getByRole("link", { name: "Регистрация", exact: true }).first().click();
+    await page.getByLabel("Име", { exact: true }).fill("Проверка етап В");
+    await page.getByLabel("Имейл", { exact: true }).fill(email);
+    await page.getByLabel("Парола", { exact: true }).fill(password);
+    await page.getByRole("button", { name: "Създай профил", exact: true }).click();
+    await page.waitForURL("**/catalog/bob-chorba");
+
+    const count = page.locator('header [data-testid="favorite-count"]');
+    await expect(count).toHaveText("0");
+    await expect(count).not.toHaveClass(/\bbump\b/);
+    await page.getByRole("button", { name: "Запази в любими", exact: true }).click();
+    await expect(page.locator(".heart-lg .heart-ico.pop")).toHaveCount(1);
+    const remove = page.getByRole("button", { name: "Премахни от любими", exact: true });
+    await expect(remove).toHaveAttribute("aria-pressed", "true");
+    await expect(count).toHaveText("1");
+    await expect(count).toHaveClass(/\bbump\b/);
+    await page.waitForTimeout(700);
+    await shoot(page, "heart-added-1440", page.locator(".actions"));
+    if (shots) await page.locator("header.hdr").screenshot({ path: path.join(shots, "header-count-1440.png") });
+
+    await page.reload();
+    await expect(page.getByRole("button", { name: "Премахни от любими", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await expect(page.locator('header [data-testid="favorite-count"]')).not.toHaveClass(/\bbump\b/);
+    await page.getByRole("button", { name: "Премахни от любими", exact: true }).click();
+    await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toHaveAttribute("aria-pressed", "false");
+    await expect(page.locator('header [data-testid="favorite-count"]')).toHaveText("0");
+  } finally {
+    const created = await db.select({ id: users.id }).from(users).where(eq(users.email, email));
+    for (const user of created) { await db.delete(favorites).where(eq(favorites.userId, user.id)); await db.delete(users).where(eq(users.id, user.id)); }
+    expect(await db.select({ id: users.id }).from(users).where(eq(users.email, email))).toHaveLength(0);
+  }
+});
+
+test("admin recipe on the substitute image: dark hero without a photo and one muted line instead of empty lists", async ({ page }) => {
+  test.setTimeout(180_000);
+  const admin = await demoAdmin();
+  const title = `E2E етап В ${randomUUID().slice(0, 8)}`;
+  let slug: string | undefined;
+  const db = getDb();
+  try {
+    await page.goto("/login?next=%2Fadmin");
+    await page.getByLabel("Имейл", { exact: true }).fill(admin.email);
+    await page.getByLabel("Парола", { exact: true }).fill(admin.password);
+    await page.getByRole("button", { name: "Влез", exact: true }).click();
+    await page.waitForURL(url => url.pathname === "/admin");
+    await page.getByRole("link", { name: "Добави рецепта", exact: true }).first().click();
+    await page.getByLabel("Заглавие", { exact: true }).fill(title);
+    await page.getByLabel("Категория", { exact: true }).fill("Салати");
+    await page.getByLabel("Описание", { exact: true }).fill("Временна рецепта за проверка на страницата без снимка.");
+    await page.getByLabel("Време за подготовка", { exact: true }).fill("10");
+    await page.getByLabel("Време за готвене", { exact: true }).fill("0");
+    await page.getByLabel("Порции", { exact: true }).fill("2");
+    await page.getByRole("button", { name: "Запази рецепта", exact: true }).click();
+    await page.waitForURL(url => url.pathname === "/admin");
+    const href = (await page.locator(".admin-row").filter({ hasText: title }).getByRole("link", { name: "Редактирай", exact: true }).getAttribute("href"))!;
+    slug = decodeURIComponent(href.split("/").at(-2)!);
+
+    const problems = watchProblems(page);
+    await page.goto(`/catalog/${slug}`, { waitUntil: "networkidle" });
+    const hero = page.locator(".recipe-hero");
+    await expect(hero).toHaveAttribute("data-photo", "none");
+    await expect(hero.locator("img")).toHaveCount(0);
+    expect(await hero.evaluate(node => getComputedStyle(node).backgroundColor)).toBe("rgb(17, 17, 17)");
+    expect(await hero.locator("h1").evaluate(node => getComputedStyle(node).color)).toBe("rgb(255, 255, 255)");
+    await expect(page.locator(".rh-eyebrow")).toHaveText("Салати");
+    await expect(page.locator(".meta dd").nth(1)).toHaveText("Без готвене");
+    await expect(page.locator(".r-missing")).toHaveText(["Продуктите и стъпките за тази рецепта още не са добавени."]);
+    await expect(page.locator('input[type="checkbox"], .ings-count, .prog, .st-list')).toHaveCount(0);
+    await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Принтирай рецептата", exact: true })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Назад към каталога" })).toBeVisible();
+    for (const width of [360, 390, 768, 1024, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 900 });
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `overflow at ${width}`).toBe(0);
+    }
+    expect(problems.pageErrors).toEqual([]);
+    for (const width of [390, 1440]) {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      await page.waitForTimeout(400);
+      await shoot(page, `no-photo-${width}`);
+    }
+
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto("/admin");
+    await page.locator(".admin-row").filter({ hasText: title }).getByRole("button", { name: "Изтрий", exact: true }).click();
+    await expect(page.locator(".admin-row").filter({ hasText: title })).toHaveCount(0);
+    expect((await page.goto(`/catalog/${slug}`))!.status()).toBe(404);
+  } finally {
+    // Exact runtime title/slug only; no wildcard cleanup of user data.
+    const remaining = await db.select({ id: recipes.id }).from(recipes).where(slug ? eq(recipes.slug, slug) : eq(recipes.title, title));
+    for (const recipe of remaining) {
+      await db.delete(favorites).where(eq(favorites.recipeId, recipe.id));
+      await db.delete(recipeTags).where(eq(recipeTags.recipeId, recipe.id));
+      await db.delete(recipeSteps).where(eq(recipeSteps.recipeId, recipe.id));
+      await db.delete(recipes).where(eq(recipes.id, recipe.id));
+    }
+    expect(await db.select({ id: recipes.id }).from(recipes).where(slug ? eq(recipes.slug, slug) : eq(recipes.title, title))).toHaveLength(0);
+  }
+});
+
+test("print: title, products and steps; no hero photo, header, footer or buttons; empty squares", async ({ page }) => {
+  await page.goto("/catalog/shopska-salata");
+  await page.getByRole("checkbox", { name: "1 краставица" }).check();
+  await page.emulateMedia({ media: "print" });
+  await expect(page.locator("header")).toBeHidden();
+  await expect(page.locator("footer")).toBeHidden();
+  await expect(page.locator(".recipe-hero .hero-par")).toBeHidden();
+  await expect(page.locator(".actions")).toBeHidden();
+  await expect(page.locator(".ings-count")).toBeHidden();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCSS("color", "rgb(17, 17, 17)");
+  await expect(page.getByRole("heading", { name: "Продукти", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Начин на приготвяне", exact: true })).toBeVisible();
+  const ticked = page.locator(".ing").filter({ hasText: "1 краставица" });
+  expect(await ticked.locator(".box").evaluate(node => getComputedStyle(node, "::after").display)).toBe("none");
+  await expect(ticked.locator(".ing-b")).toHaveCSS("opacity", "1");
+  // Nothing may print faded or shifted, even right after switching to print (reveals mid-flight).
+  const faded = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>(".recipe-print-page [data-r], .recipe-print-page .wi")].filter(node => {
+    const style = getComputedStyle(node);
+    return style.opacity !== "1" || style.transform !== "none";
+  }).length);
+  expect(faded).toBe(0);
+  const pdf = await page.pdf({ format: "A4", printBackground: true, preferCSSPageSize: true });
+  expect(pdf.toString("latin1").match(/\/Type\s*\/Page\b/g)?.length ?? 0, "short recipe fits one A4 page").toBe(1);
+  if (shots) {
+    await mkdir(shots, { recursive: true });
+    await page.screenshot({ path: path.join(shots, "print-shopska.png"), fullPage: true });
+    await writeFile(path.join(shots, "print-shopska.pdf"), pdf);
+  }
+  await page.evaluate(() => localStorage.removeItem("chefos:ingredients:shopska-salata"));
+});
+
+for (const slug of ["shopska-salata", "bob-chorba"]) {
+  test(`no horizontal scroll on /catalog/${slug} at 360–1920`, async ({ page }) => {
+    for (const width of [360, 390, 768, 1024, 1440, 1920]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`/catalog/${slug}`, { waitUntil: "networkidle" });
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth), `overflow at ${width}`).toBe(0);
+    }
+  });
+}
+
+test.describe("reduced motion", () => {
+  test.use({ reducedMotion: "reduce" });
+  test("recipe page: nothing hidden, no zoom, no parallax, no progress line", async ({ page }) => {
+    await page.goto("/catalog/shopska-salata", { waitUntil: "networkidle" });
+    await expect(page.locator("html")).toHaveAttribute("data-motion", "off");
+    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, [data-r], .wi, .rh-desc, .ing, .st")].filter(node => {
+      const style = getComputedStyle(node);
+      return style.opacity === "0" || style.transform !== "none" || style.visibility === "hidden";
+    }).length);
+    expect(hidden).toBe(0);
+    expect(await page.locator(".recipe-hero .zoom").evaluate(node => getComputedStyle(node).transform)).toBe("none");
+    await page.mouse.wheel(0, 300);
+    await page.waitForTimeout(300);
+    expect(await page.locator(".hero-par").evaluate(node => getComputedStyle(node).transform)).toBe("none");
+    await expect(page.locator(".prog")).toBeHidden();
+    await page.getByRole("checkbox", { name: "1 краставица" }).check();
+    await expect(page.locator(".ings-count")).toHaveText(/^1 от /);
+    await page.getByRole("button", { name: "Изчисти отметките" }).click();
+  });
+});
+
+test.describe("without JavaScript", () => {
+  test.use({ javaScriptEnabled: false });
+  test("recipe page: everything visible, solid header, ticks still toggle", async ({ page }) => {
+    await page.goto("/catalog/bob-chorba");
+    const hidden = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("h1, h2, [data-r], .wi, .rh-desc, .ing, .st, .actions .btn")].filter(node => {
+      const style = getComputedStyle(node);
+      return style.opacity === "0" || style.transform !== "none" || style.visibility === "hidden";
+    }).length);
+    expect(hidden).toBe(0);
+    expect(await page.locator("header.hdr").evaluate(node => getComputedStyle(node).backgroundColor)).not.toBe("rgba(0, 0, 0, 0)");
+    await expect(page.locator(".prog")).toBeHidden();
+    const box = page.getByRole("checkbox", { name: "1 морков" });
+    await box.check();
+    await expect(box).toBeChecked();
+  });
+});
+
+test("unknown recipe slug answers 404 with the styled page", async ({ page }) => {
+  const response = await page.goto("/catalog/takava-retsepta-nyama");
+  expect(response!.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Тази страница не е намерена");
+});

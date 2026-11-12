@@ -106,7 +106,8 @@ test("real Neon registration, auth errors, return path, favorites without reload
   const db = getDb();
   try {
     await page.goto("/catalog/shopska-salata");
-    await page.getByRole("button", { name: "Запази Шопска салата в любими", exact: true }).click();
+    // The detail page's favourite button is named by its visible text (axe label-content-name-mismatch).
+    await page.getByRole("button", { name: "Запази в любими", exact: true }).click();
     await page.waitForURL(/\/login\?next=/);
     expect(new URL(page.url()).searchParams.get("next")).toBe("/catalog/shopska-salata");
     await page.getByRole("link", { name: "Регистрация", exact: true }).first().click();
@@ -124,8 +125,8 @@ test("real Neon registration, auth errors, return path, favorites without reload
     expect(persisted).toHaveLength(1);
     await expect(page.locator('header [data-testid="favorite-count"]')).toHaveText("0");
     await page.evaluate(() => { (window as Window & { testDocument?: string }).testDocument = "same-document"; });
-    await page.getByRole("button", { name: "Запази Шопска салата в любими", exact: true }).click();
-    await expect(page.getByRole("button", { name: "Премахни Шопска салата от любими", exact: true })).toHaveAttribute("aria-pressed", "true");
+    await page.getByRole("button", { name: "Запази в любими", exact: true }).click();
+    await expect(page.getByRole("button", { name: "Премахни от любими", exact: true })).toHaveAttribute("aria-pressed", "true");
     await expect(page.locator('header [data-testid="favorite-count"]')).toHaveText("1");
     expect(await page.evaluate(() => (window as Window & { testDocument?: string }).testDocument)).toBe("same-document");
     expect((await db.select().from(favorites).where(eq(favorites.userId, persisted[0].id))).length).toBe(1);
@@ -192,9 +193,9 @@ test("real Neon admin creates, edits stable slug and deletes only its test recip
     expect(created).toHaveLength(1);
     expect(created[0].imageUrl).toBeNull();
     await page.goto(`/catalog/${slug}`);
-    const fallback = page.locator('.recipe-print-image img');
-    expect(decodeURIComponent((await fallback.getAttribute("src"))!)).toContain("/images/recipes-web/");
-    await expect.poll(() => fallback.evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+    // Owner decision (stage V): a manual recipe on the repository's substitute image has a dark hero without a photo.
+    await expect(page.locator(".recipe-hero")).toHaveAttribute("data-photo", "none");
+    await expect(page.locator(".recipe-hero img")).toHaveCount(0);
     await page.goto(href);
     await page.getByLabel("Заглавие", { exact: true }).fill(title + " edited");
     await page.getByLabel("Описание", { exact: true }).fill("Обновена временна рецепта за проверка.");

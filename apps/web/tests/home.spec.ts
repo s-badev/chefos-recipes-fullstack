@@ -7,7 +7,7 @@ const categoryCount = new Set(recipes.map((recipe) => recipe.category)).size;
 test("quote is revealed after client navigation from /login to the home page", async ({ page }) => {
   const problems = watchProblems(page);
   await page.goto("/login", { waitUntil: "networkidle" });
-  await page.locator("header").getByRole("link", { name: "Chefo's Recipes — начало" }).click();
+  await page.locator("header").getByRole("link", { name: "Домашна кухня Chefo's Recipes – начало" }).click();
   await page.waitForURL((url) => url.pathname === "/");
   const quote = page.locator(".quote-t");
   for (let i = 0; i < 40 && !(await quote.isVisible() && (await quote.boundingBox())!.y < 600); i++) await page.mouse.wheel(0, 300);
@@ -113,7 +113,7 @@ test("logo is one link to the home page with a readable name", async ({ page }) 
   await page.goto("/about");
   const logo = page.locator("header a.logo");
   await expect(logo).toHaveAttribute("href", "/");
-  await expect(logo).toHaveAccessibleName("Chefo's Recipes — начало");
+  await expect(logo).toHaveAccessibleName("Домашна кухня Chefo's Recipes – начало");
   await expect(logo.locator(".logo-kicker")).toHaveText("Домашна кухня");
   await expect(logo.locator(".logo-name")).toHaveText("Chefo's Recipes");
 });

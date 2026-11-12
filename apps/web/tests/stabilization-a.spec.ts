@@ -33,7 +33,7 @@ async function reveal(page: Page) {
 }
 
 async function checkMenu(page: Page, mock: boolean) {
-  const toggle = page.getByRole("button", { name: "Отвори менюто" });
+  const toggle = page.getByRole("button", { name: "Меню", exact: true });
   const menu = page.locator(mock ? "#mock-menu" : "#mobile-menu");
   await toggle.click();
   await expect(menu).toBeVisible();
