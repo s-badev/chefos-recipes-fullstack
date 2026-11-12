@@ -18,7 +18,7 @@ export default async function NewRecipePage() {
           <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
             Админ действие
           </p>
-          <h2 className="mt-2 text-4xl font-bold text-neutral-950 sm:text-5xl">Добави рецепта</h2>
+          <h1 className="mt-2 text-4xl font-bold text-neutral-950 sm:text-5xl">Добави рецепта</h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
             Попълни основната информация и запази рецептата в каталога.
           </p>
