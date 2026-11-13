@@ -115,34 +115,52 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
           </nav>
         </div>
 
-        <div className="admin-count">
-          <span>{shownLabel}</span>
-          <span>Страница {recipePage.page} от {recipePage.totalPages}</span>
-        </div>
-
         {recipePage.items.length > 0 ? (
-          <div className="admin-list">
-            {recipePage.items.map((recipe) => (
-            <article className="admin-row" key={recipe.slug}>
-              <div>
-                <h3>{recipe.title}</h3>
-                <p className="admin-description">{recipe.description}</p>
-              </div>
-              <div>
-                <span className="admin-label">Категория</span>
-                <span className="admin-value">{recipe.category}</span>
-              </div>
-              <div>
-                <span className="admin-label">Трудност</span>
-                <span className="admin-value">{recipe.difficulty}</span>
-              </div>
-              <div className="admin-row-actions">
-                <Link className="admin-action" href={`/admin/recipes/${recipe.slug}/edit`}>Редактирай</Link>
-                <DeleteRecipeDialog slug={recipe.slug} title={recipe.title} />
-              </div>
-            </article>
-            ))}
-          </div>
+          <>
+            <div className="admin-count">
+              <span>{shownLabel}</span>
+              <span>Страница {recipePage.page} от {recipePage.totalPages}</span>
+            </div>
+            <div className="admin-list">
+              {recipePage.items.map((recipe) => (
+                <article className="admin-row" key={recipe.slug}>
+                  <div>
+                    <h3>{recipe.title}</h3>
+                    <p className="admin-description">{recipe.description}</p>
+                  </div>
+                  <div>
+                    <span className="admin-label">Категория</span>
+                    <span className="admin-value">{recipe.category}</span>
+                  </div>
+                  <div>
+                    <span className="admin-label">Трудност</span>
+                    <span className="admin-value">{recipe.difficulty}</span>
+                  </div>
+                  <div className="admin-row-actions">
+                    <Link className="admin-action" href={`/admin/recipes/${recipe.slug}/edit`}>Редактирай</Link>
+                    <DeleteRecipeDialog slug={recipe.slug} title={recipe.title} />
+                  </div>
+                </article>
+              ))}
+            </div>
+            <div className="admin-pages">
+              <span>{shownLabel}</span>
+              <nav aria-label="Странициране">
+                {recipePage.page > 1 ? (
+                  <Link className="btn" href={adminHref(recipePage.page - 1, publicOnly)}>Назад</Link>
+                ) : (
+                  <span aria-disabled="true" className="btn admin-page-disabled">Назад</span>
+                )}
+                {recipePage.page < recipePage.totalPages ? (
+                  <Link className="btn" href={adminHref(recipePage.page + 1, publicOnly)}>
+                    Напред <span aria-hidden="true">→</span>
+                  </Link>
+                ) : (
+                  <span aria-disabled="true" className="btn admin-page-disabled">Напред →</span>
+                )}
+              </nav>
+            </div>
+          </>
         ) : (
           <div className="admin-empty">
             <StitchStar className="admin-empty-star" />
@@ -153,24 +171,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
             <Link className="btn fill" href="/admin/recipes/new">Добави рецепта</Link>
           </div>
         )}
-
-        <div className="admin-pages">
-          <span>{shownLabel}</span>
-          <nav aria-label="Странициране">
-            {recipePage.page > 1 ? (
-              <Link className="btn" href={adminHref(recipePage.page - 1, publicOnly)}>Назад</Link>
-            ) : (
-              <span aria-disabled="true" className="btn admin-page-disabled">Назад</span>
-            )}
-            {recipePage.page < recipePage.totalPages ? (
-              <Link className="btn" href={adminHref(recipePage.page + 1, publicOnly)}>
-                Напред <span aria-hidden="true">→</span>
-              </Link>
-            ) : (
-              <span aria-disabled="true" className="btn admin-page-disabled">Напред →</span>
-            )}
-          </nav>
-        </div>
       </section>
     </section>
   );

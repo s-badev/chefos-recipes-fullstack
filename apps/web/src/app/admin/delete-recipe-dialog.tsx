@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useRef } from "react";
+import type { KeyboardEvent } from "react";
 import { deleteRecipeAction } from "../../server/recipes/admin-actions";
 
 type DeleteRecipeDialogProps = {
@@ -17,6 +18,21 @@ export function DeleteRecipeDialog({ slug, title }: DeleteRecipeDialogProps) {
     dialog.current?.close();
   }
 
+  function keepDialogFocus(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key !== "Tab") return;
+    const controls = [...event.currentTarget.querySelectorAll<HTMLElement>("button:not([disabled])")];
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last?.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first?.focus();
+    }
+  }
+
   return (
     <>
       <button
@@ -31,6 +47,7 @@ export function DeleteRecipeDialog({ slug, title }: DeleteRecipeDialogProps) {
         aria-labelledby={headingId}
         className="admin-dialog"
         onClose={() => trigger.current?.focus()}
+        onKeyDown={keepDialogFocus}
         ref={dialog}
       >
         <div className="admin-dialog-inner">
