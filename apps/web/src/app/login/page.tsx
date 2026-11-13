@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { loginAction } from "../../server/auth/actions";
@@ -8,10 +9,7 @@ import { AuthLayout } from "../auth-layout";
 import { AuthField, SubmitButton } from "../form-controls";
 import { SplitWords } from "../split-heading";
 
-export const metadata: Metadata = {
-  title: "Вход | Chefo's Recipes",
-  description: "Влез в профила си в Chefo's Recipes и се върни към любимите си рецепти."
-};
+export const metadata: Metadata = pageMetadata("Вход", "Влез в профила си в Chefo's Recipes и се върни към любимите си рецепти.", "/login", { noindex: true });
 
 type LoginPageProps = {
   searchParams?: Promise<{

@@ -401,7 +401,7 @@ test("recipe metadata: canonical, Open Graph and Twitter card from the recipe", 
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/catalog\/bob-chorba$/);
   await expect(page.locator('meta[property="og:title"]')).toHaveAttribute("content", "Боб чорба");
   await expect(page.locator('meta[property="og:description"]')).toHaveAttribute("content", /бял боб/);
-  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/images\/recipes-web\/.+\.webp$/);
+  await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/images\/social\/.+\.jpg$/);
   await expect(page.locator('meta[name="twitter:card"]')).toHaveAttribute("content", "summary_large_image");
 });
 

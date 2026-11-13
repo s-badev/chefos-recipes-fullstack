@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../../../../lib/site-metadata";
 import Link from "next/link";
 import { requireAdmin } from "../../../../../server/auth/session";
 import { updateRecipeAction } from "../../../../../server/recipes/admin-actions";
@@ -12,11 +13,7 @@ type EditRecipePageProps = {
 
 export async function generateMetadata({ params }: EditRecipePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const recipe = await getRecipeBySlug(slug);
-
-  return {
-    title: recipe ? `Редакция: ${recipe.title} | Chefo's Recipes` : "Рецептата не е намерена | Chefo's Recipes"
-  };
+  return pageMetadata("Редакция на рецепта", "Редактирай съдържанието на рецепта в Chefo's Recipes.", `/admin/recipes/${encodeURIComponent(slug)}/edit`, { noindex: true });
 }
 
 export default async function EditRecipePage({ params }: EditRecipePageProps) {

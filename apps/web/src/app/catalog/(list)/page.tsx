@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../../lib/site-metadata";
 import { RecipeCatalog } from "../recipe-catalog";
 import { getCurrentUserFavoriteSlugs } from "../../../server/favorites/service";
 import { getCatalogCards } from "../../../server/recipes/catalog";
 
-export const metadata: Metadata = {
-  title: "Каталог с рецепти | Chefo's Recipes",
-  description: "Разгледай български рецепти по категория, време и трудност."
-};
+export const metadata: Metadata = pageMetadata("Каталог с рецепти", "Разгледай български рецепти по категория, време и трудност.", "/catalog");
 
 export const dynamic = "force-dynamic";
 

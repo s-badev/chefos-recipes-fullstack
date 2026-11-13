@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { rootMetadata } from "../lib/site-metadata";
 import { Cormorant, Onest } from "next/font/google";
 import "./globals.css";
 import { BackToTopButton } from "./back-to-top-button";
@@ -31,10 +32,7 @@ const serif = Cormorant({
  */
 const motionBootScript = `(function(){var d=document.documentElement;d.dataset.motion=matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';setTimeout(function(){if(!window.__motionReady){window.__motionTimedOut=true;delete d.dataset.motion;}},2500);})();`;
 
-export const metadata: Metadata = {
-  title: "Chefo's Recipes",
-  description: "Подбрани български домашни рецепти с продукти, стъпки, време за приготвяне и порции – за всеки ден."
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children

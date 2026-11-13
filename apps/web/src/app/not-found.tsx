@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../lib/site-metadata";
 import Link from "next/link";
 import { SplitWords } from "./split-heading";
 import { StatusSofra } from "./status-sofra";
 
-export const metadata: Metadata = {
-  title: "Страницата не е намерена | Chefo's Recipes",
-  robots: { index: false }
-};
+export const metadata: Metadata = pageMetadata("Страницата не е намерена", "Адресът може да е грешен или рецептата вече да не е в каталога.", "/404", { noindex: true });
 
 export default function NotFound() {
   return (

@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
 import { recipeCountLabel, savedRecipesLabel } from "../../lib/format";
 import { logoutAction } from "../../server/auth/actions";
@@ -8,10 +9,7 @@ import { getCurrentUserFavoriteSlugs } from "../../server/favorites/service";
 import { SplitWords } from "../split-heading";
 import { StitchStar } from "../stitch";
 
-export const metadata: Metadata = {
-  title: "Профил | Chefo's Recipes",
-  description: "Потребителски профил в Chefo's Recipes."
-};
+export const metadata: Metadata = pageMetadata("Профил", "Потребителски профил в Chefo's Recipes.", "/profile", { noindex: true });
 
 /** Only what the profile holds: the number of favourites and the e-mail (or name) from the session. */
 export default async function ProfilePage() {

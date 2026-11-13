@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
 import { requireAdmin } from "../../server/auth/session";
 import { deleteRecipeAction } from "../../server/recipes/admin-actions";
 import { getAdminRecipeSummary, listRecipes } from "../../server/recipes/service";
 
-export const metadata: Metadata = {
-  title: "Админ панел | Chefo's Recipes",
-  description: "Зона за управление на рецепти в Chefo's Recipes."
-};
+export const metadata: Metadata = pageMetadata("Админ панел", "Зона за управление на рецепти в Chefo's Recipes.", "/admin", { noindex: true });
 
 const ADMIN_RECIPE_PAGE_SIZE = 50;
 

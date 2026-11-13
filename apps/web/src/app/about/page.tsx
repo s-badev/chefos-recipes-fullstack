@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Image from "next/image";
 import { ResponsiveRecipeImage } from "../responsive-recipe-image";
 import Link from "next/link";
@@ -8,10 +9,7 @@ import { principlesImageSizes } from "../../lib/image-sizes";
 import { SplitWords } from "../split-heading";
 import { StitchBand, StitchStar } from "../stitch";
 
-export const metadata: Metadata = {
-  title: "За нас | Chefo's Recipes",
-  description: "Подреден каталог за домашна храна, български вкус и практични идеи за готвене."
-};
+export const metadata: Metadata = pageMetadata("За нас", "Подреден каталог за домашна храна, български вкус и практични идеи за готвене.", "/about");
 
 const rhythm = ["Избираш спокойно.", "Готвиш уверено.", "Сядаш на масата."];
 

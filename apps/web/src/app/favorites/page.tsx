@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
 import { toCardRecipe } from "../../lib/catalog";
 import { getCurrentUserFavoriteRecipes } from "../../server/favorites/service";
@@ -9,10 +10,7 @@ import { SplitWords } from "../split-heading";
 import { StitchStar } from "../stitch";
 import { savedRecipesLabel } from "../../lib/format";
 
-export const metadata: Metadata = {
-  title: "Любими рецепти | Chefo's Recipes",
-  description: "Запазени идеи и любими рецепти в Chefo's Recipes."
-};
+export const metadata: Metadata = pageMetadata("Любими рецепти", "Запазени идеи и любими рецепти в Chefo's Recipes.", "/favorites", { noindex: true });
 
 export default async function FavoritesPage() {
   // Same card as the catalog: a manual recipe gets its photograph the same way the catalog finds it.

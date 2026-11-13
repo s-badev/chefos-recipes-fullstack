@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMetadata, recipePath, recipeShareImage, recipeJsonLd, serializeJsonLd } from "../../../lib/site-metadata";
 import Image from "next/image";
 import { ResponsiveRecipeImage } from "../../responsive-recipe-image";
 import Link from "next/link";
@@ -33,22 +34,10 @@ export async function generateMetadata({
   const recipe = await getWebRecipeForDetails(slug);
 
   if (!recipe) {
-    return {
-      title: "Рецептата не е намерена | Chefo's Recipes"
-    };
+    return pageMetadata("Страницата не е намерена", "Адресът може да е грешен или рецептата вече да не е в каталога.", "/404", { noindex: true });
   }
 
-  const path = `/catalog/${recipe.slug}`;
-  const images = hasRecipePhoto(recipe) ? [{ url: webImageSrc(recipe.imageSrc!), alt: recipe.imageAlt ?? recipe.title }] : undefined;
-  return {
-    // Absolute URLs for canonical/Open Graph: Netlify's URL at build time, else the public site.
-    metadataBase: new URL(process.env.URL ?? "https://chefos-recipes.netlify.app"),
-    title: `${recipe.title} | Chefo's Recipes`,
-    description: recipe.description,
-    alternates: { canonical: path },
-    openGraph: { type: "article", locale: "bg_BG", siteName: "Chefo's Recipes", url: path, title: recipe.title, description: recipe.description, images },
-    twitter: { card: images ? "summary_large_image" : "summary", title: recipe.title, description: recipe.description, images: images?.map(image => image.url) }
-  };
+  return pageMetadata(recipe.title, recipe.description, recipePath(recipe.slug), { article: true, image: recipeShareImage(recipe) });
 }
 
 export default async function RecipeDetailsPage({ params }: RecipeDetailsPageProps) {
@@ -71,6 +60,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
 
   return (
     <article className="recipe-print-page">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(recipeJsonLd(recipe)) }} />
       <section aria-labelledby="recipe-title" className="r-hero" data-hero data-photo={photo ? "yes" : "none"}>
         {photo ? (
           <div className="hero-ph">

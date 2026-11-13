@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { registerAction } from "../../server/auth/actions";
@@ -8,10 +9,7 @@ import { AuthLayout } from "../auth-layout";
 import { AuthField, SubmitButton } from "../form-controls";
 import { SplitWords } from "../split-heading";
 
-export const metadata: Metadata = {
-  title: "Регистрация | Chefo's Recipes",
-  description: "Създай профил в Chefo's Recipes и пази любимите си рецепти на едно място."
-};
+export const metadata: Metadata = pageMetadata("Регистрация", "Създай профил в Chefo's Recipes и пази любимите си рецепти на едно място.", "/register", { noindex: true });
 
 type RegisterPageProps = {
   searchParams?: Promise<{

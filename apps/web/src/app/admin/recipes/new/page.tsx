@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "../../../../lib/site-metadata";
 import Link from "next/link";
 import { requireAdmin } from "../../../../server/auth/session";
 import { createRecipeAction } from "../../../../server/recipes/admin-actions";
 
-export const metadata: Metadata = {
-  title: "Нова рецепта | Chefo's Recipes",
-  description: "Форма за добавяне на рецепта."
-};
+export const metadata: Metadata = pageMetadata("Нова рецепта", "Форма за добавяне на рецепта.", "/admin/recipes/new", { noindex: true });
 
 export default async function NewRecipePage() {
   await requireAdmin("/admin/recipes/new");
