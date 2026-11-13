@@ -17,7 +17,9 @@ const { INGREDIENT_ICONS } = load(path.resolve("src/components/ingredient-icon.t
 const file = path.resolve("../../docs/redesign/sofra-mock.html");
 let s = readFileSync(file, "utf8").replace(/\r\n/g, "\n");
 const icons = Object.fromEntries(Object.entries(INGREDIENT_ICONS).map(([key, body]) => [key, renderToStaticMarkup(React.createElement(React.Fragment, null, body))]));
-const keys = Object.fromEntries(recipes.flatMap(recipe => recipe.ingredients.map(line => [line, ingredientIconKey(line)])));
+// The curated lines and the sample manual recipes of the mock (catalog controls ?n=25…32).
+const MOCK_EXTRA = ["500 г пилешко месо", "200 г ориз", "1 глава лук", "Сол и черен пипер", "300 г леща", "1 морков", "Чубрица и сол", "500 г пилешко филе", "4 с.л. соев сос", "1 с.л. мед", "1 ч.л. джинджифил", "1 с.л. сусам", "2 тиквички", "400 г кайма", "2 яйца", "300 г кисело мляко", "4 ябълки", "200 г брашно", "100 г масло", "1 ч.л. канела", "2 патладжана", "2 скилидки чесън", "Магданоз и сол", "2 риби", "1 лимон", "2 с.л. олио", "500 мл прясно мляко", "100 г шоколад", "2 с.л. нишесте", "200 мл сметана"];
+const keys = Object.fromEntries([...recipes.flatMap(recipe => recipe.ingredients), ...MOCK_EXTRA].map(line => [line, ingredientIconKey(line)]));
 const block = `/* ---------- икони на продуктите (кръг 3; от src/components/ingredient-icon.tsx, scripts/ingredient-icons-mock.mjs) ---------- */
 var ING_ICON=${JSON.stringify(icons)};
 var ING_KEY=${JSON.stringify(keys)};

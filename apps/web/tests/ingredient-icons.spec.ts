@@ -5,13 +5,16 @@ import { INGREDIENT_ICON_RULES, ingredientIconKey, productCountLabel } from "../
 /** Lines allowed to fall back to the stitched rhombus, each with its reason. Empty: every curated line has its icon. */
 const ALLOWED_FALLBACK: Record<string, string> = {};
 
+/** Lines a manually added recipe is likely to have (round 4: icons beyond the curated 24). */
+const MANUAL_LINES = ["4 с.л. соев сос", "1 с.л. сусам", "1 ч.л. настърган джинджифил", "2 с.л. нишесте", "200 мл сметана", "100 г шоколад", "4 ябълки", "2 тиквички", "2 патладжана", "500 г филе от сьомга", "300 г червена леща", "100 г бадеми"];
+
 test("coverage: every one of the curated ingredient lines gets a concrete icon", () => {
   const lines = recipes.flatMap(recipe => recipe.ingredients);
   expect(lines.length).toBe(172);
   const missing = lines.filter(line => ingredientIconKey(line) === "fallback" && !(line in ALLOWED_FALLBACK));
   expect(missing).toEqual([]);
-  // Every rule is used by the data, so the drawn set is exactly what the recipes need.
-  const used = new Set(lines.map(ingredientIconKey));
+  // Every rule is used by the curated data or by typical manual (admin) recipe lines, so nothing is drawn for nothing.
+  const used = new Set([...lines, ...MANUAL_LINES].map(ingredientIconKey));
   expect(INGREDIENT_ICON_RULES.map(([key]) => key).filter(key => !used.has(key))).toEqual([]);
 });
 
@@ -52,4 +55,17 @@ test("static count with the right form", () => {
   expect(productCountLabel(1)).toBe("1 продукт");
   expect(productCountLabel(2)).toBe("2 продукта");
   expect(productCountLabel(8)).toBe("8 продукта");
+});
+
+test("manual recipes: the new keys, and the specific before the general", () => {
+  const cases: Array<[string, string]> = [
+    ["4 с.л. соев сос", "soy-sauce"], ["200 мл доматен сос", "tomato"], ["1 с.л. сусам", "sesame"], ["1 ч.л. джинджифил", "ginger"],
+    ["2 с.л. нишесте", "starch"], ["200 мл сметана", "cream"], ["100 г шоколад", "chocolate"], ["3 с.л. какао", "cocoa"],
+    ["4 ябълки", "apple"], ["2 тиквички", "zucchini"], ["700 г настъргана тиква", "pumpkin"], ["2 патладжана", "eggplant"],
+    ["2 риби", "fish"], ["500 г филе от сьомга", "fish"], ["300 г леща", "legumes"], ["200 г нахут", "legumes"], ["1 ч.ч. грах", "legumes"],
+    ["350 г бял боб", "beans"], ["100 г бадеми", "nuts"], ["50 г лешници", "nuts"], ["2 с.л. фъстъци", "nuts"], ["40 г орехи", "walnuts"]
+  ];
+  for (const [line, key] of cases) expect(ingredientIconKey(line), line).toBe(key);
+  // A sauce that is not soy sauce is not drawn as soy sauce.
+  expect(ingredientIconKey("200 мл сос")).not.toBe("soy-sauce");
 });

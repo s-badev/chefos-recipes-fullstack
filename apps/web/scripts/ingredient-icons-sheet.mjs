@@ -16,6 +16,7 @@ const { INGREDIENT_ICONS } = load(path.resolve("src/components/ingredient-icon.t
 
 const example = {};
 for (const recipe of recipes) for (const line of recipe.ingredients) (example[ingredientIconKey(line)] ??= line);
+for (const line of ["4 с.л. соев сос", "1 с.л. сусам", "1 ч.л. джинджифил", "2 с.л. нишесте", "200 мл сметана", "100 г шоколад", "4 ябълки", "2 тиквички", "2 патладжана", "500 г филе от сьомга", "300 г леща", "100 г бадеми"]) (example[ingredientIconKey(line)] ??= `${line} (ръчна рецепта)`);
 example.fallback ??= "Ред без съвпадение (ръчно добавена рецепта)";
 const svg = (key, size) => renderToStaticMarkup(React.createElement("svg", { viewBox: "0 0 24 24", width: size, height: size, fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" }, INGREDIENT_ICONS[key]));
 const cells = Object.keys(INGREDIENT_ICONS).map(key => `<figure><span class="chip${key === "fallback" ? " fb" : ""}">${svg(key, 22)}</span><span class="big">${svg(key, 48)}</span><figcaption><b>${key}</b><span>${example[key] ?? "—"}</span></figcaption></figure>`).join("");
