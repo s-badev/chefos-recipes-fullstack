@@ -155,7 +155,7 @@ test("real Neon registration, auth errors, return path, favorites without reload
     expect((await db.select().from(favorites).where(eq(favorites.userId, persisted[0].id))).length).toBe(1);
     await page.goto("/favorites");
     await expect(page.locator(".fav-body .card")).toHaveCount(1);
-    await page.getByRole("button", { name: "Премахни Шопска салата от любими", exact: true }).click();
+    await page.getByRole("button", { name: "Премахни от любими: Шопска салата", exact: true }).click();
     await expect(page.locator(".fav-body .card")).toHaveCount(0);
     await expect(page.locator('header [data-testid="favorite-count"]')).toHaveText("0");
     await page.goto("/admin"); await expect(page).toHaveURL(/\/profile$/);
