@@ -1,0 +1,98 @@
+{
+  "Начало 390": {
+    "heroPaintedMs": 3158,
+    "lcpMs": 908,
+    "lcpEl": "P",
+    "fetchPriority": "low",
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1200&q=60",
+    "frames": [
+      930,
+      2369,
+      2458,
+      2499,
+      3050,
+      4036
+    ]
+  },
+  "Рецепта 390": {
+    "heroPaintedMs": 761,
+    "lcpMs": 772,
+    "lcpEl": "IMG",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1200&q=55",
+    "frames": [
+      2165,
+      2234,
+      2276,
+      2310,
+      3029,
+      4044
+    ]
+  },
+  "За нас 390": {
+    "heroPaintedMs": 837,
+    "lcpMs": 844,
+    "lcpEl": "IMG",
+    "fetchPriority": null,
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1200&q=55",
+    "frames": [
+      839,
+      2335,
+      2400,
+      2432,
+      3035,
+      4035
+    ]
+  },
+  "Начало 1440": {
+    "heroPaintedMs": 3160,
+    "lcpMs": 976,
+    "lcpEl": "SPAN",
+    "fetchPriority": "low",
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1920&q=60",
+    "frames": [
+      983,
+      2490,
+      2580,
+      2635,
+      3058,
+      4070
+    ]
+  },
+  "Рецепта 1440": {
+    "heroPaintedMs": 1707,
+    "lcpMs": 1752,
+    "lcpEl": "IMG",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=55",
+    "frames": [
+      803,
+      2438,
+      2519,
+      2566,
+      3058,
+      4054
+    ]
+  },
+  "За нас 1440": {
+    "heroPaintedMs": 1091,
+    "lcpMs": 1140,
+    "lcpEl": "IMG",
+    "fetchPriority": null,
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1920&q=55",
+    "frames": [
+      874,
+      2459,
+      2520,
+      2568,
+      3054,
+      4040
+    ]
+  }
+}

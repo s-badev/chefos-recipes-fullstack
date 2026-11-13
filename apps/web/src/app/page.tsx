@@ -42,7 +42,7 @@ export default async function HomePage() {
   return <>
     <section className="hero" aria-labelledby="landing-title" data-hero>
       <div className="hero-ph">
-        <Image alt="Баница със сирене и шопска салата на трапезата" fill fetchPriority="low" loading="eager" quality={60} sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
+        <Image alt="Баница със сирене и шопска салата на трапезата" fetchPriority="high" fill priority quality={60} sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
       </div>
       <div className="wrap hero-in">
         <p className="eyebrow rv">Домашна кухня · {total}</p>
