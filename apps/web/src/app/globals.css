@@ -817,6 +817,71 @@ html:not([data-motion]) .menu-toggle{display:none}
   .recipe-print-page li > span { color: #111 !important; background: white !important; }
 }
 
+/* ---------- админ панел ---------- */
+.admin-view{padding-block:clamp(132px,14vw,190px) clamp(96px,10vw,148px)}
+.admin-head{display:grid;grid-template-columns:minmax(0,8fr) minmax(280px,4fr);gap:28px 56px;align-items:end}
+.admin-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,1.6rem + 5vw,7.8rem);line-height:.9;letter-spacing:-.025em;margin-top:14px;text-wrap:balance}
+.admin-head h1 em{font-weight:400;color:var(--accent)}
+.admin-intro{color:var(--muted);max-width:42ch;font-size:1.08rem}
+.admin-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.admin-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(52px,6vw,80px);border-block:1px solid var(--line)}
+.admin-stat{padding:clamp(24px,3vw,40px) clamp(18px,2.5vw,34px);border-left:1px solid var(--line)}
+.admin-stat:first-child{border-left:0;padding-left:0}
+.admin-stat dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.admin-stat dd{font-family:var(--serif);font-size:clamp(2.8rem,1.8rem + 2.4vw,4.8rem);font-weight:500;line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
+.admin-manage{margin-top:clamp(64px,8vw,112px)}
+.admin-manage-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+.admin-manage h2{font-family:var(--serif);font-size:clamp(2.5rem,1.7rem + 2.2vw,4.2rem);font-weight:500;line-height:1}
+.admin-tabs{display:flex;border-bottom:1px solid var(--line);gap:26px}
+.admin-tab{position:relative;min-height:52px;display:inline-flex;align-items:center;border:0;background:none;padding:0;color:var(--muted);font-weight:500}
+.admin-tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--eo)}
+.admin-tab:hover{color:var(--ink)}
+.admin-tab[aria-current=page]{color:var(--ink)}
+.admin-tab[aria-current=page]::after{transform:scaleX(1)}
+.admin-count{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;color:var(--muted);font-size:.88rem;border-bottom:1px solid var(--line)}
+.admin-list{border-bottom:1px solid var(--line)}
+.admin-row{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(120px,.45fr) minmax(110px,.4fr) auto;gap:22px 30px;align-items:center;padding:25px 0;border-top:1px solid var(--line)}
+.admin-row:first-child{border-top:0}
+.admin-row h3{font-family:var(--serif);font-size:clamp(1.55rem,1.2rem + .7vw,2rem);font-weight:500;line-height:1.05}
+.admin-description{color:var(--muted);font-size:.9rem;line-height:1.55;margin-top:8px;max-width:64ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.admin-label{display:block;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+.admin-value{font-size:.9rem}
+.admin-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.admin-row-actions form{display:flex}
+.admin-action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;font-weight:600;font-size:.86rem;white-space:nowrap}
+.admin-action:hover{border-color:var(--ink)}
+.admin-action.danger{color:#ff8589;border-color:rgba(255,133,137,.45)}
+.admin-action.danger:hover{border-color:#ff8589}
+.admin-pages{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:24px}
+.admin-pages>span{color:var(--muted);font-size:.88rem}
+.admin-pages nav{display:flex;gap:10px}
+.admin-pages .btn{min-height:44px;padding-inline:18px}
+.admin-page-disabled{opacity:.42;cursor:not-allowed}
+.admin-page-disabled::before{display:none}
+@media(max-width:1000px){
+  .admin-head{grid-template-columns:1fr}
+  .admin-row{grid-template-columns:minmax(0,1fr) repeat(2,minmax(110px,.35fr))}
+  .admin-row-actions{grid-column:1/-1;justify-content:flex-start}
+}
+@media(max-width:640px){
+  .admin-view{padding-top:112px}
+  .admin-head h1{font-size:clamp(3.25rem,16vw,4.5rem)}
+  .admin-actions .btn{flex:1 1 100%}
+  .admin-stats{grid-template-columns:1fr}
+  .admin-stat,.admin-stat:first-child{border-left:0;border-top:1px solid var(--line);padding:20px 0}
+  .admin-stat:first-child{border-top:0}
+  .admin-manage-top{align-items:flex-start;flex-direction:column}
+  .admin-tabs{width:100%}.admin-tab{flex:1;justify-content:center}
+  .admin-count{align-items:flex-start;flex-direction:column}
+  .admin-row{grid-template-columns:1fr 1fr;padding:24px 0}
+  .admin-row>div:first-child{grid-column:1/-1}
+  .admin-row-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}
+  .admin-row-actions form{width:100%}
+  .admin-action{min-height:44px;width:100%}
+  .admin-pages{align-items:flex-start;flex-direction:column}
+  .admin-pages nav{width:100%}.admin-pages .btn{flex:1}
+}
+
 /* Recipe print: title, products and steps only, on one light page; independent of the screen styles. */
 @media print{
   .r-hero{min-height:0!important;display:block!important;overflow:visible!important;background:none!important;color:#111!important}
