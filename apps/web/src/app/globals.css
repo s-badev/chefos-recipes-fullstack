@@ -882,6 +882,49 @@ html:not([data-motion]) .menu-toggle{display:none}
   .admin-pages nav{width:100%}.admin-pages .btn{flex:1}
 }
 
+/* ---------- админ форми и потвърждение ---------- */
+.admin-form-view{padding-block:clamp(126px,13vw,176px) clamp(96px,10vw,148px)}
+.admin-form-head{display:grid;grid-template-columns:minmax(0,8fr) minmax(220px,4fr);gap:24px 48px;align-items:end;padding-bottom:clamp(36px,5vw,64px);border-bottom:1px solid var(--line)}
+.admin-form-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,1.6rem + 5vw,7.8rem);line-height:.9;letter-spacing:-.025em;margin-top:14px;text-wrap:balance}
+.admin-form-head h1 em{font-weight:400;color:var(--accent)}
+.admin-form-head .lead{justify-self:end}
+.admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 40px;padding-top:clamp(36px,5vw,64px);max-width:980px}
+.admin-form .wide{grid-column:1/-1}
+.admin-field label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.admin-field input,.admin-field textarea{width:100%;min-height:52px;padding:10px 0;border:0;border-bottom:1px solid rgba(244,238,232,.45);background:transparent;color:var(--ink);font:inherit;font-size:1.05rem;border-radius:0;outline:none;transition:border-color .2s,box-shadow .2s}
+.admin-field textarea{min-height:116px;resize:vertical;line-height:1.55}
+.admin-field input::placeholder,.admin-field textarea::placeholder{color:var(--muted);opacity:.85}
+.admin-field input:hover,.admin-field textarea:hover{border-bottom-color:var(--ink)}
+.admin-field input:focus,.admin-field textarea:focus{border-bottom:2px solid var(--accent);padding-bottom:9px;box-shadow:0 5px 0 -3px rgba(229,72,77,.35)}
+.admin-field [aria-invalid=true]{border-bottom-color:var(--accent)}
+.admin-field-error{display:block;color:#ff8589;font-size:.86rem;margin-top:8px}
+.admin-form-error{grid-column:1/-1;border-left:2px solid var(--accent);padding:14px 18px;color:#ffb2b4;background:rgba(200,30,43,.08)}
+.admin-form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px}
+.admin-form-note{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;max-width:980px}
+.admin-error-state{max-width:780px;padding-block:clamp(44px,7vw,88px);border-block:1px solid var(--line)}
+.admin-error-state h1{font-family:var(--serif);font-size:clamp(2.8rem,1.7rem + 3vw,5rem);font-weight:500;line-height:.95;margin-top:14px}
+.admin-error-state>p:not(.eyebrow){color:var(--muted);max-width:48ch;margin-top:18px}
+.admin-error-state .btn{margin-top:28px}
+.admin-dialog{width:min(560px,calc(100% - 32px));max-width:none;border:1px solid var(--line);padding:0;background:var(--surface);color:var(--ink)}
+.admin-dialog::backdrop{background:rgba(10,6,6,.78);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.admin-dialog-inner{padding:clamp(26px,4vw,42px)}
+.admin-dialog h2{font-family:var(--serif);font-size:clamp(2rem,1.4rem + 1.4vw,3rem);font-weight:500;line-height:1;margin-top:10px}
+.admin-dialog p:not(.eyebrow){color:var(--muted);margin-top:14px}
+.admin-dialog-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:28px}
+.admin-dialog-actions form{display:flex}
+@media(max-width:1000px){
+  .admin-form-head{grid-template-columns:1fr}.admin-form-head .lead{justify-self:start}
+}
+@media(max-width:640px){
+  .admin-form-view{padding-top:112px}
+  .admin-form-head h1{font-size:clamp(3.25rem,16vw,4.5rem)}
+  .admin-form{grid-template-columns:1fr;gap:24px}
+  .admin-form .wide,.admin-form-error,.admin-form-actions{grid-column:auto}
+  .admin-form-actions .btn{width:100%}
+  .admin-dialog-actions{display:grid;grid-template-columns:1fr}
+  .admin-dialog-actions form,.admin-dialog-actions .btn{width:100%}
+}
+
 /* Recipe print: title, products and steps only, on one light page; independent of the screen styles. */
 @media print{
   .r-hero{min-height:0!important;display:block!important;overflow:visible!important;background:none!important;color:#111!important}

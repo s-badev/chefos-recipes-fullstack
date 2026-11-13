@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { pageMetadata } from "../../lib/site-metadata";
 import { requireAdmin } from "../../server/auth/session";
-import { deleteRecipeAction } from "../../server/recipes/admin-actions";
 import {
   getAdminRecipeSummary,
   listPublicCatalogRecipes,
   listRecipes
 } from "../../server/recipes/service";
 import { EditorialTitle } from "../split-heading";
+import { DeleteRecipeDialog } from "./delete-recipe-dialog";
 
 export const metadata: Metadata = pageMetadata(
   "Админ панел",
@@ -136,10 +136,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
               </div>
               <div className="admin-row-actions">
                 <Link className="admin-action" href={`/admin/recipes/${recipe.slug}/edit`}>Редактирай</Link>
-                <form action={deleteRecipeAction}>
-                  <input name="slug" type="hidden" value={recipe.slug} />
-                  <button className="admin-action danger" type="submit">Изтрий</button>
-                </form>
+                <DeleteRecipeDialog slug={recipe.slug} title={recipe.title} />
               </div>
             </article>
           ))}
