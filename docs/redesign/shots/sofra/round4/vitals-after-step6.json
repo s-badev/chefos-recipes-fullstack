@@ -1,0 +1,139 @@
+[
+{
+  "url": "http://localhost:3000/",
+  "runs": [
+    {
+      "lcpMs": 876,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    },
+    {
+      "lcpMs": 984,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    },
+    {
+      "lcpMs": 976,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    }
+  ],
+  "medianLcpMs": 976,
+  "medianCls": 0
+}
+,
+{
+  "url": "http://localhost:3000/catalog",
+  "runs": [
+    {
+      "lcpMs": 1296,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1344,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1420,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 1344,
+  "medianCls": 0.0009
+}
+,
+{
+  "url": "http://localhost:3000/catalog/shopska-salata",
+  "runs": [
+    {
+      "lcpMs": 784,
+      "cls": 0,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 820,
+      "cls": 0,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 784,
+      "cls": 0,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 784,
+  "medianCls": 0
+}
+,
+{
+  "url": "http://localhost:3000/about",
+  "runs": [
+    {
+      "lcpMs": 884,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 852,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 864,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 864,
+  "medianCls": 0.0011
+}
+,
+{
+  "url": "http://localhost:3000/login",
+  "runs": [
+    {
+      "lcpMs": 1048,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1072,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1100,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 1072,
+  "medianCls": 0.0009
+}
+,
+{
+  "url": "http://localhost:3000/niama-takava-stranica",
+  "runs": [
+    {
+      "lcpMs": 660,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    },
+    {
+      "lcpMs": 648,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    },
+    {
+      "lcpMs": 652,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    }
+  ],
+  "medianLcpMs": 652,
+  "medianCls": 0
+}
+]

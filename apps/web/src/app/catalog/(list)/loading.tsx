@@ -1,5 +1,3 @@
-import { SplitWords } from "../../split-heading";
-
 /** The card pattern of the catalog grid (recipe-catalog.tsx), so the placeholders sit where the cards land. */
 const PATTERN = ["wide", "half", "half", "half", "half", "wide"];
 /** Tab widths close to the real category names, so the bar does not jump when they arrive. */
@@ -17,7 +15,8 @@ export default function CatalogLoading() {
       <div aria-hidden="true">
         <div className="wrap cat-head">
           <p className="eyebrow"><span className="sk sk-text" style={{ width: "11.5rem" }} /></p>
-          <p className="cat-h1"><SplitWords text="Всички" /> <em><SplitWords start={1} text="рецепти" /></em></p>
+          {/* Plain words (no split reveal): the real title is there at once, not waiting under its mask. */}
+          <p className="cat-h1">Всички <em>рецепти</em></p>
           <div className="search sk-search">
             <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><path d="m20 20-4-4" /></svg>
             <span>Търси рецепта, продукт или категория</span>

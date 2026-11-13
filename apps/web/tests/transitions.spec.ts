@@ -72,13 +72,17 @@ for (const width of [1440, 390]) {
     for (const [index, box] of placeholders.entries()) {
       for (const field of ["x", "y", "w", "h"] as const) expect(Math.abs(box[field] - real[index][field]), `card ${index} ${field}`).toBeLessThanOrEqual(4);
     }
-    // Calm: one slow pulse, and the whole state fades in only after a short wait.
+    // Calm: one slow pulse; the state is there at once (no delayed fade that leaves empty frames between pages).
     const timing = await page.evaluate(() => ({
       pulse: getComputedStyle(document.querySelector(".cat-loading .sk")!).animationDuration,
-      delay: getComputedStyle(document.querySelector(".cat-loading > div")!).animationDelay
+      opacity: getComputedStyle(document.querySelector(".cat-loading > div")!).opacity
     }));
     expect(parseFloat(timing.pulse)).toBeGreaterThanOrEqual(1.2);
-    expect(parseFloat(timing.delay)).toBeGreaterThan(0);
+    expect(timing.opacity).toBe("1");
+    // The real title is visible in the loading state (not waiting under a reveal mask).
+    const title = (await page.locator(".cat-loading .cat-h1").boundingBox())!;
+    expect(title.height).toBeGreaterThan(30);
+    expect(await page.locator(".cat-loading .cat-h1").evaluate(node => [...node.querySelectorAll("*")].every(el => getComputedStyle(el).transform === "none"))).toBe(true);
   });
 }
 
@@ -99,4 +103,31 @@ test("pressed states: buttons sink, menu links dim", async ({ page }) => {
   await page.mouse.down();
   expect(Number(await link.evaluate(node => getComputedStyle(node).opacity))).toBeLessThan(1);
   await page.mouse.up();
+});
+
+test("client navigation shows one screen at a time: <main> never transparent, at most one underlined menu item, titles never drop", async ({ page }) => {
+  for (const [from, link] of [["/", "header nav a[href='/about']"], ["/about", "header nav a[href='/catalog']"]] as const) {
+    await page.goto(from, { waitUntil: "networkidle" });
+    await page.waitForTimeout(1500);
+    await page.evaluate(() => {
+      const w = window as unknown as { __frames: Array<{ opacity: number; underlined: number; drop: number }> };
+      w.__frames = [];
+      const t0 = performance.now();
+      const tick = () => {
+        const main = document.getElementById("main-content")!;
+        const underlined = [...document.querySelectorAll(".desktop-nav a")].filter(a => { const m = getComputedStyle(a, "::after").transform; return m !== "none" && !m.startsWith("matrix(0,"); }).length;
+        const drop = Math.max(0, ...[...document.querySelectorAll("main :is(.hero,.r-hero,.nf-tx,.pg-head,.auth-cap) [data-split] .wi")].map(wi => { const m = new DOMMatrix(getComputedStyle(wi).transform); return m.m42; }));
+        w.__frames.push({ opacity: Number(getComputedStyle(main).opacity), underlined, drop });
+        if (performance.now() - t0 < 1400) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    });
+    await page.locator(link).click();
+    await page.waitForTimeout(1500);
+    const frames = await page.evaluate(() => (window as unknown as { __frames: Array<{ opacity: number; underlined: number; drop: number }> }).__frames);
+    expect(frames.length).toBeGreaterThan(20);
+    expect(Math.min(...frames.map(f => f.opacity)), `${from}: <main> opacity`).toBe(1);
+    expect(Math.max(...frames.map(f => f.underlined)), `${from}: underlined menu items`).toBeLessThanOrEqual(1);
+    expect(Math.max(...frames.map(f => f.drop)), `${from}: hero title words pushed down`).toBeLessThanOrEqual(0.5);
+  }
 });
