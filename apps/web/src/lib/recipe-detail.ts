@@ -10,10 +10,9 @@ export const RECIPE_FALLBACK_IMAGE_SRC = "/images/recipes/musaka-s-kartofi.png";
 
 const curatedIndex = new Map(curatedRecipes.map((recipe, index) => [recipe.slug, index]));
 
-/** "Nº 07" for one of the curated recipes (its position in the curated list); undefined for manual recipes. */
-export function curatedNumberLabel(slug: string): string | undefined {
-  const index = curatedIndex.get(slug);
-  return index === undefined ? undefined : `Nº ${String(index + 1).padStart(2, "0")}`;
+/** Membership check shared with the web image resolver. */
+export function isCuratedRecipe(slug: string): boolean {
+  return curatedIndex.has(slug);
 }
 
 /**
@@ -32,7 +31,7 @@ export function hasRecipePhoto(recipe: { slug: string; imageSrc?: string }): boo
 export function nextCuratedRecipe(slug: string) {
   const index = curatedIndex.get(slug);
   const next = curatedRecipes[index === undefined ? 0 : (index + 1) % curatedRecipes.length];
-  return { recipe: next, number: curatedNumberLabel(next.slug)! };
+  return { recipe: next };
 }
 
 /** Tags as one plain line: "Постно · Домашно · Бюджетно". */

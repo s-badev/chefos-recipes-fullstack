@@ -313,7 +313,7 @@ test.describe("without JavaScript", () => {
 
 test("next recipe: curated order, wraps to the first; a large row with its photograph that shifts on hover", async ({ page }) => {
   expect(nextCuratedRecipe(curated[0].slug).recipe.slug).toBe(curated[1].slug);
-  expect(nextCuratedRecipe(curated[curated.length - 1].slug)).toEqual({ recipe: curated[0], number: "Nº 01" });
+  expect(nextCuratedRecipe(curated[curated.length - 1].slug)).toEqual({ recipe: curated[0] });
   expect(nextCuratedRecipe("admin-recipe-x").recipe.slug).toBe(curated[0].slug);
 
   await page.goto(`/catalog/${curated[0].slug}`, { waitUntil: "networkidle" });

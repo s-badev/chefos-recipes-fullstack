@@ -11,7 +11,7 @@ import { StitchBand, StitchStar } from "../../stitch";
 import { webImageSrc } from "../../../lib/images";
 import { formatCookTime, formatTotalTime } from "../../../lib/format";
 import { categoryHref } from "../../../lib/categories";
-import { curatedNumberLabel, hasRecipePhoto, missingContentNotes, nextCuratedRecipe, stepNumber, tagLine } from "../../../lib/recipe-detail";
+import { hasRecipePhoto, missingContentNotes, nextCuratedRecipe, stepNumber, tagLine } from "../../../lib/recipe-detail";
 import { recipeExtrasFor } from "../../../data/recipe-extras";
 import { isCurrentUserFavoriteRecipe } from "../../../server/favorites/service";
 import { getWebRecipeForDetails } from "../../../server/recipes/web-details";
@@ -51,7 +51,6 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
 
   const isFavorited = await isCurrentUserFavoriteRecipe(recipe.slug);
   const photo = hasRecipePhoto(recipe);
-  const number = curatedNumberLabel(recipe.slug);
   const tags = tagLine(recipe.tags);
   const notes = missingContentNotes(recipe.ingredients.length, recipe.steps.length);
   const extras = recipeExtrasFor(recipe.slug);
@@ -73,7 +72,6 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
         <div className="wrap hero-in">
           <p className="eyebrow">
             <Link href={categoryHref(recipe.category)}>{recipe.category}</Link>
-            {number ? <span> · {number}</span> : null}
           </p>
           <h1 data-split id="recipe-title"><SplitWords text={recipe.title} /></h1>
           <p className="r-desc">{recipe.description}</p>

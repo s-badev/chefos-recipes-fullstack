@@ -561,7 +561,7 @@ em{font-style:italic}
     <div class="hero-ph"><img id="r-img" alt=""></div>
     <span class="r-star" data-star aria-hidden="true"></span>
     <div class="wrap hero-in">
-      <p class="eyebrow"><a href="#catalog" id="r-cat">Салати</a><span id="r-n"> · Nº 01</span></p>
+      <p class="eyebrow"><a href="#catalog" id="r-cat">Салати</a></p>
       <h1 id="r-t" class="split" data-split>Шопска салата</h1>
       <p id="r-d"></p>
       <div class="band" data-band-svg="hero" aria-hidden="true"></div>
@@ -758,7 +758,7 @@ renderCat(R);
 function fillRecipe(s){
   var r=byS(s)||R[0];sel=r.s;var n=R.indexOf(r);
   $('#r-img').src=r.np?'':IMG[r.s];$('#r-img').alt=r.t;$('.r-hero').setAttribute('data-photo',r.np?'none':'yes');
-  $('#r-cat').textContent=r.c;$('#r-cat').setAttribute('data-cat',r.c);$('#r-n').textContent=r.np?'':' · Nº '+pad(n+1);
+  $('#r-cat').textContent=r.c;$('#r-cat').setAttribute('data-cat',r.c);
   var h=$('#r-t');h.classList.remove('in');h.textContent=r.t;split(h);
   $('#r-d').textContent=r.d;
   $('#r-meta').innerHTML='<div class="rv"><dt>Подготовка</dt><dd>'+r.p+'<small>мин</small></dd></div><div class="rv" style="--d:80ms"><dt>Готвене</dt><dd'+(r.k===0?' class="word">Без готвене':'>'+r.k+'<small>мин</small>')+'</dd></div><div class="rv" style="--d:160ms"><dt>Порции</dt><dd>'+r.v+'</dd></div><div class="rv" style="--d:240ms"><dt>Трудност</dt><dd class="word">'+r.l+'</dd></div>';

@@ -159,7 +159,7 @@ img{display:block;max-width:100%}
 .rn{display:block}
 .rn+.rn{position:absolute;left:0;top:0}
 .idx-list{border-top:1px solid var(--ink)}
-.row{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);min-height:44px}
+.row{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:20px 0;border-bottom:1px solid var(--line);min-height:44px}
 .row::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform calc(550ms*var(--k)) var(--ease-out)}
 .row:hover::after,.row:focus-visible::after{transform:scaleX(1)}
 .row-n{font-size:.85rem;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.08em;white-space:nowrap}
@@ -266,7 +266,7 @@ img{display:block;max-width:100%}
 /* Етап В: „Следваща рецепта“ — един ред в стила на „Съдържание“, със стрелка и снимка до курсора. */
 .next-recipe{padding-bottom:clamp(56px,8vw,120px)}
 .next-recipe>.eyebrow{display:block;margin-bottom:16px}
-.next-row{grid-template-columns:56px minmax(0,1fr) auto auto}
+.next-row{grid-template-columns:minmax(0,1fr) auto auto}
 .row-arrow{font-size:1.4rem;line-height:1;transition:transform calc(450ms*var(--k)) var(--ease-out)}
 .next-row:hover .row-arrow,.next-row:focus-visible .row-arrow{transform:translateX(6px)}
 .steps{grid-column:5 / span 8;position:relative;padding-left:0}
@@ -374,8 +374,8 @@ img{display:block;max-width:100%}
   .cover-photo{order:0;aspect-ratio:4/5}
   .cover-text{order:1;margin-top:24px}
   .idx{display:block}.idx-side{position:static;margin-bottom:32px}
-  .row{grid-template-columns:40px minmax(0,1fr);}.row-m{display:none}
-  .next-row{grid-template-columns:40px minmax(0,1fr) auto}.next-row .row-m{display:block;grid-column:2;grid-row:2;text-align:left;white-space:normal}.next-row .row-arrow{grid-column:3;grid-row:1}
+  .row{grid-template-columns:minmax(0,1fr);}.row-m{display:none}
+  .next-row{grid-template-columns:minmax(0,1fr) auto}.next-row .row-m{display:block;grid-column:1;grid-row:2;text-align:left;white-space:normal}.next-row .row-arrow{grid-column:2;grid-row:1}
   .mas{display:flex;flex-direction:column;gap:44px;align-items:stretch}
   .mc[data-s="0"] .mc-img{aspect-ratio:4/3}.mc[data-s="1"] .mc-img,.mc[data-s="2"] .mc-img,.mc[data-s="3"] .mc-img,.mc[data-s="4"] .mc-img{aspect-ratio:4/5}
   .mc[data-s="0"] .mc-t{font-size:calc(2.2rem*var(--fs))}
@@ -438,7 +438,7 @@ img{display:block;max-width:100%}
     <div class="hero-par" data-par="0.18"><div class="zoom"><img data-img="shopska-salata" alt="Шопска салата, поднесена в дълбока чиния" class="ph"></div></div>
     <div class="hero-in"><div class="wrap">
       <h1 id="h1-home" data-split data-sp="1">Българска <em>трапеза</em></h1>
-      <div class="hero-sub"><span class="eyebrow">Nº 01–24 · подбрани рецепти</span><a class="eyebrow" href="#weekly">Прелисти <span class="arrow" aria-hidden="true">↓</span></a></div>
+      <div class="hero-sub"><span class="eyebrow">Подбрани рецепти</span><a class="eyebrow" href="#weekly">Прелисти <span class="arrow" aria-hidden="true">↓</span></a></div>
     </div></div>
   </section>
 
@@ -499,7 +499,7 @@ img{display:block;max-width:100%}
   <div class="recipe-hero" data-zoom>
     <div class="hero-par" data-par="0.14"><div class="zoom"><img id="rimg" class="ph" alt=""></div></div>
     <div class="hero-in"><div class="wrap">
-      <span class="eyebrow" id="rcat">Салати · Nº 01</span>
+      <span class="eyebrow" id="rcat">Салати</span>
       <h1 id="rt" data-split data-sp="1">Шопска салата</h1>
       <p class="rh-desc" id="rdesc"></p>
     </div></div>
@@ -558,9 +558,9 @@ img{display:block;max-width:100%}
       <h2 class="sec-h" id="who-h" data-split data-sp="1" style="margin-top:16px">За реалното готвене <em>у дома</em></h2>
     </div>
     <ul class="idx-list">
-      <li class="arow" data-r><span class="row-n">Nº 01</span><h3>За хора с малко време</h3><p>Когато вечерята трябва да се случи без дълго търсене, можеш бързо да сравниш време, порции и трудност.</p></li>
-      <li class="arow" data-r style="--dl:80ms"><span class="row-n">Nº 02</span><h3>За семейно готвене</h3><p>Рецептите са подредени така, че да помагат при избор за делнична вечеря, гости или споделена неделна трапеза.</p></li>
-      <li class="arow" data-r style="--dl:160ms"><span class="row-n">Nº 03</span><h3>За любими класики</h3><p>Баница, таратор, кавърма, шопска салата и други познати вкусове са представени ясно, без излишно усложняване.</p></li>
+      <li class="arow" data-r><span class="row-n">01</span><h3>За хора с малко време</h3><p>Когато вечерята трябва да се случи без дълго търсене, можеш бързо да сравниш време, порции и трудност.</p></li>
+      <li class="arow" data-r style="--dl:80ms"><span class="row-n">02</span><h3>За семейно готвене</h3><p>Рецептите са подредени така, че да помагат при избор за делнична вечеря, гости или споделена неделна трапеза.</p></li>
+      <li class="arow" data-r style="--dl:160ms"><span class="row-n">03</span><h3>За любими класики</h3><p>Баница, таратор, кавърма, шопска салата и други познати вкусове са представени ясно, без излишно усложняване.</p></li>
     </ul>
   </section>
 
@@ -793,8 +793,8 @@ function buildRail(){
   $('#rail').innerHTML=h;
 }
 function buildIdx(){
-  $('#idx').innerHTML=R.slice(0,8).map(function(r,i){
-    return '<li><a class="row" href="#recipe" data-slug="'+r.s+'" data-n="'+pad2(i+1)+'"><span class="row-n">Nº '+pad2(i+1)+'</span><span class="row-t">'+r.t+'</span><span class="row-m">'+r.c+' · '+(r.p+r.k)+' мин</span></a></li>';
+  $('#idx').innerHTML=R.slice(0,8).map(function(r){
+    return '<li><a class="row" href="#recipe" data-slug="'+r.s+'"><span class="row-t">'+r.t+'</span><span class="row-m">'+r.c+' · '+(r.p+r.k)+' мин</span></a></li>';
   }).join('');
 }
 function card(r,i){
@@ -802,7 +802,7 @@ function card(r,i){
   return '<article class="mc" data-r style="--dl:'+((i%5)*60)+'ms" data-cat="'+r.c+'" data-s="'+(i%5)+'" data-slug="'+r.s+'">'+
    '<a class="mc-img" href="#recipe" data-slug="'+r.s+'" aria-label="'+r.t+'"><img class="ph" alt="" src="'+IMG[r.s]+'"></a>'+
    '<button class="heart" type="button" data-fav="'+r.s+'" aria-pressed="'+on+'" aria-label="'+(on?'Премахни от любими: ':'Запази в любими: ')+r.t+'"><span class="ring"></span>'+HEART+'</button>'+
-   '<a class="mc-b" href="#recipe" data-slug="'+r.s+'"><span class="eyebrow">'+r.c+' · Nº '+pad2(idxOf(r.s)+1)+'</span><span><span class="mc-t">'+r.t+'</span></span><span class="mc-m">'+(r.p+r.k)+' мин · '+r.v+' порции · '+r.l+'</span></a></article>';
+   '<a class="mc-b" href="#recipe" data-slug="'+r.s+'"><span class="eyebrow">'+r.c+'</span><span><span class="mc-t">'+r.t+'</span></span><span class="mc-m">'+(r.p+r.k)+' мин · '+r.v+' порции · '+r.l+'</span></a></article>';
 }
 function buildCat(){
   $('#mas').innerHTML=R.map(card).join('');
@@ -811,7 +811,7 @@ function buildCat(){
 function fillRecipe(s){
   var r=byS(s);sel=s;
   $('#rimg').src=IMG[s];$('#rimg').alt=r.t;
-  $('#rcat').innerHTML='<a href="#catalog" data-cat="'+r.c+'">'+r.c+'</a> · Nº '+pad2(idxOf(s)+1);
+  $('#rcat').innerHTML='<a href="#catalog" data-cat="'+r.c+'">'+r.c+'</a>';
   $('#rdesc').textContent=DESC[s]||'Домашна рецепта с познати продукти и ясни стъпки.';
   $('#rtags').textContent=TAGS[s]||'';
   var h=$('#rt');h.classList.remove('sp');h.textContent=r.t;split(h);
@@ -822,7 +822,7 @@ function fillRecipe(s){
     '<div data-r style="--dl:160ms"><dt class="eyebrow">Порции</dt><dd><b>'+r.v+'</b></dd></div>'+
     '<div data-r style="--dl:240ms"><dt class="eyebrow">Трудност</dt><dd class="meta-word"><b>'+r.l+'</b></dd></div>';
   var ni=(idxOf(s)+1)%R.length,nx=R[ni];
-  $('#nextidx').innerHTML='<li><a class="row next-row" href="#recipe" data-slug="'+nx.s+'"><span class="row-n">Nº '+pad2(ni+1)+'</span><span class="row-t">'+nx.t+'</span><span class="row-m">'+nx.c+' · '+(nx.p+nx.k)+' мин</span><span class="row-arrow" aria-hidden="true">→</span></a></li>';
+  $('#nextidx').innerHTML='<li><a class="row next-row" href="#recipe" data-slug="'+nx.s+'"><span class="row-t">'+nx.t+'</span><span class="row-m">'+nx.c+' · '+(nx.p+nx.k)+' мин</span><span class="row-arrow" aria-hidden="true">→</span></a></li>';
   $('#ings').innerHTML=ING.map(function(t,i){return '<label class="ing" data-r style="--dl:'+(i<8?i*50:0)+'ms"><input type="checkbox"><span class="ing-t"><span class="ing-b">'+t+'</span><span class="ing-s" aria-hidden="true">'+t+'</span></span></label>'}).join('');
   var saved='';try{saved=localStorage.getItem('chefos:ingredients:'+s)||''}catch(e){/* без localStorage отметките просто не се помнят */}
   saved.split('|').forEach(function(n){var box=$$('#ings input')[+n];if(n!==''&&box)box.checked=true});

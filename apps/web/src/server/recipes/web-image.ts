@@ -1,7 +1,7 @@
 import "server-only";
 import { stat } from "node:fs/promises";
 import path from "node:path";
-import { curatedNumberLabel, hasRecipePhoto } from "../../lib/recipe-detail";
+import { isCuratedRecipe, hasRecipePhoto } from "../../lib/recipe-detail";
 import { transliterateRecipeName } from "../../lib/transliteration";
 
 type PhotoRecipe = { slug: string; title: string; imageSrc?: string; imageAlt?: string };
@@ -22,7 +22,7 @@ async function masterExists(basename: string): Promise<boolean> {
 export function createWebRecipeImageResolver(exists: FileExists = masterExists) {
   const cache = new Map<string, Promise<boolean>>();
   return async function withWebRecipeImage<T extends PhotoRecipe>(recipe: T): Promise<T> {
-    if (curatedNumberLabel(recipe.slug) || hasRecipePhoto(recipe)) return recipe;
+    if (isCuratedRecipe(recipe.slug) || hasRecipePhoto(recipe)) return recipe;
     // Reject separators, controls, spaces and URL escapes before any filesystem operation.
     if (!/^[a-z0-9а-яѝ-]+$/iu.test(recipe.slug)) return recipe;
     const basename = transliterateRecipeName(recipe.slug);
