@@ -45,7 +45,7 @@ export default async function FavoritesPage() {
         <section aria-labelledby="favorites-empty" className="fav-empty">
           <div className="fe-tx">
             <p className="eyebrow rv">Още няма рецепти</p>
-            <h2 data-split id="favorites-empty"><SplitWords text="Все още няма" /> <em><SplitWords start={3} text="запазени рецепти" /></em></h2>
+            <h2 data-split id="favorites-empty"><SplitWords text="Все още няма запазени рецепти" /></h2>
             <p className="t rv">Когато запазиш първата си рецепта, тя ще се появи тук за бързо връщане към нея.</p>
             <div className="rv"><Link className="btn fill" href="/catalog">Всички рецепти <span aria-hidden="true" className="ar">→</span></Link></div>
           </div>

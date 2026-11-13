@@ -111,7 +111,7 @@ export default function AboutPage() {
         <div className="sec-top">
           <div>
             <p className="eyebrow rv">За кого е създаден</p>
-            <h2 className="sec-h" data-split id="about-who"><SplitWords text="За реалното готвене" /> <em><SplitWords start={3} text="у дома" /></em></h2>
+            <h2 className="sec-h" data-split id="about-who"><SplitWords text="За реалното готвене у дома" /></h2>
           </div>
         </div>
         <div className="cols3">
@@ -130,7 +130,7 @@ export default function AboutPage() {
       <div className="wrap cap">
         <div className="cap-side">
           <p className="eyebrow rv">Какво можеш да правиш</p>
-          <h2 className="sec-h" data-split id="about-cap"><SplitWords text="По-малко чудене преди" /> <em><SplitWords start={3} text="готвене" /></em></h2>
+          <h2 className="sec-h" data-split id="about-cap"><SplitWords text="По-малко чудене преди готвене" /></h2>
           <p className="lead rv">
             Основната цел е да стигнеш до добър избор бързо, без да губиш важните детайли за продуктите,
             времето и начина на приготвяне.
@@ -152,7 +152,7 @@ export default function AboutPage() {
         <div className="sec-top">
           <div>
             <p className="eyebrow rv">Как подбираме рецептите</p>
-            <h2 className="sec-h" data-split id="about-principles"><SplitWords text="Практични, ясни и близки" /> <em><SplitWords start={4} text="до дома" /></em></h2>
+            <h2 className="sec-h" data-split id="about-principles"><SplitWords text="Практични, ясни и близки до дома" /></h2>
           </div>
           <p className="lead rv">
             Фокусът е върху рецепти с познати продукти, реалистично време и ясни стъпки – така че изборът да е
@@ -179,7 +179,7 @@ export default function AboutPage() {
       <div className="wrap why">
         <div className="why-tx">
           <p className="eyebrow rv">Защо българска домашна кухня</p>
-          <h2 className="sec-h" data-split id="about-why"><SplitWords text="Защото познатият вкус" /> <em><SplitWords start={3} text="също заслужава" /></em> <SplitWords start={5} text="добра подредба" /></h2>
+          <h2 className="sec-h" data-split id="about-why"><SplitWords text="Защото познатият вкус също заслужава добра подредба" /></h2>
           <p className="lead rv">
             Българската домашна кухня е богата, сезонна и практична. Chefo&apos;s Recipes я представя в удобен
             дигитален формат, без да отнема от усещането за истинска храна на масата.

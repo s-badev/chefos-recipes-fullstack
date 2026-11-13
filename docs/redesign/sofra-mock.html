@@ -485,7 +485,8 @@ em{font-style:italic}
     <div class="wrap sofra-grid">
       <div class="sofra-side">
         <p class="eyebrow rv">Шест ястия, шест повода</p>
-        <h2 class="sec-h split" id="sofra-h" data-split style="margin-top:14px">Седни на <em>софрата</em></h2>
+        <!-- Кръг 4: курсивната червена дума остава само в h1 (подписът); h2 заглавията са без нея, Cormorant в ink. -->
+        <h2 class="sec-h split" id="sofra-h" data-split style="margin-top:14px">Седни на софрата</h2>
         <p class="lead rv">Завърти софрата и избери с какво да започнеш: салата за лятна вечер, чорба за студен ден или нещо сладко за неделя.</p>
       </div>
       <div class="sofra-wheel">
@@ -512,7 +513,7 @@ em{font-style:italic}
       <div class="week-ph mask"><a href="#recipe" data-slug="banitsa-sas-sirene" class="mk" aria-label="Баница със сирене"><img data-img="banitsa-sas-sirene" alt=""></a><div class="band thin" data-band-svg="thin" aria-hidden="true"></div></div>
       <div class="week-tx">
         <p class="eyebrow rv">Рецепта на седмицата</p>
-        <h2 id="week-h" class="split" data-split>Баница със <em>сирене</em></h2>
+        <h2 id="week-h" class="split" data-split>Баница със сирене</h2>
         <p class="rv">Фини кори, запечени с яйца, кисело мляко и ароматно бяло сирене. Неделната закуска, която събира всички около масата.</p>
         <dl class="facts rv"><div><dt>Подготовка</dt><dd><b>25 мин</b></dd></div><div><dt>Печене</dt><dd><b>40 мин</b></dd></div><div><dt>Порции</dt><dd><b>8</b></dd></div></dl>
         <div class="rv"><a class="btn fill" href="#recipe" data-slug="banitsa-sas-sirene">Виж рецептата <span class="ar" aria-hidden="true">→</span></a></div>
@@ -524,7 +525,7 @@ em{font-style:italic}
   <section class="sec home" aria-labelledby="today-h">
     <div class="wrap">
       <div class="sec-top">
-        <h2 class="sec-h split" id="today-h" data-split>Какво да сготвиш <em>днес</em></h2>
+        <h2 class="sec-h split" id="today-h" data-split>Какво да сготвиш днес</h2>
         <p class="lead rv">Пет рецепти за тази седмица: от бърза вечеря до ястие, което се приготвя бавно и се яде дълго.</p>
       </div>
       <div class="cards" id="today"></div>
@@ -591,7 +592,7 @@ em{font-style:italic}
     </div>
     <div class="auth-side"><div class="auth-box">
       <nav class="atabs" aria-label="Вход или регистрация"><a class="atab" href="#auth" data-mode="in" aria-current="page">Вход</a><a class="atab" href="#auth" data-mode="up">Регистрация</a></nav>
-      <h2 id="a-t">Влез в <em>профила</em> си</h2>
+      <h2 id="a-t">Влез в профила си</h2>
       <p class="sub" id="a-s">Любимите ти рецепти те чакат там, където ги остави.</p>
       <form id="a-form" novalidate>
         <label class="fld" id="f-name" hidden><span>Име</span><input type="text" name="name" autocomplete="name" autocapitalize="words" placeholder="Твоето име"></label>
@@ -788,7 +789,7 @@ document.addEventListener('click',function(e){var f=e.target.closest('[data-fav]
 function setMode(m){
   $$('.atab').forEach(function(t){if(t.getAttribute('data-mode')===m)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current')});
   var up=m==='up';$('#f-name').hidden=!up;
-  $('#a-t').innerHTML=up?'Създай <em>профил</em>':'Влез в <em>профила</em> си';
+  $('#a-t').textContent=up?'Създай профил':'Влез в профила си';
   $('#a-s').textContent=up?'Пази любимите си рецепти на едно място и се връщай към тях по всяко време.':'Любимите ти рецепти те чакат там, където ги остави.';
   $('#a-go').firstChild.textContent=up?'Създай профил ':'Влез ';
   $('#a-q').textContent=up?'Вече имаш профил?':'Нямаш профил?';

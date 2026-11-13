@@ -30,7 +30,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
 
   return (
     <AuthLayout
-      heading={<>Влез в <em>профила</em> си</>}
+      heading="Влез в профила си"
       mode="login"
       next={next}
       sub="Любимите ти рецепти те чакат там, където ги остави."

@@ -44,7 +44,7 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
 
   return (
     <AuthLayout
-      heading={<>Създай <em>профил</em></>}
+      heading="Създай профил"
       mode="register"
       next={next}
       sub="Пази любимите си рецепти на едно място и се връщай към тях по всяко време."

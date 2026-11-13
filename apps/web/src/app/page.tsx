@@ -62,7 +62,7 @@ export default async function HomePage() {
       <SofraTable
         intro={<>
           <p className="eyebrow rv">Шест ястия, шест повода</p>
-          <h2 className="sec-h" data-split id="sofra-title"><SplitWords text="Седни на" /> <em><SplitWords start={2} text="софрата" /></em></h2>
+          <h2 className="sec-h" data-split id="sofra-title"><SplitWords text="Седни на софрата" /></h2>
           <p className="lead rv">Завърти софрата и избери с какво да започнеш: салата за лятна вечер, чорба за студен ден или нещо сладко за неделя.</p>
         </>}
         plates={plates}
@@ -79,7 +79,7 @@ export default async function HomePage() {
         </div>
         <div className="week-tx">
           <p className="eyebrow rv">Рецепта на седмицата</p>
-          <h2 data-split id="week-title"><WeeklyTitle title={weekly.title} /></h2>
+          <h2 data-split id="week-title"><SplitWords text={weekly.title} /></h2>
           <p className="rv">{weekly.description}</p>
           <dl className="facts rv">
             <div><dt>Подготовка</dt><dd>{weekly.prepTimeMinutes} мин</dd></div>
@@ -94,7 +94,7 @@ export default async function HomePage() {
     <section aria-labelledby="today-title" className="sec home">
       <div className="wrap">
         <div className="sec-top">
-          <h2 className="sec-h" data-split id="today-title"><SplitWords text="Какво да сготвиш" /> <em><SplitWords start={3} text="днес" /></em></h2>
+          <h2 className="sec-h" data-split id="today-title"><SplitWords text="Какво да сготвиш днес" /></h2>
           <p className="lead rv">Пет рецепти за тази седмица: от бърза вечеря до ястие, което се приготвя бавно и се яде дълго.</p>
         </div>
         <div className="cards">
@@ -120,9 +120,3 @@ export default async function HomePage() {
   </>;
 }
 
-/** "Баница със <em>сирене</em>": the last word of the weekly title in italics. */
-function WeeklyTitle({ title }: { title: string }) {
-  const words = title.split(" ");
-  const last = words.pop()!;
-  return <>{words.length ? <><SplitWords text={words.join(" ")} />{" "}</> : null}<em><SplitWords start={words.length} text={last} /></em></>;
-}
