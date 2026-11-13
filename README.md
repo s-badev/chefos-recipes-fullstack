@@ -48,6 +48,8 @@ Demo accounts are available for reviewer testing.
 
 Regular users do **not** see the Admin navigation item and should not be able to access admin-only areas manually.
 
+The shared review database may change between visits. The admin account can add, edit, and delete recipes, so reviewers should avoid changing data they do not own.
+
 ---
 
 ## ✨ Highlights
@@ -104,6 +106,10 @@ The web app provides a curated recipe catalog with rich cards, detailed recipe p
 The Expo mobile app consumes the deployed Next.js REST API and provides a mobile-first recipe browsing, login, profile, and favorites experience.
 
 The user-facing UI is Bulgarian-first, while the codebase and documentation remain English-friendly for technical review.
+
+### “Sofra” visual design
+
+The redesigned web experience is built around a Bulgarian table (“sofra”): warm editorial typography, stitched folk details, deep red accents, food photography, responsive recipe cards, and accessible motion. The public catalog remains intentionally lightweight: 24 curated recipes plus recipes added manually by an admin.
 
 ---
 
@@ -500,21 +506,19 @@ Use placeholders only in committed files.
 
 ### Web / Backend
 
-```env
-DATABASE_URL=
-JWT_TOKEN=
-JWT_SECRET=
-MOBILE_JWT_SECRET=
+```text
+DATABASE_URL
+AUTH_SESSION_SECRET
+MOBILE_JWT_SECRET
+SITE_URL
 ```
 
-`DATABASE_URL` should point to the Neon PostgreSQL production database.
-
-`JWT_TOKEN`, `JWT_SECRET`, and `MOBILE_JWT_SECRET` should be long random secret values configured in the hosting provider.
+`DATABASE_URL`, `AUTH_SESSION_SECRET`, and `MOBILE_JWT_SECRET` are required for the database, signed web sessions, and mobile API authentication. `SITE_URL` is an optional canonical-origin override; the production URL is the default.
 
 ### Mobile Web Export
 
-```env
-EXPO_PUBLIC_API_BASE_URL=https://chefos-recipes.netlify.app
+```text
+EXPO_PUBLIC_API_BASE_URL
 ```
 
 The mobile app does not connect directly to the database. It communicates with the REST API exposed by the deployed Next.js app.
@@ -536,7 +540,8 @@ Never commit real `.env` files or secrets.
 | Build command     | `npm --workspace @chefos/web run build`                        |
 | Publish directory | `apps/web/.next`                                               |
 | Database          | Neon PostgreSQL                                                |
-| Required env vars | `DATABASE_URL`, `JWT_TOKEN`, `JWT_SECRET`, `MOBILE_JWT_SECRET` |
+| Required env vars | `DATABASE_URL`, `AUTH_SESSION_SECRET`, `MOBILE_JWT_SECRET`     |
+| Optional env var  | `SITE_URL`                                                     |
 
 ### Expo Mobile Web Export
 
@@ -548,7 +553,7 @@ Never commit real `.env` files or secrets.
 | Project to deploy | `apps/mobile`                                                 |
 | Build command     | `npm --workspace @chefos/mobile run build`                    |
 | Publish directory | `apps/mobile/dist`                                            |
-| Required env var  | `EXPO_PUBLIC_API_BASE_URL=https://chefos-recipes.netlify.app` |
+| Required env var  | `EXPO_PUBLIC_API_BASE_URL`                                    |
 
 ---
 
