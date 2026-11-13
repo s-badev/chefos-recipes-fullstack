@@ -109,3 +109,21 @@ for (const [url, selector, active, inactive] of [["/catalog", ".fbar .tab", "Ð’Ñ
     expect(await page.evaluate(() => getComputedStyle(document.activeElement!).outlineStyle)).toBe("solid");
   });
 }
+
+for (const width of [1440, 390]) {
+  test(`catalog search at ${width}: a real Tab lands on the field and shows the red ring; nothing at rest`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/catalog", { waitUntil: "networkidle" });
+    const field = page.locator(".cat-head .search");
+    expect(await field.evaluate(node => getComputedStyle(node).outlineStyle)).toBe("none");
+    await page.locator("body").click({ position: { x: 1, y: 1 } });
+    let reached = false;
+    for (let i = 0; i < 30 && !reached; i++) {
+      await page.keyboard.press("Tab");
+      reached = await page.evaluate(() => document.activeElement?.matches(".search input") ?? false);
+    }
+    expect(reached, "Tab reaches the search field").toBe(true);
+    const ring = await field.evaluate(node => { const s = getComputedStyle(node); return { style: s.outlineStyle, width: s.outlineWidth, color: s.outlineColor, line: s.borderBottomColor }; });
+    expect(ring).toEqual({ style: "solid", width: "2px", color: "rgb(229, 72, 77)", line: "rgb(229, 72, 77)" });
+  });
+}

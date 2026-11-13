@@ -273,6 +273,9 @@ em{font-style:italic}
 .search input{flex:1;min-width:0;border:0;background:transparent;font-size:1.25rem;padding:14px 0;outline:none}
 .search input::placeholder{color:var(--muted);opacity:1}
 .search:focus-within{border-bottom-width:2px}
+/* Кръг 5: фокус от клавиатурата — червен пръстен около цялото поле, червена линия и лупа (контраст ≥ 3:1 спрямо фона). В покой без промяна. */
+.search:has(input:focus-visible){border-bottom:2px solid var(--accent);outline:2px solid var(--accent);outline-offset:8px}
+.search:has(input:focus-visible) svg{opacity:1;color:var(--accent)}
 .fbar{position:sticky;top:72px;z-index:20;background:var(--head);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-block:1px solid var(--line)}
 .fbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
 .tabs{display:flex;flex-wrap:wrap;gap:4px 26px;position:relative}

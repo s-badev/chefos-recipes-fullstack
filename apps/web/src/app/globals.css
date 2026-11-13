@@ -344,6 +344,10 @@ img{display:block;max-width:100%}
 .search input:focus-visible{outline:none!important}
 .search input::placeholder{color:var(--muted);opacity:1}
 .search:focus-within{border-bottom-width:2px;border-bottom-color:var(--accent)}
+/* Keyboard focus: a red ring around the whole field (the input's own outline is off), the red line and the red
+   glass; --accent on --bg is above 3:1. Nothing changes at rest. */
+.search:has(input:focus-visible){border-bottom:2px solid var(--accent);outline:2px solid var(--accent);outline-offset:8px}
+.search:has(input:focus-visible) svg{opacity:1;color:var(--accent)}
 .search input::-webkit-search-cancel-button{filter:invert(1)}
 .fbar{position:sticky;top:72px;z-index:20;background:var(--head);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-block:1px solid var(--line)}
 .fbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
