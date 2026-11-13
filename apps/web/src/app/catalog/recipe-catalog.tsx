@@ -4,11 +4,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useCatalog } from "../../hooks/use-catalog";
 import type { CardRecipe } from "../../lib/catalog";
 import { recipeCountLabel } from "../../lib/format";
-import { RecipeTile, type TileVariant } from "../recipe-tile";
+import { RecipeTile } from "../recipe-tile";
+import { catalogVariants } from "../../lib/catalog-layout";
 import { SplitWords } from "../split-heading";
 
 /** The catalog rhythm from the mock: wide, then smaller cards, never an even 3- or 4-up grid. */
-const PATTERN: TileVariant[] = ["wide", "half", "half", "half", "half", "wide"];
 
 type RecipeCatalogProps = {
   favoriteSlugs?: string[];
@@ -28,6 +28,7 @@ export function RecipeCatalog({ favoriteSlugs = [], recipes, initialQuery = "", 
   // transform only); without motion the list simply changes.
   const [shown, setShown] = useState(filteredRecipes);
   const [swapping, setSwapping] = useState(false);
+  const layout = useMemo(() => catalogVariants(shown.length), [shown.length]);
   useEffect(() => {
     if (shown === filteredRecipes) {
       // The new list is in place: fade it in on the frame after it was painted at opacity 0.
@@ -71,7 +72,7 @@ export function RecipeCatalog({ favoriteSlugs = [], recipes, initialQuery = "", 
         {/* Outline: h1 (page) → h2 (results) → h3 (each card). */}
         <h2 className="sr-only">Резултати</h2>
         <div className={swapping ? "cards cat swap" : "cards cat"}>
-          {shown.map((recipe, index) => (
+          {shown.map((recipe, index, list) => (
             <RecipeTile
               index={index}
               key={recipe.slug}
@@ -80,7 +81,9 @@ export function RecipeCatalog({ favoriteSlugs = [], recipes, initialQuery = "", 
               redirectTo={catalogHref}
               reveal={false}
               saved={favoriteSlugSet.has(recipe.slug)}
-              variant={PATTERN[index % PATTERN.length]}
+              // The last row is always filled (catalog-layout.ts); a lone last card on the two-column tablet grid spans the row.
+              oddLast={list.length % 2 === 1 && index === list.length - 1}
+              variant={layout[index]}
             />
           ))}
         </div>

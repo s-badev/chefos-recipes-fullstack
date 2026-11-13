@@ -443,7 +443,11 @@ for (const width of [1440, 390, 320]) {
       values[3].textContent = "Трудна";
     });
     for (const row of await spreads()) { expect(row.value).toBeLessThanOrEqual(1); expect(row.label).toBeLessThanOrEqual(1); }
-    // Nothing runs out of its cell.
+    // Values start at the cell's content edge (left-aligned, as in the mock), and nothing runs out of its cell.
+    expect(await page.locator("main .meta > div").evaluateAll(cells => cells.filter(cell => {
+      const pad = parseFloat(getComputedStyle(cell).paddingLeft);
+      return Math.abs(cell.querySelector("dd")!.getBoundingClientRect().left - (cell.getBoundingClientRect().left + pad)) > 1;
+    }).length)).toBe(0);
     expect(await page.locator("main .meta dd").evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.parentElement!.clientWidth + 1).length)).toBe(0);
   });
 }

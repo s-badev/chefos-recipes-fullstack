@@ -9,6 +9,8 @@ export const recipeTileSizes = {
   big: `(max-width: 1000px) ${full}, ${half}`,
   wide: `(max-width: 640px) ${full}, ${half}`,
   half: `(max-width: 640px) ${full}, (max-width: 1000px) ${half}, ${quarter}`,
+  // A card across the row: the photograph takes seven of twelve columns (also the lone last card on a tablet).
+  solo: `(max-width: 640px) ${full}, calc((${content}) * 7 / 12)`,
   "": `(max-width: 640px) ${full}, (max-width: 1000px) ${half}, ${third}`
 };
 

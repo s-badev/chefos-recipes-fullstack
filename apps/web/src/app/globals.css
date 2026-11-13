@@ -279,7 +279,7 @@ img{display:block;max-width:100%}
 .card:hover .ci img{transform:scale(1.05)}
 /* A recipe without its own photograph: a dark tile with the stitched star, never a stand-in dish. */
 .ci-empty{position:absolute;inset:0;display:grid;place-items:center;background:var(--surface)}
-.ci-empty .stitch-star{width:min(30%,96px);height:auto;aspect-ratio:1}
+.ci-empty .stitch-star{width:min(18%,64px);height:auto;aspect-ratio:1}
 .card .cb{display:flex;flex-direction:column;gap:6px;padding-top:16px}
 .card .ct{align-self:flex-start;font-family:var(--serif);font-weight:500;font-size:2rem;line-height:1.02;letter-spacing:-.01em;background:linear-gradient(currentColor,currentColor) no-repeat 0 100%/0 1px;transition:background-size .5s var(--eo)}
 .card:hover .ct,.card .cb:focus-visible .ct{background-size:100% 1px}
@@ -290,6 +290,17 @@ img{display:block;max-width:100%}
 .card.big .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
 .card.wide{grid-column:span 6}.card.wide .ci{aspect-ratio:16/10}
 .card.half{grid-column:span 3}.card.half .ci{aspect-ratio:4/5}
+/* Catalog tail (catalog-layout.ts): a lone card spans the row, photograph 7/12 and text 5/12; on the two-column
+   tablet grid the last of an odd number does the same. Nothing is left on half a row. */
+.card.solo{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}
+.card.solo .ci{aspect-ratio:16/9}
+.card.solo .cb{padding:0 0 6px}
+.card.solo .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
+.card.solo .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}
+@media (min-width:641px) and (max-width:1000px){.cards .card.odd-last{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}.card.odd-last .ci{aspect-ratio:16/10}.card.odd-last .cb{padding:0 0 6px}.card.odd-last .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}}
+@media (max-width:640px){.card.solo{display:flex}.card.solo .ci{aspect-ratio:4/3}.card.solo .cb{padding-top:16px}.card.solo .ct{font-size:2rem}.card.solo .heart{right:12px}}
+/* No photograph: the same frame as a photo card, a small centred star over a thin stitched line. */
+.ci-empty .stitch-band{position:absolute;left:18px;right:18px;bottom:18px;width:auto;color:var(--accent);opacity:.45}
 .heart-form{display:contents}
 .heart{position:absolute;top:12px;right:12px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .3s var(--eo)}
 .heart:hover{transform:scale(1.08);background:#fff}
@@ -357,6 +368,9 @@ img{display:block;max-width:100%}
 .r-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,1.6rem + 6vw,8.6rem);line-height:.9;letter-spacing:-.025em;max-width:13ch;margin:16px 0 18px;text-wrap:balance}
 .r-hero .r-desc{max-width:52ch;color:rgba(255,255,255,.9);font-size:1.1rem}
 .r-hero .stitch-band{margin-top:clamp(28px,4vw,44px)}
+/* No photograph (a manual recipe): a compact hero, the small star by the title, the stats row right after. */
+.r-hero[data-photo=none]{min-height:0;padding-top:calc(72px + clamp(40px,6vw,88px))}
+.r-hero[data-photo=none] .r-star{top:calc(72px + clamp(40px,6vw,88px));width:clamp(40px,4vw,56px)}
 .meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line);margin:0}
 .meta>div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;min-width:0;padding:30px 0 30px clamp(14px,2vw,32px);border-left:1px solid var(--line);container-type:inline-size}
 .meta>div:first-child{border-left:0;padding-left:0}
@@ -366,9 +380,9 @@ img{display:block;max-width:100%}
 /* A cell with size containment cannot be a subgrid, so the row (not the cell) is the container here: a
    word value is capped at a quarter (two columns: a half) of the row instead of 17% of its cell. */
 .meta:not(.m2){grid-auto-rows:auto;container-type:inline-size}
-.meta:not(.m2)>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:8px;container-type:normal}
+.meta:not(.m2)>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);justify-content:stretch;row-gap:8px;container-type:normal}
 .meta:not(.m2) dd.word{font-size:min(clamp(1.8rem,1rem + 2.4vw,3.4rem),4.2cqi)}
-@media(max-width:1000px){.meta:not(.m2) dd.word{font-size:min(clamp(1.8rem,1rem + 2.4vw,3.4rem),8.4cqi)}}
+@media(max-width:640px){.meta:not(.m2) dd.word{font-size:min(clamp(1.8rem,1rem + 2.4vw,3.4rem),8.4cqi)}}
 .meta:not(.m2) dd{grid-row:1;align-self:baseline}
 .meta:not(.m2) dt{grid-row:2;align-self:start}
 .meta dd{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,1.2rem + 4vw,5.6rem);line-height:.95;letter-spacing:-.02em;white-space:nowrap}

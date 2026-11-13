@@ -25,8 +25,8 @@ const MEASURE = {
   auth: [".auth-ph", ".auth-cap h1", ".atabs", ".atab", ".auth-box h2", ".auth-box .sub", ".fld", ".fld input", ".auth-box .btn", ".alt", ".perks li", ".perks b"]
 };
 
-async function openMock(page, view, prepare) {
-  await page.goto(`${mockUrl}#${view}`, { waitUntil: "load" });
+async function openMock(page, view, prepare, query = "") {
+  await page.goto(`${mockUrl}${query}#${view}`, { waitUntil: "load" });
   await page.waitForTimeout(900);
   if (prepare) await prepare(page, true);
 }
@@ -119,6 +119,14 @@ const jobs = {
   },
   recipe: async (width) => {
     await pair("recipe", width, (p) => openMock(p, "recipe"), (p) => openSite(p, "/catalog/shopska-salata"), { mockScope: '[data-view="recipe"]', selectors: MEASURE.recipe });
+  },
+  // Round 4: the live catalog has 25 recipes (one manual, no photograph); the mock shows the same with ?n=25.
+  "catalog-25": async (width) => {
+    await pair("catalog-25", width, (p) => openMock(p, "catalog", null, "?n=25"), (p) => openSite(p, "/catalog"), { mockScope: '[data-view="catalog"]', selectors: MEASURE.catalog });
+  },
+  // A manual recipe without a photograph: the compact hero.
+  "recipe-nophoto": async (width) => {
+    await pair("recipe-nophoto", width, (p) => openMock(p, "recipe", null, "?n=25&r=pile-s-oriz"), (p) => openSite(p, `/catalog/${encodeURIComponent("пиле-тариаки")}`), { mockScope: '[data-view="recipe"]', selectors: [".r-hero", ".r-hero h1", ".r-hero .eyebrow", ".r-star", ".meta", ".meta dd", ".meta dt"] });
   },
   auth: async (width) => {
     await pair("login", width, (p) => openMock(p, "auth"), (p) => openSite(p, "/login"), { mockScope: '[data-view="auth"]', selectors: MEASURE.auth });

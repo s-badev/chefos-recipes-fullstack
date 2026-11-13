@@ -1,0 +1,663 @@
+{
+  "catalog": {
+    "1440/N=24": {
+      "rows": 8,
+      "lastRow": [
+        "half",
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3138,
+        "h": 1555.921875,
+        "x": 116
+      }
+    },
+    "1440/N=25": {
+      "rows": 9,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3656,
+        "h": 1474.40625,
+        "x": 116
+      }
+    },
+    "1440/N=26": {
+      "rows": 9,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3656,
+        "h": 1556.71875,
+        "x": 116
+      }
+    },
+    "1440/N=27": {
+      "rows": 9,
+      "lastRow": [
+        "wide",
+        "half",
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3656,
+        "h": 1556.71875,
+        "x": 116
+      }
+    },
+    "1440/N=28": {
+      "rows": 10,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4175,
+        "h": 1556.515625,
+        "x": 116
+      }
+    },
+    "1440/N=29": {
+      "rows": 10,
+      "lastRow": [
+        "wide",
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4175,
+        "h": 1556.515625,
+        "x": 116
+      }
+    },
+    "1440/N=30": {
+      "rows": 10,
+      "lastRow": [
+        "half",
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4175,
+        "h": 1556.515625,
+        "x": 116
+      }
+    },
+    "1440/N=31": {
+      "rows": 11,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4694,
+        "h": 1474,
+        "x": 116
+      }
+    },
+    "1440/N=32": {
+      "rows": 11,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4694,
+        "h": 1556.3125,
+        "x": 116
+      }
+    },
+    "1024/N=24": {
+      "rows": 8,
+      "lastRow": [
+        "half",
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 2702,
+        "h": 1341.875,
+        "x": 40.953125
+      }
+    },
+    "1024/N=25": {
+      "rows": 9,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3155,
+        "h": 1238.109375,
+        "x": 40.953125
+      }
+    },
+    "1024/N=26": {
+      "rows": 9,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3155,
+        "h": 1324.5625,
+        "x": 40.953125
+      }
+    },
+    "1024/N=27": {
+      "rows": 9,
+      "lastRow": [
+        "wide",
+        "half",
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3155,
+        "h": 1324.5625,
+        "x": 40.953125
+      }
+    },
+    "1024/N=28": {
+      "rows": 10,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3591,
+        "h": 1324.25,
+        "x": 40.953125
+      }
+    },
+    "1024/N=29": {
+      "rows": 10,
+      "lastRow": [
+        "wide",
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3591,
+        "h": 1324.25,
+        "x": 40.953125
+      }
+    },
+    "1024/N=30": {
+      "rows": 10,
+      "lastRow": [
+        "half",
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 3591,
+        "h": 1341.875,
+        "x": 40.953125
+      }
+    },
+    "1024/N=31": {
+      "rows": 11,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4044,
+        "h": 1238.109375,
+        "x": 40.953125
+      }
+    },
+    "1024/N=32": {
+      "rows": 11,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 4044,
+        "h": 1324.5625,
+        "x": 40.953125
+      }
+    },
+    "768/N=24": {
+      "rows": 12,
+      "lastRow": [
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 5672,
+        "h": 1726.578125,
+        "x": 30.71875
+      }
+    },
+    "768/N=25": {
+      "rows": 13,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 6248,
+        "h": 1447.421875,
+        "x": 30.71875
+      }
+    },
+    "768/N=26": {
+      "rows": 13,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 6248,
+        "h": 1512.671875,
+        "x": 30.71875
+      }
+    },
+    "768/N=27": {
+      "rows": 14,
+      "lastRow": [
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 6823,
+        "h": 1447.8125,
+        "x": 30.71875
+      }
+    },
+    "768/N=28": {
+      "rows": 14,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 6823,
+        "h": 1299.765625,
+        "x": 30.71875
+      }
+    },
+    "768/N=29": {
+      "rows": 15,
+      "lastRow": [
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 7399,
+        "h": 1447.203125,
+        "x": 30.71875
+      }
+    },
+    "768/N=30": {
+      "rows": 15,
+      "lastRow": [
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 7399,
+        "h": 1725.75,
+        "x": 30.71875
+      }
+    },
+    "768/N=31": {
+      "rows": 16,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 7974,
+        "h": 1447.59375,
+        "x": 30.71875
+      }
+    },
+    "768/N=32": {
+      "rows": 16,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 7974,
+        "h": 1512.84375,
+        "x": 30.71875
+      }
+    },
+    "390/N=24": {
+      "rows": 24,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 9282,
+        "h": 790.015625,
+        "x": 16
+      }
+    },
+    "390/N=25": {
+      "rows": 25,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 9699,
+        "h": 527.8125,
+        "x": 16
+      }
+    },
+    "390/N=26": {
+      "rows": 26,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 10072,
+        "h": 745.109375,
+        "x": 16
+      }
+    },
+    "390/N=27": {
+      "rows": 27,
+      "lastRow": [
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 10445,
+        "h": 834.15625,
+        "x": 16
+      }
+    },
+    "390/N=28": {
+      "rows": 28,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 10817,
+        "h": 745.203125,
+        "x": 16
+      }
+    },
+    "390/N=29": {
+      "rows": 29,
+      "lastRow": [
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 11279,
+        "h": 745.25,
+        "x": 16
+      }
+    },
+    "390/N=30": {
+      "rows": 30,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 11696,
+        "h": 790.296875,
+        "x": 16
+      }
+    },
+    "390/N=31": {
+      "rows": 31,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 12114,
+        "h": 527.09375,
+        "x": 16
+      }
+    },
+    "390/N=32": {
+      "rows": 32,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 12486,
+        "h": 745.390625,
+        "x": 16
+      }
+    }
+  },
+  "favorites": {
+    "1440/N=1": {
+      "rows": 1,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 436.40625,
+        "x": 116
+      }
+    },
+    "1440/N=2": {
+      "rows": 1,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 518.71875,
+        "x": 116
+      }
+    },
+    "1440/N=3": {
+      "rows": 1,
+      "lastRow": [
+        "wide",
+        "half",
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 518.71875,
+        "x": 116
+      }
+    },
+    "1440/N=4": {
+      "rows": 2,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 1037.515625,
+        "x": 116
+      }
+    },
+    "1440/N=5": {
+      "rows": 2,
+      "lastRow": [
+        "wide",
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 1037.515625,
+        "x": 116
+      }
+    },
+    "1440/N=6": {
+      "rows": 2,
+      "lastRow": [
+        "half",
+        "half",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 1037.515625,
+        "x": 116
+      }
+    },
+    "1440/N=7": {
+      "rows": 3,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 1491.625,
+        "x": 116
+      }
+    },
+    "1440/N=8": {
+      "rows": 3,
+      "lastRow": [
+        "wide",
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 526,
+        "h": 1573.9375,
+        "x": 116
+      }
+    },
+    "390/N=1": {
+      "rows": 1,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 154.6875,
+        "x": 16
+      }
+    },
+    "390/N=2": {
+      "rows": 2,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 744.984375,
+        "x": 16
+      }
+    },
+    "390/N=3": {
+      "rows": 3,
+      "lastRow": [
+        "half odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 1207.03125,
+        "x": 16
+      }
+    },
+    "390/N=4": {
+      "rows": 4,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 1490.078125,
+        "x": 16
+      }
+    },
+    "390/N=5": {
+      "rows": 5,
+      "lastRow": [
+        "wide odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 1952.125,
+        "x": 16
+      }
+    },
+    "390/N=6": {
+      "rows": 6,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 2414.171875,
+        "x": 16
+      }
+    },
+    "390/N=7": {
+      "rows": 7,
+      "lastRow": [
+        "solo odd-last"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 2568.96875,
+        "x": 16
+      }
+    },
+    "390/N=8": {
+      "rows": 8,
+      "lastRow": [
+        "wide"
+      ],
+      "lastRowFilledPct": 100,
+      "clip": {
+        "y": 415,
+        "h": 3159.265625,
+        "x": 16
+      }
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { toCardRecipe } from "../../lib/catalog";
 import { getCurrentUserFavoriteRecipes } from "../../server/favorites/service";
 import { withWebRecipeImage } from "../../server/recipes/web-image";
 import { RecipeTile } from "../recipe-tile";
+import { catalogVariants } from "../../lib/catalog-layout";
 import { SofraBoard } from "../sofra-board";
 import { SplitWords } from "../split-heading";
 import { StitchStar } from "../stitch";
@@ -15,6 +16,9 @@ export const metadata: Metadata = pageMetadata("Любими рецепти", "�
 export default async function FavoritesPage() {
   // Same card as the catalog: a manual recipe gets its photograph the same way the catalog finds it.
   const favoriteRecipes = (await Promise.all((await getCurrentUserFavoriteRecipes()).map(recipe => withWebRecipeImage(recipe)))).map(toCardRecipe);
+
+  // The same rows as the catalog: one card spans the row, two are equal, nothing floats alone.
+  const layout = catalogVariants(favoriteRecipes.length);
 
   return <>
     <div className="wrap pg-head">
@@ -33,7 +37,7 @@ export default async function FavoritesPage() {
           </div>
           <div className="cards">
             {favoriteRecipes.map((recipe, index) => (
-              <RecipeTile index={index} key={recipe.slug} recipe={recipe} redirectTo="/favorites" saved />
+              <RecipeTile index={index} key={recipe.slug} oddLast={favoriteRecipes.length % 2 === 1 && index === favoriteRecipes.length - 1} recipe={recipe} redirectTo="/favorites" saved variant={layout[index]} />
             ))}
           </div>
         </section>

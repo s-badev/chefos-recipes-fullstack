@@ -205,6 +205,21 @@ em{font-style:italic}
 .card.big .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
 .card.wide{grid-column:span 6}.card.wide .ci{aspect-ratio:16/10}
 .card.half{grid-column:span 3}.card.half .ci{aspect-ratio:4/5}
+/* Кръг 4: опашката на каталога никога не оставя празни колони; рецепта без снимка — същата рамка, малка звезда и тънка шевица. */
+.ci-empty{position:absolute;inset:0;display:grid;place-items:center;background:var(--surface);color:var(--accent)}
+.ci-empty .star{width:min(18%,64px);aspect-ratio:1}
+.ci-empty .band{position:absolute;left:18px;right:18px;bottom:18px;color:var(--accent);opacity:.45}
+/* Catalog tail (catalog-layout.ts): a lone card spans the row, photograph 7/12 and text 5/12; on the two-column
+   tablet grid the last of an odd number does the same. Nothing is left on half a row. */
+.card.solo{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}
+.card.solo .ci{aspect-ratio:16/9}
+.card.solo .cb{padding:0 0 6px}
+.card.solo .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
+.card.solo .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}
+@media (min-width:641px) and (max-width:1000px){.cards .card.odd-last{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}.card.odd-last .ci{aspect-ratio:16/10}.card.odd-last .cb{padding:0 0 6px}.card.odd-last .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}}
+@media (max-width:640px){.card.solo{display:flex}.card.solo .ci{aspect-ratio:4/3}.card.solo .cb{padding-top:16px}.card.solo .ct{font-size:2rem}.card.solo .heart{right:12px}}
+/* No photograph: the same frame as a photo card, a small centred star over a thin stitched line. */
+
 .heart{position:absolute;top:12px;right:12px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .3s var(--eo)}
 .heart:hover{transform:scale(1.08);background:#fff}
 .heart svg{width:21px;height:21px;fill:transparent;stroke:currentColor;stroke-width:2;stroke-linejoin:round;transition:fill .2s}
@@ -280,6 +295,14 @@ em{font-style:italic}
 .r-hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,1.6rem + 6vw,8.6rem);line-height:.9;letter-spacing:-.025em;max-width:13ch;margin:16px 0 18px;text-wrap:balance}
 .r-hero p{max-width:52ch;color:rgba(255,255,255,.9);font-size:1.1rem}
 .r-hero .band{color:#fff;opacity:.9;margin-top:clamp(28px,4vw,44px)}
+.r-hero{background:var(--surface)}
+.r-hero[data-photo=none]::before{display:none}
+.r-hero[data-photo=none] .hero-ph{display:none}
+.r-hero .r-star{display:none}
+.r-hero[data-photo=none] .r-star{display:block;position:absolute;right:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)));color:var(--accent)}
+/* No photograph (a manual recipe): a compact hero, the small star by the title, the stats row right after. */
+.r-hero[data-photo=none]{min-height:0;padding-top:calc(72px + clamp(40px,6vw,88px))}
+.r-hero[data-photo=none] .r-star{top:calc(72px + clamp(40px,6vw,88px));width:clamp(40px,4vw,56px)}
 .meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1px solid var(--line)}
 .meta>div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;padding:30px 0 30px clamp(14px,2vw,32px);border-left:1px solid var(--line)}
 .meta>div:first-child{border-left:0;padding-left:0}
@@ -289,7 +312,7 @@ em{font-style:italic}
 .meta dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
 /* Кръг 4: всяка клетка е subgrid с два реда (стойност / етикет) — стойностите са на една базова линия, етикетите са на един ред, каквато и да е стойността („Средна“, „140 мин“). */
 .meta{grid-auto-rows:auto}
-.meta>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:8px}
+.meta>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;grid-template-columns:minmax(0,1fr);justify-content:stretch;row-gap:8px}
 .meta dd{grid-row:1;align-self:baseline}
 .meta dt{grid-row:2;align-self:start}
 .tags{padding:18px 0 0;color:var(--muted);font-size:.9rem}
@@ -523,10 +546,11 @@ em{font-style:italic}
 
 <!-- ===================== РЕЦЕПТА ===================== -->
 <section class="view" data-view="recipe" hidden>
-  <section class="r-hero" data-hero>
+  <section class="r-hero" data-hero data-photo="yes">
     <div class="hero-ph"><img id="r-img" alt=""></div>
+    <span class="r-star" data-star aria-hidden="true"></span>
     <div class="wrap hero-in">
-      <p class="eyebrow"><a href="#catalog" id="r-cat">Салати</a> · <span id="r-n">Nº 01</span></p>
+      <p class="eyebrow"><a href="#catalog" id="r-cat">Салати</a><span id="r-n"> · Nº 01</span></p>
       <h1 id="r-t" class="split" data-split>Шопска салата</h1>
       <p id="r-d"></p>
       <div class="band" data-band-svg="hero" aria-hidden="true"></div>
@@ -592,6 +616,7 @@ em{font-style:italic}
   <div class="ctl-body">
     <div class="grp"><span>Посока</span><div class="chips" id="c-theme"><button class="chip" type="button" data-v="sofra" aria-pressed="true"><i class="sw" style="background:#170F0F"></i>1 · Софра</button><button class="chip" type="button" data-v="shevitsa" aria-pressed="false"><i class="sw" style="background:#FAFAF8"></i>2 · Шевица</button><button class="chip" type="button" data-v="cherga" aria-pressed="false"><i class="sw" style="background:#4E0C14"></i>3 · Черга</button></div></div>
     <div class="grp"><span>Страница</span><div class="chips" id="c-view"><button class="chip" type="button" data-v="home" aria-pressed="true">Начало</button><button class="chip" type="button" data-v="catalog" aria-pressed="false">Рецепти</button><button class="chip" type="button" data-v="recipe" aria-pressed="false">Рецепта</button><button class="chip" type="button" data-v="auth" aria-pressed="false">Вход</button></div></div>
+    <div class="grp"><span>Рецепти</span><div class="chips" id="c-n"><button class="chip" type="button" data-v="24" aria-pressed="true">24</button><button class="chip" type="button" data-v="25" aria-pressed="false">25</button><button class="chip" type="button" data-v="26" aria-pressed="false">26</button><button class="chip" type="button" data-v="29" aria-pressed="false">29</button><button class="chip" type="button" data-v="32" aria-pressed="false">32</button></div></div>
     <div class="grp"><span>Профил</span><div class="chips" id="c-who"><button class="chip" type="button" data-v="guest" aria-pressed="true">Гост</button><button class="chip" type="button" data-v="user" aria-pressed="false">Потребител</button><button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button></div></div>
     <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
   </div>
@@ -667,13 +692,22 @@ $$('[data-split]').forEach(split);
 /* ---------- карти ---------- */
 function card(r,cls,i){var on=!!fav[r.s];
   return '<article class="card rv '+(cls||'')+'" style="--d:'+((i||0)%4*80)+'ms" data-cat="'+r.c+'" data-slug="'+r.s+'">'+
-   '<a class="ci" href="#recipe" data-slug="'+r.s+'" aria-label="'+r.t+'"><img loading="lazy" src="'+IMG[r.s]+'" alt=""></a>'+
+   '<a class="ci" href="#recipe" data-slug="'+r.s+'" aria-label="'+r.t+'">'+(r.np?'<span class="ci-empty"><span class="star">'+starSVG()+'</span><div class="band thin" data-band-svg="thin" aria-hidden="true"></div></span>':'<img loading="lazy" src="'+IMG[r.s]+'" alt="">')+'</a>'+
    '<button class="heart" type="button" data-fav="'+r.s+'" aria-pressed="'+on+'" aria-label="'+(on?'Премахни от любими: ':'Запази в любими: ')+r.t+'"><span class="ring"></span>'+HEART+'</button>'+
    '<a class="cb" href="#recipe" data-slug="'+r.s+'"><span class="ce">'+r.c+'</span><span class="ct">'+r.t+'</span><span class="cm">'+total(r)+' мин · '+r.v+' порции · '+r.l+'</span></a></article>';}
 var TODAY=[['kavarma-sas-svinsko','big'],['tarator','half'],['mish-mash','half'],['sarmi-s-kiselo-zele','half'],['krem-karamel','half']];
 $('#today').innerHTML=TODAY.map(function(t,i){return card(byS(t[0]),t[1],i)}).join('');
 var PAT=['wide','half','half','half','half','wide'];
-function renderCat(list){$('#cat-cards').innerHTML=list.map(function(r,i){return card(r,PAT[i%6],i)}).join('');observe($('#cat-cards'))}
+/* Кръг 4: опашката на каталога (както src/lib/catalog-layout.ts) — без празни колони и без сама карта на половин ред. */
+function layout(n){var rest=n%6,T={0:[],1:['solo'],2:['wide','wide'],3:['wide','half','half'],4:['wide','wide','wide','wide'],5:['wide','half','half','wide','wide']},o=[];for(var i=0;i<n-rest;i++)o.push(PAT[i%6]);return o.concat(T[rest])}
+function renderCat(list){var L=layout(list.length);$('#cat-cards').innerHTML=list.map(function(r,i){return card(r,L[i]+(list.length%2===1&&i===list.length-1?' odd-last':''),i)}).join('');paintBands();observe($('#cat-cards'))}
+/* Примерни ръчно добавени рецепти без снимка: ?n=25…32 или контролите „Рецепти“. */
+var EXTRA=[{"t":"Пиле с ориз","s":"pile-s-oriz","c":"Основни","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["500 г пилешко месо","200 г ориз","1 глава лук","Сол и черен пипер"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Леща яхния","s":"leshta-yahniya","c":"Супи","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["300 г леща","1 морков","1 глава лук","Чубрица и сол"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Пиле терияки","s":"pile-teriyaki-np","c":"Основни","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["500 г пилешко филе","4 с.л. соев сос","1 с.л. мед","1 ч.л. джинджифил","1 с.л. сусам"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Мусака с тиквички","s":"musaka-tikvichki","c":"Основни","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["2 тиквички","400 г кайма","2 яйца","300 г кисело мляко"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Ябълков пай","s":"yabalkov-pay","c":"Десерти","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["4 ябълки","200 г брашно","100 г масло","1 ч.л. канела"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Печен патладжан","s":"pechen-patladzhan","c":"Салати","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["2 патладжана","2 скилидки чесън","Магданоз и сол"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Риба на фурна","s":"riba-na-furna","c":"Основни","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["2 риби","1 лимон","2 с.л. олио","Сол и черен пипер"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1},{"t":"Крем с шоколад","s":"krem-s-shokolad","c":"Десерти","d":"Ръчно добавена рецепта без снимка (примерни данни в макета).","p":15,"k":40,"v":4,"l":"Средна","tags":["Ръчно добавена"],"ing":["500 мл прясно мляко","100 г шоколад","2 с.л. нишесте","200 мл сметана"],"st":["Подготви продуктите.","Сготви според рецептата."],"np":1}];
+var BASE=R.slice();
+function setCount(n){R=BASE.concat(EXTRA.slice(0,Math.max(0,Math.min(EXTRA.length,n-BASE.length))));
+  $('#tabs').innerHTML=['Всички'].concat(CATS).map(function(c){var k=c==='Всички'?R.length:R.filter(function(r){return r.c===c}).length;return '<button class="tab" type="button" data-c="'+c+'" aria-pressed="'+(c===fcat)+'">'+c+'<sup>'+k+'</sup></button>'}).join('');
+  $('#cat-eyebrow').textContent=plural(R.length)+' · '+CATS.length+' категории';$('#home-eyebrow').textContent='Домашна кухня · '+plural(R.length);$('#home-all').textContent='Всички '+plural(R.length);
+  $$('#c-n .chip').forEach(function(c){c.setAttribute('aria-pressed',+c.getAttribute('data-v')===R.length)});filter()}
 
 /* ---------- софра ---------- */
 var si=0,spinEl=$('#spin');
@@ -712,8 +746,8 @@ renderCat(R);
 /* ---------- рецепта ---------- */
 function fillRecipe(s){
   var r=byS(s)||R[0];sel=r.s;var n=R.indexOf(r);
-  $('#r-img').src=IMG[r.s];$('#r-img').alt=r.t;
-  $('#r-cat').textContent=r.c;$('#r-cat').setAttribute('data-cat',r.c);$('#r-n').textContent='Nº '+pad(n+1);
+  $('#r-img').src=r.np?'':IMG[r.s];$('#r-img').alt=r.t;$('.r-hero').setAttribute('data-photo',r.np?'none':'yes');
+  $('#r-cat').textContent=r.c;$('#r-cat').setAttribute('data-cat',r.c);$('#r-n').textContent=r.np?'':' · Nº '+pad(n+1);
   var h=$('#r-t');h.classList.remove('in');h.textContent=r.t;split(h);
   $('#r-d').textContent=r.d;
   $('#r-meta').innerHTML='<div class="rv"><dt>Подготовка</dt><dd>'+r.p+'<small>мин</small></dd></div><div class="rv" style="--d:80ms"><dt>Готвене</dt><dd'+(r.k===0?' class="word">Без готвене':'>'+r.k+'<small>мин</small>')+'</dd></div><div class="rv" style="--d:160ms"><dt>Порции</dt><dd>'+r.v+'</dd></div><div class="rv" style="--d:240ms"><dt>Трудност</dt><dd class="word">'+r.l+'</dd></div>';
@@ -820,6 +854,9 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-who]
 $('#c-who').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;who=b.getAttribute('data-v');renderWho()});
 $$('.ftr-year').forEach(function(y){y.textContent=new Date().getFullYear()});
 renderWho();
+$('#c-n').addEventListener('click',function(e){var b=e.target.closest('.chip');if(b)setCount(+b.getAttribute('data-v'))});
+var n0=+new URLSearchParams(location.search).get('n');if(n0>BASE.length)setCount(n0);
+var s0=new URLSearchParams(location.search).get('r');if(s0)fillRecipe(s0);
 setView(['home','catalog','recipe','auth'].indexOf(t0)>=0?t0:'home');
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);
 })();

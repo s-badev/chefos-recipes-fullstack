@@ -198,6 +198,15 @@ em{font-style:italic}
 .card.big .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
 .card.wide{grid-column:span 6}.card.wide .ci{aspect-ratio:16/10}
 .card.half{grid-column:span 3}.card.half .ci{aspect-ratio:4/5}
+/* Кръг 4: Любими подреждат картите като каталога — една карта е на цял ред, две са равни, нищо не стои само. */
+.card.solo{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}
+.card.solo .ci{aspect-ratio:16/9}
+.card.solo .cb{padding:0 0 6px}
+.card.solo .ct{font-size:clamp(2.4rem,1.4rem + 2.4vw,3.6rem)}
+.card.solo .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}
+@media (min-width:641px) and (max-width:1000px){.cards .card.odd-last{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}.card.odd-last .ci{aspect-ratio:16/10}.card.odd-last .cb{padding:0 0 6px}.card.odd-last .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}}
+@media (max-width:640px){.card.solo{display:flex}.card.solo .ci{aspect-ratio:4/3}.card.solo .cb{padding-top:16px}.card.solo .ct{font-size:2rem}.card.solo .heart{right:12px}}
+
 .heart{position:absolute;top:12px;right:12px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .3s var(--eo)}
 .heart:hover{transform:scale(1.08);background:#fff}
 .heart svg{width:21px;height:21px;fill:transparent;stroke:currentColor;stroke-width:2;stroke-linejoin:round;transition:fill .2s}
@@ -783,7 +792,8 @@ function renderProfile(){var n=favCount();
 function renderFav(){
   var list=R.filter(function(r){return fav[r.s]});
   $('#fav-full').hidden=!list.length;$('#fav-empty').hidden=!!list.length;
-  $('#fav-cards').innerHTML=list.map(function(r,i){return card(r,'',i)}).join('');
+  var PAT=['wide','half','half','half','half','wide'],rest=list.length%6,T={0:[],1:['solo'],2:['wide','wide'],3:['wide','half','half'],4:['wide','wide','wide','wide'],5:['wide','half','half','wide','wide']},L=[];for(var i=0;i<list.length-rest;i++)L.push(PAT[i%6]);L=L.concat(T[rest]);
+  $('#fav-cards').innerHTML=list.map(function(r,i){return card(r,L[i]+(list.length%2===1&&i===list.length-1?' odd-last':''),i)}).join('');
   observe($('#view-fav-scope'));
   $('#fav-n').textContent=savedLabel(list.length);
   $$('.favn').forEach(function(n){n.textContent=list.length});
