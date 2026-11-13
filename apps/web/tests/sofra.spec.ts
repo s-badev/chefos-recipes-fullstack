@@ -127,3 +127,42 @@ for (const width of [1440, 390]) {
     expect(ring).toEqual({ style: "solid", width: "2px", color: "rgb(229, 72, 77)", line: "rgb(229, 72, 77)" });
   });
 }
+
+test("card heart: 44×44 or more, Bulgarian name and aria-pressed, a clear hover and a visible focus ring", async ({ page }) => {
+  await page.goto("/catalog", { waitUntil: "networkidle" });
+  const card = page.locator(".cards .card").nth(1);
+  await card.evaluate(node => node.scrollIntoView({ block: "center" }));
+  const heart = card.locator(".heart");
+  const box = (await heart.boundingBox())!;
+  expect(box.width).toBeGreaterThanOrEqual(44);
+  expect(box.height).toBeGreaterThanOrEqual(44);
+  await expect(heart).toHaveAttribute("aria-pressed", "false");
+  await expect(heart).toHaveAttribute("aria-label", /^Запази в любими: .+/);
+  const rest = await heart.evaluate(node => getComputedStyle(node).backgroundColor);
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.waitForTimeout(500);
+  const hover = await heart.evaluate(node => ({ bg: getComputedStyle(node).backgroundColor, color: getComputedStyle(node).color, transform: getComputedStyle(node).transform }));
+  expect(hover.bg).not.toBe(rest);
+  expect(hover.bg).toBe("rgb(200, 30, 43)");
+  expect(hover.color).toBe("rgb(255, 255, 255)");
+  expect(hover.transform).not.toBe("none");
+  await page.mouse.move(0, 0);
+  await heart.focus();
+  await page.keyboard.press("Shift+Tab");
+  await page.keyboard.press("Tab");
+  const ring = await heart.evaluate(node => ({ outline: getComputedStyle(node).outlineStyle, shadow: getComputedStyle(node).boxShadow }));
+  expect(ring.outline).toBe("solid");
+  expect(ring.shadow).toContain("255, 255, 255");
+});
+
+test.describe("reduced motion", () => {
+  test.use({ reducedMotion: "reduce" });
+  test("card heart: the hover changes colour but does not grow", async ({ page }) => {
+    await page.goto("/catalog", { waitUntil: "networkidle" });
+    const card = page.locator(".cards .card").nth(1);
+    await card.evaluate(node => node.scrollIntoView({ block: "center" }));
+    await card.locator(".heart").hover();
+    await page.waitForTimeout(300);
+    expect(await card.locator(".heart").evaluate(node => getComputedStyle(node).transform)).toBe("none");
+  });
+});

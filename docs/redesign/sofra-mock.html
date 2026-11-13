@@ -223,7 +223,11 @@ em{font-style:italic}
 /* No photograph: the same frame as a photo card, a small centred star over a thin stitched line. */
 
 .heart{position:absolute;top:12px;right:12px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .3s var(--eo)}
-.heart:hover{transform:scale(1.08);background:#fff}
+/* Кръг 5: сърцето отговаря ясно — при hover червена основа и бяло сърце (запазеното: бяла основа, червено сърце), леко по-голямо; фокус с бял и червен пръстен, видим върху всяка снимка; без движение при намалено движение. */
+.heart:hover{transform:scale(1.08);background:var(--accent-fill);color:#fff}
+.heart[aria-pressed=true]:hover{background:#fff;color:#C81E2B}
+.heart:focus-visible{outline:2px solid var(--accent)!important;outline-offset:3px!important;box-shadow:0 0 0 3px #fff}
+@media(prefers-reduced-motion:reduce){.heart:hover{transform:none}}
 .heart svg{width:21px;height:21px;fill:transparent;stroke:currentColor;stroke-width:2;stroke-linejoin:round;transition:fill .2s}
 .heart[aria-pressed=true]{color:#C81E2B}.heart[aria-pressed=true] svg{fill:currentColor}
 .heart.pop svg{animation:pop .45s var(--spring)}
