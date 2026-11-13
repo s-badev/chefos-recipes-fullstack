@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Image from "next/image";
+import { ResponsiveRecipeImage } from "./responsive-recipe-image";
 import Link from "next/link";
 import { recipes } from "../data/recipes";
 import { webImageSrc } from "../lib/images";
@@ -41,7 +42,7 @@ export default async function HomePage() {
   return <>
     <section className="hero" aria-labelledby="landing-title" data-hero>
       <div className="hero-ph">
-        <Image alt="Баница със сирене и шопска салата на трапезата" fill loading="eager" sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
+        <Image alt="Баница със сирене и шопска салата на трапезата" fill fetchPriority="low" loading="eager" quality={60} sizes="100vw" src={webImageSrc("/images/recipes/hero-banitsa-shopska-salad.png")} />
       </div>
       <div className="wrap hero-in">
         <p className="eyebrow rv">Домашна кухня · {total}</p>
@@ -72,7 +73,7 @@ export default async function HomePage() {
       <div className="wrap week">
         <div className="week-ph mask">
           <Link aria-label={weekly.title} className="mk" href={`/catalog/${weekly.slug}`}>
-            {image(weekly) ? <Image alt="" fill loading="lazy" sizes={weeklyImageSizes} src={image(weekly)!} /> : <span className="ci-empty"><StitchStar /></span>}
+            {image(weekly) ? <ResponsiveRecipeImage alt="" fill loading="lazy" sizes={weeklyImageSizes} src={image(weekly)!} use="wide" /> : <span className="ci-empty"><StitchStar /></span>}
           </Link>
           <StitchBand size={2} />
         </div>
@@ -107,7 +108,7 @@ export default async function HomePage() {
 
     <section aria-labelledby="story-title" className="story">
       <h2 className="sr-only" id="story-title">За традицията</h2>
-      <div className="story-bg"><Image alt="" fill sizes="100vw" src={webImageSrc("/images/recipes/kavarma-sas-svinsko.png")} /></div>
+      <div className="story-bg"><ResponsiveRecipeImage alt="" fill sizes="100vw" src={webImageSrc("/images/recipes/kavarma-sas-svinsko.png")} /></div>
       <div className="wrap">
         <div className="rv"><StitchStar /></div>
         <blockquote>

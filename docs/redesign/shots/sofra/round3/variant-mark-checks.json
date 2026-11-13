@@ -1,0 +1,1682 @@
+[
+  {
+    "file": "baklava-s-orehi-480.avif",
+    "parentConfidence": 0.245,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.293,
+    "weakestQuadrant": 0.154
+  },
+  {
+    "file": "baklava-s-orehi-480.webp",
+    "parentConfidence": 0.245,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.315,
+    "weakestQuadrant": 0.258
+  },
+  {
+    "file": "baklava-s-orehi-640.avif",
+    "parentConfidence": 0.245,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.28,
+    "weakestQuadrant": 0.233
+  },
+  {
+    "file": "baklava-s-orehi-640.webp",
+    "parentConfidence": 0.245,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.311,
+    "weakestQuadrant": 0.186
+  },
+  {
+    "file": "baklava-s-orehi-800.avif",
+    "parentConfidence": 0.245,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.291,
+    "weakestQuadrant": 0.26
+  },
+  {
+    "file": "baklava-s-orehi-800.webp",
+    "parentConfidence": 0.245,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.275,
+    "weakestQuadrant": 0.074
+  },
+  {
+    "file": "baklava-s-orehi-1200.avif",
+    "parentConfidence": 0.245,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.296,
+    "weakestQuadrant": 0.249
+  },
+  {
+    "file": "baklava-s-orehi-1200.webp",
+    "parentConfidence": 0.245,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.273,
+    "weakestQuadrant": 0.116
+  },
+  {
+    "file": "banitsa-sas-sirene-480.avif",
+    "parentConfidence": 0.155,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.318,
+    "weakestQuadrant": 0.177
+  },
+  {
+    "file": "banitsa-sas-sirene-480.webp",
+    "parentConfidence": 0.155,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.23,
+    "weakestQuadrant": 0
+  },
+  {
+    "file": "banitsa-sas-sirene-640.avif",
+    "parentConfidence": 0.155,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.252,
+    "weakestQuadrant": 0.139
+  },
+  {
+    "file": "banitsa-sas-sirene-640.webp",
+    "parentConfidence": 0.155,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.254,
+    "weakestQuadrant": 0.12
+  },
+  {
+    "file": "banitsa-sas-sirene-800.avif",
+    "parentConfidence": 0.155,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.164,
+    "weakestQuadrant": 0.091
+  },
+  {
+    "file": "banitsa-sas-sirene-800.webp",
+    "parentConfidence": 0.155,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.171,
+    "weakestQuadrant": 0.019
+  },
+  {
+    "file": "banitsa-sas-sirene-1200.avif",
+    "parentConfidence": 0.155,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.185,
+    "weakestQuadrant": 0.034
+  },
+  {
+    "file": "banitsa-sas-sirene-1200.webp",
+    "parentConfidence": 0.155,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.182,
+    "weakestQuadrant": 0.059
+  },
+  {
+    "file": "bob-chorba-480.avif",
+    "parentConfidence": 0.282,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.281,
+    "weakestQuadrant": 0.058
+  },
+  {
+    "file": "bob-chorba-480.webp",
+    "parentConfidence": 0.282,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.284,
+    "weakestQuadrant": 0.031
+  },
+  {
+    "file": "bob-chorba-640.avif",
+    "parentConfidence": 0.282,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.288,
+    "weakestQuadrant": 0.067
+  },
+  {
+    "file": "bob-chorba-640.webp",
+    "parentConfidence": 0.282,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.277,
+    "weakestQuadrant": 0.049
+  },
+  {
+    "file": "bob-chorba-800.avif",
+    "parentConfidence": 0.282,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.271,
+    "weakestQuadrant": 0.041
+  },
+  {
+    "file": "bob-chorba-800.webp",
+    "parentConfidence": 0.282,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.275,
+    "weakestQuadrant": 0.075
+  },
+  {
+    "file": "bob-chorba-1200.avif",
+    "parentConfidence": 0.282,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.275,
+    "weakestQuadrant": 0.076
+  },
+  {
+    "file": "bob-chorba-1200.webp",
+    "parentConfidence": 0.282,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.263,
+    "weakestQuadrant": 0.047
+  },
+  {
+    "file": "kavarma-sas-svinsko-480.avif",
+    "parentConfidence": 0.194,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.228,
+    "weakestQuadrant": 0.064
+  },
+  {
+    "file": "kavarma-sas-svinsko-480.webp",
+    "parentConfidence": 0.194,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.257,
+    "weakestQuadrant": 0.143
+  },
+  {
+    "file": "kavarma-sas-svinsko-640.avif",
+    "parentConfidence": 0.194,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.205,
+    "weakestQuadrant": 0.024
+  },
+  {
+    "file": "kavarma-sas-svinsko-640.webp",
+    "parentConfidence": 0.194,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.238,
+    "weakestQuadrant": 0.098
+  },
+  {
+    "file": "kavarma-sas-svinsko-800.avif",
+    "parentConfidence": 0.194,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.253,
+    "weakestQuadrant": 0.141
+  },
+  {
+    "file": "kavarma-sas-svinsko-800.webp",
+    "parentConfidence": 0.194,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.209,
+    "weakestQuadrant": 0.083
+  },
+  {
+    "file": "kavarma-sas-svinsko-1200.avif",
+    "parentConfidence": 0.194,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.213,
+    "weakestQuadrant": 0.116
+  },
+  {
+    "file": "kavarma-sas-svinsko-1200.webp",
+    "parentConfidence": 0.194,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.214,
+    "weakestQuadrant": 0.065
+  },
+  {
+    "file": "krem-karamel-480.avif",
+    "parentConfidence": 0.203,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.291,
+    "weakestQuadrant": 0.099
+  },
+  {
+    "file": "krem-karamel-480.webp",
+    "parentConfidence": 0.203,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.226,
+    "weakestQuadrant": 0.153
+  },
+  {
+    "file": "krem-karamel-640.avif",
+    "parentConfidence": 0.203,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.281,
+    "weakestQuadrant": 0.033
+  },
+  {
+    "file": "krem-karamel-640.webp",
+    "parentConfidence": 0.203,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.282,
+    "weakestQuadrant": 0.134
+  },
+  {
+    "file": "krem-karamel-800.avif",
+    "parentConfidence": 0.203,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.205,
+    "weakestQuadrant": 0.095
+  },
+  {
+    "file": "krem-karamel-800.webp",
+    "parentConfidence": 0.203,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.25,
+    "weakestQuadrant": 0.162
+  },
+  {
+    "file": "krem-karamel-1200.avif",
+    "parentConfidence": 0.203,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.227,
+    "weakestQuadrant": 0.122
+  },
+  {
+    "file": "krem-karamel-1200.webp",
+    "parentConfidence": 0.203,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.181,
+    "weakestQuadrant": 0.048
+  },
+  {
+    "file": "kyufteta-na-skara-480.avif",
+    "parentConfidence": 0.186,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.219,
+    "weakestQuadrant": 0.014
+  },
+  {
+    "file": "kyufteta-na-skara-480.webp",
+    "parentConfidence": 0.186,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.24,
+    "weakestQuadrant": 0.032
+  },
+  {
+    "file": "kyufteta-na-skara-640.avif",
+    "parentConfidence": 0.186,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.258,
+    "weakestQuadrant": 0.014
+  },
+  {
+    "file": "kyufteta-na-skara-640.webp",
+    "parentConfidence": 0.186,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.236,
+    "weakestQuadrant": 0
+  },
+  {
+    "file": "kyufteta-na-skara-800.avif",
+    "parentConfidence": 0.186,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.182,
+    "weakestQuadrant": 0.023
+  },
+  {
+    "file": "kyufteta-na-skara-800.webp",
+    "parentConfidence": 0.186,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.225,
+    "weakestQuadrant": 0.099
+  },
+  {
+    "file": "kyufteta-na-skara-1200.avif",
+    "parentConfidence": 0.186,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.198,
+    "weakestQuadrant": 0.015
+  },
+  {
+    "file": "kyufteta-na-skara-1200.webp",
+    "parentConfidence": 0.186,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.208,
+    "weakestQuadrant": 0.127
+  },
+  {
+    "file": "mekitsi-480.avif",
+    "parentConfidence": 0.145,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.308,
+    "weakestQuadrant": 0.263
+  },
+  {
+    "file": "mekitsi-480.webp",
+    "parentConfidence": 0.145,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.217,
+    "weakestQuadrant": 0.128
+  },
+  {
+    "file": "mekitsi-640.avif",
+    "parentConfidence": 0.145,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.155,
+    "weakestQuadrant": 0.052
+  },
+  {
+    "file": "mekitsi-640.webp",
+    "parentConfidence": 0.145,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.184,
+    "weakestQuadrant": 0.1
+  },
+  {
+    "file": "mekitsi-800.avif",
+    "parentConfidence": 0.145,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.134,
+    "weakestQuadrant": 0.027
+  },
+  {
+    "file": "mekitsi-800.webp",
+    "parentConfidence": 0.145,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.147,
+    "weakestQuadrant": 0.106
+  },
+  {
+    "file": "mekitsi-1200.avif",
+    "parentConfidence": 0.145,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.136,
+    "weakestQuadrant": 0.077
+  },
+  {
+    "file": "mekitsi-1200.webp",
+    "parentConfidence": 0.145,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.171,
+    "weakestQuadrant": 0.043
+  },
+  {
+    "file": "mish-mash-480.avif",
+    "parentConfidence": 0.319,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.36,
+    "weakestQuadrant": 0.161
+  },
+  {
+    "file": "mish-mash-480.webp",
+    "parentConfidence": 0.319,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.347,
+    "weakestQuadrant": 0.159
+  },
+  {
+    "file": "mish-mash-640.avif",
+    "parentConfidence": 0.319,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.309,
+    "weakestQuadrant": 0.143
+  },
+  {
+    "file": "mish-mash-640.webp",
+    "parentConfidence": 0.319,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.333,
+    "weakestQuadrant": 0.177
+  },
+  {
+    "file": "mish-mash-800.avif",
+    "parentConfidence": 0.319,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.362,
+    "weakestQuadrant": 0.266
+  },
+  {
+    "file": "mish-mash-800.webp",
+    "parentConfidence": 0.319,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.326,
+    "weakestQuadrant": 0.174
+  },
+  {
+    "file": "mish-mash-1200.avif",
+    "parentConfidence": 0.319,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.318,
+    "weakestQuadrant": 0.199
+  },
+  {
+    "file": "mish-mash-1200.webp",
+    "parentConfidence": 0.319,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.343,
+    "weakestQuadrant": 0.144
+  },
+  {
+    "file": "musaka-s-kartofi-480.avif",
+    "parentConfidence": 0.299,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.289,
+    "weakestQuadrant": 0.211
+  },
+  {
+    "file": "musaka-s-kartofi-480.webp",
+    "parentConfidence": 0.299,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.306,
+    "weakestQuadrant": 0.13
+  },
+  {
+    "file": "musaka-s-kartofi-640.avif",
+    "parentConfidence": 0.299,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.289,
+    "weakestQuadrant": 0.115
+  },
+  {
+    "file": "musaka-s-kartofi-640.webp",
+    "parentConfidence": 0.299,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.322,
+    "weakestQuadrant": 0.019
+  },
+  {
+    "file": "musaka-s-kartofi-800.avif",
+    "parentConfidence": 0.299,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.309,
+    "weakestQuadrant": 0.19
+  },
+  {
+    "file": "musaka-s-kartofi-800.webp",
+    "parentConfidence": 0.299,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.293,
+    "weakestQuadrant": 0.099
+  },
+  {
+    "file": "musaka-s-kartofi-1200.avif",
+    "parentConfidence": 0.299,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.303,
+    "weakestQuadrant": 0.151
+  },
+  {
+    "file": "musaka-s-kartofi-1200.webp",
+    "parentConfidence": 0.299,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.305,
+    "weakestQuadrant": 0.169
+  },
+  {
+    "file": "omlet-sas-sirene-480.avif",
+    "parentConfidence": 0.156,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.27,
+    "weakestQuadrant": 0.002
+  },
+  {
+    "file": "omlet-sas-sirene-480.webp",
+    "parentConfidence": 0.156,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.213,
+    "weakestQuadrant": 0.051
+  },
+  {
+    "file": "omlet-sas-sirene-640.avif",
+    "parentConfidence": 0.156,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.183,
+    "weakestQuadrant": 0.036
+  },
+  {
+    "file": "omlet-sas-sirene-640.webp",
+    "parentConfidence": 0.156,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.188,
+    "weakestQuadrant": 0.081
+  },
+  {
+    "file": "omlet-sas-sirene-800.avif",
+    "parentConfidence": 0.156,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.212,
+    "weakestQuadrant": 0.056
+  },
+  {
+    "file": "omlet-sas-sirene-800.webp",
+    "parentConfidence": 0.156,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.204,
+    "weakestQuadrant": 0.09
+  },
+  {
+    "file": "omlet-sas-sirene-1200.avif",
+    "parentConfidence": 0.156,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.187,
+    "weakestQuadrant": 0.082
+  },
+  {
+    "file": "omlet-sas-sirene-1200.webp",
+    "parentConfidence": 0.156,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.16,
+    "weakestQuadrant": 0.006
+  },
+  {
+    "file": "ovcharska-salata-480.avif",
+    "parentConfidence": 0.266,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.274,
+    "weakestQuadrant": 0.25
+  },
+  {
+    "file": "ovcharska-salata-480.webp",
+    "parentConfidence": 0.266,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.279,
+    "weakestQuadrant": 0.229
+  },
+  {
+    "file": "ovcharska-salata-640.avif",
+    "parentConfidence": 0.266,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.26,
+    "weakestQuadrant": 0.226
+  },
+  {
+    "file": "ovcharska-salata-640.webp",
+    "parentConfidence": 0.266,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.27,
+    "weakestQuadrant": 0.237
+  },
+  {
+    "file": "ovcharska-salata-800.avif",
+    "parentConfidence": 0.266,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.266,
+    "weakestQuadrant": 0.238
+  },
+  {
+    "file": "ovcharska-salata-800.webp",
+    "parentConfidence": 0.266,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.263,
+    "weakestQuadrant": 0.224
+  },
+  {
+    "file": "ovcharska-salata-1200.avif",
+    "parentConfidence": 0.266,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.272,
+    "weakestQuadrant": 0.255
+  },
+  {
+    "file": "ovcharska-salata-1200.webp",
+    "parentConfidence": 0.266,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.27,
+    "weakestQuadrant": 0.25
+  },
+  {
+    "file": "parzheni-filiyki-480.avif",
+    "parentConfidence": 0.128,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.172,
+    "weakestQuadrant": 0.077
+  },
+  {
+    "file": "parzheni-filiyki-480.webp",
+    "parentConfidence": 0.128,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.136,
+    "weakestQuadrant": 0.043
+  },
+  {
+    "file": "parzheni-filiyki-640.avif",
+    "parentConfidence": 0.128,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.129,
+    "weakestQuadrant": 0.049
+  },
+  {
+    "file": "parzheni-filiyki-640.webp",
+    "parentConfidence": 0.128,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.117,
+    "weakestQuadrant": 0.067
+  },
+  {
+    "file": "parzheni-filiyki-800.avif",
+    "parentConfidence": 0.128,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.121,
+    "weakestQuadrant": 0.024
+  },
+  {
+    "file": "parzheni-filiyki-800.webp",
+    "parentConfidence": 0.128,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.141,
+    "weakestQuadrant": 0.122
+  },
+  {
+    "file": "parzheni-filiyki-1200.avif",
+    "parentConfidence": 0.128,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.113,
+    "weakestQuadrant": 0.044
+  },
+  {
+    "file": "parzheni-filiyki-1200.webp",
+    "parentConfidence": 0.128,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.14,
+    "weakestQuadrant": 0.076
+  },
+  {
+    "file": "pile-teriyaki-480.avif",
+    "parentConfidence": 0.179,
+    "width": 480,
+    "height": 360,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.138,
+    "weakestQuadrant": 0.01
+  },
+  {
+    "file": "pile-teriyaki-480.webp",
+    "parentConfidence": 0.179,
+    "width": 480,
+    "height": 360,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.125,
+    "weakestQuadrant": 0.046
+  },
+  {
+    "file": "pile-teriyaki-640.avif",
+    "parentConfidence": 0.179,
+    "width": 640,
+    "height": 480,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.177,
+    "weakestQuadrant": 0.058
+  },
+  {
+    "file": "pile-teriyaki-640.webp",
+    "parentConfidence": 0.179,
+    "width": 640,
+    "height": 480,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.136,
+    "weakestQuadrant": 0.06
+  },
+  {
+    "file": "pile-teriyaki-800.avif",
+    "parentConfidence": 0.179,
+    "width": 800,
+    "height": 600,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.202,
+    "weakestQuadrant": 0.036
+  },
+  {
+    "file": "pile-teriyaki-800.webp",
+    "parentConfidence": 0.179,
+    "width": 800,
+    "height": 600,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.203,
+    "weakestQuadrant": 0.019
+  },
+  {
+    "file": "pile-teriyaki-1200.avif",
+    "parentConfidence": 0.179,
+    "width": 1200,
+    "height": 900,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.185,
+    "weakestQuadrant": 0.097
+  },
+  {
+    "file": "pile-teriyaki-1200.webp",
+    "parentConfidence": 0.179,
+    "width": 1200,
+    "height": 900,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.169,
+    "weakestQuadrant": 0.039
+  },
+  {
+    "file": "pileshka-supa-480.avif",
+    "parentConfidence": 0.174,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.349,
+    "weakestQuadrant": 0.183
+  },
+  {
+    "file": "pileshka-supa-480.webp",
+    "parentConfidence": 0.174,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.261,
+    "weakestQuadrant": 0.08
+  },
+  {
+    "file": "pileshka-supa-640.avif",
+    "parentConfidence": 0.174,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.312,
+    "weakestQuadrant": 0.185
+  },
+  {
+    "file": "pileshka-supa-640.webp",
+    "parentConfidence": 0.174,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.266,
+    "weakestQuadrant": 0.038
+  },
+  {
+    "file": "pileshka-supa-800.avif",
+    "parentConfidence": 0.174,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.234,
+    "weakestQuadrant": 0.132
+  },
+  {
+    "file": "pileshka-supa-800.webp",
+    "parentConfidence": 0.174,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.212,
+    "weakestQuadrant": 0.039
+  },
+  {
+    "file": "pileshka-supa-1200.avif",
+    "parentConfidence": 0.174,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.225,
+    "weakestQuadrant": 0.018
+  },
+  {
+    "file": "pileshka-supa-1200.webp",
+    "parentConfidence": 0.174,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.235,
+    "weakestQuadrant": 0.1
+  },
+  {
+    "file": "shkembe-chorba-480.avif",
+    "parentConfidence": 0.164,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.219,
+    "weakestQuadrant": 0.015
+  },
+  {
+    "file": "shkembe-chorba-480.webp",
+    "parentConfidence": 0.164,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.212,
+    "weakestQuadrant": 0.059
+  },
+  {
+    "file": "shkembe-chorba-640.avif",
+    "parentConfidence": 0.164,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.223,
+    "weakestQuadrant": 0.155
+  },
+  {
+    "file": "shkembe-chorba-640.webp",
+    "parentConfidence": 0.164,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.177,
+    "weakestQuadrant": 0.011
+  },
+  {
+    "file": "shkembe-chorba-800.avif",
+    "parentConfidence": 0.164,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.157,
+    "weakestQuadrant": 0.06
+  },
+  {
+    "file": "shkembe-chorba-800.webp",
+    "parentConfidence": 0.164,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.185,
+    "weakestQuadrant": 0.085
+  },
+  {
+    "file": "shkembe-chorba-1200.avif",
+    "parentConfidence": 0.164,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.183,
+    "weakestQuadrant": 0.043
+  },
+  {
+    "file": "shkembe-chorba-1200.webp",
+    "parentConfidence": 0.164,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.17,
+    "weakestQuadrant": 0.014
+  },
+  {
+    "file": "sirene-po-shopski-480.avif",
+    "parentConfidence": 0.165,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.275,
+    "weakestQuadrant": 0.153
+  },
+  {
+    "file": "sirene-po-shopski-480.webp",
+    "parentConfidence": 0.165,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.215,
+    "weakestQuadrant": 0.088
+  },
+  {
+    "file": "sirene-po-shopski-640.avif",
+    "parentConfidence": 0.165,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.251,
+    "weakestQuadrant": 0.068
+  },
+  {
+    "file": "sirene-po-shopski-640.webp",
+    "parentConfidence": 0.165,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.212,
+    "weakestQuadrant": 0.093
+  },
+  {
+    "file": "sirene-po-shopski-800.avif",
+    "parentConfidence": 0.165,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.207,
+    "weakestQuadrant": 0.152
+  },
+  {
+    "file": "sirene-po-shopski-800.webp",
+    "parentConfidence": 0.165,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.201,
+    "weakestQuadrant": 0.078
+  },
+  {
+    "file": "sirene-po-shopski-1200.avif",
+    "parentConfidence": 0.165,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.183,
+    "weakestQuadrant": 0.076
+  },
+  {
+    "file": "sirene-po-shopski-1200.webp",
+    "parentConfidence": 0.165,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.18,
+    "weakestQuadrant": 0.071
+  },
+  {
+    "file": "sladak-salam-480.avif",
+    "parentConfidence": 0.368,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.358,
+    "weakestQuadrant": 0.352
+  },
+  {
+    "file": "sladak-salam-480.webp",
+    "parentConfidence": 0.368,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.366,
+    "weakestQuadrant": 0.318
+  },
+  {
+    "file": "sladak-salam-640.avif",
+    "parentConfidence": 0.368,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.367,
+    "weakestQuadrant": 0.306
+  },
+  {
+    "file": "sladak-salam-640.webp",
+    "parentConfidence": 0.368,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.358,
+    "weakestQuadrant": 0.338
+  },
+  {
+    "file": "sladak-salam-800.avif",
+    "parentConfidence": 0.368,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.37,
+    "weakestQuadrant": 0.32
+  },
+  {
+    "file": "sladak-salam-800.webp",
+    "parentConfidence": 0.368,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.367,
+    "weakestQuadrant": 0.302
+  },
+  {
+    "file": "sladak-salam-1200.avif",
+    "parentConfidence": 0.368,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.369,
+    "weakestQuadrant": 0.362
+  },
+  {
+    "file": "sladak-salam-1200.webp",
+    "parentConfidence": 0.368,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.365,
+    "weakestQuadrant": 0.353
+  },
+  {
+    "file": "snezhanka-480.avif",
+    "parentConfidence": 0.287,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.336,
+    "weakestQuadrant": 0.245
+  },
+  {
+    "file": "snezhanka-480.webp",
+    "parentConfidence": 0.287,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.35,
+    "weakestQuadrant": 0.297
+  },
+  {
+    "file": "snezhanka-640.avif",
+    "parentConfidence": 0.287,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.318,
+    "weakestQuadrant": 0.04
+  },
+  {
+    "file": "snezhanka-640.webp",
+    "parentConfidence": 0.287,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.328,
+    "weakestQuadrant": 0.196
+  },
+  {
+    "file": "snezhanka-800.avif",
+    "parentConfidence": 0.287,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.328,
+    "weakestQuadrant": 0.123
+  },
+  {
+    "file": "snezhanka-800.webp",
+    "parentConfidence": 0.287,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.351,
+    "weakestQuadrant": 0.164
+  },
+  {
+    "file": "snezhanka-1200.avif",
+    "parentConfidence": 0.287,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.302,
+    "weakestQuadrant": 0.138
+  },
+  {
+    "file": "snezhanka-1200.webp",
+    "parentConfidence": 0.287,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.3,
+    "weakestQuadrant": 0.099
+  },
+  {
+    "file": "tarator-480.avif",
+    "parentConfidence": 0.167,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.164,
+    "weakestQuadrant": 0.034
+  },
+  {
+    "file": "tarator-480.webp",
+    "parentConfidence": 0.167,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.183,
+    "weakestQuadrant": 0.031
+  },
+  {
+    "file": "tarator-640.avif",
+    "parentConfidence": 0.167,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.153,
+    "weakestQuadrant": 0.022
+  },
+  {
+    "file": "tarator-640.webp",
+    "parentConfidence": 0.167,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.189,
+    "weakestQuadrant": 0.081
+  },
+  {
+    "file": "tarator-800.avif",
+    "parentConfidence": 0.167,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.208,
+    "weakestQuadrant": 0.061
+  },
+  {
+    "file": "tarator-800.webp",
+    "parentConfidence": 0.167,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.187,
+    "weakestQuadrant": 0.114
+  },
+  {
+    "file": "tarator-1200.avif",
+    "parentConfidence": 0.167,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.161,
+    "weakestQuadrant": 0.028
+  },
+  {
+    "file": "tarator-1200.webp",
+    "parentConfidence": 0.167,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.149,
+    "weakestQuadrant": 0.113
+  },
+  {
+    "file": "tikvenik-480.avif",
+    "parentConfidence": 0.286,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.284,
+    "weakestQuadrant": 0.061
+  },
+  {
+    "file": "tikvenik-480.webp",
+    "parentConfidence": 0.286,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.322,
+    "weakestQuadrant": 0.021
+  },
+  {
+    "file": "tikvenik-640.avif",
+    "parentConfidence": 0.286,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.283,
+    "weakestQuadrant": 0.029
+  },
+  {
+    "file": "tikvenik-640.webp",
+    "parentConfidence": 0.286,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.304,
+    "weakestQuadrant": 0.049
+  },
+  {
+    "file": "tikvenik-800.avif",
+    "parentConfidence": 0.286,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.301,
+    "weakestQuadrant": 0.037
+  },
+  {
+    "file": "tikvenik-800.webp",
+    "parentConfidence": 0.286,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.29,
+    "weakestQuadrant": 0.032
+  },
+  {
+    "file": "tikvenik-1200.avif",
+    "parentConfidence": 0.286,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.294,
+    "weakestQuadrant": 0.004
+  },
+  {
+    "file": "tikvenik-1200.webp",
+    "parentConfidence": 0.286,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.287,
+    "weakestQuadrant": 0.009
+  },
+  {
+    "file": "zeleva-salata-480.avif",
+    "parentConfidence": 0.161,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.345,
+    "weakestQuadrant": 0.163
+  },
+  {
+    "file": "zeleva-salata-480.webp",
+    "parentConfidence": 0.161,
+    "width": 480,
+    "height": 358,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.283,
+    "weakestQuadrant": 0.192
+  },
+  {
+    "file": "zeleva-salata-640.avif",
+    "parentConfidence": 0.161,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.27,
+    "weakestQuadrant": 0.053
+  },
+  {
+    "file": "zeleva-salata-640.webp",
+    "parentConfidence": 0.161,
+    "width": 640,
+    "height": 478,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.237,
+    "weakestQuadrant": 0.152
+  },
+  {
+    "file": "zeleva-salata-800.avif",
+    "parentConfidence": 0.161,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.259,
+    "weakestQuadrant": 0.162
+  },
+  {
+    "file": "zeleva-salata-800.webp",
+    "parentConfidence": 0.161,
+    "width": 800,
+    "height": 597,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.234,
+    "weakestQuadrant": 0.032
+  },
+  {
+    "file": "zeleva-salata-1200.avif",
+    "parentConfidence": 0.161,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.236,
+    "weakestQuadrant": 0.161
+  },
+  {
+    "file": "zeleva-salata-1200.webp",
+    "parentConfidence": 0.161,
+    "width": 1200,
+    "height": 896,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.197,
+    "weakestQuadrant": 0.063
+  }
+]

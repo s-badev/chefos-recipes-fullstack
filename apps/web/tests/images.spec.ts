@@ -78,7 +78,7 @@ for (const route of ["/", "/catalog", "/catalog/shopska-salata", "/catalog/пи�
   });
 }
 
-for (const [width, expectedWidth, requestedWidth] of [[390, 358, 384], [1440, 592, 640]]) {
+for (const [width, expectedWidth, requestedWidth] of [[390, 358, 480], [1440, 592, 640]]) {
   test(`catalog at ${width}: column-sized variant and only the LCP image is eager/high priority`, async ({ page }) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
     await page.goto("/catalog", { waitUntil: "networkidle" });
@@ -91,6 +91,6 @@ for (const [width, expectedWidth, requestedWidth] of [[390, 358, 384], [1440, 59
     expect(rest).toBe(true);
     expect(Math.round((await images.first().boundingBox())!.width)).toBe(expectedWidth);
     const src = await images.first().evaluate((image: HTMLImageElement) => image.currentSrc);
-    expect(new URL(src).searchParams.get("w")).toBe(String(requestedWidth));
+    expect(new URL(src).pathname).toMatch(new RegExp(`-${requestedWidth}\\.avif$`));
   });
 }

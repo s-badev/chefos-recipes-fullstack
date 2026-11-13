@@ -1,0 +1,3010 @@
+[
+  {
+    "name": "baklava-s-orehi",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 1925,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 4118,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 4339,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 10958,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7353,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 20124,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 10073,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 29204,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 13794,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 40754,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21963,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 68426,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 29826,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "baklava-s-orehi",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 98232,
+    "sourceSha256": "028a76ba9773ce4afbb05ac147f1d85aeef60f45b35f2c882469b74d41ab93ff"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2700,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5716,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7157,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 17208,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12329,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 31628,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 17892,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 47066,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 24670,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 65202,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 39532,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 112444,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 53608,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-s-praz",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 157490,
+    "sourceSha256": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2640,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5588,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6997,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 16826,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12631,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 32052,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19378,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 49710,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 28091,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 70760,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 47704,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 128574,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 67699,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "banitsa-sas-sirene",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 187670,
+    "sourceSha256": "34b5729aedbb429fb6199d5702377fa99ca4c8f3536457fe2046e9aa638f4b47"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2939,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5838,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6795,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 16634,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 11532,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 30280,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16641,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 44962,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 23062,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 62170,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 37144,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 107742,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 50753,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "bob-chorba",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 152662,
+    "sourceSha256": "5b7a2991d5444873b717c019771e6f910f08394bcc95084dc0db485da0f75677"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3102,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6270,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8465,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 19288,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14840,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 36234,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 22341,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 56772,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 31371,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 78058,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 53011,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 139442,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 73151,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 203260,
+    "sourceSha256": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2742,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5526,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7056,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 16188,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12054,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 30818,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 18360,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 47128,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 25281,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 65452,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 41471,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 116454,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 56781,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "kavarma-sas-svinsko",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 163880,
+    "sourceSha256": "4b76cb48bd5ad0bb62cb84f5b46991b677ceeb52e7eeac068cd15de5318d95d2"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 1562,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 3316,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3130,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 8060,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 4849,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 13496,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6635,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 19458,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8462,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 25854,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12542,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 43104,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16500,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "krem-karamel",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 60170,
+    "sourceSha256": "72f813352f91d6f4184e720b1512e2fe027f3639b6b585d5e1b72fd9da3f9fb5"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2935,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5898,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7497,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 17042,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12605,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 31162,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 18491,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 46634,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 25037,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 64026,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 40383,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 111786,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 55223,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "kyufteta-na-skara",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 160578,
+    "sourceSha256": "e67e2e5e9a8931d2ab9ca1fdebc9f5018961a07b50caa1e7b7754141fe075818"
+  },
+  {
+    "name": "mekitsi",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2567,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5258,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6064,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 15140,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 10333,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 28270,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 15383,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 43652,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21469,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 61200,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 36860,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 109700,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 52271,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mekitsi",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 161532,
+    "sourceSha256": "bc45ac0941e3da8dc1a35b5c2037a31eb8b8a6a52ac913a2c1e55e3129f16a88"
+  },
+  {
+    "name": "mish-mash",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3517,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6620,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8425,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 18868,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14067,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 33956,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19708,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 49986,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 26310,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 67194,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 41216,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 113312,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 55757,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "mish-mash",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 161266,
+    "sourceSha256": "415accf288c22739f3a277de7bbb9bdae9db3780db7625ee471c2c726f1eae03"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2257,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 4532,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5257,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 12500,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8516,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 22162,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 11912,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 32434,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 15528,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 44188,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 24026,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 72588,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 32292,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "musaka-s-kartofi",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 102206,
+    "sourceSha256": "4a25adffd1c3ff2e2ccc31514aeba294aa6abd2b9b586d86cbc8f347db9907bd"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2474,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5064,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5653,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 14502,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 9826,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 27042,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14437,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 40954,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19295,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 56176,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 31293,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 94918,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 43053,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "omlet-sas-sirene",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 136476,
+    "sourceSha256": "44e69412d1a818d132fd3cd724e7a6ac6bfe8fa05f28f5187f1c2eaf1ab05f42"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3052,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5776,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7271,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 16680,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12301,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 30578,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 17777,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 45628,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 24151,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 62508,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 38775,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 108124,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 53477,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "ovcharska-salata",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 154280,
+    "sourceSha256": "86a2a4cbe5d4e512efb037027057c012f7f23acd23d9ce6783b156ae02db8a66"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3250,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6410,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8159,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 18572,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 13841,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 34400,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19714,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 50636,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 26356,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 68452,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 41428,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 115708,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 56026,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 164042,
+    "sourceSha256": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2176,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 4636,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5134,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 12460,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8406,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 22628,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 11935,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 33758,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16229,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 45934,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 26089,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 78010,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 36129,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "parzheni-filiyki",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 111550,
+    "sourceSha256": "058db58c9d66067e0fa61306c492ca9ff178d163ab70ee9bc9b086f3451c31d9"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3160,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6420,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8530,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 20192,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 15723,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 38560,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 24033,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 59306,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 33087,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 82622,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 52555,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pile-teriyaki",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 139610,
+    "sourceSha256": "047c5ca4f83b16f737d7f11fd840d5f89712505ecb3ea5e3f45d9e3af7239784"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2291,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 4970,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5883,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 14112,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 10418,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 26642,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 15540,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 40236,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21804,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 57200,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 36450,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 102682,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 51372,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "pileshka-supa",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 150470,
+    "sourceSha256": "5a4c10438c980cc6d45a0b722c4a97e78735b4ea769841bcc173f0c887776fe6"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2433,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5120,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5850,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 14622,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 9861,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 26092,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14084,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 38500,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 18738,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 52660,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 29436,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 88268,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 39743,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 123864,
+    "sourceSha256": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2592,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5332,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5978,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 15128,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 10048,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 26938,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14246,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 39996,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19247,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 54592,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 29576,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 91760,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 40563,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shkembe-chorba",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 128754,
+    "sourceSha256": "fbc5e17b6f8228470eff06e1a007e724b255e1155892169220a5dd74bb9aacdc"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3136,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6264,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 8256,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 18898,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 14798,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 35866,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21943,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 55094,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 30755,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 77302,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 52448,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 137804,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 72618,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "shopska-salata",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 200858,
+    "sourceSha256": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2718,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5508,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6707,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 15782,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 11172,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 29258,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16149,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 43746,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21741,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 59682,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 34333,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 101290,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 46759,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "sirene-po-shopski",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 142620,
+    "sourceSha256": "2e3540bb22664a975e0d2e835d65daf7ea2c5a79f7c84737f156ad8d3fca0ef2"
+  },
+  {
+    "name": "tarator",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2725,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5690,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7572,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 17996,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 13758,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 33954,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19864,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 51396,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 27521,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 70498,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 43169,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 121756,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 58635,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tarator",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 170474,
+    "sourceSha256": "2f8e14e42f867ec400b5714e38aec90f48e9a3b7cbc652625dd84ba52c647a61"
+  },
+  {
+    "name": "tutmanik",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2720,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5674,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7204,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 16952,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 12220,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 31674,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 17525,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 47200,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 24055,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 65410,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 39164,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 112730,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 53936,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "tutmanik",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 159280,
+    "sourceSha256": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2538,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5150,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 6287,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 15088,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 480,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 10926,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 27672,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16004,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 41402,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21757,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 57108,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 34515,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 95464,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 46972,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "zeleva-salata",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 138832,
+    "sourceSha256": "53e0178e3b9a2bfbb08075222e8f2ca549dd95667b303844595a087678a04775"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2122,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 4518,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 4948,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 12122,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 480,
+    "format": "avif",
+    "quality": 55,
+    "bytes": 15824,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 480,
+    "format": "webp",
+    "quality": 100,
+    "bytes": 71078,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 640,
+    "format": "avif",
+    "quality": 55,
+    "bytes": 23307,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 640,
+    "format": "webp",
+    "quality": 85,
+    "bytes": 43834,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 16663,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 47384,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 1200,
+    "format": "avif",
+    "quality": 45,
+    "bytes": 35973,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 1200,
+    "format": "webp",
+    "quality": 85,
+    "bytes": 112600,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 39020,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "sladak-salam",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 120936,
+    "sourceSha256": "6fe29a0b22faa665945a733247efb66751f3fd18d638ba25b04f8d5c07541a3c"
+  },
+  {
+    "name": "snezhanka",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 2386,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 5140,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 5782,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 14746,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 480,
+    "format": "avif",
+    "quality": 45,
+    "bytes": 13725,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 27516,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 15169,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 41666,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 21111,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 57522,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 34227,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 99590,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 46494,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "snezhanka",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 140626,
+    "sourceSha256": "db0eb29f26ec828df0368f3e02a95a7041ae710f6f7f471c8a441e1c670c653d"
+  },
+  {
+    "name": "tikvenik",
+    "width": 160,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 3081,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 160,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 6066,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 320,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 7741,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 320,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 18222,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 480,
+    "format": "avif",
+    "quality": 45,
+    "bytes": 17596,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 480,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 34360,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 640,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 19716,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 640,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 52184,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 800,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 27610,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 800,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 71708,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 1200,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 45395,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 1200,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 123754,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 1600,
+    "format": "avif",
+    "quality": 38,
+    "bytes": 62648,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  },
+  {
+    "name": "tikvenik",
+    "width": 1600,
+    "format": "webp",
+    "quality": 78,
+    "bytes": 180404,
+    "sourceSha256": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3"
+  }
+]

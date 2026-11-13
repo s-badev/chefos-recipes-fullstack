@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ResponsiveRecipeImage } from "../responsive-recipe-image";
 import Link from "next/link";
 import { webImageSrc } from "../../lib/images";
 import { principlesImageSizes } from "../../lib/image-sizes";
@@ -83,7 +84,7 @@ export default function AboutPage() {
   return <>
     <section aria-labelledby="about-title" className="r-hero pg-hero" data-hero>
       <div className="hero-ph">
-        <Image alt="" fill loading="eager" priority sizes="100vw" src={webImageSrc("/images/recipes/kyufteta-na-skara.png")} />
+        <Image alt="" fill loading="eager" priority quality={55} sizes="100vw" src={webImageSrc("/images/recipes/kyufteta-na-skara.png")} />
       </div>
       <div className="wrap hero-in">
         <p className="eyebrow rv">Какво е Chefo&apos;s Recipes</p>
@@ -164,7 +165,7 @@ export default function AboutPage() {
           <div className="princ-ph mask">
             {/* The photograph is drawn 10% larger from its top-left corner, so the generator mark in the
                 bottom-right corner of this master always falls outside the frame. */}
-            <div className="mk"><span className="princ-crop"><Image alt="" fill loading="lazy" sizes={principlesImageSizes} src={webImageSrc("/images/recipes/banitsa-s-praz.png")} /></span></div>
+            <div className="mk"><span className="princ-crop"><ResponsiveRecipeImage alt="" fill loading="lazy" sizes={principlesImageSizes} src={webImageSrc("/images/recipes/banitsa-s-praz.png")} use="wide" /></span></div>
             <StitchBand size={2} />
           </div>
           <ul className="princ-list">

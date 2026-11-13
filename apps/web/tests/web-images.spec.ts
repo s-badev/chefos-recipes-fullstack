@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { readdir } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -10,6 +10,8 @@ import { transliterateRecipeName } from "../src/lib/transliteration";
 const require = createRequire(import.meta.url);
 const { createLoader } = require("../scripts/load-typescript.cjs");
 const root = fileURLToPath(new URL("../", import.meta.url));
+const variantManifest: Record<string, number[]> = require("../src/lib/image-variants.json");
+const { responsiveImage } = createLoader()(path.join(root, "src/lib/responsive-images.ts"));
 
 test("Bulgarian transliteration: all specified letters, й/ь, NFC, case and preserved invalid punctuation", () => {
   expect(transliterateRecipeName("Ж Х Ц Ч Ш Щ Ъ Ю Я Й Ь")).toBe("zh-h-ts-ch-sh-sht-a-yu-ya-y-y");
@@ -107,4 +109,50 @@ test("public-only detail lookup never probes files for a hidden/missing record",
   const { getWebRecipeForDetails } = load(path.join(root, "src/server/recipes/web-details.ts"));
   expect(await getWebRecipeForDetails("hidden-generated-record")).toBeNull();
   expect(probes).toEqual([]);
+});
+
+test("every generated public recipe variant has the declared dimensions, exists and loads", async ({ request }) => {
+  const sharp = require("sharp");
+  for (const recipe of recipes) expect(variantManifest).toHaveProperty(path.basename(recipe.imageSrc!, ".png"));
+  const files = Object.entries(variantManifest).flatMap(([name, widths]) => widths.flatMap(width => ["avif", "webp"].map(format => ({ file: `${name}-${width}.${format}`, width }))));
+  // Bounded parallel static-file reads; no API or database writes.
+  for (let i = 0; i < files.length; i += 8) await Promise.all(files.slice(i, i + 8).map(async ({ file, width }) => {
+    const bytes = await readFile(path.join(root, "public/images/recipes-responsive", file));
+    expect((await sharp(bytes).metadata()).width, file).toBe(width);
+    const response = await request.get(`/images/recipes-responsive/${file}`);
+    expect(response.ok(), file).toBe(true); expect((await response.body()).length).toBe(bytes.length);
+  }));
+});
+
+test("picture srcsets have exact width descriptors and bound card/thumbnail candidates", () => {
+  const image = responsiveImage("/images/recipes-web/shopska-salata.webp")!;
+  expect(image.widths).toEqual([480, 640, 800, 1200]);
+  expect(image.avif).toContain("shopska-salata-1200.avif 1200w");
+  expect(responsiveImage("/images/recipes/shopska-salata.png", "thumbnail")!.widths).toEqual([160, 320, 480]);
+  expect(responsiveImage("https://example.invalid/own-photo.jpg")).toBeNull();
+});
+
+for (const width of [390, 1440]) test(`DPR2 catalog ${width}: chooses the smallest adequate variant, valid sizes, no large fallback requests`, async ({ page, baseURL }) => {
+  const context = await page.context().browser()!.newContext({ viewport: { width, height: 900 }, deviceScaleFactor: 2 });
+  const view = await context.newPage();
+  try {
+    await view.goto(`${baseURL}/catalog`, { waitUntil: "networkidle" });
+    const images = await view.locator(".cards picture").evaluateAll(nodes => nodes.map(picture => {
+      const image = picture.querySelector("img")!;
+      return { width: image.getBoundingClientRect().width, src: image.currentSrc, sizes: picture.querySelector("source")!.sizes, set: picture.querySelector("source")!.srcset };
+    }));
+    for (const image of images.filter(image => image.src)) {
+      expect(image.sizes).toContain("calc(");
+      const expected = [480, 640, 800, 1200].find(candidate => candidate >= image.width * 2) ?? 1200;
+      expect(new URL(image.src).pathname).toMatch(new RegExp(`-${expected}\\.avif$`));
+      expect(image.set).not.toContain("1600w");
+    }
+  } finally { await context.close(); }
+});
+
+test("responsive derivatives of clean masters stay clean under the same mark detector", async () => {
+  const { checkVariantMarks } = await import("../scripts/check-variant-marks.mjs");
+  const rows = await checkVariantMarks();
+  expect(rows.length).toBeGreaterThan(100);
+  expect(rows.filter((row: { found: boolean }) => row.found)).toEqual([]);
 });

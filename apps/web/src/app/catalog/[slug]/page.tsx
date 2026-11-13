@@ -1,6 +1,7 @@
 import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ResponsiveRecipeImage } from "../../responsive-recipe-image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PrintRecipeButton } from "../../print-recipe-button";
@@ -73,7 +74,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
       <section aria-labelledby="recipe-title" className="r-hero" data-hero data-photo={photo ? "yes" : "none"}>
         {photo ? (
           <div className="hero-ph">
-            <Image alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`} fill fetchPriority="high" priority sizes="100vw" src={webImageSrc(recipe.imageSrc!)} />
+            <Image alt={recipe.imageAlt ?? `Снимка на ${recipe.title}`} fill fetchPriority="high" priority quality={55} sizes="100vw" src={webImageSrc(recipe.imageSrc!)} />
           </div>
         ) : (
           // A manual recipe without its own photograph: the solid ground with the stitched star.
@@ -142,7 +143,7 @@ export default async function RecipeDetailsPage({ params }: RecipeDetailsPagePro
             <span className="nm">{next.recipe.category} · {formatTotalTime(next.recipe.prepTimeMinutes, next.recipe.cookTimeMinutes)}</span>
           </span>
           <span className="ni">
-            {hasRecipePhoto(next.recipe) ? <Image alt="" fill sizes="(max-width: 640px) 100vw, 320px" src={webImageSrc(next.recipe.imageSrc!)} /> : <span className="ci-empty"><StitchStar /></span>}
+            {hasRecipePhoto(next.recipe) ? <ResponsiveRecipeImage alt="" fill sizes="(max-width: 640px) 100vw, 320px" src={webImageSrc(next.recipe.imageSrc!)} /> : <span className="ci-empty"><StitchStar /></span>}
           </span>
         </Link>
       </div>

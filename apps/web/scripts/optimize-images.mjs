@@ -10,6 +10,13 @@ const source = path.join(root, "public/images/recipes");
 const destination = path.join(root, "public/images/recipes-web");
 await mkdir(destination, { recursive: true });
 
+// Responsive derivatives always read the current web masters, preserving previous mark repairs.
+if (process.argv.includes("--variants")) {
+  const { generateImageVariants } = await import("./generate-image-variants.mjs");
+  await generateImageVariants(process.argv.find(arg => arg.startsWith("--only="))?.slice(7));
+  process.exit(0);
+}
+
 // Apply only checksum-verified candidates that passed the recorded visual review.
 if (process.argv.includes("--repair-marks")) {
   const { runTextureRepairs } = await import("./repair-image-marks.mjs");

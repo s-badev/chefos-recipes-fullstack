@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type CSSProperties, type KeyboardEvent, type ReactNode } from "react";
-import Image from "next/image";
+import { ResponsiveRecipeImage } from "./responsive-recipe-image";
 import Link from "next/link";
 import { SofraBoard } from "./sofra-board";
 import { StitchStar } from "./stitch";
@@ -54,7 +54,7 @@ export function SofraTable({ plates, intro }: { plates: SofraPlate[]; intro: Rea
                 tabIndex={index === selected ? 0 : -1}
                 type="button"
               >
-                <span className="pi">{plate.image ? <Image alt="" fill sizes="140px" src={plate.image} /> : <StitchStar />}</span>
+                <span className="pi">{plate.image ? <ResponsiveRecipeImage alt="" fill sizes="140px" src={plate.image} use="thumbnail" /> : <StitchStar />}</span>
               </button>
             ))}
           </div>
@@ -72,7 +72,7 @@ export function SofraTable({ plates, intro }: { plates: SofraPlate[]; intro: Rea
           {current.recipes.map(recipe => (
             <li key={recipe.slug}>
               <Link className="mini" href={`/catalog/${recipe.slug}`}>
-                <span className="mini-ph">{recipe.image ? <Image alt="" fill sizes="72px" src={recipe.image} /> : null}</span>
+                <span className="mini-ph">{recipe.image ? <ResponsiveRecipeImage alt="" fill sizes="72px" src={recipe.image} use="thumbnail" /> : null}</span>
                 <span className="mt">{recipe.title}</span>
                 <span className="mm">{recipe.time}</span>
               </Link>
