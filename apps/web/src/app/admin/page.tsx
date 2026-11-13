@@ -8,6 +8,7 @@ import {
   listRecipes
 } from "../../server/recipes/service";
 import { EditorialTitle } from "../split-heading";
+import { StitchStar } from "../stitch";
 import { DeleteRecipeDialog } from "./delete-recipe-dialog";
 
 export const metadata: Metadata = pageMetadata(
@@ -119,8 +120,9 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
           <span>Страница {recipePage.page} от {recipePage.totalPages}</span>
         </div>
 
-        <div className="admin-list">
-          {recipePage.items.map((recipe) => (
+        {recipePage.items.length > 0 ? (
+          <div className="admin-list">
+            {recipePage.items.map((recipe) => (
             <article className="admin-row" key={recipe.slug}>
               <div>
                 <h3>{recipe.title}</h3>
@@ -139,8 +141,18 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
                 <DeleteRecipeDialog slug={recipe.slug} title={recipe.title} />
               </div>
             </article>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="admin-empty">
+            <StitchStar className="admin-empty-star" />
+            <div>
+              <h2>Няма рецепти в този изглед</h2>
+              <p>Смени изгледа или добави първата рецепта, която да се показва тук.</p>
+            </div>
+            <Link className="btn fill" href="/admin/recipes/new">Добави рецепта</Link>
+          </div>
+        )}
 
         <div className="admin-pages">
           <span>{shownLabel}</span>

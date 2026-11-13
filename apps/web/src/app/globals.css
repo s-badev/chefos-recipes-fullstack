@@ -858,6 +858,10 @@ html:not([data-motion]) .menu-toggle{display:none}
 .admin-pages .btn{min-height:44px;padding-inline:18px}
 .admin-page-disabled{opacity:.42;cursor:not-allowed}
 .admin-page-disabled::before{display:none}
+.admin-empty{border-bottom:1px solid var(--line);padding:clamp(42px,7vw,80px) 0;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:22px;align-items:center}
+.admin-empty-star{width:38px;color:var(--accent)}
+.admin-empty h2{font-family:var(--serif);font-size:clamp(2rem,1.4rem + 1.5vw,3rem);font-weight:500;line-height:1}
+.admin-empty p{color:var(--muted);margin-top:8px;max-width:48ch}
 @media(max-width:1000px){
   .admin-head{grid-template-columns:1fr}
   .admin-row{grid-template-columns:minmax(0,1fr) repeat(2,minmax(110px,.35fr))}
@@ -880,6 +884,8 @@ html:not([data-motion]) .menu-toggle{display:none}
   .admin-action{min-height:44px;width:100%}
   .admin-pages{align-items:flex-start;flex-direction:column}
   .admin-pages nav{width:100%}.admin-pages .btn{flex:1}
+  .admin-empty{grid-template-columns:38px minmax(0,1fr)}
+  .admin-empty .btn{grid-column:1/-1;width:100%}
 }
 
 /* ---------- админ форми и потвърждение ---------- */
@@ -905,6 +911,10 @@ html:not([data-motion]) .menu-toggle{display:none}
 .admin-error-state h1{font-family:var(--serif);font-size:clamp(2.8rem,1.7rem + 3vw,5rem);font-weight:500;line-height:.95;margin-top:14px}
 .admin-error-state>p:not(.eyebrow){color:var(--muted);max-width:48ch;margin-top:18px}
 .admin-error-state .btn{margin-top:28px}
+.admin-route-error{display:grid;grid-template-columns:52px minmax(0,1fr);gap:22px;align-items:start}
+.admin-route-error .admin-empty-star{margin-top:6px}
+.admin-route-error .admin-actions{margin-top:28px}
+.admin-route-error .admin-actions .btn{margin-top:0}
 .admin-dialog{width:min(560px,calc(100% - 32px));max-width:none;border:1px solid var(--line);padding:0;background:var(--surface);color:var(--ink)}
 .admin-dialog::backdrop{background:rgba(10,6,6,.78);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .admin-dialog-inner{padding:clamp(26px,4vw,42px)}
@@ -923,6 +933,8 @@ html:not([data-motion]) .menu-toggle{display:none}
   .admin-form-actions .btn{width:100%}
   .admin-dialog-actions{display:grid;grid-template-columns:1fr}
   .admin-dialog-actions form,.admin-dialog-actions .btn{width:100%}
+  .admin-route-error{grid-template-columns:38px minmax(0,1fr)}
+  .admin-route-error .admin-actions{grid-column:1/-1}
 }
 
 /* Recipe print: title, products and steps only, on one light page; independent of the screen styles. */
