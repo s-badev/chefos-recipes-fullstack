@@ -279,3 +279,15 @@ for (const [name, render] of [
     });
   }
 }
+
+// Round 4: the catalog, the login and a manual recipe without a photograph (read only).
+for (const route of ["/catalog", "/login", `/catalog/${encodeURIComponent("пиле-тариаки")}`]) {
+  for (const width of [390, 1440]) {
+    test(`axe: zero violations on ${decodeURIComponent(route)} at ${width}`, async ({ page }) => {
+      await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+      const response = await page.goto(route, { waitUntil: "networkidle" });
+      test.skip(response?.status() === 404, "the manual recipe is not in this database");
+      expect(await axeViolations(page)).toEqual([]);
+    });
+  }
+}

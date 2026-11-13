@@ -306,7 +306,8 @@ img{display:block;max-width:100%}
 @media (min-width:641px) and (max-width:1000px){.cards .card.odd-last{grid-column:1 / -1;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);column-gap:24px;align-items:end}.card.odd-last .ci{aspect-ratio:16/10}.card.odd-last .cb{padding:0 0 6px}.card.odd-last .heart{right:calc((100% - 24px) * 5 / 12 + 36px)}}
 @media (max-width:640px){.card.solo{display:flex}.card.solo .ci{aspect-ratio:4/3}.card.solo .cb{padding-top:16px}.card.solo .ct{font-size:2rem}.card.solo .heart{right:12px}}
 /* No photograph: the same frame as a photo card, a small centred star over a thin stitched line. */
-.ci-empty .stitch-band{position:absolute;left:18px;right:18px;bottom:18px;width:auto;color:var(--accent);opacity:.45}
+/* An <svg> with width:auto falls back to 300px: the line spans the tile explicitly. */
+.ci-empty .stitch-band{position:absolute;left:18px;bottom:18px;width:calc(100% - 36px);color:var(--accent);opacity:.45}
 .heart-form{display:contents}
 .heart{position:absolute;top:12px;right:12px;z-index:3;width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:#111;display:grid;place-items:center;cursor:pointer;transition:background-color .2s,color .2s,transform .3s var(--eo)}
 .heart:hover{transform:scale(1.08);background:#fff}

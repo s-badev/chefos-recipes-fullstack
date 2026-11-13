@@ -20,3 +20,16 @@ test("catalog layout: the tail rules (1 across, 2 equal, 4 as two pairs) and the
   expect(catalogVariants(6)).toEqual(["wide", "half", "half", "half", "half", "wide"]);
   expect(catalogVariants(1)).toEqual(["solo"]);
 });
+
+test("a card without a photograph: same frame, the star centred, the stitched line across the tile", async ({ page }) => {
+  await page.goto("/catalog", { waitUntil: "networkidle" });
+  const empty = page.locator(".ci-empty").first();
+  test.skip(await empty.count() === 0, "no manual recipe without a photograph in this database");
+  await empty.scrollIntoViewIfNeeded();
+  const boxes = await empty.evaluate(node => {
+    const r = (el: Element) => el.getBoundingClientRect();
+    return { tile: r(node), star: r(node.querySelector(".stitch-star")!), band: r(node.querySelector(".stitch-band")!) };
+  });
+  expect(Math.abs(boxes.star.x + boxes.star.width / 2 - (boxes.tile.x + boxes.tile.width / 2))).toBeLessThanOrEqual(2);
+  expect(boxes.band.width).toBeGreaterThanOrEqual(boxes.tile.width - 40);
+});
