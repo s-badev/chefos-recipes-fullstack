@@ -87,3 +87,25 @@ test("phone: the catalog tabs stay on one row that scrolls sideways", async ({ p
   expect(tops).toHaveLength(1);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBe(0);
 });
+
+for (const [url, selector, active, inactive] of [["/catalog", ".fbar .tab", "Всички", "Салати"], ["/login", ".atab", "Вход", "Регистрация"]] as const) {
+  test(`${url}: the active and inactive tabs both answer the pointer (line + 1px lift), focus ring visible`, async ({ page }) => {
+    await page.goto(url, { waitUntil: "networkidle" });
+    const read = (name: string) => page.locator(selector).filter({ hasText: name }).first().evaluate(node => ({ tab: getComputedStyle(node).transform, line: getComputedStyle(node, "::after").transform }));
+    for (const name of [active, inactive]) {
+      await page.mouse.move(0, 0);
+      await page.waitForTimeout(600);
+      const rest = await read(name);
+      await page.locator(selector).filter({ hasText: name }).first().hover();
+      await page.waitForTimeout(700);
+      const hover = await read(name);
+      expect(hover.tab, `${name}: lifts`).not.toBe(rest.tab);
+      expect(hover.line, `${name}: the line changes`).not.toBe(rest.line);
+    }
+    await page.mouse.move(0, 0);
+    await page.locator(selector).filter({ hasText: active }).first().focus();
+    await page.keyboard.press("Shift+Tab");
+    await page.keyboard.press("Tab");
+    expect(await page.evaluate(() => getComputedStyle(document.activeElement!).outlineStyle)).toBe("solid");
+  });
+}

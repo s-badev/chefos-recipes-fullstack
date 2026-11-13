@@ -278,6 +278,14 @@ em{font-style:italic}
 .tab sup{font-size:.68rem;margin-left:3px}
 .tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--eo)}
 .tab:hover{color:var(--ink)}.tab[aria-pressed=true]{color:var(--ink)}.tab[aria-pressed=true]::after{transform:scaleX(1)}
+/* Кръг 4: всеки таб отговаря на hover, и активният: неактивният изтегля тънка линия, активният я удебелява; табът се повдига с 1px. Видим фокус. */
+.tab,.atab{transition:color .2s,transform .25s var(--eo)}
+.tab::after,.atab::after{transform-origin:left bottom;transition:transform .45s var(--eo),background-color .2s}
+.tab:hover,.atab:hover{transform:translateY(-1px)}
+.tab:not([aria-pressed=true]):hover::after,.atab:not([aria-current=page]):hover::after{transform:scaleX(1);background:var(--muted)}
+.tab[aria-pressed=true]:hover::after,.atab[aria-current=page]:hover::after{transform:scaleX(1) scaleY(2)}
+.tab[aria-pressed=true]:hover sup{color:var(--accent)}
+.tab:focus-visible,.atab:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 :root[data-theme="cherga"] .tab::after{background:var(--ink)}
 .count{font-size:.85rem;color:var(--muted);white-space:nowrap}
 .cat-grid{padding-block:48px 120px}

@@ -442,6 +442,15 @@ img{display:block;max-width:100%}
 .atab{position:relative;min-height:54px;display:inline-flex;align-items:center;color:var(--muted);font-weight:500;transition:color .2s}
 .atab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--eo)}
 .atab:hover{color:var(--ink)}.atab[aria-current=page]{color:var(--ink)}.atab[aria-current=page]::after{transform:scaleX(1)}
+/* Every tab answers the pointer, the active one too (catalog filters, Вход/Регистрация): an inactive tab draws a
+   thin muted line, the active one thickens its red line; the tab lifts 1px. A visible keyboard focus ring. */
+.tab,.atab{transition:color .2s,transform .25s var(--eo)}
+.tab::after,.atab::after{transform-origin:left bottom;transition:transform .45s var(--eo),background-color .2s}
+.tab:hover,.atab:hover{transform:translateY(-1px)}
+.tab:not([aria-pressed=true]):hover::after,.atab:not([aria-current=page]):hover::after{transform:scaleX(1);background:var(--muted)}
+.tab[aria-pressed=true]:hover::after,.atab[aria-current=page]:hover::after{transform:scaleX(1) scaleY(2)}
+.tab[aria-pressed=true]:hover sup{color:var(--accent)}
+.tab:focus-visible,.atab:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
 .auth-box h2{font-family:var(--serif);font-weight:500;font-size:clamp(2.4rem,1.6rem + 2vw,3.4rem);line-height:1;letter-spacing:-.02em;margin-bottom:10px}
 .auth-box h2 em{font-weight:400;color:var(--accent)}
 .auth-box .sub{color:var(--muted);margin-bottom:30px}
