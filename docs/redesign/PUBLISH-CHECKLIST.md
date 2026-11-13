@@ -1,13 +1,13 @@
 # Контролен списък преди публикуване — „Софра“
 
-Одит: 13.11.2026 г. · branch `feat/redesign-sofra` · без push, PR, merge или deploy.
+Одит: 13.11.2026 г. · branch `feat/redesign-sofra` · security patch проверен локално; без merge или deploy.
 
 ## Резултат
 
 | Проверка | Статус | Доказателство |
 |---|---|---|
 | Git и отделна тестова база | [ок] | Клонът е `feat/redesign-sofra`; в затварящата задача `DATABASE_URL` не е зададена и не са изпълнявани DB команди. |
-| Четири записващи теста | [чака отделна задача] | Регистрационният сценарий и останалите записващи тестове трябва да се повторят на свеж отделен Neon branch; в тази задача не е използвана база. |
+| Четири записващи теста | [3/4 предишно; остава регистрацията] | Трите останали сценария са минали с известната поправка в теста. По желание преди или след Preview повтори регистрационния сценарий на свеж отделен Neon branch; в тази задача не е използвана база. |
 | Build, lint и TypeScript | [ок] | `build:check`, ESLint и `tsc --noEmit` минават. |
 | Playwright без записващите тестове | [ок] | 200 минали, 3 пропуснати, 0 паднали. |
 | README | [ок] | Основният и web README описват 24 подбрани + админ рецепти, „Софра“, актуалното стартиране и само имената на env променливите. |
@@ -19,7 +19,7 @@
 | Admin guard | [ок] | `/admin` не е достъпен за гост; 307 към вход. |
 | Търсене за тайни | [ок] | Не е намерена реална тайна. Credential-format примерите в `.env.example` и `docs/environment.md` са заменени с `replace-me`; generic `secret`/`token` съвпаденията са имена и документация. |
 | Netlify env имена | [поправено] | `.env.example`, `docs/environment.md` и `docs/local-setup.md` са синхронизирани с web runtime и локалните web инструменти; production имената са `DATABASE_URL`, `AUTH_SESSION_SECRET`, `MOBILE_JWT_SECRET` и незадължителното `SITE_URL`. |
-| `npm audit` | [анализирано] | 47 общо: 1 low, 23 moderate, 20 high, 3 critical. Решенията и достижимостта са в `docs/redesign/NPM-AUDIT-TRIAGE.md`; не са правени автоматични поправки. |
+| `npm audit` | [Next critical затворен] | След `next@15.5.28` и `sharp@0.35.5`: workspace 46 общо — 1 low, 24 moderate, 19 high, 2 critical; `apps/web --omit=dev` 6 общо — 1 moderate, 5 high, **0 critical**. Няма автоматични поправки или `postcss` override. |
 | Воден знак | [ок] | Детекторът намира само очакваните шест: `banitsa-s-praz.webp`, `hero-banitsa-shopska-salad.webp`, `palneni-chushki-s-oriz.webp`, `sarmi-s-kiselo-zele.webp`, `shopska-salata.webp`, `tutmanik.webp`; 0 неочаквани. |
 | Mobile API | [ок] | `git diff --stat main...HEAD -- apps/web/src/app/api/mobile` е празен. |
 | `.gitignore` | [ок] | Покрива `.next`, `.next-check`, `*.log`, `test-results` и `playwright-report`. |
@@ -28,13 +28,15 @@
 
 ## Мобилни локални измервания
 
-Локален production build, Chromium, viewport 390×844, DPR 2, без throttling; това не са field/Lighthouse данни.
+Локален production build, Chromium, viewport 390×844, DPR 2, без throttling; това не са field/Lighthouse данни. „Преди“ е базата с Next 15.5.18, а „след“ е бързата проверка с Next 15.5.28 и `sharp@0.35.5`.
 
-| Страница | LCP | Заредени изображения |
+| Страница | LCP преди → след | Изображения преди → след |
 |---|---:|---:|
-| Начало | 264 ms | 157 KiB / 14 заявки |
-| Рецепти | 388 ms | 219 KiB / 10 заявки |
-| Шопска салата | 112 ms | 59 KiB / 3 заявки |
+| Начало | 264 → 396 ms | 157 → 161 KiB / 14 → 14 заявки |
+| Рецепти | 388 → 412 ms | 219 → 222 KiB / 10 → 10 заявки |
+| Шопска салата | 112 ms (не е повторена) | 59 KiB / 3 заявки (не е повторена) |
+
+Няма съществена регресия: броят заявки е непроменен, теглото е +4/+3 KiB, а двата LCP резултата остават под 0.5 s. За hero, Шопска салата и Боб чорба `/_next/image` върна HTTP 200 с `image/avif` и `image/webp`.
 
 ## Неизползвани и условни активи
 
@@ -52,8 +54,8 @@
 
 ## Блокери и препоръки
 
-1. **Чака отделна задача:** регистрационният и останалите записващи тестове да се повторят на свеж отделен Neon branch; очакването е 4/4.
-2. **Анализирано:** `npm audit` — виж `docs/redesign/NPM-AUDIT-TRIAGE.md`. `next@15.5.18` блокира web publish до контролирана patch актуализация; другите две critical находки не са в web runtime.
+1. **По желание преди или след Preview:** повтори регистрационния записващ тест на свеж отделен Neon branch; очакването е 4/4 общо.
+2. **Затворено:** direct critical находката в `next@15.5.18` е отстранена с `next@15.5.28`; `apps/web --omit=dev` вече има 0 critical. Другите две critical находки не са в web runtime.
 3. **Поправено:** `.env.example`, `docs/environment.md` и `docs/local-setup.md` са актуализирани.
 4. **Отложено; не блокира:** 221 PNG остават без пренаписване на историята; решението за policy cleanup е отделна задача.
 5. **Извън обхвата:** `apps/mobile/README.md` остава непроменен.
@@ -64,5 +66,5 @@
 - Изтрий използвания тестов Neon branch.
 - Провери в Netlify само имената: `DATABASE_URL`, `AUTH_SESSION_SECRET`, `MOBILE_JWT_SECRET`; по избор `SITE_URL`. За mobile deployment: `EXPO_PUBLIC_API_BASE_URL`.
 - Вземи потребителско решение и изтрий ръчно `pile-teriyaki.png` и `blurred-food-bg.png`; тази задача не ги трие.
-- Повтори записващите тестове на нов отделен branch и потвърди 4/4.
-- Не публикувай web приложението, докато direct critical находката в Next не бъде patch-ната и проверена; PNG решението е отложено и не е publish blocker.
+- По желание преди или след Preview повтори регистрационния тест на нов отделен Neon branch и потвърди 4/4 общо.
+- Провери Preview deploy-а преди merge; Next critical блокерът е затворен, а решението за двата неизползвани PNG файла остава ръчно и не е publish blocker.

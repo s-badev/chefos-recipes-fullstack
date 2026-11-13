@@ -1,6 +1,6 @@
 # npm audit triage — „Софра“
 
-Дата: 13.11.2026 г. · branch `feat/redesign-sofra` · анализ само за четене, без `npm audit fix` и без промени по зависимости или lockfile.
+Дата: 13.11.2026 г. · branch `feat/redesign-sofra` · контролиран security patch само на Next.js линията, без `npm audit fix`, major upgrade или `postcss` override.
 
 ## Изпълнени проверки
 
@@ -11,18 +11,18 @@ npm.cmd audit --omit=dev --workspace apps/web --json
 
 | Обхват | Critical | High | Moderate | Low | Общо |
 |---|---:|---:|---:|---:|---:|
-| Целият workspace | 3 | 20 | 23 | 1 | 47 |
-| `apps/web`, `--omit=dev` | 1 | 6 | 0 | 0 | 7 |
+| Целият workspace | 2 | 19 | 24 | 1 | 46 |
+| `apps/web`, `--omit=dev` | 0 | 5 | 1 | 0 | 6 |
 
-Вторият audit работи върху общия workspace lockfile. Затова включва `brace-expansion` и `browserslist`, въпреки че `npm ls --workspace apps/web --omit=dev --all` не ги намира в production дървото на web. Реалната web production верига от отчетените пакети е `next → postcss → nanoid/source-map-js` и `next → sharp`.
+Вторият audit работи върху общия workspace lockfile. Затова включва `brace-expansion` и `browserslist`, въпреки че `npm ls --workspace apps/web --omit=dev --all` не ги намира в production дървото на web. Реалната отчетена web верига е `next → postcss → nanoid/source-map-js`; `sharp@0.35.5` вече не е audit находка. Оставащият moderate запис за `next` е ефект от pin-натия в Next `postcss`, а не от първоначалната critical уязвимост.
 
 ## Critical и high находки
 
-„Без major“ означава без major upgrade на пряката зависимост/SDK на съответното приложение. Посочените версии са първите проверени стабилни версии извън уязвимите диапазони; това е препоръка за отделна контролирана задача, не извършена промяна.
+„Без major“ означава без major upgrade на пряката зависимост/SDK на съответното приложение. Next.js и `sharp` са затворени с контролирания patch по-долу; останалите версии са препоръки за отделни, изрично разрешени задачи.
 
 | Пакет и инсталирана версия | Тежест | Тип и верига | Къде попада | Поправка без major | Достижимост в този проект |
 |---|---|---|---|---|---|
-| `next@15.5.18` | critical | Пряка: `apps/web` | Web production runtime | Да: `next >=15.5.28 <16` | **Достижима повърхност.** Има Server Actions и публичен Next image optimizer с AVIF/WebP. Няма custom server или upload на потребителски изображения, а production е Netlify/Linux, което ограничава част от сценариите, но не е достатъчна причина да се остави direct critical пакет. |
+| `next@15.5.18 → 15.5.28` | critical → **затворена** | Пряка: `apps/web` | Web production runtime | Изпълнено: `15.5.28` | **Поправено и проверено.** `npm ls` потвърждава `next@15.5.28`; `build:check`, lint, TypeScript и non-writing Playwright suite минават. |
 | `shell-quote@1.8.3` | critical | Транзитивна: `mobile → react-native → react-devtools-core` | Само mobile/devtools; не е в web production | Да: `1.9.0`, допустима от текущото `^1.6.1` | Практически недостижима: приложението не подава недоверени `.op` стойности към `quote()` и не извиква parser-а; пакетът не се deploy-ва с web runtime. |
 | `tar@7.5.15` | critical | Транзитивна: `mobile → expo → @expo/cli` | Само mobile build/CLI | Да: `7.5.21`, допустима от текущото `^7.5.2` | Практически недостижима от приложението: няма runtime приемане/разархивиране на недоверени tar архиви; рискът е в локален/CI инструмент. |
 | `@react-navigation/bottom-tabs@6.6.1` | high | Пряка за mobile | Само apps/mobile runtime | Не: audit предлага `7.21.0` | Потенциално достижима само през mobile navigation/deep links; няма отношение към web публикуването. |
@@ -41,27 +41,27 @@ npm.cmd audit --omit=dev --workspace apps/web --json
 | `node-forge@1.4.0` | high | Транзитивна: `mobile → expo → @expo/cli` | Mobile CLI | Да: `1.4.3`, допустима от текущата range | Няма app runtime употреба на Forge/TLS/PKI parser-и; не е в web production. |
 | `postcss@8.4.31`, `8.4.49`, `8.5.1` | high | Пряка web dev + транзитивна през Next/Expo | Web/mobile build tooling | Частично: `8.5.23` е в същия major; Next 15.5.x pin-ва `8.4.31`, затова е нужен проверен override или upstream Next промяна | Няма компилиране на потребителски CSS; source-map file-read сценариите са build-time и не са request-time достижими. |
 | `query-string@7.1.3` | high | Транзитивна: `mobile → @react-navigation/core` | Само apps/mobile runtime | Не: audit насочва към navigation 7.x | Потенциално достижима през mobile deep links заради `decode-uri-component`; не е в web runtime. |
-| `sharp@0.34.5` | high | Транзитивна: `web → next` | Web production image optimizer | Да без Next major: `next >=15.5.28` допуска `sharp@0.35.5` | **Достижима повърхност.** Приложението използва `next/image` и AVIF/WebP. Липсват upload и remote image patterns, така че входът е от доверени assets, но публичният optimizer остава активен. |
+| `sharp@0.34.5 → 0.35.5` | high → **затворена** | Транзитивна: `web → next` | Web production image optimizer | Изпълнено чрез `next@15.5.28` | **Поправено и проверено.** `npm ls` потвърждава `sharp@0.35.5`; три локални снимки връщат HTTP 200 и в AVIF, и в WebP през `/_next/image`. |
 | `source-map-js@1.2.1` | high | Транзитивна: `web → next → postcss` | Web build dependency | Да: `1.2.2`, допустима от `^1.0.2` | Не се обработват потребителски indexed source maps в runtime; build-time риск. |
 | `undici@6.26.0` | high | Транзитивна: `mobile → expo → @expo/cli` | Mobile CLI | Да: `6.29.1`, допустима от `^6.18.2` | Не е HTTP клиентът на web runtime в тази верига; няма app път към засегнатите WebSocket/TLS/encoding сценарии. |
 | `ws@6.2.3` | high | Транзитивна: `mobile → react-native` | Само mobile | Да: `6.2.4`, допустима от `^6.2.3` | Няма публичен WebSocket server в проекта; не е в web runtime. |
 
 ## Moderate и low
 
-- 23 moderate package находки. Най-често са групирани около Expo config/CLI (`@expo/*`, `glob`, `minimatch`, `uuid`, `xcode`), TypeScript ESLint (`@typescript-eslint/*`) и DB tooling (`drizzle-kit`, `esbuild`, `@esbuild-kit/*`). Те са build/dev зависимости, не web request-time runtime.
+- 24 moderate package находки в целия workspace. Най-често са групирани около Expo config/CLI (`@expo/*`, `glob`, `minimatch`, `uuid`, `xcode`), TypeScript ESLint (`@typescript-eslint/*`) и DB tooling (`drizzle-kit`, `esbuild`, `@esbuild-kit/*`). Web production audit отчита 1 moderate по веригата `next → postcss`.
 - 1 low находка: `deepmerge`, по Expo config веригата.
 
 ## Решение за трите critical пакета
 
 | Critical пакет | Оценка за публикуване | Основание |
 |---|---|---|
-| `next@15.5.18` | **Блокира публикуването** | Пряка web production зависимост; използват се Server Actions и image optimizer; има patch в същия major (`>=15.5.28`). |
+| `next@15.5.18` | **Затворено с `next@15.5.28`** | Пряката web production зависимост и `sharp` са patch-нати; critical броят за `apps/web --omit=dev` е 0. |
 | `shell-quote@1.8.3` | **Не блокира публикуването на web** | Само mobile/devtools верига, без достижим недоверен вход; има съвместим patch (`1.9.0`). |
 | `tar@7.5.15` | **Не блокира публикуването на web** | Само Expo CLI/build верига, без app runtime обработка на tar; има съвместим patch (`7.5.21`). |
 
 ## Кратки препоръки
 
-1. Преди web publish обновете контролирано Next в 15.5.x до поне `15.5.28`, осигурете `sharp@0.35.5` и повторете build плюс non-writing Playwright suite.
-2. В същата отделна dependency задача обновете lockfile-съвместимите patch версии (`nanoid`, `source-map-js`) и решете Next-pinned `postcss` чрез проверен override или upstream версия.
+1. **Изпълнено:** Next е `15.5.28`, `sharp` е `0.35.5`, critical за web production е 0, а build и non-writing Playwright suite са повторени успешно.
+2. В отделна изрично разрешена dependency задача прегледайте lockfile-съвместимите patch версии (`nanoid`, `source-map-js`) и изчакайте подходящ upstream Next patch за pin-натия `postcss`; в тази задача няма override.
 3. Направете отделна mobile задача за React Navigation 7.x и Expo/Metro веригата; не смесвайте тази major миграция с web publish поправката.
 4. Не използвайте автоматичен `npm audit fix --force`; прегледайте diff-а и повторете двата audit run-а след всяка група промени.
