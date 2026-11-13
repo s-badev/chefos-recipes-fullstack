@@ -536,12 +536,14 @@ html:not([data-motion]) .menu-toggle{display:none}
    ========================================================================== */
 .st-i{display:block;flex:none;width:26px;color:var(--accent)}
 .sec-top .eyebrow+.sec-h{margin-top:14px}
-.sec-tight{padding-block:clamp(72px,9vw,128px)}
-.sec-tight+.sec-tight{padding-top:0}
+/* About: less empty space between sections (<= 190px at 1440, <= 90px at 390); the last one adds no second top padding. */
+.sec-tight{padding-block:clamp(56px,7vw,104px)}
+.sec-tight+.sec-tight,.sec-tight+.sec{padding-top:0}
 
 /* ---------- За нас ---------- */
 .pg-hero{min-height:clamp(480px,76svh,780px)}
-.pg-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,6,6,.62) 0%,rgba(10,6,6,.46) 34%,rgba(10,6,6,.58) 62%,rgba(10,6,6,.9) 100%)}
+/* A lighter photograph: the veil eases at the top, stays nearly as dark under the text (>= 4.5:1). */
+.pg-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,6,6,.66) 0%,rgba(10,6,6,.5) 12%,rgba(10,6,6,.2) 34%,rgba(10,6,6,.4) 62%,rgba(10,6,6,.86) 100%)}
 .pg-hero h1{font-size:clamp(3rem,1.5rem + 5.2vw,7.4rem);max-width:15ch;margin-bottom:clamp(30px,1rem + 2.4vw,52px)}
 .pg-hero h1 em{font-weight:400}
 .pg-hero .r-desc{max-width:54ch}

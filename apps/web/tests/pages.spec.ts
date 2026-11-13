@@ -291,3 +291,29 @@ for (const route of ["/catalog", "/login", `/catalog/${encodeURIComponent("пи�
     });
   }
 }
+
+for (const [width, limit] of [[1440, 190], [390, 90]] as const) {
+  test(`About at ${width}: no empty band between sections taller than ${limit}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
+    await page.goto("/about", { waitUntil: "networkidle" });
+    await page.evaluate(async () => { for (let y = 0; y < document.documentElement.scrollHeight; y += 300) { scrollTo(0, y); await new Promise(r => setTimeout(r, 40)); } });
+    await page.waitForTimeout(1200);
+    const gaps = await page.evaluate(() => {
+      const sections = [...document.querySelectorAll("main > section")];
+      const content = (section: Element) => {
+        let top = Infinity, bottom = -Infinity;
+        for (const node of section.querySelectorAll("*")) {
+          if (node.closest(".sr-only,[hidden]") || (node.closest("svg") && node.tagName.toLowerCase() !== "svg")) continue;
+          if (node.children.length && !node.matches("img,svg,a,button")) continue;
+          const s = getComputedStyle(node); if (s.display === "none" || s.visibility === "hidden") continue;
+          const r = node.getBoundingClientRect(); if (!r.width || !r.height) continue;
+          top = Math.min(top, r.top + scrollY); bottom = Math.max(bottom, r.bottom + scrollY);
+        }
+        return { top, bottom };
+      };
+      return sections.slice(1).map((section, i) => Math.round(content(section).top - content(sections[i]).bottom));
+    });
+    expect(gaps.length).toBe(5);
+    expect(Math.max(...gaps), JSON.stringify(gaps)).toBeLessThanOrEqual(limit);
+  });
+}

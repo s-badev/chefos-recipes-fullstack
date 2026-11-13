@@ -1,4 +1,4 @@
-// Empty bands between the Home sections, measured in the DOM, on the mock and on a running production server:
+// Empty bands between the sections of Home (default) or About (SOFRA_PAGE=about), measured in the DOM, on the mock and on a running production server:
 //   node scripts/sofra-gaps.mjs <label> [baseUrl]
 // Gap = top of the next section's content minus the bottom of this section's content (union of the visible
 // leaf boxes: text, images, svg, buttons). The full-bleed hero is skipped as a source; the full-bleed quote
@@ -11,11 +11,12 @@ import { chromium } from "@playwright/test";
 
 const label = process.argv[2] ?? "now";
 const base = process.argv[3] ?? "http://localhost:3000";
-const mockUrl = pathToFileURL(path.resolve("../../docs/redesign/sofra-mock.html")).href;
-const out = path.resolve("../../docs/redesign/shots/sofra/round3");
+const ABOUT = process.env.SOFRA_PAGE === "about";
+const mockUrl = pathToFileURL(path.resolve(ABOUT ? "../../docs/redesign/sofra-mock-pages.html" : "../../docs/redesign/sofra-mock.html")).href;
+const out = path.resolve(ABOUT ? "../../docs/redesign/shots/sofra/round5" : "../../docs/redesign/shots/sofra/round3");
 mkdirSync(out, { recursive: true });
 
-const NAMES = ["Седни на софрата", "Рецепта на седмицата", "Какво да сготвиш днес", "Цитат"];
+const NAMES = ABOUT ? ["Hero", "Ритъм", "За кого", "Как работи", "Как подбираме", "Защо"] : ["Седни на софрата", "Рецепта на седмицата", "Какво да сготвиш днес", "Цитат"];
 
 async function gaps(page, scope) {
   return page.evaluate((scope) => {
@@ -55,7 +56,7 @@ const browser = await chromium.launch();
 const result = { label, measured: new Date().toISOString(), rule: "content bottom → next content top; quote: to the photograph's top edge", widths: {} };
 for (const width of [1440, 390]) {
   result.widths[width] = {};
-  for (const [which, url, scope] of [["mock", `${mockUrl}#home`, '[data-view="home"] > section'], ["site", `${base}/`, "main > section"]]) {
+  for (const [which, url, scope] of (ABOUT ? [["mock", `${mockUrl}#about`, '[data-view="about"] > section'], ["site", `${base}/about`, "main > section"]] : [["mock", `${mockUrl}#home`, '[data-view="home"] > section'], ["site", `${base}/`, "main > section"]])) {
     const page = await browser.newPage({ viewport: { width, height: width === 390 ? 844 : 900 } });
     await page.goto(url, { waitUntil: which === "site" ? "networkidle" : "load" });
     await settle(page);
@@ -65,5 +66,5 @@ for (const width of [1440, 390]) {
   }
 }
 await browser.close();
-writeFileSync(path.join(out, `gaps-${label}.json`), JSON.stringify(result, null, 2));
+writeFileSync(path.join(out, `${ABOUT ? "about-gaps" : "gaps"}-${label}.json`), JSON.stringify(result, null, 2));
 console.log(JSON.stringify(result.widths, null, 2));
