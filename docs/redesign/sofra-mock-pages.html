@@ -1,6 +1,6 @@
-<title>Chefo's · Софра, нови страници (макет)</title>
+<title>Chefo's · Софра, вътрешни и админ страници (макет)</title>
 <!-- Картите в Любими показват категорията без пореден номер на рецептата. -->
-<!-- МАКЕТ ЗА ЧЕТИРИ СТРАНИЦИ: За нас, Любими (с рецепти и празно), Профил, 404. Начало, Рецепти, Рецепта и Вход са в sofra-mock.html (там е истината за тях). Отваря се локално от docs/redesign/. Футърът и header-ът тук са както в сайта. -->
+<!-- МАКЕТ ЗА ВЪТРЕШНИ И АДМИН СТРАНИЦИ: За нас, Любими, Профил, 404, админ панел и формите му. Начало, Рецепти, Рецепта и Вход са в sofra-mock.html (там е истината за тях). Отваря се локално от docs/redesign/. Футърът и header-ът тук са както в сайта. -->
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Onest:wght@400;500;600&display=swap">
 <style>
@@ -524,6 +524,89 @@ em{font-style:italic}
 .btn{transition:color .3s var(--eo),border-color .3s,transform .14s var(--eo)}
 .btn:active{transform:translateY(1px) scale(.98)}
 .nav a:active,.mnav a:active,.link:active,.ftr li a:active,.tab:active,.logo:active{opacity:.6;transition:opacity 0s}
+
+/* ---------- админ ---------- */
+.admin-view{padding:clamp(132px,14vw,190px) 0 clamp(96px,10vw,148px)}
+.admin-head{display:grid;grid-template-columns:minmax(0,8fr) minmax(280px,4fr);gap:28px 56px;align-items:end}
+.admin-head h1,.admin-form-head h1{font-family:var(--serif);font-weight:500;font-size:clamp(3.4rem,1.6rem + 5vw,7.8rem);line-height:.9;letter-spacing:-.025em;margin-top:14px;text-wrap:balance}
+.admin-head h1 em,.admin-form-head h1 em{font-weight:400;color:var(--accent)}
+.admin-intro{color:var(--muted);max-width:42ch;font-size:1.08rem}
+.admin-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.admin-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(52px,6vw,80px);border-block:1px solid var(--line)}
+.admin-stat{padding:clamp(24px,3vw,40px) clamp(18px,2.5vw,34px);border-left:1px solid var(--line)}
+.admin-stat:first-child{border-left:0;padding-left:0}
+.admin-stat dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.admin-stat dd{font-family:var(--serif);font-size:clamp(2.8rem,1.8rem + 2.4vw,4.8rem);font-weight:500;line-height:1;margin-top:8px;font-variant-numeric:tabular-nums}
+.admin-manage{margin-top:clamp(64px,8vw,112px)}
+.admin-manage-top{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:28px}
+.admin-manage h2{font-family:var(--serif);font-size:clamp(2.5rem,1.7rem + 2.2vw,4.2rem);font-weight:500;line-height:1}
+.admin-tabs{display:flex;border-bottom:1px solid var(--line);gap:26px}
+.admin-tab{position:relative;min-height:52px;border:0;background:none;padding:0;color:var(--muted);cursor:pointer;font-weight:500}
+.admin-tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--eo)}
+.admin-tab[aria-pressed=true]{color:var(--ink)}.admin-tab[aria-pressed=true]::after{transform:scaleX(1)}
+.admin-count{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:18px 0;color:var(--muted);font-size:.88rem;border-bottom:1px solid var(--line)}
+.admin-list{border-bottom:1px solid var(--line)}
+.admin-row{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(120px,.45fr) minmax(110px,.4fr) auto;gap:22px 30px;align-items:center;padding:25px 0;border-top:1px solid var(--line)}
+.admin-row:first-child{border-top:0}
+.admin-row h3{font-family:var(--serif);font-size:clamp(1.55rem,1.2rem + .7vw,2rem);font-weight:500;line-height:1.05}
+.admin-row .desc{color:var(--muted);font-size:.9rem;line-height:1.55;margin-top:8px;max-width:64ch;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.admin-label{display:block;font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:7px}
+.admin-value{font-size:.9rem}
+.admin-row-actions{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+.admin-action{min-height:44px;padding:0 14px;border:1px solid var(--line);background:transparent;cursor:pointer;font-weight:600;font-size:.86rem;color:var(--ink)}
+.admin-action:hover{border-color:var(--ink)}
+.admin-action.danger{color:#ff8589;border-color:rgba(255,133,137,.45)}
+.admin-action.danger:hover{border-color:#ff8589}
+.admin-pages{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:24px}
+.admin-pages span{color:var(--muted);font-size:.88rem}
+.admin-pages nav{display:flex;gap:10px}.admin-pages .btn{min-height:44px;padding-inline:18px}
+.admin-empty,.admin-error{border-block:1px solid var(--line);padding:clamp(42px,7vw,80px) 0;display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:22px;align-items:center}
+.admin-empty .st-i,.admin-error .st-i{width:38px}
+.admin-empty h2,.admin-error h2{font-family:var(--serif);font-size:clamp(2rem,1.4rem + 1.5vw,3rem);font-weight:500;line-height:1}
+.admin-empty p,.admin-error p{color:var(--muted);margin-top:8px;max-width:48ch}
+
+.admin-form-view{padding:clamp(126px,13vw,176px) 0 clamp(96px,10vw,148px)}
+.admin-form-head{display:grid;grid-template-columns:minmax(0,8fr) minmax(220px,4fr);gap:24px 48px;align-items:end;padding-bottom:clamp(36px,5vw,64px);border-bottom:1px solid var(--line)}
+.admin-form-head .lead{justify-self:end}
+.admin-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px 40px;padding-top:clamp(36px,5vw,64px);max-width:980px}
+.admin-form .wide{grid-column:1/-1}
+.admin-form .fld{margin:0}
+.admin-form .fld label{display:block;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+.admin-form input,.admin-form textarea{width:100%;min-height:52px;padding:10px 0;border:0;border-bottom:1px solid rgba(244,238,232,.45);background:transparent;color:var(--ink);font:inherit;font-size:1.05rem;border-radius:0;outline:none;transition:border-color .2s,box-shadow .2s}
+.admin-form textarea{min-height:116px;resize:vertical;line-height:1.55}
+.admin-form input::placeholder,.admin-form textarea::placeholder{color:var(--muted);opacity:.85}
+.admin-form input:hover,.admin-form textarea:hover{border-bottom-color:var(--ink)}
+.admin-form input:focus,.admin-form textarea:focus{border-bottom:2px solid var(--accent);padding-bottom:9px;box-shadow:0 5px 0 -3px rgba(229,72,77,.35)}
+.admin-form [aria-invalid=true]{border-bottom-color:var(--accent)}
+.admin-field-error{display:block;color:#ff8589;font-size:.86rem;margin-top:8px}
+.admin-form-error{grid-column:1/-1;border-left:2px solid var(--accent);padding:14px 18px;color:#ffb2b4;background:rgba(200,30,43,.08)}
+.admin-form-actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px}
+.admin-form-note{margin-top:36px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem;max-width:980px}
+
+.admin-dialog{width:min(560px,calc(100% - 32px));border:1px solid var(--line);padding:0;background:var(--surface);color:var(--ink)}
+.admin-dialog::backdrop{background:rgba(10,6,6,.78);backdrop-filter:blur(4px)}
+.admin-dialog-inner{padding:clamp(26px,4vw,42px)}
+.admin-dialog h2{font-family:var(--serif);font-size:clamp(2rem,1.4rem + 1.4vw,3rem);font-weight:500;line-height:1}
+.admin-dialog p{color:var(--muted);margin-top:14px}
+.admin-dialog-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px;margin-top:28px}
+
+@media(max-width:1000px){
+  .admin-head,.admin-form-head{grid-template-columns:1fr}.admin-form-head .lead{justify-self:start}
+  .admin-row{grid-template-columns:minmax(0,1fr) repeat(2,minmax(110px,.35fr));}.admin-row-actions{grid-column:1/-1;justify-content:flex-start}
+}
+@media(max-width:640px){
+  .admin-view,.admin-form-view{padding-top:112px}
+  .admin-head h1,.admin-form-head h1{font-size:clamp(3.25rem,16vw,4.5rem)}
+  .admin-actions .btn{flex:1 1 100%}
+  .admin-stats{grid-template-columns:1fr}.admin-stat,.admin-stat:first-child{border-left:0;border-top:1px solid var(--line);padding:20px 0}.admin-stat:first-child{border-top:0}
+  .admin-manage-top{align-items:flex-start;flex-direction:column}.admin-tabs{width:100%}.admin-tab{flex:1}
+  .admin-count{align-items:flex-start;flex-direction:column}
+  .admin-row{grid-template-columns:1fr 1fr;padding:24px 0}.admin-row>div:first-child{grid-column:1/-1}.admin-row-actions{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr}.admin-action{min-height:44px;width:100%}
+  .admin-pages{align-items:flex-start;flex-direction:column}.admin-pages nav{width:100%}.admin-pages .btn{flex:1}
+  .admin-empty,.admin-error{grid-template-columns:38px minmax(0,1fr)}.admin-empty .btn,.admin-error .btn{grid-column:1/-1;width:100%}
+  .admin-form{grid-template-columns:1fr;gap:24px}.admin-form .wide,.admin-form-error,.admin-form-actions{grid-column:auto}.admin-form-actions .btn{width:100%}
+  .admin-dialog-actions{display:grid;grid-template-columns:1fr}.admin-dialog-actions .btn{width:100%}
+}
 </style>
 
 <a class="skip" href="#main">Към съдържанието</a>
@@ -687,6 +770,143 @@ em{font-style:italic}
     </div>
   </div>
 </section>
+
+<!-- ===================== АДМИН ПАНЕЛ ===================== -->
+<section class="view admin-view" data-view="admin" hidden>
+  <div class="wrap">
+    <header class="admin-head">
+      <div>
+        <p class="eyebrow rv">Админ панел</p>
+        <h1 class="split" data-split>Управлявай <em>рецептите</em></h1>
+      </div>
+      <div>
+        <p class="admin-intro rv">Преглеждай каталога, редактирай съдържанието и добавяй нови домашни рецепти.</p>
+        <div class="admin-actions rv"><a class="btn fill" href="#admin-new">Добави рецепта <span class="ar" aria-hidden="true">→</span></a><a class="btn out" href="#out" data-out>Виж каталога</a></div>
+      </div>
+    </header>
+
+    <dl class="admin-stats rv" aria-label="Обобщение">
+      <div class="admin-stat"><dt>Общо рецепти</dt><dd>10 026</dd></div>
+      <div class="admin-stat"><dt>Категории</dt><dd>6</dd></div>
+      <div class="admin-stat"><dt>Тагове</dt><dd>18</dd></div>
+    </dl>
+
+    <section class="admin-manage" aria-labelledby="admin-list-title">
+      <div class="admin-manage-top">
+        <div><p class="eyebrow rv">Рецепти</p><h2 id="admin-list-title" class="rv">Списък за управление</h2></div>
+        <div class="admin-tabs rv" aria-label="Изглед на рецептите">
+          <button class="admin-tab" type="button" aria-pressed="true">Всички</button>
+          <button class="admin-tab" type="button" aria-pressed="false">Публични</button>
+        </div>
+      </div>
+      <div class="admin-count"><span>Показани 50 от 10 026 рецепти</span><span>Страница 1 от 201</span></div>
+      <div class="admin-list">
+        <article class="admin-row">
+          <div><h3>Шопска салата</h3><p class="desc">Класическа българска салата с домати, краставици, печени чушки и настъргано сирене.</p></div>
+          <div><span class="admin-label">Категория</span><span class="admin-value">Салати</span></div>
+          <div><span class="admin-label">Трудност</span><span class="admin-value">Лесна</span></div>
+          <div class="admin-row-actions"><a class="admin-action" href="#admin-edit">Редактирай</a><button class="admin-action danger" type="button" data-delete="Шопска салата">Изтрий</button></div>
+        </article>
+        <article class="admin-row">
+          <div><h3>Мусака с картофи</h3><p class="desc">Домашна мусака с картофи, кайма и пухкава заливка с кисело мляко и яйца.</p></div>
+          <div><span class="admin-label">Категория</span><span class="admin-value">Основни</span></div>
+          <div><span class="admin-label">Трудност</span><span class="admin-value">Средна</span></div>
+          <div class="admin-row-actions"><a class="admin-action" href="#admin-edit">Редактирай</a><button class="admin-action danger" type="button" data-delete="Мусака с картофи">Изтрий</button></div>
+        </article>
+        <article class="admin-row">
+          <div><h3>Таратор</h3><p class="desc">Студена лятна супа с кисело мляко, краставица, копър, чесън и орехи.</p></div>
+          <div><span class="admin-label">Категория</span><span class="admin-value">Супи</span></div>
+          <div><span class="admin-label">Трудност</span><span class="admin-value">Лесна</span></div>
+          <div class="admin-row-actions"><a class="admin-action" href="#admin-edit">Редактирай</a><button class="admin-action danger" type="button" data-delete="Таратор">Изтрий</button></div>
+        </article>
+        <article class="admin-row">
+          <div><h3>Генерирана рецепта 10000</h3><p class="desc">Детерминиран запис за проверка на мащабируемостта на административния списък.</p></div>
+          <div><span class="admin-label">Категория</span><span class="admin-value">Основни</span></div>
+          <div><span class="admin-label">Трудност</span><span class="admin-value">Средна</span></div>
+          <div class="admin-row-actions"><a class="admin-action" href="#admin-edit">Редактирай</a><button class="admin-action danger" type="button" data-delete="Генерирана рецепта 10000">Изтрий</button></div>
+        </article>
+      </div>
+      <div class="admin-pages"><span>Показани 50 от 10 026 рецепти</span><nav aria-label="Странициране"><a class="btn out" href="#admin" aria-disabled="true">Назад</a><a class="btn out" href="#admin">Напред <span aria-hidden="true">→</span></a></nav></div>
+    </section>
+  </div>
+</section>
+
+<!-- ===================== НОВА РЕЦЕПТА ===================== -->
+<section class="view admin-form-view" data-view="admin-new" hidden>
+  <div class="wrap">
+    <header class="admin-form-head">
+      <div><p class="eyebrow rv">Админ действие</p><h1 class="split" data-split>Добави <em>рецепта</em></h1></div>
+      <p class="lead rv">Попълни основната информация. След запис рецептата ще се появи в публичния каталог.</p>
+    </header>
+    <form class="admin-form" novalidate>
+      <div class="fld"><label for="mock-new-title">Заглавие</label><input id="mock-new-title" name="title" type="text" placeholder="Например: Домашна мусака" required></div>
+      <div class="fld"><label for="mock-new-category">Категория</label><input id="mock-new-category" name="category" type="text" placeholder="Основни" required></div>
+      <div class="fld wide"><label for="mock-new-description">Описание</label><textarea id="mock-new-description" name="description" placeholder="Кратко описание на рецептата" required></textarea></div>
+      <div class="fld"><label for="mock-new-prep">Подготовка · минути</label><input id="mock-new-prep" name="prepTime" type="number" inputmode="numeric" min="0" placeholder="20"></div>
+      <div class="fld"><label for="mock-new-cook">Готвене · минути</label><input id="mock-new-cook" name="cookTime" type="number" inputmode="numeric" min="0" placeholder="45"></div>
+      <div class="fld"><label for="mock-new-servings">Порции</label><input id="mock-new-servings" name="servings" type="number" inputmode="numeric" min="1" placeholder="4"></div>
+      <div class="admin-form-actions"><button class="btn fill" type="submit">Запази рецепта</button><a class="btn out" href="#admin">Отказ</a></div>
+    </form>
+    <p class="admin-form-note">Снимка не се качва от тази форма. При липса на собствена снимка рецептата използва стандартното оформление на каталога.</p>
+  </div>
+</section>
+
+<!-- ===================== РЕДАКЦИЯ ===================== -->
+<section class="view admin-form-view" data-view="admin-edit" hidden>
+  <div class="wrap">
+    <header class="admin-form-head">
+      <div><p class="eyebrow rv">Админ редакция</p><h1 class="split" data-split>Редактирай <em>рецепта</em></h1></div>
+      <p class="lead rv">Прегледай информацията за „Шопска салата“ и запази само нужните промени.</p>
+    </header>
+    <form class="admin-form" novalidate>
+      <div class="fld"><label for="mock-edit-title">Заглавие</label><input id="mock-edit-title" name="title" type="text" value="Шопска салата" required></div>
+      <div class="fld"><label for="mock-edit-category">Категория</label><input id="mock-edit-category" name="category" type="text" value="Салати" required></div>
+      <div class="fld wide"><label for="mock-edit-description">Описание</label><textarea id="mock-edit-description" name="description" required>Класическа българска салата с домати, краставици, печени чушки и настъргано сирене.</textarea></div>
+      <div class="fld"><label for="mock-edit-prep">Подготовка · минути</label><input id="mock-edit-prep" name="prepTime" type="number" inputmode="numeric" min="0" value="15"></div>
+      <div class="fld"><label for="mock-edit-cook">Готвене · минути</label><input id="mock-edit-cook" name="cookTime" type="number" inputmode="numeric" min="0" value="0"></div>
+      <div class="fld"><label for="mock-edit-servings">Порции</label><input id="mock-edit-servings" name="servings" type="number" inputmode="numeric" min="1" value="4"></div>
+      <div class="admin-form-actions"><button class="btn fill" type="submit">Запази промените</button><a class="btn out" href="#admin">Отказ</a></div>
+    </form>
+    <p class="admin-form-note">Адресът на рецептата остава същият, за да не се прекъсват запазени връзки към нея.</p>
+  </div>
+</section>
+
+<!-- ===================== ПРАЗНО СЪСТОЯНИЕ ===================== -->
+<section class="view admin-view" data-view="admin-empty" hidden>
+  <div class="wrap">
+    <header class="admin-head"><div><p class="eyebrow rv">Админ панел</p><h1 class="split" data-split>Управлявай <em>рецептите</em></h1></div><p class="admin-intro rv">Избраният изглед няма рецепти за показване.</p></header>
+    <section class="admin-manage" aria-labelledby="admin-empty-title">
+      <div class="admin-manage-top"><div><p class="eyebrow">Рецепти</p><h2 id="admin-empty-title">Списък за управление</h2></div><div class="admin-tabs"><button class="admin-tab" type="button" aria-pressed="false">Всички</button><button class="admin-tab" type="button" aria-pressed="true">Публични</button></div></div>
+      <div class="admin-empty"><span class="st-i" data-star aria-hidden="true"></span><div><h2>Няма рецепти в този изглед</h2><p>Смени изгледа или добави първата рецепта, която да се показва тук.</p></div><a class="btn fill" href="#admin-new">Добави рецепта</a></div>
+    </section>
+  </div>
+</section>
+
+<!-- ===================== ГРЕШКА ПРИ ЗАПИС ===================== -->
+<section class="view admin-form-view" data-view="admin-error" hidden>
+  <div class="wrap">
+    <header class="admin-form-head"><div><p class="eyebrow rv">Админ действие</p><h1 class="split" data-split>Добави <em>рецепта</em></h1></div><p class="lead rv">Провери маркираното поле и опитай отново.</p></header>
+    <form class="admin-form" novalidate>
+      <p class="admin-form-error" role="alert">Рецептата не може да бъде запазена в момента. Провери данните и опитай отново.</p>
+      <div class="fld"><label for="mock-error-title">Заглавие</label><input id="mock-error-title" name="title" type="text" aria-invalid="true" aria-describedby="mock-title-error"><span class="admin-field-error" id="mock-title-error">Въведи заглавие на рецептата.</span></div>
+      <div class="fld"><label for="mock-error-category">Категория</label><input id="mock-error-category" name="category" type="text" value="Основни"></div>
+      <div class="fld wide"><label for="mock-error-description">Описание</label><textarea id="mock-error-description" name="description">Кратко описание на домашната рецепта.</textarea></div>
+      <div class="fld"><label for="mock-error-prep">Подготовка · минути</label><input id="mock-error-prep" name="prepTime" type="number" value="20"></div>
+      <div class="fld"><label for="mock-error-cook">Готвене · минути</label><input id="mock-error-cook" name="cookTime" type="number" value="45"></div>
+      <div class="fld"><label for="mock-error-servings">Порции</label><input id="mock-error-servings" name="servings" type="number" value="4"></div>
+      <div class="admin-form-actions"><button class="btn fill" type="submit">Опитай отново</button><a class="btn out" href="#admin">Отказ</a></div>
+    </form>
+  </div>
+</section>
+
+<dialog class="admin-dialog" id="admin-delete-dialog" aria-labelledby="admin-delete-title">
+  <div class="admin-dialog-inner">
+    <p class="eyebrow">Потвърждение</p>
+    <h2 id="admin-delete-title">Да изтрием ли рецептата?</h2>
+    <p>„<span id="admin-delete-name">Шопска салата</span>“ ще бъде премахната от каталога. Това действие не може да бъде отменено.</p>
+    <div class="admin-dialog-actions"><button class="btn out" type="button" data-dialog-close>Отказ</button><button class="btn fill" type="button" data-dialog-confirm>Изтрий рецептата</button></div>
+  </div>
+</dialog>
 </main>
 
 <footer class="ftr">
@@ -709,7 +929,12 @@ em{font-style:italic}
       <button class="chip" type="button" data-v="favorites0" aria-pressed="false">Любими · празно</button>
       <button class="chip" type="button" data-v="profile" aria-pressed="false">Профил</button>
       <button class="chip" type="button" data-v="profile0" aria-pressed="false">Профил · без любими</button>
-      <button class="chip" type="button" data-v="notfound" aria-pressed="false">404</button></div></div>
+      <button class="chip" type="button" data-v="notfound" aria-pressed="false">404</button>
+      <button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button>
+      <button class="chip" type="button" data-v="admin-new" aria-pressed="false">Нова рецепта</button>
+      <button class="chip" type="button" data-v="admin-edit" aria-pressed="false">Редакция</button>
+      <button class="chip" type="button" data-v="admin-empty" aria-pressed="false">Админ · празно</button>
+      <button class="chip" type="button" data-v="admin-error" aria-pressed="false">Форма · грешка</button></div></div>
     <div class="grp"><span>Профил</span><div class="chips" id="c-who"><button class="chip" type="button" data-v="guest" aria-pressed="true">Гост</button><button class="chip" type="button" data-v="user" aria-pressed="false">Потребител</button><button class="chip" type="button" data-v="admin" aria-pressed="false">Админ</button></div></div>
     <div class="grp"><span>Движение</span><div class="chips"><button class="chip" type="button" id="c-motion" aria-pressed="true">Включено</button><button class="chip" type="button" id="c-replay">Пусни отначало</button></div></div>
     <p style="font-size:.78rem;opacity:.75;margin:0">Начало, Рецепти, Рецепта и Вход са в sofra-mock.html. Тук са само новите страници.</p>
@@ -835,7 +1060,14 @@ function go(v,empty){
   setView(v,empty);var main=$('#main');main.animate([{transform:'translateY(14px)'},{transform:'none'}],{duration:260,easing:'cubic-bezier(.16,1,.3,1)'});}
 document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var h=a.getAttribute('href').slice(1);
   if(h==='out'||h==='recipe'){e.preventDefault();closeMenu();toast('Тази страница е в sofra-mock.html');return}
-  if(['about','favorites','profile','notfound'].indexOf(h)<0)return;e.preventDefault();closeMenu();go(h,false)});
+  if(['about','favorites','profile','notfound','admin','admin-new','admin-edit','admin-empty','admin-error'].indexOf(h)<0)return;e.preventDefault();closeMenu();go(h,false)});
+
+/* ---------- админ диалог ---------- */
+var deleteDialog=$('#admin-delete-dialog'),deleteReturn=null;
+document.addEventListener('click',function(e){var b=e.target.closest('[data-delete]');if(!b)return;deleteReturn=b;$('#admin-delete-name').textContent=b.getAttribute('data-delete');deleteDialog.showModal();setTimeout(function(){$('[data-dialog-close]',deleteDialog).focus()},0)});
+$('[data-dialog-close]').addEventListener('click',function(){deleteDialog.close()});
+$('[data-dialog-confirm]').addEventListener('click',function(){deleteDialog.close();toast('Макет: рецептата не е изтрита')});
+deleteDialog.addEventListener('close',function(){if(deleteReturn)deleteReturn.focus()});
 
 /* ---------- мобилно меню ---------- */
 function closeMenu(){$('#mnav').classList.remove('open');$('#menu-btn').setAttribute('aria-expanded','false');document.body.style.overflow=''}
@@ -860,7 +1092,7 @@ $('#ctl-tg').addEventListener('click',function(){var o=$('#ctl').classList.toggl
 var t0=(location.hash||'').slice(1);
 paintBands();
 /* ---------- кой гледа: гост, потребител, админ (кръг 3) ---------- */
-var NAV={home:['Начало','#out',''],catalog:['Рецепти','#out',''],about:['За нас','#about','about'],fav:['Любими','#favorites','favorites'],profile:['Профил','#profile','profile'],admin:['Админ','#out',''],login:['Вход','#out',''],register:['Регистрация','#out',''],myProfile:['Моят профил','#profile',''],adminPanel:['Админ панел','#out','']};
+var NAV={home:['Начало','#out',''],catalog:['Рецепти','#out',''],about:['За нас','#about','about'],fav:['Любими','#favorites','favorites'],profile:['Профил','#profile','profile'],admin:['Админ','#admin','admin'],login:['Вход','#out',''],register:['Регистрация','#out',''],myProfile:['Моят профил','#profile',''],adminPanel:['Админ панел','#admin','admin']};
 var who=new URLSearchParams(location.search).get('who')||'guest';if(['guest','user','admin'].indexOf(who)<0)who='guest';
 function favCount(){return Object.keys(fav).filter(function(k){return fav[k]}).length}
 function navLink(l){return '<a href="'+l[1]+'"'+(l[2]?' data-nav="'+l[2]+'"':'')+(l[1]==='#out'?' data-out':'')+'>'+l[0]+'</a>'}
@@ -880,7 +1112,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-who]
 $('#c-who').addEventListener('click',function(e){var b=e.target.closest('.chip');if(!b)return;who=b.getAttribute('data-v');renderWho()});
 $$('.ftr-year').forEach(function(y){y.textContent=new Date().getFullYear()});
 renderWho();
-setView(['about','favorites','profile','notfound'].indexOf(t0)>=0?t0:'about',false);
+setView(['about','favorites','profile','notfound','admin','admin-new','admin-edit','admin-empty','admin-error'].indexOf(t0)>=0?t0:'about',false);
 setTimeout(function(){$$('.rv,.mask,[data-split]').forEach(function(e){var r=e.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)e.classList.add('in')})},2500);
 })();
 </script>
