@@ -1,0 +1,116 @@
+[
+{
+  "url": "http://localhost:3000/",
+  "runs": [
+    {
+      "lcpMs": 856,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    },
+    {
+      "lcpMs": 952,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    },
+    {
+      "lcpMs": 952,
+      "cls": 0,
+      "lcpElement": "p.rv"
+    }
+  ],
+  "medianLcpMs": 952,
+  "medianCls": 0
+}
+,
+{
+  "url": "http://localhost:3000/catalog",
+  "runs": [
+    {
+      "lcpMs": 2312,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 2428,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 2452,
+      "cls": 0.0009,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 2428,
+  "medianCls": 0.0009
+}
+,
+{
+  "url": "http://localhost:3000/catalog/shopska-salata",
+  "runs": [
+    {
+      "lcpMs": 2244,
+      "cls": 0.0001,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 2220,
+      "cls": 0.0001,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 2252,
+      "cls": 0.0001,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 2244,
+  "medianCls": 0.0001
+}
+,
+{
+  "url": "http://localhost:3000/about",
+  "runs": [
+    {
+      "lcpMs": 1620,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1652,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    },
+    {
+      "lcpMs": 1676,
+      "cls": 0.0011,
+      "lcpElement": "img"
+    }
+  ],
+  "medianLcpMs": 1652,
+  "medianCls": 0.0011
+}
+,
+{
+  "url": "http://localhost:3000/niama-takava-stranica",
+  "runs": [
+    {
+      "lcpMs": 636,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    },
+    {
+      "lcpMs": 628,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    },
+    {
+      "lcpMs": 632,
+      "cls": 0,
+      "lcpElement": "p.t.rv"
+    }
+  ],
+  "medianLcpMs": 632,
+  "medianCls": 0
+}
+]

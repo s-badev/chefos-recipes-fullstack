@@ -1,0 +1,208 @@
+{
+  "label": "before",
+  "base": "http://localhost:3000",
+  "lcp": {
+    "390": {
+      "median": {
+        "time": 3524,
+        "size": 3792,
+        "tag": "SPAN",
+        "id": null,
+        "cls": "eyebrow",
+        "text": "Nº 01–24 · домашни рецепти"
+      },
+      "runs": [
+        {
+          "time": 3468,
+          "size": 3792,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "eyebrow",
+          "text": "Nº 01–24 · домашни рецепти"
+        },
+        {
+          "time": 3524,
+          "size": 3792,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "eyebrow",
+          "text": "Nº 01–24 · домашни рецепти"
+        },
+        {
+          "time": 3524,
+          "size": 3792,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "eyebrow",
+          "text": "Nº 01–24 · домашни рецепти"
+        }
+      ]
+    },
+    "1440": {
+      "median": {
+        "time": 756,
+        "size": 45714,
+        "tag": "SPAN",
+        "id": null,
+        "cls": "cover-n",
+        "text": "Nº 22"
+      },
+      "runs": [
+        {
+          "time": 772,
+          "size": 45714,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "cover-n",
+          "text": "Nº 22"
+        },
+        {
+          "time": 748,
+          "size": 45714,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "cover-n",
+          "text": "Nº 22"
+        },
+        {
+          "time": 756,
+          "size": 45714,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "cover-n",
+          "text": "Nº 22"
+        }
+      ]
+    }
+  },
+  "rail": {
+    "390": {
+      "start": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 0,
+        "maxScroll": 1102,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": null,
+        "scrollbarHeight": 0
+      },
+      "end": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 1102,
+        "maxScroll": 1102,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": null,
+        "scrollbarHeight": 0
+      }
+    },
+    "1440": {
+      "start": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 0,
+        "maxScroll": 752,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": null,
+        "scrollbarHeight": 0
+      },
+      "end": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 752,
+        "maxScroll": 752,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": null,
+        "scrollbarHeight": 0
+      }
+    },
+    "keyboard": [
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 356
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 712
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 752
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 752
+      },
+      {
+        "key": "End",
+        "scrollLeft": 752
+      },
+      {
+        "key": "ArrowLeft",
+        "scrollLeft": 712
+      },
+      {
+        "key": "Home",
+        "scrollLeft": 712
+      }
+    ],
+    "video": "rail-keyboard-1440.webm"
+  },
+  "midHero_t12_390": 2,
+  "midCover_t12_390": 2,
+  "midHero_t50_390": 2,
+  "midCover_t50_390": 2,
+  "midHero_t12_1440": 2,
+  "midCover_t12_1440": 2,
+  "midHero_t50_1440": 2,
+  "midCover_t50_1440": 2,
+  "headerWrap390": {
+    "logoHeight": 44.796875,
+    "headerHeight": 64
+  },
+  "headerWrap768": {
+    "logoHeight": 44.796875,
+    "headerHeight": 64
+  },
+  "logoFocused": true,
+  "headerWrap1440": {
+    "logoHeight": 44.796875,
+    "headerHeight": 64
+  }
+}

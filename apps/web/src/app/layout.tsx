@@ -1,13 +1,38 @@
 import type { Metadata } from "next";
+import { rootMetadata } from "../lib/site-metadata";
+import { Cormorant, Onest } from "next/font/google";
 import "./globals.css";
 import { BackToTopButton } from "./back-to-top-button";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
+import { MotionRoot } from "./motion-root";
+import { PageTransition } from "./page-transition";
 
-export const metadata: Metadata = {
-  title: "Chefo's Recipes",
-  description: "Топъл каталог с български рецепти за всеки ден."
-};
+const sans = Onest({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600"],
+  display: "swap",
+  preload: true,
+  variable: "--font-sans"
+});
+
+const serif = Cormorant({
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  display: "swap",
+  preload: true,
+  variable: "--font-serif"
+});
+
+/**
+ * Runs before first paint. Motion hides content until MotionRoot reveals it, so if MotionRoot
+ * has not confirmed its start (window.__motionReady) within 2.5 s — a blocked or failed JS
+ * chunk, a very slow device — drop data-motion and show everything without animation.
+ */
+const motionBootScript = `(function(){var d=document.documentElement;d.dataset.motion=matchMedia('(prefers-reduced-motion: reduce)').matches?'off':'on';setTimeout(function(){if(!window.__motionReady){window.__motionTimedOut=true;delete d.dataset.motion;}},2500);})();`;
+
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children
@@ -15,16 +40,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="bg">
-      <body className="min-h-screen bg-[#fffaf3] text-stone-950 antialiased">
+    <html lang="bg" className={`${sans.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: motionBootScript }} />
+      </head>
+      <body className="min-h-screen text-ink antialiased">
+        {/* Atmosphere: a tiny pre-blurred table photo behind every page, under a dark veil (globals.css). */}
+        <div className="atmo" aria-hidden="true" />
+        <div className="veil" aria-hidden="true" />
+        <a className="skip-link" href="#main-content">
+          Към съдържанието
+        </a>
         <div className="flex min-h-screen flex-col">
           <SiteHeader />
-          <main className="mx-auto w-full max-w-[var(--site-shell-width)] flex-1 px-[var(--site-shell-padding)] py-8 sm:py-10 lg:py-12">
+          <main id="main-content" tabIndex={-1} className="flex-1">
             {children}
           </main>
           <SiteFooter />
         </div>
         <BackToTopButton />
+        <MotionRoot />
+        <PageTransition />
       </body>
     </html>
   );

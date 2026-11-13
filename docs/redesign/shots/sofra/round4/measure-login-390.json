@@ -1,0 +1,260 @@
+{
+  "mock": {
+    ".auth-ph": {
+      "x": 0,
+      "y": 72,
+      "w": 390,
+      "h": 219,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-cap h1": {
+      "x": 16,
+      "y": 195,
+      "w": 358,
+      "h": 36,
+      "font": "Cormorant 500 40px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".atabs": {
+      "x": 16,
+      "y": 313,
+      "w": 358,
+      "h": 55,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".atab": {
+      "x": 16,
+      "y": 313,
+      "w": 38,
+      "h": 54,
+      "font": "Onest 500 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box h2": {
+      "x": 16,
+      "y": 390,
+      "w": 358,
+      "h": 34,
+      "font": "Cormorant 500 33.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box .sub": {
+      "x": 16,
+      "y": 434,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fld": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fld input": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "font": "Onest 400 17.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box .btn": {
+      "x": 16,
+      "y": 682,
+      "w": 358,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    },
+    ".alt": {
+      "x": 16,
+      "y": 756,
+      "w": 358,
+      "h": 44,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".perks li": {
+      "x": 16,
+      "y": 869,
+      "w": 358,
+      "h": 109,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".perks b": {
+      "x": 58,
+      "y": 885,
+      "w": 316,
+      "h": 25,
+      "font": "Cormorant 500 22.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    }
+  },
+  "site": {
+    ".auth-ph": {
+      "x": 0,
+      "y": 72,
+      "w": 390,
+      "h": 219,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-cap h1": {
+      "x": 16,
+      "y": 195,
+      "w": 358,
+      "h": 36,
+      "font": "Cormorant 500 40px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".atabs": {
+      "x": 16,
+      "y": 313,
+      "w": 358,
+      "h": 55,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".atab": {
+      "x": 16,
+      "y": 313,
+      "w": 38,
+      "h": 54,
+      "font": "Onest 500 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box h2": {
+      "x": 16,
+      "y": 390,
+      "w": 358,
+      "h": 34,
+      "font": "Cormorant 500 33.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box .sub": {
+      "x": 16,
+      "y": 434,
+      "w": 358,
+      "h": 51,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fld": {
+      "x": 16,
+      "y": 503,
+      "w": 358,
+      "h": 70,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".fld input": {
+      "x": 16,
+      "y": 522,
+      "w": 358,
+      "h": 52,
+      "font": "Onest 400 17.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".auth-box .btn": {
+      "x": 16,
+      "y": 682,
+      "w": 358,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    },
+    ".alt": {
+      "x": 16,
+      "y": 756,
+      "w": 358,
+      "h": 44,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".perks li": {
+      "x": 16,
+      "y": 837,
+      "w": 358,
+      "h": 109,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".perks b": {
+      "x": 58,
+      "y": 853,
+      "w": 316,
+      "h": 25,
+      "font": "Cormorant 500 22.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    }
+  },
+  "differences": [
+    {
+      "block": ".fld",
+      "field": "x",
+      "mock": 0,
+      "site": 16
+    },
+    {
+      "block": ".fld",
+      "field": "w",
+      "mock": 0,
+      "site": 358
+    },
+    {
+      "block": ".fld",
+      "field": "h",
+      "mock": 0,
+      "site": 70
+    },
+    {
+      "block": ".fld input",
+      "field": "x",
+      "mock": 0,
+      "site": 16
+    },
+    {
+      "block": ".fld input",
+      "field": "w",
+      "mock": 0,
+      "site": 358
+    },
+    {
+      "block": ".fld input",
+      "field": "h",
+      "mock": 0,
+      "site": 52
+    }
+  ]
+}

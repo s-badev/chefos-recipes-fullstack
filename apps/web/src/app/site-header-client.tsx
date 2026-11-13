@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import type { CurrentUser } from "../server/auth/session";
 
 type NavigationItem = {
@@ -11,26 +11,46 @@ type NavigationItem = {
 };
 
 type SiteHeaderClientProps = {
+  favoriteCount: number;
   currentUser: CurrentUser | undefined;
   logoutAction: () => Promise<void>;
 };
 
 const guestNavigationItems: NavigationItem[] = [
   { href: "/", label: "Начало" },
-  { href: "/catalog", label: "Каталог" },
+  { href: "/catalog", label: "Рецепти" },
   { href: "/about", label: "За нас" }
 ];
 
+/** Signed in: Начало · Рецепти · За нас · Любими (N) · Профил, then the greeting and Изход. */
 const userNavigationItems: NavigationItem[] = [
   { href: "/", label: "Начало" },
-  { href: "/catalog", label: "Каталог" },
+  { href: "/catalog", label: "Рецепти" },
+  { href: "/about", label: "За нас" },
   { href: "/favorites", label: "Любими" },
-  { href: "/profile", label: "Профил" },
-  { href: "/about", label: "За нас" }
+  { href: "/profile", label: "Профил" }
 ];
 
 const adminNavigationItem = { href: "/admin", label: "Админ" };
 const loginItem = { href: "/login", label: "Вход" };
+
+/** Two-line wordmark: kicker on top, "Chefo's Recipes" below with the italic "Recipes". */
+function LogoMark() {
+  return <>
+    {/* The space keeps the visible text "Домашна кухня Chefo's Recipes" readable as words (axe label-content-name-mismatch). */}
+    <span className="logo-kicker">Домашна кухня</span>{" "}
+    <span className="logo-name">Chefo&apos;s <em>Recipes</em></span>
+  </>;
+}
+
+/** The favourites count; it bumps once each time the number changes (never on first render). */
+function FavoriteCount({ count }: { count: number }) {
+  const initial = useRef(count);
+  const [animate, setAnimate] = useState(false);
+  useEffect(() => { if (count !== initial.current) setAnimate(true); }, [count]);
+  // A new key remounts the number, which restarts the CSS bump on every later change.
+  return <span className={animate ? "fav-n bump" : "fav-n"} data-testid="favorite-count" key={count}>{count}</span>;
+}
 
 function isActivePath(pathname: string, href: string) {
   if (href === "/") {
@@ -46,11 +66,7 @@ function getNavigationItems(currentUser: CurrentUser | undefined) {
   }
 
   if (currentUser.role === "admin") {
-    return [
-      ...userNavigationItems.slice(0, 4),
-      adminNavigationItem,
-      userNavigationItems[4]
-    ];
+    return [...userNavigationItems, adminNavigationItem];
   }
 
   return userNavigationItems;
@@ -64,186 +80,76 @@ function getGreetingName(currentUser: CurrentUser) {
     return firstName;
   }
 
+  if (currentUser.role === "admin") {
+    return "администратор";
+  }
+
   const emailPrefix = currentUser.email.split("@")[0]?.trim();
 
   if (emailPrefix) {
     return emailPrefix;
   }
 
-  return currentUser.role === "admin" ? "Admin" : "приятел";
+  return "приятел";
 }
 
-export function SiteHeaderClient({ currentUser, logoutAction }: SiteHeaderClientProps) {
+export function SiteHeaderClient({ currentUser, logoutAction, favoriteCount }: SiteHeaderClientProps) {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const menuButton = useRef<HTMLButtonElement>(null);
   const navigationItems = getNavigationItems(currentUser);
   const greetingName = currentUser ? getGreetingName(currentUser) : undefined;
 
-  return (
-    <header className="sticky top-0 z-40 w-full border-b border-[#502d19]/[0.12] bg-[#fff8ee]/95 shadow-[0_8px_30px_rgba(60,35,20,0.08)] backdrop-blur-xl">
-      <div className="mx-auto w-full max-w-[var(--site-shell-width)] px-[var(--site-shell-padding)]">
-        <div className="flex min-h-[82px] w-full items-center justify-between gap-6">
-          <Link
-            className="flex min-w-0 items-center gap-3.5 rounded-3xl focus:outline-none focus-visible:ring-4 focus-visible:ring-brand-100"
-            href="/"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[1.2rem] bg-[linear-gradient(135deg,#f36b0f,#b94617)] text-white shadow-[0_14px_30px_rgba(185,70,23,0.3)]">
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 24 24"
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-              >
-                <path d="M6 13.5C4.3 13 3 11.5 3 9.7C3 7.5 4.8 5.8 7 5.8C7.6 3.6 9.6 2 12 2C14.4 2 16.4 3.6 17 5.8C19.2 5.8 21 7.5 21 9.7C21 11.5 19.7 13 18 13.5" />
-                <path d="M6 13h12v7H6z" />
-                <path d="M9 16h6" />
-              </svg>
-            </span>
+  useEffect(() => {
+    const modal = dialog.current;
+    const toggle = menuButton.current;
+    if (!modal) return;
+    if (isMenuOpen) {
+      modal.showModal();
+      const previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => { document.body.style.overflow = previousOverflow; modal.close(); toggle?.focus(); };
+    }
+    modal.close();
+  }, [isMenuOpen]);
 
-            <span className="min-w-0">
-              <span className="block text-xs font-black uppercase tracking-[0.2em] text-stone-500">
-                Домашна кухня
-              </span>
-              <span className="block truncate text-[1.35rem] font-black leading-tight text-stone-950 sm:text-2xl">
-                Chefo&apos;s <span className="text-brand-600">Recipes</span>
-              </span>
-            </span>
-          </Link>
+  function links() {
+    return <>
+      {navigationItems.map(item => <Link href={item.href} key={item.href} aria-current={isActivePath(pathname, item.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{item.label}{item.href === "/favorites" ? <> <FavoriteCount count={favoriteCount}/></> : null}</Link>)}
+      {currentUser ? <>
+        <span className="nav-greeting">Здравей, {greetingName}</span>
+        <form action={logoutAction}><button className="nav-link" type="submit">Изход</button></form>
+      </> : <Link href={loginItem.href} aria-current={isActivePath(pathname, loginItem.href) ? "page" : undefined} onClick={() => setIsMenuOpen(false)}>{loginItem.label}</Link>}
+    </>;
+  }
 
-          <div className="hidden items-center justify-end gap-3 lg:flex">
-            <nav className="site-nav-shell flex items-center justify-end gap-1 rounded-full border border-[#502d19]/[0.12] bg-white/95 p-1 text-base font-bold text-[#3a2417] shadow-sm">
-              {navigationItems.map((item) => {
-                const isActive = isActivePath(pathname, item.href);
+  function keepMenuFocus(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setIsMenuOpen(false);
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const controls = [...event.currentTarget.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")];
+    const first = controls[0];
+    const last = controls[controls.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+  }
 
-                return (
-                  <Link
-                    className={[
-                      "site-nav-pill rounded-full px-4 py-2 transition",
-                      isActive
-                        ? "site-nav-pill--active bg-brand-100 text-brand-900 shadow-sm"
-                        : "site-nav-pill--idle hover:bg-[#fff8ee] hover:text-brand-800"
-                    ].join(" ")}
-                    href={item.href}
-                    key={item.href}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            {currentUser ? (
-              <div className="flex items-center gap-3">
-                <p className="site-nav-pill site-nav-greeting rounded-full border border-[#502d19]/[0.16] bg-[#fffaf3] px-4 py-2 text-base font-semibold text-[#2b1a0d] shadow-[0_6px_16px_rgba(60,35,20,0.065)]">
-                  Здравей, {greetingName}
-                </p>
-                <form action={logoutAction}>
-                  <button
-                    className="site-nav-action rounded-full bg-brand-600 px-5 py-3 text-base font-black text-white shadow-[0_10px_24px_rgba(127,51,19,0.22)] transition hover:bg-brand-700"
-                    type="submit"
-                  >
-                    Изход
-                  </button>
-                </form>
-              </div>
-            ) : (
-              <Link
-                className={[
-                  "site-nav-action rounded-full px-5 py-3 text-base font-black text-white shadow-[0_10px_24px_rgba(127,51,19,0.22)] transition",
-                  isActivePath(pathname, loginItem.href)
-                    ? "bg-brand-700"
-                    : "bg-brand-600 hover:bg-brand-700"
-                ].join(" ")}
-                href={loginItem.href}
-              >
-                {loginItem.label}
-              </Link>
-            )}
-          </div>
-
-          <button
-            aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "Затвори менюто" : "Отвори менюто"}
-            className="inline-grid h-12 w-12 place-items-center rounded-2xl border border-[#502d19]/[0.12] bg-white/95 text-[#3a2417] shadow-sm transition hover:border-brand-300 hover:text-brand-700 lg:hidden"
-            onClick={() => setIsMenuOpen((current) => !current)}
-            type="button"
-          >
-            <span className="flex h-5 w-5 flex-col justify-center gap-1.5">
-              <span
-                className={[
-                  "h-0.5 w-full rounded-full bg-current transition",
-                  isMenuOpen ? "translate-y-2 rotate-45" : ""
-                ].join(" ")}
-              />
-              <span
-                className={[
-                  "h-0.5 w-full rounded-full bg-current transition",
-                  isMenuOpen ? "opacity-0" : ""
-                ].join(" ")}
-              />
-              <span
-                className={[
-                  "h-0.5 w-full rounded-full bg-current transition",
-                  isMenuOpen ? "-translate-y-2 -rotate-45" : ""
-                ].join(" ")}
-              />
-            </span>
-          </button>
-        </div>
-
-        {isMenuOpen ? (
-          <nav className="grid gap-2 border-t border-[#502d19]/[0.12] bg-[#fff8ee]/95 py-4 text-base font-bold text-[#3a2417] lg:hidden">
-            {navigationItems.map((item) => {
-              const isActive = isActivePath(pathname, item.href);
-
-              return (
-                <Link
-                  className={[
-                    "rounded-2xl px-4 py-3 transition",
-                    isActive
-                      ? "bg-brand-100 text-brand-900"
-                      : "bg-white/95 hover:bg-white hover:text-brand-800"
-                  ].join(" ")}
-                  href={item.href}
-                  key={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-
-            {currentUser ? (
-              <>
-                <p className="rounded-2xl border border-[#502d19]/[0.12] bg-white/95 px-4 py-3 font-black text-[#3a2417]">
-                  Здравей, {greetingName}
-                </p>
-                <form action={logoutAction}>
-                  <button
-                    className="w-full rounded-2xl bg-brand-600 px-4 py-3 text-left font-black text-white shadow-sm"
-                    type="submit"
-                  >
-                    Изход
-                  </button>
-                </form>
-              </>
-            ) : (
-              <Link
-                className="rounded-2xl bg-brand-600 px-4 py-3 font-black text-white shadow-sm"
-                href={loginItem.href}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {loginItem.label}
-              </Link>
-            )}
-          </nav>
-        ) : null}
+  return <>
+    {/* Transparent over a page's [data-hero], solid everywhere else (globals.css); MotionRoot sets .solid on scroll. */}
+    <header className="hdr">
+      <div className="wrap">
+        <Link className="logo" href="/" aria-label="Домашна кухня Chefo's Recipes – начало" onClick={() => setIsMenuOpen(false)}><LogoMark /></Link>
+        <nav className="nav desktop-nav" aria-label="Основна навигация">{links()}</nav>
+        <button className="menu-toggle" ref={menuButton} aria-expanded={isMenuOpen} aria-controls="mobile-menu" onClick={() => setIsMenuOpen(true)} type="button">Меню</button>
       </div>
     </header>
-  );
+    <dialog className="mobile-menu" id="mobile-menu" ref={dialog} aria-label="Основна навигация" onKeyDown={keepMenuFocus} onCancel={() => setIsMenuOpen(false)} onClose={() => setIsMenuOpen(false)}>
+      <div className="wrap mobile-menu-top"><span className="logo"><LogoMark /></span><button className="nav-link" autoFocus type="button" onClick={() => setIsMenuOpen(false)}>Затвори</button></div>
+      <nav className="nav mobile-nav" aria-label="Мобилна навигация">{links()}</nav>
+    </dialog>
+  </>;
 }

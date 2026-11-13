@@ -4,6 +4,10 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { getCurrentUser } from "../auth/session";
+import { loginHref, safeNextPath } from "../../lib/navigation";
+import type { FavoriteState } from "../../lib/favorites";
+import { getPublicCatalogRecipeBySlug } from "../recipes/service";
+import { findRecipeBySlug as findCuratedRecipe } from "../../data/recipes";
 import {
   addFavoriteRecipeForUser,
   removeFavoriteRecipeForUser
@@ -14,16 +18,11 @@ function getRecipeSlug(formData: FormData) {
 }
 
 function getRedirectPath(formData: FormData, fallback: string) {
-  const redirectTo = String(formData.get("redirectTo") ?? "").trim();
-
-  if (!redirectTo.startsWith("/") || redirectTo.startsWith("//")) {
-    return fallback;
-  }
-
-  return redirectTo;
+  return safeNextPath(formData.get("redirectTo"), fallback);
 }
 
 function revalidateFavoriteViews(recipeSlug: string) {
+  revalidatePath("/", "layout");
   revalidatePath("/favorites");
   revalidatePath("/profile");
   revalidatePath("/catalog");
@@ -39,7 +38,7 @@ export async function addFavoriteAction(formData: FormData) {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/login");
+    redirect(loginHref(redirectTo));
   }
 
   if (recipeSlug) {
@@ -61,7 +60,7 @@ export async function removeFavoriteAction(formData: FormData) {
   const user = await getCurrentUser();
 
   if (!user) {
-    redirect("/login");
+    redirect(loginHref(redirectTo));
   }
 
   if (recipeSlug) {
@@ -70,4 +69,19 @@ export async function removeFavoriteAction(formData: FormData) {
   }
 
   redirect(redirectTo);
+}
+
+export async function updateFavoriteAction(previous: FavoriteState, formData: FormData): Promise<FavoriteState> {
+  const slug = getRecipeSlug(formData);
+  const redirectTo = getRedirectPath(formData, `/catalog/${encodeURIComponent(slug)}`);
+  const user = await getCurrentUser();
+  if (!user) redirect(loginHref(redirectTo));
+  if (!findCuratedRecipe(slug) && !(await getPublicCatalogRecipeBySlug(slug))) return { saved: previous.saved, message: "Рецептата не е налична." };
+  const saved = formData.get("saved") === "true";
+  if (saved) {
+    const result = await addFavoriteRecipeForUser(user, slug);
+    if (!result.ok) return { saved: previous.saved, message: "Рецептата не може да бъде запазена. Опитай отново." };
+  } else await removeFavoriteRecipeForUser(user, slug);
+  revalidateFavoriteViews(slug);
+  return { saved, message: "" };
 }

@@ -1,0 +1,257 @@
+{
+  "phase": "after",
+  "mode": "fallback",
+  "browser": "156.0.8078.4",
+  "units": "bytes (CDP encodedDataLength; bodyBytes also recorded)",
+  "rows": [
+    {
+      "note": "Diagnostic: fetch(img.src) with browser fetch default Accept:*/*, not actual responsive image requests",
+      "probes": [
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/shopska-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 35866
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 32052
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 30818
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/tarator-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tarator-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 33954
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 34400
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/mish-mash-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mish-mash-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 33956
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/bob-chorba-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/bob-chorba-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 30280
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/tikvenik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tikvenik-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 34360
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/krem-karamel-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/krem-karamel-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 13496
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/sladak-salam-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/sladak-salam-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 71078
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 20124
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 22162
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/pileshka-supa-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/pileshka-supa-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 26642
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 22628
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 26092
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/snezhanka-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/snezhanka-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 27516
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 30578
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/zeleva-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/zeleva-salata-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 27672
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-640.avif",
+          "mime": "image/webp",
+          "bodyBytes": 31628
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/mekitsi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mekitsi-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 28270
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/tutmanik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tutmanik-480.avif",
+          "mime": "image/webp",
+          "bodyBytes": 31674
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-480.webp",
+          "currentSrc": "",
+          "mime": "image/webp",
+          "bodyBytes": 26938
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "currentSrc": "",
+          "mime": "image/webp",
+          "bodyBytes": 27042
+        },
+        {
+          "src": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "currentSrc": "",
+          "mime": "image/webp",
+          "bodyBytes": 29258
+        }
+      ],
+      "bodyBytes": 728484,
+      "transferredBytes": 735253,
+      "transfers": [
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-480.webp",
+          "bytes": 36148
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "bytes": 32334
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "bytes": 31100
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/tarator-480.webp",
+          "bytes": 34236
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-480.webp",
+          "bytes": 34682
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/mish-mash-480.webp",
+          "bytes": 34238
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/bob-chorba-480.webp",
+          "bytes": 30562
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/tikvenik-480.webp",
+          "bytes": 34642
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/krem-karamel-480.webp",
+          "bytes": 13778
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/sladak-salam-480.webp",
+          "bytes": 71361
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-480.webp",
+          "bytes": 20406
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-480.webp",
+          "bytes": 22444
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/pileshka-supa-480.webp",
+          "bytes": 26924
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-480.webp",
+          "bytes": 22910
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-480.webp",
+          "bytes": 26374
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/snezhanka-480.webp",
+          "bytes": 27798
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-480.webp",
+          "bytes": 30860
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/zeleva-salata-480.webp",
+          "bytes": 27954
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "bytes": 31910
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/mekitsi-480.webp",
+          "bytes": 28552
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/tutmanik-480.webp",
+          "bytes": 31956
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-480.webp",
+          "bytes": 27220
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "bytes": 27324
+        },
+        {
+          "url": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "bytes": 29540
+        }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,9 @@
 node_modules/
 .next/
+.next-check/
 out/
 .turbo/
 .env
 .env.*
+playwright-report/
+test-results/

@@ -421,7 +421,7 @@ export async function updateRecipeRecordBySlug(slug: string, input: RecipeMutati
 
   const db = getDb();
   const categoryId = await findOrCreateCategoryId(input.category);
-  const nextSlug = await createUniqueRecipeSlug(input.title, slug);
+  const nextSlug = slug;
   const updatedRows = await db
     .update(recipesTable)
     .set({

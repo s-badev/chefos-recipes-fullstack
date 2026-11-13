@@ -1,75 +1,57 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
 import Link from "next/link";
+import { recipeCountLabel, savedRecipesLabel } from "../../lib/format";
+import { logoutAction } from "../../server/auth/actions";
 import { requireUser } from "../../server/auth/session";
+import { getCurrentUserFavoriteSlugs } from "../../server/favorites/service";
+import { SplitWords } from "../split-heading";
+import { StitchStar } from "../stitch";
 
-export const metadata: Metadata = {
-  title: "Профил | Chefo's Recipes",
-  description: "Потребителски профил в Chefo's Recipes."
-};
+export const metadata: Metadata = pageMetadata("Профил", "Потребителски профил в Chefo's Recipes.", "/profile", { noindex: true });
 
-const summary = [
-  { label: "Запазени рецепти", value: "В любими" },
-  { label: "Последна активност", value: "Няма запис" },
-  { label: "Статус", value: "Активен профил" }
-];
-
+/** Only what the profile holds: the number of favourites and the e-mail (or name) from the session. */
 export default async function ProfilePage() {
   const user = await requireUser();
+  const saved = (await getCurrentUserFavoriteSlugs()).length;
   const profileName = user.name.trim();
+  const account = user.email.trim() || profileName;
+  const lead = saved ? "Ето какво е запазено в профила ти." : "Още няма запазени рецепти.";
 
   return (
-    <section className="page-shell space-y-8">
-      <div className="rounded-[2rem] border border-stone-200 bg-white/70 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6">
-        <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-          Потребителски профил
-        </p>
-        <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.875rem]">
-          Моят профил
-        </h1>
-        <p className="mt-3 max-w-2xl text-base font-medium leading-7 text-[#4a2a17]">
-          {profileName ? (
-            <>
-              Здравей, <strong className="font-bold text-[#3a2417]">{profileName}</strong>. Тук ще
-              се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила.
-            </>
-          ) : (
-            "Тук ще се събират твоите запазени рецепти, любими идеи и кратко обобщение на профила."
-          )}
-        </p>
+    <div className="prof-body">
+      <div className="wrap pg-head">
+        <p className="eyebrow rv">Потребителски профил</p>
+        <h1 data-split><SplitWords text="Моят" /> <em><SplitWords start={1} text="профил" /></em></h1>
+        <p className="lead rv">{profileName ? <>Здравей, <strong>{profileName}</strong>. {lead}</> : lead}</p>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3 xl:gap-5">
-        {summary.map((item) => (
-          <div className="editorial-card rounded-[1.6rem] p-5" key={item.label}>
-            <p className="text-sm font-black text-[#6b4a32]">{item.label}</p>
-            <p className="mt-2 text-2xl font-bold text-stone-950">{item.value}</p>
-          </div>
-        ))}
+      <div className="wrap">
+        <dl className="meta m2 rv">
+          <div><dt>Запазени рецепти</dt><dd className="word">{recipeCountLabel(saved)}</dd></div>
+          {account ? <div><dt>Профил</dt><dd className="word mail">{account}</dd></div> : null}
+        </dl>
+        <div className="prof-cols">
+          <section aria-labelledby="profile-favorites" className="rv">
+            <span aria-hidden="true" className="st-i"><StitchStar /></span>
+            <h2 id="profile-favorites">Любими</h2>
+            {saved ? <>
+              <p>Имаш {savedRecipesLabel(saved)}.</p>
+              <Link className="btn fill" href="/favorites">Виж любимите <span aria-hidden="true" className="ar">→</span></Link>
+            </> : <>
+              <p>Запази рецепти със сърцето на картата и те ще се появят тук.</p>
+              <Link className="btn fill" href="/catalog">Към рецептите <span aria-hidden="true" className="ar">→</span></Link>
+            </>}
+          </section>
+          <section aria-labelledby="profile-account" className="rv" style={{ "--d": "100ms" } as CSSProperties}>
+            <span aria-hidden="true" className="st-i"><StitchStar /></span>
+            <h2 id="profile-account">Акаунт</h2>
+            <p>Профилът е отворен на това устройство. На чужд компютър излез, когато приключиш.</p>
+            <form action={logoutAction}><button className="btn out" type="submit">Изход</button></form>
+          </section>
+        </div>
       </div>
-
-      <section className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] xl:gap-6">
-        <div className="info-card rounded-[1.6rem] p-5">
-          <h2 className="text-2xl font-bold text-stone-950">Обобщение на любимите</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a2a17]">
-            Тук ще виждаш запазените рецепти и бързи връзки към тях, когато започнеш да добавяш
-            любими идеи.
-          </p>
-          <Link
-            className="mt-5 inline-flex rounded-full bg-brand-600 px-5 py-2.5 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
-            href="/favorites"
-          >
-            Виж любимите
-          </Link>
-        </div>
-
-        <div className="info-note rounded-[1.6rem] p-5 shadow-sm">
-          <h2 className="text-2xl font-bold text-stone-950">Лични настройки</h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a2a17]">
-            Профилът ще събира предпочитания, любими рецепти и удобни преки пътища за по-бързо
-            готвене.
-          </p>
-        </div>
-      </section>
-    </section>
+    </div>
   );
 }

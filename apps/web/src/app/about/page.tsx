@@ -1,10 +1,17 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
+import { pageMetadata } from "../../lib/site-metadata";
+import Image from "next/image";
+import { ResponsiveRecipeImage } from "../responsive-recipe-image";
 import Link from "next/link";
+import { webImageSrc } from "../../lib/images";
+import { principlesImageSizes } from "../../lib/image-sizes";
+import { SplitWords } from "../split-heading";
+import { StitchBand, StitchStar } from "../stitch";
 
-export const metadata: Metadata = {
-  title: "За нас | Chefo's Recipes",
-  description: "Подреден каталог за домашна храна, български вкус и практични идеи за готвене."
-};
+export const metadata: Metadata = pageMetadata("За нас", "Подреден каталог за домашна храна, български вкус и практични идеи за готвене.", "/about");
+
+const rhythm = ["Избираш спокойно.", "Готвиш уверено.", "Сядаш на масата."];
 
 const audienceCards = [
   {
@@ -33,7 +40,7 @@ const capabilityCards = [
   {
     accent: "02",
     title: "Сравняваш време и трудност",
-    description: "Виждаш подготовка, готвене, порции и ниво още преди да отвориш детайлната страница."
+    description: "Виждаш времето за подготовка и готвене, порциите и трудността още преди да отвориш рецептата."
   },
   {
     accent: "03",
@@ -54,7 +61,7 @@ const selectionPrinciples = [
   },
   {
     title: "Практично време",
-    description: "Времето за подготовка и готвене трябва да помага при избор, а не просто да запълва картата."
+    description: "Времето за подготовка и готвене трябва да помага при избора, а не да е просто число на екрана."
   },
   {
     title: "Спокоен процес",
@@ -62,153 +69,132 @@ const selectionPrinciples = [
   }
 ];
 
+/** The roadmap items, each split into a short title and the rest of the same sentence. */
 const roadmap = [
-  "По-богат каталог с още български домашни рецепти.",
-  "По-добри лични списъци с любими идеи.",
-  "По-полезни филтри според сезон, време и повод."
+  { title: "По-богат каталог", text: "С още български домашни рецепти." },
+  { title: "По-добри лични списъци", text: "С любими идеи." },
+  { title: "По-полезни филтри", text: "Според сезон, време и повод." }
 ];
 
-export default function AboutPage() {
-  return (
-    <section className="page-shell space-y-9 pb-6">
-      <div className="about-panel grid gap-6 rounded-[2rem] border border-stone-200 bg-white/78 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.34fr)] lg:items-center xl:p-7">
-        <div>
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Какво е Chefo&apos;s Recipes
-          </p>
-          <h1 className="mt-2 text-4xl font-bold leading-tight text-stone-950 sm:text-[2.7rem]">
-            Подреден каталог за <span className="text-brand-600">домашна храна</span>
-          </h1>
-          <p className="mt-4 max-w-4xl text-base font-medium leading-7 text-[#4a3326]">
-            Chefo&apos;s Recipes е създаден за хора, които искат бързо да намерят рецепта,
-            да сравнят време за приготвяне, продукти и трудност, и да се върнат към
-            любимите си идеи по-късно.
-          </p>
-        </div>
+const delay = (index: number) => ({ "--d": `${index * 80}ms` }) as CSSProperties;
 
-        <div className="about-premium-tile about-accent-card rounded-[1.5rem] border border-brand-200 bg-[#fff8ee] p-5 shadow-[0_16px_42px_rgba(97,56,21,0.08)]">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Ритъм
-          </p>
-          <p className="mt-3 text-2xl font-bold leading-tight text-[#3a2417]">
-            Избираш спокойно. <span className="text-brand-700">Готвиш уверено.</span> Сядаш на масата.
-          </p>
+export default function AboutPage() {
+  return <>
+    <section aria-labelledby="about-title" className="r-hero pg-hero" data-hero>
+      <div className="hero-ph">
+        <Image alt="" fill loading="eager" priority quality={55} sizes="100vw" src={webImageSrc("/images/recipes/kyufteta-na-skara.png")} />
+      </div>
+      <div className="wrap hero-in">
+        <p className="eyebrow rv">Какво е Chefo&apos;s Recipes</p>
+        <h1 data-split id="about-title"><SplitWords text="Подреден каталог за" /> <em><SplitWords start={3} text="домашна храна" /></em></h1>
+        <p className="r-desc rv" style={{ "--d": "300ms" } as CSSProperties}>
+          Chefo&apos;s Recipes е създаден за хора, които искат бързо да намерят рецепта, да сравнят времето за
+          приготвяне, продуктите и трудността и да се върнат към любимите си идеи по-късно.
+        </p>
+        <StitchBand />
+      </div>
+    </section>
+
+    <section aria-label="Ритъм" className="sec sec-tight rhythm">
+      <div className="wrap">
+        <p className="eyebrow rv">Ритъм</p>
+        <ol>
+          {rhythm.map((line, index) => (
+            <li className="rv" key={line} style={delay(index)}><span aria-hidden="true" className="st-i"><StitchStar /></span>{line}</li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-who" className="sec sec-tight">
+      <div className="wrap">
+        <div className="sec-top">
+          <div>
+            <p className="eyebrow rv">За кого е създаден</p>
+            <h2 className="sec-h" data-split id="about-who"><SplitWords text="За реалното готвене у дома" /></h2>
+          </div>
+        </div>
+        <div className="cols3">
+          {audienceCards.map((item, index) => (
+            <article className="col rv" key={item.title} style={delay(index)}>
+              <span aria-hidden="true" className="st-i"><StitchStar /></span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </article>
+          ))}
         </div>
       </div>
-
-      <section className="space-y-5">
-        <div className="max-w-4xl">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            За кого е създаден
-          </p>
-          <h2 className="mt-2 text-3xl font-bold text-stone-950 sm:text-[2rem]">
-            За реалното готвене у дома
-          </h2>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
-          {audienceCards.map((item) => (
-            <article className="about-premium-tile about-info-card info-card rounded-[1.6rem] p-5 sm:p-6" key={item.title}>
-              <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
-              <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-panel about-panel--feature grid gap-5 rounded-[2rem] border border-stone-200 bg-white/76 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 lg:grid-cols-[minmax(0,0.78fr)_minmax(520px,1fr)] lg:items-center xl:gap-7 xl:p-7">
-        <div className="about-feature-copy rounded-[1.7rem] border border-brand-100 bg-[#fff8ee]/78 p-5 sm:p-6">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Какво можеш да правиш
-          </p>
-          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
-            По-малко чудене преди готвене
-          </h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
-            Основната цел е да стигнеш до добър избор бързо, без да губиш важните
-            детайли за продуктите, времето и начина на приготвяне.
-          </p>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          {capabilityCards.map((item) => (
-            <article
-              className="about-mini-card rounded-[1.5rem] border border-brand-100 bg-[#fff8ee]/88 p-5 shadow-sm transition hover:border-brand-200 hover:bg-[#fff8ee]"
-              key={item.title}
-            >
-              <div className="flex items-start gap-3">
-                <span className="about-mini-number inline-grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-brand-100 text-sm font-black text-brand-800">
-                  {item.accent}
-                </span>
-                <h3 className="about-card-title pt-1 text-xl font-bold leading-tight text-stone-950">{item.title}</h3>
-              </div>
-              <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="space-y-5">
-        <div className="max-w-4xl">
-          <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-            Как подбираме рецептите
-          </p>
-          <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
-            Практични, ясни и близки до дома
-          </h2>
-          <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
-            Фокусът е върху рецепти с познати продукти, реалистично време и ясни стъпки -
-            така че изборът да е бърз, а готвенето спокойно.
-          </p>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-3 xl:gap-6">
-          {selectionPrinciples.map((item) => (
-            <article className="about-premium-tile about-selection-card editorial-card rounded-[1.6rem] p-5" key={item.title}>
-              <h3 className="about-card-title text-2xl font-bold text-stone-950">{item.title}</h3>
-              <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">{item.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="about-panel about-panel--warm rounded-[2rem] border border-brand-100 bg-[#fff8ee]/82 p-5 shadow-[0_18px_52px_rgba(89,52,22,0.08)] sm:p-6 xl:p-7">
-        <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-start">
-          <div>
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-              Защо българска домашна кухня
-            </p>
-            <h2 className="mt-2 text-3xl font-bold leading-tight text-stone-950 sm:text-[2rem]">
-              Защото познатият вкус също заслужава добра подредба
-            </h2>
-            <p className="mt-3 text-base font-medium leading-7 text-[#4a3326]">
-              Българската домашна кухня е богата, сезонна и практична. Chefo&apos;s Recipes
-              я представя в удобен дигитален формат, без да отнема от усещането за истинска
-              храна на масата.
-            </p>
-          </div>
-
-          <div className="about-roadmap-card rounded-[1.7rem] border border-brand-200 bg-white/82 p-5 shadow-sm">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-brand-700">
-              Какво предстои
-            </p>
-            <ul className="mt-4 grid gap-3">
-              {roadmap.map((item) => (
-                <li className="about-roadmap-item flex gap-3 rounded-2xl px-3 py-2 text-base font-medium leading-7 text-[#4a3326]" key={item}>
-                  <span className="about-roadmap-dot mt-2.5 h-2 w-2 shrink-0 rounded-full bg-brand-600" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <Link
-              className="about-cta mt-5 inline-flex rounded-full bg-brand-600 px-5 py-2.5 text-sm font-black text-white shadow-sm shadow-brand-900/20 transition hover:bg-brand-700"
-              href="/catalog"
-            >
-              Разгледай каталога
-            </Link>
-          </div>
-        </div>
-      </section>
     </section>
-  );
+
+    <section aria-labelledby="about-cap" className="sec sec-tight">
+      <div className="wrap cap">
+        <div className="cap-side">
+          <p className="eyebrow rv">Какво можеш да правиш</p>
+          <h2 className="sec-h" data-split id="about-cap"><SplitWords text="По-малко чудене преди готвене" /></h2>
+          <p className="lead rv">
+            Основната цел е да стигнеш до добър избор бързо, без да губиш важните детайли за продуктите,
+            времето и начина на приготвяне.
+          </p>
+        </div>
+        <ol className="cap-list">
+          {capabilityCards.map(item => (
+            <li className="cap-li rv" key={item.title}>
+              <span aria-hidden="true" className="st-n">{item.accent}</span>
+              <div><h3>{item.title}</h3><p>{item.description}</p></div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-principles" className="sec sec-tight">
+      <div className="wrap">
+        <div className="sec-top">
+          <div>
+            <p className="eyebrow rv">Как подбираме рецептите</p>
+            <h2 className="sec-h" data-split id="about-principles"><SplitWords text="Практични, ясни и близки до дома" /></h2>
+          </div>
+          <p className="lead rv">
+            Фокусът е върху рецепти с познати продукти, реалистично време и ясни стъпки – така че изборът да е
+            бърз, а готвенето спокойно.
+          </p>
+        </div>
+        <div className="princ">
+          <div className="princ-ph mask">
+            {/* The photograph is drawn 10% larger from its top-left corner, so the generator mark in the
+                bottom-right corner of this master always falls outside the frame. */}
+            <div className="mk"><span className="princ-crop"><ResponsiveRecipeImage alt="" fill loading="lazy" sizes={principlesImageSizes} src={webImageSrc("/images/recipes/banitsa-s-praz.png")} use="wide" /></span></div>
+            <StitchBand size={2} />
+          </div>
+          <ul className="princ-list">
+            {selectionPrinciples.map((item, index) => (
+              <li className="rv" key={item.title} style={delay(index)}><h3>{item.title}</h3><p>{item.description}</p></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="about-why" className="sec">
+      <div className="wrap why">
+        <div className="why-tx">
+          <p className="eyebrow rv">Защо българска домашна кухня</p>
+          <h2 className="sec-h" data-split id="about-why"><SplitWords text="Защото познатият вкус също заслужава добра подредба" /></h2>
+          <p className="lead rv">
+            Българската домашна кухня е богата, сезонна и практична. Chefo&apos;s Recipes я представя в удобен
+            дигитален формат, без да отнема от усещането за истинска храна на масата.
+          </p>
+        </div>
+        <div className="why-nx">
+          <p className="eyebrow rv">Какво предстои</p>
+          <ul className="perks">
+            {roadmap.map((item, index) => (
+              <li className="rv" key={item.title} style={delay(index)}><span className="pst"><StitchStar /></span><b>{item.title}</b><span className="t">{item.text}</span></li>
+            ))}
+          </ul>
+          <div className="rv"><Link className="btn fill" href="/catalog">Всички рецепти <span aria-hidden="true" className="ar">→</span></Link></div>
+        </div>
+      </div>
+    </section>
+  </>;
 }

@@ -1,0 +1,317 @@
+[
+  {
+    "index": 0,
+    "samples": [
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 4.000001701562397,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 3.469998188335688,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.9800012019882023,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.5600020433490074,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.209999712863451,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.9000016477799657,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.6299988941176964,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.4000019370134786,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.2099992018223775,
+        "inside": true,
+        "overlaps": false
+      }
+    ]
+  },
+  {
+    "index": 3,
+    "samples": [
+      {
+        "tilt": 2.9700012461907352,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.5499991608420216,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.199999295855853,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.8899976332090263,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.6200024014898624,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.4000019370134786,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.199998481215479,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.029999112164839,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.8899999938284574,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.7599992566448517,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.6599987229991213,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.560000235534984,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.4900002634583991,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.42000021568419527,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.3599998667022503,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.309999867157069,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.2699998839147052,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.2300001874840741,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.19999990044575186,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.17000019669958552,
+        "inside": true,
+        "overlaps": false
+      }
+    ]
+  },
+  {
+    "index": 7,
+    "samples": [
+      {
+        "tilt": 2.9700012461907352,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.5499991608420216,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 2.1899988848486758,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.8899976332090263,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.6200024014898624,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.4000019370134786,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.199998481215479,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 1.029999112164839,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.8899999938284574,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.7599992566448517,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.6599987229991213,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.560000235534984,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.4900002634583991,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.42000021568419527,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.3599998667022503,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.309999867157069,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.2699998839147052,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.2300001874840741,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.19999990044575186,
+        "inside": true,
+        "overlaps": false
+      },
+      {
+        "tilt": 0.17000019669958552,
+        "inside": true,
+        "overlaps": false
+      }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "Начало 390": {
+    "heroPaintedMs": 1132,
+    "lcpMs": 864,
+    "lcpEl": "P",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1200&q=60",
+    "frames": [
+      878,
+      2420,
+      2517,
+      2567,
+      3050,
+      4019
+    ]
+  },
+  "Рецепта 390": {
+    "heroPaintedMs": 771,
+    "lcpMs": 784,
+    "lcpEl": "IMG",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1200&q=55",
+    "frames": [
+      2178,
+      2254,
+      2287,
+      2321,
+      3023,
+      4040
+    ]
+  },
+  "За нас 390": {
+    "heroPaintedMs": 838,
+    "lcpMs": 840,
+    "lcpEl": "IMG",
+    "fetchPriority": null,
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1200&q=55",
+    "frames": [
+      2318,
+      2379,
+      2413,
+      2446,
+      3046,
+      4046
+    ]
+  },
+  "Начало 1440": {
+    "heroPaintedMs": 2282,
+    "lcpMs": 1036,
+    "lcpEl": "SPAN",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1920&q=60",
+    "frames": [
+      1042,
+      2823,
+      2933,
+      2991,
+      3080,
+      4039
+    ]
+  },
+  "Рецепта 1440": {
+    "heroPaintedMs": 1758,
+    "lcpMs": 1788,
+    "lcpEl": "IMG",
+    "fetchPriority": "high",
+    "loading": null,
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=55",
+    "frames": [
+      2390,
+      2484,
+      2539,
+      2588,
+      3058,
+      4059
+    ]
+  },
+  "За нас 1440": {
+    "heroPaintedMs": 1118,
+    "lcpMs": 1152,
+    "lcpEl": "IMG",
+    "fetchPriority": null,
+    "loading": "eager",
+    "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1920&q=55",
+    "frames": [
+      868,
+      2441,
+      2529,
+      2582,
+      3065,
+      4050
+    ]
+  }
+}

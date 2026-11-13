@@ -1,0 +1,169 @@
+{
+  "mock": {
+    ".pg-head .eyebrow": {
+      "x": 16,
+      "y": 128,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 16,
+      "y": 161,
+      "w": 358,
+      "h": 49,
+      "font": "Cormorant 500 54.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 86,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3": {
+      "x": 16,
+      "y": 352,
+      "w": 358,
+      "h": 302,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3 dd": {
+      "x": 16,
+      "y": 401,
+      "w": 358,
+      "h": 29,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3 dt": {
+      "x": 16,
+      "y": 375,
+      "w": 358,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols h2": {
+      "x": 16,
+      "y": 752,
+      "w": 330,
+      "h": 32,
+      "font": "Cormorant 500 32px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 16,
+      "y": 800,
+      "w": 358,
+      "h": 77,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 16,
+      "y": 893,
+      "w": 186,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "site": {
+    ".pg-head .eyebrow": {
+      "x": 16,
+      "y": 128,
+      "w": 358,
+      "h": 19,
+      "font": "Onest 600 11.84px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head h1": {
+      "x": 16,
+      "y": 161,
+      "w": 358,
+      "h": 49,
+      "font": "Cormorant 500 54.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".pg-head .lead": {
+      "x": 16,
+      "y": 238,
+      "w": 358,
+      "h": 86,
+      "font": "Onest 400 17.92px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3": {
+      "x": 16,
+      "y": 352,
+      "w": 358,
+      "h": 302,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3 dd": {
+      "x": 16,
+      "y": 401,
+      "w": 358,
+      "h": 29,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".meta.m3 dt": {
+      "x": 16,
+      "y": 375,
+      "w": 358,
+      "h": 18,
+      "font": "Onest 600 11.52px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols h2": {
+      "x": 16,
+      "y": 752,
+      "w": 330,
+      "h": 32,
+      "font": "Cormorant 500 32px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols p": {
+      "x": 16,
+      "y": 800,
+      "w": 358,
+      "h": 77,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".prof-cols .btn": {
+      "x": 16,
+      "y": 893,
+      "w": 186,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "differences": []
+}

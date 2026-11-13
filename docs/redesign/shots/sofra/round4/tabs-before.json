@@ -1,0 +1,122 @@
+{
+  "/catalog Всички (active)": {
+    "rest": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hover": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "focus": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "solid 2px rgb(229, 72, 77)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hoverChanges": false
+  },
+  "/catalog Салати (inactive)": {
+    "rest": {
+      "color": "rgb(185, 171, 163)",
+      "transform": "none",
+      "outline": "none 3px rgb(185, 171, 163)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hover": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "focus": {
+      "color": "rgb(185, 171, 163)",
+      "transform": "none",
+      "outline": "solid 2px rgb(229, 72, 77)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hoverChanges": false
+  },
+  "/login Вход (active)": {
+    "rest": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hover": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "focus": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "solid 2px rgb(229, 72, 77)",
+      "line": {
+        "transform": "matrix(1, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hoverChanges": false
+  },
+  "/login Регистрация (inactive)": {
+    "rest": {
+      "color": "rgb(185, 171, 163)",
+      "transform": "none",
+      "outline": "none 3px rgb(185, 171, 163)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hover": {
+      "color": "rgb(244, 238, 232)",
+      "transform": "none",
+      "outline": "none 3px rgb(244, 238, 232)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "focus": {
+      "color": "rgb(185, 171, 163)",
+      "transform": "none",
+      "outline": "solid 2px rgb(229, 72, 77)",
+      "line": {
+        "transform": "matrix(0, 0, 0, 1, 0, 0)",
+        "background": "rgb(229, 72, 77)"
+      }
+    },
+    "hoverChanges": false
+  }
+}

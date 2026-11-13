@@ -1,0 +1,12 @@
+[
+  {
+    "file": "pile-teriyaki.png",
+    "width": 1448,
+    "height": 1086,
+    "found": false,
+    "bbox": null,
+    "confidence": 0.204,
+    "weakestQuadrant": 0.01,
+    "crop": null
+  }
+]

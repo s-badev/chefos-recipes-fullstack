@@ -6,19 +6,25 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:check": "node scripts/build-check.mjs",
     "start": "next start",
-    "lint": "next lint"
+    "start:check": "node scripts/build-check.mjs start",
+    "lint": "eslint . --max-warnings=0",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
-    "next": "^15.5.18",
+    "next": "15.5.28",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "@types/node": "22.13.1",
     "@types/react": "~19.1.10",
     "@types/react-dom": "~19.1.7",
     "autoprefixer": "^10.4.20",
+    "eslint": "8.57.1",
+    "eslint-config-next": "15.5.28",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "5.7.3"

@@ -1,0 +1,494 @@
+[
+  {
+    "file": "baklava-s-orehi.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.928,
+    "weakestQuadrant": 0.878,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "banitsa-s-praz.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2243,
+      "top": 1635,
+      "width": 90,
+      "height": 90
+    },
+    "confidence": 0.576,
+    "weakestQuadrant": 0.49,
+    "crop": null,
+    "exception": "The plate's right rim crosses the proposed right crop."
+  },
+  {
+    "file": "banitsa-sas-sirene.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.594,
+    "weakestQuadrant": 0.431,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2165,
+      "height": 1617
+    }
+  },
+  {
+    "file": "bob-chorba.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.49,
+    "weakestQuadrant": 0.392,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2165,
+      "height": 1617
+    }
+  },
+  {
+    "file": "hero-banitsa-shopska-salad.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2249,
+      "top": 1641,
+      "width": 78,
+      "height": 78
+    },
+    "confidence": 0.589,
+    "weakestQuadrant": 0.441,
+    "crop": null,
+    "exception": "The foreground platter crosses the proposed right crop."
+  },
+  {
+    "file": "kavarma-sas-svinsko.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.668,
+    "weakestQuadrant": 0.641,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "krem-karamel.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.92,
+    "weakestQuadrant": 0.891,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "kyufteta-na-skara.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.658,
+    "weakestQuadrant": 0.566,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2165,
+      "height": 1617
+    }
+  },
+  {
+    "file": "mekitsi.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.675,
+    "weakestQuadrant": 0.636,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "mish-mash.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2249,
+      "top": 1641,
+      "width": 78,
+      "height": 78
+    },
+    "confidence": 0.67,
+    "weakestQuadrant": 0.593,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2161,
+      "height": 1614
+    }
+  },
+  {
+    "file": "musaka-s-kartofi.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.927,
+    "weakestQuadrant": 0.905,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "omlet-sas-sirene.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.642,
+    "weakestQuadrant": 0.505,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "ovcharska-salata.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2249,
+      "top": 1641,
+      "width": 78,
+      "height": 78
+    },
+    "confidence": 0.569,
+    "weakestQuadrant": 0.521,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2161,
+      "height": 1614
+    }
+  },
+  {
+    "file": "palneni-chushki-s-oriz.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2249,
+      "top": 1641,
+      "width": 78,
+      "height": 78
+    },
+    "confidence": 0.654,
+    "weakestQuadrant": 0.566,
+    "crop": null,
+    "exception": "The foreground plate crosses the proposed bottom crop."
+  },
+  {
+    "file": "parzheni-filiyki.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.914,
+    "weakestQuadrant": 0.886,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "pileshka-supa.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.943,
+    "weakestQuadrant": 0.923,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "sarmi-s-kiselo-zele.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.807,
+    "weakestQuadrant": 0.753,
+    "crop": null,
+    "exception": "The foreground plate touches/crosses the proposed bottom crop."
+  },
+  {
+    "file": "shkembe-chorba.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.816,
+    "weakestQuadrant": 0.755,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "shopska-salata.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2249,
+      "top": 1641,
+      "width": 78,
+      "height": 78
+    },
+    "confidence": 0.588,
+    "weakestQuadrant": 0.448,
+    "crop": null,
+    "exception": "The plate's right rim crosses the proposed right crop."
+  },
+  {
+    "file": "sirene-po-shopski.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.804,
+    "weakestQuadrant": 0.7,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "sladak-salam.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.862,
+    "weakestQuadrant": 0.804,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "snezhanka.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.533,
+    "weakestQuadrant": 0.506,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2165,
+      "height": 1617
+    }
+  },
+  {
+    "file": "tarator.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.699,
+    "weakestQuadrant": 0.679,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  },
+  {
+    "file": "tikvenik.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.485,
+    "weakestQuadrant": 0.225,
+    "crop": null,
+    "exception": "The plate's right rim crosses the proposed right crop."
+  },
+  {
+    "file": "tutmanik.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2252,
+      "top": 1644,
+      "width": 72,
+      "height": 72
+    },
+    "confidence": 0.422,
+    "weakestQuadrant": 0.01,
+    "crop": null,
+    "exception": "The foreground platter crosses the proposed right and bottom crop."
+  },
+  {
+    "file": "zeleva-salata.png",
+    "width": 2400,
+    "height": 1792,
+    "found": true,
+    "bbox": {
+      "left": 2234,
+      "top": 1626,
+      "width": 108,
+      "height": 108
+    },
+    "confidence": 0.928,
+    "weakestQuadrant": 0.899,
+    "crop": {
+      "left": 0,
+      "top": 0,
+      "width": 2141,
+      "height": 1599
+    }
+  }
+]

@@ -1,0 +1,22 @@
+// Match .wrap (--max:1320px, --gut:clamp(16px,4vw,56px)) and the 24px grid gap.
+const content = "min(100vw, 1320px) - clamp(32px, 8vw, 112px)";
+const full = `calc(${content})`;
+const half = `calc((${content} - 24px) / 2)`;
+const quarter = `calc((${content} - 72px) / 4)`;
+const third = `calc((${content} - 48px) / 3)`;
+
+export const recipeTileSizes = {
+  big: `(max-width: 1000px) ${full}, ${half}`,
+  wide: `(max-width: 640px) ${full}, ${half}`,
+  half: `(max-width: 640px) ${full}, (max-width: 1000px) ${half}, ${quarter}`,
+  // A card across the row: the photograph takes seven of twelve columns (also the lone last card on a tablet).
+  solo: `(max-width: 640px) ${full}, calc((${content}) * 7 / 12)`,
+  "": `(max-width: 640px) ${full}, (max-width: 1000px) ${half}, ${third}`
+};
+
+// Seven of twelve columns with six internal 24px gaps: 7/12 * content - 10px.
+export const weeklyImageSizes = `(max-width: 1000px) ${full}, calc((${content}) * 7 / 12 - 10px)`;
+
+// About, "Как подбираме": seven columns like the weekly photo, drawn 10% larger (the crop that keeps
+// the photograph's corner mark out of the frame).
+export const principlesImageSizes = `(max-width: 1000px) calc((${content}) * 1.1), calc(((${content}) * 7 / 12 - 10px) * 1.1)`;

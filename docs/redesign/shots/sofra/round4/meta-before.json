@@ -1,0 +1,207 @@
+{
+  "label": "before",
+  "rule": "baseline Y spread within each visual row of cells (px)",
+  "recipes": {
+    "shopska-salata": "Без готвене",
+    "banitsa-sas-sirene": "трудност Средна",
+    "shkembe-chorba": "120 мин"
+  },
+  "widths": {
+    "390": {
+      "shopska-salata": {
+        "mock": [
+          {
+            "cells": [
+              "20мин",
+              "Без готвене"
+            ],
+            "valueSpread": 9,
+            "labelSpread": 12.2
+          },
+          {
+            "cells": [
+              "4",
+              "Лесна"
+            ],
+            "valueSpread": 9,
+            "labelSpread": 12.1
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "20 мин",
+              "Без готвене"
+            ],
+            "valueSpread": 10,
+            "labelSpread": 13
+          },
+          {
+            "cells": [
+              "4",
+              "Лесна"
+            ],
+            "valueSpread": 10,
+            "labelSpread": 13
+          }
+        ]
+      },
+      "banitsa-sas-sirene": {
+        "mock": [
+          {
+            "cells": [
+              "25мин",
+              "40мин"
+            ],
+            "valueSpread": 0,
+            "labelSpread": 0
+          },
+          {
+            "cells": [
+              "8",
+              "Средна"
+            ],
+            "valueSpread": 9,
+            "labelSpread": 12.1
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "25 мин",
+              "40 мин"
+            ],
+            "valueSpread": 0,
+            "labelSpread": 0
+          },
+          {
+            "cells": [
+              "8",
+              "Средна"
+            ],
+            "valueSpread": 10,
+            "labelSpread": 13
+          }
+        ]
+      },
+      "shkembe-chorba": {
+        "mock": [
+          {
+            "cells": [
+              "20мин",
+              "120мин"
+            ],
+            "valueSpread": 0,
+            "labelSpread": 0
+          },
+          {
+            "cells": [
+              "6",
+              "Средна"
+            ],
+            "valueSpread": 9,
+            "labelSpread": 12.1
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "20 мин",
+              "120 мин"
+            ],
+            "valueSpread": 0,
+            "labelSpread": 0
+          },
+          {
+            "cells": [
+              "6",
+              "Средна"
+            ],
+            "valueSpread": 10,
+            "labelSpread": 13
+          }
+        ]
+      }
+    },
+    "1440": {
+      "shopska-salata": {
+        "mock": [
+          {
+            "cells": [
+              "20мин",
+              "Без готвене",
+              "4",
+              "Лесна"
+            ],
+            "valueSpread": 20,
+            "labelSpread": 25
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "20 мин",
+              "Без готвене",
+              "4",
+              "Лесна"
+            ],
+            "valueSpread": 24,
+            "labelSpread": 29
+          }
+        ]
+      },
+      "banitsa-sas-sirene": {
+        "mock": [
+          {
+            "cells": [
+              "25мин",
+              "40мин",
+              "8",
+              "Средна"
+            ],
+            "valueSpread": 20,
+            "labelSpread": 25
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "25 мин",
+              "40 мин",
+              "8",
+              "Средна"
+            ],
+            "valueSpread": 24,
+            "labelSpread": 29
+          }
+        ]
+      },
+      "shkembe-chorba": {
+        "mock": [
+          {
+            "cells": [
+              "20мин",
+              "120мин",
+              "6",
+              "Средна"
+            ],
+            "valueSpread": 20,
+            "labelSpread": 25
+          }
+        ],
+        "site": [
+          {
+            "cells": [
+              "20 мин",
+              "120 мин",
+              "6",
+              "Средна"
+            ],
+            "valueSpread": 24,
+            "labelSpread": 29
+          }
+        ]
+      }
+    }
+  }
+}

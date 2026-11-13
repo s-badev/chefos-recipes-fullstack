@@ -1,0 +1,3874 @@
+{
+  "phase": "round4",
+  "mode": "weightonly",
+  "browser": "156.0.8078.4",
+  "units": "bytes (CDP encodedDataLength; bodyBytes also recorded)",
+  "rows": [
+    {
+      "route": "/",
+      "width": 1440,
+      "dpr": 2,
+      "firstBytes": 337916,
+      "fullBytes": 379669,
+      "firstAllBytes": 710730,
+      "fullAllBytes": 753570,
+      "imageBodyBytes": 374448,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=640&q=60 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=750&q=60 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=828&q=60 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1080&q=60 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1200&q=60 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1920&q=60 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=2048&q=60 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60 3840w",
+          "width": 1468.8,
+          "height": 918,
+          "loading": "auto"
+        },
+        {
+          "src": "/images/recipes-responsive/shopska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tarator-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tarator-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mish-mash-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mish-mash-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tikvenik-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tikvenik-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 184.1,
+          "height": 184.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shopska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/snezhanka-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/snezhanka-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/ovcharska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shkembe-chorba-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-1600.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 798.9,
+          "height": 599.1,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 833.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mekitsi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mekitsi-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tutmanik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tutmanik-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 1440,
+          "height": 1216.2,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 36671,
+          "bodyBytes": 160860
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 134327,
+          "bodyBytes": 133885
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/page-eb9e087a4145d579.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 4297,
+          "bodyBytes": 10877
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8537,
+          "bodyBytes": 8256
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tarator-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7853,
+          "bodyBytes": 7572
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7337,
+          "bodyBytes": 7056
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7278,
+          "bodyBytes": 6997
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mish-mash-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8706,
+          "bodyBytes": 8425
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tikvenik-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8022,
+          "bodyBytes": 7741
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/snezhanka-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 2666,
+          "bodyBytes": 2386
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 3416,
+          "bodyBytes": 3136
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 3332,
+          "bodyBytes": 3052
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-1600.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 40845,
+          "bodyBytes": 40563
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mekitsi-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 15665,
+          "bodyBytes": 15383
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 39814,
+          "bodyBytes": 39532
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 14719,
+          "bodyBytes": 14437
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tutmanik-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 17807,
+          "bodyBytes": 17525
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 16431,
+          "bodyBytes": 16149
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2626,
+          "bodyBytes": 9276
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 520,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shopska-salata?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/snezhanka?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 41753,
+          "bodyBytes": 41471
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/ovcharska-salata?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 544,
+          "bodyBytes": 212
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shkembe-chorba?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 543,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-s-praz?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mekitsi?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tutmanik?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 204
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/omlet-sas-sirene?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 212
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sirene-po-shopski?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 213
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/catalog",
+      "width": 1440,
+      "dpr": 2,
+      "firstBytes": 501333,
+      "fullBytes": 565195,
+      "firstAllBytes": 857293,
+      "fullAllBytes": 924364,
+      "imageBodyBytes": 558149,
+      "rendered": [
+        {
+          "src": "/images/recipes-responsive/shopska-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "eager"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tarator-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tarator-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/palneni-chushki-s-oriz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mish-mash-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mish-mash-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/bob-chorba-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/bob-chorba-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tikvenik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tikvenik-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/krem-karamel-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/krem-karamel-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sladak-salam-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/sladak-salam-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/baklava-s-orehi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/musaka-s-kartofi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/pileshka-supa-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/pileshka-supa-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/parzheni-filiyki-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sarmi-s-kiselo-zele-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/snezhanka-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/snezhanka-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/ovcharska-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/zeleva-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/zeleva-salata-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1200.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mekitsi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mekitsi-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tutmanik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tutmanik-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shkembe-chorba-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 284,
+          "height": 355,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 592,
+          "height": 370,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/catalog",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 28604,
+          "bodyBytes": 160840
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/page-eb9e087a4145d579.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 4297,
+          "bodyBytes": 10877
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 52730,
+          "bodyBytes": 52448
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/(list)/page-70eb5c2fd14c20d6.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 12294,
+          "bodyBytes": 41633
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19660,
+          "bodyBytes": 19378
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tarator-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 20146,
+          "bodyBytes": 19864
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 18642,
+          "bodyBytes": 18360
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19996,
+          "bodyBytes": 19714
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mish-mash-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 41498,
+          "bodyBytes": 41216
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/bob-chorba-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 37426,
+          "bodyBytes": 37144
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/krem-karamel-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 6916,
+          "bodyBytes": 6635
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tikvenik-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19998,
+          "bodyBytes": 19716
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 10355,
+          "bodyBytes": 10073
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sladak-salam-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 23589,
+          "bodyBytes": 23307
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24308,
+          "bodyBytes": 24026
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/pileshka-supa-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 36732,
+          "bodyBytes": 36450
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 12217,
+          "bodyBytes": 11935
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 14366,
+          "bodyBytes": 14084
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/snezhanka-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 15451,
+          "bodyBytes": 15169
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 18059,
+          "bodyBytes": 17777
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/zeleva-salata-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 34797,
+          "bodyBytes": 34515
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 39814,
+          "bodyBytes": 39532
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tutmanik-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 17807,
+          "bodyBytes": 17525
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mekitsi-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 15665,
+          "bodyBytes": 15383
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shopska-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-sas-sirene?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/kavarma-sas-svinsko?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tarator?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 181
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/palneni-chushki-s-oriz?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 211
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mish-mash?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 529,
+          "bodyBytes": 185
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/bob-chorba?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 187
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tikvenik?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 183
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 14719,
+          "bodyBytes": 14437
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 14528,
+          "bodyBytes": 14246
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-1200.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 34615,
+          "bodyBytes": 34333
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/krem-karamel?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 531,
+          "bodyBytes": 191
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sladak-salam?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 191
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/baklava-s-orehi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 197
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/musaka-s-kartofi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 534,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/pileshka-supa?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 193
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/parzheni-filiyki?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sarmi-s-kiselo-zele?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 536,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/snezhanka?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 185
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/ovcharska-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/zeleva-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 531,
+          "bodyBytes": 193
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-s-praz?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mekitsi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 181
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tutmanik?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 183
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shkembe-chorba?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/omlet-sas-sirene?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sirene-po-shopski?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 201
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/%D0%BF%D0%B8%D0%BB%D0%B5-%D1%82%D0%B0%D1%80%D0%B8%D0%B0%D0%BA%D0%B8?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 555,
+          "bodyBytes": 301
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 522,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/catalog/shopska-salata",
+      "width": 1440,
+      "dpr": 2,
+      "firstBytes": 130306,
+      "fullBytes": 130306,
+      "firstAllBytes": 465033,
+      "fullAllBytes": 465568,
+      "imageBodyBytes": 129315,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=55 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=750&q=55 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=828&q=55 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1080&q=55 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1200&q=55 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=55 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=2048&q=55 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55 3840w",
+          "width": 1468.8,
+          "height": 789.5,
+          "loading": "auto"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-640.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 320,
+          "height": 240,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/catalog/shopska-salata",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 23955,
+          "bodyBytes": 91441
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 109485,
+          "bodyBytes": 109055
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/%5Bslug%5D/page-c66814808bb8e211.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2066,
+          "bodyBytes": 3624
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-640.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19660,
+          "bodyBytes": 19378
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2462,
+          "bodyBytes": 8757
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-sas-sirene?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 535,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "dpr": 2,
+      "firstBytes": 136943,
+      "fullBytes": 136943,
+      "firstAllBytes": 507391,
+      "fullAllBytes": 507913,
+      "imageBodyBytes": 135950,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=640&q=55 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=750&q=55 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=828&q=55 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1080&q=55 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1200&q=55 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1920&q=55 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=2048&q=55 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55 3840w",
+          "width": 1468.8,
+          "height": 697.7,
+          "loading": "eager"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1600.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 861,
+          "height": 655.2,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/about",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 38023,
+          "bodyBytes": 165047
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 81892,
+          "bodyBytes": 81460
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/about/page-d1ea233845d71ccc.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 583,
+          "bodyBytes": 237
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-1600.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 53890,
+          "bodyBytes": 53608
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2622,
+          "bodyBytes": 9276
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 520,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 522,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "dpr": 2,
+      "firstBytes": 164950,
+      "fullBytes": 256450,
+      "firstAllBytes": 537242,
+      "fullAllBytes": 631969,
+      "imageBodyBytes": 251230,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=828&q=60",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=640&q=60 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=750&q=60 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=828&q=60 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1080&q=60 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1200&q=60 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=1920&q=60 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=2048&q=60 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=3840&q=60 3840w",
+          "width": 397.8,
+          "height": 860.9,
+          "loading": "auto"
+        },
+        {
+          "src": "/images/recipes-responsive/shopska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tarator-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tarator-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mish-mash-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mish-mash-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tikvenik-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tikvenik-320.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 106.3,
+          "height": 106.3,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shopska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/snezhanka-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/snezhanka-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/ovcharska-salata-160.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-160.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 72,
+          "height": 56,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shkembe-chorba-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 411.7,
+          "height": 308.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mekitsi-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mekitsi-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tutmanik-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 390,
+          "height": 693.2,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 36671,
+          "bodyBytes": 160860
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fhero-banitsa-shopska-salad.webp&w=828&q=60",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 40410,
+          "bodyBytes": 39969
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/page-eb9e087a4145d579.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 4297,
+          "bodyBytes": 10877
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8537,
+          "bodyBytes": 8256
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7337,
+          "bodyBytes": 7056
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tarator-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7853,
+          "bodyBytes": 7572
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 7278,
+          "bodyBytes": 6997
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mish-mash-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8706,
+          "bodyBytes": 8425
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tikvenik-320.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8022,
+          "bodyBytes": 7741
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 3332,
+          "bodyBytes": 3052
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 3416,
+          "bodyBytes": 3136
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/snezhanka-160.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 2666,
+          "bodyBytes": 2386
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24952,
+          "bodyBytes": 24670
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19529,
+          "bodyBytes": 19247
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mekitsi-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 21751,
+          "bodyBytes": 21469
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2624,
+          "bodyBytes": 9276
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tutmanik-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24337,
+          "bodyBytes": 24055
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19577,
+          "bodyBytes": 19295
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shopska-salata?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/snezhanka?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/ovcharska-salata?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 544,
+          "bodyBytes": 212
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 22023,
+          "bodyBytes": 21741
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 25563,
+          "bodyBytes": 25281
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shkembe-chorba?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-s-praz?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 542,
+          "bodyBytes": 210
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mekitsi?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 537,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tutmanik?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 538,
+          "bodyBytes": 204
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/omlet-sas-sirene?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 212
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sirene-po-shopski?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 544,
+          "bodyBytes": 213
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=1p-R_iEY6bj0jY31",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 522,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/catalog",
+      "width": 390,
+      "dpr": 2,
+      "firstBytes": 227146,
+      "fullBytes": 531628,
+      "firstAllBytes": 584138,
+      "fullAllBytes": 896090,
+      "imageBodyBytes": 524582,
+      "rendered": [
+        {
+          "src": "/images/recipes-responsive/shopska-salata-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/shopska-salata-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "eager"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/kavarma-sas-svinsko-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tarator-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tarator-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/palneni-chushki-s-oriz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mish-mash-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/mish-mash-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/bob-chorba-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/bob-chorba-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tikvenik-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/tikvenik-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/krem-karamel-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/krem-karamel-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sladak-salam-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/baklava-s-orehi-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/musaka-s-kartofi-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/pileshka-supa-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/parzheni-filiyki-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sarmi-s-kiselo-zele-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/snezhanka-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/ovcharska-salata-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/zeleva-salata-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/mekitsi-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/tutmanik-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/shkembe-chorba-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/omlet-sas-sirene-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        },
+        {
+          "src": "/images/recipes-responsive/sirene-po-shopski-480.webp",
+          "currentSrc": "",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 223.8,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/catalog",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 28604,
+          "bodyBytes": 160840
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/page-eb9e087a4145d579.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 4297,
+          "bodyBytes": 10877
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 494,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shopska-salata-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 31037,
+          "bodyBytes": 30755
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/(list)/page-70eb5c2fd14c20d6.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 12294,
+          "bodyBytes": 41633
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 28373,
+          "bodyBytes": 28091
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tarator-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 27803,
+          "bodyBytes": 27521
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/kavarma-sas-svinsko-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 25563,
+          "bodyBytes": 25281
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/palneni-chushki-s-oriz-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 26638,
+          "bodyBytes": 26356
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mish-mash-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 26592,
+          "bodyBytes": 26310
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/bob-chorba-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 23344,
+          "bodyBytes": 23062
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tikvenik-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 27892,
+          "bodyBytes": 27610
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/krem-karamel-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 8743,
+          "bodyBytes": 8462
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shopska-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 532,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-sas-sirene?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 535,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/kavarma-sas-svinsko?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 536,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sladak-salam-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 16945,
+          "bodyBytes": 16663
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tarator?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 181
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/baklava-s-orehi-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 14076,
+          "bodyBytes": 13794
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/musaka-s-kartofi-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 15810,
+          "bodyBytes": 15528
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/palneni-chushki-s-oriz?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 539,
+          "bodyBytes": 211
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mish-mash?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 529,
+          "bodyBytes": 185
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/pileshka-supa-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 22086,
+          "bodyBytes": 21804
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/bob-chorba?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 187
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tikvenik?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 183
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/parzheni-filiyki-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 16511,
+          "bodyBytes": 16229
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/krem-karamel?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 191
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/snezhanka-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 21393,
+          "bodyBytes": 21111
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sarmi-s-kiselo-zele-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19020,
+          "bodyBytes": 18738
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sladak-salam?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 531,
+          "bodyBytes": 191
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/ovcharska-salata-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24433,
+          "bodyBytes": 24151
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/baklava-s-orehi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 197
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24952,
+          "bodyBytes": 24670
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/zeleva-salata-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 22039,
+          "bodyBytes": 21757
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/musaka-s-kartofi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/pileshka-supa?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 531,
+          "bodyBytes": 193
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/mekitsi-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 21751,
+          "bodyBytes": 21469
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/parzheni-filiyki?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 534,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/tutmanik-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24337,
+          "bodyBytes": 24055
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sarmi-s-kiselo-zele?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 205
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/shkembe-chorba-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19529,
+          "bodyBytes": 19247
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/omlet-sas-sirene-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 19577,
+          "bodyBytes": 19295
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/snezhanka?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 528,
+          "bodyBytes": 185
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/ovcharska-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 533,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/sirene-po-shopski-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 22023,
+          "bodyBytes": 21741
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/zeleva-salata?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 531,
+          "bodyBytes": 193
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-s-praz?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/mekitsi?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 527,
+          "bodyBytes": 181
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/tutmanik?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 528,
+          "bodyBytes": 183
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/shkembe-chorba?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 533,
+          "bodyBytes": 195
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/omlet-sas-sirene?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 199
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/sirene-po-shopski?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 535,
+          "bodyBytes": 201
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/%D0%BF%D0%B8%D0%BB%D0%B5-%D1%82%D0%B0%D1%80%D0%B8%D0%B0%D0%BA%D0%B8?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 555,
+          "bodyBytes": 301
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=yYv-D1gZF3cCfCNQ",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/catalog/shopska-salata",
+      "width": 390,
+      "dpr": 2,
+      "firstBytes": 61818,
+      "fullBytes": 61818,
+      "firstAllBytes": 396578,
+      "fullAllBytes": 397113,
+      "imageBodyBytes": 60828,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=828&q=55",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=640&q=55 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=750&q=55 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=828&q=55 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1080&q=55 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1200&q=55 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=1920&q=55 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=2048&q=55 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=3840&q=55 3840w",
+          "width": 397.8,
+          "height": 740.3,
+          "loading": "auto"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-sas-sirene-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 358,
+          "height": 268.5,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/catalog/shopska-salata",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 23955,
+          "bodyBytes": 91441
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fshopska-salata.webp&w=828&q=55",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 32284,
+          "bodyBytes": 31855
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/%5Bslug%5D/page-c66814808bb8e211.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2066,
+          "bodyBytes": 3624
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-sas-sirene-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 28373,
+          "bodyBytes": 28091
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?category=%D0%A1%D0%B0%D0%BB%D0%B0%D1%82%D0%B8&_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2495,
+          "bodyBytes": 8789
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog/banitsa-sas-sirene?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 535,
+          "bodyBytes": 203
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/about?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=tgY0ApHj8P4ChsHG",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 167
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "dpr": 2,
+      "firstBytes": 52462,
+      "fullBytes": 52462,
+      "firstAllBytes": 417130,
+      "fullAllBytes": 422884,
+      "imageBodyBytes": 51469,
+      "rendered": [
+        {
+          "src": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55",
+          "currentSrc": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=828&q=55",
+          "sizes": "100vw",
+          "srcset": "/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=640&q=55 640w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=750&q=55 750w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=828&q=55 828w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1080&q=55 1080w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1200&q=55 1200w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=1920&q=55 1920w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=2048&q=55 2048w, /_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=3840&q=55 3840w",
+          "width": 397.8,
+          "height": 654.3,
+          "loading": "eager"
+        },
+        {
+          "src": "/images/recipes-responsive/banitsa-s-praz-480.webp",
+          "currentSrc": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-800.avif",
+          "sizes": "",
+          "srcset": "",
+          "width": 452.9,
+          "height": 339.6,
+          "loading": "lazy"
+        }
+      ],
+      "resources": [
+        {
+          "type": "Document",
+          "url": "http://localhost:3000/about",
+          "mime": "text/html",
+          "status": 200,
+          "transferBytes": 38023,
+          "bodyBytes": 165047
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/_next/image?url=%2Fimages%2Frecipes-web%2Fkyufteta-na-skara.webp&w=828&q=55",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 26349,
+          "bodyBytes": 25917
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/565453538e75971c.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 1202,
+          "bodyBytes": 8891
+        },
+        {
+          "type": "Stylesheet",
+          "url": "http://localhost:3000/_next/static/css/4146f0bd79781fc3.css",
+          "mime": "text/css",
+          "status": 200,
+          "transferBytes": 16211,
+          "bodyBytes": 76438
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/main-app-fc5231c4c080991f.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 902,
+          "bodyBytes": 555
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/webpack-cf4d78072908020e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 2175,
+          "bodyBytes": 3503
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/9664-af80478aa73ba424.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3766,
+          "bodyBytes": 8533
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/atmosphere.webp",
+          "mime": "image/webp",
+          "status": 200,
+          "transferBytes": 1161,
+          "bodyBytes": 882
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/error-a8d8510b0c128291.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3136,
+          "bodyBytes": 6605
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/about/page-d1ea233845d71ccc.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 583,
+          "bodyBytes": 237
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/489-7239d0684fc3678d.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 5564,
+          "bodyBytes": 13553
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/layout-2b1589e30aa5654e.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3534,
+          "bodyBytes": 7993
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/87c73c54-24122e7b92478d00.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 54794,
+          "bodyBytes": 173019
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/18-4ce5efc64451836b.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 46832,
+          "bodyBytes": 173323
+        },
+        {
+          "type": "Image",
+          "url": "http://localhost:3000/images/recipes-responsive/banitsa-s-praz-800.avif",
+          "mime": "image/avif",
+          "status": 200,
+          "transferBytes": 24952,
+          "bodyBytes": 24670
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/cd87a8f174d93ac6-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 34108,
+          "bodyBytes": 33808
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7219c48e37faf350-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 35580,
+          "bodyBytes": 35280
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/9e28afc1996a8a43-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 38376,
+          "bodyBytes": 38076
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/4dcda88c27b1e545-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22456,
+          "bodyBytes": 22156
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/6961d055d00ff7ec-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 16128,
+          "bodyBytes": 15828
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/7cb025c0ffa46db8-s.p.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 22340,
+          "bodyBytes": 22040
+        },
+        {
+          "type": "Font",
+          "url": "http://localhost:3000/_next/static/media/25408a68d73c6c69-s.woff2",
+          "mime": "font/woff2",
+          "status": 200,
+          "transferBytes": 18464,
+          "bodyBytes": 18164
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 494,
+          "bodyBytes": 110
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/catalog?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 2622,
+          "bodyBytes": 9276
+        },
+        {
+          "type": "Script",
+          "url": "http://localhost:3000/_next/static/chunks/app/catalog/error-e1e7aff75550d478.js",
+          "mime": "application/javascript",
+          "status": 200,
+          "transferBytes": 3132,
+          "bodyBytes": 6628
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/favorites?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 169
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/login?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 161
+        },
+        {
+          "type": "Fetch",
+          "url": "http://localhost:3000/register?_rsc=_paE49VugaXyxB1G",
+          "mime": "text/x-component",
+          "status": 200,
+          "transferBytes": 0,
+          "bodyBytes": 167
+        }
+      ]
+    }
+  ]
+}

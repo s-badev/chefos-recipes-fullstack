@@ -1,0 +1,208 @@
+{
+  "label": "after",
+  "base": "http://localhost:3000",
+  "lcp": {
+    "390": {
+      "median": {
+        "time": 764,
+        "size": 19228,
+        "tag": "SPAN",
+        "id": null,
+        "cls": "wi",
+        "text": "Българска"
+      },
+      "runs": [
+        {
+          "time": 768,
+          "size": 19228,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        },
+        {
+          "time": 756,
+          "size": 19228,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        },
+        {
+          "time": 764,
+          "size": 19228,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        }
+      ]
+    },
+    "1440": {
+      "median": {
+        "time": 760,
+        "size": 87857,
+        "tag": "SPAN",
+        "id": null,
+        "cls": "wi",
+        "text": "Българска"
+      },
+      "runs": [
+        {
+          "time": 760,
+          "size": 87857,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        },
+        {
+          "time": 756,
+          "size": 87857,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        },
+        {
+          "time": 780,
+          "size": 87857,
+          "tag": "SPAN",
+          "id": null,
+          "cls": "wi",
+          "text": "Българска"
+        }
+      ]
+    }
+  },
+  "rail": {
+    "390": {
+      "start": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 0,
+        "maxScroll": 1102,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": true
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": "01–02 / от  06",
+        "scrollbarHeight": 0
+      },
+      "end": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 1102,
+        "maxScroll": 1102,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": true
+          }
+        ],
+        "status": "05–06 / от  06",
+        "scrollbarHeight": 0
+      }
+    },
+    "1440": {
+      "start": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 0,
+        "maxScroll": 752,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": true
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": false
+          }
+        ],
+        "status": "01–04 / от  06",
+        "scrollbarHeight": 0
+      },
+      "end": {
+        "title": "Шест ястия, шест настроения",
+        "tiles": 6,
+        "scrollLeft": 752,
+        "maxScroll": 752,
+        "buttons": [
+          {
+            "label": "Назад по категориите",
+            "disabled": false
+          },
+          {
+            "label": "Напред по категориите",
+            "disabled": true
+          }
+        ],
+        "status": "03–06 / от  06",
+        "scrollbarHeight": 0
+      }
+    },
+    "keyboard": [
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 356
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 712
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 752
+      },
+      {
+        "key": "ArrowRight",
+        "scrollLeft": 752
+      },
+      {
+        "key": "End",
+        "scrollLeft": 752
+      },
+      {
+        "key": "ArrowLeft",
+        "scrollLeft": 712
+      },
+      {
+        "key": "Home",
+        "scrollLeft": 0
+      }
+    ],
+    "video": "rail-keyboard-1440.webm"
+  },
+  "midHero_t12_390": 2,
+  "midCover_t12_390": 2,
+  "midHero_t50_390": 2,
+  "midCover_t50_390": 2,
+  "midHero_t12_1440": 2,
+  "midCover_t12_1440": 2,
+  "midHero_t50_1440": 2,
+  "midCover_t50_1440": 2,
+  "headerWrap390": {
+    "logoHeight": 44,
+    "headerHeight": 64
+  },
+  "headerWrap768": {
+    "logoHeight": 44,
+    "headerHeight": 64
+  },
+  "logoFocused": true,
+  "headerWrap1440": {
+    "logoHeight": 44,
+    "headerHeight": 64
+  }
+}

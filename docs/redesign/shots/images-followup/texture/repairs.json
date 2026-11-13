@@ -1,0 +1,409 @@
+[
+  {
+    "name": "banitsa-s-praz",
+    "beforeHash": "8895098faebea160f8e84558161e38f4112365688a7d2905db20de35bb9f6a6b",
+    "afterHash": "df4342545f4f98c0f342b6d63a7ddfd90a46fadff7136257551063548c3137e5",
+    "beforeBytes": 289662,
+    "afterBytes": 2361572,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1869,
+        "top": 1362,
+        "width": 75,
+        "height": 75
+      },
+      "confidence": 0.578,
+      "weakestQuadrant": 0.492
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1876,
+        "top": 1367,
+        "width": 55,
+        "height": 55
+      },
+      "confidence": 0.443,
+      "weakestQuadrant": 0.392
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1692,
+      "top": 1381,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0,
+    "correction": [
+      -9.29,
+      -6.44,
+      -4.35
+    ],
+    "boundaryMse": 5712.7,
+    "changedPixels": 4333,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "Visible discontinuity in the blue/red woven pattern; retained original master."
+    }
+  },
+  {
+    "name": "hero-banitsa-shopska-salad",
+    "beforeHash": "c88a51a0c8166edddccacd326cdd921495dd8b7cf66f2f211138ec0475f4f6dc",
+    "afterHash": "394aee896da0ba1682209e52b23cb353b189c939da417b054862f0590fbb1494",
+    "beforeBytes": 374790,
+    "afterBytes": 2640714,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1874,
+        "top": 1367,
+        "width": 65,
+        "height": 65
+      },
+      "confidence": 0.586,
+      "weakestQuadrant": 0.444
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1869,
+        "top": 1364,
+        "width": 75,
+        "height": 75
+      },
+      "confidence": 0.424,
+      "weakestQuadrant": 0.361
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1730,
+      "top": 1365,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0,
+    "correction": [
+      -0.67,
+      -12,
+      -12
+    ],
+    "boundaryMse": 9863.01,
+    "changedPixels": 4332,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "Visible break in the embroidered red/black bands; retained original master."
+    }
+  },
+  {
+    "name": "palneni-chushki-s-oriz",
+    "beforeHash": "d8d43222965b862ef64e639f90b9067f661615f93e3e50eb960fcd89a1cb1276",
+    "afterHash": "502d9a426e448a21dabfa74c23d3354e8f07b14bbb7ff3e1903ed6b77a462170",
+    "beforeBytes": 295910,
+    "afterBytes": 2497242,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1874,
+        "top": 1367,
+        "width": 65,
+        "height": 65
+      },
+      "confidence": 0.642,
+      "weakestQuadrant": 0.549
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": false,
+      "bbox": null,
+      "confidence": 0.247,
+      "weakestQuadrant": 0.044
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1631,
+      "top": 1135,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0.6,
+    "correction": [
+      -7.49,
+      -10.27,
+      -12
+    ],
+    "boundaryMse": 5331.39,
+    "changedPixels": 4327,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "Local grain sharpness and direction remain visibly different; retained original master."
+    }
+  },
+  {
+    "name": "sarmi-s-kiselo-zele",
+    "beforeHash": "54e6e50275f78c5cdeeb110861804ad83d17ad7a0920a3ba98f0c371ca9e7658",
+    "afterHash": "ad933e88308d3330815ba4a2fb1f9bc2aea2cb95812fe295f151175c9b61ba81",
+    "beforeBytes": 225098,
+    "afterBytes": 2034294,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1861,
+        "top": 1354,
+        "width": 90,
+        "height": 90
+      },
+      "confidence": 0.791,
+      "weakestQuadrant": 0.724
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": false,
+      "bbox": null,
+      "confidence": 0.211,
+      "weakestQuadrant": 0.01
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1857,
+      "top": 1146,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0.6,
+    "correction": [
+      -5.08,
+      -4.32,
+      -3.89
+    ],
+    "boundaryMse": 1257.15,
+    "changedPixels": 4324,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "A visible patch in the wood focus/texture remains; retained original master."
+    }
+  },
+  {
+    "name": "shopska-salata",
+    "beforeHash": "e87e0f01bcfdf16c0932f411da01718bfac255807cf4d9ce02bba5d6abfa5e1a",
+    "afterHash": "442b952ada5fd40f0e7f6e84476f7b736d4c655084c528a4a023d9bb019f0ed3",
+    "beforeBytes": 368108,
+    "afterBytes": 2571858,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1874,
+        "top": 1367,
+        "width": 65,
+        "height": 65
+      },
+      "confidence": 0.581,
+      "weakestQuadrant": 0.449
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1869,
+        "top": 1364,
+        "width": 75,
+        "height": 75
+      },
+      "confidence": 0.382,
+      "weakestQuadrant": 0.349
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1699,
+      "top": 1355,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0,
+    "correction": [
+      12,
+      -12,
+      -12
+    ],
+    "boundaryMse": 10068.03,
+    "changedPixels": 4333,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "Visible interruption of the red flower and black line; retained original master."
+    }
+  },
+  {
+    "name": "tikvenik",
+    "beforeHash": "6379aea75ca2ec38bc674acf09831bb9a8b8fedbf5d724efdabb4a345d3a6de5",
+    "afterHash": "8ca139695c0cbc51c2f4bf9e1d91d31acbb2bdcca6b9c1eb4f7efab13f4bf7c3",
+    "beforeBytes": 336764,
+    "afterBytes": 2585556,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1876,
+        "top": 1369,
+        "width": 60,
+        "height": 60
+      },
+      "confidence": 0.484,
+      "weakestQuadrant": 0.226
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": false,
+      "bbox": null,
+      "confidence": 0.286,
+      "weakestQuadrant": 0.026
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1638,
+      "top": 1372,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0,
+    "correction": [
+      12,
+      12,
+      12
+    ],
+    "boundaryMse": 3326.97,
+    "changedPixels": 4326,
+    "outsideMaskChanged": 0,
+    "applied": true,
+    "review": {
+      "apply": true,
+      "note": "Adjacent wood grain blends without a visible seam in the full frame and enlarged review."
+    }
+  },
+  {
+    "name": "tutmanik",
+    "beforeHash": "00909eea18d370534069b9f040981fe2d655265cd191277a58e34947b72a54ed",
+    "afterHash": "f2c7a63cedf461c559e137808aab683bd8901b7a4dddf98f12da57d6f06b04ab",
+    "beforeBytes": 308818,
+    "afterBytes": 2394856,
+    "beforeMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": true,
+      "bbox": {
+        "left": 1861,
+        "top": 1347,
+        "width": 90,
+        "height": 90
+      },
+      "confidence": 0.371,
+      "weakestQuadrant": 0.262
+    },
+    "afterMark": {
+      "width": 2000,
+      "height": 1493,
+      "found": false,
+      "bbox": null,
+      "confidence": 0.259,
+      "weakestQuadrant": 0.056
+    },
+    "width": 2000,
+    "height": 1493,
+    "target": {
+      "left": 1850,
+      "top": 1344,
+      "width": 112,
+      "height": 112
+    },
+    "donor": {
+      "left": 1652,
+      "top": 1352,
+      "width": 112,
+      "height": 112
+    },
+    "donorBlurSigma": 0,
+    "correction": [
+      12,
+      -10.5,
+      -5.39
+    ],
+    "boundaryMse": 7635.48,
+    "changedPixels": 4330,
+    "outsideMaskChanged": 0,
+    "applied": false,
+    "review": {
+      "apply": false,
+      "note": "Woven motif continuity remains visibly broken; retained original master."
+    }
+  }
+]

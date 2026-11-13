@@ -1,0 +1,116 @@
+{
+  "phase": "after",
+  "mode": "vitals",
+  "browser": "156.0.8078.4",
+  "units": "bytes (CDP encodedDataLength; bodyBytes also recorded)",
+  "rows": [
+    {
+      "route": "/",
+      "viewport": "390x844",
+      "dpr": 3,
+      "cpu": 4,
+      "latencyMs": 150,
+      "downMbps": 1.6,
+      "runs": [
+        {
+          "lcp": 840,
+          "cls": 0,
+          "element": "P.rv"
+        },
+        {
+          "lcp": 900,
+          "cls": 0,
+          "element": "P.rv"
+        },
+        {
+          "lcp": 868,
+          "cls": 0,
+          "element": "P.rv"
+        }
+      ],
+      "medianLcpMs": 868,
+      "medianCls": 0
+    },
+    {
+      "route": "/catalog",
+      "viewport": "390x844",
+      "dpr": 3,
+      "cpu": 4,
+      "latencyMs": 150,
+      "downMbps": 1.6,
+      "runs": [
+        {
+          "lcp": 1300,
+          "cls": 0.000908768780391161,
+          "element": "IMG."
+        },
+        {
+          "lcp": 1296,
+          "cls": 0.000908768780391161,
+          "element": "IMG."
+        },
+        {
+          "lcp": 1308,
+          "cls": 0.000908768780391161,
+          "element": "IMG."
+        }
+      ],
+      "medianLcpMs": 1300,
+      "medianCls": 0.000908768780391161
+    },
+    {
+      "route": "/catalog/shopska-salata",
+      "viewport": "390x844",
+      "dpr": 3,
+      "cpu": 4,
+      "latencyMs": 150,
+      "downMbps": 1.6,
+      "runs": [
+        {
+          "lcp": 776,
+          "cls": 0.00011047077178790301,
+          "element": "IMG."
+        },
+        {
+          "lcp": 780,
+          "cls": 0.00011047077178790301,
+          "element": "IMG."
+        },
+        {
+          "lcp": 768,
+          "cls": 0.00011047077178790301,
+          "element": "IMG."
+        }
+      ],
+      "medianLcpMs": 776,
+      "medianCls": 0.00011047077178790301
+    },
+    {
+      "route": "/about",
+      "viewport": "390x844",
+      "dpr": 3,
+      "cpu": 4,
+      "latencyMs": 150,
+      "downMbps": 1.6,
+      "runs": [
+        {
+          "lcp": 852,
+          "cls": 0.0011196639269627298,
+          "element": "IMG."
+        },
+        {
+          "lcp": 844,
+          "cls": 0.0011196639269627298,
+          "element": "IMG."
+        },
+        {
+          "lcp": 848,
+          "cls": 0.0011196639269627298,
+          "element": "IMG."
+        }
+      ],
+      "medianLcpMs": 848,
+      "medianCls": 0.0011196639269627298
+    }
+  ]
+}

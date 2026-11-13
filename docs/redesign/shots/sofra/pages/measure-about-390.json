@@ -1,0 +1,331 @@
+{
+  "mock": {
+    ".r-hero": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 641,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".r-hero h1": {
+      "x": 16,
+      "y": 306,
+      "w": 343,
+      "h": 86,
+      "font": "Cormorant 500 48px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".r-hero .eyebrow": {
+      "x": 16,
+      "y": 262,
+      "w": 358,
+      "h": 28,
+      "font": "Onest 600 17.6px",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-in > p:not(.eyebrow)": {
+      "x": 16,
+      "y": 411,
+      "w": 358,
+      "h": 141,
+      "font": "Onest 400 17.6px",
+      "color": "rgba(255, 255, 255, 0.9)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".rhythm li": {
+      "x": 16,
+      "y": 751,
+      "w": 358,
+      "h": 86,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cols3": {
+      "x": 16,
+      "y": 1238,
+      "w": 358,
+      "h": 616,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".col h3": {
+      "x": 16,
+      "y": 1303,
+      "w": 358,
+      "h": 30,
+      "font": "Cormorant 500 28.8px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".col p": {
+      "x": 16,
+      "y": 1345,
+      "w": 358,
+      "h": 77,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-side .sec-h": {
+      "x": 16,
+      "y": 1959,
+      "w": 358,
+      "h": 79,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li": {
+      "x": 16,
+      "y": 2225,
+      "w": 358,
+      "h": 191,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li .st-n": {
+      "x": 16,
+      "y": 2249,
+      "w": 56,
+      "h": 38,
+      "font": "Cormorant 500 48px",
+      "color": "rgb(229, 72, 77)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li h3": {
+      "x": 88,
+      "y": 2249,
+      "w": 286,
+      "h": 57,
+      "font": "Cormorant 500 27.2px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-ph": {
+      "x": 16,
+      "y": 3351,
+      "w": 358,
+      "h": 269,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-list li": {
+      "x": 16,
+      "y": 3661,
+      "w": 358,
+      "h": 134,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-list h3": {
+      "x": 16,
+      "y": 3683,
+      "w": 358,
+      "h": 30,
+      "font": "Cormorant 500 28.8px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-tx .sec-h": {
+      "x": 16,
+      "y": 4308,
+      "w": 358,
+      "h": 119,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-nx .perks li": {
+      "x": 16,
+      "y": 4686,
+      "w": 358,
+      "h": 85,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-nx .btn": {
+      "x": 16,
+      "y": 4974,
+      "w": 194,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "site": {
+    ".r-hero": {
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 641,
+      "font": "Onest 400 16px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(34, 22, 20)"
+    },
+    ".r-hero h1": {
+      "x": 16,
+      "y": 306,
+      "w": 343,
+      "h": 86,
+      "font": "Cormorant 500 48px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".r-hero .eyebrow": {
+      "x": 16,
+      "y": 262,
+      "w": 358,
+      "h": 28,
+      "font": "Onest 600 17.6px",
+      "color": "rgba(255, 255, 255, 0.85)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".hero-in > p:not(.eyebrow)": {
+      "x": 16,
+      "y": 410,
+      "w": 358,
+      "h": 141,
+      "font": "Onest 400 17.6px",
+      "color": "rgba(255, 255, 255, 0.9)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".rhythm li": {
+      "x": 16,
+      "y": 751,
+      "w": 358,
+      "h": 86,
+      "font": "Cormorant 500 30.4px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cols3": {
+      "x": 16,
+      "y": 1238,
+      "w": 358,
+      "h": 616,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".col h3": {
+      "x": 16,
+      "y": 1303,
+      "w": 358,
+      "h": 30,
+      "font": "Cormorant 500 28.8px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".col p": {
+      "x": 16,
+      "y": 1345,
+      "w": 358,
+      "h": 77,
+      "font": "Onest 400 16px",
+      "color": "rgb(185, 171, 163)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-side .sec-h": {
+      "x": 16,
+      "y": 1959,
+      "w": 358,
+      "h": 79,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li": {
+      "x": 16,
+      "y": 2225,
+      "w": 358,
+      "h": 191,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li .st-n": {
+      "x": 16,
+      "y": 2249,
+      "w": 56,
+      "h": 38,
+      "font": "Cormorant 500 48px",
+      "color": "rgb(229, 72, 77)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".cap-li h3": {
+      "x": 88,
+      "y": 2249,
+      "w": 286,
+      "h": 57,
+      "font": "Cormorant 500 27.2px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-ph": {
+      "x": 16,
+      "y": 3351,
+      "w": 358,
+      "h": 269,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-list li": {
+      "x": 16,
+      "y": 3661,
+      "w": 358,
+      "h": 134,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".princ-list h3": {
+      "x": 16,
+      "y": 3683,
+      "w": 358,
+      "h": 30,
+      "font": "Cormorant 500 28.8px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-tx .sec-h": {
+      "x": 16,
+      "y": 4308,
+      "w": 358,
+      "h": 119,
+      "font": "Cormorant 500 41.6px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-nx .perks li": {
+      "x": 16,
+      "y": 4686,
+      "w": 358,
+      "h": 85,
+      "font": "Onest 400 16px",
+      "color": "rgb(244, 238, 232)",
+      "bg": "rgba(0, 0, 0, 0)"
+    },
+    ".why-nx .btn": {
+      "x": 16,
+      "y": 4974,
+      "w": 194,
+      "h": 52,
+      "font": "Onest 600 15.2px",
+      "color": "rgb(255, 255, 255)",
+      "bg": "rgb(200, 30, 43)"
+    }
+  },
+  "differences": []
+}
