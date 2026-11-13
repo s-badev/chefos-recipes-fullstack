@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { pageMetadata } from "../../../../../lib/site-metadata";
 import Link from "next/link";
+import { pageMetadata } from "../../../../../lib/site-metadata";
 import { requireAdmin } from "../../../../../server/auth/session";
-import { updateRecipeAction } from "../../../../../server/recipes/admin-actions";
+import { updateRecipeFormAction } from "../../../../../server/recipes/admin-actions";
 import { getRecipeBySlug } from "../../../../../server/recipes/service";
+import { EditorialTitle } from "../../../../split-heading";
+import { RecipeForm } from "../../recipe-form";
 
 type EditRecipePageProps = {
   params: Promise<{
@@ -13,7 +15,12 @@ type EditRecipePageProps = {
 
 export async function generateMetadata({ params }: EditRecipePageProps): Promise<Metadata> {
   const { slug } = await params;
-  return pageMetadata("Редакция на рецепта", "Редактирай съдържанието на рецепта в Chefo's Recipes.", `/admin/recipes/${encodeURIComponent(slug)}/edit`, { noindex: true });
+  return pageMetadata(
+    "Редакция на рецепта",
+    "Редактирай съдържанието на рецепта в Chefo's Recipes.",
+    `/admin/recipes/${encodeURIComponent(slug)}/edit`,
+    { noindex: true }
+  );
 }
 
 export default async function EditRecipePage({ params }: EditRecipePageProps) {
@@ -23,136 +30,41 @@ export default async function EditRecipePage({ params }: EditRecipePageProps) {
 
   if (!recipe) {
     return (
-      <section className="mx-auto max-w-3xl rounded-none border border-dashed border-brand-200 bg-surface p-10 text-center ">
-        <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-          Админ редакция
-        </p>
-        <h1 className="mt-3 text-3xl font-bold text-neutral-950">Рецептата не е намерена</h1>
-        <p className="mt-3 text-base leading-7 text-neutral-600">
-          Няма рецепта с този адрес. Върни се към админ панела и избери рецепта от списъка.
-        </p>
-        <Link
-          className="mt-6 inline-flex rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition-transform hover:bg-accent-hover"
-          href="/admin"
-        >
-          Обратно към админ панела
-        </Link>
+      <section className="admin-form-view wrap">
+        <div className="admin-error-state">
+          <p className="eyebrow">Админ редакция</p>
+          <h1>Рецептата не е намерена</h1>
+          <p>Няма рецепта с този адрес. Върни се към панела и избери рецепта от списъка.</p>
+          <Link className="btn fill" href="/admin">Обратно към админ панела</Link>
+        </div>
       </section>
     );
   }
 
   return (
-    <section className="space-y-8">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+    <section className="admin-form-view wrap">
+      <header className="admin-form-head">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.18em] text-brand-700">
-            Админ редакция
-          </p>
-          <h1 className="mt-2 text-4xl font-bold text-neutral-950 sm:text-5xl">Редактирай рецепта</h1>
-          <p className="mt-4 max-w-2xl text-base leading-7 text-neutral-600">
-            Прегледай основната информация за „{recipe.title}“ и обнови съдържанието в каталога.
-          </p>
+          <p className="eyebrow">Админ редакция</p>
+          <h1><EditorialTitle text="Редактирай рецепта" /></h1>
         </div>
-        <Link className="text-base font-bold text-brand-700 hover:text-brand-900" href="/admin">
-          Обратно към админ панела
-        </Link>
-      </div>
+        <p className="lead">Прегледай информацията за „{recipe.title}“ и запази само нужните промени.</p>
+      </header>
 
-      <form action={updateRecipeAction} className="grid gap-5 rounded-none border border-neutral-200 bg-surface p-6  lg:grid-cols-2">
-        <input name="slug" type="hidden" value={recipe.slug} />
-        <div>
-          <label className="text-base font-bold text-neutral-800" htmlFor="title">
-            Заглавие
-          </label>
-          <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.title}
-            id="title"
-            name="title"
-            required
-            type="text"
-          />
-        </div>
-
-        <div>
-          <label className="text-base font-bold text-neutral-800" htmlFor="category">
-            Категория
-          </label>
-          <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.category}
-            id="category"
-            name="category"
-            required
-            type="text"
-          />
-        </div>
-
-        <div className="lg:col-span-2">
-          <label className="text-base font-bold text-neutral-800" htmlFor="description">
-            Описание
-          </label>
-          <textarea
-            className="mt-2 min-h-32 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.description}
-            id="description"
-            name="description"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="text-base font-bold text-neutral-800" htmlFor="prepTime">
-            Време за подготовка
-          </label>
-          <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.prepTimeMinutes}
-            id="prepTime"
-            name="prepTime"
-            type="number"
-          />
-        </div>
-
-        <div>
-          <label className="text-base font-bold text-neutral-800" htmlFor="cookTime">
-            Време за готвене
-          </label>
-          <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.cookTimeMinutes}
-            id="cookTime"
-            name="cookTime"
-            type="number"
-          />
-        </div>
-
-        <div>
-          <label className="text-base font-bold text-neutral-800" htmlFor="servings">
-            Порции
-          </label>
-          <input
-            className="mt-2 w-full rounded-none border border-neutral-200 bg-bg px-4 py-3 text-base text-neutral-950  transition-transform placeholder:text-muted focus:border-brand-400 focus:bg-surface focus:ring-4 focus:ring-brand-100"
-            defaultValue={recipe.servings}
-            id="servings"
-            name="servings"
-            type="number"
-          />
-        </div>
-
-        <div className="flex items-end">
-          <button
-            className="w-full rounded-none bg-brand-600 px-5 py-3 text-base font-bold text-white  transition-transform hover:bg-accent-hover"
-            type="submit"
-          >
-            Запази промените
-          </button>
-        </div>
-      </form>
-
-      <p className="rounded-none border border-dashed border-brand-200 bg-surface p-5 text-base leading-7 text-neutral-600 ">
-        Записаните промени обновяват рецептата в каталога и детайлната страница.
-      </p>
+      <RecipeForm
+        action={updateRecipeFormAction}
+        mode="edit"
+        values={{
+          slug: recipe.slug,
+          title: recipe.title,
+          category: recipe.category,
+          description: recipe.description,
+          prepTimeMinutes: recipe.prepTimeMinutes,
+          cookTimeMinutes: recipe.cookTimeMinutes,
+          servings: recipe.servings
+        }}
+      />
+      <p className="admin-form-note">Адресът на рецептата остава същият, за да не се прекъсват запазени връзки към нея.</p>
     </section>
   );
 }
