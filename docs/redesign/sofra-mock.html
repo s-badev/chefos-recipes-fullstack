@@ -287,6 +287,11 @@ em{font-style:italic}
 .meta dd small{font-size:.42em;letter-spacing:0;margin-left:4px;color:var(--muted)}
 .meta dd.word{font-size:clamp(1.8rem,1rem + 2.4vw,3.4rem)}
 .meta dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+/* Кръг 4: всяка клетка е subgrid с два реда (стойност / етикет) — стойностите са на една базова линия, етикетите са на един ред, каквато и да е стойността („Средна“, „140 мин“). */
+.meta{grid-auto-rows:auto}
+.meta>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:8px}
+.meta dd{grid-row:1;align-self:baseline}
+.meta dt{grid-row:2;align-self:start}
 .tags{padding:18px 0 0;color:var(--muted);font-size:.9rem}
 .rbody{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:56px clamp(24px,4vw,64px);padding-block:clamp(64px,9vw,128px)}
 .ings{grid-column:1 / span 4;position:sticky;top:104px;align-self:start}
@@ -533,7 +538,7 @@ em{font-style:italic}
     <div class="rbody">
       <aside class="ings" aria-labelledby="ing-h"><div class="ings-h"><h2 id="ing-h">Продукти</h2><span class="ings-count" id="ing-c">8 продукта</span></div><ul class="ing-list" id="r-ings"></ul></aside>
       <div class="steps"><h2>Начин на приготвяне</h2><ol id="r-steps"></ol>
-        <div class="actions"><button class="btn fill" type="button" id="r-fav" aria-pressed="false"><svg class="hs" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span id="r-fav-l">Запази в любими</span></button><button class="btn out" type="button">Принтирай рецептата</button><a class="btn out" href="#catalog">← Към рецептите</a></div>
+        <div class="actions"><button class="btn fill" type="button" id="r-fav" aria-pressed="false"><svg class="hs" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.5-9.2C1.2 8.6 3 5 6.5 5c2 0 3.5 1.1 5.5 3 2-1.9 3.5-3 5.5-3C21 5 22.8 8.6 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span id="r-fav-l">Запази в любими</span></button><button class="btn out" type="button">Отпечатай рецептата</button><a class="btn out" href="#catalog">← Към рецептите</a></div>
       </div>
     </div>
     <a class="next" href="#recipe" id="r-next"><span><span class="ne">Следваща рецепта</span><b id="r-next-t">Баница</b><span class="nm" id="r-next-m"></span></span><span class="ni"><img id="r-next-i" alt=""></span></a>

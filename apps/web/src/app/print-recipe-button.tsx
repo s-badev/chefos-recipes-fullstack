@@ -7,7 +7,7 @@ type PrintRecipeButtonProps = {
   icon?: string | null;
 };
 
-export function PrintRecipeButton({ className = "", label = "Принтирай рецепта", icon = "↗" }: PrintRecipeButtonProps) {
+export function PrintRecipeButton({ className = "", label = "Отпечатай рецептата", icon = "↗" }: PrintRecipeButtonProps) {
   return (
     <button className={className} onClick={() => window.print()} type="button">
       <span>{label}</span>

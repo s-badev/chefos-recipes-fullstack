@@ -69,7 +69,7 @@ test("catalog filter: tabs with counts, sticky bar under the header, combined wi
 });
 
 test("outline buttons keep a readable label on hover (the fill does not follow the text colour)", async ({ page }) => {
-  for (const [url, name] of [["/", /^Всички \d+ рецепти?$/], ["/catalog/shopska-salata", "Принтирай рецептата"]] as const) {
+  for (const [url, name] of [["/", /^Всички \d+ рецепти?$/], ["/catalog/shopska-salata", "Отпечатай рецептата"]] as const) {
     await page.goto(url, { waitUntil: "networkidle" });
     const button = page.getByRole(url === "/" ? "link" : "button", { name, exact: true }).first();
     await button.scrollIntoViewIfNeeded();

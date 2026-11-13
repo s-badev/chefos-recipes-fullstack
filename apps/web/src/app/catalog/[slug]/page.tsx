@@ -145,7 +145,7 @@ function RecipeActions({ slug, isFavorited }: { slug: string; isFavorited: boole
   return (
     <div className="actions no-print">
       <RecipeFavorite redirectTo={`/catalog/${slug}`} saved={isFavorited} slug={slug} />
-      <PrintRecipeButton className="btn out" icon={null} label="Принтирай рецептата" />
+      <PrintRecipeButton className="btn out" icon={null} label="Отпечатай рецептата" />
       <BackToCatalog />
     </div>
   );

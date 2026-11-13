@@ -361,6 +361,16 @@ img{display:block;max-width:100%}
 .meta>div{display:flex;flex-direction:column-reverse;justify-content:flex-end;gap:8px;min-width:0;padding:30px 0 30px clamp(14px,2vw,32px);border-left:1px solid var(--line);container-type:inline-size}
 .meta>div:first-child{border-left:0;padding-left:0}
 .meta dt{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+/* Stats row: every cell is a two-row subgrid (value / label), so the values share one baseline and the labels
+   one line, whatever the value ("Средна", "140 мин"). Profile (.m2) keeps its own label-first order. */
+/* A cell with size containment cannot be a subgrid, so the row (not the cell) is the container here: a
+   word value is capped at a quarter (two columns: a half) of the row instead of 17% of its cell. */
+.meta:not(.m2){grid-auto-rows:auto;container-type:inline-size}
+.meta:not(.m2)>div{display:grid;grid-row:span 2;grid-template-rows:subgrid;row-gap:8px;container-type:normal}
+.meta:not(.m2) dd.word{font-size:min(clamp(1.8rem,1rem + 2.4vw,3.4rem),4.2cqi)}
+@media(max-width:1000px){.meta:not(.m2) dd.word{font-size:min(clamp(1.8rem,1rem + 2.4vw,3.4rem),8.4cqi)}}
+.meta:not(.m2) dd{grid-row:1;align-self:baseline}
+.meta:not(.m2) dt{grid-row:2;align-self:start}
 .meta dd{margin:0;font-family:var(--serif);font-weight:500;font-size:clamp(2.6rem,1.2rem + 4vw,5.6rem);line-height:.95;letter-spacing:-.02em;white-space:nowrap}
 .meta dd small{font-size:.42em;letter-spacing:0;color:var(--muted)}
 /* Words (Без готвене, Лесна…) are smaller than numbers and stay on one line; the size also follows the cell. */

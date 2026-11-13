@@ -209,7 +209,7 @@ test("admin recipe on the substitute image: dark hero without a photo and one mu
     await expect(page.locator(".r-missing")).toHaveText(["Продуктите и стъпките за тази рецепта още не са добавени."]);
     await expect(page.locator('.ing-ic, .ings-count, .st-list')).toHaveCount(0);
     await expect(page.getByRole("button", { name: "Запази в любими", exact: true })).toBeVisible();
-    await expect(page.getByRole("button", { name: "Принтирай рецептата", exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: "Отпечатай рецептата", exact: true })).toBeVisible();
     await expect(page.getByRole("link", { name: "Към рецептите" })).toBeVisible();
     await expect(page.locator(".next")).toHaveAttribute("href", `/catalog/${curated[0].slug}`);
     for (const width of [360, 390, 768, 1024, 1440, 1920]) {
@@ -410,3 +410,40 @@ test("unknown recipe slug answers 404 with the styled page", async ({ page }) =>
   expect(response!.status()).toBe(404);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Тази страница не е на масата");
 });
+
+for (const width of [1440, 390, 320]) {
+  test(`stats row at ${width}: values share one baseline and labels one line, also with "140 мин" and "Трудна"`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/catalog/shkembe-chorba", { waitUntil: "networkidle" });
+    await page.evaluate(() => document.fonts.ready);
+    const spreads = async () => page.evaluate(() => {
+      const baseline = (node: Element) => {
+        const probe = document.createElement("span");
+        probe.style.cssText = "display:inline-block;width:0;height:0;vertical-align:baseline";
+        node.insertBefore(probe, node.firstChild);
+        const y = probe.getBoundingClientRect().top;
+        probe.remove();
+        return y;
+      };
+      const rows = new Map<number, Array<{ value: number; label: number }>>();
+      for (const cell of document.querySelectorAll("main .meta > div")) {
+        const top = Math.round(cell.getBoundingClientRect().top);
+        rows.set(top, [...(rows.get(top) ?? []), { value: baseline(cell.querySelector("dd")!), label: baseline(cell.querySelector("dt")!) }]);
+      }
+      return [...rows.values()].map(row => ({
+        value: Math.max(...row.map(c => c.value)) - Math.min(...row.map(c => c.value)),
+        label: Math.max(...row.map(c => c.label)) - Math.min(...row.map(c => c.label))
+      }));
+    });
+    for (const row of await spreads()) { expect(row.value).toBeLessThanOrEqual(1); expect(row.label).toBeLessThanOrEqual(1); }
+    // Other real-world values: a three-digit time and the longest difficulty word.
+    await page.evaluate(() => {
+      const values = document.querySelectorAll("main .meta dd");
+      values[0].innerHTML = "140<small> мин</small>";
+      values[3].textContent = "Трудна";
+    });
+    for (const row of await spreads()) { expect(row.value).toBeLessThanOrEqual(1); expect(row.label).toBeLessThanOrEqual(1); }
+    // Nothing runs out of its cell.
+    expect(await page.locator("main .meta dd").evaluateAll(nodes => nodes.filter(node => node.scrollWidth > node.parentElement!.clientWidth + 1).length)).toBe(0);
+  });
+}
