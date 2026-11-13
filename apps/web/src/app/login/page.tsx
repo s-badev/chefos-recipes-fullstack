@@ -38,7 +38,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
     >
       <form action={loginAction}>
         {next !== undefined ? <input name="next" type="hidden" value={next} /> : null}
-        <AuthField autoComplete="email" label="Имейл" name="email" placeholder="ime@example.com" required type="email" />
+        <AuthField autoCapitalize="none" autoComplete="email" inputMode="email" label="Имейл" name="email" placeholder="ime@example.com" required spellCheck={false} type="email" />
         <AuthField autoComplete="current-password" label="Парола" name="password" placeholder="Въведи парола" required type="password" />
         {params?.error === "invalid" ? <p className="form-err" role="alert">Невалиден имейл или парола.</p> : null}
         <SubmitButton className="btn fill" pendingLabel="Влизане…">Влез <span aria-hidden="true" className="ar">→</span></SubmitButton>

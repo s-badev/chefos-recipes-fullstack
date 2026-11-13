@@ -53,3 +53,42 @@ test("a focused field shows the red 2px line", async ({ page }) => {
   await expect(email).toHaveCSS("border-bottom-width", "2px");
   await expect(email).toHaveCSS("border-bottom-color", "rgb(229, 72, 77)");
 });
+
+for (const [route, button, height] of [["/login", "Влез", 844], ["/register", "Създай профил", 844]] as const) {
+  for (const width of [320, 360, 390, 430]) {
+    test(`${route} on a ${width}px phone: heading, fields and the button on the first screen; gutters, 16px+ text, input hints`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      await page.goto(route, { waitUntil: "networkidle" });
+      const inputs = page.locator(".auth-box input:not([type=hidden])");
+      const submit = page.locator(".auth-box").getByRole("button", { name: button });
+      const boxes = await inputs.evaluateAll(nodes => nodes.map(node => { const r = node.getBoundingClientRect(); return { left: r.left, right: r.right, bottom: r.bottom, font: parseFloat(getComputedStyle(node).fontSize), h: r.height }; }));
+      for (const box of boxes) {
+        expect(box.left).toBeGreaterThanOrEqual(16);
+        expect(width - box.right).toBeGreaterThanOrEqual(16);
+        expect(box.font).toBeGreaterThanOrEqual(16);
+        expect(box.h).toBeGreaterThanOrEqual(44);
+        expect(box.bottom).toBeLessThanOrEqual(height);
+      }
+      expect((await page.locator(".auth-cap h1").boundingBox())!.y).toBeGreaterThanOrEqual(0);
+      const action = (await submit.boundingBox())!;
+      expect(action.y + action.height).toBeLessThanOrEqual(height);
+      expect(action.height).toBeGreaterThanOrEqual(44);
+      const email = page.locator('input[name="email"]');
+      await expect(email).toHaveAttribute("autocomplete", "email");
+      await expect(email).toHaveAttribute("inputmode", "email");
+      await expect(email).toHaveAttribute("autocapitalize", "none");
+      await expect(page.locator('input[name="password"]')).toHaveAttribute("autocomplete", route === "/login" ? "current-password" : "new-password");
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(0);
+    });
+  }
+}
+
+test("a keyboard-sized window (390×480): fields keep their gutters and the focused field scrolls into view", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 480 });
+  await page.goto("/login", { waitUntil: "networkidle" });
+  const password = page.locator('input[name="password"]');
+  await password.focus();
+  const box = (await password.boundingBox())!;
+  expect(box.x).toBeGreaterThanOrEqual(16);
+  expect(box.y + box.height).toBeLessThanOrEqual(480);
+});

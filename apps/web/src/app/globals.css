@@ -441,6 +441,9 @@ img{display:block;max-width:100%}
 .perks b{font-family:var(--serif);font-weight:500;font-size:1.4rem;line-height:1.1}
 .perks span.t{grid-column:2;color:var(--muted);font-size:.92rem}
 @media (max-width:1000px){.auth{display:block}.auth-ph{position:relative;top:auto;height:46svh;min-height:340px}.auth-cap{padding:0 var(--gut) 24px}.auth-side{padding:40px var(--gut) 120px}.auth-box{max-width:none}}
+/* Phone: a compact photo band, so the heading, both fields and the button fit the first screen (390×844). */
+@media (max-width:1000px){.auth-ph{height:clamp(170px,26svh,240px);min-height:0}.auth-cap{padding-bottom:16px}.auth-cap h1{font-size:clamp(2.5rem,1.6rem + 3.6vw,3.8rem)}.auth-cap .stitch-band,.auth-cap .band{margin-top:14px}.auth-side{padding:22px var(--gut) 96px}.atabs{margin-bottom:22px}.auth-box h2{font-size:2.1rem}.auth-box .sub{margin-bottom:18px}.fld{margin-bottom:14px}}
+@media (max-width:380px){.auth-ph{height:clamp(160px,22svh,200px)}}
 
 /* ---------- таблет и телефон ---------- */
 @media (max-width:1000px){

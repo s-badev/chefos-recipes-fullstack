@@ -369,6 +369,9 @@ em{font-style:italic}
 .perks span.t{grid-column:2;color:var(--muted);font-size:.92rem}
 .mnote{margin-top:14px;font-size:.82rem;color:var(--muted);min-height:1.4em}
 @media (max-width:1000px){.auth{display:block}.auth-ph{position:relative;top:auto;height:46svh;min-height:340px}.auth-cap{padding:0 var(--gut) 24px}.auth-side{padding:40px var(--gut) 120px}.auth-box{max-width:none}}
+/* Кръг 4 · телефон: компактна лента със снимката — заглавието, двете полета и бутонът са на първия екран (390×844). */
+@media (max-width:1000px){.auth-ph{height:clamp(170px,26svh,240px);min-height:0}.auth-cap{padding-bottom:16px}.auth-cap h1{font-size:clamp(2.5rem,1.6rem + 3.6vw,3.8rem)}.auth-cap .stitch-band,.auth-cap .band{margin-top:14px}.auth-side{padding:22px var(--gut) 96px}.atabs{margin-bottom:22px}.auth-box h2{font-size:2.1rem}.auth-box .sub{margin-bottom:18px}.fld{margin-bottom:14px}}
+@media (max-width:380px){.auth-ph{height:clamp(160px,22svh,200px)}}
 
 [data-motion=off] *,[data-motion=off] *::before,[data-motion=off] *::after{animation:none!important;transition:none!important}
 
@@ -552,8 +555,8 @@ em{font-style:italic}
       <h2 id="a-t">Влез в <em>профила</em> си</h2>
       <p class="sub" id="a-s">Любимите ти рецепти те чакат там, където ги остави.</p>
       <form id="a-form" novalidate>
-        <label class="fld" id="f-name" hidden><span>Име</span><input type="text" name="name" autocomplete="name" placeholder="Твоето име"></label>
-        <label class="fld"><span>Имейл</span><input type="email" name="email" autocomplete="email" placeholder="ime@example.com"></label>
+        <label class="fld" id="f-name" hidden><span>Име</span><input type="text" name="name" autocomplete="name" autocapitalize="words" placeholder="Твоето име"></label>
+        <label class="fld"><span>Имейл</span><input type="email" name="email" autocomplete="email" inputmode="email" autocapitalize="none" spellcheck="false" placeholder="ime@example.com"></label>
         <label class="fld"><span>Парола</span><input type="password" name="password" id="f-pass" autocomplete="current-password" placeholder="Въведи парола"></label>
         <button class="btn fill" type="submit" id="a-go">Влез <span class="ar" aria-hidden="true">→</span></button>
         <p class="alt"><span id="a-q">Нямаш профил?</span> <a class="link" href="#auth" data-mode="up" id="a-alt">Регистрация</a></p>

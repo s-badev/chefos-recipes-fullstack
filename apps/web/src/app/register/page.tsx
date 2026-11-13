@@ -52,8 +52,8 @@ export default async function RegisterPage({ searchParams }: RegisterPageProps) 
     >
       <form action={registerAction}>
         {next !== undefined ? <input name="next" type="hidden" value={next} /> : null}
-        <AuthField autoComplete="name" label="Име" name="name" placeholder="Твоето име" required type="text" />
-        <AuthField autoComplete="email" label="Имейл" name="email" placeholder="ime@example.com" required type="email" />
+        <AuthField autoCapitalize="words" autoComplete="name" label="Име" name="name" placeholder="Твоето име" required type="text" />
+        <AuthField autoCapitalize="none" autoComplete="email" inputMode="email" label="Имейл" name="email" placeholder="ime@example.com" required spellCheck={false} type="email" />
         <AuthField autoComplete="new-password" label="Парола" minLength={8} name="password" placeholder="Създай парола" required type="password" />
         {errorMessage ? <p className="form-err" role="alert">{errorMessage}</p> : null}
         <SubmitButton className="btn fill" pendingLabel="Създаване…">Създай профил <span aria-hidden="true" className="ar">→</span></SubmitButton>
