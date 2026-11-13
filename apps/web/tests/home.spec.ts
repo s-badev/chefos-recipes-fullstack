@@ -134,3 +134,22 @@ test("logo is one link to the home page with a readable name", async ({ page }) 
   await expect(logo.locator(".logo-kicker")).toHaveText("Домашна кухня");
   await expect(logo.locator(".logo-name")).toHaveText("Chefo's Recipes");
 });
+
+for (const width of [360, 390, 414]) {
+  test(`home hero on a ${width}px phone: the plate in frame, the title inside the screen, no sideways scroll`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/", { waitUntil: "networkidle" });
+    const hero = await page.evaluate(() => {
+      const h1 = document.querySelector(".hero h1")!.getBoundingClientRect();
+      const layer = document.querySelector(".hero > .hero-ph")!.getBoundingClientRect();
+      const section = document.querySelector(".hero")!.getBoundingClientRect();
+      return { h1Left: h1.left, h1Right: h1.right, h1Bottom: h1.bottom, layerTop: layer.top, sectionTop: section.top, overflow: document.documentElement.scrollWidth - innerWidth };
+    });
+    expect(hero.overflow).toBeLessThanOrEqual(0);
+    expect(hero.h1Left).toBeGreaterThanOrEqual(0);
+    expect(hero.h1Right).toBeLessThanOrEqual(width);
+    expect(hero.h1Bottom).toBeLessThanOrEqual(844);
+    // The photo layer reaches above the frame, so its lower part (the plate) fills the first screen.
+    expect(hero.layerTop).toBeLessThan(hero.sectionTop - 100);
+  });
+}
