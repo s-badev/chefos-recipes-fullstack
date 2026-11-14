@@ -4,9 +4,6 @@
   <a href="https://chefos-recipes.netlify.app">
     <img src="https://img.shields.io/badge/Live%20Demo-Open%20Web%20App-00C7B7?style=for-the-badge&logo=netlify&logoColor=white" alt="Live Demo" />
   </a>
-  <a href="https://chefos-recipes-mobile.netlify.app">
-    <img src="https://img.shields.io/badge/Mobile%20Demo-Open%20Expo%20Web-000020?style=for-the-badge&logo=expo&logoColor=white" alt="Mobile Demo" />
-  </a>
 </p>
 
 [![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js)](https://nextjs.org/)
@@ -15,14 +12,14 @@
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-UI-38B2AC?logo=tailwind-css\&logoColor=white)](https://tailwindcss.com/)
 [![Neon](https://img.shields.io/badge/Neon-PostgreSQL-00E599?logo=postgresql\&logoColor=white)](https://neon.tech/)
 [![Drizzle ORM](https://img.shields.io/badge/Drizzle-ORM-C5F74F)](https://orm.drizzle.team/)
-[![Expo](https://img.shields.io/badge/Expo-Mobile%20Web%20Export-000020?logo=expo)](https://expo.dev/)
+[![Expo](https://img.shields.io/badge/Expo-Mobile%20App-000020?logo=expo)](https://expo.dev/)
 [![JWT Auth](https://img.shields.io/badge/JWT-Mobile%20API-2F855A)](#authentication-and-authorization)
 [![Netlify](https://img.shields.io/badge/Netlify-Deployed-00C7B7?logo=netlify\&logoColor=white)](https://www.netlify.com/)
 [![Status](https://img.shields.io/badge/Status-Portfolio%20Ready-brightgreen)](#project-status)
 
 **Chefo’s Recipes** is a deployed full-stack Bulgarian recipe catalog built with **Next.js**, **React**, **TypeScript**, **Neon PostgreSQL**, **Drizzle ORM**, and **Expo React Native**.
 
-The project includes a production **Next.js web app + backend**, a deployed **Expo mobile web export**, real authentication, user-specific favorites, role-based admin access, database-backed recipe management, seeded scalability data, and REST API endpoints consumed by the mobile client.
+The project includes a production **Next.js web app + backend**, an **Expo React Native mobile client**, real authentication, user-specific favorites, role-based admin access, database-backed recipe management, seeded scalability data, and REST API endpoints consumed by the mobile client.
 
 This repository was developed as a SoftUni **Full Stack Apps with AI** capstone project and is structured as a production-style npm workspace monorepo.
 
@@ -32,7 +29,7 @@ This repository was developed as a SoftUni **Full Stack Apps with AI** capstone 
 
 | Platform               | URL                                       |
 | ---------------------- | ----------------------------------------- |
-| Web App + Backend API  | https://chefos-recipes.netlify.app        | |
+| Web App + Backend API  | https://chefos-recipes.netlify.app        |
 
 ---
 
@@ -65,9 +62,8 @@ The shared review database may change between visits. The admin account can add,
 * 🖼️ **Fallback images** for admin-created recipes without custom uploads.
 * 🗄️ **Neon PostgreSQL + Drizzle ORM** database layer.
 * 🌱 **10,000+ generated records** for scalability and database/admin testing.
-* 📱 **Expo React Native mobile app** deployed as a Netlify web export.
+* 📱 **Expo React Native mobile app** (`apps/mobile`) that uses the same REST API.
 * 🔌 **REST API endpoints** used by the mobile client.
-* 🚀 **Separate Netlify deployments** for web/backend and mobile web export.
 
 ---
 
@@ -132,7 +128,7 @@ The redesigned web experience is built around a Bulgarian table (“sofra”): w
 
 ## 📱 Implemented Mobile Screens
 
-The Expo mobile app is included under `apps/mobile` and is deployed as a web export.
+The Expo mobile app is included under `apps/mobile`.
 
 * Home
 * Catalog
@@ -141,12 +137,6 @@ The Expo mobile app is included under `apps/mobile` and is deployed as a web exp
 * Login
 * Register
 * Profile
-
-Mobile deployment:
-
-```text
-https://chefos-recipes-mobile.netlify.app
-```
 
 The mobile app connects to the deployed Next.js REST API:
 
@@ -301,7 +291,7 @@ chefos-recipes-fullstack/
 | Web framework         | Next.js App Router                                            |
 | UI                    | React, TypeScript, Tailwind CSS, global CSS                   |
 | Backend               | Next.js route handlers and Server Actions                     |
-| Mobile                | Expo React Native, React Native Web                           |
+| Mobile                | Expo React Native                                             |
 | Database              | Neon PostgreSQL                                               |
 | ORM                   | Drizzle ORM                                                   |
 | Web authentication    | Signed sessions, HTTP-only cookies, `scrypt` password hashing |
@@ -333,7 +323,7 @@ https://chefos-recipes.netlify.app/api/mobile
 | `/api/mobile/favorites`        | User favorites                    |
 | `/api/mobile/favorites/[slug]` | Remove favorite by recipe slug    |
 
-CORS support is enabled for the deployed mobile web export.
+CORS support is enabled for mobile client requests.
 
 ---
 
@@ -491,7 +481,7 @@ cd apps/mobile
 npx expo start --clear --lan
 ```
 
-Build the Expo mobile web export:
+Build the Expo mobile app for the web (optional local check):
 
 ```powershell
 npm.cmd run build --workspace @chefos/mobile
@@ -514,7 +504,7 @@ SITE_URL
 
 `DATABASE_URL`, `AUTH_SESSION_SECRET`, and `MOBILE_JWT_SECRET` are required for the database, signed web sessions, and mobile API authentication. `SITE_URL` is an optional canonical-origin override; the production URL is the default.
 
-### Mobile Web Export
+### Mobile app (`apps/mobile`)
 
 ```text
 EXPO_PUBLIC_API_BASE_URL
@@ -542,18 +532,6 @@ Never commit real `.env` files or secrets.
 | Required env vars | `DATABASE_URL`, `AUTH_SESSION_SECRET`, `MOBILE_JWT_SECRET`     |
 | Optional env var  | `SITE_URL`                                                     |
 
-### Expo Mobile Web Export
-
-| Setting           | Value                                                         |
-| ----------------- | ------------------------------------------------------------- |
-| Platform          | Netlify                                                       |
-| Project name      | `chefos-recipes-mobile`                                       |
-| Live URL          | https://chefos-recipes-mobile.netlify.app                     |
-| Project to deploy | `apps/mobile`                                                 |
-| Build command     | `npm --workspace @chefos/mobile run build`                    |
-| Publish directory | `apps/mobile/dist`                                            |
-| Required env var  | `EXPO_PUBLIC_API_BASE_URL`                                    |
-
 ---
 
 ## 🧪 Quick Test Guide
@@ -564,35 +542,29 @@ Never commit real `.env` files or secrets.
    https://chefos-recipes.netlify.app
    ```
 
-2. Open the deployed mobile web export:
-
-   ```text
-   https://chefos-recipes-mobile.netlify.app
-   ```
-
-3. Confirm the live mobile API returns JSON:
+2. Confirm the live mobile API returns JSON:
 
    ```text
    https://chefos-recipes.netlify.app/api/mobile/recipes
    ```
 
-4. Log in as a regular user:
+3. Log in as a regular user:
 
    ```text
    user@chefos-recipes.bg
    user12345
    ```
 
-5. Save and remove a recipe from favorites.
+4. Save and remove a recipe from favorites.
 
-6. Log in as admin:
+5. Log in as admin:
 
    ```text
    admin@chefos-recipes.bg
    admin12345
    ```
 
-7. Open `/admin` and confirm:
+6. Open `/admin` and confirm:
 
    * Admin DB count/list loads.
    * Add recipe works.
@@ -600,15 +572,6 @@ Never commit real `.env` files or secrets.
    * Delete recipe works.
    * Manual admin-created recipe is displayed in the public catalog after being saved through the admin panel.
    * Generated scalability records stay hidden from the public catalog.
-
-8. Open the Expo mobile web export and confirm:
-
-   * Home screen loads.
-   * Catalog loads.
-   * Recipe details open.
-   * Login works.
-   * Profile opens.
-   * Favorites work.
 
 ---
 
@@ -628,11 +591,6 @@ Never commit real `.env` files or secrets.
 * Admin delete recipe works.
 * Manual admin-created recipe is displayed in the public catalog.
 * Generated scalability records stay hidden from public catalog.
-* Mobile web export opens.
-* Mobile catalog loads.
-* Mobile login works.
-* Mobile profile works.
-* Mobile favorites work.
 
 ---
 
@@ -661,10 +619,8 @@ Never commit real `.env` files or secrets.
 | Drizzle ORM schema/seed                          | Done            |
 | 10,000+ generated records for scalability        | Done            |
 | Expo mobile app                                  | Done            |
-| Expo mobile web export deployment                | Done            |
 | CORS support for mobile API calls                | Done            |
 | Netlify web/backend deployment                   | Done            |
-| Netlify mobile deployment                        | Done            |
 
 ---
 
@@ -678,7 +634,6 @@ Never commit real `.env` files or secrets.
 | Email                 | [stefan.badev@yahoo.com](mailto:stefan.badev@yahoo.com)        |
 | GitHub Repo           | https://github.com/s-badev/chefos-recipes-fullstack            |
 | Web Project Live URL  | https://chefos-recipes.netlify.app                             |
-| Expo Project Live URL | https://chefos-recipes-mobile.netlify.app                      |
 | Database              | Neon PostgreSQL with Drizzle ORM                               |
 | Deployment            | Netlify                                                        |
 
@@ -686,22 +641,21 @@ Never commit real `.env` files or secrets.
 
 ## ⚠️ Notes
 
-* The Expo mobile app is deployed as a web export, as required for the project submission.
-* The mobile web export uses the deployed Next.js REST API.
+* The Expo mobile app (`apps/mobile`) uses the Next.js REST API.
 * Image upload is intentionally not implemented.
 * Admin-created recipes without custom images use fallback images.
 * Recipes without full ingredients/steps use graceful fallback text where needed.
 * Generated scalability records are not shown publicly by design.
 * Browser print previews may show browser-generated headers and footers unless disabled in browser print settings.
 * This project is built as a capstone and portfolio-ready full-stack application with production-style architecture, while intentionally keeping some commercial-grade features, such as image upload infrastructure, outside the project scope.
-* Supporting screenshots are included for Netlify environment variables, Neon PostgreSQL tables, and the deployed Expo mobile web export. Sensitive values such as secrets, tokens and database URLs are hidden or masked.
+* Supporting screenshots are included for Netlify environment variables and Neon PostgreSQL tables. Sensitive values such as secrets, tokens and database URLs are hidden or masked.
 * Visible names and emails in database screenshots are fictional demo/test records used only for seeding and testing. They do not represent real users.
-  
+
 ---
 
 ## 🎯 Conclusion
 
-Chefo’s Recipes is a deployed full-stack Bulgarian recipe catalog with a working Next.js web app, backend API, Neon PostgreSQL database, Drizzle ORM integration, authentication, favorites, admin access, database-backed recipe management, and Expo mobile web export.
+Chefo’s Recipes is a deployed full-stack Bulgarian recipe catalog with a working Next.js web app, backend API, Neon PostgreSQL database, Drizzle ORM integration, authentication, favorites, admin access, database-backed recipe management, and an Expo mobile client.
 
 The project demonstrates a complete full-stack workflow: database modeling, seeding, backend API design, web UI, mobile UI, authentication, role-based access, deployment, and AI-assisted development.
 
