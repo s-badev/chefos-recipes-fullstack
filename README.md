@@ -32,8 +32,7 @@ This repository was developed as a SoftUni **Full Stack Apps with AI** capstone 
 
 | Platform               | URL                                       |
 | ---------------------- | ----------------------------------------- |
-| Web App + Backend API  | https://chefos-recipes.netlify.app        |
-| Expo Mobile Web Export | https://chefos-recipes-mobile.netlify.app |
+| Web App + Backend API  | https://chefos-recipes.netlify.app        | |
 
 ---
 
